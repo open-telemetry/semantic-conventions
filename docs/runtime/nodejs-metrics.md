@@ -201,7 +201,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`nodejs.eventloop.state`](/docs/registry/attributes/nodejs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of event loop time. | `active`; `idle` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `nodejs.eventloop.state`:** See the full list of well-known values below.
 
 ---
 

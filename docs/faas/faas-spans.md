@@ -91,7 +91,7 @@ This span represents the server (incoming) side of a FaaS invocation.
 | [`faas.coldstart`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
 | [`faas.invocation_id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.trigger`:** See the full list of well-known values below.
 
 **[2] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -172,7 +172,7 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 
 **[2] `faas.invoked_provider`:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
 
-**[3]:** See the full list of well-known values below.
+**[3] `faas.invoked_provider`:** See the full list of well-known values below.
 
 **[4] `faas.invoked_region`:** For some cloud providers, like AWS or GCP, the region in which a function is hosted is essential to uniquely identify the function and also part of its endpoint. Since it's part of the endpoint being called, the region is always known to clients. In these cases, `faas.invoked_region` MUST be set accordingly. If the region is unknown to the client or not required for identifying the invoked function, setting `faas.invoked_region` is optional.
 
@@ -229,11 +229,11 @@ This span represents the server side of a FaaS invocation triggered in response 
 | [`faas.document.time`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 | [`faas.invocation_id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.document.operation`:** See the full list of well-known values below.
 
 **[2] `faas.trigger`:** MUST be set to `datasource`.
 
-**[3]:** See the full list of well-known values below.
+**[3] `faas.trigger`:** See the full list of well-known values below.
 
 **[4] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -321,7 +321,7 @@ This span represents the server side of a FaaS invocation triggered by a timer.
 
 **[1] `faas.trigger`:** MUST be set to `timer`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `faas.trigger`:** See the full list of well-known values below.
 
 **[3] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.

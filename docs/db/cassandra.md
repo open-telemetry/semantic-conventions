@@ -98,13 +98,13 @@ system specific term if more applicable.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[9]:** See the full list of well-known values below.
+**[9] `error.type`:** See the full list of well-known values below.
 
 **[10] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[12]:** See the full list of well-known values below.
+**[12] `cassandra.consistency.level`:** See the full list of well-known values below.
 
 **[13] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
 or more database operations explicitly submitted as separate operations in a single

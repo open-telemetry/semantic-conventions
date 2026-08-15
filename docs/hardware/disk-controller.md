@@ -54,11 +54,11 @@ This metric is [recommended][MetricRecommended].
 * `degraded`: The disk controller is operating with reduced functionality or performance.
 * `failed`: The disk controller has failed and is not operational.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.state`:** See the full list of well-known values below.
 
 **[3] `hw.type`:** MUST be set to `disk_controller`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `hw.type`:** See the full list of well-known values below.
 
 ---
 

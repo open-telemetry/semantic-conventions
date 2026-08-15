@@ -57,7 +57,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`otel.span.sampling_result`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `otel.span.sampling_result`:** See the full list of well-known values below.
 
 ---
 
@@ -95,9 +95,9 @@ This metric is [recommended][MetricRecommended].
 | [`otel.span.parent.origin`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) | `none`; `local`; `remote` [1] |
 | [`otel.span.sampling_result`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` [2] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `otel.span.parent.origin`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `otel.span.sampling_result`:** See the full list of well-known values below.
 
 ---
 
@@ -162,7 +162,7 @@ These values will therefore be reused in the case of an application restart.
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[3]:** See the full list of well-known values below.
+**[3] `otel.component.type`:** See the full list of well-known values below.
 
 ---
 
@@ -230,7 +230,7 @@ These values will therefore be reused in the case of an application restart.
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[3]:** See the full list of well-known values below.
+**[3] `otel.component.type`:** See the full list of well-known values below.
 
 ---
 
@@ -317,7 +317,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -336,7 +336,7 @@ These values will therefore be reused in the case of an application restart.
 **[4] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[5]:** See the full list of well-known values below.
+**[5] `otel.component.type`:** See the full list of well-known values below.
 
 ---
 
@@ -415,7 +415,7 @@ These values will therefore be reused in the case of an application restart.
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[3]:** See the full list of well-known values below.
+**[3] `otel.component.type`:** See the full list of well-known values below.
 
 **[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -504,7 +504,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -523,7 +523,7 @@ These values will therefore be reused in the case of an application restart.
 **[4] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[5]:** See the full list of well-known values below.
+**[5] `otel.component.type`:** See the full list of well-known values below.
 
 **[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -628,7 +628,7 @@ These values will therefore be reused in the case of an application restart.
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[3]:** See the full list of well-known values below.
+**[3] `otel.component.type`:** See the full list of well-known values below.
 
 ---
 
@@ -696,7 +696,7 @@ These values will therefore be reused in the case of an application restart.
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[3]:** See the full list of well-known values below.
+**[3] `otel.component.type`:** See the full list of well-known values below.
 
 ---
 
@@ -783,7 +783,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -802,7 +802,7 @@ These values will therefore be reused in the case of an application restart.
 **[4] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[5]:** See the full list of well-known values below.
+**[5] `otel.component.type`:** See the full list of well-known values below.
 
 ---
 
@@ -881,7 +881,7 @@ These values will therefore be reused in the case of an application restart.
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[3]:** See the full list of well-known values below.
+**[3] `otel.component.type`:** See the full list of well-known values below.
 
 **[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -970,7 +970,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -989,7 +989,7 @@ These values will therefore be reused in the case of an application restart.
 **[4] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[5]:** See the full list of well-known values below.
+**[5] `otel.component.type`:** See the full list of well-known values below.
 
 **[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -1074,7 +1074,7 @@ These values will therefore be reused in the case of an application restart.
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[3]:** See the full list of well-known values below.
+**[3] `otel.component.type`:** See the full list of well-known values below.
 
 **[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -1163,7 +1163,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -1182,7 +1182,7 @@ These values will therefore be reused in the case of an application restart.
 **[4] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[5]:** See the full list of well-known values below.
+**[5] `otel.component.type`:** See the full list of well-known values below.
 
 **[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -1277,7 +1277,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -1296,7 +1296,7 @@ These values will therefore be reused in the case of an application restart.
 **[4] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[5]:** See the full list of well-known values below.
+**[5] `otel.component.type`:** See the full list of well-known values below.
 
 ---
 
@@ -1393,7 +1393,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -1412,7 +1412,7 @@ These values will therefore be reused in the case of an application restart.
 **[4] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[5]:** See the full list of well-known values below.
+**[5] `otel.component.type`:** See the full list of well-known values below.
 
 **[6] `rpc.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.status_code` means in the context of that system and which values are considered to represent errors.

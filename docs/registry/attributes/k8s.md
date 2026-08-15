@@ -129,11 +129,11 @@ conflict.
 
 **[2] `k8s.container.ephemeral_storage.fs_type`:** Eviction decisions based on ephemeral-storage resource limits are made based on the total container usage.
 
-**[3]:** See the full list of well-known values below.
+**[3] `k8s.container.ephemeral_storage.fs_type`:** See the full list of well-known values below.
 
-**[4]:** See the full list of well-known values below.
+**[4] `k8s.container.status.reason`:** See the full list of well-known values below.
 
-**[5]:** See the full list of well-known values below.
+**[5] `k8s.container.status.state`:** See the full list of well-known values below.
 
 **[6] `k8s.cronjob.annotation.<key>`:** Examples:
 
@@ -216,7 +216,7 @@ conflict.
 **[20] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
 [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#namespacestatus-v1-core)
 
-**[21]:** See the full list of well-known values below.
+**[21] `k8s.namespace.phase`:** See the full list of well-known values below.
 
 **[22] `k8s.node.annotation.<key>`:** Examples:
 
@@ -228,7 +228,7 @@ conflict.
 **[23] `k8s.node.condition.status`:** This attribute aligns with the `status` field of the
 [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#nodecondition-v1-core)
 
-**[24]:** See the full list of well-known values below.
+**[24] `k8s.node.condition.status`:** See the full list of well-known values below.
 
 **[25] `k8s.node.condition.type`:** K8s Node conditions as described
 by [K8s documentation](https://kubernetes.io/docs/reference/node/node-status/#condition).
@@ -240,7 +240,7 @@ The set of possible values is not limited to those listed here. Managed Kubernet
 or custom controllers MAY introduce additional node condition types.
 When this occurs, the exact value as reported by the Kubernetes API SHOULD be used.
 
-**[26]:** See the full list of well-known values below.
+**[26] `k8s.node.condition.type`:** See the full list of well-known values below.
 
 **[27] `k8s.node.label.<key>`:** Examples:
 
@@ -266,12 +266,12 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 **[30] `k8s.persistentvolume.reclaim_policy`:** This attribute aligns with the `persistentVolumeReclaimPolicy` field of the
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
 
-**[31]:** See the full list of well-known values below.
+**[31] `k8s.persistentvolume.reclaim_policy`:** See the full list of well-known values below.
 
 **[32] `k8s.persistentvolume.status.phase`:** This attribute aligns with the `phase` field of the
 [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
 
-**[33]:** See the full list of well-known values below.
+**[33] `k8s.persistentvolume.status.phase`:** See the full list of well-known values below.
 
 **[34] `k8s.persistentvolumeclaim.annotation.<key>`:** Examples:
 
@@ -290,7 +290,7 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 **[36] `k8s.persistentvolumeclaim.status.phase`:** This attribute aligns with the `phase` field of the
 [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
 
-**[37]:** See the full list of well-known values below.
+**[37] `k8s.persistentvolumeclaim.status.phase`:** See the full list of well-known values below.
 
 **[38] `k8s.pod.annotation.<key>`:** Examples:
 
@@ -327,9 +327,9 @@ This attribute aligns with the `startTime` field of the
 [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core),
 in ISO 8601 (RFC 3339 compatible) format.
 
-**[43]:** See the full list of well-known values below.
+**[43] `k8s.pod.status.phase`:** See the full list of well-known values below.
 
-**[44]:** See the full list of well-known values below.
+**[44] `k8s.pod.status.reason`:** See the full list of well-known values below.
 
 **[45] `k8s.replicaset.annotation.<key>`:** Examples:
 
@@ -360,13 +360,13 @@ This attribute aligns with the `addressType` field of the
 It is used to differentiate metrics when a Service is backed by multiple address types
 (e.g., in dual-stack clusters).
 
-**[50]:** See the full list of well-known values below.
+**[50] `k8s.service.endpoint.address_type`:** See the full list of well-known values below.
 
 **[51] `k8s.service.endpoint.condition`:** The current operational condition of the service endpoint.
 An endpoint can have multiple conditions set at once (e.g., both `serving` and `terminating` during rollout).
 This attribute aligns with the condition fields in the [K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
 
-**[52]:** See the full list of well-known values below.
+**[52] `k8s.service.endpoint.condition`:** See the full list of well-known values below.
 
 **[53] `k8s.service.endpoint.zone`:** The zone where the endpoint is located, typically corresponding to a failure domain.
 This attribute aligns with the `zone` field of endpoints in the
@@ -410,7 +410,7 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 **[58] `k8s.service.type`:** This attribute aligns with the `type` field of the
 [K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
 
-**[59]:** See the full list of well-known values below.
+**[59] `k8s.service.type`:** See the full list of well-known values below.
 
 **[60] `k8s.statefulset.annotation.<key>`:** Examples:
 
@@ -426,7 +426,7 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.statefulset.label.injected` attribute with value `""`.
 
-**[62]:** See the full list of well-known values below.
+**[62] `k8s.volume.type`:** See the full list of well-known values below.
 
 ---
 

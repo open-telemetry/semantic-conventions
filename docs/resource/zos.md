@@ -47,7 +47,7 @@ The host of a z/OS system.
 | [`host.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS. | `SYS1.DOMAIN.COM` |
 | [`host.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Unique host ID. On z/OS, SHOULD be the concatenation of sysplex name and SMFID, separated by a dash | `SYSPLEX1-SYS1` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `host.arch`:** See the full list of well-known values below.
 
 ---
 
@@ -88,7 +88,7 @@ The operating system on a z/OS system.
 | [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Human readable OS version information, e.g., as reported by command `d iplinfo`. | `IBM z/OS 3.1` |
 | [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Human readable operating system name. | `z/OS` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `os.type`:** See the full list of well-known values below.
 
 ---
 

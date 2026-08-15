@@ -202,7 +202,7 @@ Only the value corresponding to the current phase will be non-zero.
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.pod.status.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Pending`; `Running` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `k8s.pod.status.phase`:** See the full list of well-known values below.
 
 ---
 
@@ -242,7 +242,7 @@ Only the value corresponding to the current reason will be non-zero.
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.pod.status.reason`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Evicted`; `NodeAffinity` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `k8s.pod.status.reason`:** See the full list of well-known values below.
 
 ---
 
@@ -400,7 +400,7 @@ This metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.
 | --- | --- | --- | --- | --- | --- |
 | [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.paging.fault.type`:** See the full list of well-known values below.
 
 ---
 
@@ -435,7 +435,7 @@ This metric is [recommended][MetricRecommended].
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -470,7 +470,7 @@ This metric is [recommended][MetricRecommended].
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -578,7 +578,7 @@ Kubelet's stats API.
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
 | [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `k8s.volume.type`:** See the full list of well-known values below.
 
 ---
 
@@ -622,7 +622,7 @@ Kubelet's stats API.
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
 | [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `k8s.volume.type`:** See the full list of well-known values below.
 
 ---
 
@@ -668,7 +668,7 @@ Kubelet's stats API.
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
 | [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `k8s.volume.type`:** See the full list of well-known values below.
 
 ---
 
@@ -712,7 +712,7 @@ Kubelet's stats API.
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
 | [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `k8s.volume.type`:** See the full list of well-known values below.
 
 ---
 
@@ -758,7 +758,7 @@ This may not be equal to `inodes - free` because filesystem may share inodes wit
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
 | [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `k8s.volume.type`:** See the full list of well-known values below.
 
 ---
 
@@ -802,7 +802,7 @@ Kubelet's stats API.
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
 | [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `k8s.volume.type`:** See the full list of well-known values below.
 
 ---
 
@@ -847,7 +847,7 @@ Only the value corresponding to the current state will be non-zero.
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.container.status.state`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstate-v1-core) | `terminated`; `running`; `waiting` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `k8s.container.status.state`:** See the full list of well-known values below.
 
 ---
 
@@ -885,7 +885,7 @@ Only the value corresponding to the current state reason will be non-zero.
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.container.status.reason`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstateterminated-v1-core) | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `k8s.container.status.reason`:** See the full list of well-known values below.
 
 ---
 
@@ -1024,7 +1024,7 @@ This metric is [recommended][MetricRecommended].
 **[1] `k8s.node.condition.status`:** This attribute aligns with the `status` field of the
 [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#nodecondition-v1-core)
 
-**[2]:** See the full list of well-known values below.
+**[2] `k8s.node.condition.status`:** See the full list of well-known values below.
 
 **[3] `k8s.node.condition.type`:** K8s Node conditions as described
 by [K8s documentation](https://kubernetes.io/docs/reference/node/node-status/#condition).
@@ -1036,7 +1036,7 @@ The set of possible values is not limited to those listed here. Managed Kubernet
 or custom controllers MAY introduce additional node condition types.
 When this occurs, the exact value as reported by the Kubernetes API SHOULD be used.
 
-**[4]:** See the full list of well-known values below.
+**[4] `k8s.node.condition.type`:** See the full list of well-known values below.
 
 ---
 
@@ -1204,7 +1204,7 @@ This metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.
 | --- | --- | --- | --- | --- | --- |
 | [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.paging.fault.type`:** See the full list of well-known values below.
 
 ---
 
@@ -1239,7 +1239,7 @@ This metric is [recommended][MetricRecommended].
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -1274,7 +1274,7 @@ This metric is [recommended][MetricRecommended].
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -2124,7 +2124,7 @@ This metric is [recommended][MetricRecommended].
 **[1] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
 [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#namespacestatus-v1-core)
 
-**[2]:** See the full list of well-known values below.
+**[2] `k8s.namespace.phase`:** See the full list of well-known values below.
 
 ---
 
@@ -2479,7 +2479,7 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `k8s.container.ephemeral_storage.fs_type`:** Eviction decisions based on ephemeral-storage resource limits are made based on the total container usage.
 
-**[2]:** See the full list of well-known values below.
+**[2] `k8s.container.ephemeral_storage.fs_type`:** See the full list of well-known values below.
 
 ---
 
@@ -3126,13 +3126,13 @@ This attribute aligns with the `addressType` field of the
 It is used to differentiate metrics when a Service is backed by multiple address types
 (e.g., in dual-stack clusters).
 
-**[2]:** See the full list of well-known values below.
+**[2] `k8s.service.endpoint.address_type`:** See the full list of well-known values below.
 
 **[3] `k8s.service.endpoint.condition`:** The current operational condition of the service endpoint.
 An endpoint can have multiple conditions set at once (e.g., both `serving` and `terminating` during rollout).
 This attribute aligns with the condition fields in the [K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
 
-**[4]:** See the full list of well-known values below.
+**[4] `k8s.service.endpoint.condition`:** See the full list of well-known values below.
 
 **[5] `k8s.service.endpoint.zone`:** The zone where the endpoint is located, typically corresponding to a failure domain.
 This attribute aligns with the `zone` field of endpoints in the
@@ -3228,7 +3228,7 @@ This metric is derived from the `.status.phase` field of the
 **[1] `k8s.persistentvolume.status.phase`:** This attribute aligns with the `phase` field of the
 [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
 
-**[2]:** See the full list of well-known values below.
+**[2] `k8s.persistentvolume.status.phase`:** See the full list of well-known values below.
 
 ---
 
@@ -3293,7 +3293,7 @@ This metric is derived from the `.status.phase` field of the
 **[1] `k8s.persistentvolumeclaim.status.phase`:** This attribute aligns with the `phase` field of the
 [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
 
-**[2]:** See the full list of well-known values below.
+**[2] `k8s.persistentvolumeclaim.status.phase`:** See the full list of well-known values below.
 
 ---
 

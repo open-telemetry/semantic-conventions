@@ -35,7 +35,7 @@ between a child Span and a parent Span, as defined by
 
 **[1] `opentracing.ref_type`:** The causal relationship between a child Span and a parent Span.
 
-**[2]:** See the full list of well-known values below.
+**[2] `opentracing.ref_type`:** See the full list of well-known values below.
 
 ---
 

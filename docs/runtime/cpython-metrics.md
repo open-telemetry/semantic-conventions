@@ -44,7 +44,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `cpython.gc.generation`:** See the full list of well-known values below.
 
 ---
 
@@ -81,7 +81,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `cpython.gc.generation`:** See the full list of well-known values below.
 
 ---
 
@@ -118,7 +118,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `cpython.gc.generation`:** See the full list of well-known values below.
 
 ---
 

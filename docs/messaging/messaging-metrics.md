@@ -85,7 +85,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -113,7 +113,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 
@@ -128,7 +128,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[11]:** See the full list of well-known values below.
+**[11] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
@@ -209,7 +209,7 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -237,7 +237,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.destination.name`:** if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
 
@@ -316,7 +316,7 @@ The metric SHOULD be reported once per message delivery. For example, if receivi
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -344,7 +344,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 
@@ -428,7 +428,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -456,7 +456,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 

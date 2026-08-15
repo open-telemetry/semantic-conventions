@@ -95,7 +95,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `db.system.name`:** See the full list of well-known values below.
 
 **[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
@@ -141,7 +141,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[11]:** See the full list of well-known values below.
+**[11] `error.type`:** See the full list of well-known values below.
 
 **[12] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
@@ -292,7 +292,7 @@ Explaining bucket configuration:
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `db.system.name`:** See the full list of well-known values below.
 
 **[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
@@ -338,7 +338,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[11]:** See the full list of well-known values below.
+**[11] `error.type`:** See the full list of well-known values below.
 
 **[12] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
@@ -455,7 +455,7 @@ This metric is [recommended][MetricRecommended].
 | [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` |
 | [`db.client.connection.state`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of a connection in the pool | `idle` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `db.client.connection.state`:** See the full list of well-known values below.
 
 ---
 

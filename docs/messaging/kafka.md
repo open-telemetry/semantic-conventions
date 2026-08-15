@@ -96,7 +96,7 @@ span (`messaging.send.producer`) instead and omit the "Create" span. See
 
 **[1] `messaging.system`:** MUST be set to `"kafka"`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -124,7 +124,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
@@ -139,7 +139,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[10] `messaging.operation.type`:** SHOULD be set to `create`.
 
-**[11]:** See the full list of well-known values below.
+**[11] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[12] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
@@ -255,7 +255,7 @@ injected into the message(s) as the creation context. See
 
 **[1] `messaging.system`:** MUST be set to `"kafka"`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -283,7 +283,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -302,7 +302,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[12] `messaging.operation.type`:** SHOULD be set to `send`.
 
-**[13]:** See the full list of well-known values below.
+**[13] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[14] `messaging.kafka.cluster.id`:** The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
 
@@ -425,7 +425,7 @@ creation context that was injected into the message. See
 
 **[1] `messaging.system`:** MUST be set to `"kafka"`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -453,7 +453,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -472,7 +472,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[12] `messaging.operation.type`:** SHOULD be set to `send`.
 
-**[13]:** See the full list of well-known values below.
+**[13] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[14] `messaging.kafka.cluster.id`:** The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
 
@@ -595,7 +595,7 @@ call methods of messaging SDKs to receive messages. See
 
 **[1] `messaging.system`:** MUST be set to `"kafka"`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -623,7 +623,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -642,7 +642,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[12] `messaging.operation.type`:** SHOULD be set to `receive`.
 
-**[13]:** See the full list of well-known values below.
+**[13] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[14] `messaging.kafka.cluster.id`:** The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
 
@@ -768,7 +768,7 @@ message creation context is used as the parent, see
 
 **[1] `messaging.system`:** MUST be set to `"kafka"`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -796,7 +796,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -815,7 +815,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[12] `messaging.operation.type`:** SHOULD be set to `process`.
 
-**[13]:** See the full list of well-known values below.
+**[13] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[14] `messaging.kafka.cluster.id`:** The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
 
@@ -930,7 +930,7 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 
 **[1] `messaging.system`:** MUST be set to `"kafka"`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -958,7 +958,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -975,7 +975,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[11] `messaging.operation.type`:** SHOULD be set to `settle`.
 
-**[12]:** See the full list of well-known values below.
+**[12] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[13] `messaging.kafka.cluster.id`:** The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
 

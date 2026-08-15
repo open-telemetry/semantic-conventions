@@ -19,7 +19,7 @@ The Android platform on which the Android application is running.
 
 **[1] `android.app.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lifecycle-callbacks), and from which the `OS identifiers` are derived.
 
-**[2]:** See the full list of well-known values below.
+**[2] `android.app.state`:** See the full list of well-known values below.
 
 ---
 
@@ -41,7 +41,7 @@ This document defines attributes that represents an occurrence of a lifecycle tr
 | --- | --- | --- | --- | --- |
 | <a id="android-state" href="#android-state">`android.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `android.app.state`. | string | Deprecated. Use `android.app.state` attribute instead. | `created`; `background`; `foreground` [3] |
 
-**[3]:** See the full list of well-known values below.
+**[3] `android.state`:** See the full list of well-known values below.
 
 ---
 

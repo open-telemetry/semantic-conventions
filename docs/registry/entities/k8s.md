@@ -316,7 +316,7 @@ conflict.
 **[19] `k8s.persistentvolume.reclaim_policy`:** This attribute aligns with the `persistentVolumeReclaimPolicy` field of the
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
 
-**[20]:** See the full list of well-known values below.
+**[20] `k8s.persistentvolume.reclaim_policy`:** See the full list of well-known values below.
 
 ---
 
@@ -500,7 +500,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 **[30] `k8s.service.type`:** This attribute aligns with the `type` field of the
 [K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
 
-**[31]:** See the full list of well-known values below.
+**[31] `k8s.service.type`:** See the full list of well-known values below.
 
 **[32] `k8s.service.annotation.<key>`:** Examples:
 

@@ -39,23 +39,23 @@ Attributes for hardware.
 | <a id="hw-type" href="#hw-type">`hw.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of the component [8] | `battery`; `cpu`; `disk_controller` [9] |
 | <a id="hw-vendor" href="#hw-vendor">`hw.vendor`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `hw.battery.state`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.gpu.task`:** See the full list of well-known values below.
 
-**[3]:** See the full list of well-known values below.
+**[3] `hw.limit_type`:** See the full list of well-known values below.
 
-**[4]:** See the full list of well-known values below.
+**[4] `hw.logical_disk.state`:** See the full list of well-known values below.
 
-**[5]:** See the full list of well-known values below.
+**[5] `hw.physical_disk.state`:** See the full list of well-known values below.
 
-**[6]:** See the full list of well-known values below.
+**[6] `hw.state`:** See the full list of well-known values below.
 
-**[7]:** See the full list of well-known values below.
+**[7] `hw.tape_drive.operation_type`:** See the full list of well-known values below.
 
 **[8] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
-**[9]:** See the full list of well-known values below.
+**[9] `hw.type`:** See the full list of well-known values below.
 
 ---
 

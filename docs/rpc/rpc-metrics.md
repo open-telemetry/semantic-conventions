@@ -83,7 +83,7 @@ SHOULD be the same as the RPC server span duration.
 
 **[1] `rpc.system.name`:** The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.
 
-**[2]:** See the full list of well-known values below.
+**[2] `rpc.system.name`:** See the full list of well-known values below.
 
 **[3] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
@@ -99,7 +99,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
 
@@ -188,7 +188,7 @@ SHOULD be the same as the RPC client span duration.
 
 **[1] `rpc.system.name`:** The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.
 
-**[2]:** See the full list of well-known values below.
+**[2] `rpc.system.name`:** See the full list of well-known values below.
 
 **[3] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
@@ -204,7 +204,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
 

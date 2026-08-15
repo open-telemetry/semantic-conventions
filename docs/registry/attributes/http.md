@@ -27,7 +27,7 @@ This document defines semantic convention attributes in the HTTP namespace.
 | <a id="http-response-status-code" href="#http-response-status-code">`http.response.status_code`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
 | <a id="http-route" href="#http-route">`http.route`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [7] | `/users/:userID?`; `my-controller/my-action/{id?}` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `http.connection.state`:** See the full list of well-known values below.
 
 **[2] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -69,7 +69,7 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[4]:** See the full list of well-known values below.
+**[4] `http.request.method`:** See the full list of well-known values below.
 
 **[5] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
@@ -150,7 +150,7 @@ Describes deprecated HTTP attributes.
 | <a id="http-url" href="#http-url">`http.url`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `url.full`. | string | Deprecated, use `url.full` instead. | `https://www.foo.bar/search?q=OpenTelemetry#SemConv` |
 | <a id="http-user-agent" href="#http-user-agent">`http.user_agent`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user_agent.original`. | string | Deprecated, use `user_agent.original` instead. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` |
 
-**[8]:** See the full list of well-known values below.
+**[8] `http.flavor`:** See the full list of well-known values below.
 
 ---
 

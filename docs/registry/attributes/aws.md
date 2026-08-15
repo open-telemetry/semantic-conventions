@@ -86,7 +86,7 @@ This document defines attributes for AWS Elastic Container Service (ECS).
 | <a id="aws-ecs-task-id" href="#aws-ecs-task-id">`aws.ecs.task.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ID of a running ECS task. The ID MUST be extracted from `task.arn`. | `10838bed-421f-43ef-870a-f43feacbbb5b`; `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` |
 | <a id="aws-ecs-task-revision" href="#aws-ecs-task-revision">`aws.ecs.task.revision`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The revision for the task definition used to create the ECS task. | `8`; `26` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `aws.ecs.launchtype`:** See the full list of well-known values below.
 
 ---
 

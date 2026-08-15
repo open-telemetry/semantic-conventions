@@ -24,7 +24,7 @@ This document defines attributes for Feature Flags.
 | <a id="feature-flag-set-id" href="#feature-flag-set-id">`feature_flag.set.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` |
 | <a id="feature-flag-version" href="#feature-flag-version">`feature_flag.version`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `feature_flag.result.reason`:** See the full list of well-known values below.
 
 **[2] `feature_flag.result.value`:** With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
 Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
@@ -66,7 +66,7 @@ Describes deprecated feature flag attributes.
 | <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.provider.name`. | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` |
 | <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.variant`. | string | Deprecated, use `feature_flag.result.variant` instead. | `red`; `true`; `on` |
 
-**[4]:** See the full list of well-known values below.
+**[4] `feature_flag.evaluation.reason`:** See the full list of well-known values below.
 
 ---
 

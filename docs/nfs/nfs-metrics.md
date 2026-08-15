@@ -60,7 +60,7 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[2]:** See the full list of well-known values below.
+**[2] `network.transport`:** See the full list of well-known values below.
 
 ---
 
@@ -267,7 +267,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -328,7 +328,7 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[2]:** See the full list of well-known values below.
+**[2] `network.transport`:** See the full list of well-known values below.
 
 ---
 
@@ -413,7 +413,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 ---
 

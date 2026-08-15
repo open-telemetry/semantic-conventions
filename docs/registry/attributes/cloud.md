@@ -24,9 +24,9 @@ A cloud environment (e.g. GCP, Azure, AWS).
 
 **[3] `cloud.platform`:** The prefix of the service SHOULD match the one specified in `cloud.provider`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `cloud.platform`:** See the full list of well-known values below.
 
-**[5]:** See the full list of well-known values below.
+**[5] `cloud.provider`:** See the full list of well-known values below.
 
 **[6] `cloud.region`:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 

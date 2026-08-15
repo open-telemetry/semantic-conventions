@@ -60,7 +60,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | --- | --- | --- | --- | --- | --- |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.trigger`:** See the full list of well-known values below.
 
 ---
 
@@ -99,7 +99,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | --- | --- | --- | --- | --- | --- |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.trigger`:** See the full list of well-known values below.
 
 ---
 
@@ -136,7 +136,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.trigger`:** See the full list of well-known values below.
 
 ---
 
@@ -173,7 +173,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.trigger`:** See the full list of well-known values below.
 
 ---
 
@@ -210,7 +210,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.trigger`:** See the full list of well-known values below.
 
 ---
 
@@ -247,7 +247,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.trigger`:** See the full list of well-known values below.
 
 ---
 
@@ -284,7 +284,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.trigger`:** See the full list of well-known values below.
 
 ---
 
@@ -323,7 +323,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | --- | --- | --- | --- | --- | --- |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.trigger`:** See the full list of well-known values below.
 
 ---
 
@@ -360,7 +360,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.trigger`:** See the full list of well-known values below.
 
 ---
 

@@ -32,9 +32,9 @@ Describes Filesystem attributes
 | <a id="system-filesystem-state" href="#system-filesystem-state">`system.filesystem.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem state | `used` [1] |
 | <a id="system-filesystem-type" href="#system-filesystem-type">`system.filesystem.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem type | `ext4` [2] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.filesystem.state`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `system.filesystem.type`:** See the full list of well-known values below.
 
 ---
 
@@ -71,11 +71,11 @@ Describes System Memory attributes
 | <a id="system-memory-linux-slab-state" href="#system-memory-linux-slab-state">`system.memory.linux.slab.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` [4] |
 | <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory state | `free`; `cached` [5] |
 
-**[3]:** See the full list of well-known values below.
+**[3] `system.memory.linux.hugepages.state`:** See the full list of well-known values below.
 
-**[4]:** See the full list of well-known values below.
+**[4] `system.memory.linux.slab.state`:** See the full list of well-known values below.
 
-**[5]:** See the full list of well-known values below.
+**[5] `system.memory.state`:** See the full list of well-known values below.
 
 ---
 
@@ -120,11 +120,11 @@ Describes System Memory Paging attributes
 | <a id="system-paging-fault-type" href="#system-paging-fault-type">`system.paging.fault.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The paging fault type | `minor` [8] |
 | <a id="system-paging-state" href="#system-paging-state">`system.paging.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory paging state | `free` [9] |
 
-**[7]:** See the full list of well-known values below.
+**[7] `system.paging.direction`:** See the full list of well-known values below.
 
-**[8]:** See the full list of well-known values below.
+**[8] `system.paging.fault.type`:** See the full list of well-known values below.
 
-**[9]:** See the full list of well-known values below.
+**[9] `system.paging.state`:** See the full list of well-known values below.
 
 ---
 
@@ -168,15 +168,15 @@ Deprecated system attributes.
 | <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. | string | Deprecated, use `process.state` instead. | `running` [13] |
 | <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. | string | Deprecated, use `process.state` instead. | `running` [14] |
 
-**[10]:** See the full list of well-known values below.
+**[10] `system.cpu.state`:** See the full list of well-known values below.
 
-**[11]:** See the full list of well-known values below.
+**[11] `system.network.state`:** See the full list of well-known values below.
 
-**[12]:** See the full list of well-known values below.
+**[12] `system.paging.type`:** See the full list of well-known values below.
 
-**[13]:** See the full list of well-known values below.
+**[13] `system.process.status`:** See the full list of well-known values below.
 
-**[14]:** See the full list of well-known values below.
+**[14] `system.processes.status`:** See the full list of well-known values below.
 
 ---
 

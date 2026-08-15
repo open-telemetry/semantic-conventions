@@ -48,11 +48,11 @@ The `android.app.state` and `ios.app.state` fields are mutually exclusive and MU
 
 **[1] `android.app.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lifecycle-callbacks), and from which the `OS identifiers` are derived.
 
-**[2]:** See the full list of well-known values below.
+**[2] `android.app.state`:** See the full list of well-known values below.
 
 **[3] `ios.app.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
-**[4]:** See the full list of well-known values below.
+**[4] `ios.app.state`:** See the full list of well-known values below.
 
 ---
 

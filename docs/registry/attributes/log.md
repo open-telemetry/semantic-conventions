@@ -17,7 +17,7 @@ This document defines log attributes
 | --- | --- | --- | --- | --- |
 | <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `log.iostream`:** See the full list of well-known values below.
 
 ---
 

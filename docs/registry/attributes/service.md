@@ -22,7 +22,7 @@ A service instance.
 
 **[1] `service.criticality`:** Application developers are encouraged to set `service.criticality` to express the operational importance of their services. Telemetry consumers MAY use this attribute to optimize telemetry collection or improve user experience.
 
-**[2]:** See the full list of well-known values below.
+**[2] `service.criticality`:** See the full list of well-known values below.
 
 **[3] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to

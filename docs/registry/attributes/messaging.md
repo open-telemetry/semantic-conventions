@@ -56,11 +56,11 @@ size should be used.
 
 **[8] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[9]:** See the full list of well-known values below.
+**[9] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[10] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[11]:** See the full list of well-known values below.
+**[11] `messaging.system`:** See the full list of well-known values below.
 
 ---
 
@@ -161,9 +161,9 @@ This group describes attributes specific to RocketMQ.
 | <a id="messaging-rocketmq-message-type" href="#messaging-rocketmq-message-type">`messaging.rocketmq.message.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of message. | `normal`; `fifo`; `delay` [15] |
 | <a id="messaging-rocketmq-namespace" href="#messaging-rocketmq-namespace">`messaging.rocketmq.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` |
 
-**[14]:** See the full list of well-known values below.
+**[14] `messaging.rocketmq.consumption_model`:** See the full list of well-known values below.
 
-**[15]:** See the full list of well-known values below.
+**[15] `messaging.rocketmq.message.type`:** See the full list of well-known values below.
 
 ---
 
@@ -197,7 +197,7 @@ This group describes attributes specific to Azure Service Bus.
 | <a id="messaging-servicebus-message-delivery-count" href="#messaging-servicebus-message-delivery-count">`messaging.servicebus.message.delivery_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Number of deliveries that have been attempted for this message. | `2` |
 | <a id="messaging-servicebus-message-enqueued-time" href="#messaging-servicebus-message-enqueued-time">`messaging.servicebus.message.enqueued_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
 
-**[16]:** See the full list of well-known values below.
+**[16] `messaging.servicebus.disposition_status`:** See the full list of well-known values below.
 
 ---
 

@@ -33,7 +33,7 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | Other | [`host.ip`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available IP addresses of the host, excluding loopback interfaces. [3] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
 | Other | [`host.mac`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available MAC addresses of the host, excluding loopback interfaces. [4] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `host.arch`:** See the full list of well-known values below.
 
 **[2] `host.id`:** Collecting `host.id` from non-containerized systems
 

@@ -30,9 +30,9 @@ This document defines Java Virtual machine related attributes.
 
 **[5] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-**[6]:** See the full list of well-known values below.
+**[6] `jvm.memory.type`:** See the full list of well-known values below.
 
-**[7]:** See the full list of well-known values below.
+**[7] `jvm.thread.state`:** See the full list of well-known values below.
 
 ---
 

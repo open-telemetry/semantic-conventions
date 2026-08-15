@@ -42,7 +42,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 ---
 

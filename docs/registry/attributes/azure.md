@@ -45,9 +45,9 @@ This section defines attributes for Azure Cosmos DB.
 | <a id="azure-cosmosdb-request-body-size" href="#azure-cosmosdb-request-body-size">`azure.cosmosdb.request.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Request payload size in bytes. | |
 | <a id="azure-cosmosdb-response-sub-status-code" href="#azure-cosmosdb-response-sub-status-code">`azure.cosmosdb.response.sub_status_code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Cosmos DB sub status code. | `1000`; `1002` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `azure.cosmosdb.connection.mode`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `azure.cosmosdb.consistency.level`:** See the full list of well-known values below.
 
 **[3] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
 

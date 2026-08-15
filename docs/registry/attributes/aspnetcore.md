@@ -35,29 +35,29 @@ ASP.NET Core attributes
 | <a id="aspnetcore-sign-in-is-persistent" href="#aspnetcore-sign-in-is-persistent">`aspnetcore.sign_in.is_persistent`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A flag indicating whether the sign in is persistent. | |
 | <a id="aspnetcore-user-is-authenticated" href="#aspnetcore-user-is-authenticated">`aspnetcore.user.is_authenticated`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | A value that indicates whether the user is authenticated. | `true` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `aspnetcore.authentication.result`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `aspnetcore.authorization.result`:** See the full list of well-known values below.
 
-**[3]:** See the full list of well-known values below.
+**[3] `aspnetcore.diagnostics.exception.result`:** See the full list of well-known values below.
 
-**[4]:** See the full list of well-known values below.
+**[4] `aspnetcore.identity.password_check_result`:** See the full list of well-known values below.
 
-**[5]:** See the full list of well-known values below.
+**[5] `aspnetcore.identity.result`:** See the full list of well-known values below.
 
-**[6]:** See the full list of well-known values below.
+**[6] `aspnetcore.identity.sign_in.result`:** See the full list of well-known values below.
 
-**[7]:** See the full list of well-known values below.
+**[7] `aspnetcore.identity.sign_in.type`:** See the full list of well-known values below.
 
-**[8]:** See the full list of well-known values below.
+**[8] `aspnetcore.identity.token_purpose`:** See the full list of well-known values below.
 
-**[9]:** See the full list of well-known values below.
+**[9] `aspnetcore.identity.token_verified`:** See the full list of well-known values below.
 
-**[10]:** See the full list of well-known values below.
+**[10] `aspnetcore.identity.user.update_type`:** See the full list of well-known values below.
 
-**[11]:** See the full list of well-known values below.
+**[11] `aspnetcore.rate_limiting.result`:** See the full list of well-known values below.
 
-**[12]:** See the full list of well-known values below.
+**[12] `aspnetcore.routing.match_status`:** See the full list of well-known values below.
 
 ---
 

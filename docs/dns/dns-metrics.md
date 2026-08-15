@@ -43,7 +43,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 **[2] `error.type`:** Instrumentations SHOULD use error code such as one of errors reported by `getaddrinfo`([Linux or other POSIX systems](https://man7.org/linux/man-pages/man3/getaddrinfo.3.html) / [Windows](https://learn.microsoft.com/windows/win32/api/ws2tcpip/nf-ws2tcpip-getaddrinfo)) or one reported by the runtime or client library. If error code is not available, the full name of exception type SHOULD be used.
 
-**[3]:** See the full list of well-known values below.
+**[3] `error.type`:** See the full list of well-known values below.
 
 ---
 

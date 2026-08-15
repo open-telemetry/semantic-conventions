@@ -70,7 +70,7 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `cpu.mode`:** The following values for `cpu.mode` SHOULD be used: `user`, `system`, `wait` Other modes SHOULD NOT be used unless a particular platform mandates a unique set of modes.
 
-**[2]:** See the full list of well-known values below.
+**[2] `cpu.mode`:** See the full list of well-known values below.
 
 ---
 
@@ -111,7 +111,7 @@ This metric is [opt-in][MetricOptIn].
 
 **[1] `cpu.mode`:** The following values for `cpu.mode` SHOULD be used: `user`, `system`, `wait` Other modes SHOULD NOT be used unless a particular platform mandates a unique set of modes.
 
-**[2]:** See the full list of well-known values below.
+**[2] `cpu.mode`:** See the full list of well-known values below.
 
 ---
 
@@ -201,7 +201,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The disk IO operation direction. | `read` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `disk.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -235,7 +235,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The disk IO operation direction. | `read` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `disk.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -269,7 +269,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -354,7 +354,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`process.context_switch.type`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `process.context_switch.type`:** See the full list of well-known values below.
 
 ---
 
@@ -388,7 +388,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of paging fault. Value MUST be either `major` or `minor`. If the metric is reported without this attribute, it should be the sum of major and minor page faults. | `minor` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.paging.fault.type`:** See the full list of well-known values below.
 
 ---
 

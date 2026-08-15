@@ -22,7 +22,7 @@
 {% macro format(item, notes) %}{% if item.examples or item.type == "enum" or item.type is mapping %}{{formatText(item) | trim }}{{ enum_values_note(item, notes) }} {% endif %}{% endmacro %}
 
 {#- Points readers from the (possibly truncated) example values shown here to the full list of well-known values rendered separately below. -#}
-{% macro enum_values_note(item, notes) %}{% if item.type == "enum" or item.type is mapping %}{{ notes.add({"note": "See the full list of well-known values below."}) }}{% endif %}{% endmacro %}
+{% macro enum_values_note(item, notes) %}{% if item.type == "enum" or item.type is mapping %}{%- set note_name = item.name if item.name is defined else (item.id if item.id is defined else none) -%}{{ notes.add({"note": "See the full list of well-known values below.", "name": note_name}) }}{% endif %}{% endmacro %}
 
 {% macro formatText(item) %}{%- if item.examples %}
 {%- if "[]" in item.type and "template" not in item.type %}

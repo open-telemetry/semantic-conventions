@@ -28,7 +28,7 @@ FaaS attributes
 | <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [9] |
 | <a id="faas-version" href="#faas-version">`faas.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The immutable version of the function being executed. [10] | `26`; `pinkfroid-00002` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `faas.document.operation`:** See the full list of well-known values below.
 
 **[2] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
 
@@ -36,7 +36,7 @@ FaaS attributes
 
 **[4] `faas.invoked_provider`:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
 
-**[5]:** See the full list of well-known values below.
+**[5] `faas.invoked_provider`:** See the full list of well-known values below.
 
 **[6] `faas.invoked_region`:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
 
@@ -59,7 +59,7 @@ definition of function name MUST be used for this attribute
   app can host multiple functions that would usually share
   a TracerProvider (see also the `cloud.resource_id` attribute).
 
-**[9]:** See the full list of well-known values below.
+**[9] `faas.trigger`:** See the full list of well-known values below.
 
 **[10] `faas.version`:** Depending on the cloud provider and platform, use:
 

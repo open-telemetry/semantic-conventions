@@ -29,19 +29,19 @@ This document defines attributes AppHub will apply to resources in GCP. See [App
 
 **[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-**[2]:** See the full list of well-known values below.
+**[2] `gcp.apphub.service.criticality_type`:** See the full list of well-known values below.
 
 **[3] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
-**[4]:** See the full list of well-known values below.
+**[4] `gcp.apphub.service.environment_type`:** See the full list of well-known values below.
 
 **[5] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-**[6]:** See the full list of well-known values below.
+**[6] `gcp.apphub.workload.criticality_type`:** See the full list of well-known values below.
 
 **[7] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
-**[8]:** See the full list of well-known values below.
+**[8] `gcp.apphub.workload.environment_type`:** See the full list of well-known values below.
 
 ---
 
@@ -105,13 +105,13 @@ This document defines attributes AppHub will apply to destination resources in G
 | <a id="gcp-apphub-destination-workload-environment-type" href="#gcp-apphub-destination-workload-environment-type">`gcp.apphub_destination.workload.environment_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Environment of a destination workload is the stage of a software lifecycle as provided in the [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1) | `PRODUCTION`; `STAGING`; `TEST` [12] |
 | <a id="gcp-apphub-destination-workload-id" href="#gcp-apphub-destination-workload-id">`gcp.apphub_destination.workload.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the destination workload as configured in AppHub. | `my-workload` |
 
-**[9]:** See the full list of well-known values below.
+**[9] `gcp.apphub_destination.service.criticality_type`:** See the full list of well-known values below.
 
-**[10]:** See the full list of well-known values below.
+**[10] `gcp.apphub_destination.service.environment_type`:** See the full list of well-known values below.
 
-**[11]:** See the full list of well-known values below.
+**[11] `gcp.apphub_destination.workload.criticality_type`:** See the full list of well-known values below.
 
-**[12]:** See the full list of well-known values below.
+**[12] `gcp.apphub_destination.workload.environment_type`:** See the full list of well-known values below.
 
 ---
 

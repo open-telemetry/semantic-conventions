@@ -58,11 +58,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[2]:** See the full list of well-known values below.
+**[2] `network.transport`:** See the full list of well-known values below.
 
 **[3] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[4]:** See the full list of well-known values below.
+**[4] `network.type`:** See the full list of well-known values below.
 
 **[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -173,7 +173,7 @@ the following errors types when a corresponding error occurs:
 
 In other cases, `error.type` contains the fully qualified type name of the exception.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
@@ -185,11 +185,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[6]:** See the full list of well-known values below.
+**[6] `network.transport`:** See the full list of well-known values below.
 
 **[7] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[8]:** See the full list of well-known values below.
+**[8] `network.type`:** See the full list of well-known values below.
 
 **[9] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -257,11 +257,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[2]:** See the full list of well-known values below.
+**[2] `network.transport`:** See the full list of well-known values below.
 
 **[3] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[4]:** See the full list of well-known values below.
+**[4] `network.type`:** See the full list of well-known values below.
 
 **[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -320,11 +320,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[2]:** See the full list of well-known values below.
+**[2] `network.transport`:** See the full list of well-known values below.
 
 **[3] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[4]:** See the full list of well-known values below.
+**[4] `network.type`:** See the full list of well-known values below.
 
 **[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -389,11 +389,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[4]:** See the full list of well-known values below.
+**[4] `network.transport`:** See the full list of well-known values below.
 
 **[5] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[6]:** See the full list of well-known values below.
+**[6] `network.type`:** See the full list of well-known values below.
 
 **[7] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -454,11 +454,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[2]:** See the full list of well-known values below.
+**[2] `network.transport`:** See the full list of well-known values below.
 
 **[3] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[4]:** See the full list of well-known values below.
+**[4] `network.type`:** See the full list of well-known values below.
 
 **[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -517,7 +517,7 @@ this metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 **[1] `error.type`:** Captures the exception type when a TLS handshake fails.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `network.transport`:** The value SHOULD be normalized to lowercase.
 
@@ -525,11 +525,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[4]:** See the full list of well-known values below.
+**[4] `network.transport`:** See the full list of well-known values below.
 
 **[5] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[6]:** See the full list of well-known values below.
+**[6] `network.type`:** See the full list of well-known values below.
 
 **[7] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -596,11 +596,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[2]:** See the full list of well-known values below.
+**[2] `network.transport`:** See the full list of well-known values below.
 
 **[3] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[4]:** See the full list of well-known values below.
+**[4] `network.type`:** See the full list of well-known values below.
 
 **[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 

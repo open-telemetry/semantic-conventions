@@ -138,7 +138,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[5]:** See the full list of well-known values below.
+**[5] `error.type`:** See the full list of well-known values below.
 
 **[6] `server.port`:** If and only if the port is available and `server.address` is set.
 
@@ -236,7 +236,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[3]:** See the full list of well-known values below.
+**[3] `error.type`:** See the full list of well-known values below.
 
 **[4] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
 

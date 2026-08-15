@@ -87,7 +87,7 @@ This metric reports the same values as accessing the corresponding processor tim
 | --- | --- | --- | --- | --- | --- |
 | [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The mode of the CPU | `user`; `system` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `cpu.mode`:** See the full list of well-known values below.
 
 ---
 
@@ -155,7 +155,7 @@ This metric uses the [`GC.CollectionCount(int generation)`](https://learn.micros
 | --- | --- | --- | --- | --- | --- |
 | [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `dotnet.gc.heap.generation`:** See the full list of well-known values below.
 
 ---
 
@@ -235,7 +235,7 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 | --- | --- | --- | --- | --- | --- |
 | [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `dotnet.gc.heap.generation`:** See the full list of well-known values below.
 
 ---
 
@@ -275,7 +275,7 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 | --- | --- | --- | --- | --- | --- |
 | [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `dotnet.gc.heap.generation`:** See the full list of well-known values below.
 
 ---
 
@@ -533,7 +533,7 @@ This metric reports the same values as counting calls to [`AppDomain.CurrentDoma
 | --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Describes a class of error the operation ended with. | `System.OperationCanceledException`; `Contoso.MyException` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `error.type`:** See the full list of well-known values below.
 
 ---
 

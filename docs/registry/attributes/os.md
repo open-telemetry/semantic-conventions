@@ -17,7 +17,7 @@ The operating system (OS) on which the process represented by this resource is r
 | <a id="os-type" href="#os-type">`os.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The operating system type. | `windows`; `linux`; `darwin` [1] |
 | <a id="os-version" href="#os-version">`os.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `os.type`:** See the full list of well-known values below.
 
 ---
 

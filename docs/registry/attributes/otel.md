@@ -22,11 +22,11 @@ Attributes reserved for OpenTelemetry
 | <a id="otel-status-code" href="#otel-status-code">`otel.status_code`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK`; `ERROR` [3] |
 | <a id="otel-status-description" href="#otel-status-description">`otel.status_description`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Description of the Status if it has a value, otherwise not set. | `resource not found` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `otel.span.parent.origin`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `otel.span.sampling_result`:** See the full list of well-known values below.
 
-**[3]:** See the full list of well-known values below.
+**[3] `otel.status_code`:** See the full list of well-known values below.
 
 ---
 
@@ -85,7 +85,7 @@ These values will therefore be reused in the case of an application restart.
 **[5] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[6]:** See the full list of well-known values below.
+**[6] `otel.component.type`:** See the full list of well-known values below.
 
 ---
 

@@ -20,7 +20,7 @@ This document defines attributes for telemetry SDK.
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `telemetry.sdk.language`:** See the full list of well-known values below.
 
 **[3] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the

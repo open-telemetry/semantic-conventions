@@ -418,7 +418,7 @@ span (`messaging.send.producer`) instead and omit the "Create" span. See
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -446,7 +446,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
@@ -459,7 +459,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[9] `messaging.operation.type`:** SHOULD be set to `create`.
 
-**[10]:** See the full list of well-known values below.
+**[10] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[11] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
@@ -569,7 +569,7 @@ injected into the message(s) as the creation context. See
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -597,7 +597,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -614,7 +614,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[11] `messaging.operation.type`:** SHOULD be set to `send`.
 
-**[12]:** See the full list of well-known values below.
+**[12] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[13] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -729,7 +729,7 @@ creation context that was injected into the message. See
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -757,7 +757,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -774,7 +774,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[11] `messaging.operation.type`:** SHOULD be set to `send`.
 
-**[12]:** See the full list of well-known values below.
+**[12] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[13] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -888,7 +888,7 @@ call methods of messaging SDKs to receive messages. See
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -916,7 +916,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -933,7 +933,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[11] `messaging.operation.type`:** SHOULD be set to `receive`.
 
-**[12]:** See the full list of well-known values below.
+**[12] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[13] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -1049,7 +1049,7 @@ message creation context is used as the parent, see
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -1077,7 +1077,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -1094,7 +1094,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[11] `messaging.operation.type`:** SHOULD be set to `process`.
 
-**[12]:** See the full list of well-known values below.
+**[12] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[13] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
@@ -1201,7 +1201,7 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -1229,7 +1229,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -1246,7 +1246,7 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[11] `messaging.operation.type`:** SHOULD be set to `settle`.
 
-**[12]:** See the full list of well-known values below.
+**[12] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[13] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,

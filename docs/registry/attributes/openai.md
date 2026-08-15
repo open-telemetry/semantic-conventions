@@ -16,9 +16,9 @@ OpenAI attributes have moved to the [OpenTelemetry GenAI semantic conventions re
 | <a id="openai-response-service-tier" href="#openai-response-service-tier">`openai.response.service_tier`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The service tier used for the response. | `scale`; `default` |
 | <a id="openai-response-system-fingerprint" href="#openai-response-system-fingerprint">`openai.response.system_fingerprint`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `openai.api.type`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `openai.request.service_tier`:** See the full list of well-known values below.
 
 ---
 

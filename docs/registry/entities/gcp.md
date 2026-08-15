@@ -45,11 +45,11 @@
 
 **[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-**[2]:** See the full list of well-known values below.
+**[2] `gcp.apphub.service.criticality_type`:** See the full list of well-known values below.
 
 **[3] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
-**[4]:** See the full list of well-known values below.
+**[4] `gcp.apphub.service.environment_type`:** See the full list of well-known values below.
 
 ---
 
@@ -95,11 +95,11 @@
 
 **[5] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-**[6]:** See the full list of well-known values below.
+**[6] `gcp.apphub.workload.criticality_type`:** See the full list of well-known values below.
 
 **[7] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
-**[8]:** See the full list of well-known values below.
+**[8] `gcp.apphub.workload.environment_type`:** See the full list of well-known values below.
 
 ---
 

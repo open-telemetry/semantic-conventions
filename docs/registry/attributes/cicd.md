@@ -28,19 +28,19 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The state of a CI/CD worker / agent. | `available`; `busy`; `offline` [7] |
 | <a id="cicd-worker-url-full" href="#cicd-worker-url-full">`cicd.worker.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `cicd.pipeline.action.name`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `cicd.pipeline.result`:** See the full list of well-known values below.
 
-**[3]:** See the full list of well-known values below.
+**[3] `cicd.pipeline.run.state`:** See the full list of well-known values below.
 
 **[4] `cicd.pipeline.task.run.id`:** For a given pipeline run and task, the `cicd.pipeline.task.run.id` MUST be unique within that run. For the same task across different runs of the same pipeline, the `cicd.pipeline.task.run.id` MAY remain the same, enabling correlation of `cicd.pipeline.task.run.result` values across multiple pipeline runs.
 
-**[5]:** See the full list of well-known values below.
+**[5] `cicd.pipeline.task.run.result`:** See the full list of well-known values below.
 
-**[6]:** See the full list of well-known values below.
+**[6] `cicd.pipeline.task.type`:** See the full list of well-known values below.
 
-**[7]:** See the full list of well-known values below.
+**[7] `cicd.worker.state`:** See the full list of well-known values below.
 
 ---
 

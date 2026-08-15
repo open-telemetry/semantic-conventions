@@ -615,7 +615,7 @@ provisioned by an administrator or dynamically provisioned using StorageClasses.
 **[3] `k8s.persistentvolume.reclaim_policy`:** This attribute aligns with the `persistentVolumeReclaimPolicy` field of the
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
 
-**[4]:** See the full list of well-known values below.
+**[4] `k8s.persistentvolume.reclaim_policy`:** See the full list of well-known values below.
 
 ---
 

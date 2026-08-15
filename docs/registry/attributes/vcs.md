@@ -31,11 +31,11 @@ This group defines the attributes for [Version Control Systems (VCS)](https://wi
 | <a id="vcs-repository-url-full" href="#vcs-repository-url-full">`vcs.repository.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [14] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
 | <a id="vcs-revision-delta-direction" href="#vcs-revision-delta-direction">`vcs.revision_delta.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of revision comparison. | `ahead`; `behind` [15] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `vcs.change.state`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `vcs.line_change.type`:** See the full list of well-known values below.
 
-**[3]:** See the full list of well-known values below.
+**[3] `vcs.provider.name`:** See the full list of well-known values below.
 
 **[4] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
@@ -59,7 +59,7 @@ revision based on the VCS system and situational context.
 would be the base reference of type branch if you've created a new
 reference of type branch from it and created new commits.
 
-**[7]:** See the full list of well-known values below.
+**[7] `vcs.ref.base.type`:** See the full list of well-known values below.
 
 **[8] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -79,9 +79,9 @@ revision based on the VCS system and situational context.
 **[10] `vcs.ref.head.type`:** `head` refers to where you are right now; the current reference at a
 given time.
 
-**[11]:** See the full list of well-known values below.
+**[11] `vcs.ref.head.type`:** See the full list of well-known values below.
 
-**[12]:** See the full list of well-known values below.
+**[12] `vcs.ref.type`:** See the full list of well-known values below.
 
 **[13] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
@@ -90,7 +90,7 @@ the same backends.
 **[14] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
-**[15]:** See the full list of well-known values below.
+**[15] `vcs.revision_delta.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -173,7 +173,7 @@ Describes deprecated vcs attributes.
 | <a id="vcs-repository-ref-revision" href="#vcs-repository-ref-revision">`vcs.repository.ref.revision`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `vcs.ref.head.revision`. | string | Deprecated, use `vcs.ref.head.revision` instead. | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
 | <a id="vcs-repository-ref-type" href="#vcs-repository-ref-type">`vcs.repository.ref.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `vcs.ref.head.type`. | string | Deprecated, use `vcs.ref.head.type` instead. | `branch`; `tag` [16] |
 
-**[16]:** See the full list of well-known values below.
+**[16] `vcs.repository.ref.type`:** See the full list of well-known values below.
 
 ---
 

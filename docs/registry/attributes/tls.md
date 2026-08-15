@@ -45,7 +45,7 @@ This document defines semantic convention attributes in the TLS namespace.
 
 **[1] `tls.cipher`:** The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
 
-**[2]:** See the full list of well-known values below.
+**[2] `tls.protocol.name`:** See the full list of well-known values below.
 
 ---
 

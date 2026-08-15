@@ -98,7 +98,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 | --- | --- | --- | --- | --- | --- |
 | [`log.iostream`](/docs/registry/attributes/log.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `log.iostream`:** See the full list of well-known values below.
 
 ---
 

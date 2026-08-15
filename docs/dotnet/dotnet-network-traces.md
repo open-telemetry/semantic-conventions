@@ -95,7 +95,7 @@ Added in .NET 9.
 | --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type. | `version_negotiation_error`; `System.OperationCanceledException` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `error.type`:** See the full list of well-known values below.
 
 ---
 
@@ -148,7 +148,7 @@ Added in .NET 9.
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 | [`url.scheme`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `error.type`:** See the full list of well-known values below.
 
 **[2] `network.peer.address`:** The `network.peer.address` attribute is available only if the connection was successfully established and only for IP sockets.
 
@@ -216,7 +216,7 @@ and `DNS reverse lookup {dns.question.name}` for reverse lookup (hostnames from 
 
 See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror) for more details.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 ---
 
@@ -289,7 +289,7 @@ otherwise.
 See socket errors on [Windows](https://learn.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value) and
 [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `network.peer.port`:** If port is supported for the socket address family.
 
@@ -301,11 +301,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[6]:** See the full list of well-known values below.
+**[6] `network.transport`:** See the full list of well-known values below.
 
 **[7] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[8]:** See the full list of well-known values below.
+**[8] `network.type`:** See the full list of well-known values below.
 
 ---
 
@@ -375,11 +375,11 @@ side and `TLS server handshake` when authenticating the server.
 | [`tls.protocol.name`](/docs/registry/attributes/tls.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when available | string | Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values) | `ssl`; `tls` [3] |
 | [`tls.protocol.version`](/docs/registry/attributes/tls.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when available | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values) | `1.2`; `3` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `error.type`:** See the full list of well-known values below.
 
 **[2] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[3]:** See the full list of well-known values below.
+**[3] `tls.protocol.name`:** See the full list of well-known values below.
 
 ---
 

@@ -168,7 +168,7 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
-**[2]:** See the full list of well-known values below.
+**[2] `cpu.mode`:** See the full list of well-known values below.
 
 ---
 
@@ -233,7 +233,7 @@ This metric is [opt-in][MetricOptIn].
 
 **[1] `cpu.mode`:** Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
-**[2]:** See the full list of well-known values below.
+**[2] `cpu.mode`:** See the full list of well-known values below.
 
 ---
 
@@ -277,7 +277,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `free`; `cached` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.memory.state`:** See the full list of well-known values below.
 
 ---
 
@@ -332,7 +332,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `free`; `cached` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.memory.state`:** See the full list of well-known values below.
 
 ---
 
@@ -375,7 +375,7 @@ This metric is [recommended][MetricRecommended].
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` |
 | [`system.paging.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory paging state | `free` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.paging.state`:** See the full list of well-known values below.
 
 ---
 
@@ -410,7 +410,7 @@ This metric is [recommended][MetricRecommended].
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` |
 | [`system.paging.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory paging state | `free` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.paging.state`:** See the full list of well-known values below.
 
 ---
 
@@ -444,7 +444,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.paging.fault.type`:** See the full list of well-known values below.
 
 ---
 
@@ -479,9 +479,9 @@ This metric is [recommended][MetricRecommended].
 | [`system.paging.direction`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The paging access direction | `in` [1] |
 | [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` [2] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.paging.direction`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `system.paging.fault.type`:** See the full list of well-known values below.
 
 ---
 
@@ -529,7 +529,7 @@ This metric is [recommended][MetricRecommended].
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [1] |
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `disk.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -564,7 +564,7 @@ This metric is [recommended][MetricRecommended].
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [1] |
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `disk.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -634,7 +634,7 @@ This metric is [recommended][MetricRecommended].
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [1] |
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `disk.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -669,7 +669,7 @@ This metric is [recommended][MetricRecommended].
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [1] |
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `disk.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -737,9 +737,9 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 | [`system.filesystem.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem state | `used` [1] |
 | [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` [2] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.filesystem.state`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `system.filesystem.type`:** See the full list of well-known values below.
 
 ---
 
@@ -791,9 +791,9 @@ This metric is [recommended][MetricRecommended].
 | [`system.filesystem.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem state | `used` [1] |
 | [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` [2] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.filesystem.state`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `system.filesystem.type`:** See the full list of well-known values below.
 
 ---
 
@@ -844,7 +844,7 @@ This metric is [opt-in][MetricOptIn].
 | [`system.filesystem.mountpoint`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
 | [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.filesystem.type`:** See the full list of well-known values below.
 
 ---
 
@@ -883,7 +883,7 @@ This metric is [opt-in][MetricOptIn].
 | [`file.lock.type`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` [1] |
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | OS-specific identifier for the device where the file resides. | `08:01` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `file.lock.type`:** See the full list of well-known values below.
 
 ---
 
@@ -928,7 +928,7 @@ This metric is [recommended][MetricRecommended].
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -963,7 +963,7 @@ This metric is [recommended][MetricRecommended].
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -1004,7 +1004,7 @@ This metric is [recommended][MetricRecommended].
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -1039,7 +1039,7 @@ This metric is [recommended][MetricRecommended].
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -1077,7 +1077,7 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
-**[2]:** See the full list of well-known values below.
+**[2] `network.connection.state`:** See the full list of well-known values below.
 
 **[3] `network.transport`:** The value SHOULD be normalized to lowercase.
 
@@ -1085,7 +1085,7 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[4]:** See the full list of well-known values below.
+**[4] `network.transport`:** See the full list of well-known values below.
 
 ---
 
@@ -1145,7 +1145,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`process.state`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `process.state`:** See the full list of well-known values below.
 
 ---
 
@@ -1340,7 +1340,7 @@ Including them in `usage` would break the convention that `usage` states sum to 
 | --- | --- | --- | --- | --- | --- |
 | [`system.memory.linux.hugepages.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux HugePages memory state | `free`; `used` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.memory.linux.hugepages.state`:** See the full list of well-known values below.
 
 ---
 
@@ -1372,7 +1372,7 @@ Including them in `usage` would break the convention that `usage` states sum to 
 | --- | --- | --- | --- | --- | --- |
 | [`system.memory.linux.hugepages.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux HugePages memory state | `free`; `used` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.memory.linux.hugepages.state`:** See the full list of well-known values below.
 
 ---
 
@@ -1430,7 +1430,7 @@ See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-
 | --- | --- | --- | --- | --- | --- |
 | [`system.memory.linux.slab.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.memory.linux.slab.state`:** See the full list of well-known values below.
 
 ---
 

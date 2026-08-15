@@ -76,11 +76,11 @@ This metric is [recommended][MetricRecommended].
 | [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [2] | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skip` [3] |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the pipeline run failed. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [5] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `cicd.pipeline.run.state`:** See the full list of well-known values below.
 
 **[2] `cicd.pipeline.result`:** If and only if the pipeline run result has been set during that state.
 
-**[3]:** See the full list of well-known values below.
+**[3] `cicd.pipeline.result`:** See the full list of well-known values below.
 
 **[4] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -108,7 +108,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[5]:** See the full list of well-known values below.
+**[5] `error.type`:** See the full list of well-known values below.
 
 ---
 
@@ -165,7 +165,7 @@ This metric is [recommended][MetricRecommended].
 | [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
 | [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `cicd.pipeline.run.state`:** See the full list of well-known values below.
 
 ---
 
@@ -200,7 +200,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`cicd.worker.state`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The state of a CI/CD worker / agent. | `available`; `busy`; `offline` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `cicd.worker.state`:** See the full list of well-known values below.
 
 ---
 
@@ -267,7 +267,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 ---
 
@@ -329,7 +329,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 ---
 
@@ -373,7 +373,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` |
 | [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` [4] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `vcs.change.state`:** See the full list of well-known values below.
 
 **[2] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -382,7 +382,7 @@ the `.git` extension.
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[4]:** See the full list of well-known values below.
+**[4] `vcs.provider.name`:** See the full list of well-known values below.
 
 ---
 
@@ -434,7 +434,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` |
 | [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` [5] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `vcs.change.state`:** See the full list of well-known values below.
 
 **[2] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -446,7 +446,7 @@ the `.git` extension.
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[5]:** See the full list of well-known values below.
+**[5] `vcs.provider.name`:** See the full list of well-known values below.
 
 ---
 
@@ -514,7 +514,7 @@ reference of type branch from it and created new commits.
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[5]:** See the full list of well-known values below.
+**[5] `vcs.provider.name`:** See the full list of well-known values below.
 
 **[6] `vcs.ref.base.revision`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
@@ -597,7 +597,7 @@ reference of type branch from it and created new commits.
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[5]:** See the full list of well-known values below.
+**[5] `vcs.provider.name`:** See the full list of well-known values below.
 
 **[6] `vcs.ref.base.revision`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
@@ -660,7 +660,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
 | [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `vcs.provider.name`:** See the full list of well-known values below.
 
 ---
 
@@ -700,7 +700,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` |
 | [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` [4] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `vcs.ref.type`:** See the full list of well-known values below.
 
 **[2] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -709,7 +709,7 @@ the `.git` extension.
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[4]:** See the full list of well-known values below.
+**[4] `vcs.provider.name`:** See the full list of well-known values below.
 
 ---
 
@@ -767,7 +767,7 @@ If number of lines added/removed should be calculated from the start of time, th
 | [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [9] | `semantic-conventions`; `my-cool-repo` |
 | [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` [10] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `vcs.line_change.type`:** See the full list of well-known values below.
 
 **[2] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
@@ -777,7 +777,7 @@ reference of type branch from it and created new commits.
 would be the base reference of type branch if you've created a new
 reference of type branch from it and created new commits.
 
-**[4]:** See the full list of well-known values below.
+**[4] `vcs.ref.base.type`:** See the full list of well-known values below.
 
 **[5] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -785,7 +785,7 @@ given time.
 **[6] `vcs.ref.head.type`:** `head` refers to where you are right now; the current reference at a
 given time.
 
-**[7]:** See the full list of well-known values below.
+**[7] `vcs.ref.head.type`:** See the full list of well-known values below.
 
 **[8] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -794,7 +794,7 @@ the `.git` extension.
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[10]:** See the full list of well-known values below.
+**[10] `vcs.provider.name`:** See the full list of well-known values below.
 
 ---
 
@@ -877,7 +877,7 @@ reference of type branch from it and created new commits.
 would be the base reference of type branch if you've created a new
 reference of type branch from it and created new commits.
 
-**[3]:** See the full list of well-known values below.
+**[3] `vcs.ref.base.type`:** See the full list of well-known values below.
 
 **[4] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -885,18 +885,18 @@ given time.
 **[5] `vcs.ref.head.type`:** `head` refers to where you are right now; the current reference at a
 given time.
 
-**[6]:** See the full list of well-known values below.
+**[6] `vcs.ref.head.type`:** See the full list of well-known values below.
 
 **[7] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
-**[8]:** See the full list of well-known values below.
+**[8] `vcs.revision_delta.direction`:** See the full list of well-known values below.
 
 **[9] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[10]:** See the full list of well-known values below.
+**[10] `vcs.provider.name`:** See the full list of well-known values below.
 
 ---
 
@@ -970,7 +970,7 @@ given time.
 **[2] `vcs.ref.head.type`:** `head` refers to where you are right now; the current reference at a
 given time.
 
-**[3]:** See the full list of well-known values below.
+**[3] `vcs.ref.head.type`:** See the full list of well-known values below.
 
 **[4] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -979,7 +979,7 @@ the `.git` extension.
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[6]:** See the full list of well-known values below.
+**[6] `vcs.provider.name`:** See the full list of well-known values below.
 
 ---
 
@@ -1034,7 +1034,7 @@ the `.git` extension.
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[3]:** See the full list of well-known values below.
+**[3] `vcs.provider.name`:** See the full list of well-known values below.
 
 ---
 

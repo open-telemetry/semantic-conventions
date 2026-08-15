@@ -75,7 +75,7 @@ This metric is [recommended][MetricRecommended].
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `hw.limit_type`:** See the full list of well-known values below.
 
 ---
 
@@ -124,11 +124,11 @@ This metric is [recommended][MetricRecommended].
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `hw.state`:** See the full list of well-known values below.
 
 **[2] `hw.battery.state`:** The `hw.state` attribute should indicate the current state of the battery. It should be one of the predefined states such as "charging" or "discharging".
 
-**[3]:** See the full list of well-known values below.
+**[3] `hw.battery.state`:** See the full list of well-known values below.
 
 ---
 
@@ -192,11 +192,11 @@ This metric is [recommended][MetricRecommended].
 * `charging`: The battery is currently charging.
 * `discharging`: The battery is currently discharging.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.state`:** See the full list of well-known values below.
 
 **[3] `hw.type`:** MUST be set to `battery`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `hw.type`:** See the full list of well-known values below.
 
 ---
 

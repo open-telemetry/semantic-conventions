@@ -18,7 +18,7 @@ This section defines attributes for Cassandra.
 | <a id="cassandra-query-idempotent" href="#cassandra-query-idempotent">`cassandra.query.idempotent`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | Whether or not the query is idempotent. | |
 | <a id="cassandra-speculative-execution-count" href="#cassandra-speculative-execution-count">`cassandra.speculative_execution.count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `cassandra.consistency.level`:** See the full list of well-known values below.
 
 ---
 

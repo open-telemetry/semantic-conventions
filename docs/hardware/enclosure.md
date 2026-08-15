@@ -54,11 +54,11 @@ This metric is [recommended][MetricRecommended].
 * `failed`: The enclosure has failed and is not operational.
 * `open`: The enclosure is open.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.state`:** See the full list of well-known values below.
 
 **[3] `hw.type`:** MUST be set to `enclosure`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `hw.type`:** See the full list of well-known values below.
 
 ---
 

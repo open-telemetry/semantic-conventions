@@ -64,7 +64,7 @@ Instrumentation SHOULD document if `db.namespace` reflects the database index pr
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[6]:** See the full list of well-known values below.
+**[6] `error.type`:** See the full list of well-known values below.
 
 **[7] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 

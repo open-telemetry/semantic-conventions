@@ -34,7 +34,7 @@ They may be used in any Profiles record they apply to.
 | --- | --- | --- | --- | --- | --- |
 | [`profile.frame.type`](/docs/registry/attributes/profile.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Describes the interpreter or compiler of a single frame. | `cpython` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `profile.frame.type`:** See the full list of well-known values below.
 
 ---
 

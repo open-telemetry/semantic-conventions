@@ -100,7 +100,7 @@ Otherwise, it SHOULD be set to `amq.default` when the default exchange is used a
 
 **[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
 
-**[3]:** See the full list of well-known values below.
+**[3] `messaging.system`:** See the full list of well-known values below.
 
 **[4] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -128,7 +128,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[5]:** See the full list of well-known values below.
+**[5] `error.type`:** See the full list of well-known values below.
 
 **[6] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -144,7 +144,7 @@ it's RECOMMENDED to:
 
 **[12] `messaging.operation.type`:** SHOULD be set to `send`.
 
-**[13]:** See the full list of well-known values below.
+**[13] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[14] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -269,7 +269,7 @@ e.g. `{exchange}:{routing key}`.
 
 **[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
 
-**[3]:** See the full list of well-known values below.
+**[3] `messaging.system`:** See the full list of well-known values below.
 
 **[4] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -297,7 +297,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[5]:** See the full list of well-known values below.
+**[5] `error.type`:** See the full list of well-known values below.
 
 **[6] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -313,7 +313,7 @@ it's RECOMMENDED to:
 
 **[12] `messaging.operation.type`:** SHOULD be set to `receive`.
 
-**[13]:** See the full list of well-known values below.
+**[13] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[14] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -440,7 +440,7 @@ e.g. `{exchange}:{routing key}`.
 
 **[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
 
-**[3]:** See the full list of well-known values below.
+**[3] `messaging.system`:** See the full list of well-known values below.
 
 **[4] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -468,7 +468,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[5]:** See the full list of well-known values below.
+**[5] `error.type`:** See the full list of well-known values below.
 
 **[6] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -484,7 +484,7 @@ it's RECOMMENDED to:
 
 **[12] `messaging.operation.type`:** SHOULD be set to `process`.
 
-**[13]:** See the full list of well-known values below.
+**[13] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[14] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
@@ -599,7 +599,7 @@ e.g. `{exchange}:{routing key}`.
 
 **[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
 
-**[3]:** See the full list of well-known values below.
+**[3] `messaging.system`:** See the full list of well-known values below.
 
 **[4] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -627,7 +627,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[5]:** See the full list of well-known values below.
+**[5] `error.type`:** See the full list of well-known values below.
 
 **[6] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -639,7 +639,7 @@ it's RECOMMENDED to:
 
 **[10] `messaging.operation.type`:** SHOULD be set to `settle`.
 
-**[11]:** See the full list of well-known values below.
+**[11] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[12] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,

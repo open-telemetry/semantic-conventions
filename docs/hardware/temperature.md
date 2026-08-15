@@ -68,7 +68,7 @@ This metric is [recommended][MetricRecommended].
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` |
 | [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `hw.limit_type`:** See the full list of well-known values below.
 
 ---
 
@@ -122,11 +122,11 @@ This metric is [recommended][MetricRecommended].
 * `degraded`: The temperature is outside the normal range but not critical.
 * `failed`: The temperature is at a critical level.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.state`:** See the full list of well-known values below.
 
 **[3] `hw.type`:** MUST be set to `temperature`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `hw.type`:** See the full list of well-known values below.
 
 ---
 

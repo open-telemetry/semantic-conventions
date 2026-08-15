@@ -51,7 +51,7 @@ An operating system process.
 
 **[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2]:** See the full list of well-known values below.
+**[2] `process.context_switch.type`:** See the full list of well-known values below.
 
 **[3] `process.environment_variable.<key>`:** Examples:
 
@@ -76,7 +76,7 @@ BuildID ← Digest[:16]
 The result is the first 16 bytes (128 bits) of the SHA256 digest,
 represented as a hex string.
 
-**[5]:** See the full list of well-known values below.
+**[5] `process.state`:** See the full list of well-known values below.
 
 **[6] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
 
@@ -127,11 +127,11 @@ Deprecated process attributes.
 | <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.executable.build_id.htlhash`. | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` |
 | <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` [11] |
 
-**[9]:** See the full list of well-known values below.
+**[9] `process.context_switch_type`:** See the full list of well-known values below.
 
-**[10]:** See the full list of well-known values below.
+**[10] `process.cpu.state`:** See the full list of well-known values below.
 
-**[11]:** See the full list of well-known values below.
+**[11] `process.paging.fault_type`:** See the full list of well-known values below.
 
 ---
 

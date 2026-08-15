@@ -18,7 +18,7 @@ This group describes iOS-specific attributes.
 
 **[1] `ios.app.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
-**[2]:** See the full list of well-known values below.
+**[2] `ios.app.state`:** See the full list of well-known values below.
 
 ---
 
@@ -44,7 +44,7 @@ The iOS platform on which the iOS application is running.
 
 **[3] `ios.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
-**[4]:** See the full list of well-known values below.
+**[4] `ios.state`:** See the full list of well-known values below.
 
 ---
 

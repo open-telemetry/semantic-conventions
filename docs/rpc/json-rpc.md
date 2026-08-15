@@ -70,7 +70,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `rpc.status_code`:** All JSON RPC error codes SHOULD be considered errors.
 
@@ -156,7 +156,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `error.type`:** See the full list of well-known values below.
 
 **[3] `rpc.status_code`:** All JSON RPC error codes SHOULD be considered errors.
 

@@ -13,7 +13,7 @@ Deprecated Linux attributes.
 | --- | --- | --- | --- | --- |
 | <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.memory.linux.slab.state`. | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `linux.memory.slab.state`:** See the full list of well-known values below.
 
 ---
 

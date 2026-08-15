@@ -97,7 +97,7 @@ injected into the message(s) as the creation context. See
 
 **[1] `messaging.system`:** MUST be set to `"rocketmq"`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -125,7 +125,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -142,13 +142,13 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[11] `messaging.operation.type`:** SHOULD be set to `send`.
 
-**[12]:** See the full list of well-known values below.
+**[12] `messaging.operation.type`:** See the full list of well-known values below.
 
 **[13] `messaging.rocketmq.message.delay_time_level`:** If the message type is delay and delivery timestamp is not specified.
 
 **[14] `messaging.rocketmq.message.delivery_timestamp`:** If the message type is delay and delay time level is not specified.
 
-**[15]:** See the full list of well-known values below.
+**[15] `messaging.rocketmq.message.type`:** See the full list of well-known values below.
 
 **[16] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -280,7 +280,7 @@ call methods of messaging SDKs to receive messages. See
 
 **[1] `messaging.system`:** MUST be set to `"rocketmq"`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -308,7 +308,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -325,11 +325,11 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[11] `messaging.operation.type`:** SHOULD be set to `receive`.
 
-**[12]:** See the full list of well-known values below.
+**[12] `messaging.operation.type`:** See the full list of well-known values below.
 
-**[13]:** See the full list of well-known values below.
+**[13] `messaging.rocketmq.consumption_model`:** See the full list of well-known values below.
 
-**[14]:** See the full list of well-known values below.
+**[14] `messaging.rocketmq.message.type`:** See the full list of well-known values below.
 
 **[15] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -473,7 +473,7 @@ message creation context is used as the parent, see
 
 **[1] `messaging.system`:** MUST be set to `"rocketmq"`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `messaging.system`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -501,7 +501,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
@@ -518,11 +518,11 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[11] `messaging.operation.type`:** SHOULD be set to `process`.
 
-**[12]:** See the full list of well-known values below.
+**[12] `messaging.operation.type`:** See the full list of well-known values below.
 
-**[13]:** See the full list of well-known values below.
+**[13] `messaging.rocketmq.consumption_model`:** See the full list of well-known values below.
 
-**[14]:** See the full list of well-known values below.
+**[14] `messaging.rocketmq.message.type`:** See the full list of well-known values below.
 
 **[15] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 

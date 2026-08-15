@@ -60,7 +60,7 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.sta
 
 **[5] `rpc.system.name`:** The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.
 
-**[6]:** See the full list of well-known values below.
+**[6] `rpc.system.name`:** See the full list of well-known values below.
 
 ---
 
@@ -103,17 +103,17 @@ Deprecated rpc message attributes.
 | <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | Deprecated, use fully-qualified `rpc.method` instead. | `myservice.EchoService` |
 | <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | Deprecated, use `rpc.system.name` attribute instead. | `grpc`; `java_rmi`; `dotnet_wcf` [12] |
 
-**[7]:** See the full list of well-known values below.
+**[7] `message.type`:** See the full list of well-known values below.
 
-**[8]:** See the full list of well-known values below.
+**[8] `rpc.connect_rpc.error_code`:** See the full list of well-known values below.
 
-**[9]:** See the full list of well-known values below.
+**[9] `rpc.grpc.status_code`:** See the full list of well-known values below.
 
 **[10] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
 
-**[11]:** See the full list of well-known values below.
+**[11] `rpc.message.type`:** See the full list of well-known values below.
 
-**[12]:** See the full list of well-known values below.
+**[12] `rpc.system`:** See the full list of well-known values below.
 
 ---
 

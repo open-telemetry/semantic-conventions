@@ -132,7 +132,7 @@ classify as errors.
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
-**[2]:** See the full list of well-known values below.
+**[2] `db.system.name`:** See the full list of well-known values below.
 
 **[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
@@ -178,7 +178,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[11]:** See the full list of well-known values below.
+**[11] `error.type`:** See the full list of well-known values below.
 
 **[12] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 

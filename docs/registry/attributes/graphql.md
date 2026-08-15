@@ -17,7 +17,7 @@ This document defines attributes for GraphQL.
 
 **[1] `graphql.document`:** If instrumentation can reliably identify and redact sensitive information it SHOULD do it.
 
-**[2]:** See the full list of well-known values below.
+**[2] `graphql.operation.type`:** See the full list of well-known values below.
 
 ---
 

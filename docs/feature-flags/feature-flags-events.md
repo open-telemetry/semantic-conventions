@@ -78,7 +78,7 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 | `type_mismatch` | The type of the flag value does not match the expected type. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `general` | The error was for a reason not enumerated above. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[3]:** See the full list of well-known values below.
+**[3] `error.type`:** See the full list of well-known values below.
 
 **[4] `feature_flag.result.value`:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `feature_flag.result.value` should be treated as opt-in.
 
@@ -99,7 +99,7 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 **[9] `feature_flag.error.message`:** Should not simply duplicate the value of `error.type`, but should provide more context. For example, if `error.type` is `invalid_context` the `feature_flag.error.message` may enumerate which context keys are missing or invalid.
 
-**[10]:** See the full list of well-known values below.
+**[10] `feature_flag.result.reason`:** See the full list of well-known values below.
 
 ---
 

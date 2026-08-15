@@ -54,13 +54,13 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `hw.type`:** MUST be set to `network`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.type`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD match the error code reported by the component, the canonical name of the error, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
-**[5]:** See the full list of well-known values below.
+**[5] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -191,7 +191,7 @@ This metric is [recommended][MetricRecommended].
 | [`hw.serial_number`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Serial number of the hardware component | `CNFCP0123456789` |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -233,7 +233,7 @@ This metric is [recommended][MetricRecommended].
 | [`hw.serial_number`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Serial number of the hardware component | `CNFCP0123456789` |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -314,11 +314,11 @@ This metric is [recommended][MetricRecommended].
 * `degraded`: The network adapter is operating with reduced functionality or performance.
 * `failed`: The network adapter has failed and is not operational.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.state`:** See the full list of well-known values below.
 
 **[3] `hw.type`:** MUST be set to `network`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `hw.type`:** See the full list of well-known values below.
 
 ---
 

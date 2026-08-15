@@ -47,7 +47,7 @@ interesting conventions are found.
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
 | [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `rpc.system`:** See the full list of well-known values below.
 
 **[2] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 

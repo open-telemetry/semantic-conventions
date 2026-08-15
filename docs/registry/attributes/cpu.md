@@ -14,7 +14,7 @@ Attributes specific to a CPU instance.
 | <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The logical CPU number [0..n-1] | `1` |
 | <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The mode of the CPU | `user`; `system` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `cpu.mode`:** See the full list of well-known values below.
 
 ---
 

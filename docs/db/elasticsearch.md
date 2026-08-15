@@ -80,7 +80,7 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3]:** See the full list of well-known values below.
+**[3] `http.request.method`:** See the full list of well-known values below.
 
 **[4] `url.full`:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment
 is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
@@ -131,7 +131,7 @@ When a query string value is redacted, the query string key SHOULD still be pres
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[8]:** See the full list of well-known values below.
+**[8] `error.type`:** See the full list of well-known values below.
 
 **[9] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 

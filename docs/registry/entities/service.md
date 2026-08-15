@@ -24,7 +24,7 @@ The process executable name is the name of the process executable, the same valu
 
 **[2] `service.criticality`:** Application developers are encouraged to set `service.criticality` to express the operational importance of their services. Telemetry consumers MAY use this attribute to optimize telemetry collection or improve user experience.
 
-**[3]:** See the full list of well-known values below.
+**[3] `service.criticality`:** See the full list of well-known values below.
 
 ---
 

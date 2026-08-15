@@ -16,9 +16,9 @@ This group describes attributes specific to [software tests](https://wikipedia.o
 | <a id="test-suite-name" href="#test-suite-name">`test.suite.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite). | `TestSuite1` |
 | <a id="test-suite-run-status" href="#test-suite-run-status">`test.suite.run.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the test suite run. | `success`; `failure`; `skipped`; `aborted`; `timed_out`; `in_progress` [2] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `test.case.result.status`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `test.suite.run.status`:** See the full list of well-known values below.
 
 ---
 

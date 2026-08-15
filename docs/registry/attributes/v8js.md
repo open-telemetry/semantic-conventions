@@ -15,13 +15,13 @@ Describes V8 JS Engine Runtime related attributes.
 | <a id="v8js-heap-space-name" href="#v8js-heap-space-name">`v8js.heap.space.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the space type of heap memory. [2] | `new_space`; `old_space`; `code_space` [3] |
 | <a id="v8js-resource-type" href="#v8js-resource-type">`v8js.resource.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPWrap` [4] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `v8js.gc.type`:** See the full list of well-known values below.
 
 **[2] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-**[3]:** See the full list of well-known values below.
+**[3] `v8js.heap.space.name`:** See the full list of well-known values below.
 
-**[4]:** See the full list of well-known values below.
+**[4] `v8js.resource.type`:** See the full list of well-known values below.
 
 ---
 

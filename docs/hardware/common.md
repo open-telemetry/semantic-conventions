@@ -48,7 +48,7 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.type`:** See the full list of well-known values below.
 
 ---
 
@@ -100,11 +100,11 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.type`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD match the error code reported by the component, the canonical name of the error, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 ---
 
@@ -165,7 +165,7 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.type`:** See the full list of well-known values below.
 
 ---
 
@@ -217,11 +217,11 @@ This metric is [recommended][MetricRecommended].
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `hw.state`:** See the full list of well-known values below.
 
 **[2] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
-**[3]:** See the full list of well-known values below.
+**[3] `hw.type`:** See the full list of well-known values below.
 
 ---
 

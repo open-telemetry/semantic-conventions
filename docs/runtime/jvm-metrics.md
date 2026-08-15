@@ -68,7 +68,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-**[2]:** See the full list of well-known values below.
+**[2] `jvm.memory.type`:** See the full list of well-known values below.
 
 ---
 
@@ -106,7 +106,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-**[2]:** See the full list of well-known values below.
+**[2] `jvm.memory.type`:** See the full list of well-known values below.
 
 ---
 
@@ -144,7 +144,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-**[2]:** See the full list of well-known values below.
+**[2] `jvm.memory.type`:** See the full list of well-known values below.
 
 ---
 
@@ -182,7 +182,7 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-**[2]:** See the full list of well-known values below.
+**[2] `jvm.memory.type`:** See the full list of well-known values below.
 
 ---
 
@@ -272,7 +272,7 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 | [`jvm.thread.daemon`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | boolean | Whether the thread is daemon or not. | |
 | [`jvm.thread.state`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | State of the thread. | `runnable`; `blocked` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `jvm.thread.state`:** See the full list of well-known values below.
 
 ---
 
@@ -447,7 +447,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
-**[2]:** See the full list of well-known values below.
+**[2] `jvm.memory.type`:** See the full list of well-known values below.
 
 ---
 

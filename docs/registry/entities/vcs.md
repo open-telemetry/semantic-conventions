@@ -34,7 +34,7 @@ revision based on the VCS system and situational context.
 **[2] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
 
-**[3]:** See the full list of well-known values below.
+**[3] `vcs.ref.type`:** See the full list of well-known values below.
 
 ---
 

@@ -78,7 +78,7 @@ In implementations like [`opencontainers/cgroup`](https://pkg.go.dev/github.com/
 Kubernetes only exposes the total CPU time ([cpu.stat.usage_usec](https://docs.kernel.org/admin-guide/cgroup-v2.html#cpu-interface-files)) through Kubelet's stats API, hence the metric should be reported without the mode attribute implying it is the total of all modes.
 In pure container environments the CPU's mode is usually available and cpu.mode should be reported. In that case summarising the CPU time over the different modes gives the total CPU time.
 
-**[3]:** See the full list of well-known values below.
+**[3] `cpu.mode`:** See the full list of well-known values below.
 
 ---
 
@@ -123,7 +123,7 @@ This metric is [opt-in][MetricOptIn].
 
 **[2] `cpu.mode`:** Following modes SHOULD be used for containers if available: `user`, `system`.
 
-**[3]:** See the full list of well-known values below.
+**[3] `cpu.mode`:** See the full list of well-known values below.
 
 ---
 
@@ -247,7 +247,7 @@ In K8s, this metric is derived from the [MemoryStats.PageFaults](https://pkg.go.
 | --- | --- | --- | --- | --- | --- |
 | [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `system.paging.fault.type`:** See the full list of well-known values below.
 
 ---
 
@@ -284,7 +284,7 @@ This metric is [opt-in][MetricOptIn].
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [1] |
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `disk.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -321,7 +321,7 @@ This metric is [opt-in][MetricOptIn].
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 

@@ -208,11 +208,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[4]:** See the full list of well-known values below.
+**[4] `network.transport`:** See the full list of well-known values below.
 
 **[5] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[6]:** See the full list of well-known values below.
+**[6] `network.type`:** See the full list of well-known values below.
 
 ---
 
@@ -296,9 +296,9 @@ Note that `network.local.*` attributes are not included in these examples since 
 | [`network.connection.subtype`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection. | `LTE` [1] |
 | [`network.connection.type`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The internet connection type. | `wifi` [2] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.connection.subtype`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `network.connection.type`:** See the full list of well-known values below.
 
 ---
 

@@ -34,13 +34,13 @@ These attributes may be used for any network related operation.
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
-**[2]:** See the full list of well-known values below.
+**[2] `network.connection.state`:** See the full list of well-known values below.
 
-**[3]:** See the full list of well-known values below.
+**[3] `network.connection.subtype`:** See the full list of well-known values below.
 
-**[4]:** See the full list of well-known values below.
+**[4] `network.connection.type`:** See the full list of well-known values below.
 
-**[5]:** See the full list of well-known values below.
+**[5] `network.io.direction`:** See the full list of well-known values below.
 
 **[6] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
@@ -52,11 +52,11 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[9]:** See the full list of well-known values below.
+**[9] `network.transport`:** See the full list of well-known values below.
 
 **[10] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[11]:** See the full list of well-known values below.
+**[11] `network.type`:** See the full list of well-known values below.
 
 ---
 
@@ -170,9 +170,9 @@ These attributes may be used for any network related operation.
 | <a id="net-sock-peer-port" href="#net-sock-peer-port">`net.sock.peer.port`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.port`. | int | Deprecated, use `network.peer.port`. | `65531` |
 | <a id="net-transport" href="#net-transport">`net.transport`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.transport`. | string | Deprecated, use `network.transport`. | `ip_tcp`; `ip_udp`; `pipe` [13] |
 
-**[12]:** See the full list of well-known values below.
+**[12] `net.sock.family`:** See the full list of well-known values below.
 
-**[13]:** See the full list of well-known values below.
+**[13] `net.transport`:** See the full list of well-known values below.
 
 ---
 

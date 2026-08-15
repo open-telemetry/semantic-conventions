@@ -33,11 +33,11 @@ This event describes the website performance metrics introduced by Google, See [
 | [`browser.web_vital.navigation_type`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of navigation, as reported by the [Navigation Timing API](https://developer.mozilla.org/docs/Web/API/PerformanceNavigationTiming/type), with additional values reported by the web-vitals library. | `navigate` [2] |
 | [`browser.web_vital.rating`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The rating of the web vital value against the "good", "needs improvement", and "poor" thresholds defined for the metric. | `good` [3] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `browser.web_vital.name`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `browser.web_vital.navigation_type`:** See the full list of well-known values below.
 
-**[3]:** See the full list of well-known values below.
+**[3] `browser.web_vital.rating`:** See the full list of well-known values below.
 
 ---
 

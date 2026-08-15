@@ -37,9 +37,9 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [1] |
 | [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [2] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `signalr.connection.status`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `signalr.transport`:** See the full list of well-known values below.
 
 ---
 
@@ -85,9 +85,9 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [1] |
 | [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [2] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `signalr.connection.status`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `signalr.transport`:** See the full list of well-known values below.
 
 ---
 

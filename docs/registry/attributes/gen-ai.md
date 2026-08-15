@@ -87,7 +87,7 @@ section for more details.
 
 **[4] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[5]:** See the full list of well-known values below.
+**[5] `gen_ai.operation.name`:** See the full list of well-known values below.
 
 **[6] `gen_ai.output.messages`:** Instrumentations MUST follow [Output messages JSON schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-output-messages.json)
 
@@ -113,7 +113,7 @@ section for more details.
 This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
 Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
 
-**[8]:** See the full list of well-known values below.
+**[8] `gen_ai.output.type`:** See the full list of well-known values below.
 
 **[9] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
@@ -134,7 +134,7 @@ should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
 `openai.*` attributes.
 
-**[10]:** See the full list of well-known values below.
+**[10] `gen_ai.provider.name`:** See the full list of well-known values below.
 
 **[11] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
 
@@ -172,7 +172,7 @@ system instructions.
 See [Recording content on attributes](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
 section for more details.
 
-**[15]:** See the full list of well-known values below.
+**[15] `gen_ai.token.type`:** See the full list of well-known values below.
 
 **[16] `gen_ai.tool.call.arguments`:**
 
@@ -299,7 +299,7 @@ Describes deprecated `gen_ai` attributes.
 | <a id="gen-ai-usage-completion-tokens" href="#gen-ai-usage-completion-tokens">`gen_ai.usage.completion_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42` |
 | <a id="gen-ai-usage-prompt-tokens" href="#gen-ai-usage-prompt-tokens">`gen_ai.usage.prompt_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | Deprecated, use `gen_ai.usage.input_tokens` instead. | `42` |
 
-**[28]:** See the full list of well-known values below.
+**[28] `gen_ai.system`:** See the full list of well-known values below.
 
 ---
 
@@ -343,9 +343,9 @@ Describes deprecated `gen_ai.openai` attributes.
 | <a id="gen-ai-openai-response-service-tier" href="#gen-ai-openai-response-service-tier">`gen_ai.openai.response.service_tier`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `openai.response.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `openai.response.service_tier`. | `scale`; `default` |
 | <a id="gen-ai-openai-response-system-fingerprint" href="#gen-ai-openai-response-system-fingerprint">`gen_ai.openai.response.system_fingerprint`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `openai.response.system_fingerprint`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `openai.response.system_fingerprint`. | `fp_44709d6fcb` |
 
-**[32]:** See the full list of well-known values below.
+**[32] `gen_ai.openai.request.response_format`:** See the full list of well-known values below.
 
-**[33]:** See the full list of well-known values below.
+**[33] `gen_ai.openai.request.service_tier`:** See the full list of well-known values below.
 
 ---
 

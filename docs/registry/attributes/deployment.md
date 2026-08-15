@@ -27,9 +27,9 @@ considered to be identifying the same service:
 - `service.name=frontend`, `deployment.environment.name=production`
 - `service.name=frontend`, `deployment.environment.name=staging`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `deployment.environment.name`:** See the full list of well-known values below.
 
-**[3]:** See the full list of well-known values below.
+**[3] `deployment.status`:** See the full list of well-known values below.
 
 ---
 

@@ -53,14 +53,14 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `hw.type`:** MUST be set to `gpu`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.type`:** See the full list of well-known values below.
 
 **[3] `error.type`:** `error.type` SHOULD be set to one of the following values to indicate the type of error:
 
 * `corrected`: Errors that were detected and corrected by the GPU.
 * `uncorrected`: Errors that were detected but could not be corrected by the GPU.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 ---
 
@@ -122,7 +122,7 @@ This metric is [recommended][MetricRecommended].
 | [`hw.serial_number`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Serial number of the hardware component | `CNFCP0123456789` |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `network.io.direction`:** See the full list of well-known values below.
 
 ---
 
@@ -254,7 +254,7 @@ This metric is [recommended][MetricRecommended].
 | [`hw.serial_number`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Serial number of the hardware component | `CNFCP0123456789` |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `hw.gpu.task`:** See the full list of well-known values below.
 
 ---
 
@@ -307,11 +307,11 @@ This metric is [recommended][MetricRecommended].
 * `failed`: The GPU has failed and is not operational.
 * `predicted_failure`: The GPU is currently operational but is predicted to fail soon.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.state`:** See the full list of well-known values below.
 
 **[3] `hw.type`:** MUST be set to `gpu`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `hw.type`:** See the full list of well-known values below.
 
 ---
 

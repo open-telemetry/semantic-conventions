@@ -18,11 +18,11 @@ This document defines Go related attributes.
 
 **[1] `go.cpu.detailed_state`:** Value SHOULD match the specific CPU class reported by the Go runtime under `/cpu/classes/...`. The list of possible values is subject to change with the Go version used.
 
-**[2]:** See the full list of well-known values below.
+**[2] `go.cpu.state`:** See the full list of well-known values below.
 
 **[3] `go.memory.detailed_type`:** Value SHOULD match the specific memory class reported by the Go runtime under `/memory/classes/...`. The list of possible values is subject to change with the Go version used.
 
-**[4]:** See the full list of well-known values below.
+**[4] `go.memory.type`:** See the full list of well-known values below.
 
 ---
 

@@ -47,11 +47,11 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `hw.type`:** MUST be set to `cpu`.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.type`:** See the full list of well-known values below.
 
 **[3] `error.type`:** The `error.type` SHOULD match the error code reported by the component, the canonical name of the error, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 ---
 
@@ -137,7 +137,7 @@ This metric is [recommended][MetricRecommended].
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` |
 
-**[1]:** See the full list of well-known values below.
+**[1] `hw.limit_type`:** See the full list of well-known values below.
 
 ---
 
@@ -193,11 +193,11 @@ This metric is [recommended][MetricRecommended].
 * `failed`: The CPU has failed and is not operational.
 * `predicted_failure`: The CPU is currently operational but is predicted to fail soon.
 
-**[2]:** See the full list of well-known values below.
+**[2] `hw.state`:** See the full list of well-known values below.
 
 **[3] `hw.type`:** MUST be set to `cpu`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `hw.type`:** See the full list of well-known values below.
 
 ---
 

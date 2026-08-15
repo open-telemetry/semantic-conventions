@@ -30,7 +30,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-stored-procedure-name" href="#db-stored-procedure-name">`db.stored_procedure.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of a stored procedure within the database. [11] | `GetCustomer` |
 | <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The database management system (DBMS) product as identified by the client instrumentation. [12] | `other_sql`; `softwareag.adabas`; `actian.ingres` [13] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `db.client.connection.state`:** See the full list of well-known values below.
 
 **[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
@@ -148,7 +148,7 @@ then that stored procedure name SHOULD be used.
 
 **[12] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
-**[13]:** See the full list of well-known values below.
+**[13] `db.system.name`:** See the full list of well-known values below.
 
 ---
 
@@ -248,15 +248,15 @@ Describes deprecated database attributes.
 | <a id="db-system" href="#db-system">`db.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.system.name`. | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `intersystems_cache` [18] |
 | <a id="db-user" href="#db-user">`db.user`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` |
 
-**[14]:** See the full list of well-known values below.
+**[14] `db.cassandra.consistency_level`:** See the full list of well-known values below.
 
-**[15]:** See the full list of well-known values below.
+**[15] `db.cosmosdb.connection_mode`:** See the full list of well-known values below.
 
-**[16]:** See the full list of well-known values below.
+**[16] `db.cosmosdb.consistency_level`:** See the full list of well-known values below.
 
-**[17]:** See the full list of well-known values below.
+**[17] `db.cosmosdb.operation_type`:** See the full list of well-known values below.
 
-**[18]:** See the full list of well-known values below.
+**[18] `db.system`:** See the full list of well-known values below.
 
 ---
 
@@ -388,9 +388,9 @@ Describes deprecated db metrics attributes.
 | <a id="pool-name" href="#pool-name">`pool.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.pool.name`. | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` |
 | <a id="state" href="#state">`state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.state`. | string | Deprecated, use `db.client.connection.state` instead. | `idle` [20] |
 
-**[19]:** See the full list of well-known values below.
+**[19] `db.client.connections.state`:** See the full list of well-known values below.
 
-**[20]:** See the full list of well-known values below.
+**[20] `state`:** See the full list of well-known values below.
 
 ---
 

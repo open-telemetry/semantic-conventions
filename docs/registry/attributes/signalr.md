@@ -14,9 +14,9 @@ SignalR attributes
 | <a id="signalr-connection-status" href="#signalr-connection-status">`signalr.connection.status`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [1] |
 | <a id="signalr-transport" href="#signalr-transport">`signalr.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [2] |
 
-**[1]:** See the full list of well-known values below.
+**[1] `signalr.connection.status`:** See the full list of well-known values below.
 
-**[2]:** See the full list of well-known values below.
+**[2] `signalr.transport`:** See the full list of well-known values below.
 
 ---
 

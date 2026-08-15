@@ -98,7 +98,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[4]:** See the full list of well-known values below.
+**[4] `error.type`:** See the full list of well-known values below.
 
 **[5] `server.address`:** Instrumentations SHOULD populate `server.address` (and `server.port`, when applicable)
 based on the configuration used when creating the Dubbo client and
@@ -267,7 +267,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[3]:** See the full list of well-known values below.
+**[3] `error.type`:** See the full list of well-known values below.
 
 **[4] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
 
