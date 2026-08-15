@@ -42,11 +42,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [1] |
-
-**[1] `cpython.gc.generation`:** See the full list of well-known values below.
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [(see all values)](#cpython-gc-generation-values) |
 
 ---
+
+<a id="cpython-gc-generation-values"></a>
 
 `cpython.gc.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -79,11 +79,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [1] |
-
-**[1] `cpython.gc.generation`:** See the full list of well-known values below.
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [(see all values)](#cpython-gc-generation-values) |
 
 ---
+
+<a id="cpython-gc-generation-values"></a>
 
 `cpython.gc.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -116,11 +116,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [1] |
-
-**[1] `cpython.gc.generation`:** See the full list of well-known values below.
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [(see all values)](#cpython-gc-generation-values) |
 
 ---
+
+<a id="cpython-gc-generation-values"></a>
 
 `cpython.gc.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

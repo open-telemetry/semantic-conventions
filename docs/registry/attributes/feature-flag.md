@@ -18,26 +18,26 @@ This document defines attributes for Feature Flags.
 | <a id="feature-flag-error-message" href="#feature-flag-error-message">`feature_flag.error.message`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | A message providing more detail about an error that occurred during feature flag evaluation in human-readable form. | `Unexpected input type: string`; `The user has exceeded their storage quota` |
 | <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The lookup key of the feature flag. | `logo-color` |
 | <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Identifies the feature flag provider. | `Flag Manager` |
-| <a id="feature-flag-result-reason" href="#feature-flag-result-reason">`feature_flag.result.reason`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` [1] |
-| <a id="feature-flag-result-value" href="#feature-flag-result-value">`feature_flag.result.value`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | any | The evaluated value of the feature flag. [2] | `#ff0000`; `true`; `3` |
-| <a id="feature-flag-result-variant" href="#feature-flag-result-variant">`feature_flag.result.variant`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | A semantic identifier for an evaluated flag value. [3] | `red`; `true`; `on` |
+| <a id="feature-flag-result-reason" href="#feature-flag-result-reason">`feature_flag.result.reason`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` [(see all values)](#feature-flag-result-reason-values) |
+| <a id="feature-flag-result-value" href="#feature-flag-result-value">`feature_flag.result.value`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | any | The evaluated value of the feature flag. [1] | `#ff0000`; `true`; `3` |
+| <a id="feature-flag-result-variant" href="#feature-flag-result-variant">`feature_flag.result.variant`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | A semantic identifier for an evaluated flag value. [2] | `red`; `true`; `on` |
 | <a id="feature-flag-set-id" href="#feature-flag-set-id">`feature_flag.set.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` |
 | <a id="feature-flag-version" href="#feature-flag-version">`feature_flag.version`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` |
 
-**[1] `feature_flag.result.reason`:** See the full list of well-known values below.
-
-**[2] `feature_flag.result.value`:** With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
+**[1] `feature_flag.result.value`:** With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
 Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
 
 It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
 Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.
 
-**[3] `feature_flag.result.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
+**[2] `feature_flag.result.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
 
 ---
+
+<a id="feature-flag-result-reason-values"></a>
 
 `feature_flag.result.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -62,13 +62,13 @@ Describes deprecated feature flag attributes.
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.error.message`. | string | Deprecated, use `feature_flag.error.message` instead. | `Flag `header-color` expected type `string` but found type `number`` |
-| <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.reason`. | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` [4] |
+| <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.reason`. | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` [(see all values)](#feature-flag-evaluation-reason-values) |
 | <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.provider.name`. | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` |
 | <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.variant`. | string | Deprecated, use `feature_flag.result.variant` instead. | `red`; `true`; `on` |
 
-**[4] `feature_flag.evaluation.reason`:** See the full list of well-known values below.
-
 ---
+
+<a id="feature-flag-evaluation-reason-values"></a>
 
 `feature_flag.evaluation.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

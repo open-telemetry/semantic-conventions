@@ -38,20 +38,18 @@ This section defines attributes for Azure Cosmos DB.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="azure-cosmosdb-connection-mode" href="#azure-cosmosdb-connection-mode">`azure.cosmosdb.connection.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Cosmos client connection mode. | `gateway`; `direct` [1] |
-| <a id="azure-cosmosdb-consistency-level" href="#azure-cosmosdb-consistency-level">`azure.cosmosdb.consistency.level`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` [2] |
-| <a id="azure-cosmosdb-operation-contacted-regions" href="#azure-cosmosdb-operation-contacted-regions">`azure.cosmosdb.operation.contacted_regions`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [3] | `["North Central US", "Australia East", "Australia Southeast"]` |
+| <a id="azure-cosmosdb-connection-mode" href="#azure-cosmosdb-connection-mode">`azure.cosmosdb.connection.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Cosmos client connection mode. | `gateway`; `direct` [(see all values)](#azure-cosmosdb-connection-mode-values) |
+| <a id="azure-cosmosdb-consistency-level" href="#azure-cosmosdb-consistency-level">`azure.cosmosdb.consistency.level`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` [(see all values)](#azure-cosmosdb-consistency-level-values) |
+| <a id="azure-cosmosdb-operation-contacted-regions" href="#azure-cosmosdb-operation-contacted-regions">`azure.cosmosdb.operation.contacted_regions`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [1] | `["North Central US", "Australia East", "Australia Southeast"]` |
 | <a id="azure-cosmosdb-operation-request-charge" href="#azure-cosmosdb-operation-request-charge">`azure.cosmosdb.operation.request_charge`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The number of request units consumed by the operation. | `46.18`; `1.0` |
 | <a id="azure-cosmosdb-request-body-size" href="#azure-cosmosdb-request-body-size">`azure.cosmosdb.request.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Request payload size in bytes. | |
 | <a id="azure-cosmosdb-response-sub-status-code" href="#azure-cosmosdb-response-sub-status-code">`azure.cosmosdb.response.sub_status_code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Cosmos DB sub status code. | `1000`; `1002` |
 
-**[1] `azure.cosmosdb.connection.mode`:** See the full list of well-known values below.
-
-**[2] `azure.cosmosdb.consistency.level`:** See the full list of well-known values below.
-
-**[3] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
+**[1] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
 
 ---
+
+<a id="azure-cosmosdb-connection-mode-values"></a>
 
 `azure.cosmosdb.connection.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -61,6 +59,8 @@ This section defines attributes for Azure Cosmos DB.
 | `gateway` | Gateway (HTTP) connection. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="azure-cosmosdb-consistency-level-values"></a>
 
 `azure.cosmosdb.consistency.level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

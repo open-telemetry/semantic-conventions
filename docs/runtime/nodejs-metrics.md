@@ -199,11 +199,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`nodejs.eventloop.state`](/docs/registry/attributes/nodejs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of event loop time. | `active`; `idle` [1] |
-
-**[1] `nodejs.eventloop.state`:** See the full list of well-known values below.
+| [`nodejs.eventloop.state`](/docs/registry/attributes/nodejs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of event loop time. | `active`; `idle` [(see all values)](#nodejs-eventloop-state-values) |
 
 ---
+
+<a id="nodejs-eventloop-state-values"></a>
 
 `nodejs.eventloop.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

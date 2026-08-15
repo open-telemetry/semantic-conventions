@@ -11,19 +11,15 @@ Describes V8 JS Engine Runtime related attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="v8js-gc-type" href="#v8js-gc-type">`v8js.gc.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of garbage collection. | `major`; `minor`; `incremental` [1] |
-| <a id="v8js-heap-space-name" href="#v8js-heap-space-name">`v8js.heap.space.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the space type of heap memory. [2] | `new_space`; `old_space`; `code_space` [3] |
-| <a id="v8js-resource-type" href="#v8js-resource-type">`v8js.resource.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPWrap` [4] |
+| <a id="v8js-gc-type" href="#v8js-gc-type">`v8js.gc.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of garbage collection. | `major`; `minor`; `incremental` [(see all values)](#v8js-gc-type-values) |
+| <a id="v8js-heap-space-name" href="#v8js-heap-space-name">`v8js.heap.space.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [(see all values)](#v8js-heap-space-name-values) |
+| <a id="v8js-resource-type" href="#v8js-resource-type">`v8js.resource.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPWrap` [(see all values)](#v8js-resource-type-values) |
 
-**[1] `v8js.gc.type`:** See the full list of well-known values below.
-
-**[2] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
-
-**[3] `v8js.heap.space.name`:** See the full list of well-known values below.
-
-**[4] `v8js.resource.type`:** See the full list of well-known values below.
+**[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
 ---
+
+<a id="v8js-gc-type-values"></a>
 
 `v8js.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -36,6 +32,8 @@ Describes V8 JS Engine Runtime related attributes.
 
 ---
 
+<a id="v8js-heap-space-name-values"></a>
+
 `v8js.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -47,6 +45,8 @@ Describes V8 JS Engine Runtime related attributes.
 | `old_space` | Old memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="v8js-resource-type-values"></a>
 
 `v8js.resource.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

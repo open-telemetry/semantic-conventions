@@ -12,15 +12,13 @@ This group describes attributes specific to [software tests](https://wikipedia.o
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="test-case-name" href="#test-case-name">`test.case.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case). | `org.example.TestCase1.test1`; `example/tests/TestCase1.test1`; `ExampleTestCase1_test1` |
-| <a id="test-case-result-status" href="#test-case-result-status">`test.case.result.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the actual test case result from test execution. | `pass`; `fail` [1] |
+| <a id="test-case-result-status" href="#test-case-result-status">`test.case.result.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the actual test case result from test execution. | `pass`; `fail` [(see all values)](#test-case-result-status-values) |
 | <a id="test-suite-name" href="#test-suite-name">`test.suite.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite). | `TestSuite1` |
-| <a id="test-suite-run-status" href="#test-suite-run-status">`test.suite.run.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the test suite run. | `success`; `failure`; `skipped`; `aborted`; `timed_out`; `in_progress` [2] |
-
-**[1] `test.case.result.status`:** See the full list of well-known values below.
-
-**[2] `test.suite.run.status`:** See the full list of well-known values below.
+| <a id="test-suite-run-status" href="#test-suite-run-status">`test.suite.run.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the test suite run. | `success`; `failure`; `skipped`; `aborted`; `timed_out`; `in_progress` [(see all values)](#test-suite-run-status-values) |
 
 ---
+
+<a id="test-case-result-status-values"></a>
 
 `test.case.result.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -30,6 +28,8 @@ This group describes attributes specific to [software tests](https://wikipedia.o
 | `pass` | pass | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="test-suite-run-status-values"></a>
 
 `test.suite.run.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

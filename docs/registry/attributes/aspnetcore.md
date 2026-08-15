@@ -11,55 +11,33 @@ ASP.NET Core attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="aspnetcore-authentication-result" href="#aspnetcore-authentication-result">`aspnetcore.authentication.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of the authentication operation. | `success`; `failure` [1] |
+| <a id="aspnetcore-authentication-result" href="#aspnetcore-authentication-result">`aspnetcore.authentication.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of the authentication operation. | `success`; `failure` [(see all values)](#aspnetcore-authentication-result-values) |
 | <a id="aspnetcore-authentication-scheme" href="#aspnetcore-authentication-scheme">`aspnetcore.authentication.scheme`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | <a id="aspnetcore-authorization-policy" href="#aspnetcore-authorization-policy">`aspnetcore.authorization.policy`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the authorization policy. | `RequireAdminRole` |
-| <a id="aspnetcore-authorization-result" href="#aspnetcore-authorization-result">`aspnetcore.authorization.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of calling the authorization service. | `success`; `failure` [2] |
-| <a id="aspnetcore-diagnostics-exception-result" href="#aspnetcore-diagnostics-exception-result">`aspnetcore.diagnostics.exception.result`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | ASP.NET Core exception middleware handling result. | `handled`; `unhandled` [3] |
+| <a id="aspnetcore-authorization-result" href="#aspnetcore-authorization-result">`aspnetcore.authorization.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of calling the authorization service. | `success`; `failure` [(see all values)](#aspnetcore-authorization-result-values) |
+| <a id="aspnetcore-diagnostics-exception-result" href="#aspnetcore-diagnostics-exception-result">`aspnetcore.diagnostics.exception.result`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | ASP.NET Core exception middleware handling result. | `handled`; `unhandled` [(see all values)](#aspnetcore-diagnostics-exception-result-values) |
 | <a id="aspnetcore-diagnostics-handler-type" href="#aspnetcore-diagnostics-handler-type">`aspnetcore.diagnostics.handler.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` |
 | <a id="aspnetcore-identity-error-code" href="#aspnetcore-identity-error-code">`aspnetcore.identity.error_code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` |
-| <a id="aspnetcore-identity-password-check-result" href="#aspnetcore-identity-password-check-result">`aspnetcore.identity.password_check_result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result from checking the password. | `success`; `failure` [4] |
-| <a id="aspnetcore-identity-result" href="#aspnetcore-identity-result">`aspnetcore.identity.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of the identity operation. | `success`; `failure` [5] |
-| <a id="aspnetcore-identity-sign-in-result" href="#aspnetcore-identity-sign-in-result">`aspnetcore.identity.sign_in.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Whether the sign in result was success or failure. | `password`; `two_factor` [6] |
-| <a id="aspnetcore-identity-sign-in-type" href="#aspnetcore-identity-sign-in-type">`aspnetcore.identity.sign_in.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The authentication type. | `password`; `two_factor` [7] |
-| <a id="aspnetcore-identity-token-purpose" href="#aspnetcore-identity-token-purpose">`aspnetcore.identity.token_purpose`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | What the token will be used for. | `success`; `failure` [8] |
-| <a id="aspnetcore-identity-token-verified" href="#aspnetcore-identity-token-verified">`aspnetcore.identity.token_verified`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of token verification. | `success`; `failure` [9] |
-| <a id="aspnetcore-identity-user-update-type" href="#aspnetcore-identity-user-update-type">`aspnetcore.identity.user.update_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The user update type. | `update`; `user_name`; `reset_password` [10] |
+| <a id="aspnetcore-identity-password-check-result" href="#aspnetcore-identity-password-check-result">`aspnetcore.identity.password_check_result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result from checking the password. | `success`; `failure` [(see all values)](#aspnetcore-identity-password-check-result-values) |
+| <a id="aspnetcore-identity-result" href="#aspnetcore-identity-result">`aspnetcore.identity.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of the identity operation. | `success`; `failure` [(see all values)](#aspnetcore-identity-result-values) |
+| <a id="aspnetcore-identity-sign-in-result" href="#aspnetcore-identity-sign-in-result">`aspnetcore.identity.sign_in.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Whether the sign in result was success or failure. | `password`; `two_factor` [(see all values)](#aspnetcore-identity-sign-in-result-values) |
+| <a id="aspnetcore-identity-sign-in-type" href="#aspnetcore-identity-sign-in-type">`aspnetcore.identity.sign_in.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The authentication type. | `password`; `two_factor` [(see all values)](#aspnetcore-identity-sign-in-type-values) |
+| <a id="aspnetcore-identity-token-purpose" href="#aspnetcore-identity-token-purpose">`aspnetcore.identity.token_purpose`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | What the token will be used for. | `success`; `failure` [(see all values)](#aspnetcore-identity-token-purpose-values) |
+| <a id="aspnetcore-identity-token-verified" href="#aspnetcore-identity-token-verified">`aspnetcore.identity.token_verified`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of token verification. | `success`; `failure` [(see all values)](#aspnetcore-identity-token-verified-values) |
+| <a id="aspnetcore-identity-user-update-type" href="#aspnetcore-identity-user-update-type">`aspnetcore.identity.user.update_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The user update type. | `update`; `user_name`; `reset_password` [(see all values)](#aspnetcore-identity-user-update-type-values) |
 | <a id="aspnetcore-identity-user-type" href="#aspnetcore-identity-user-type">`aspnetcore.identity.user_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full name of the identity user type. | `Contoso.ContosoUser` |
 | <a id="aspnetcore-memory-pool-owner" href="#aspnetcore-memory-pool-owner">`aspnetcore.memory_pool.owner`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the library or subsystem using the memory pool instance. | `kestrel`; `iis` |
 | <a id="aspnetcore-rate-limiting-policy" href="#aspnetcore-rate-limiting-policy">`aspnetcore.rate_limiting.policy`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` |
-| <a id="aspnetcore-rate-limiting-result" href="#aspnetcore-rate-limiting-result">`aspnetcore.rate_limiting.result`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` [11] |
+| <a id="aspnetcore-rate-limiting-result" href="#aspnetcore-rate-limiting-result">`aspnetcore.rate_limiting.result`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` [(see all values)](#aspnetcore-rate-limiting-result-values) |
 | <a id="aspnetcore-request-is-unhandled" href="#aspnetcore-request-is-unhandled">`aspnetcore.request.is_unhandled`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | Flag indicating if request was handled by the application pipeline. | `true` |
 | <a id="aspnetcore-routing-is-fallback" href="#aspnetcore-routing-is-fallback">`aspnetcore.routing.is_fallback`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | A value that indicates whether the matched route is a fallback route. | `true` |
-| <a id="aspnetcore-routing-match-status" href="#aspnetcore-routing-match-status">`aspnetcore.routing.match_status`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Match result - success or failure | `success`; `failure` [12] |
+| <a id="aspnetcore-routing-match-status" href="#aspnetcore-routing-match-status">`aspnetcore.routing.match_status`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Match result - success or failure | `success`; `failure` [(see all values)](#aspnetcore-routing-match-status-values) |
 | <a id="aspnetcore-sign-in-is-persistent" href="#aspnetcore-sign-in-is-persistent">`aspnetcore.sign_in.is_persistent`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A flag indicating whether the sign in is persistent. | |
 | <a id="aspnetcore-user-is-authenticated" href="#aspnetcore-user-is-authenticated">`aspnetcore.user.is_authenticated`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | A value that indicates whether the user is authenticated. | `true` |
 
-**[1] `aspnetcore.authentication.result`:** See the full list of well-known values below.
-
-**[2] `aspnetcore.authorization.result`:** See the full list of well-known values below.
-
-**[3] `aspnetcore.diagnostics.exception.result`:** See the full list of well-known values below.
-
-**[4] `aspnetcore.identity.password_check_result`:** See the full list of well-known values below.
-
-**[5] `aspnetcore.identity.result`:** See the full list of well-known values below.
-
-**[6] `aspnetcore.identity.sign_in.result`:** See the full list of well-known values below.
-
-**[7] `aspnetcore.identity.sign_in.type`:** See the full list of well-known values below.
-
-**[8] `aspnetcore.identity.token_purpose`:** See the full list of well-known values below.
-
-**[9] `aspnetcore.identity.token_verified`:** See the full list of well-known values below.
-
-**[10] `aspnetcore.identity.user.update_type`:** See the full list of well-known values below.
-
-**[11] `aspnetcore.rate_limiting.result`:** See the full list of well-known values below.
-
-**[12] `aspnetcore.routing.match_status`:** See the full list of well-known values below.
-
 ---
+
+<a id="aspnetcore-authentication-result-values"></a>
 
 `aspnetcore.authentication.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -71,6 +49,8 @@ ASP.NET Core attributes
 
 ---
 
+<a id="aspnetcore-authorization-result-values"></a>
+
 `aspnetcore.authorization.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -79,6 +59,8 @@ ASP.NET Core attributes
 | `success` | Authorization was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="aspnetcore-diagnostics-exception-result-values"></a>
 
 `aspnetcore.diagnostics.exception.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -90,6 +72,8 @@ ASP.NET Core attributes
 | `unhandled` | Exception was not handled by the exception handling middleware. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="aspnetcore-identity-password-check-result-values"></a>
 
 `aspnetcore.identity.password_check_result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -103,6 +87,8 @@ ASP.NET Core attributes
 
 ---
 
+<a id="aspnetcore-identity-result-values"></a>
+
 `aspnetcore.identity.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -111,6 +97,8 @@ ASP.NET Core attributes
 | `success` | Identity operation was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="aspnetcore-identity-sign-in-result-values"></a>
 
 `aspnetcore.identity.sign_in.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -123,6 +111,8 @@ ASP.NET Core attributes
 | `success` | Sign in was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="aspnetcore-identity-sign-in-type-values"></a>
 
 `aspnetcore.identity.sign_in.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -137,6 +127,8 @@ ASP.NET Core attributes
 
 ---
 
+<a id="aspnetcore-identity-token-purpose-values"></a>
+
 `aspnetcore.identity.token_purpose` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -150,6 +142,8 @@ ASP.NET Core attributes
 
 ---
 
+<a id="aspnetcore-identity-token-verified-values"></a>
+
 `aspnetcore.identity.token_verified` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -158,6 +152,8 @@ ASP.NET Core attributes
 | `success` | Token verification was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="aspnetcore-identity-user-update-type-values"></a>
 
 `aspnetcore.identity.user.update_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -199,6 +195,8 @@ ASP.NET Core attributes
 
 ---
 
+<a id="aspnetcore-rate-limiting-result-values"></a>
+
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -209,6 +207,8 @@ ASP.NET Core attributes
 | `request_canceled` | Lease request was canceled | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="aspnetcore-routing-match-status-values"></a>
 
 `aspnetcore.routing.match_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

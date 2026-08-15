@@ -34,8 +34,8 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | <a id="messaging-message-envelope-size" href="#messaging-message-envelope-size">`messaging.message.envelope.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the message body and metadata in bytes. [7] | `2738` |
 | <a id="messaging-message-id" href="#messaging-message-id">`messaging.message.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | <a id="messaging-operation-name" href="#messaging-operation-name">`messaging.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` |
-| <a id="messaging-operation-type" href="#messaging-operation-type">`messaging.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` [9] |
-| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The messaging system as identified by the client instrumentation. [10] | `activemq`; `aws.sns`; `aws_sqs` [11] |
+| <a id="messaging-operation-type" href="#messaging-operation-type">`messaging.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` [(see all values)](#messaging-operation-type-values) |
+| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws.sns`; `aws_sqs` [(see all values)](#messaging-system-values) |
 
 **[1] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -56,13 +56,11 @@ size should be used.
 
 **[8] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[9] `messaging.operation.type`:** See the full list of well-known values below.
-
-**[10] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
-
-**[11] `messaging.system`:** See the full list of well-known values below.
+**[9] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
 ---
+
+<a id="messaging-operation-type-values"></a>
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -75,6 +73,8 @@ size should be used.
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="messaging-system-values"></a>
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -124,14 +124,14 @@ This group describes attributes specific to Apache Kafka.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="messaging-kafka-cluster-id" href="#messaging-kafka-cluster-id">`messaging.kafka.cluster.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kafka cluster ID, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API. [12] | `MkU3OEVBNTcwNTJENDM2Qk` |
-| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [13] | `myKey` |
+| <a id="messaging-kafka-cluster-id" href="#messaging-kafka-cluster-id">`messaging.kafka.cluster.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kafka cluster ID, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API. [10] | `MkU3OEVBNTcwNTJENDM2Qk` |
+| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [11] | `myKey` |
 | <a id="messaging-kafka-message-tombstone" href="#messaging-kafka-message-tombstone">`messaging.kafka.message.tombstone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message is a tombstone. | |
 | <a id="messaging-kafka-offset" href="#messaging-kafka-offset">`messaging.kafka.offset`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The offset of a record in the corresponding Kafka partition. | `42` |
 
-**[12] `messaging.kafka.cluster.id`:** The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
+**[10] `messaging.kafka.cluster.id`:** The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
 
-**[13] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[11] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
 ## RabbitMQ Attributes
 
@@ -152,20 +152,18 @@ This group describes attributes specific to RocketMQ.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="messaging-rocketmq-consumption-model" href="#messaging-rocketmq-consumption-model">`messaging.rocketmq.consumption_model`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` [14] |
+| <a id="messaging-rocketmq-consumption-model" href="#messaging-rocketmq-consumption-model">`messaging.rocketmq.consumption_model`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` [(see all values)](#messaging-rocketmq-consumption-model-values) |
 | <a id="messaging-rocketmq-message-delay-time-level" href="#messaging-rocketmq-message-delay-time-level">`messaging.rocketmq.message.delay_time_level`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The delay time level for delay message, which determines the message delay time. | `3` |
 | <a id="messaging-rocketmq-message-delivery-timestamp" href="#messaging-rocketmq-message-delivery-timestamp">`messaging.rocketmq.message.delivery_timestamp`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` |
 | <a id="messaging-rocketmq-message-group" href="#messaging-rocketmq-message-group">`messaging.rocketmq.message.group`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` |
 | <a id="messaging-rocketmq-message-keys" href="#messaging-rocketmq-message-keys">`messaging.rocketmq.message.keys`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Key(s) of message, another way to mark message besides message ID. | `["keyA", "keyB"]` |
 | <a id="messaging-rocketmq-message-tag" href="#messaging-rocketmq-message-tag">`messaging.rocketmq.message.tag`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The secondary classifier of message besides topic. | `tagA` |
-| <a id="messaging-rocketmq-message-type" href="#messaging-rocketmq-message-type">`messaging.rocketmq.message.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of message. | `normal`; `fifo`; `delay` [15] |
+| <a id="messaging-rocketmq-message-type" href="#messaging-rocketmq-message-type">`messaging.rocketmq.message.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of message. | `normal`; `fifo`; `delay` [(see all values)](#messaging-rocketmq-message-type-values) |
 | <a id="messaging-rocketmq-namespace" href="#messaging-rocketmq-namespace">`messaging.rocketmq.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` |
 
-**[14] `messaging.rocketmq.consumption_model`:** See the full list of well-known values below.
-
-**[15] `messaging.rocketmq.message.type`:** See the full list of well-known values below.
-
 ---
+
+<a id="messaging-rocketmq-consumption-model-values"></a>
 
 `messaging.rocketmq.consumption_model` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -175,6 +173,8 @@ This group describes attributes specific to RocketMQ.
 | `clustering` | Clustering consumption model | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="messaging-rocketmq-message-type-values"></a>
 
 `messaging.rocketmq.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -193,13 +193,13 @@ This group describes attributes specific to Azure Service Bus.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="messaging-servicebus-disposition-status" href="#messaging-servicebus-disposition-status">`messaging.servicebus.disposition_status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` [16] |
+| <a id="messaging-servicebus-disposition-status" href="#messaging-servicebus-disposition-status">`messaging.servicebus.disposition_status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` [(see all values)](#messaging-servicebus-disposition-status-values) |
 | <a id="messaging-servicebus-message-delivery-count" href="#messaging-servicebus-message-delivery-count">`messaging.servicebus.message.delivery_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Number of deliveries that have been attempted for this message. | `2` |
 | <a id="messaging-servicebus-message-enqueued-time" href="#messaging-servicebus-message-enqueued-time">`messaging.servicebus.message.enqueued_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
 
-**[16] `messaging.servicebus.disposition_status`:** See the full list of well-known values below.
-
 ---
+
+<a id="messaging-servicebus-disposition-status-values"></a>
 
 `messaging.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

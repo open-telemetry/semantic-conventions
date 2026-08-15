@@ -11,14 +11,12 @@ SignalR attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="signalr-connection-status" href="#signalr-connection-status">`signalr.connection.status`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [1] |
-| <a id="signalr-transport" href="#signalr-transport">`signalr.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [2] |
-
-**[1] `signalr.connection.status`:** See the full list of well-known values below.
-
-**[2] `signalr.transport`:** See the full list of well-known values below.
+| <a id="signalr-connection-status" href="#signalr-connection-status">`signalr.connection.status`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [(see all values)](#signalr-connection-status-values) |
+| <a id="signalr-transport" href="#signalr-transport">`signalr.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [(see all values)](#signalr-transport-values) |
 
 ---
+
+<a id="signalr-connection-status-values"></a>
 
 `signalr.connection.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -29,6 +27,8 @@ SignalR attributes
 | `timeout` | The connection was closed due to a timeout. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="signalr-transport-values"></a>
 
 `signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

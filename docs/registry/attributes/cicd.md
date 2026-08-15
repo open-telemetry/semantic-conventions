@@ -11,38 +11,28 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="cicd-pipeline-action-name" href="#cicd-pipeline-action-name">`cicd.pipeline.action.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` [1] |
+| <a id="cicd-pipeline-action-name" href="#cicd-pipeline-action-name">`cicd.pipeline.action.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` [(see all values)](#cicd-pipeline-action-name-values) |
 | <a id="cicd-pipeline-name" href="#cicd-pipeline-name">`cicd.pipeline.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
-| <a id="cicd-pipeline-result" href="#cicd-pipeline-result">`cicd.pipeline.result`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skip` [2] |
+| <a id="cicd-pipeline-result" href="#cicd-pipeline-result">`cicd.pipeline.result`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skip` [(see all values)](#cicd-pipeline-result-values) |
 | <a id="cicd-pipeline-run-id" href="#cicd-pipeline-run-id">`cicd.pipeline.run.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` |
-| <a id="cicd-pipeline-run-state" href="#cicd-pipeline-run-state">`cicd.pipeline.run.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` [3] |
+| <a id="cicd-pipeline-run-state" href="#cicd-pipeline-run-state">`cicd.pipeline.run.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` [(see all values)](#cicd-pipeline-run-state-values) |
 | <a id="cicd-pipeline-run-url-full" href="#cicd-pipeline-run-url-full">`cicd.pipeline.run.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` |
 | <a id="cicd-pipeline-task-name" href="#cicd-pipeline-task-name">`cicd.pipeline.task.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures. | `Run GoLang Linter`; `Go Build`; `go-test`; `deploy_binary` |
-| <a id="cicd-pipeline-task-run-id" href="#cicd-pipeline-task-run-id">`cicd.pipeline.task.run.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The unique identifier of a task run within a pipeline. [4] | `12097` |
-| <a id="cicd-pipeline-task-run-result" href="#cicd-pipeline-task-run-result">`cicd.pipeline.task.run.result`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The result of a task run. | `success`; `failure`; `timeout`; `skip` [5] |
+| <a id="cicd-pipeline-task-run-id" href="#cicd-pipeline-task-run-id">`cicd.pipeline.task.run.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The unique identifier of a task run within a pipeline. [1] | `12097` |
+| <a id="cicd-pipeline-task-run-result" href="#cicd-pipeline-task-run-result">`cicd.pipeline.task.run.result`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The result of a task run. | `success`; `failure`; `timeout`; `skip` [(see all values)](#cicd-pipeline-task-run-result-values) |
 | <a id="cicd-pipeline-task-run-url-full" href="#cicd-pipeline-task-run-url-full">`cicd.pipeline.task.run.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` |
-| <a id="cicd-pipeline-task-type" href="#cicd-pipeline-task-type">`cicd.pipeline.task.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the task within a pipeline. | `build`; `test`; `deploy` [6] |
+| <a id="cicd-pipeline-task-type" href="#cicd-pipeline-task-type">`cicd.pipeline.task.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the task within a pipeline. | `build`; `test`; `deploy` [(see all values)](#cicd-pipeline-task-type-values) |
 | <a id="cicd-system-component" href="#cicd-system-component">`cicd.system.component`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of a component of the CI/CD system. | `controller`; `scheduler`; `agent` |
 | <a id="cicd-worker-id" href="#cicd-worker-id">`cicd.worker.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The unique identifier of a worker within a CI/CD system. | `abc123`; `10.0.1.2`; `controller` |
 | <a id="cicd-worker-name" href="#cicd-worker-name">`cicd.worker.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of a worker within a CI/CD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
-| <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The state of a CI/CD worker / agent. | `available`; `busy`; `offline` [7] |
+| <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The state of a CI/CD worker / agent. | `available`; `busy`; `offline` [(see all values)](#cicd-worker-state-values) |
 | <a id="cicd-worker-url-full" href="#cicd-worker-url-full">`cicd.worker.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |
 
-**[1] `cicd.pipeline.action.name`:** See the full list of well-known values below.
-
-**[2] `cicd.pipeline.result`:** See the full list of well-known values below.
-
-**[3] `cicd.pipeline.run.state`:** See the full list of well-known values below.
-
-**[4] `cicd.pipeline.task.run.id`:** For a given pipeline run and task, the `cicd.pipeline.task.run.id` MUST be unique within that run. For the same task across different runs of the same pipeline, the `cicd.pipeline.task.run.id` MAY remain the same, enabling correlation of `cicd.pipeline.task.run.result` values across multiple pipeline runs.
-
-**[5] `cicd.pipeline.task.run.result`:** See the full list of well-known values below.
-
-**[6] `cicd.pipeline.task.type`:** See the full list of well-known values below.
-
-**[7] `cicd.worker.state`:** See the full list of well-known values below.
+**[1] `cicd.pipeline.task.run.id`:** For a given pipeline run and task, the `cicd.pipeline.task.run.id` MUST be unique within that run. For the same task across different runs of the same pipeline, the `cicd.pipeline.task.run.id` MAY remain the same, enabling correlation of `cicd.pipeline.task.run.result` values across multiple pipeline runs.
 
 ---
+
+<a id="cicd-pipeline-action-name-values"></a>
 
 `cicd.pipeline.action.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -53,6 +43,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | `SYNC` | The pipeline run is executing a sync. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
+
+<a id="cicd-pipeline-result-values"></a>
 
 `cicd.pipeline.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -67,6 +59,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 ---
 
+<a id="cicd-pipeline-run-state-values"></a>
+
 `cicd.pipeline.run.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -76,6 +70,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
+
+<a id="cicd-pipeline-task-run-result-values"></a>
 
 `cicd.pipeline.task.run.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -90,6 +86,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 ---
 
+<a id="cicd-pipeline-task-type-values"></a>
+
 `cicd.pipeline.task.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -100,12 +98,14 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 ---
 
+<a id="cicd-worker-state-values"></a>
+
 `cicd.worker.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle). [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `available` | The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle). [2] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `busy` | The worker is performing work for the CI/CD system. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `offline` | The worker is not available to the CI/CD system (disconnected / down). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[8]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.
+**[2]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.

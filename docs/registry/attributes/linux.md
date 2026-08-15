@@ -11,11 +11,11 @@ Deprecated Linux attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.memory.linux.slab.state`. | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` [1] |
-
-**[1] `linux.memory.slab.state`:** See the full list of well-known values below.
+| <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.memory.linux.slab.state`. | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` [(see all values)](#linux-memory-slab-state-values) |
 
 ---
+
+<a id="linux-memory-slab-state-values"></a>
 
 `linux.memory.slab.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

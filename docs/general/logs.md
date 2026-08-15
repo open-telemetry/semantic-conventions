@@ -96,11 +96,11 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`log.iostream`](/docs/registry/attributes/log.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` [1] |
-
-**[1] `log.iostream`:** See the full list of well-known values below.
+| [`log.iostream`](/docs/registry/attributes/log.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` [(see all values)](#log-iostream-values) |
 
 ---
+
+<a id="log-iostream-values"></a>
 
 `log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -11,11 +11,11 @@ This document defines CPython related attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="cpython-gc-generation" href="#cpython-gc-generation">`cpython.gc.generation`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [1] |
-
-**[1] `cpython.gc.generation`:** See the full list of well-known values below.
+| <a id="cpython-gc-generation" href="#cpython-gc-generation">`cpython.gc.generation`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` [(see all values)](#cpython-gc-generation-values) |
 
 ---
+
+<a id="cpython-gc-generation-values"></a>
 
 `cpython.gc.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

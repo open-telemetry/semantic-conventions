@@ -34,14 +34,12 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [1] |
-| [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [2] |
-
-**[1] `signalr.connection.status`:** See the full list of well-known values below.
-
-**[2] `signalr.transport`:** See the full list of well-known values below.
+| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [(see all values)](#signalr-connection-status-values) |
+| [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [(see all values)](#signalr-transport-values) |
 
 ---
+
+<a id="signalr-connection-status-values"></a>
 
 `signalr.connection.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -52,6 +50,8 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | `timeout` | The connection was closed due to a timeout. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="signalr-transport-values"></a>
 
 `signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -82,14 +82,12 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [1] |
-| [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [2] |
-
-**[1] `signalr.connection.status`:** See the full list of well-known values below.
-
-**[2] `signalr.transport`:** See the full list of well-known values below.
+| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [(see all values)](#signalr-connection-status-values) |
+| [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [(see all values)](#signalr-transport-values) |
 
 ---
+
+<a id="signalr-connection-status-values"></a>
 
 `signalr.connection.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -100,6 +98,8 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | `timeout` | The connection was closed due to a timeout. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="signalr-transport-values"></a>
 
 `signalr.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -52,13 +52,13 @@ Describes deprecated container attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` [7] |
+| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` [(see all values)](#container-cpu-state-values) |
 | <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. | string | Deprecated, use `container.label` instead. | `nginx` |
 | <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.runtime.name`. | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` |
 
-**[7] `container.cpu.state`:** See the full list of well-known values below.
-
 ---
+
+<a id="container-cpu-state-values"></a>
 
 `container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

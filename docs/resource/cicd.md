@@ -150,7 +150,7 @@ the same backends.
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [1] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
 | Description | [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [2] | `my-feature-branch`; `tag-1-test` |
-| Description | [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` [3] |
+| Description | [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` [(see all values)](#vcs-ref-type-values) |
 
 **[1] `vcs.ref.head.revision`:** `head` refers to where you are right now; the current reference at a
 given time.The revision can be a full [hash value (see
@@ -167,9 +167,9 @@ revision based on the VCS system and situational context.
 **[2] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
 
-**[3] `vcs.ref.type`:** See the full list of well-known values below.
-
 ---
+
+<a id="vcs-ref-type-values"></a>
 
 `vcs.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

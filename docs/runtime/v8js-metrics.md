@@ -42,11 +42,11 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.gc.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of garbage collection. | `major`; `minor`; `incremental` [1] |
-
-**[1] `v8js.gc.type`:** See the full list of well-known values below.
+| [`v8js.gc.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of garbage collection. | `major`; `minor`; `incremental` [(see all values)](#v8js-gc-type-values) |
 
 ---
+
+<a id="v8js-gc-type-values"></a>
 
 `v8js.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -80,13 +80,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [2] |
+| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [(see all values)](#v8js-heap-space-name-values) |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-**[2] `v8js.heap.space.name`:** See the full list of well-known values below.
-
 ---
+
+<a id="v8js-heap-space-name-values"></a>
 
 `v8js.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -121,13 +121,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [2] |
+| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [(see all values)](#v8js-heap-space-name-values) |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-**[2] `v8js.heap.space.name`:** See the full list of well-known values below.
-
 ---
+
+<a id="v8js-heap-space-name-values"></a>
 
 `v8js.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -162,13 +162,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [2] |
+| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [(see all values)](#v8js-heap-space-name-values) |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-**[2] `v8js.heap.space.name`:** See the full list of well-known values below.
-
 ---
+
+<a id="v8js-heap-space-name-values"></a>
 
 `v8js.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -203,13 +203,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [2] |
+| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [(see all values)](#v8js-heap-space-name-values) |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-**[2] `v8js.heap.space.name`:** See the full list of well-known values below.
-
 ---
+
+<a id="v8js-heap-space-name-values"></a>
 
 `v8js.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -244,11 +244,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.resource.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPWrap` [1] |
-
-**[1] `v8js.resource.type`:** See the full list of well-known values below.
+| [`v8js.resource.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPWrap` [(see all values)](#v8js-resource-type-values) |
 
 ---
+
+<a id="v8js-resource-type-values"></a>
 
 `v8js.resource.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
