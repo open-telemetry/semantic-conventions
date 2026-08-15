@@ -13,7 +13,7 @@ This document defines attributes for GraphQL.
 | --- | --- | --- | --- | --- |
 | <a id="graphql-document" href="#graphql-document">`graphql.document`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` |
 | <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the operation being executed. | `findBookById` |
-| <a id="graphql-operation-type" href="#graphql-operation-type">`graphql.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` [(see all values)](#graphql-operation-type-values) |
+| <a id="graphql-operation-type" href="#graphql-operation-type">`graphql.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` [(see more)](#graphql-operation-type-values) |
 
 **[1] `graphql.document`:** If instrumentation can reliably identify and redact sensitive information it SHOULD do it.
 

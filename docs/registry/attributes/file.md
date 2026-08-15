@@ -58,7 +58,7 @@ These attributes may be used for any filesystem lock or related operation
 | --- | --- | --- | --- | --- |
 | <a id="file-lock-mechanism" href="#file-lock-mechanism">`file.lock.mechanism`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
 | <a id="file-lock-mode" href="#file-lock-mode">`file.lock.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
-| <a id="file-lock-type" href="#file-lock-type">`file.lock.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` [(see all values)](#file-lock-type-values) |
+| <a id="file-lock-type" href="#file-lock-type">`file.lock.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` [(see more)](#file-lock-type-values) |
 
 ---
 

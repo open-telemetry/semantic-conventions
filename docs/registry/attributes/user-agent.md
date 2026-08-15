@@ -32,7 +32,7 @@ Describes the OS user-agent attributes.
 | --- | --- | --- | --- | --- |
 | <a id="user-agent-os-name" href="#user-agent-os-name">`user_agent.os.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human readable operating system name. [3] | `iOS`; `Android`; `Ubuntu` |
 | <a id="user-agent-os-version" href="#user-agent-os-version">`user_agent.os.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). [4] | `14.2.1`; `18.04.1` |
-| <a id="user-agent-synthetic-type" href="#user-agent-synthetic-type">`user_agent.synthetic.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Specifies the category of synthetic traffic, such as tests or bots. [5] | `bot`; `test` [(see all values)](#user-agent-synthetic-type-values) |
+| <a id="user-agent-synthetic-type" href="#user-agent-synthetic-type">`user_agent.synthetic.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Specifies the category of synthetic traffic, such as tests or bots. [5] | `bot`; `test` [(see more)](#user-agent-synthetic-type-values) |
 
 **[3] `user_agent.os.name`:** For mapping user agent strings to OS names, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized.
 

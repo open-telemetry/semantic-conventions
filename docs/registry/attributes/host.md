@@ -11,7 +11,7 @@ A host is defined as a computing instance. For example, physical servers, virtua
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="host-arch" href="#host-arch">`host.arch`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` [(see all values)](#host-arch-values) |
+| <a id="host-arch" href="#host-arch">`host.arch`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` [(see more)](#host-arch-values) |
 | <a id="host-cpu-cache-l2-size" href="#host-cpu-cache-l2-size">`host.cpu.cache.l2.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
 | <a id="host-cpu-family" href="#host-cpu-family">`host.cpu.family`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
 | <a id="host-cpu-model-id" href="#host-cpu-model-id">`host.cpu.model.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |

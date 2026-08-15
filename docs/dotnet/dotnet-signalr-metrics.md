@@ -34,8 +34,8 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [(see all values)](#signalr-connection-status-values) |
-| [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [(see all values)](#signalr-transport-values) |
+| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [(see more)](#signalr-connection-status-values) |
+| [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [(see more)](#signalr-transport-values) |
 
 ---
 
@@ -82,8 +82,8 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [(see all values)](#signalr-connection-status-values) |
-| [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [(see all values)](#signalr-transport-values) |
+| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [(see more)](#signalr-connection-status-values) |
+| [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [(see more)](#signalr-transport-values) |
 
 ---
 

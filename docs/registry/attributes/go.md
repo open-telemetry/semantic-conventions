@@ -12,9 +12,9 @@ This document defines Go related attributes.
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="go-cpu-detailed-state" href="#go-cpu-detailed-state">`go.cpu.detailed_state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The detailed state of the CPU. [1] | `gc/pause`; `gc/mark/assist` |
-| <a id="go-cpu-state" href="#go-cpu-state">`go.cpu.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of the CPU. | `user`; `gc` [(see all values)](#go-cpu-state-values) |
+| <a id="go-cpu-state" href="#go-cpu-state">`go.cpu.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of the CPU. | `user`; `gc` [(see more)](#go-cpu-state-values) |
 | <a id="go-memory-detailed-type" href="#go-memory-detailed-type">`go.memory.detailed_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The detailed type of memory. [2] | `heap/objects`; `heap/free` |
-| <a id="go-memory-type" href="#go-memory-type">`go.memory.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of memory. | `other`; `stack` [(see all values)](#go-memory-type-values) |
+| <a id="go-memory-type" href="#go-memory-type">`go.memory.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of memory. | `other`; `stack` [(see more)](#go-memory-type-values) |
 
 **[1] `go.cpu.detailed_state`:** Value SHOULD match the specific CPU class reported by the Go runtime under `/cpu/classes/...`. The list of possible values is subject to change with the Go version used.
 

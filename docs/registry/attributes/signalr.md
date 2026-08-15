@@ -11,8 +11,8 @@ SignalR attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="signalr-connection-status" href="#signalr-connection-status">`signalr.connection.status`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [(see all values)](#signalr-connection-status-values) |
-| <a id="signalr-transport" href="#signalr-transport">`signalr.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [(see all values)](#signalr-transport-values) |
+| <a id="signalr-connection-status" href="#signalr-connection-status">`signalr.connection.status`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` [(see more)](#signalr-connection-status-values) |
+| <a id="signalr-transport" href="#signalr-transport">`signalr.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` [(see more)](#signalr-transport-values) |
 
 ---
 

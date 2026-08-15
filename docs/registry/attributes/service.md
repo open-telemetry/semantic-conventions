@@ -14,7 +14,7 @@ A service instance.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="service-criticality" href="#service-criticality">`service.criticality`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The operational criticality of the service. [1] | `critical`; `high`; `medium`; `low` [(see all values)](#service-criticality-values) |
+| <a id="service-criticality" href="#service-criticality">`service.criticality`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The operational criticality of the service. [1] | `critical`; `high`; `medium`; `low` [(see more)](#service-criticality-values) |
 | <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` |
 | <a id="service-name" href="#service-name">`service.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Logical name of the service. [3] | `shoppingcart` |
 | <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | A namespace for `service.name`. [4] | `Shop` |

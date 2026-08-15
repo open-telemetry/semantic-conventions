@@ -11,7 +11,7 @@ Describes the origin of a single frame in a Profile.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="profile-frame-type" href="#profile-frame-type">`profile.frame.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the interpreter or compiler of a single frame. | `cpython` [(see all values)](#profile-frame-type-values) |
+| <a id="profile-frame-type" href="#profile-frame-type">`profile.frame.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the interpreter or compiler of a single frame. | `cpython` [(see more)](#profile-frame-type-values) |
 
 ---
 
