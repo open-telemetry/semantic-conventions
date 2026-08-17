@@ -56,7 +56,8 @@ The process executable name is the name of the process executable, the same valu
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The string ID of the service instance. [7] | `627cc493-f310-47de-96bd-71410b7dec09` |
-| Description | [`service.instance.cost_center.id`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Identifier of the cost center associated with the service instance. [8] | `94002`; `engineering-platform`; `marketing-campaigns-2026` |
+| Description | [`service.instance.cost_center.id`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Identifier of the cost center associated with the service instance. [8] | `94002`; `111111111111`; `cc-eng-402`; `acc-83921` |
+| Description | [`service.instance.cost_center.name`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Name of the cost center associated with the service instance. [9] | `engineering-platform`; `marketing-campaigns`; `research-and-development` |
 
 **[7] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
@@ -85,7 +86,9 @@ However, Collectors can set the `service.instance.id` if they can unambiguously 
 for that telemetry. This is typically the case for scraping receivers, as they know the target address and
 port.
 
-**[8] `service.instance.cost_center.id`:** The cost center identifier enables tracking and attribution of service resource costs to organizational units or teams. This standardization ensures consistent cost allocation across cloud providers, Kubernetes clusters, and observability platforms.
+**[8] `service.instance.cost_center.id`:** The cost center identifier enables tracking and attribution of service resource costs to organizational units, billing accounts, or teams. It is typically a string identifier such as a billing account ID, cost allocation code, or internal accounting ID.
+
+**[9] `service.instance.cost_center.name`:** A human-readable name of the cost center, department, or organizational unit responsible for the service instance costs.
 
 ## Service Namespace
 
@@ -99,6 +102,6 @@ port.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | A namespace for `service.name`. [9] | `Shop` |
+| Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | A namespace for `service.name`. [10] | `Shop` |
 
-**[9] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+**[10] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
