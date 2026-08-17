@@ -24,9 +24,12 @@ A service instance.
 
 **[1] `service.criticality`:** Application developers are encouraged to set `service.criticality` to express the operational importance of their services. Telemetry consumers MAY use this attribute to optimize telemetry collection or improve user experience.
 
-**[2] `service.instance.cost_center.id`:** The cost center identifier enables tracking and attribution of service resource costs to organizational units, billing accounts, or teams. It is typically a string identifier such as a billing account ID, cost allocation code, or internal accounting ID.
+**[2] `service.instance.cost_center.id`:** The cost center identifier enables tracking and attribution of
+service resource costs to organizational units, billing accounts, or teams. It is typically a string
+identifier such as a billing account ID, cost allocation code, or internal accounting ID.
 
-**[3] `service.instance.cost_center.name`:** A human-readable name of the cost center, department, or organizational unit responsible for the service instance costs.
+**[3] `service.instance.cost_center.name`:** A human-readable name of the cost center, department, or
+organizational unit responsible for the service instance costs.
 
 **[4] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
