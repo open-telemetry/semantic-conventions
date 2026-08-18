@@ -16,13 +16,13 @@ The web browser attributes
 | <a id="browser-element-timing-element" href="#browser-element-timing-element">`browser.element_timing.element`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lower-cased tag name of the observed element. [2] | `img`; `p` |
 | <a id="browser-element-timing-identifier" href="#browser-element-timing-identifier">`browser.element_timing.identifier`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The value of the `elementtiming` HTML attribute on the observed element. | `hero-image` |
 | <a id="browser-element-timing-load-time" href="#browser-element-timing-load-time">`browser.element_timing.load_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The time the resource for the element finished loading, relative to navigation start, in milliseconds. [3] | `180.2` |
-| <a id="browser-element-timing-natural-height" href="#browser-element-timing-natural-height">`browser.element_timing.natural_height`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The intrinsic height of the image in CSS pixels. `0` for text elements. | `800` |
-| <a id="browser-element-timing-natural-width" href="#browser-element-timing-natural-width">`browser.element_timing.natural_width`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The intrinsic width of the image in CSS pixels. `0` for text elements. | `1200` |
-| <a id="browser-element-timing-render-time" href="#browser-element-timing-render-time">`browser.element_timing.render_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The time the element was rendered, relative to navigation start, in milliseconds. [4] | `200.5` |
-| <a id="browser-element-timing-start-time" href="#browser-element-timing-start-time">`browser.element_timing.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | `render_time` if it is not `0`, otherwise `load_time`, relative to navigation start, in milliseconds. | `200.5` |
-| <a id="browser-language" href="#browser-language">`browser.language`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Preferred language of the user using the browser [5] | `en`; `en-US`; `fr`; `fr-FR` |
-| <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the browser is running on a mobile device [6] | |
-| <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform on which the browser is running [7] | `Windows`; `macOS`; `Android` |
+| <a id="browser-element-timing-natural-height" href="#browser-element-timing-natural-height">`browser.element_timing.natural_height`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The intrinsic height of the image in CSS pixels. [4] | `800` |
+| <a id="browser-element-timing-natural-width" href="#browser-element-timing-natural-width">`browser.element_timing.natural_width`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The intrinsic width of the image in CSS pixels. [5] | `1200` |
+| <a id="browser-element-timing-render-time" href="#browser-element-timing-render-time">`browser.element_timing.render_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The time the element was rendered, relative to navigation start, in milliseconds. [6] | `200.5` |
+| <a id="browser-element-timing-start-time" href="#browser-element-timing-start-time">`browser.element_timing.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | `render_time` if it is not `0`, otherwise `load_time`, relative to navigation start, in milliseconds. [7] | `200.5` |
+| <a id="browser-language" href="#browser-language">`browser.language`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Preferred language of the user using the browser [8] | `en`; `en-US`; `fr`; `fr-FR` |
+| <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the browser is running on a mobile device [9] | |
+| <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform on which the browser is running [10] | `Windows`; `macOS`; `Android` |
 | <a id="browser-web-vital-delta" href="#browser-web-vital-delta">`browser.web_vital.delta`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes). | `0.2` |
 | <a id="browser-web-vital-id" href="#browser-web-vital-id">`browser.web_vital.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique ID representing this particular metric instance. | `v3-1677874579383-6381583661209` |
 | <a id="browser-web-vital-name" href="#browser-web-vital-name">`browser.web_vital.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the web vital. | `cls` |
@@ -34,15 +34,21 @@ The web browser attributes
 
 **[2] `browser.element_timing.element`:** Not present when the element is no longer attached to the DOM.
 
-**[3] `browser.element_timing.load_time`:** `0` for text elements, since they have no resource to load.
+**[3] `browser.element_timing.load_time`:** Only present for image elements.
 
-**[4] `browser.element_timing.render_time`:** `0` if the element is an image loaded cross-origin without the `Timing-Allow-Origin` header, since the precise render time would otherwise leak cross-origin timing data.
+**[4] `browser.element_timing.natural_height`:** Only present for image elements.
 
-**[5] `browser.language`:** This value is intended to be taken from the Navigator API `navigator.language`.
+**[5] `browser.element_timing.natural_width`:** Only present for image elements.
 
-**[6] `browser.mobile`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.mobile`). If unavailable, this attribute SHOULD be left unset.
+**[6] `browser.element_timing.render_time`:** For a cross-origin image without a `Timing-Allow-Origin` header, older browsers report `0` and newer browsers report a value coarsened to 4ms, to avoid leaking cross-origin timing data. Prefer `start_time` for a value that is reliably precise.
 
-**[7] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
+**[7] `browser.element_timing.start_time`:** Always present, unlike `render_time`.
+
+**[8] `browser.language`:** This value is intended to be taken from the Navigator API `navigator.language`.
+
+**[9] `browser.mobile`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.mobile`). If unavailable, this attribute SHOULD be left unset.
+
+**[10] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
 
 ---

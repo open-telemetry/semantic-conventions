@@ -23,8 +23,8 @@ groups:
     type: event
     name: browser.element_timing
     brief: >
-      This event describes the timing metrics as provided by the
-      PerformanceElementTiming Performance API.
+      This event describes the timing metrics reported by the
+      `PerformanceElementTiming` interface of the Element Timing API.
     note: >
       This event captures data from the
       [Element Timing API](https://wicg.github.io/element-timing/), which
@@ -38,16 +38,20 @@ groups:
         requirement_level: recommended
       - ref: browser.element_timing.render_time
         requirement_level: required
-      - ref: browser.element_timing.load_time
-        requirement_level: required
       - ref: browser.element_timing.start_time
         requirement_level: required
+      - ref: browser.element_timing.load_time
+        requirement_level:
+          conditionally_required: when the entry describes an image element
       - ref: browser.element_timing.natural_width
-        requirement_level: required
+        requirement_level:
+          conditionally_required: when the entry describes an image element
       - ref: browser.element_timing.natural_height
-        requirement_level: required
+        requirement_level:
+          conditionally_required: when the entry describes an image element
       - ref: url.full
-        requirement_level: required
+        requirement_level:
+          conditionally_required: when the entry describes an image element
         note: >
-          The URL of the image resource. Empty for text elements.
+          The URL of the image resource. Not present for text elements.
         examples: ["https://example.com/hero.jpg"]

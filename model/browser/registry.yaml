@@ -177,9 +177,10 @@ groups:
           The time the element was rendered, relative to navigation
           start, in milliseconds.
         note: >
-          `0` if the element is an image loaded cross-origin without the
-          `Timing-Allow-Origin` header, since the precise render time
-          would otherwise leak cross-origin timing data.
+          For a cross-origin image without a `Timing-Allow-Origin` header,
+          older browsers report `0` and newer browsers report a value
+          coarsened to 4ms, to avoid leaking cross-origin timing data.
+          Prefer `start_time` for a value that is reliably precise.
         examples: [200.5]
       - id: browser.element_timing.load_time
         type: double
@@ -188,7 +189,7 @@ groups:
           The time the resource for the element finished loading,
           relative to navigation start, in milliseconds.
         note: >
-          `0` for text elements, since they have no resource to load.
+          Only present for image elements.
         examples: [180.2]
       - id: browser.element_timing.start_time
         type: double
@@ -196,18 +197,22 @@ groups:
         brief: >
           `render_time` if it is not `0`, otherwise `load_time`, relative
           to navigation start, in milliseconds.
+        note: >
+          Always present, unlike `render_time`.
         examples: [200.5]
       - id: browser.element_timing.natural_width
         type: int
         stability: development
         brief: >
-          The intrinsic width of the image in CSS pixels. `0` for text
-          elements.
+          The intrinsic width of the image in CSS pixels.
+        note: >
+          Only present for image elements.
         examples: [1200]
       - id: browser.element_timing.natural_height
         type: int
         stability: development
         brief: >
-          The intrinsic height of the image in CSS pixels. `0` for text
-          elements.
+          The intrinsic height of the image in CSS pixels.
+        note: >
+          Only present for image elements.
         examples: [800]

@@ -83,7 +83,7 @@ This event describes the website performance metrics introduced by Google, See [
 
 The event name MUST be `browser.element_timing`.
 
-This event describes the timing metrics as provided by the PerformanceElementTiming Performance API.
+This event describes the timing metrics reported by the `PerformanceElementTiming` interface of the Element Timing API.
 
 This event captures data from the [Element Timing API](https://wicg.github.io/element-timing/), which reports render and load timing for elements annotated with the `elementtiming` HTML attribute. This API is currently only supported by Chromium-based browsers.
 
@@ -92,21 +92,27 @@ This event captures data from the [Element Timing API](https://wicg.github.io/el
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`browser.element_timing.identifier`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The value of the `elementtiming` HTML attribute on the observed element. | `hero-image` |
-| [`browser.element_timing.load_time`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | The time the resource for the element finished loading, relative to navigation start, in milliseconds. [1] | `180.2` |
-| [`browser.element_timing.natural_height`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The intrinsic height of the image in CSS pixels. `0` for text elements. | `800` |
-| [`browser.element_timing.natural_width`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The intrinsic width of the image in CSS pixels. `0` for text elements. | `1200` |
-| [`browser.element_timing.render_time`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | The time the element was rendered, relative to navigation start, in milliseconds. [2] | `200.5` |
-| [`browser.element_timing.start_time`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | `render_time` if it is not `0`, otherwise `load_time`, relative to navigation start, in milliseconds. | `200.5` |
-| [`url.full`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://example.com/hero.jpg` |
-| [`browser.element_timing.element`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lower-cased tag name of the observed element. [4] | `img`; `p` |
+| [`browser.element_timing.render_time`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | The time the element was rendered, relative to navigation start, in milliseconds. [1] | `200.5` |
+| [`browser.element_timing.start_time`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | `render_time` if it is not `0`, otherwise `load_time`, relative to navigation start, in milliseconds. [2] | `200.5` |
+| [`browser.element_timing.load_time`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when the entry describes an image element | double | The time the resource for the element finished loading, relative to navigation start, in milliseconds. [3] | `180.2` |
+| [`browser.element_timing.natural_height`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when the entry describes an image element | int | The intrinsic height of the image in CSS pixels. [4] | `800` |
+| [`browser.element_timing.natural_width`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when the entry describes an image element | int | The intrinsic width of the image in CSS pixels. [5] | `1200` |
+| [`url.full`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` when the entry describes an image element | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [6] | `https://example.com/hero.jpg` |
+| [`browser.element_timing.element`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lower-cased tag name of the observed element. [7] | `img`; `p` |
 
-**[1] `browser.element_timing.load_time`:** `0` for text elements, since they have no resource to load.
+**[1] `browser.element_timing.render_time`:** For a cross-origin image without a `Timing-Allow-Origin` header, older browsers report `0` and newer browsers report a value coarsened to 4ms, to avoid leaking cross-origin timing data. Prefer `start_time` for a value that is reliably precise.
 
-**[2] `browser.element_timing.render_time`:** `0` if the element is an image loaded cross-origin without the `Timing-Allow-Origin` header, since the precise render time would otherwise leak cross-origin timing data.
+**[2] `browser.element_timing.start_time`:** Always present, unlike `render_time`.
 
-**[3] `url.full`:** The URL of the image resource. Empty for text elements.
+**[3] `browser.element_timing.load_time`:** Only present for image elements.
 
-**[4] `browser.element_timing.element`:** Not present when the element is no longer attached to the DOM.
+**[4] `browser.element_timing.natural_height`:** Only present for image elements.
+
+**[5] `browser.element_timing.natural_width`:** Only present for image elements.
+
+**[6] `url.full`:** The URL of the image resource. Not present for text elements.
+
+**[7] `browser.element_timing.element`:** Not present when the element is no longer attached to the DOM.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
