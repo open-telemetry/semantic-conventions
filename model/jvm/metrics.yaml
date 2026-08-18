@@ -170,6 +170,10 @@ groups:
         metric_value_type: int
     stability: stable
     brief: "Number of open file descriptors as reported by the JVM."
+    note: >
+      This metric is obtained from the `OpenFileDescriptorCount` attribute of the
+      [`UnixOperatingSystemMXBean#getOpenFileDescriptorCount()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getOpenFileDescriptorCount()).
+      This metric is only available on *nix systems.
     instrument: updowncounter
     unit: "{file_descriptor}"
 
@@ -181,5 +185,9 @@ groups:
         metric_value_type: int
     stability: stable
     brief: "Measure of max open file descriptors as reported by the JVM."
+    note: >
+      This metric is obtained from the `MaxFileDescriptorCount` attribute of the
+      [`UnixOperatingSystemMXBean#getMaxFileDescriptorCount()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getMaxFileDescriptorCount()).
+      This metric is only available on *nix systems.
     instrument: updowncounter
     unit: "{file_descriptor}"
