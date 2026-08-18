@@ -188,6 +188,6 @@ groups:
     note: >
       This metric is obtained from the `MaxFileDescriptorCount` attribute of the
       [`UnixOperatingSystemMXBean#getMaxFileDescriptorCount()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getMaxFileDescriptorCount()).
-      This metric is only available on *nix systems.
+      This metric is only available on Unix-like operating systems.
     instrument: updowncounter
     unit: "{file_descriptor}"
