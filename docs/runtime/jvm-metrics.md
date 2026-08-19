@@ -581,7 +581,7 @@ This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCo
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `jvm.file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of open file descriptors as reported by the JVM. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| `jvm.file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of open file descriptors as reported by the JVM. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 **[1]:** This metric is obtained from the `OpenFileDescriptorCount` attribute of the [`UnixOperatingSystemMXBean#getOpenFileDescriptorCount()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getOpenFileDescriptorCount()). This metric is only available on Unix-like operating systems.
 
@@ -601,7 +601,7 @@ This metric is obtained from [`UnixOperatingSystemMXBean#getMaxFileDescriptorCou
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `jvm.file_descriptor.limit` | UpDownCounter | `{file_descriptor}` | Measure of max open file descriptors as reported by the JVM. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| `jvm.file_descriptor.limit` | UpDownCounter | `{file_descriptor}` | Measure of max open file descriptors as reported by the JVM. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 **[1]:** This metric is obtained from the `MaxFileDescriptorCount` attribute of the [`UnixOperatingSystemMXBean#getMaxFileDescriptorCount()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getMaxFileDescriptorCount()). This metric is only available on Unix-like operating systems.
 
