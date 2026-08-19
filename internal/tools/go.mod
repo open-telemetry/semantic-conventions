@@ -2,11 +2,9 @@ module github.com/open-telemetry/opentelemetry-specification/internal/tools
 
 go 1.25.0
 
-toolchain go1.26.5
+toolchain go1.26.6
 
-require (
-	go.opentelemetry.io/build-tools/chloggen v0.30.0
-)
+require go.opentelemetry.io/build-tools/chloggen v0.30.0
 
 require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
