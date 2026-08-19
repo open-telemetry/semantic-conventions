@@ -168,7 +168,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: stable
+    stability: release_candidate
     brief: "Number of open file descriptors as reported by the JVM."
     note: >
       This metric is obtained from the `OpenFileDescriptorCount` attribute of the
@@ -183,7 +183,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: stable
+    stability: release_candidate
     brief: "Measure of max open file descriptors as reported by the JVM."
     note: >
       This metric is obtained from the `MaxFileDescriptorCount` attribute of the
