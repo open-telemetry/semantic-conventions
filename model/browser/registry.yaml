@@ -157,3 +157,62 @@ groups:
           [Navigation Timing API](https://developer.mozilla.org/docs/Web/API/PerformanceNavigationTiming/type),
           with additional values reported by the web-vitals library.
         examples: ["navigate"]
+      - id: browser.element_timing.identifier
+        type: string
+        stability: development
+        brief: The value of the `elementtiming` HTML attribute on the observed element.
+        examples: ["hero-image"]
+      - id: browser.element_timing.element
+        type: string
+        stability: development
+        brief: >
+          The lower-cased tag name of the observed element.
+        note: >
+          Not present when the element is no longer attached to the DOM.
+        examples: ["img", "p"]
+      - id: browser.element_timing.render_time
+        type: double
+        stability: development
+        brief: >
+          The time the element was rendered, relative to navigation
+          start, in milliseconds.
+        note: >
+          For a cross-origin image without a `Timing-Allow-Origin` header,
+          older browsers report `0` and newer browsers report a value
+          coarsened to 4ms, to avoid leaking cross-origin timing data.
+          Prefer `start_time` for a value that is reliably precise.
+        examples: [200.5]
+      - id: browser.element_timing.load_time
+        type: double
+        stability: development
+        brief: >
+          The time the resource for the element finished loading,
+          relative to navigation start, in milliseconds.
+        note: >
+          Only present for image elements.
+        examples: [180.2]
+      - id: browser.element_timing.start_time
+        type: double
+        stability: development
+        brief: >
+          `render_time` if it is not `0`, otherwise `load_time`, relative
+          to navigation start, in milliseconds.
+        note: >
+          Always present, unlike `render_time`.
+        examples: [200.5]
+      - id: browser.element_timing.natural_width
+        type: int
+        stability: development
+        brief: >
+          The intrinsic width of the image in CSS pixels.
+        note: >
+          Only present for image elements.
+        examples: [1200]
+      - id: browser.element_timing.natural_height
+        type: int
+        stability: development
+        brief: >
+          The intrinsic height of the image in CSS pixels.
+        note: >
+          Only present for image elements.
+        examples: [800]
