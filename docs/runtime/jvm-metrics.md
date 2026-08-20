@@ -34,6 +34,7 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
   - [Metric: `jvm.buffer.memory.used`](#metric-jvmbuffermemoryused)
   - [Metric: `jvm.buffer.memory.limit`](#metric-jvmbuffermemorylimit)
   - [Metric: `jvm.buffer.count`](#metric-jvmbuffercount)
+- [Release Candidate](#release-candidate)
   - [Metric: `jvm.file_descriptor.count`](#metric-jvmfile_descriptorcount)
   - [Metric: `jvm.file_descriptor.limit`](#metric-jvmfile_descriptorlimit)
 
