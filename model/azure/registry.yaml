@@ -13,6 +13,26 @@ groups:
           [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal)
           the resource belongs to.
         examples: ["my-resource-group", "rg-myapp-prod"]
+      - id: azure.container_app.instance.id
+        type: string
+        stability: development
+        brief: >
+          The name of the replica of an Azure Container App.
+        note: >
+          The value should be set to the
+          [`CONTAINER_APP_REPLICA_NAME`](https://learn.microsoft.com/azure/container-apps/environment-variables)
+          environment variable.
+        examples: ["my-containerapp--20mh1s9-86c8c4b497-zx9bq"]
+      - id: azure.container_app.revision.name
+        type: string
+        stability: development
+        brief: >
+          The name of the revision of an Azure Container App.
+        note: >
+          The value should be set to the
+          [`CONTAINER_APP_REVISION`](https://learn.microsoft.com/azure/container-apps/environment-variables)
+          environment variable.
+        examples: ["my-containerapp--20mh1s9"]
   - id: registry.azure.client.sdk
     type: attribute_group
     display_name: Azure Client Library Attributes
