@@ -2,5 +2,7 @@ change_type: enhancement
 component: rpc
 note: >
   Add gRPC-specific metric refinements for `rpc.server.call.duration` and
-  `rpc.client.call.duration`, rendered on the gRPC page.
+  `rpc.client.call.duration`, rendered on the gRPC page. The `rpc.method`
+  requirement level differs between client (required) and server
+  (conditionally required), matching the corresponding gRPC span conventions.
 issues: [3868]
