@@ -4,7 +4,6 @@ groups:
     display_name: Oracle Database Attributes
     brief: >
       This section defines attributes for Oracle Database.
-
     attributes:
       - id: oracle.db.name
         type: string
@@ -18,7 +17,7 @@ groups:
         type: string
         stability: release_candidate
         brief: >
-         The database domain associated with the connection.
+          The database domain associated with the connection.
         note: |
           This attribute SHOULD be set to the value of the `DB_DOMAIN` initialization parameter,
           as exposed in `v$parameter`. `DB_DOMAIN` defines the domain portion of the global

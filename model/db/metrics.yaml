@@ -1,7 +1,41 @@
-groups:
-  - id: metric.db.client.operation.duration
-    type: metric
-    metric_name: db.client.operation.duration
+file_format: definition/2
+
+attribute_groups:
+  - id: db.client.with_query_and_collection
+    visibility: internal
+    attributes:
+      - ref_group: db.server
+      - ref: db.operation.name
+        requirement_level:
+          conditionally_required: >
+            If readily available and if there is a single operation name that describes the
+            database call.
+      - ref: db.collection.name
+        requirement_level:
+          conditionally_required: >
+            If readily available and if a database call is performed on a single collection.
+      - ref: db.query.text
+      - ref: db.query.summary
+        requirement_level:
+          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
+      - ref: db.response.status_code
+        requirement_level:
+          conditionally_required: If the operation failed and status code is available.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+        note: >
+          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
+          or the canonical name of exception that occurred.
+
+          When using canonical exception type name, instrumentation SHOULD do the best effort to
+          report the most relevant type. For example, if the original exception is wrapped into a
+          generic one, the original exception SHOULD be preferred.
+
+          Instrumentations SHOULD document how `error.type` is populated.
+
+metrics:
+  - name: db.client.operation.duration
     annotations:
       code_generation:
         metric_value_type: double
@@ -11,8 +45,8 @@ groups:
     instrument: histogram
     unit: "s"
     stability: stable
-    extends: attributes.db.client.with_query_and_collection
     attributes:
+      - ref_group: db.client.with_query_and_collection
       - ref: db.system.name
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required
@@ -37,9 +71,7 @@ groups:
       - ref: db.query.text
         requirement_level: opt_in
 
-  - id: metric.db.client.connection.count
-    type: metric
-    metric_name: db.client.connection.count
+  - name: db.client.connection.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -53,9 +85,7 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.client.connection.idle.max
-    type: metric
-    metric_name: db.client.connection.idle.max
+  - name: db.client.connection.idle.max
     annotations:
       code_generation:
         metric_value_type: int
@@ -67,9 +97,7 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.client.connection.idle.min
-    type: metric
-    metric_name: db.client.connection.idle.min
+  - name: db.client.connection.idle.min
     annotations:
       code_generation:
         metric_value_type: int
@@ -81,9 +109,7 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.client.connection.max
-    type: metric
-    metric_name: db.client.connection.max
+  - name: db.client.connection.max
     annotations:
       code_generation:
         metric_value_type: int
@@ -95,9 +121,7 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.client.connection.pending_requests
-    type: metric
-    metric_name: db.client.connection.pending_requests
+  - name: db.client.connection.pending_requests
     annotations:
       code_generation:
         metric_value_type: int
@@ -109,9 +133,7 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.client.connection.timeouts
-    type: metric
-    metric_name: db.client.connection.timeouts
+  - name: db.client.connection.timeouts
     annotations:
       code_generation:
         metric_value_type: int
@@ -123,9 +145,7 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.client.connection.create_time
-    type: metric
-    metric_name: db.client.connection.create_time
+  - name: db.client.connection.create_time
     annotations:
       code_generation:
         metric_value_type: double
@@ -137,9 +157,7 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.client.connection.wait_time
-    type: metric
-    metric_name: db.client.connection.wait_time
+  - name: db.client.connection.wait_time
     annotations:
       code_generation:
         metric_value_type: double
@@ -151,9 +169,7 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.client.connection.use_time
-    type: metric
-    metric_name: db.client.connection.use_time
+  - name: db.client.connection.use_time
     annotations:
       code_generation:
         metric_value_type: double
@@ -165,9 +181,7 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.client.response.returned_rows
-    type: metric
-    metric_name: db.client.response.returned_rows
+  - name: db.client.response.returned_rows
     annotations:
       code_generation:
         metric_value_type: int
@@ -175,8 +189,8 @@ groups:
     instrument: histogram
     unit: "{row}"
     stability: development
-    extends: attributes.db.client.with_query_and_collection
     attributes:
+      - ref_group: db.client.with_query_and_collection
       - ref: db.system.name
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required

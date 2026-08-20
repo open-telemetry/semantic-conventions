@@ -1,0 +1,42 @@
+file_format: definition/2
+
+span_refinements:
+  - id: span.db.mongodb.client
+    ref: db.document.client
+    stability: development
+    brief: >
+      Spans representing calls to MongoDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
+    attributes:
+      - ref: db.system.name
+        note: MUST be set to `"mongodb"`.
+        examples: ["mongodb"]
+      - ref: db.operation.name
+        brief: >
+          The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed.
+        note: ""
+        examples: ['findAndModify', 'getMore', 'insertMany', 'bulkWrite']
+        requirement_level: required
+      - ref: db.collection.name
+        sampling_relevant: true
+        brief: >
+          The MongoDB collection being accessed within the database stated in `db.namespace`.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+          For batch operations, if the individual operations would all have the same
+          `db.collection.name` when executed as non-batch operations,
+          then that collection name SHOULD be used.
+        requirement_level: required
+      - ref: db.namespace
+        brief: The MongoDB database name.
+        requirement_level:
+          conditionally_required: If available.
+        note: ""  # overriding the base note
+      - ref: db.response.status_code
+        brief: >
+          [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string.
+        note: >
+          All MongoDB error codes SHOULD be considered errors.
+        requirement_level:
+          conditionally_required: If the operation failed and error code is available.
+        examples: ["36", "11602"]

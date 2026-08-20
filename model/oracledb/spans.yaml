@@ -1,0 +1,37 @@
+file_format: definition/2
+
+span_refinements:
+  - id: span.db.oracledb.client
+    ref: db.sql.client
+    stability: release_candidate
+    brief: >
+      Spans representing calls to a Oracle SQL Database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    attributes:
+      - ref: db.system.name
+        note: MUST be set to `"oracle.db"`.
+        examples: ["oracle.db"]
+      - ref: db.namespace
+        brief: >
+          The unique identifier of the database associated with the connection.
+        note: |
+          Use the value of `DB_UNIQUE_NAME` parameter. This defines the database's globally unique identifier and must remain unique across the enterprise.
+        examples: ["ORCL1", "ORCL2", "ORCL3"]
+      - ref: oracle.db.service
+        sampling_relevant: true
+      - ref: oracle.db.instance.name
+        sampling_relevant: true
+      - ref: oracle.db.pdb
+        sampling_relevant: true
+      - ref: oracle.db.name
+        sampling_relevant: true
+      - ref: oracle.db.domain
+        sampling_relevant: true
+      - ref: db.response.status_code
+        brief: >
+          [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string.
+        note: >
+          Oracle Database error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE)
+          conventions. All Oracle Database error codes SHOULD be considered errors.
+        examples: ["ORA-02813", "ORA-02613"]
+      - ref: db.query.text
+        examples: ["SELECT * FROM wuser_table where username = ?"]

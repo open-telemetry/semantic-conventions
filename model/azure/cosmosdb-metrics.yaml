@@ -1,7 +1,7 @@
-groups:
-  - id: metric.azure.cosmosdb.client.operation.request_charge
-    type: metric
-    metric_name: azure.cosmosdb.client.operation.request_charge
+file_format: definition/2
+
+metrics:
+  - name: azure.cosmosdb.client.operation.request_charge
     annotations:
       code_generation:
         metric_value_type: double
@@ -9,7 +9,6 @@ groups:
     instrument: histogram
     unit: "{request_unit}"
     stability: development
-    extends: attributes.azure.cosmosdb.minimal
     attributes:
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
@@ -19,10 +18,43 @@ groups:
           Cosmos DB container name.
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.operation.name
+        requirement_level: required
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+        note: ""  # overriding the base note
+      - ref: azure.cosmosdb.response.sub_status_code
+        requirement_level:
+          conditionally_required: when response was received and contained sub-code.
+      - ref: azure.cosmosdb.consistency.level
+        requirement_level:
+          conditionally_required: If available.
+      - ref: server.address
+        brief: >
+          Name of the database host.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+      - ref: db.response.status_code
+        requirement_level:
+          conditionally_required: If the operation failed and status code is available.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+        note: >
+          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
+          or the canonical name of exception that occurred.
 
-  - id: metric.azure.cosmosdb.client.active_instance.count
-    type: metric
-    metric_name: azure.cosmosdb.client.active_instance.count
+          When using canonical exception type name, instrumentation SHOULD do the best effort to
+          report the most relevant type. For example, if the original exception is wrapped into a
+          generic one, the original exception SHOULD be preferred.
+
+          Instrumentations SHOULD document how `error.type` is populated.
+
+  - name: azure.cosmosdb.client.active_instance.count
     annotations:
       code_generation:
         metric_value_type: int

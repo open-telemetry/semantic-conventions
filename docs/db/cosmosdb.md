@@ -35,10 +35,6 @@ Cosmos DB instrumentations include call-level spans that represent logical datab
 Additional spans representing network calls may also be created depending on the connection mode (Gateway or Direct).
 Semantic conventions described in this document apply to the call-level spans only.
 
-`db.system.name` MUST be set to `"azure.cosmosdb"` and SHOULD be provided **at span creation time**.
-
-**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
-
 **Span kind** SHOULD be `CLIENT`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
@@ -48,26 +44,27 @@ Semantic conventions described in this document apply to the call-level spans on
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the operation or command being executed. [1] | `create_item`; `query_items`; `read_item` |
-| [`azure.cosmosdb.connection.mode`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | Cosmos client connection mode. | `gateway`; `direct` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `azure.cosmosdb` |
+| [`azure.cosmosdb.connection.mode`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | Cosmos client connection mode. | `gateway`; `direct` |
 | [`azure.cosmosdb.consistency.level`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` |
-| [`azure.cosmosdb.operation.contacted_regions`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [3] | `["North Central US", "Australia East", "Australia Southeast"]` |
+| [`azure.cosmosdb.operation.contacted_regions`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [4] | `["North Central US", "Australia East", "Australia Southeast"]` |
 | [`azure.cosmosdb.operation.request_charge`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when available | double | The number of request units consumed by the operation. | `46.18`; `1.0` |
 | [`azure.cosmosdb.response.sub_status_code`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when response was received and contained sub-code. | int | Cosmos DB sub status code. | `1000`; `1002` |
-| [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if available | string | Cosmos DB container name. [4] | `public.users`; `customers` |
+| [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if available | string | Cosmos DB container name. [5] | `public.users`; `customers` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` |
 | [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if response was received and returned any rows | int | Cosmos DB row count in result set. | `10`; `20` |
-| [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if response was received | string | Cosmos DB status code. [5] | `200`; `201` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If not default (443). | int | Server port number. [7] | `80`; `8080`; `443` |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if response was received | string | Cosmos DB status code. [6] | `200`; `201` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If not default (443). | int | Server port number. [8] | `80`; `8080`; `443` |
 | [`azure.client.id`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The unique identifier of the client instance. | `3ba4827d-4422-483f-b59f-85b74211c11d`; `storage-client-1` |
 | [`azure.cosmosdb.request.body.size`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Request payload size in bytes. | |
-| [`azure.resource_provider.namespace`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [8] | `Microsoft.DocumentDB` |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [9] | `2`; `3`; `4` |
-| [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database query being executed. [10] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
-| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [11] | string | The name of a stored procedure within the database. [12] | `GetCustomer` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`user_agent.original`](/docs/registry/attributes/user-agent.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Full user-agent string is generated by Cosmos DB SDK [14] | `cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|` |
-| [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [15] | `someval`; `55` |
+| [`azure.resource_provider.namespace`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [9] | `Microsoft.DocumentDB` |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [10] | `2`; `3`; `4` |
+| [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database query being executed. [11] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
+| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | The name of a stored procedure within the database. [13] | `GetCustomer` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [14] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`user_agent.original`](/docs/registry/attributes/user-agent.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Full user-agent string is generated by Cosmos DB SDK [15] | `cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|` |
+| [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [16] | `someval`; `55` |
 
 **[1] `db.operation.name`:** The `db.operation.name` has the following list of well-known values.
 If one of them applies, then the respective value MUST be used.
@@ -193,23 +190,25 @@ If none of them applies, it's RECOMMENDED to use language-agnostic representatio
 client method name in snake_case. Instrumentations SHOULD document
 additional values when introducing new operations.
 
-**[2] `azure.cosmosdb.connection.mode`:** if not `gateway` (the default value is assumed to be `gateway`).
+**[2] `db.system.name`:** MUST be set to `"azure.cosmosdb"`.
 
-**[3] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
+**[3] `azure.cosmosdb.connection.mode`:** if not `gateway` (the default value is assumed to be `gateway`).
 
-**[4] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[4] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
 
-**[5] `db.response.status_code`:** Response codes in the 4xx and 5xx range SHOULD be considered errors.
+**[5] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[6] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[6] `db.response.status_code`:** Response codes in the 4xx and 5xx range SHOULD be considered errors.
+
+**[7] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8] `azure.resource_provider.namespace`:** When `azure.resource_provider.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all operations performed by Cosmos DB client.
+**[9] `azure.resource_provider.namespace`:** When `azure.resource_provider.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all operations performed by Cosmos DB client.
 
-**[9] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+**[10] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
 or more database operations explicitly submitted as separate operations in a single
 client call, protocol message, or database command.
 
@@ -232,26 +231,26 @@ It SHOULD NOT be set for non-batch operations.
 A request to execute a batch operation with no operations SHOULD also be treated
 as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
-**[10] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
+**[11] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[11] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
+**[12] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
 
-**[12] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
+**[13] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 For batch operations, if the individual operations would all have the same
 `db.stored_procedure.name` when executed as non-batch operations,
 then that stored procedure name SHOULD be used.
 
-**[13] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[14] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[14] `user_agent.original`:** The user-agent value is generated by SDK which is a combination of<br> `sdk_version` : Current version of SDK. e.g. 'cosmos-netstandard-sdk/3.23.0'<br> `direct_pkg_version` : Direct package version used by Cosmos DB SDK. e.g. '3.23.1'<br> `number_of_client_instances` : Number of cosmos client instances created by the application. e.g. '1'<br> `type_of_machine_architecture` : Machine architecture. e.g. 'X64'<br> `operating_system` : Operating System. e.g. 'Linux 5.4.0-1098-azure 104 18'<br> `runtime_framework` : Runtime Framework. e.g. '.NET Core 3.1.32'<br> `failover_information` : Generated key to determine if region failover enabled.
+**[15] `user_agent.original`:** The user-agent value is generated by SDK which is a combination of<br> `sdk_version` : Current version of SDK. e.g. 'cosmos-netstandard-sdk/3.23.0'<br> `direct_pkg_version` : Direct package version used by Cosmos DB SDK. e.g. '3.23.1'<br> `number_of_client_instances` : Number of cosmos client instances created by the application. e.g. '1'<br> `type_of_machine_architecture` : Machine architecture. e.g. 'X64'<br> `operating_system` : Operating System. e.g. 'Linux 5.4.0-1098-azure 104 18'<br> `runtime_framework` : Runtime Framework. e.g. '.NET Core 3.1.32'<br> `failover_information` : Generated key to determine if region failover enabled.
    Format Reg-{D (Disabled discovery)}-S(application region)|L(List of preferred regions)|N(None, user did not configure it).
    Default value is "NS".
 
-**[15] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
+**[16] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
 
 `db.query.parameter.<key>` SHOULD match
@@ -281,6 +280,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.collection.name`](/docs/registry/attributes/db.md)
 * [`db.namespace`](/docs/registry/attributes/db.md)
 * [`db.operation.name`](/docs/registry/attributes/db.md)
+* [`db.system.name`](/docs/registry/attributes/db.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 
@@ -304,6 +304,54 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `Eventual` | Eventual | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Session` | Session | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Strong` | Strong | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cassandra` | [Apache Cassandra](https://cassandra.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clickhouse` | [ClickHouse](https://clickhouse.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cockroachdb` | [CockroachDB](https://www.cockroachlabs.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `geode` | [Apache Geode](https://geode.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `h2database` | [H2 Database](https://h2database.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hbase` | [Apache HBase](https://hbase.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hive` | [Apache Hive](https://hive.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `instantdb` | [Instant](https://www.instantdb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mariadb` | [MariaDB](https://mariadb.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `memcached` | [Memcached](https://memcached.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `microsoft.sql_server` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mysql` | [MySQL](https://www.mysql.com/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `neo4j` | [Neo4j](https://neo4j.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `opensearch` | [OpenSearch](https://opensearch.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other_sql` | Some other SQL database. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `redis` | [Redis](https://redis.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `softwareag.adabas` | [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
