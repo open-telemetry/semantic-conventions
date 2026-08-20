@@ -1,0 +1,156 @@
+# Generates semantic convention code in downstream language repositories from the
+# model in this repository (instead of their pinned version of semconv), then compiles and
+# lints the result. This catches changes that break code generation before they
+# are released.
+#
+# Java and Go share a single job so that pull requests only get one check.
+name: Downstream codegen check
+
+on:
+  schedule:
+    # Daily at 03:00 UTC
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+  # Only release preparation PRs are checked, other pull requests skip the job.
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  downstream-codegen:
+    name: downstream-codegen
+    if: >-
+      github.repository_owner == 'open-telemetry' &&
+      (github.event_name != 'pull_request' || startsWith(github.head_ref, 'otelbot/prepare-release-'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: semantic-conventions
+          persist-credentials: false
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: open-telemetry/semantic-conventions-java
+          path: semantic-conventions-java
+          persist-credentials: false
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: open-telemetry/opentelemetry-go
+          path: opentelemetry-go
+          persist-credentials: false
+
+      - name: Set up Java
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: opentelemetry-go/go.mod
+          cache-dependency-path: opentelemetry-go/**/go.sum
+
+      # The Java build normally generates from the latest released semconv zip; point it
+      # at the model in this repository instead.
+      - name: Java - use local model
+        working-directory: semantic-conventions-java
+        run: |
+          if ! grep -q 'val modelPath = layout.buildDirectory' build.gradle.kts; then
+            echo "::error::semantic-conventions-java build.gradle.kts no longer defines modelPath as expected, update this workflow"
+            exit 1
+          fi
+          sed -i "s|^\( *val modelPath = \).*$|\1File(\"$GITHUB_WORKSPACE/semantic-conventions/model\")|" build.gradle.kts
+          grep -n 'val modelPath' build.gradle.kts
+
+      - name: Java - generate
+        working-directory: semantic-conventions-java
+        run: ./gradlew generateSemanticConventions --console=plain
+
+      # Generated code is formatted by spotless, as in the downstream release workflow.
+      - name: Java - format
+        working-directory: semantic-conventions-java
+        run: ./gradlew spotlessApply
+
+      - name: Java - build
+        working-directory: semantic-conventions-java
+        run: ./gradlew build
+
+      # Go steps run even when Java failed, so that one run reports both languages.
+      - name: Go - resolve version
+        id: version
+        if: ${{ !cancelled() }}
+        run: |
+          # The version the next release will use, e.g. "1.45.0-unreleased" -> "v1.45.0".
+          version=$(sed -n 's|^schema_url: https://opentelemetry.io/schemas/\(.*\)$|\1|p' semantic-conventions/model/manifest.yaml)
+          version=${version%-unreleased}
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::could not resolve version from model/manifest.yaml, got '$version'"
+            exit 1
+          fi
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+
+      # Mirrors the "semconv-generate" target of the opentelemetry-go Makefile, except
+      # that the registry is the model in this repository rather than a released zip.
+      - name: Go - generate
+        working-directory: opentelemetry-go
+        if: ${{ !cancelled() && steps.version.outcome == 'success' }}
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          weaver_image=$(awk '$4=="weaver" {print $2}' dependencies.Dockerfile)
+          mkdir -p "semconv/$TAG" ~/.weaver
+          docker run --rm \
+            -u "$(id -u):$(id -g)" \
+            --env HOME=/tmp/weaver \
+            --mount "type=bind,source=$PWD/semconv/templates,target=/home/weaver/templates,readonly" \
+            --mount "type=bind,source=$PWD/semconv/$TAG,target=/home/weaver/target" \
+            --mount "type=bind,source=$GITHUB_WORKSPACE/semantic-conventions/model,target=/home/weaver/source,readonly" \
+            --mount "type=bind,source=$HOME/.weaver,target=/tmp/weaver/.weaver" \
+            "$weaver_image" registry generate \
+            --registry=/home/weaver/source \
+            --templates=/home/weaver/templates \
+            --param tag="$TAG" \
+            go \
+            /home/weaver/target
+          (cd internal/tools && go build -o ../../.tools/semconvkit ./semconvkit)
+          ./.tools/semconvkit -semconv semconv/ -tag "$TAG"
+
+      - name: Go - build
+        working-directory: opentelemetry-go
+        if: ${{ !cancelled() && steps.version.outcome == 'success' }}
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          go build "./semconv/$TAG/..."
+          go vet "./semconv/$TAG/..."
+
+      - name: Go - lint
+        working-directory: opentelemetry-go
+        if: ${{ !cancelled() && steps.version.outcome == 'success' }}
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          make "$PWD/.tools/golangci-lint"
+          ./.tools/golangci-lint run --allow-serial-runners "./semconv/$TAG/..."
+
+  # Scheduled runs open (or comment on) a tracking issue; on release preparation PRs
+  # the failing job is signal enough.
+  workflow-notification:
+    permissions: # required by the reusable workflow
+      contents: read
+      issues: write
+    needs:
+      - downstream-codegen
+    if: always() && github.event_name != 'pull_request' && github.repository_owner == 'open-telemetry'
+    uses: ./.github/workflows/reusable-workflow-notification.yml
+    with:
+      success: ${{ needs.downstream-codegen.result == 'success' }}

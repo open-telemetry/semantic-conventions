@@ -200,4 +200,4 @@ PostgreSQL client instrumentations SHOULD collect metrics according to the gener
 
 `db.system.name` MUST be set to `"postgresql"`.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

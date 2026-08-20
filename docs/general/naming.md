@@ -440,4 +440,4 @@ attribute use the same system name (`azure.cosmosdb`).
   conventions don't follow the system-specific naming guidance yet, and will be
   updated one-by-one.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

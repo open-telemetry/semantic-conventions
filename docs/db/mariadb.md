@@ -192,4 +192,4 @@ MariaDB client instrumentations SHOULD collect metrics according to the general
 
 `db.system.name` MUST be set to `"mariadb"`.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

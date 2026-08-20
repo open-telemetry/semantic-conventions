@@ -48,7 +48,7 @@ linkTitle: Spans
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.60.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://opentelemetry.io/docs/specs/otel/trace/api/#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
@@ -579,4 +579,4 @@ More specific Semantic Conventions are defined for the following database techno
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
