@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: "Moved: Generative AI semantic conventions"
 linkTitle: Model Context Protocol
---->
+---
 
 # Moved: Generative AI semantic conventions
 
