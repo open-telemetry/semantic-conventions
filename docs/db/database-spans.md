@@ -113,12 +113,12 @@ classify as errors.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` [(see more)](#db-system-name-values) |
 | [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [2] | string | The name of a collection (table, container) within the database. [3] | `public.users`; `customers` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | string | The name of the operation or command being executed. [6] | `findAndModify`; `HMSET`; `SELECT` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [7] | string | Database response status code. [8] | `102`; `ORA-17002`; `08P01`; `404` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [10] | int | Server port number. [11] | `80`; `8080`; `443` |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [12] | `2`; `3`; `4` |
 | [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [13] | string | Low cardinality summary of a database query. [14] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
@@ -283,6 +283,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
+<a id="db-system-name-values"></a>
+
 `db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -330,6 +332,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

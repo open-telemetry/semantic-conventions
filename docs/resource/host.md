@@ -23,7 +23,7 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`host.arch`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |
+| Other | [`host.arch`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` [(see more)](#host-arch-values) |
 | Other | [`host.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. [1] | `fdbf79e8af94cb7f9e8df36789187052` |
 | Other | [`host.image.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` |
 | Other | [`host.image.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` |
@@ -64,6 +64,8 @@ privileged lookup of `host.id` is required, the value should be injected via the
 **[3] `host.mac`:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 ---
+
+<a id="host-arch-values"></a>
 
 `host.arch` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

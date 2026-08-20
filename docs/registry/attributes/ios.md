@@ -14,11 +14,13 @@ This group describes iOS-specific attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="ios-app-state" href="#ios-app-state">`ios.app.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This attribute represents the state of the application. [1] | `active`; `inactive`; `background` |
+| <a id="ios-app-state" href="#ios-app-state">`ios.app.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This attribute represents the state of the application. [1] | `active`; `inactive`; `background` [(see more)](#ios-app-state-values) |
 
 **[1] `ios.app.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
 ---
+
+<a id="ios-app-state-values"></a>
 
 `ios.app.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -38,11 +40,13 @@ The iOS platform on which the iOS application is running.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="ios-state" href="#ios-state">`ios.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `ios.app.state`. | string | Deprecated. Use the `ios.app.state` attribute. [2] | `active`; `inactive`; `background` |
+| <a id="ios-state" href="#ios-state">`ios.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `ios.app.state`. | string | Deprecated. Use the `ios.app.state` attribute. [2] | `active`; `inactive`; `background` [(see more)](#ios-state-values) |
 
 **[2] `ios.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
 ---
+
+<a id="ios-state-values"></a>
 
 `ios.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
