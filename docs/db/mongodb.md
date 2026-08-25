@@ -132,16 +132,19 @@ This context propagation mechanism SHOULD NOT be enabled by default, but
 instrumentation MAY allow users to opt into it.
 
 When this mechanism is enabled and the application has not set `comment`,
-instrumentation MUST set `comment` to a BSON document containing the fields
-produced by the configured propagator. The instrumentation SHOULD allow users to
-provide a propagator. If none is provided, the instrumentation SHOULD use the
-global propagator.
-
-When using the W3C Trace Context propagator, the BSON document MUST contain a
-valid [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header)
-string and MAY contain a valid
+instrumentation MUST set `comment` to a BSON document containing a valid
+[`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) string
+and MAY include a valid
 [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) string.
-For example:
+Instrumentation MUST NOT inject `baggage` or any other fields by default.
+
+The instrumentation SHOULD allow users to provide a propagator. If none is
+provided, the instrumentation SHOULD use the W3C Trace Context propagator. A user
+that configures a different propagator opts into whatever fields that propagator
+produces; servers that follow this convention extract only `traceparent` and
+`tracestate`, so any additional injected fields are ignored on extraction.
+
+For example, with the default W3C Trace Context propagator:
 
 ```json
 {
@@ -169,10 +172,9 @@ instead replace the propagation document with the value of `text`, or remove
 `comment` when `text` is not present.
 
 MongoDB servers and compatible servers may expose or persist `comment` in logs,
-profiling data, or diagnostic interfaces. Instrumentations MUST NOT add baggage
-or any other application data to the propagation document by default and SHOULD
-document that `traceparent`, `tracestate`, and `text` may be visible to users
-with access to those outputs.
+profiling data, or diagnostic interfaces. Instrumentations SHOULD document that
+`traceparent`, `tracestate`, and `text` may be visible to users with access to
+those outputs.
 
 The MongoDB wire protocol limits the whole command document to the server's
 advertised `maxBsonObjectSize`. Instrumentations SHOULD keep the propagation
