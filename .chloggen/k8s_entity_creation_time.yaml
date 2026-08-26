@@ -1,0 +1,13 @@
+change_type: enhancement
+
+component: k8s
+
+note: Add `k8s.<entity>.creation_time` attributes carrying the object's `metadata.creationTimestamp`
+
+issues: [3958]
+
+subtext: |
+  The attributes are opt-in and added with `development` stability on the following entities:
+    - k8s.node, k8s.namespace
+    - k8s.deployment, k8s.statefulset, k8s.daemonset, k8s.replicaset, k8s.job, k8s.cronjob
+    - k8s.persistentvolume, k8s.persistentvolumeclaim

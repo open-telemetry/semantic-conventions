@@ -53,6 +53,18 @@ groups:
         brief: >
           The UID of the Node.
         examples: ['1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2']
+      - id: k8s.node.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the Node.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.node.label
         type: template[string]
         stability: stable
@@ -91,6 +103,18 @@ groups:
         brief: >
           The name of the namespace that the pod is running in.
         examples: ['default']
+      - id: k8s.namespace.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the Namespace.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.namespace.label
         type: template[string]
         stability: stable
@@ -247,6 +271,18 @@ groups:
         brief: >
           The name of the ReplicaSet.
         examples: ['opentelemetry']
+      - id: k8s.replicaset.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the ReplicaSet.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.replicaset.label
         type: template[string]
         stability: stable
@@ -311,6 +347,18 @@ groups:
         brief: >
           The name of the Deployment.
         examples: ['opentelemetry']
+      - id: k8s.deployment.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the Deployment.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.deployment.label
         type: template[string]
         stability: stable
@@ -351,6 +399,18 @@ groups:
         brief: >
           The name of the StatefulSet.
         examples: ['opentelemetry']
+      - id: k8s.statefulset.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the StatefulSet.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.statefulset.label
         type: template[string]
         stability: stable
@@ -391,6 +451,18 @@ groups:
         brief: >
           The name of the DaemonSet.
         examples: ['opentelemetry']
+      - id: k8s.daemonset.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the DaemonSet.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.daemonset.label
         type: template[string]
         stability: stable
@@ -475,6 +547,18 @@ groups:
         brief: >
           The name of the Job.
         examples: ['opentelemetry']
+      - id: k8s.job.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the Job.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.job.label
         type: template[string]
         stability: stable
@@ -515,6 +599,18 @@ groups:
         brief: >
           The name of the CronJob.
         examples: ['opentelemetry']
+      - id: k8s.cronjob.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the CronJob.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.cronjob.label
         type: template[string]
         stability: stable
@@ -998,6 +1094,18 @@ groups:
         brief: >
           The name of the PersistentVolume.
         examples: ['pv-data-01']
+      - id: k8s.persistentvolume.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the PersistentVolume.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.persistentvolume.label
         type: template[string]
         stability: development
@@ -1090,6 +1198,18 @@ groups:
         brief: >
           The name of the PersistentVolumeClaim.
         examples: ['pvc-data-01']
+      - id: k8s.persistentvolumeclaim.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the PersistentVolumeClaim.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.persistentvolumeclaim.label
         type: template[string]
         stability: development
