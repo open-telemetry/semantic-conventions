@@ -8,7 +8,7 @@ events:
     note: >
       For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted
       every time a session is created. When a new session is created as a continuation of a prior session,
-      the `session.previous_id` SHOULD be included in the event. The values of `session.id` and `session.previous_id`
+      the `session.previous_id` MUST be included in the event. The values of `session.id` and `session.previous_id`
       MUST be different.
 
       When the `session.start` event contains both `session.id` and `session.previous_id` fields, the event indicates
@@ -23,9 +23,9 @@ events:
         requirement_level:
           conditionally_required: >
             If the new session is being created as a continuation of a previous session,
-            the `session.previous_id` SHOULD be included in the event. The `session.id` and `session.previous_id`
+            the `session.previous_id` MUST be included in the event. The `session.id` and `session.previous_id`
             attributes MUST have different values.
-        brief: The previous `session.id` for this user, when known.
+        brief: The previous `session.id` for this user.
 
   - name: session.end
     stability: development
