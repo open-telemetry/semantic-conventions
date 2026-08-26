@@ -201,7 +201,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Network bytes for the Pod."
     instrument: counter
     unit: "By"
@@ -216,7 +216,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Pod network errors."
     instrument: counter
     entity_associations:
@@ -852,7 +852,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Network bytes for the Node."
     instrument: counter
     unit: "By"
@@ -867,7 +867,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Node network errors."
     instrument: counter
     unit: "{error}"
@@ -1520,7 +1520,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
+      See the [Kubernetes ResourceRequirements API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.storage.request
@@ -1534,7 +1534,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
+      See the [Kubernetes ResourceRequirements API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.ephemeral_storage.limit
@@ -1548,7 +1548,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
+      See the [Kubernetes ResourceRequirements API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.ephemeral_storage.request
@@ -1562,7 +1562,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
+      See the [Kubernetes ResourceRequirements API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.ephemeral_storage.usage
@@ -2052,6 +2052,7 @@ groups:
       See [K8s EndpointConditions](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/) for more details.
 
       The conditions represent:
+
       - `ready`: Endpoints capable of receiving new connections.
       - `serving`: Endpoints currently handling traffic.
       - `terminating`: Endpoints that are being phased out but may still be handling existing connections.
