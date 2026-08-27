@@ -1034,6 +1034,21 @@ groups:
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#statefulsetstatus-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
+  - id: metric.k8s.statefulset.pod.available
+    type: metric
+    metric_name: k8s.statefulset.pod.available
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    entity_associations:
+      - k8s.statefulset
+    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this statefulset."
+    note: |
+      This metric aligns with the `availableReplicas` field of the
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#statefulsetstatus-v1-apps).
+    instrument: updowncounter
+    unit: "{pod}"
 
   # k8s.hpa.* metrics
   - id: metric.k8s.hpa.pod.desired
