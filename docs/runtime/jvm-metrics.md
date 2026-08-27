@@ -504,7 +504,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `jvm.executor.thread.max` | UpDownCounter | `{thread}` | The maximum number of threads allowed for the executor. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `jvm.executor.thread.max` | UpDownCounter | `{thread}` | The maximum number of threads allowed for the executor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+
+**[1]:** Instrumentations SHOULD emit this metric only when the maximum thread count is finite and represents a meaningful operational limit. This metric SHOULD NOT be emitted for unbounded or effectively unbounded executors. For example, an executor with a maximum thread count of `Integer.MAX_VALUE` is effectively unbounded.
 
 **Attributes:**
 

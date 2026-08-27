@@ -157,6 +157,11 @@ groups:
     stability: development
     extends: attributes.jvm.executor
     brief: "The maximum number of threads allowed for the executor."
+    note: >
+      Instrumentations SHOULD emit this metric only when the maximum thread count is finite and
+      represents a meaningful operational limit. This metric SHOULD NOT be emitted for unbounded
+      or effectively unbounded executors. For example, an executor with a maximum thread count of
+      `Integer.MAX_VALUE` is effectively unbounded.
     instrument: updowncounter
     unit: "{thread}"
 
