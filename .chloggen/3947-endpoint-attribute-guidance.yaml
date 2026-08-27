@@ -1,0 +1,6 @@
+change_type: enhancement
+component: server
+note: >
+  Add guidance for choosing between `client.*` / `server.*`, `source.*` / `destination.*`, and
+  `network.local.*` / `network.peer.*` in the general attributes documentation.
+issues: [3947, 1721]
