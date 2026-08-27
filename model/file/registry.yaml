@@ -148,21 +148,21 @@ groups:
           members:
             - id: read
               value: 'read'
-              stability: development
+              stability: release_candidate
             - id: write
               value: 'write'
-              stability: development
-        stability: development
+              stability: release_candidate
+        stability: release_candidate
         brief: "The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type."
         examples: ["read"]
       - id: file.lock.mechanism
         type: string
         brief: "The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)"
-        stability: development
+        stability: release_candidate
         examples: ["POSIX", "FLOCK", "DELEG", "LEASE"]
       - id: file.lock.mode
         type: string
         brief: >
           Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)
-        stability: development
+        stability: release_candidate
         examples: ["ADVISORY", "MANDATORY", "BREAKING", "ACTIVE", "BREAKER"]

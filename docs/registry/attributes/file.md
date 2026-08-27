@@ -56,9 +56,9 @@ These attributes may be used for any filesystem lock or related operation
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="file-lock-mechanism" href="#file-lock-mechanism">`file.lock.mechanism`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
-| <a id="file-lock-mode" href="#file-lock-mode">`file.lock.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
-| <a id="file-lock-type" href="#file-lock-type">`file.lock.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` |
+| <a id="file-lock-mechanism" href="#file-lock-mechanism">`file.lock.mechanism`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
+| <a id="file-lock-mode" href="#file-lock-mode">`file.lock.mode`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
+| <a id="file-lock-type" href="#file-lock-type">`file.lock.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` |
 
 ---
 
@@ -66,5 +66,5 @@ These attributes may be used for any filesystem lock or related operation
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
-| `write` | write | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read` | read | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `write` | write | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
