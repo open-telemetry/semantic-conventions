@@ -280,7 +280,7 @@ groups:
           broker (see `rabbitmqctl set_cluster_name`). It identifies the cluster
           independently of the individual nodes the client is configured to connect to,
           and remains stable even if node hostnames, IP addresses, or ports change.
-        examples: ['rabbit@node1.example.com']
+        examples: ['my-rabbitmq-cluster']
       - id: messaging.rabbitmq.vhost.name
         type: string
         stability: development
