@@ -6,8 +6,9 @@ attributes:
     stability: development
     brief: "Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name."
     note: >
-      When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent
-      the destination address behind any intermediaries, for example proxies, if it's available.
+      `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the
+      destination of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address
+      behind intermediaries such as proxies or load balancers.
     examples: ['destination.example.com', '10.1.2.80', '/tmp/my.sock']
   - key: destination.port
     type: int
