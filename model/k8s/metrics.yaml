@@ -174,7 +174,7 @@ groups:
   - id: metric.k8s.pod.paging.faults
     type: metric
     metric_name: k8s.pod.paging.faults
-    stability: development
+    stability: release_candidate
     brief: "Pod memory paging faults."
     annotations:
       code_generation:
@@ -825,7 +825,7 @@ groups:
   - id: metric.k8s.node.paging.faults
     type: metric
     metric_name: k8s.node.paging.faults
-    stability: development
+    stability: release_candidate
     brief: "Node memory paging faults."
     annotations:
       code_generation:
