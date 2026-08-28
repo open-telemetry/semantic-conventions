@@ -504,8 +504,8 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                         |
-| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                               |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `k8s.node.memory.page_faults`                                                      | `k8s.node.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
 | `k8s.node.memory.major_page_faults`                                                | `k8s.node.paging.faults` with attribute `system.paging.fault.type` set to `major` |
 
