@@ -47,7 +47,7 @@
 /docs/url/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/http/                           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/client/                         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/network/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
+/model/network/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers @open-telemetry/semconv-network-approvers
 /model/server/                         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/url/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/user-agent/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
@@ -113,13 +113,19 @@
 
 
 # Security semantic conventions
-/docs/dns/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
-/model/dns/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+/docs/dns/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers @open-telemetry/semconv-network-approvers
+/model/dns/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers @open-telemetry/semconv-network-approvers
 /model/file/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 # /model/network/                 is defined in HTTP section
 # /model/process/                 is defined in system section
 /model/tls/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 /model/user/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+
+# Network semantic conventions
+# /docs/dns/, /model/dns/         are defined in the Security section
+# /model/network/                 is defined in the HTTP section
+/model/source/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-network-approvers
+/model/destination/               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-network-approvers
 
 # CI/CD semantic conventions
 /docs/cicd/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
