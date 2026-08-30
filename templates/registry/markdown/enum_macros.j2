@@ -1,5 +1,9 @@
 {% import 'stability.j2' as stability %}
 {% macro filter(member) %}{% if (member.deprecated is undefined or member.deprecated is none) %}{{ "True" }}{% else %}{{ "False" }}{% endif %}{% endmacro %}
+{#- True if the only real member is the generic `other`/`_OTHER` fallback (as on
+    error.type). A table with just that one row isn't worth showing on every page
+    that uses the attribute, though the registry page still shows it. -#}
+{% macro is_fallback_only(members) %}{% set ns = namespace(active=[]) %}{% for m in members %}{% if filter(m) == "True" %}{% set ns.active = [ns.active, [m]] | flatten %}{% endif %}{% endfor %}{% if (ns.active | length == 1) and (ns.active[0].id == "other") %}{{ "True" }}{% else %}{{ "False" }}{% endif %}{% endmacro %}
 {% macro table(enum, notes) %}
 ---
 
@@ -13,9 +17,9 @@
 {% endif %}{% endfor %}{{ notes.render() }}{% endmacro %}
 {% macro tables(enums, notes) -%}
 {% for enum in enums | sort(attribute="name") -%}
-{{ table(enum, notes) -}}
+{%- if is_fallback_only(enum.type.members) == "False" -%}{{ table(enum, notes) -}}{%- endif -%}
 {% endfor %}{% endmacro %}
-{% macro field_table(enum, notes) %}
+{% macro field_table(enum, notes) %}{% if is_fallback_only(enum.members) == "False" %}
 `{{enum.id}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -23,7 +27,7 @@
 {% for espec in enum.members | sort(attribute='value') %}
 {%- if filter(espec) == "True" -%}
 | `{{ espec.value }}` | {{ notes.table_cell((espec.brief or espec.id) | trim) }}{{ notes.add({"note": espec.note}) }} | {{ stability.badge(espec.stability, espec.deprecated, espec.brief) }} |
-{% endif %}{% endfor %}{{ notes.render() }}{% endmacro %}
+{% endif %}{% endfor %}{{ notes.render() }}{% endif %}{% endmacro %}
 {% macro field_tables(enums, notes) -%}
 {% for enum in enums | sort(attribute="id") -%}
 {{ field_table(enum, notes) -}}
