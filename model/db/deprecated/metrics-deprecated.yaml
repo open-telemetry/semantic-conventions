@@ -205,10 +205,4 @@ groups:
     instrument: updowncounter
     unit: "{instance}"
     stability: development
-    attributes:
-      - ref: server.address
-        brief: >
-          Name of the database host.
-      - ref: server.port
-        requirement_level:
-          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+    extends: attributes.db.client.server

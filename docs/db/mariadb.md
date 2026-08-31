@@ -44,7 +44,7 @@ Spans representing calls to MariaDB adhere to the general [Semantic Conventions 
 | [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [11] | string | Low cardinality summary of a database query. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [13] | string | The database query being executed. [14] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [15] | string | The name of a stored procedure within the database. [16] | `GetCustomer` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A string identifying the database server or server group the client is configured to connect to. [17] | `db.example.com`; `10.1.2.80`; `/tmp/my.sock`; `db-a.example.com,db-b.example.com`; `mongodb+srv://cluster.example.com` |
 | [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [18] | `someval`; `55` |
 | [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [19] | `10`; `30`; `1000` |
 
@@ -66,7 +66,7 @@ When SQLSTATE is available, SQLSTATE of "Class 02" or higher SHOULD be considere
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[4] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[4] `server.port`:** If `server.address` identifies a single database server and a port other than the default port for this DBMS is used.
 
 **[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -135,7 +135,50 @@ For batch operations, if the individual operations would all have the same
 `db.stored_procedure.name` when executed as non-batch operations,
 then that stored procedure name SHOULD be used.
 
-**[17] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[17] `server.address`:** Instrumentations SHOULD populate `server.address` from the client configuration and SHOULD NOT use
+actual network-level connection information for this purpose.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+The value SHOULD remain stable for the lifetime of the database client. Runtime changes to the
+database topology, including discovery of new servers, SHOULD NOT change the value.
+
+When the client is configured to connect through an intermediary, `server.address` SHOULD identify
+the configured database target behind the intermediary, if available.
+
+When the client configuration identifies a single server, instrumentation SHOULD report the server
+domain name, IP address, or Unix socket path in `server.address` and the port in `server.port` as
+described in the respective attribute definitions. When the address is an IP address,
+instrumentation SHOULD NOT perform a reverse DNS lookup to obtain a domain name.
+
+When the client configuration identifies multiple servers, a service-discovery target, or another
+connection target that cannot be split into a single address and port, instrumentation SHOULD use
+the client's canonical, low-cardinality connection target as `server.address`. Query and fragment
+components SHOULD be omitted unless they are part of the canonical connection target.
+
+If a database client is configured with multiple servers and does not provide a canonical connection
+target, instrumentation SHOULD set `server.address` to a comma-separated list of server endpoints
+without spaces. If the order of servers is significant, instrumentation SHOULD preserve it.
+Otherwise, instrumentation SHOULD sort the endpoints lexicographically. Instrumentation MAY remove
+duplicate endpoints only when their repetition has no semantic meaning.
+
+Each endpoint in such a list SHOULD be a domain name or IP address, optionally followed by a port.
+IPv6 addresses that include a port MUST be enclosed in square brackets. If all endpoints use the
+default port for the database system, the ports SHOULD be omitted. Otherwise, each endpoint SHOULD
+include its port. A single shared logical target MAY be appended using
+`<endpoint>[,<endpoint>...]/<logical-target>` when the logical target is an unambiguous single path
+segment.
+
+`server.port` SHOULD NOT be set when `server.address` contains multiple endpoints or represents a
+service-discovery target or another connection target that cannot be split into a single address
+and port.
+
+If instrumentation cannot determine a safe, stable connection target from the client configuration,
+it SHOULD omit `server.address`.
+
+See [Database server address](/docs/db/database-spans.md#database-server-address) for examples.
 
 **[18] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.

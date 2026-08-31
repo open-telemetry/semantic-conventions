@@ -90,7 +90,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [14] | string | The name of a stored procedure within the database. [15] | `GetCustomer` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this database system. | string | Peer address of the database node where the operation was performed. [16] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If and only if `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A string identifying the database server or server group the client is configured to connect to. [17] | `db.example.com`; `10.1.2.80`; `/tmp/my.sock`; `db-a.example.com,db-b.example.com`; `mongodb+srv://cluster.example.com` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The database query being executed. [18] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
@@ -139,7 +139,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[10] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[10] `server.port`:** If `server.address` identifies a single database server and a port other than the default port for this DBMS is used.
 
 **[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -173,7 +173,50 @@ then that stored procedure name SHOULD be used.
 **[16] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[17] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[17] `server.address`:** Instrumentations SHOULD populate `server.address` from the client configuration and SHOULD NOT use
+actual network-level connection information for this purpose.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+The value SHOULD remain stable for the lifetime of the database client. Runtime changes to the
+database topology, including discovery of new servers, SHOULD NOT change the value.
+
+When the client is configured to connect through an intermediary, `server.address` SHOULD identify
+the configured database target behind the intermediary, if available.
+
+When the client configuration identifies a single server, instrumentation SHOULD report the server
+domain name, IP address, or Unix socket path in `server.address` and the port in `server.port` as
+described in the respective attribute definitions. When the address is an IP address,
+instrumentation SHOULD NOT perform a reverse DNS lookup to obtain a domain name.
+
+When the client configuration identifies multiple servers, a service-discovery target, or another
+connection target that cannot be split into a single address and port, instrumentation SHOULD use
+the client's canonical, low-cardinality connection target as `server.address`. Query and fragment
+components SHOULD be omitted unless they are part of the canonical connection target.
+
+If a database client is configured with multiple servers and does not provide a canonical connection
+target, instrumentation SHOULD set `server.address` to a comma-separated list of server endpoints
+without spaces. If the order of servers is significant, instrumentation SHOULD preserve it.
+Otherwise, instrumentation SHOULD sort the endpoints lexicographically. Instrumentation MAY remove
+duplicate endpoints only when their repetition has no semantic meaning.
+
+Each endpoint in such a list SHOULD be a domain name or IP address, optionally followed by a port.
+IPv6 addresses that include a port MUST be enclosed in square brackets. If all endpoints use the
+default port for the database system, the ports SHOULD be omitted. Otherwise, each endpoint SHOULD
+include its port. A single shared logical target MAY be appended using
+`<endpoint>[,<endpoint>...]/<logical-target>` when the logical target is an unambiguous single path
+segment.
+
+`server.port` SHOULD NOT be set when `server.address` contains multiple endpoints or represents a
+service-discovery target or another connection target that cannot be split into a single address
+and port.
+
+If instrumentation cannot determine a safe, stable connection target from the client configuration,
+it SHOULD omit `server.address`.
+
+See [Database server address](/docs/db/database-spans.md#database-server-address) for examples.
 
 **[18] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
@@ -283,7 +326,7 @@ Explaining bucket configuration:
 | [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | Low cardinality summary of a database query. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this database system. | string | Peer address of the database node where the operation was performed. [14] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If and only if `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A string identifying the database server or server group the client is configured to connect to. [15] | `db.example.com`; `10.1.2.80`; `/tmp/my.sock`; `db-a.example.com,db-b.example.com`; `mongodb+srv://cluster.example.com` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The database query being executed. [16] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
@@ -332,7 +375,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[10] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[10] `server.port`:** If `server.address` identifies a single database server and a port other than the default port for this DBMS is used.
 
 **[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -357,7 +400,50 @@ system specific term if more applicable.
 **[14] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[15] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[15] `server.address`:** Instrumentations SHOULD populate `server.address` from the client configuration and SHOULD NOT use
+actual network-level connection information for this purpose.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+The value SHOULD remain stable for the lifetime of the database client. Runtime changes to the
+database topology, including discovery of new servers, SHOULD NOT change the value.
+
+When the client is configured to connect through an intermediary, `server.address` SHOULD identify
+the configured database target behind the intermediary, if available.
+
+When the client configuration identifies a single server, instrumentation SHOULD report the server
+domain name, IP address, or Unix socket path in `server.address` and the port in `server.port` as
+described in the respective attribute definitions. When the address is an IP address,
+instrumentation SHOULD NOT perform a reverse DNS lookup to obtain a domain name.
+
+When the client configuration identifies multiple servers, a service-discovery target, or another
+connection target that cannot be split into a single address and port, instrumentation SHOULD use
+the client's canonical, low-cardinality connection target as `server.address`. Query and fragment
+components SHOULD be omitted unless they are part of the canonical connection target.
+
+If a database client is configured with multiple servers and does not provide a canonical connection
+target, instrumentation SHOULD set `server.address` to a comma-separated list of server endpoints
+without spaces. If the order of servers is significant, instrumentation SHOULD preserve it.
+Otherwise, instrumentation SHOULD sort the endpoints lexicographically. Instrumentation MAY remove
+duplicate endpoints only when their repetition has no semantic meaning.
+
+Each endpoint in such a list SHOULD be a domain name or IP address, optionally followed by a port.
+IPv6 addresses that include a port MUST be enclosed in square brackets. If all endpoints use the
+default port for the database system, the ports SHOULD be omitted. Otherwise, each endpoint SHOULD
+include its port. A single shared logical target MAY be appended using
+`<endpoint>[,<endpoint>...]/<logical-target>` when the logical target is an unambiguous single path
+segment.
+
+`server.port` SHOULD NOT be set when `server.address` contains multiple endpoints or represents a
+service-discovery target or another connection target that cannot be split into a single address
+and port.
+
+If instrumentation cannot determine a safe, stable connection target from the client configuration,
+it SHOULD omit `server.address`.
+
+See [Database server address](/docs/db/database-spans.md#database-server-address) for examples.
 
 **[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
