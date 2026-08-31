@@ -1,10 +1,12 @@
-groups:
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
   - id: cloudevents
-    type: attribute_group
+    visibility: public
+    stability: development
     brief: >
-        This document defines attributes for CloudEvents.
-        CloudEvents is a specification on how to define event data in a standard way.
-        These attributes can be attached to spans when performing operations with CloudEvents, regardless of the protocol being used.
+      These attributes can be attached to spans when performing operations with CloudEvents,
+      regardless of the protocol being used.
     attributes:
       - ref: cloudevents.event_id
         requirement_level: required
