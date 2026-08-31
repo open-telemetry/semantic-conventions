@@ -31,8 +31,4 @@ groups:
     unit: "{instance}"
     stability: development
     extends: attributes.db.client.server
-    attributes:
-      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
-      # - ref: db.system.name
-      #   requirement_level:
-      #     conditionally_required: if available
+    # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
