@@ -127,22 +127,26 @@ and SHOULD be provided **at span creation time** (if provided at all):
 **Status**: [Development][DocumentStatus]
 
 Instrumentations MAY propagate context to MongoDB servers and compatible
-servers through the [`comment` command field](https://www.mongodb.com/docs/manual/reference/command/find/#std-label-find-cmd-comment).
+servers through the [`comment` command field](https://www.mongodb.com/docs/manual/reference/command/find/).
 This context propagation mechanism SHOULD NOT be enabled by default, but
 instrumentation MAY allow users to opt into it.
+
+Before injecting context, instrumentation MUST determine that the target server
+accepts a BSON document as the value of `comment`. MongoDB 4.4 and later accept
+all BSON types for `comment`, while earlier versions accept only strings.
+Compatible servers may expose support through different versions or
+capabilities. If document-valued `comment` support is unknown or unavailable,
+instrumentation MUST skip context injection for the operation.
 
 When this mechanism is enabled and the application has not set `comment`,
 instrumentation MUST set `comment` to a BSON document containing a valid
 [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) string
 and MAY include a valid
 [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) string.
-Instrumentation MUST NOT inject `baggage` or fields other than `traceparent`, `tracestate`, and an application-provided `text` field by default.
-
-The instrumentation SHOULD allow users to provide a propagator. If none is
-provided, the instrumentation SHOULD use the W3C Trace Context propagator. A user
-that configures a different propagator opts into whatever fields that propagator
-produces; servers that follow this convention extract only `traceparent` and
-`tracestate`, so any additional injected fields are ignored on extraction.
+The instrumentation SHOULD use the W3C Trace Context propagator to populate
+these fields. The propagation document MUST NOT contain `baggage` or fields
+other than `traceparent`, `tracestate`, and an application-provided `text`
+field.
 
 For example, with the default W3C Trace Context propagator:
 
@@ -173,8 +177,8 @@ instead replace the propagation document with the value of `text`, or remove
 
 MongoDB servers and compatible servers may expose or persist `comment` in logs,
 profiling data, or diagnostic interfaces. Instrumentations SHOULD document that
-`traceparent`, `tracestate`, and `text` may be visible to users with access to
-those outputs.
+every field injected into `comment` may be visible to users with access to those
+outputs.
 
 The MongoDB wire protocol limits the whole command document to the server's
 advertised `maxBsonObjectSize`. Instrumentations SHOULD keep the propagation
