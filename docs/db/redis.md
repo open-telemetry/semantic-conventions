@@ -19,36 +19,46 @@ The Semantic Conventions for [Redis](https://redis.com/) extend and override the
 
 Spans representing calls to Redis adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
 
-`db.system.name` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
+Instrumentations SHOULD, when possible, record database spans that represent the logical database
+operation as observed by the caller (such as client application).
 
-**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
-except that `db.namespace` SHOULD NOT be used in the span name since it is a numeric value that ends up
-looking confusing.
+When a database client provides higher-level convenience APIs for specific operations
+(e.g., calling a stored procedure), which internally generate and execute a generic query,
+it is RECOMMENDED to instrument the higher-level convenience APIs.
+These often allow setting `db.operation.*` attributes, which usually are not
+readily available at the generic query level.
 
-**Span kind** SHOULD be `CLIENT`.
+**Span duration** is covered in the [Database client span duration](/docs/db/database-spans.md#database-client-span-duration) section.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+Semantic conventions for individual systems SHOULD specify which values of `db.response.status_code`
+classify as errors.
+
+**Span kind** SHOULD be `CLIENT`.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The Redis command name. [1] | `HMSET`; `GET`; `SET` |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if it can be captured reliably. | string | The [database index] associated with the connection, represented as a string. [2] | `0`; `1`; `15` |
-| [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [4] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [6] | int | Server port number. [7] | `80`; `8080`; `443` |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [8] | `2`; `3`; `4` |
-| [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The full syntax of the Redis CLI command. [9] | `HMSET myhash field1 ? field2 ?` |
-| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If operation applies to a specific Lua script. | string | The name or sha1 digest of a Lua script in the database. [10] | `GetCustomer` |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the database node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `redis` |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if it can be captured reliably. | string | The [database index] associated with the connection, represented as a string. [3] | `0`; `1`; `15` |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [5] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [7] | int | Server port number. [8] | `80`; `8080`; `443` |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [9] | `2`; `3`; `4` |
+| [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The full syntax of the Redis CLI command. [10] | `HMSET myhash field1 ? field2 ?` |
+| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If operation applies to a specific Lua script. | string | The name or sha1 digest of a Lua script in the database. [11] | `GetCustomer` |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the database node where the operation was performed. [12] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 For [transactions and pipelined calls](https://redis.io/docs/latest/develop/clients/redis-py/transpipe/), if the individual operations are known to have the same command then that command SHOULD be used prepended by `MULTI ` or `PIPELINE `. Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
 
-**[2] `db.namespace`:** A connection's currently associated database index may change during its lifetime, e.g. from executing `SELECT <index>`.
+**[2] `db.system.name`:** MUST be set to `"redis"`.
+
+**[3] `db.namespace`:** A connection's currently associated database index may change during its lifetime, e.g. from executing `SELECT <index>`.
 
 If instrumentation is unable to capture the connection's currently associated database index on each query
 without triggering an additional query to be executed,
@@ -56,19 +66,19 @@ then it is RECOMMENDED to fallback and use the database index provided when the 
 
 Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
 
-**[3] `db.response.status_code`:** If the operation failed and status code is available.
+**[4] `db.response.status_code`:** If the operation failed and status code is available.
 
-**[4] `db.response.status_code`:** All Redis error prefixes SHOULD be considered errors.
+**[5] `db.response.status_code`:** All Redis error prefixes SHOULD be considered errors.
 
-**[5] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[6] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[6] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[7] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+**[9] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
 or more database operations explicitly submitted as separate operations in a single
 client call, protocol message, or database command.
 
@@ -91,15 +101,15 @@ It SHOULD NOT be set for non-batch operations.
 A request to execute a batch operation with no operations SHOULD also be treated
 as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
-**[9] `db.query.text`:** Query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text.
+**[10] `db.query.text`:** Query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text.
 See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 The value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 ? field2 ?"` would be a suitable value for `db.query.text`.
 
-**[10] `db.stored_procedure.name`:** See [FCALL](https://redis.io/docs/latest/commands/fcall/) and [EVALSHA](https://redis.io/docs/latest/commands/evalsha/).
+**[11] `db.stored_procedure.name`:** See [FCALL](https://redis.io/docs/latest/commands/fcall/) and [EVALSHA](https://redis.io/docs/latest/commands/evalsha/).
 
-**[11] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[12] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[13] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -107,8 +117,57 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.namespace`](/docs/registry/attributes/db.md)
 * [`db.operation.name`](/docs/registry/attributes/db.md)
 * [`db.query.text`](/docs/registry/attributes/db.md)
+* [`db.system.name`](/docs/registry/attributes/db.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
+
+---
+
+`db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cassandra` | [Apache Cassandra](https://cassandra.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clickhouse` | [ClickHouse](https://clickhouse.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cockroachdb` | [CockroachDB](https://www.cockroachlabs.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `geode` | [Apache Geode](https://geode.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `h2database` | [H2 Database](https://h2database.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hbase` | [Apache HBase](https://hbase.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hive` | [Apache Hive](https://hive.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `instantdb` | [Instant](https://www.instantdb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mariadb` | [MariaDB](https://mariadb.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `memcached` | [Memcached](https://memcached.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `microsoft.sql_server` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mysql` | [MySQL](https://www.mysql.com/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `neo4j` | [Neo4j](https://neo4j.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `opensearch` | [OpenSearch](https://opensearch.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other_sql` | Some other SQL database. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `redis` | [Redis](https://redis.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `softwareag.adabas` | [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

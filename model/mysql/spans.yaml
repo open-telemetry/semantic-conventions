@@ -1,0 +1,32 @@
+file_format: definition/2
+
+span_refinements:
+  - id: span.db.mysql.client
+    ref: db.sql.client
+    stability: stable
+    brief: >
+      Spans representing calls to a MySQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    attributes:
+      - ref: db.system.name
+        note: MUST be set to `"mysql"`.
+        examples: ["mysql"]
+      - ref: db.namespace
+        brief: The database associated with the connection.
+        note: |
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
+
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["products", "customers"]
+      - ref: db.response.status_code
+        brief: >
+          [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html) recorded as a string.
+        note: >
+          MySQL error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE)
+          conventions. All MySQL error codes SHOULD be considered errors.
+        examples: ["1005", "MY-010016"]
