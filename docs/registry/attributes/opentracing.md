@@ -5,13 +5,11 @@
 
 ## OpenTracing Attributes
 
-Attributes used by the OpenTracing Shim layer.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="opentracing-ref-type" href="#opentracing-ref-type">`opentracing.ref_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Parent-child Reference type [1] | `child_of`; `follows_from` |
+| <a id="opentracing-ref-type" href="#opentracing-ref-type">`opentracing.ref_type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>OpenTracing compatibility requirements are [deprecated in OpenTelemetry Specification](https://opentelemetry.io/docs/specs/otel/compatibility/opentracing/) | string | Parent-child Reference type [1] | `child_of`; `follows_from` |
 
 **[1] `opentracing.ref_type`:** The causal relationship between a child Span and a parent Span.
 
