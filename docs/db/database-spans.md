@@ -79,8 +79,7 @@ For example, for an operation describing SQL query on an anonymous table like `S
 
 ## Database server address
 
-The `server.address` attribute represents the configured database connection target. It can identify a single
-server, a group of servers, or a service-discovery target.
+The `server.address` attribute represents the configured database connection target.
 
 Instrumentations SHOULD populate `server.address` from the configuration used to create the database client
 and SHOULD NOT derive it from the server selected for a particular operation. The value SHOULD remain
@@ -89,30 +88,38 @@ unchanged when the client discovers or selects different database servers.
 When the client is configured to connect through an intermediary, `server.address` SHOULD identify the
 configured database target behind the intermediary, if available.
 
-When the client configuration identifies a single server, instrumentation SHOULD report the server domain
-name, IP address, or Unix socket path in `server.address` and the port in `server.port` as described in the
-respective attribute definitions. When the address is an IP address, instrumentation SHOULD NOT perform a
-reverse DNS lookup to obtain a domain name.
+Database client targets have the following forms:
 
-When the client configuration identifies multiple servers, a service-discovery target, or another connection
-target that cannot be split into a single address and port, instrumentation SHOULD use the client's canonical,
-low-cardinality connection target as `server.address`. Query and fragment components SHOULD be omitted unless
-they are part of the canonical connection target.
+- A **database endpoint target** names one or more database server endpoints. This includes seed and
+  contact-point lists, even when those servers return additional topology.
+- An **indirect service-discovery target** names a logical service or discovery service used to obtain database
+  server endpoints.
 
-If a database client is configured with multiple servers and does not provide a canonical connection target,
-instrumentation SHOULD set `server.address` to a comma-separated list of server endpoints without spaces. If
-the order of servers is significant, instrumentation SHOULD preserve it. Otherwise, instrumentation SHOULD
-sort the endpoints lexicographically. Instrumentation MAY remove duplicate endpoints only when their
-repetition has no semantic meaning.
+For a database endpoint target, `server.address` SHOULD contain the hostname, IP address, or Unix socket path
+of a single endpoint, or a comma-separated list of multiple endpoints without spaces. Instrumentation SHOULD
+preserve endpoint order when it is significant and otherwise SHOULD sort the endpoints lexicographically. It
+MAY remove duplicate endpoints only when repetition has no semantic meaning.
 
-Each endpoint in such a list SHOULD be a domain name or IP address, optionally followed by a port. IPv6
-addresses that include a port MUST be enclosed in square brackets. If all endpoints use the default port for
-the database system, the ports SHOULD be omitted. Otherwise, each endpoint SHOULD include its port. A single
-shared logical target MAY be appended using `<endpoint>[,<endpoint>...]/<logical-target>` when the logical
-target is an unambiguous single path segment.
+Each endpoint in a list SHOULD be a hostname or IP address, optionally followed by a port. IPv6 addresses that
+include a port MUST be enclosed in square brackets. A shared logical target MAY be appended using
+`<endpoint>[,<endpoint>...]/<logical-target>` when the logical target is an unambiguous single path segment.
+When an address is an IP address, instrumentation SHOULD NOT perform a reverse DNS lookup.
 
-`server.port` SHOULD NOT be set when `server.address` contains multiple endpoints or represents a
-service-discovery target or another connection target that cannot be split into a single address and port.
+For database endpoint targets, port information SHOULD be recorded as follows:
+
+- If all endpoints use the default port, ports SHOULD be omitted from `server.address` and `server.port` SHOULD
+  NOT be set.
+- If all endpoints use the same non-default port, ports SHOULD be omitted from `server.address` and the common
+  port SHOULD be recorded in `server.port`.
+- If endpoints use different ports, each port SHOULD be included in `server.address` and `server.port` SHOULD
+  NOT be set.
+
+For an indirect service-discovery target, instrumentation SHOULD use the canonical, low-cardinality target in
+`server.address`. Ports that identify configured registry endpoints SHOULD remain part of `server.address`.
+`server.port` SHOULD NOT be set.
+
+Query and fragment components SHOULD be omitted from canonical targets unless they are part of the target
+identity.
 
 If instrumentation cannot determine a safe, stable connection target from the client configuration, it SHOULD
 omit `server.address`.
@@ -126,9 +133,11 @@ The following examples illustrate how common database client configurations map 
 | --- | --- | --- |
 | Single server on a non-default port: `db.example.com:15432` | `db.example.com` | `15432` |
 | Multiple servers using the default port: `db-a.example.com,db-b.example.com` | `db-a.example.com,db-b.example.com` | Not set |
+| Multiple servers using a shared port: `db-a.example.com,db-b.example.com` with port `6432` | `db-a.example.com,db-b.example.com` | `6432` |
 | Multiple servers using different ports: `db-a.example.com:5432,db-b.example.com:6432` | `db-a.example.com:5432,db-b.example.com:6432` | Not set |
-| DNS service discovery: `mongodb+srv://cluster.example.com` | `mongodb+srv://cluster.example.com` | Not set |
-| Shared logical target: `sentinel-a.example.com:26379,sentinel-b.example.com:26379/mymaster` | `sentinel-a.example.com:26379,sentinel-b.example.com:26379/mymaster` | Not set |
+| Service discovery through DNS SRV: `mongodb+srv://cluster.example.com` | `mongodb+srv://cluster.example.com` | Not set |
+| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/orders` | `zookeeper://registry.example.com:2181/orders` | Not set |
+| Service discovery through Redis Sentinel: `sentinel-a.example.com:26379,sentinel-b.example.com:26379/mymaster` | `sentinel-a.example.com:26379,sentinel-b.example.com:26379/mymaster` | Not set |
 
 ## Span definition
 
@@ -231,7 +240,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[10] `server.port`:** If `server.address` identifies a single database server and a port other than the default port for this DBMS is used.
+**[10] `server.port`:** If the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
 
 **[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
