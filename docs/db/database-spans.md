@@ -72,49 +72,49 @@ and SHOULD adhere to one of the following values, provided they are accessible:
 - `db.collection.name` SHOULD be used for operations on a specific database collection.
 - `db.stored_procedure.name` SHOULD be used for operations on a specific stored procedure.
 - `db.namespace` SHOULD be used for operations on a specific database namespace.
-- `server.address` SHOULD be used for other operations not targeting any specific collection(s),
-  stored procedure(s), or namespace(s). If `server.port` is set, it SHOULD be appended to
-  `server.address` using `:` as the separator.
+- `server.address` SHOULD be used for operations that do not target a specific collection,
+  stored procedure, or namespace. If `server.port` is set, instrumentation SHOULD append it
+  to `server.address` using `:` as the separator.
 
 If a corresponding `{target}` value is not available for a specific operation, the instrumentation SHOULD omit the `{target}`.
 For example, for an operation describing SQL query on an anonymous table like `SELECT * FROM (SELECT * FROM table) t`, span name should be `SELECT`.
 
 ## Database server address
 
-The `server.address` attribute represents the configured database connection target.
+`server.address` represents the database location configured for the client.
 
-Instrumentations SHOULD populate `server.address` from the configuration used to create the database client
-and SHOULD NOT derive it from the server selected for a particular operation. The value SHOULD remain
-unchanged when the client discovers or selects different database servers.
+Instrumentation SHOULD set `server.address` from the configuration used to create the database client and
+SHOULD NOT derive it from the server selected for an operation. The value SHOULD remain unchanged when the
+client discovers or selects different database servers.
 
-When the client is configured to connect through an intermediary, `server.address` SHOULD identify the
-configured database target behind the intermediary, if available.
+When the client connects through an intermediary, `server.address` SHOULD identify the configured database
+address behind the intermediary, if available.
 
-If instrumentation cannot determine a safe, stable connection target from the client configuration, it SHOULD
-omit `server.address`.
+Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
+configuration.
 
-The server contacted for a specific operation SHOULD be recorded in `network.peer.address` and
-`network.peer.port`, when available.
+Instrumentation SHOULD record the server contacted for an operation in `network.peer.address` and
+`network.peer.port` when available.
 
 How instrumentation records `server.address` and `server.port` depends on whether the database client is
 configured with database server endpoints or uses service discovery.
 
 ### Database server endpoints
 
-A database client may be configured with one or more database server endpoints. This includes seed and
-contact-point lists, even when those servers return additional topology. `server.address` SHOULD contain the
-hostname, IP address, or UNIX socket path of a single endpoint, or a comma-separated list of multiple endpoints
-without spaces.
+`server.address` SHOULD identify the database server endpoints in the client configuration. This includes seed
+and contact-point lists, even when the listed servers return additional topology.
+For a single endpoint, the value SHOULD be a hostname, IP address, or UNIX socket path. Multiple endpoints
+SHOULD be separated by commas without spaces.
 
-Instrumentation SHOULD preserve endpoint order when it is significant and otherwise SHOULD sort the endpoints
-lexicographically. It MAY remove duplicate endpoints only when repetition has no semantic meaning.
+Instrumentation SHOULD preserve endpoint order when it is significant. Otherwise, it SHOULD sort the endpoints
+lexicographically. Instrumentation MAY remove duplicate endpoints only when duplicates have no semantic meaning.
 
 Each endpoint in a list SHOULD be a hostname or IP address, optionally followed by a port. IPv6 addresses that
-include a port MUST be enclosed in square brackets. A shared logical target MAY be appended using
-`<endpoint>[,<endpoint>...]/<logical-target>` when the logical target is an unambiguous single path segment.
-When an address is an IP address, instrumentation SHOULD NOT perform a reverse DNS lookup.
+include a port MUST be enclosed in square brackets.
+`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is an
+unambiguous single path segment. Instrumentation SHOULD NOT perform reverse DNS lookups for IP addresses.
 
-For database server endpoints, port information SHOULD be recorded as follows:
+Record port information for database server endpoints as follows:
 
 - If all endpoints use the default port, ports SHOULD be omitted from `server.address` and `server.port` SHOULD
   NOT be set.
@@ -134,13 +134,12 @@ Examples:
 
 ### Service discovery
 
-With service discovery, the configured value names a logical service or a discovery service used to obtain
-database server endpoints. Instrumentation SHOULD use the canonical, low-cardinality value in `server.address`.
-Ports that identify configured registry endpoints SHOULD remain part of `server.address`. `server.port` SHOULD
-NOT be set.
+For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
+configuration. Depending on the client, this value identifies a logical service or the discovery service used
+to obtain database server endpoints. Ports for configured discovery service endpoints SHOULD remain part of
+`server.address`. `server.port` SHOULD NOT be set.
 
-Query and fragment components SHOULD be omitted from canonical values unless they are part of the service
-identity.
+Query and fragment components SHOULD be omitted unless they are part of the service identity.
 
 Examples:
 
