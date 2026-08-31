@@ -72,16 +72,14 @@ and SHOULD adhere to one of the following values, provided they are accessible:
 - `db.collection.name` SHOULD be used for operations on a specific database collection.
 - `db.stored_procedure.name` SHOULD be used for operations on a specific stored procedure.
 - `db.namespace` SHOULD be used for operations on a specific database namespace.
-- `server.address` SHOULD be used for operations that do not target a specific collection,
-  stored procedure, or namespace. If `server.port` is set, instrumentation SHOULD append it
-  to `server.address` using `:` as the separator.
+- `server.address` SHOULD be used for operations without a specific collection, stored procedure,
+  or namespace. If `server.port` is set, instrumentation SHOULD append it to `server.address`
+  using `:` as the separator.
 
 If a corresponding `{target}` value is not available for a specific operation, the instrumentation SHOULD omit the `{target}`.
 For example, for an operation describing SQL query on an anonymous table like `SELECT * FROM (SELECT * FROM table) t`, span name should be `SELECT`.
 
 ## Database server address
-
-`server.address` represents the database location configured for the client.
 
 Instrumentation SHOULD set `server.address` from the configuration used to create the database client and
 SHOULD NOT derive it from the server selected for an operation. The value SHOULD remain unchanged when the
@@ -101,18 +99,21 @@ configured with database server endpoints or uses service discovery.
 
 ### Database server endpoints
 
-`server.address` SHOULD identify the database server endpoints in the client configuration. This includes seed
-and contact-point lists, even when the listed servers return additional topology.
-For a single endpoint, the value SHOULD be a hostname, IP address, or UNIX socket path. Multiple endpoints
-SHOULD be separated by commas without spaces.
+When the client is configured with one or more database server endpoints, `server.address` SHOULD identify
+those endpoints. This includes seed and contact-point lists, even if the client later discovers additional
+topology from them.
 
-Instrumentation SHOULD preserve endpoint order when it is significant. Otherwise, it SHOULD sort the endpoints
-lexicographically. Instrumentation MAY remove duplicate endpoints only when duplicates have no semantic meaning.
+A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
+hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
+square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
+perform reverse DNS lookups for IP addresses.
 
-Each endpoint in a list SHOULD be a hostname or IP address, optionally followed by a port. IPv6 addresses that
-include a port MUST be enclosed in square brackets.
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is an
-unambiguous single path segment. Instrumentation SHOULD NOT perform reverse DNS lookups for IP addresses.
+Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
+endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
+carry no semantic meaning.
+
+`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
+an unambiguous single path segment.
 
 Record port information for database server endpoints as follows:
 
@@ -135,9 +136,9 @@ Examples:
 ### Service discovery
 
 For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies a logical service or the discovery service used
-to obtain database server endpoints. Ports for configured discovery service endpoints SHOULD remain part of
-`server.address`. `server.port` SHOULD NOT be set.
+configuration. Depending on the client, this value identifies either a logical service or the discovery
+service used to obtain database server endpoints. Ports for configured discovery service endpoints SHOULD
+remain part of `server.address`. `server.port` SHOULD NOT be set.
 
 Query and fragment components SHOULD be omitted unless they are part of the service identity.
 
