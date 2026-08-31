@@ -1,8 +1,8 @@
-groups:
-  - id: event.http.client.request.exception
-    name: http.client.request.exception
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+events:
+  - name: http.client.request.exception
     stability: development
-    type: event
     brief: >
       This event represents an exception that occurred during an HTTP client request,
       such as network failures, timeouts, or other errors that prevent the request
@@ -19,18 +19,10 @@ groups:
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding HTTP client span.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception
 
-  - id: event.http.server.request.exception
-    name: http.server.request.exception
+  - name: http.server.request.exception
     stability: development
-    type: event
     brief: >
       This event represents an exception that occurred during HTTP server request processing,
       such as application errors, internal failures, or other exceptions that prevent
@@ -43,10 +35,4 @@ groups:
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding HTTP server span.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception
