@@ -1,16 +1,10 @@
-groups:
-  - id: event.exception
-    name: exception
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+events:
+  - name: exception
     stability: stable
-    type: event
     brief: >
       This event describes a single exception.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception
       - ref: exception.escaped

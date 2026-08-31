@@ -1,8 +1,8 @@
-groups:
-  - id: event.rpc.client.call.exception
-    name: rpc.client.call.exception
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+events:
+  - name: rpc.client.call.exception
     stability: development
-    type: event
     brief: >
       This event represents an exception that occurred during an outgoing RPC call,
       such as network failures, timeouts, serialization errors, or other errors that
@@ -15,18 +15,10 @@ groups:
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding RPC client span.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception
 
-  - id: event.rpc.server.call.exception
-    name: rpc.server.call.exception
+  - name: rpc.server.call.exception
     stability: development
-    type: event
     brief: >
       This event represents an exception that occurred during incoming RPC call processing,
       such as application errors, internal failures, or other exceptions that prevent
@@ -39,10 +31,4 @@ groups:
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding RPC server span.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception

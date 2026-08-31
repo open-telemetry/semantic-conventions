@@ -1,9 +1,12 @@
-groups:
-  - id: log-exception
-    type: attribute_group
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
+  - id: exception
+    visibility: public
+    stability: stable
     brief: >
-      This document defines attributes for exceptions represented using Log
-      Records.
+      Describes a single exception and may be used on any signal
+      that reports an exception.
     attributes:
       - ref: exception.type
         requirement_level:

@@ -1,8 +1,8 @@
-groups:
-  - id: event.messaging.create.exception
-    name: messaging.create.exception
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+events:
+  - name: messaging.create.exception
     stability: development
-    type: event
     brief: >
       This event represents an exception that occurred during a messaging create operation.
     note: >
@@ -13,18 +13,10 @@ groups:
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding messaging create span.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception
 
-  - id: event.messaging.send.exception
-    name: messaging.send.exception
+  - name: messaging.send.exception
     stability: development
-    type: event
     brief: >
       This event represents an exception that occurred during a messaging send operation.
     note: >
@@ -35,18 +27,10 @@ groups:
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding messaging send span.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception
 
-  - id: event.messaging.receive.exception
-    name: messaging.receive.exception
+  - name: messaging.receive.exception
     stability: development
-    type: event
     brief: >
       This event represents an exception that occurred during a messaging receive operation.
     note: >
@@ -57,18 +41,10 @@ groups:
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding messaging receive span.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception
 
-  - id: event.messaging.settle.exception
-    name: messaging.settle.exception
+  - name: messaging.settle.exception
     stability: development
-    type: event
     brief: >
       This event represents an exception that occurred during a messaging settle operation.
     note: >
@@ -79,18 +55,10 @@ groups:
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding messaging settle span.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception
 
-  - id: event.messaging.process.exception
-    name: messaging.process.exception
+  - name: messaging.process.exception
     stability: development
-    type: event
     brief: >
       This event represents an exception that occurred during messaging process operations.
     note: >
@@ -101,10 +69,4 @@ groups:
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding messaging process span.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception
