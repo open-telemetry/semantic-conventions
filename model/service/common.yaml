@@ -1,7 +1,12 @@
-groups:
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
   - id: service.peer
-    type: attribute_group
+    visibility: public
+    stability: development
     brief: "Operations that access some remote service MAY fill out these attributes to describe that remote service."
+    note: >
+      Users can define what the name of a service is based on their particular semantics in their distributed system.
     attributes:
       - ref: service.peer.name
         requirement_level: opt_in
