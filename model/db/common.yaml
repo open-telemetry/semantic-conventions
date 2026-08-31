@@ -1,7 +1,7 @@
 groups:
-  - id: attributes.db.client.server
+  - id: attributes.db.client.target
     type: attribute_group
-    brief: 'Database server connection attributes'
+    brief: 'Database client target attributes'
     attributes:
       - ref: server.address
         brief: >
@@ -26,7 +26,7 @@ groups:
   - id: attributes.db.client.minimal
     type: attribute_group
     brief: 'Database Client attributes'
-    extends: attributes.db.client.server
+    extends: attributes.db.client.target
     attributes:
       - ref: db.response.status_code
         requirement_level:
