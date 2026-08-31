@@ -136,7 +136,7 @@ instrumentation MUST set `comment` to a BSON document containing a valid
 [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) string
 and MAY include a valid
 [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) string.
-Instrumentation MUST NOT inject `baggage` or any other fields by default.
+Instrumentation MUST NOT inject `baggage` or fields other than `traceparent`, `tracestate`, and an application-provided `text` field by default.
 
 The instrumentation SHOULD allow users to provide a propagator. If none is
 provided, the instrumentation SHOULD use the W3C Trace Context propagator. A user
