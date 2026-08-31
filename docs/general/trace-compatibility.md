@@ -6,6 +6,13 @@ linkTitle: Tracing compatibility
 
 **Status**: [Deprecated][DocumentStatus]
 
+> [!WARNING]
+>
+> OpenTracing compatibility requirements are
+> [deprecated in the OpenTelemetry Specification](https://opentelemetry.io/docs/specs/otel/compatibility/opentracing/).
+> This document is kept for reference only - the conventions below are no longer
+> current guidance and there is no replacement.
+
 This document defines trace semantic conventions used by the
 compatibility components, e.g. OpenTracing Shim layer.
 
@@ -26,7 +33,7 @@ between a child Span and a parent Span, as defined by
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`opentracing.ref_type`](/docs/registry/attributes/opentracing.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Parent-child Reference type [1] | `child_of`; `follows_from` |
+| [`opentracing.ref_type`](/docs/registry/attributes/opentracing.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>OpenTracing compatibility requirements are [deprecated in OpenTelemetry Specification](https://opentelemetry.io/docs/specs/otel/compatibility/opentracing/) | `Recommended` | string | Parent-child Reference type [1] | `child_of`; `follows_from` |
 
 **[1] `opentracing.ref_type`:** The causal relationship between a child Span and a parent Span.
 
