@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attributes:
+  - key: opentracing.ref_type
+    brief: 'Parent-child Reference type'
+    stability: development
+    deprecated:
+      reason: obsoleted
+      note: "OpenTracing compatibility requirements are [deprecated in OpenTelemetry Specification](https://opentelemetry.io/docs/specs/otel/compatibility/opentracing/)"
+    note: >
+        The causal relationship between a child Span and a parent Span.
+    type:
+      members:
+        - id: child_of
+          value: 'child_of'
+          brief: "The parent Span depends on the child Span in some capacity"
+          stability: development
+        - id: follows_from
+          value: 'follows_from'
+          brief: "The parent Span doesn't depend in any way on the result of the child Span"
+          stability: development
