@@ -38,7 +38,7 @@ Spans representing calls to a PostgreSQL database adhere to the general [Semanti
 | --- | --- | --- | --- | --- | --- |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available without an additional network call. | string | The schema associated with the connection, qualified by the database name. [1] | `mydatabase.products`; `mydatabase.customers` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If response has ended with warning or an error. | string | [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html). [2] | `08000`; `08P01` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | int | Server port number. [5] | `80`; `8080`; `443` |
 | [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [6] | string | The name of a collection (table, container) within the database. [7] | `public.users`; `customers` |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [8] | `2`; `3`; `4` |
@@ -182,6 +182,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.port`](/docs/registry/attributes/server.md)
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

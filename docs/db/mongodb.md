@@ -42,7 +42,7 @@ Spans representing calls to MongoDB adhere to the general [Semantic Conventions 
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed. | `findAndModify`; `getMore`; `insertMany`; `bulkWrite` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The MongoDB database name. | `customers`; `test.users` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [2] | string | [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string. [3] | `36`; `11602` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | int | Server port number. [6] | `80`; `8080`; `443` |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [7] | `2`; `3`; `4` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
@@ -97,6 +97,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.port`](/docs/registry/attributes/server.md)
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

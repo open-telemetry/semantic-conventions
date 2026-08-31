@@ -37,8 +37,8 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component [1] | `ok`; `degraded`; `failed` |
-| [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [2] | `disk_controller` |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component [1] | `ok`; `degraded`; `failed` [(see more)](#hw-state-values) |
+| [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [2] | `disk_controller` [(see more)](#hw-type-values) |
 | [`hw.bios_version`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | BIOS version of the hardware component | `1.2.3` |
 | [`hw.driver_version`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Driver version for the hardware component | `10.2.1-3` |
 | [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Firmware version of the hardware component | `2.0.1` |
@@ -58,6 +58,8 @@ This metric is [recommended][MetricRecommended].
 
 ---
 
+<a id="hw-state-values"></a>
+
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -69,6 +71,8 @@ This metric is [recommended][MetricRecommended].
 | `predicted_failure` | Predicted Failure | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="hw-type-values"></a>
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

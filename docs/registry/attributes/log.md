@@ -15,9 +15,11 @@ This document defines log attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` |
+| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` [(see more)](#log-iostream-values) |
 
 ---
+
+<a id="log-iostream-values"></a>
 
 `log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -195,8 +195,8 @@ if they do not cause breaking changes to HTTP semantic conventions.
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Peer port number of the network connection. | `65123` |
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [4] | `ipv4`; `ipv6` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [4] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 
 **[1] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
@@ -212,6 +212,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+<a id="network-transport-values"></a>
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -223,6 +225,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-type-values"></a>
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -289,10 +293,12 @@ Note that `network.local.*` attributes are not included in these examples since 
 | [`network.carrier.mcc`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The mobile carrier country code. | `310` |
 | [`network.carrier.mnc`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The mobile carrier network code. | `001` |
 | [`network.carrier.name`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the mobile carrier. | `sprint` |
-| [`network.connection.subtype`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection. | `LTE` |
-| [`network.connection.type`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The internet connection type. | `wifi` |
+| [`network.connection.subtype`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection. | `LTE` [(see more)](#network-connection-subtype-values) |
+| [`network.connection.type`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The internet connection type. | `wifi` [(see more)](#network-connection-type-values) |
 
 ---
+
+<a id="network-connection-subtype-values"></a>
 
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -321,6 +327,8 @@ Note that `network.local.*` attributes are not included in these examples since 
 | `umts` | UMTS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="network-connection-type-values"></a>
 
 `network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -37,13 +37,15 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`dns.question.name`](/docs/registry/attributes/dns.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name being queried. [1] | `www.example.com`; `dot.net` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | Describes the error the DNS lookup failed with. [2] | `host_not_found`; `no_recovery`; `java.net.UnknownHostException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | Describes the error the DNS lookup failed with. [2] | `host_not_found`; `no_recovery`; `java.net.UnknownHostException` [(see more)](#error-type-values) |
 
 **[1] `dns.question.name`:** The name represents the queried domain name as it appears in the DNS query without any additional normalization.
 
 **[2] `error.type`:** Instrumentations SHOULD use error code such as one of errors reported by `getaddrinfo`([Linux or other POSIX systems](https://man7.org/linux/man-pages/man3/getaddrinfo.3.html) / [Windows](https://learn.microsoft.com/windows/win32/api/ws2tcpip/nf-ws2tcpip-getaddrinfo)) or one reported by the runtime or client library. If error code is not available, the full name of exception type SHOULD be used.
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

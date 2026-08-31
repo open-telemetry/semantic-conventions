@@ -69,7 +69,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [2] | `user`; `system` |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [2] | `user`; `system` [(see more)](#cpu-mode-values) |
 
 **[1] `cpu.mode`:** Required if mode is available, i.e. metrics coming from the Docker Stats API, containerd stats or cAdvisor.
 
@@ -79,6 +79,8 @@ Kubernetes only exposes the total CPU time ([cpu.stat.usage_usec](https://docs.k
 In pure container environments the CPU's mode is usually available and cpu.mode should be reported. In that case summarising the CPU time over the different modes gives the total CPU time.
 
 ---
+
+<a id="cpu-mode-values"></a>
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -115,13 +117,15 @@ This metric is [opt-in][MetricOptIn].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [2] | `user`; `system` |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [2] | `user`; `system` [(see more)](#cpu-mode-values) |
 
 **[1] `cpu.mode`:** Required if mode is available, i.e. metrics coming from the Docker Stats API, containerd stats or cAdvisor.
 
 **[2] `cpu.mode`:** Following modes SHOULD be used for containers if available: `user`, `system`.
 
 ---
+
+<a id="cpu-mode-values"></a>
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -241,9 +245,11 @@ In K8s, this metric is derived from the [MemoryStats.PageFaults](https://pkg.go.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` |
+| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` [(see more)](#system-paging-fault-type-values) |
 
 ---
+
+<a id="system-paging-fault-type-values"></a>
 
 `system.paging.fault.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -275,10 +281,12 @@ This metric is [opt-in][MetricOptIn].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` |
+| [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [(see more)](#disk-io-direction-values) |
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
 ---
+
+<a id="disk-io-direction-values"></a>
 
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -311,9 +319,11 @@ This metric is [opt-in][MetricOptIn].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
-| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [(see more)](#network-io-direction-values) |
 
 ---
+
+<a id="network-io-direction-values"></a>
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -201,9 +201,11 @@ Only the value corresponding to the current phase will be non-zero.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.pod.status.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Pending`; `Running` |
+| [`k8s.pod.status.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Pending`; `Running` [(see more)](#k8s-pod-status-phase-values) |
 
 ---
+
+<a id="k8s-pod-status-phase-values"></a>
 
 `k8s.pod.status.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -239,9 +241,11 @@ Only the value corresponding to the current reason will be non-zero.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.pod.status.reason`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Evicted`; `NodeAffinity` |
+| [`k8s.pod.status.reason`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Evicted`; `NodeAffinity` [(see more)](#k8s-pod-status-reason-values) |
 
 ---
+
+<a id="k8s-pod-status-reason-values"></a>
 
 `k8s.pod.status.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -395,9 +399,11 @@ This metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` |
+| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` [(see more)](#system-paging-fault-type-values) |
 
 ---
+
+<a id="system-paging-fault-type-values"></a>
 
 `system.paging.fault.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -428,9 +434,11 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
-| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [(see more)](#network-io-direction-values) |
 
 ---
+
+<a id="network-io-direction-values"></a>
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -461,9 +469,11 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
-| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [(see more)](#network-io-direction-values) |
 
 ---
+
+<a id="network-io-direction-values"></a>
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -567,9 +577,11 @@ Kubelet's stats API.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
 
 ---
+
+<a id="k8s-volume-type-values"></a>
 
 `k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -609,9 +621,11 @@ Kubelet's stats API.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
 
 ---
+
+<a id="k8s-volume-type-values"></a>
 
 `k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -653,9 +667,11 @@ Kubelet's stats API.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
 
 ---
+
+<a id="k8s-volume-type-values"></a>
 
 `k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -695,9 +711,11 @@ Kubelet's stats API.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
 
 ---
+
+<a id="k8s-volume-type-values"></a>
 
 `k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -739,9 +757,11 @@ This may not be equal to `inodes - free` because filesystem may share inodes wit
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
 
 ---
+
+<a id="k8s-volume-type-values"></a>
 
 `k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -781,9 +801,11 @@ Kubelet's stats API.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
 
 ---
+
+<a id="k8s-volume-type-values"></a>
 
 `k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -824,9 +846,11 @@ Only the value corresponding to the current state will be non-zero.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.container.status.state`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstate-v1-core) | `terminated`; `running`; `waiting` |
+| [`k8s.container.status.state`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstate-v1-core) | `terminated`; `running`; `waiting` [(see more)](#k8s-container-status-state-values) |
 
 ---
+
+<a id="k8s-container-status-state-values"></a>
 
 `k8s.container.status.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -860,9 +884,11 @@ Only the value corresponding to the current state reason will be non-zero.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.container.status.reason`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstateterminated-v1-core) | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` |
+| [`k8s.container.status.reason`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstateterminated-v1-core) | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` [(see more)](#k8s-container-status-reason-values) |
 
 ---
+
+<a id="k8s-container-status-reason-values"></a>
 
 `k8s.container.status.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -993,8 +1019,8 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.node.condition.status`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The status of the condition, one of True, False, Unknown. [1] | `true`; `false`; `unknown` |
-| [`k8s.node.condition.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The condition type of a K8s Node. [2] | `Ready`; `DiskPressure` |
+| [`k8s.node.condition.status`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The status of the condition, one of True, False, Unknown. [1] | `true`; `false`; `unknown` [(see more)](#k8s-node-condition-status-values) |
+| [`k8s.node.condition.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The condition type of a K8s Node. [2] | `Ready`; `DiskPressure` [(see more)](#k8s-node-condition-type-values) |
 
 **[1] `k8s.node.condition.status`:** This attribute aligns with the `status` field of the
 [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#nodecondition-v1-core)
@@ -1011,6 +1037,8 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 ---
 
+<a id="k8s-node-condition-status-values"></a>
+
 `k8s.node.condition.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -1020,6 +1048,8 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 | `unknown` | condition_unknown | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="k8s-node-condition-type-values"></a>
 
 `k8s.node.condition.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -1173,9 +1203,11 @@ This metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` |
+| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` [(see more)](#system-paging-fault-type-values) |
 
 ---
+
+<a id="system-paging-fault-type-values"></a>
 
 `system.paging.fault.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -1206,9 +1238,11 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
-| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [(see more)](#network-io-direction-values) |
 
 ---
+
+<a id="network-io-direction-values"></a>
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -1239,9 +1273,11 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
-| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [(see more)](#network-io-direction-values) |
 
 ---
+
+<a id="network-io-direction-values"></a>
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -2104,12 +2140,14 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.namespace.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase of the K8s namespace. [1] | `active`; `terminating` |
+| [`k8s.namespace.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase of the K8s namespace. [1] | `active`; `terminating` [(see more)](#k8s-namespace-phase-values) |
 
 **[1] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
 [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#namespacestatus-v1-core)
 
 ---
+
+<a id="k8s-namespace-phase-values"></a>
 
 `k8s.namespace.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -2449,11 +2487,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.container.ephemeral_storage.fs_type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of file system component for ephemeral storage. [1] | `rootfs`; `logs` |
+| [`k8s.container.ephemeral_storage.fs_type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of file system component for ephemeral storage. [1] | `rootfs`; `logs` [(see more)](#k8s-container-ephemeral-storage-fs-type-values) |
 
 **[1] `k8s.container.ephemeral_storage.fs_type`:** Eviction decisions based on ephemeral-storage resource limits are made based on the total container usage.
 
 ---
+
+<a id="k8s-container-ephemeral-storage-fs-type-values"></a>
 
 `k8s.container.ephemeral_storage.fs_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -3028,8 +3068,8 @@ The `k8s.service.publish_not_ready_addresses` resource attribute indicates this 
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.service.endpoint.address_type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The address type of the service endpoint. [1] | `IPv4`; `IPv6` |
-| [`k8s.service.endpoint.condition`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The condition of the service endpoint. [2] | `ready`; `serving`; `terminating` |
+| [`k8s.service.endpoint.address_type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The address type of the service endpoint. [1] | `IPv4`; `IPv6` [(see more)](#k8s-service-endpoint-address-type-values) |
+| [`k8s.service.endpoint.condition`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The condition of the service endpoint. [2] | `ready`; `serving`; `terminating` [(see more)](#k8s-service-endpoint-condition-values) |
 | [`k8s.service.endpoint.zone`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The zone of the service endpoint. [3] | `us-east-1a`; `us-west-2b`; `zone-a`; `` |
 
 **[1] `k8s.service.endpoint.address_type`:** The network address family or type of the endpoint.
@@ -3053,6 +3093,8 @@ the attribute value will be an empty string.
 
 ---
 
+<a id="k8s-service-endpoint-address-type-values"></a>
+
 `k8s.service.endpoint.address_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -3062,6 +3104,8 @@ the attribute value will be an empty string.
 | `IPv6` | IPv6 address type | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="k8s-service-endpoint-condition-values"></a>
 
 `k8s.service.endpoint.condition` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -3128,12 +3172,14 @@ This metric is derived from the `.status.phase` field of the
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.persistentvolume.status.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase of the PersistentVolume. [1] | `Pending`; `Available`; `Bound`; `Released`; `Failed` |
+| [`k8s.persistentvolume.status.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase of the PersistentVolume. [1] | `Pending`; `Available`; `Bound`; `Released`; `Failed` [(see more)](#k8s-persistentvolume-status-phase-values) |
 
 **[1] `k8s.persistentvolume.status.phase`:** This attribute aligns with the `phase` field of the
 [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
 
 ---
+
+<a id="k8s-persistentvolume-status-phase-values"></a>
 
 `k8s.persistentvolume.status.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -3191,12 +3237,14 @@ This metric is derived from the `.status.phase` field of the
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.persistentvolumeclaim.status.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase of the PersistentVolumeClaim. [1] | `Pending`; `Bound`; `Lost` |
+| [`k8s.persistentvolumeclaim.status.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase of the PersistentVolumeClaim. [1] | `Pending`; `Bound`; `Lost` [(see more)](#k8s-persistentvolumeclaim-status-phase-values) |
 
 **[1] `k8s.persistentvolumeclaim.status.phase`:** This attribute aligns with the `phase` field of the
 [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
 
 ---
+
+<a id="k8s-persistentvolumeclaim-status-phase-values"></a>
 
 `k8s.persistentvolumeclaim.status.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

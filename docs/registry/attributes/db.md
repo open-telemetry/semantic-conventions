@@ -16,7 +16,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` |
-| <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of a connection in the pool | `idle` |
+| <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of a connection in the pool | `idle` [(see more)](#db-client-connection-state-values) |
 | <a id="db-collection-name" href="#db-collection-name">`db.collection.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` |
 | <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
 | <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | The number of database operations included in a batch operation. [3] | `2`; `3`; `4` |
@@ -28,7 +28,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Number of rows returned by the operation. | `10`; `30`; `1000` |
 | <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Database response status code. [9] | `102`; `ORA-17002`; `08P01`; `404` |
 | <a id="db-stored-procedure-name" href="#db-stored-procedure-name">`db.stored_procedure.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of a stored procedure within the database. [10] | `GetCustomer` |
-| <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The database management system (DBMS) product as identified by the client instrumentation. [11] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
+| <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The database management system (DBMS) product as identified by the client instrumentation. [11] | `other_sql`; `softwareag.adabas`; `actian.ingres` [(see more)](#db-system-name-values) |
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
@@ -148,6 +148,8 @@ then that stored procedure name SHOULD be used.
 
 ---
 
+<a id="db-client-connection-state-values"></a>
+
 `db.client.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -156,6 +158,8 @@ then that stored procedure name SHOULD be used.
 | `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="db-system-name-values"></a>
 
 `db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -211,7 +215,7 @@ Describes deprecated database attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="db-cassandra-consistency-level" href="#db-cassandra-consistency-level">`db.cassandra.consistency_level`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.consistency.level`. | string | Deprecated, use `cassandra.consistency.level` instead. | `all`; `each_quorum`; `quorum` |
+| <a id="db-cassandra-consistency-level" href="#db-cassandra-consistency-level">`db.cassandra.consistency_level`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.consistency.level`. | string | Deprecated, use `cassandra.consistency.level` instead. | `all`; `each_quorum`; `quorum` [(see more)](#db-cassandra-consistency-level-values) |
 | <a id="db-cassandra-coordinator-dc" href="#db-cassandra-coordinator-dc">`db.cassandra.coordinator.dc`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.coordinator.dc`. | string | Deprecated, use `cassandra.coordinator.dc` instead. | `us-west-2` |
 | <a id="db-cassandra-coordinator-id" href="#db-cassandra-coordinator-id">`db.cassandra.coordinator.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.coordinator.id`. | string | Deprecated, use `cassandra.coordinator.id` instead. | `be13faa2-8574-4d71-926d-27f16cf8a7af` |
 | <a id="db-cassandra-idempotence" href="#db-cassandra-idempotence">`db.cassandra.idempotence`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.query.idempotent`. | boolean | Deprecated, use `cassandra.query.idempotent` instead. | |
@@ -220,10 +224,10 @@ Describes deprecated database attributes.
 | <a id="db-cassandra-table" href="#db-cassandra-table">`db.cassandra.table`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. | string | Deprecated, use `db.collection.name` instead. | `mytable` |
 | <a id="db-connection-string" href="#db-connection-string">`db.connection_string`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address` and `server.port`. | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` |
 | <a id="db-cosmosdb-client-id" href="#db-cosmosdb-client-id">`db.cosmosdb.client_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.client.id`. | string | Deprecated, use `azure.client.id` instead. | `3ba4827d-4422-483f-b59f-85b74211c11d` |
-| <a id="db-cosmosdb-connection-mode" href="#db-cosmosdb-connection-mode">`db.cosmosdb.connection_mode`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.cosmosdb.connection.mode`. | string | Deprecated, use `azure.cosmosdb.connection.mode` instead. | `gateway`; `direct` |
-| <a id="db-cosmosdb-consistency-level" href="#db-cosmosdb-consistency-level">`db.cosmosdb.consistency_level`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.cosmosdb.consistency.level`. | string | Deprecated, use `cosmosdb.consistency.level` instead. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` |
+| <a id="db-cosmosdb-connection-mode" href="#db-cosmosdb-connection-mode">`db.cosmosdb.connection_mode`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.cosmosdb.connection.mode`. | string | Deprecated, use `azure.cosmosdb.connection.mode` instead. | `gateway`; `direct` [(see more)](#db-cosmosdb-connection-mode-values) |
+| <a id="db-cosmosdb-consistency-level" href="#db-cosmosdb-consistency-level">`db.cosmosdb.consistency_level`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.cosmosdb.consistency.level`. | string | Deprecated, use `cosmosdb.consistency.level` instead. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` [(see more)](#db-cosmosdb-consistency-level-values) |
 | <a id="db-cosmosdb-container" href="#db-cosmosdb-container">`db.cosmosdb.container`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. | string | Deprecated, use `db.collection.name` instead. | `mytable` |
-| <a id="db-cosmosdb-operation-type" href="#db-cosmosdb-operation-type">`db.cosmosdb.operation_type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, no replacement at this time. | `batch`; `create`; `delete` |
+| <a id="db-cosmosdb-operation-type" href="#db-cosmosdb-operation-type">`db.cosmosdb.operation_type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, no replacement at this time. | `batch`; `create`; `delete` [(see more)](#db-cosmosdb-operation-type-values) |
 | <a id="db-cosmosdb-regions-contacted" href="#db-cosmosdb-regions-contacted">`db.cosmosdb.regions_contacted`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.cosmosdb.operation.contacted_regions`. | string[] | Deprecated, use `azure.cosmosdb.operation.contacted_regions` instead. | `["North Central US", "Australia East", "Australia Southeast"]` |
 | <a id="db-cosmosdb-request-charge" href="#db-cosmosdb-request-charge">`db.cosmosdb.request_charge`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.cosmosdb.operation.request_charge`. | double | Deprecated, use `azure.cosmosdb.operation.request_charge` instead. | `46.18`; `1.0` |
 | <a id="db-cosmosdb-request-content-length" href="#db-cosmosdb-request-content-length">`db.cosmosdb.request_content_length`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.cosmosdb.request.body.size`. | int | Deprecated, use `azure.cosmosdb.request.body.size` instead. | |
@@ -241,10 +245,12 @@ Describes deprecated database attributes.
 | <a id="db-redis-database-index" href="#db-redis-database-index">`db.redis.database_index`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace` (string). | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` |
 | <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`, but only if not extracting the value from `db.query.text`. | string | Deprecated, use `db.collection.name` instead. | `mytable` |
 | <a id="db-statement" href="#db-statement">`db.statement`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` |
-| <a id="db-system" href="#db-system">`db.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.system.name`. | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `intersystems_cache` |
+| <a id="db-system" href="#db-system">`db.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.system.name`. | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `intersystems_cache` [(see more)](#db-system-values) |
 | <a id="db-user" href="#db-user">`db.user`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` |
 
 ---
+
+<a id="db-cassandra-consistency-level-values"></a>
 
 `db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -264,6 +270,8 @@ Describes deprecated database attributes.
 
 ---
 
+<a id="db-cosmosdb-connection-mode-values"></a>
+
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -272,6 +280,8 @@ Describes deprecated database attributes.
 | `gateway` | Gateway (HTTP) connection. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="db-cosmosdb-consistency-level-values"></a>
 
 `db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -284,6 +294,8 @@ Describes deprecated database attributes.
 | `Strong` | strong | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="db-cosmosdb-operation-type-values"></a>
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -306,6 +318,8 @@ Describes deprecated database attributes.
 | `upsert` | upsert | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="db-system-values"></a>
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -370,11 +384,13 @@ Describes deprecated db metrics attributes.
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="db-client-connections-pool-name" href="#db-client-connections-pool-name">`db.client.connections.pool.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.pool.name`. | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` |
-| <a id="db-client-connections-state" href="#db-client-connections-state">`db.client.connections.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.state`. | string | Deprecated, use `db.client.connection.state` instead. | `idle` |
+| <a id="db-client-connections-state" href="#db-client-connections-state">`db.client.connections.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.state`. | string | Deprecated, use `db.client.connection.state` instead. | `idle` [(see more)](#db-client-connections-state-values) |
 | <a id="pool-name" href="#pool-name">`pool.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.pool.name`. | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` |
-| <a id="state" href="#state">`state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.state`. | string | Deprecated, use `db.client.connection.state` instead. | `idle` |
+| <a id="state" href="#state">`state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.state`. | string | Deprecated, use `db.client.connection.state` instead. | `idle` [(see more)](#state-values) |
 
 ---
+
+<a id="db-client-connections-state-values"></a>
 
 `db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -384,6 +400,8 @@ Describes deprecated db metrics attributes.
 | `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="state-values"></a>
 
 `state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
