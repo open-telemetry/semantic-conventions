@@ -82,10 +82,9 @@ For example, for an operation describing SQL query on an anonymous table like `S
 The `server.address` attribute represents the configured database connection target. It can identify a single
 server, a group of servers, or a service-discovery target.
 
-Instrumentations SHOULD populate `server.address` from the client configuration and SHOULD NOT use actual
-network-level connection information for this purpose. The value SHOULD remain stable for the lifetime of the
-database client. Runtime changes to the database topology, including discovery of new servers, SHOULD NOT
-change the value.
+Instrumentations SHOULD populate `server.address` from the configuration used to create the database client
+and SHOULD NOT derive it from the server selected for a particular operation. The value SHOULD remain
+unchanged when the client discovers or selects different database servers.
 
 When the client is configured to connect through an intermediary, `server.address` SHOULD identify the
 configured database target behind the intermediary, if available.
@@ -296,9 +295,9 @@ then that stored procedure name SHOULD be used.
 **[19] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[20] `server.address`:** `server.address` SHOULD identify the database connection target from the client configuration and
-SHOULD NOT use actual network-level connection information. The value SHOULD remain stable for the
-lifetime of the database client.
+**[20] `server.address`:** Instrumentations SHOULD populate `server.address` from the configuration used to create the database
+client and SHOULD NOT derive it from the server selected for a particular operation. The value SHOULD
+remain unchanged when the client discovers or selects different database servers.
 
 > [!WARNING]
 >

@@ -168,9 +168,9 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 
 **[14] `elasticsearch.node.name`:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[15] `server.address`:** `server.address` SHOULD identify the database connection target from the client configuration and
-SHOULD NOT use actual network-level connection information. The value SHOULD remain stable for the
-lifetime of the database client.
+**[15] `server.address`:** Instrumentations SHOULD populate `server.address` from the configuration used to create the database
+client and SHOULD NOT derive it from the server selected for a particular operation. The value SHOULD
+remain unchanged when the client discovers or selects different database servers.
 
 > [!WARNING]
 >

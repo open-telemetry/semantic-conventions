@@ -160,9 +160,9 @@ obtain the current service name for each operation without issuing an additional
 query (such as `SELECT SYS_CONTEXT`), it is RECOMMENDED to fall back to the
 service name originally provided at connection establishment.
 
-**[22] `server.address`:** `server.address` SHOULD identify the database connection target from the client configuration and
-SHOULD NOT use actual network-level connection information. The value SHOULD remain stable for the
-lifetime of the database client.
+**[22] `server.address`:** Instrumentations SHOULD populate `server.address` from the configuration used to create the database
+client and SHOULD NOT derive it from the server selected for a particular operation. The value SHOULD
+remain unchanged when the client discovers or selects different database servers.
 
 > [!WARNING]
 >
