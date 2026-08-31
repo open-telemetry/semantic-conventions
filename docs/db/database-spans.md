@@ -96,7 +96,8 @@ omit `server.address`.
 The server contacted for a specific operation SHOULD be recorded in `network.peer.address` and
 `network.peer.port`, when available.
 
-Database clients may be configured with database server endpoints or service discovery.
+How instrumentation records `server.address` and `server.port` depends on whether the database client is
+configured with database server endpoints or uses service discovery.
 
 ### Database server endpoints
 
