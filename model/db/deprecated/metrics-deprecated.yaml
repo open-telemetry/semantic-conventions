@@ -205,4 +205,4 @@ groups:
     instrument: updowncounter
     unit: "{instance}"
     stability: development
-    extends: attributes.db.client.target
+    extends: attributes.db.client.connection

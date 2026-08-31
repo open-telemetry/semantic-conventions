@@ -45,7 +45,7 @@ Spans representing calls to an HBase database adhere to the general [Semantic Co
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [6] | int | Server port number. [7] | `80`; `8080`; `443` |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [8] | `2`; `3`; `4` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database connection target configured for the client. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
@@ -68,7 +68,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[6] `server.port`:** If the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
+**[6] `server.port`:** If `server.address` is set and the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
 
 **[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -95,8 +95,8 @@ It SHOULD NOT be set for non-batch operations.
 A request to execute a batch operation with no operations SHOULD also be treated
 as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
-**[9] `server.address`:** Instrumentations SHOULD populate `server.address` from the configuration used to create the database
-client and SHOULD NOT derive it from the server selected for a particular operation.
+**[9] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
+and SHOULD NOT derive it from the server selected for an operation.
 
 > [!WARNING]
 >

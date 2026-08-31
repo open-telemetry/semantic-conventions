@@ -52,7 +52,7 @@ with the endpoint identifier stored in `db.operation.name`, and the index stored
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [11] | `2`; `3`; `4` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a JSON string. [13] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` |
 | [`elasticsearch.node.name`](/docs/registry/attributes/elasticsearch.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Represents the human-readable identifier of the node/instance to which a request was routed. [14] | `instance-0000000001` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database connection target configured for the client. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `db.operation.name`:** The `db.operation.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
 For batch operations, if the individual operations would all have the same `db.operation.name` when executed as non-batch operations, then that operation name SHOULD be used prepended by `bulk `. Otherwise, `db.operation.name` SHOULD be `bulk`.
@@ -129,7 +129,7 @@ When a query string value is redacted, the query string key SHOULD still be pres
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[7] `server.port`:** If the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
+**[7] `server.port`:** If `server.address` is set and the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
 
 **[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -168,8 +168,8 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 
 **[14] `elasticsearch.node.name`:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[15] `server.address`:** Instrumentations SHOULD populate `server.address` from the configuration used to create the database
-client and SHOULD NOT derive it from the server selected for a particular operation.
+**[15] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
+and SHOULD NOT derive it from the server selected for an operation.
 
 > [!WARNING]
 >

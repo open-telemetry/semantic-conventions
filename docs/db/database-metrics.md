@@ -90,7 +90,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [14] | string | The name of a stored procedure within the database. [15] | `GetCustomer` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this database system. | string | Peer address of the database node where the operation was performed. [16] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If and only if `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database connection target configured for the client. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The database query being executed. [18] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
@@ -139,7 +139,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[10] `server.port`:** If the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
+**[10] `server.port`:** If `server.address` is set and the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
 
 **[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -173,8 +173,8 @@ then that stored procedure name SHOULD be used.
 **[16] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[17] `server.address`:** Instrumentations SHOULD populate `server.address` from the configuration used to create the database
-client and SHOULD NOT derive it from the server selected for a particular operation.
+**[17] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
+and SHOULD NOT derive it from the server selected for an operation.
 
 > [!WARNING]
 >
@@ -291,7 +291,7 @@ Explaining bucket configuration:
 | [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | Low cardinality summary of a database query. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this database system. | string | Peer address of the database node where the operation was performed. [14] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If and only if `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database connection target configured for the client. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The database query being executed. [16] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
@@ -340,7 +340,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[10] `server.port`:** If the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
+**[10] `server.port`:** If `server.address` is set and the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
 
 **[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -365,8 +365,8 @@ system specific term if more applicable.
 **[14] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[15] `server.address`:** Instrumentations SHOULD populate `server.address` from the configuration used to create the database
-client and SHOULD NOT derive it from the server selected for a particular operation.
+**[15] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
+and SHOULD NOT derive it from the server selected for an operation.
 
 > [!WARNING]
 >

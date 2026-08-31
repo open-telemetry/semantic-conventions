@@ -56,7 +56,7 @@ Spans representing calls to a Cassandra database adhere to the general [Semantic
 | [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Number of rows returned by the operation. [16] | `10`; `30`; `1000` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the database node where the operation was performed. [17] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database connection target configured for the client. [18] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [18] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [19] | `someval`; `55` |
 
 **[1] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
@@ -98,7 +98,7 @@ system specific term if more applicable.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[9] `server.port`:** If the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
+**[9] `server.port`:** If `server.address` is set and the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
 
 **[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -155,8 +155,8 @@ by the instrumentation at the time the span ends.
 
 **[17] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[18] `server.address`:** Instrumentations SHOULD populate `server.address` from the configuration used to create the database
-client and SHOULD NOT derive it from the server selected for a particular operation.
+**[18] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
+and SHOULD NOT derive it from the server selected for an operation.
 
 > [!WARNING]
 >
