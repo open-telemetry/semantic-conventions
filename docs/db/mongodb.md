@@ -138,8 +138,9 @@ Compatible servers may expose support through different versions or
 capabilities. If document-valued `comment` support is unknown or unavailable,
 instrumentation MUST skip context injection for the operation.
 
-When this mechanism is enabled and the application has not set `comment`,
-instrumentation MUST set `comment` to a BSON document containing a valid
+When this mechanism is enabled and the application has either not set `comment`
+or set it to a string, instrumentation MUST set `comment` to a BSON document
+containing a valid
 [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) string
 and MAY include a valid
 [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) string.
