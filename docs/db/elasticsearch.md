@@ -52,7 +52,7 @@ with the endpoint identifier stored in `db.operation.name`, and the index stored
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [11] | `2`; `3`; `4` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a JSON string. [13] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` |
 | [`elasticsearch.node.name`](/docs/registry/attributes/elasticsearch.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Represents the human-readable identifier of the node/instance to which a request was routed. [14] | `instance-0000000001` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A string identifying the database server or server group the client is configured to connect to. [15] | `db.example.com`; `10.1.2.80`; `/tmp/my.sock`; `db-a.example.com,db-b.example.com`; `mongodb+srv://cluster.example.com` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A string identifying the database server or server group the client is configured to connect to. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `db.operation.name`:** The `db.operation.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
 For batch operations, if the individual operations would all have the same `db.operation.name` when executed as non-batch operations, then that operation name SHOULD be used prepended by `bulk `. Otherwise, `db.operation.name` SHOULD be `bulk`.
@@ -168,50 +168,16 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 
 **[14] `elasticsearch.node.name`:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[15] `server.address`:** Instrumentations SHOULD populate `server.address` from the client configuration and SHOULD NOT use
-actual network-level connection information for this purpose.
+**[15] `server.address`:** `server.address` SHOULD identify the database connection target from the client configuration and
+SHOULD NOT use actual network-level connection information. The value SHOULD remain stable for the
+lifetime of the database client.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-The value SHOULD remain stable for the lifetime of the database client. Runtime changes to the
-database topology, including discovery of new servers, SHOULD NOT change the value.
-
-When the client is configured to connect through an intermediary, `server.address` SHOULD identify
-the configured database target behind the intermediary, if available.
-
-When the client configuration identifies a single server, instrumentation SHOULD report the server
-domain name, IP address, or Unix socket path in `server.address` and the port in `server.port` as
-described in the respective attribute definitions. When the address is an IP address,
-instrumentation SHOULD NOT perform a reverse DNS lookup to obtain a domain name.
-
-When the client configuration identifies multiple servers, a service-discovery target, or another
-connection target that cannot be split into a single address and port, instrumentation SHOULD use
-the client's canonical, low-cardinality connection target as `server.address`. Query and fragment
-components SHOULD be omitted unless they are part of the canonical connection target.
-
-If a database client is configured with multiple servers and does not provide a canonical connection
-target, instrumentation SHOULD set `server.address` to a comma-separated list of server endpoints
-without spaces. If the order of servers is significant, instrumentation SHOULD preserve it.
-Otherwise, instrumentation SHOULD sort the endpoints lexicographically. Instrumentation MAY remove
-duplicate endpoints only when their repetition has no semantic meaning.
-
-Each endpoint in such a list SHOULD be a domain name or IP address, optionally followed by a port.
-IPv6 addresses that include a port MUST be enclosed in square brackets. If all endpoints use the
-default port for the database system, the ports SHOULD be omitted. Otherwise, each endpoint SHOULD
-include its port. A single shared logical target MAY be appended using
-`<endpoint>[,<endpoint>...]/<logical-target>` when the logical target is an unambiguous single path
-segment.
-
-`server.port` SHOULD NOT be set when `server.address` contains multiple endpoints or represents a
-service-discovery target or another connection target that cannot be split into a single address
-and port.
-
-If instrumentation cannot determine a safe, stable connection target from the client configuration,
-it SHOULD omit `server.address`.
-
-See [Database server address](/docs/db/database-spans.md#database-server-address) for examples.
+See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
+examples.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):

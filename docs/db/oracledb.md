@@ -56,7 +56,7 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 | [`oracle.db.name`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database name associated with the connection. [19] | `ORCL1`; `FREE` |
 | [`oracle.db.pdb`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The pluggable database (PDB) name associated with the connection. [20] | `PDB1`; `FREEPDB` |
 | [`oracle.db.service`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The service name currently associated with the database connection. [21] | `order-processing-service`; `db_low.adb.oraclecloud.com`; `db_high.adb.oraclecloud.com` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A string identifying the database server or server group the client is configured to connect to. [22] | `db.example.com`; `10.1.2.80`; `/tmp/my.sock`; `db-a.example.com,db-b.example.com`; `mongodb+srv://cluster.example.com` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A string identifying the database server or server group the client is configured to connect to. [22] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [23] | `someval`; `55` |
 | [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [24] | `10`; `30`; `1000` |
 
@@ -160,50 +160,16 @@ obtain the current service name for each operation without issuing an additional
 query (such as `SELECT SYS_CONTEXT`), it is RECOMMENDED to fall back to the
 service name originally provided at connection establishment.
 
-**[22] `server.address`:** Instrumentations SHOULD populate `server.address` from the client configuration and SHOULD NOT use
-actual network-level connection information for this purpose.
+**[22] `server.address`:** `server.address` SHOULD identify the database connection target from the client configuration and
+SHOULD NOT use actual network-level connection information. The value SHOULD remain stable for the
+lifetime of the database client.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-The value SHOULD remain stable for the lifetime of the database client. Runtime changes to the
-database topology, including discovery of new servers, SHOULD NOT change the value.
-
-When the client is configured to connect through an intermediary, `server.address` SHOULD identify
-the configured database target behind the intermediary, if available.
-
-When the client configuration identifies a single server, instrumentation SHOULD report the server
-domain name, IP address, or Unix socket path in `server.address` and the port in `server.port` as
-described in the respective attribute definitions. When the address is an IP address,
-instrumentation SHOULD NOT perform a reverse DNS lookup to obtain a domain name.
-
-When the client configuration identifies multiple servers, a service-discovery target, or another
-connection target that cannot be split into a single address and port, instrumentation SHOULD use
-the client's canonical, low-cardinality connection target as `server.address`. Query and fragment
-components SHOULD be omitted unless they are part of the canonical connection target.
-
-If a database client is configured with multiple servers and does not provide a canonical connection
-target, instrumentation SHOULD set `server.address` to a comma-separated list of server endpoints
-without spaces. If the order of servers is significant, instrumentation SHOULD preserve it.
-Otherwise, instrumentation SHOULD sort the endpoints lexicographically. Instrumentation MAY remove
-duplicate endpoints only when their repetition has no semantic meaning.
-
-Each endpoint in such a list SHOULD be a domain name or IP address, optionally followed by a port.
-IPv6 addresses that include a port MUST be enclosed in square brackets. If all endpoints use the
-default port for the database system, the ports SHOULD be omitted. Otherwise, each endpoint SHOULD
-include its port. A single shared logical target MAY be appended using
-`<endpoint>[,<endpoint>...]/<logical-target>` when the logical target is an unambiguous single path
-segment.
-
-`server.port` SHOULD NOT be set when `server.address` contains multiple endpoints or represents a
-service-discovery target or another connection target that cannot be split into a single address
-and port.
-
-If instrumentation cannot determine a safe, stable connection target from the client configuration,
-it SHOULD omit `server.address`.
-
-See [Database server address](/docs/db/database-spans.md#database-server-address) for examples.
+See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
+examples.
 
 **[23] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
