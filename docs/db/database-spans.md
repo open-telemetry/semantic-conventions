@@ -10,6 +10,8 @@ linkTitle: Spans
 
 - [Name](#name)
 - [Database server address](#database-server-address)
+  - [Database endpoint targets](#database-endpoint-targets)
+  - [Indirect service-discovery targets](#indirect-service-discovery-targets)
 - [Span definition](#span-definition)
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
 - [Database client span duration](#database-client-span-duration)
@@ -88,17 +90,23 @@ unchanged when the client discovers or selects different database servers.
 When the client is configured to connect through an intermediary, `server.address` SHOULD identify the
 configured database target behind the intermediary, if available.
 
-Database client targets have the following forms:
+If instrumentation cannot determine a safe, stable connection target from the client configuration, it SHOULD
+omit `server.address`.
 
-- A **database endpoint target** names one or more database server endpoints. This includes seed and
-  contact-point lists, even when those servers return additional topology.
-- An **indirect service-discovery target** names a logical service or discovery service used to obtain database
-  server endpoints.
+The server contacted for a specific operation SHOULD be recorded in `network.peer.address` and
+`network.peer.port`, when available.
 
-For a database endpoint target, `server.address` SHOULD contain the hostname, IP address, or UNIX socket path
-of a single endpoint, or a comma-separated list of multiple endpoints without spaces. Instrumentation SHOULD
-preserve endpoint order when it is significant and otherwise SHOULD sort the endpoints lexicographically. It
-MAY remove duplicate endpoints only when repetition has no semantic meaning.
+Database client targets have two forms.
+
+### Database endpoint targets
+
+A database endpoint target names one or more database server endpoints. This includes seed and contact-point
+lists, even when those servers return additional topology. `server.address` SHOULD contain the hostname, IP
+address, or UNIX socket path of a single endpoint, or a comma-separated list of multiple endpoints without
+spaces.
+
+Instrumentation SHOULD preserve endpoint order when it is significant and otherwise SHOULD sort the endpoints
+lexicographically. It MAY remove duplicate endpoints only when repetition has no semantic meaning.
 
 Each endpoint in a list SHOULD be a hostname or IP address, optionally followed by a port. IPv6 addresses that
 include a port MUST be enclosed in square brackets. A shared logical target MAY be appended using
@@ -114,20 +122,7 @@ For database endpoint targets, port information SHOULD be recorded as follows:
 - If endpoints use different ports, each port SHOULD be included in `server.address` and `server.port` SHOULD
   NOT be set.
 
-For an indirect service-discovery target, instrumentation SHOULD use the canonical, low-cardinality target in
-`server.address`. Ports that identify configured registry endpoints SHOULD remain part of `server.address`.
-`server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted from canonical targets unless they are part of the target
-identity.
-
-If instrumentation cannot determine a safe, stable connection target from the client configuration, it SHOULD
-omit `server.address`.
-
-The server contacted for a specific operation SHOULD be recorded in `network.peer.address` and
-`network.peer.port`, when available.
-
-The following examples illustrate how common database client configurations map to the server attributes:
+Examples:
 
 | Client configuration | `server.address` | `server.port` |
 | --- | --- | --- |
@@ -135,6 +130,21 @@ The following examples illustrate how common database client configurations map 
 | Multiple servers using the default port: `db-a.example.com,db-b.example.com` | `db-a.example.com,db-b.example.com` | Not set |
 | Multiple servers using a shared port: `db-a.example.com,db-b.example.com` with port `6432` | `db-a.example.com,db-b.example.com` | `6432` |
 | Multiple servers using different ports: `db-a.example.com:5432,db-b.example.com:6432` | `db-a.example.com:5432,db-b.example.com:6432` | Not set |
+
+### Indirect service-discovery targets
+
+An indirect service-discovery target names a logical service or discovery service used to obtain database
+server endpoints. Instrumentation SHOULD use the canonical, low-cardinality target in `server.address`. Ports
+that identify configured registry endpoints SHOULD remain part of `server.address`. `server.port` SHOULD NOT
+be set.
+
+Query and fragment components SHOULD be omitted from canonical targets unless they are part of the target
+identity.
+
+Examples:
+
+| Client configuration | `server.address` | `server.port` |
+| --- | --- | --- |
 | Service discovery through DNS SRV: `mongodb+srv://cluster.example.com` | `mongodb+srv://cluster.example.com` | Not set |
 | Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/orders` | `zookeeper://registry.example.com:2181/orders` | Not set |
 | Service discovery through Redis Sentinel: `sentinel-a.example.com:26379,sentinel-b.example.com:26379/mymaster` | `sentinel-a.example.com:26379,sentinel-b.example.com:26379/mymaster` | Not set |
