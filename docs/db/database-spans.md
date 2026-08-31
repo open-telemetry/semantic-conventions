@@ -315,8 +315,7 @@ then that stored procedure name SHOULD be used.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[20] `server.address`:** Instrumentations SHOULD populate `server.address` from the configuration used to create the database
-client and SHOULD NOT derive it from the server selected for a particular operation. The value SHOULD
-remain unchanged when the client discovers or selects different database servers.
+client and SHOULD NOT derive it from the server selected for a particular operation.
 
 > [!WARNING]
 >

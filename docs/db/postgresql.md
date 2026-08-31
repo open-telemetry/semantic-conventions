@@ -144,8 +144,7 @@ For batch operations, if the individual operations would all have the same
 then that stored procedure name SHOULD be used.
 
 **[17] `server.address`:** Instrumentations SHOULD populate `server.address` from the configuration used to create the database
-client and SHOULD NOT derive it from the server selected for a particular operation. The value SHOULD
-remain unchanged when the client discovers or selects different database servers.
+client and SHOULD NOT derive it from the server selected for a particular operation.
 
 > [!WARNING]
 >
