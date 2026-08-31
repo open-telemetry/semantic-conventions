@@ -245,8 +245,8 @@ For batch operations, if the individual operations would all have the same
 `db.stored_procedure.name` when executed as non-batch operations,
 then that stored procedure name SHOULD be used.
 
-**[13] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
-and SHOULD NOT derive it from the server selected for an operation.
+**[13] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
@@ -435,8 +435,8 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[8] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
 
-**[9] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
-and SHOULD NOT derive it from the server selected for an operation.
+**[9] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
@@ -495,8 +495,8 @@ It captures the number of active instances at any given time. Best practices dic
 
 **[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
-and SHOULD NOT derive it from the server selected for an operation.
+**[3] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >

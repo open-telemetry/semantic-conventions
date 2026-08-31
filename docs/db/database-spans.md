@@ -81,9 +81,9 @@ For example, for an operation describing SQL query on an anonymous table like `S
 
 ## Database server address
 
-Instrumentation SHOULD set `server.address` from the configuration used to create the database client and
-SHOULD NOT derive it from the server selected for an operation. The value SHOULD remain unchanged when the
-client discovers or selects different database servers.
+Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
+when the client discovers or selects different database servers.
 
 When the client connects through an intermediary, `server.address` SHOULD identify the configured database
 address behind the intermediary, if available.
@@ -315,8 +315,8 @@ then that stored procedure name SHOULD be used.
 **[19] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[20] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
-and SHOULD NOT derive it from the server selected for an operation.
+**[20] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >

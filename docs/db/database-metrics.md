@@ -173,8 +173,8 @@ then that stored procedure name SHOULD be used.
 **[16] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[17] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
-and SHOULD NOT derive it from the server selected for an operation.
+**[17] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
@@ -365,8 +365,8 @@ system specific term if more applicable.
 **[14] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[15] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
-and SHOULD NOT derive it from the server selected for an operation.
+**[15] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >

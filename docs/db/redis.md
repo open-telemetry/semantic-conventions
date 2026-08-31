@@ -99,8 +99,8 @@ The value provided for `db.query.text` SHOULD correspond to the syntax of the Re
 
 **[11] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
-and SHOULD NOT derive it from the server selected for an operation.
+**[12] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >

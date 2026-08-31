@@ -89,8 +89,8 @@ It SHOULD NOT be set for non-batch operations.
 A request to execute a batch operation with no operations SHOULD also be treated
 as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
-**[8] `server.address`:** Instrumentation SHOULD set `server.address` from the configuration used to create the database client
-and SHOULD NOT derive it from the server selected for an operation.
+**[8] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >

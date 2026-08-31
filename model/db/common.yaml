@@ -7,8 +7,8 @@ groups:
         brief: >
           The database address specified in the client configuration.
         note: |
-          Instrumentation SHOULD set `server.address` from the configuration used to create the database client
-          and SHOULD NOT derive it from the server selected for an operation.
+          Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+          It SHOULD NOT derive the value from the server selected for an operation.
 
           > [!WARNING]
           >
