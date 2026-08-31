@@ -95,7 +95,7 @@ Database client targets have the following forms:
 - An **indirect service-discovery target** names a logical service or discovery service used to obtain database
   server endpoints.
 
-For a database endpoint target, `server.address` SHOULD contain the hostname, IP address, or Unix socket path
+For a database endpoint target, `server.address` SHOULD contain the hostname, IP address, or UNIX socket path
 of a single endpoint, or a comma-separated list of multiple endpoints without spaces. Instrumentation SHOULD
 preserve endpoint order when it is significant and otherwise SHOULD sort the endpoints lexicographically. It
 MAY remove duplicate endpoints only when repetition has no semantic meaning.
