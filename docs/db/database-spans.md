@@ -10,8 +10,8 @@ linkTitle: Spans
 
 - [Name](#name)
 - [Database server address](#database-server-address)
-  - [Database endpoint targets](#database-endpoint-targets)
-  - [Indirect service-discovery targets](#indirect-service-discovery-targets)
+  - [Database server endpoints](#database-server-endpoints)
+  - [Service discovery](#service-discovery)
 - [Span definition](#span-definition)
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
 - [Database client span duration](#database-client-span-duration)
@@ -96,14 +96,14 @@ omit `server.address`.
 The server contacted for a specific operation SHOULD be recorded in `network.peer.address` and
 `network.peer.port`, when available.
 
-Database client targets have two forms.
+Database clients may be configured with database server endpoints or service discovery.
 
-### Database endpoint targets
+### Database server endpoints
 
-A database endpoint target names one or more database server endpoints. This includes seed and contact-point
-lists, even when those servers return additional topology. `server.address` SHOULD contain the hostname, IP
-address, or UNIX socket path of a single endpoint, or a comma-separated list of multiple endpoints without
-spaces.
+A database client may be configured with one or more database server endpoints. This includes seed and
+contact-point lists, even when those servers return additional topology. `server.address` SHOULD contain the
+hostname, IP address, or UNIX socket path of a single endpoint, or a comma-separated list of multiple endpoints
+without spaces.
 
 Instrumentation SHOULD preserve endpoint order when it is significant and otherwise SHOULD sort the endpoints
 lexicographically. It MAY remove duplicate endpoints only when repetition has no semantic meaning.
@@ -113,7 +113,7 @@ include a port MUST be enclosed in square brackets. A shared logical target MAY 
 `<endpoint>[,<endpoint>...]/<logical-target>` when the logical target is an unambiguous single path segment.
 When an address is an IP address, instrumentation SHOULD NOT perform a reverse DNS lookup.
 
-For database endpoint targets, port information SHOULD be recorded as follows:
+For database server endpoints, port information SHOULD be recorded as follows:
 
 - If all endpoints use the default port, ports SHOULD be omitted from `server.address` and `server.port` SHOULD
   NOT be set.
@@ -131,14 +131,14 @@ Examples:
 | Multiple servers using a shared port: `db-a.example.com,db-b.example.com` with port `6432` | `db-a.example.com,db-b.example.com` | `6432` |
 | Multiple servers using different ports: `db-a.example.com:5432,db-b.example.com:6432` | `db-a.example.com:5432,db-b.example.com:6432` | Not set |
 
-### Indirect service-discovery targets
+### Service discovery
 
-An indirect service-discovery target names a logical service or discovery service used to obtain database
-server endpoints. Instrumentation SHOULD use the canonical, low-cardinality target in `server.address`. Ports
-that identify configured registry endpoints SHOULD remain part of `server.address`. `server.port` SHOULD NOT
-be set.
+With service discovery, the configured value names a logical service or a discovery service used to obtain
+database server endpoints. Instrumentation SHOULD use the canonical, low-cardinality value in `server.address`.
+Ports that identify configured registry endpoints SHOULD remain part of `server.address`. `server.port` SHOULD
+NOT be set.
 
-Query and fragment components SHOULD be omitted from canonical targets unless they are part of the target
+Query and fragment components SHOULD be omitted from canonical values unless they are part of the service
 identity.
 
 Examples:
