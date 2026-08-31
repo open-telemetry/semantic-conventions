@@ -5,7 +5,7 @@ groups:
     attributes:
       - ref: server.address
         brief: >
-          A string identifying the database server or server group the client is configured to connect to.
+          The database connection target configured for the client.
         note: |
           Instrumentations SHOULD populate `server.address` from the configuration used to create the database
           client and SHOULD NOT derive it from the server selected for a particular operation. The value SHOULD
