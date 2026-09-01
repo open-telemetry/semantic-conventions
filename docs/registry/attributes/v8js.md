@@ -38,6 +38,7 @@ The set of reported spaces depends on the V8 version the runtime embeds.
 | `code_large_object_space` | Large object space for code objects. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `code_space` | Code memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `large_object_space` | Large object memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `map_space` | Map memory space. [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `new_large_object_space` | Large object space for young-generation objects. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `new_space` | New memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `old_space` | Old memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -48,6 +49,8 @@ The set of reported spaces depends on the V8 version the runtime embeds.
 | `shared_trusted_space` | Shared variant of the trusted memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trusted_large_object_space` | Large object space for trusted objects. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trusted_space` | Memory space for trusted objects kept outside the V8 sandbox (e.g. bytecode). | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[2]:** Only reported by Node.js <= 19; V8 merged the map space into the old space in V8 11.x.
 
 ---
 

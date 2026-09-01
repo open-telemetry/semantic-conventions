@@ -49,13 +49,10 @@ groups:
             - id: map_space
               value: 'map_space'
               brief: 'Map memory space.'
+              note: >
+                Only reported by Node.js <= 19; V8 merged the map space
+                into the old space in V8 11.x.
               stability: development
-              deprecated:
-                reason: obsoleted
-                note: >
-                  V8 merged the map space into the old space (V8 11.x, Node.js >= 20),
-                  so current runtimes no longer report it. It still occurs on
-                  Node.js 19 and earlier.
             - id: large_object_space
               value: 'large_object_space'
               brief: 'Large object memory space.'
