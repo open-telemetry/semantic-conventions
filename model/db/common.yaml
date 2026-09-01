@@ -17,6 +17,9 @@ groups:
           See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
           examples.
       - ref: server.port
+        note: >
+          `server.port` SHOULD reflect the database port specified in the client configuration.
+          It SHOULD NOT be derived from the server selected for an operation.
         requirement_level:
           conditionally_required: >
             If `server.address` is set and the client is configured with a single database server endpoint

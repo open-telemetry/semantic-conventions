@@ -205,7 +205,7 @@ additional values when introducing new operations.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[7] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[8] `azure.resource_provider.namespace`:** When `azure.resource_provider.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all operations performed by Cosmos DB client.
 
@@ -431,7 +431,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[6] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[7] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[8] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
 
@@ -493,7 +493,7 @@ It captures the number of active instances at any given time. Best practices dic
 
 **[1] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[2] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[3] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
 It SHOULD NOT derive the value from the server selected for an operation.

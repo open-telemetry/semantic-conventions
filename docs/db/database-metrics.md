@@ -141,7 +141,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[11] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[12] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
@@ -342,7 +342,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[11] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[12] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 

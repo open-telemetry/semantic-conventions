@@ -131,7 +131,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[7] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[8] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[9] `db.collection.name`:** The query may target multiple indexes or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
 

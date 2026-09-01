@@ -75,7 +75,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[4] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[6] `db.collection.name`:** If the operation is executed via a higher-level API that does not support multiple collection names.
 
