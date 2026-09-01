@@ -230,7 +230,7 @@ groups:
   - id: metric.k8s.pod.filesystem.available
     type: metric
     metric_name: k8s.pod.filesystem.available
-    stability: development
+    stability: release_candidate
     brief: "Pod filesystem available bytes."
     instrument: updowncounter
     unit: "By"
@@ -247,7 +247,7 @@ groups:
   - id: metric.k8s.pod.filesystem.capacity
     type: metric
     metric_name: k8s.pod.filesystem.capacity
-    stability: development
+    stability: release_candidate
     brief: "Pod filesystem capacity."
     instrument: updowncounter
     unit: "By"
@@ -264,7 +264,7 @@ groups:
   - id: metric.k8s.pod.filesystem.usage
     type: metric
     metric_name: k8s.pod.filesystem.usage
-    stability: development
+    stability: release_candidate
     brief: "Pod filesystem usage."
     instrument: updowncounter
     unit: "By"
@@ -657,7 +657,7 @@ groups:
   - id: metric.k8s.node.filesystem.available
     type: metric
     metric_name: k8s.node.filesystem.available
-    stability: development
+    stability: release_candidate
     brief: "Node filesystem available bytes."
     instrument: updowncounter
     unit: "By"
@@ -674,7 +674,7 @@ groups:
   - id: metric.k8s.node.filesystem.capacity
     type: metric
     metric_name: k8s.node.filesystem.capacity
-    stability: development
+    stability: release_candidate
     brief: "Node filesystem capacity."
     instrument: updowncounter
     unit: "By"
@@ -691,7 +691,7 @@ groups:
   - id: metric.k8s.node.filesystem.usage
     type: metric
     metric_name: k8s.node.filesystem.usage
-    stability: development
+    stability: release_candidate
     brief: "Node filesystem usage."
     instrument: updowncounter
     unit: "By"
@@ -711,7 +711,7 @@ groups:
   - id: metric.k8s.node.filesystem.inode.count
     type: metric
     metric_name: k8s.node.filesystem.inode.count
-    stability: development
+    stability: release_candidate
     brief: "The total inodes in the node's root filesystem."
     instrument: updowncounter
     annotations:
@@ -728,7 +728,7 @@ groups:
   - id: metric.k8s.node.filesystem.inode.free
     type: metric
     metric_name: k8s.node.filesystem.inode.free
-    stability: development
+    stability: release_candidate
     brief: "The free inodes in the node's root filesystem."
     instrument: updowncounter
     annotations:

@@ -487,7 +487,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.filesystem.available` | UpDownCounter | `By` | Pod filesystem available bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.filesystem.available` | UpDownCounter | `By` | Pod filesystem available bytes. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** This metric is derived from the
 [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
@@ -509,7 +509,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.filesystem.capacity` | UpDownCounter | `By` | Pod filesystem capacity. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.filesystem.capacity` | UpDownCounter | `By` | Pod filesystem capacity. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** This metric is derived from the
 [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
@@ -531,7 +531,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.filesystem.usage` | UpDownCounter | `By` | Pod filesystem usage. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.filesystem.usage` | UpDownCounter | `By` | Pod filesystem usage. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** This may not equal capacity - available.
 
@@ -1265,7 +1265,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.filesystem.available` | UpDownCounter | `By` | Node filesystem available bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
+| `k8s.node.filesystem.available` | UpDownCounter | `By` | Node filesystem available bytes. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
 
 **[1]:** This metric is derived from the
 [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
@@ -1287,7 +1287,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.filesystem.capacity` | UpDownCounter | `By` | Node filesystem capacity. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
+| `k8s.node.filesystem.capacity` | UpDownCounter | `By` | Node filesystem capacity. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
 
 **[1]:** This metric is derived from the
 [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
@@ -1309,7 +1309,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.filesystem.usage` | UpDownCounter | `By` | Node filesystem usage. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
+| `k8s.node.filesystem.usage` | UpDownCounter | `By` | Node filesystem usage. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
 
 **[1]:** This may not equal capacity - available.
 
@@ -1333,7 +1333,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.filesystem.inode.count` | UpDownCounter | `{inode}` | The total inodes in the node's root filesystem. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
+| `k8s.node.filesystem.inode.count` | UpDownCounter | `{inode}` | The total inodes in the node's root filesystem. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
 
 **[1]:** This metric is derived from the
 [FsStats.Inodes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
@@ -1355,7 +1355,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.filesystem.inode.free` | UpDownCounter | `{inode}` | The free inodes in the node's root filesystem. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
+| `k8s.node.filesystem.inode.free` | UpDownCounter | `{inode}` | The free inodes in the node's root filesystem. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
 
 **[1]:** This metric is derived from the
 [FsStats.InodesFree](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
