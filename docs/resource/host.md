@@ -62,6 +62,9 @@ The following cloud environments are currently recognized:
 | GCP Compute Engine | GCE instance ID | `gcp` | `gcp_compute_engine` |
 | GCP GKE (node) | GCE instance ID | `gcp` | `gcp_kubernetes_engine` |
 
+The listed `cloud.provider`/`cloud.platform` values are for example only. Refer to the
+[`cloud`](/docs/registry/attributes/cloud.md) attribute definitions for the relevant set of values.
+
 **Non-privileged Machine ID Lookup**
 
 When collecting `host.id` for non-containerized systems, non-privileged lookups
