@@ -18,20 +18,84 @@ A host is defined as a computing instance. For example, physical servers, virtua
 | <a id="host-cpu-model-name" href="#host-cpu-model-name">`host.cpu.model.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
 | <a id="host-cpu-stepping" href="#host-cpu-stepping">`host.cpu.stepping`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Stepping or core revisions. | `1`; `r1p1` |
 | <a id="host-cpu-vendor-id" href="#host-cpu-vendor-id">`host.cpu.vendor.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` |
-| <a id="host-id" href="#host-id">`host.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique host ID, determined by the first matching source in the priority order. | `fdbf79e8af94cb7f9e8df36789187052` |
+| <a id="host-id" href="#host-id">`host.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique host ID, determined by the first matching source in the priority order. [2] | `fdbf79e8af94cb7f9e8df36789187052` |
 | <a id="host-image-id" href="#host-image-id">`host.image.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` |
 | <a id="host-image-name" href="#host-image-name">`host.image.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` |
 | <a id="host-image-version" href="#host-image-version">`host.image.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` |
-| <a id="host-ip" href="#host-ip">`host.ip`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
-| <a id="host-mac" href="#host-mac">`host.mac`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
+| <a id="host-ip" href="#host-ip">`host.ip`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Available IP addresses of the host, excluding loopback interfaces. [3] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
+| <a id="host-mac" href="#host-mac">`host.mac`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [4] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
 | <a id="host-name" href="#host-name">`host.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the host. On UNIX systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` |
 | <a id="host-type" href="#host-type">`host.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` |
 
 **[1] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 
-**[2] `host.ip`:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
+**[2] `host.id`:** SHOULD be determined using the first available source from the following priority tiers:
 
-**[3] `host.mac`:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+1. Known cloud vendors - cloud instance ID
+2. Known VM vendors - provider VM ID
+3. OS-dependent machine ID
+4. User-provided value
+
+The value SHOULD conform to the following properties:
+
+* **Unique** within a given context;
+* **[Repeatable](https://opentelemetry.io/docs/specs/otel/entities/data-model/#repeatable-identity)** - multiple observers on the same host come up with the same value;
+* **Persistent** - survives host restarts and software updates.
+
+**Collecting `host.id` From Known Environments**
+
+When `host.id` is derived from a cloud vendor instance ID, the resource SHOULD also carry
+the corresponding `cloud.provider` and `cloud.platform` attributes so that the source of
+the `host.id` value can be unambiguously determined.
+
+The following cloud environments are currently recognized:
+
+| Environment | `host.id` source | `cloud.provider` | `cloud.platform` |
+| --- | --- | --- | --- |
+| AWS EC2 | EC2 instance ID | `aws` | `aws_ec2` |
+| AWS EKS (node) | EC2 instance ID | `aws` | `aws_eks` |
+| Azure VM | `vmId` | `azure` | `azure.vm` |
+| GCP Compute Engine | GCE instance ID | `gcp` | `gcp_compute_engine` |
+| GCP GKE (node) | GCE instance ID | `gcp` | `gcp_kubernetes_engine` |
+
+The listed `cloud.provider`/`cloud.platform` values are for example only. Refer to the
+[`cloud`](/docs/registry/attributes/cloud.md) attribute definitions for the relevant set of values.
+
+**Non-privileged Machine ID Lookup**
+
+When collecting `host.id` for non-containerized systems, non-privileged lookups
+of the machine ID are preferred. SDK detector implementations MUST use the
+sources listed below to obtain the machine ID.
+
+| OS | Primary | Fallback |
+| --- | --- | --- |
+| Linux | contents of `/etc/machine-id` | contents of `/var/lib/dbus/machine-id` |
+| BSD | contents of `/etc/hostid` | output of `/bin/kenv -q smbios.system.uuid` |
+| macOS | `IOPlatformUUID` line from the output of `/usr/sbin/ioreg -rd1 -c "IOPlatformExpertDevice"` | - |
+| Windows | `MachineGuid` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography` | - |
+
+**Privileged Machine ID Lookup**
+
+The `host.id` can be looked up using privileged sources. For example, Linux
+systems can use the output of `dmidecode -t system`, `dmidecode -t baseboard`,
+`dmidecode -t chassis`, or read the corresponding data from the filesystem
+(e.g. `cat /sys/devices/virtual/dmi/id/product_id`,
+`cat /sys/devices/virtual/dmi/id/product_uuid`, etc), however, SDK resource
+detector implementations MUST NOT collect `host.id` from privileged sources. If
+privileged lookup of `host.id` is required, the value SHOULD be injected via the
+`OTEL_RESOURCE_ATTRIBUTES` environment variable.
+
+**Collecting `host.id` From User Configuration**
+
+If none of the above sources yields a non-empty value, the implementation MAY
+be unable to determine `host.id` automatically and SHOULD omit the attribute.
+In that case, the `host.id` can only be provided through user configuration
+or other available manual options. Users SHOULD ensure that the `host.id` value
+conforms to the properties stated above.
+
+**[3] `host.ip`:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
+
+**[4] `host.mac`:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 ---
 
