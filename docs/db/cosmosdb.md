@@ -429,7 +429,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[6] `server.port`:** If `server.address` is set and the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
+**[6] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
 **[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -491,7 +491,7 @@ It captures the number of active instances at any given time. Best practices dic
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | int | Server port number. [2] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `server.port`:** If `server.address` is set and the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
+**[1] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
 **[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 

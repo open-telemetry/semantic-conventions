@@ -122,10 +122,10 @@ Record port information for database server endpoints as follows:
 
 - If all endpoints use the default port, ports SHOULD be omitted from `server.address` and `server.port` SHOULD
   NOT be set.
-- If all endpoints use the same non-default port, ports SHOULD be omitted from `server.address` and the common
-  port SHOULD be recorded in `server.port`.
-- If endpoints use different ports, each port SHOULD be included in `server.address` and `server.port` SHOULD
-  NOT be set.
+- If the client is configured with a single endpoint that uses a non-default port, the port SHOULD be omitted
+  from `server.address` and SHOULD be recorded in `server.port`.
+- If the client is configured with multiple endpoints and any endpoint uses a non-default port, each endpoint's
+  port SHOULD be included in `server.address` and `server.port` SHOULD NOT be set.
 
 Examples:
 
@@ -133,7 +133,7 @@ Examples:
 | --- | --- | --- |
 | Single server on a non-default port: `db.example.com:15432` | `db.example.com` | `15432` |
 | Multiple servers using the default port: `db-a.example.com,db-b.example.com` | `db-a.example.com,db-b.example.com` | Not set |
-| Multiple servers using a shared port: `db-a.example.com,db-b.example.com` with port `6432` | `db-a.example.com,db-b.example.com` | `6432` |
+| Multiple servers using a shared port: `db-a.example.com,db-b.example.com` with port `6432` | `db-a.example.com:6432,db-b.example.com:6432` | Not set |
 | Multiple servers using different ports: `db-a.example.com:5432,db-b.example.com:6432` | `db-a.example.com:5432,db-b.example.com:6432` | Not set |
 
 ### Service discovery
@@ -254,7 +254,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[10] `server.port`:** If `server.address` is set and the client is configured with one or more database server endpoints that all use the same non-default port and the port is not included in `server.address`.
+**[10] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
 **[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
