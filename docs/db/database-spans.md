@@ -112,6 +112,9 @@ Instrumentation SHOULD preserve endpoint order when it is significant, and other
 endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
 carry no semantic meaning.
 
+Instrumentation SHOULD limit the comma-separated endpoint list to 255 characters by removing complete
+endpoints from the end of the list.
+
 `<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
 an unambiguous single path segment.
 
