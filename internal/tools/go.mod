@@ -2,7 +2,7 @@ module github.com/open-telemetry/opentelemetry-specification/internal/tools
 
 go 1.25.0
 
-toolchain go1.26.6
+toolchain go1.27.0
 
 require go.opentelemetry.io/build-tools/chloggen v0.30.0
 
