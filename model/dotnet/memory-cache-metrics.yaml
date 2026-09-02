@@ -18,6 +18,7 @@ groups:
     unit: "{request}"
     note: |
       Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+      This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
     extends: dotnet.memory_cache.metrics.attributes
     attributes:
       - ref: dotnet.cache.request.type
@@ -35,6 +36,7 @@ groups:
     unit: "{eviction}"
     note: |
       Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+      This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
     extends: dotnet.memory_cache.metrics.attributes
 
   - id: metric.dotnet.cache.entries
@@ -49,6 +51,7 @@ groups:
     unit: "{entry}"
     note: |
       Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+      This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
     extends: dotnet.memory_cache.metrics.attributes
 
   - id: metric.dotnet.cache.estimated_size
@@ -63,4 +66,5 @@ groups:
     unit: "By"
     note: |
       Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+      This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
     extends: dotnet.memory_cache.metrics.attributes

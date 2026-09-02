@@ -31,6 +31,7 @@ class.
 | `dotnet.cache.requests` | Counter | `{request}` | The number of requests to the MemoryCache. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 **[1]:** Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
 
 **Attributes:**
 
@@ -64,6 +65,7 @@ class.
 | `dotnet.cache.evictions` | Counter | `{eviction}` | The number of evictions from the MemoryCache. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 **[1]:** Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
 
 **Attributes:**
 
@@ -87,6 +89,7 @@ class.
 | `dotnet.cache.entries` | UpDownCounter | `{entry}` | The number of entries currently in the MemoryCache. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 **[1]:** Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
 
 **Attributes:**
 
@@ -110,6 +113,7 @@ class.
 | `dotnet.cache.estimated_size` | Gauge | `By` | The estimated size of the MemoryCache. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 **[1]:** Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
 
 **Attributes:**
 
