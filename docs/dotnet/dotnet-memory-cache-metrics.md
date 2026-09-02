@@ -38,11 +38,11 @@ This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`dotnet.cache.name`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the MemoryCache instance. | `Default`; `users` |
-| [`dotnet.cache.request.type`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The result of a MemoryCache request. | `hit`; `miss` |
+| [`dotnet.cache.request.result`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The result of a MemoryCache request. | `hit`; `miss` |
 
 ---
 
-`dotnet.cache.request.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`dotnet.cache.request.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |

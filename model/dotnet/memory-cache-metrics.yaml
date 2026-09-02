@@ -21,7 +21,7 @@ groups:
       This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
     extends: dotnet.memory_cache.metrics.attributes
     attributes:
-      - ref: dotnet.cache.request.type
+      - ref: dotnet.cache.request.result
         requirement_level: required
 
   - id: metric.dotnet.cache.evictions

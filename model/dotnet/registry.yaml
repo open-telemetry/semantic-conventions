@@ -10,7 +10,7 @@ groups:
         type: string
         brief: The name of the MemoryCache instance.
         examples: ["Default", "users"]
-      - id: dotnet.cache.request.type
+      - id: dotnet.cache.request.result
         stability: stable
         type:
           members:
