@@ -5,6 +5,25 @@ groups:
     brief: >
       This document defines .NET related attributes.
     attributes:
+      - id: dotnet.cache.name
+        stability: stable
+        type: string
+        brief: The name of the MemoryCache instance.
+        examples: ["Default", "users"]
+      - id: dotnet.cache.request.type
+        stability: stable
+        type:
+          members:
+            - id: hit
+              value: 'hit'
+              brief: The requested value was found in the cache.
+              stability: stable
+            - id: miss
+              value: 'miss'
+              brief: The requested value was not found in the cache.
+              stability: stable
+        brief: The result of a MemoryCache request.
+        examples: ["hit", "miss"]
       - id: dotnet.gc.heap.generation
         stability: stable
         type:
