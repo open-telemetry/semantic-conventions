@@ -110,7 +110,7 @@ This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `dotnet.cache.estimated_size` | Gauge | `By` | The estimated size of the MemoryCache. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| `dotnet.cache.estimated_size` | Gauge | `1` | The estimated size of the MemoryCache in application-defined units. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 **[1]:** Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
 This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
