@@ -4,7 +4,4 @@ component: db
 
 note: Rename `db.client.connection.max` to `db.client.connection.limit`
 
-issues: [2982, 3277]
-
-subtext: |
-  `db.client.connection.idle.min` and `db.client.connection.idle.max` are unchanged.
+issues: [4073]
