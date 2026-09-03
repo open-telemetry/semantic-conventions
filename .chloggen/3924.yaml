@@ -7,10 +7,11 @@ note: Replace `rpc.request.metadata.<key>` and `rpc.response.metadata.<key>` wit
 issues: [3924]
 
 subtext: |
-  gRPC, Connect RPC, and Dubbo Triple all send response metadata both before and after the
-  response payload and expose the two separately on their APIs. A single
-  `rpc.response.metadata.<key>` namespace collides keys that appear in both, so it is split
-  into `rpc.response.header.<key>` and `rpc.response.trailer.<key>`.
+  gRPC and Connect RPC send response metadata both before and after the response payload and
+  expose the two separately on their APIs. A single `rpc.response.metadata.<key>` namespace
+  collides keys that appear in both, so it is split into `rpc.response.header.<key>` and
+  `rpc.response.trailer.<key>`. Dubbo exposes response attachments as a single map that the
+  Triple protocol sends as trailers, so Dubbo spans only use `rpc.response.trailer.<key>`.
 
   No RPC system sends metadata after the request payload, so there is no `rpc.request.trailer`
   attribute and the request side is a plain rename.

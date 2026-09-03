@@ -122,10 +122,19 @@ groups:
           All status codes except `OK` SHOULD be considered errors.
       - ref: rpc.request.header
         requirement_level: opt_in
+        brief: >
+          Connect RPC request headers, `<key>` being the normalized header name (lowercase),
+          the value being the values.
       - ref: rpc.response.header
         requirement_level: opt_in
+        brief: >
+          Connect RPC response headers, sent before the response payload, `<key>` being the
+          normalized header name (lowercase), the value being the values.
       - ref: rpc.response.trailer
         requirement_level: opt_in
+        brief: >
+          Connect RPC response trailers, sent after the response payload, `<key>` being the
+          normalized trailer name (lowercase), the value being the values.
       - ref: server.address
         brief: The domain name or address of the Connect RPC server.
         requirement_level: required
@@ -168,10 +177,19 @@ groups:
           - `data_loss`
       - ref: rpc.request.header
         requirement_level: opt_in
+        brief: >
+          Connect RPC request headers, `<key>` being the normalized header name (lowercase),
+          the value being the values.
       - ref: rpc.response.header
         requirement_level: opt_in
+        brief: >
+          Connect RPC response headers, sent before the response payload, `<key>` being the
+          normalized header name (lowercase), the value being the values.
       - ref: rpc.response.trailer
         requirement_level: opt_in
+        brief: >
+          Connect RPC response trailers, sent after the response payload, `<key>` being the
+          normalized trailer name (lowercase), the value being the values.
 
   - id: span.rpc.grpc.call.client
     type: span
@@ -529,13 +547,13 @@ groups:
       - ref: rpc.request.header
         requirement_level: opt_in
         brief: >
-          Dubbo request headers, carried as request attachments, `<key>` being the normalized
-          header name (lowercase), the value being the values.
+          Dubbo request attachments, sent as request headers by the Triple protocol, `<key>` being
+          the normalized key (lowercase), the value being the values.
       - ref: rpc.response.trailer
         requirement_level: opt_in
         brief: >
-          Dubbo response trailers, carried as response attachments, `<key>` being the normalized
-          trailer name (lowercase), the value being the values.
+          Dubbo response attachments, sent as response trailers by the Triple protocol, `<key>`
+          being the normalized key (lowercase), the value being the values.
 
   - id: span.rpc.dubbo.call.server
     type: span
@@ -586,10 +604,10 @@ groups:
       - ref: rpc.request.header
         requirement_level: opt_in
         brief: >
-          Dubbo request headers, carried as request attachments, `<key>` being the normalized
-          header name (lowercase), the value being the values.
+          Dubbo request attachments, sent as request headers by the Triple protocol, `<key>` being
+          the normalized key (lowercase), the value being the values.
       - ref: rpc.response.trailer
         requirement_level: opt_in
         brief: >
-          Dubbo response trailers, carried as response attachments, `<key>` being the normalized
-          trailer name (lowercase), the value being the values.
+          Dubbo response attachments, sent as response trailers by the Triple protocol, `<key>`
+          being the normalized key (lowercase), the value being the values.

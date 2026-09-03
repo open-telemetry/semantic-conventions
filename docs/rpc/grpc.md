@@ -153,12 +153,12 @@ For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD
 
 The attribute value MUST consist of either multiple header values as an array of
 strings or a single-item array containing a possibly comma-concatenated string,
-depending on the way the RPC library provides access to metadata.
+depending on the way the RPC library provides access to headers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded. In gRPC and compatible protocols
-such as Connect RPC and Dubbo Triple, binary values are the ones under keys ending
-in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
+UTF-8 strings, SHOULD be recorded base64-encoded. Protocols in the gRPC family identify
+binary values with keys ending in
+[`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
 
 **[9] `rpc.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -168,16 +168,12 @@ the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"
 
 The attribute value MUST consist of either multiple header values as an array of
 strings or a single-item array containing a possibly comma-concatenated string,
-depending on the way the RPC library provides access to metadata.
+depending on the way the RPC library provides access to headers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded. In gRPC and compatible protocols
-such as Connect RPC and Dubbo Triple, binary values are the ones under keys ending
-in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
-
-RPC systems may support response headers, response trailers, or both. Semantic conventions
-for individual RPC systems SHOULD document how system-specific response properties map
-onto response headers.
+UTF-8 strings, SHOULD be recorded base64-encoded. Protocols in the gRPC family identify
+binary values with keys ending in
+[`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
 
 **[10] `rpc.response.trailer.<key>`:** Instrumentations SHOULD require an explicit configuration of which trailers are to be captured.
 Including all response trailers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -187,16 +183,12 @@ the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value
 
 The attribute value MUST consist of either multiple trailer values as an array of
 strings or a single-item array containing a possibly comma-concatenated string,
-depending on the way the RPC library provides access to metadata.
+depending on the way the RPC library provides access to trailers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded. In gRPC and compatible protocols
-such as Connect RPC and Dubbo Triple, binary values are the ones under keys ending
-in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
-
-RPC systems may support response headers, response trailers, or both. Semantic conventions
-for individual RPC systems SHOULD document how system-specific response properties map
-onto response trailers.
+UTF-8 strings, SHOULD be recorded base64-encoded. Protocols in the gRPC family identify
+binary values with keys ending in
+[`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -325,12 +317,12 @@ For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD
 
 The attribute value MUST consist of either multiple header values as an array of
 strings or a single-item array containing a possibly comma-concatenated string,
-depending on the way the RPC library provides access to metadata.
+depending on the way the RPC library provides access to headers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded. In gRPC and compatible protocols
-such as Connect RPC and Dubbo Triple, binary values are the ones under keys ending
-in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
+UTF-8 strings, SHOULD be recorded base64-encoded. Protocols in the gRPC family identify
+binary values with keys ending in
+[`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
 
 **[9] `rpc.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -340,16 +332,12 @@ the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"
 
 The attribute value MUST consist of either multiple header values as an array of
 strings or a single-item array containing a possibly comma-concatenated string,
-depending on the way the RPC library provides access to metadata.
+depending on the way the RPC library provides access to headers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded. In gRPC and compatible protocols
-such as Connect RPC and Dubbo Triple, binary values are the ones under keys ending
-in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
-
-RPC systems may support response headers, response trailers, or both. Semantic conventions
-for individual RPC systems SHOULD document how system-specific response properties map
-onto response headers.
+UTF-8 strings, SHOULD be recorded base64-encoded. Protocols in the gRPC family identify
+binary values with keys ending in
+[`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
 
 **[10] `rpc.response.trailer.<key>`:** Instrumentations SHOULD require an explicit configuration of which trailers are to be captured.
 Including all response trailers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -359,16 +347,12 @@ the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value
 
 The attribute value MUST consist of either multiple trailer values as an array of
 strings or a single-item array containing a possibly comma-concatenated string,
-depending on the way the RPC library provides access to metadata.
+depending on the way the RPC library provides access to trailers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded. In gRPC and compatible protocols
-such as Connect RPC and Dubbo Triple, binary values are the ones under keys ending
-in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
-
-RPC systems may support response headers, response trailers, or both. Semantic conventions
-for individual RPC systems SHOULD document how system-specific response properties map
-onto response trailers.
+UTF-8 strings, SHOULD be recorded base64-encoded. Protocols in the gRPC family identify
+binary values with keys ending in
+[`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests).
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
