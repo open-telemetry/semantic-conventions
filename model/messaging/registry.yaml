@@ -286,8 +286,8 @@ groups:
         brief: >
           The name of the RabbitMQ virtual host that the messaging operation is scoped to.
         note: >
-          RabbitMQ virtual hosts (vhosts) provide logical grouping and separation of
-          resources (exchanges, queues, bindings) within a single broker or cluster.
+          RabbitMQ [virtual hosts](https://www.rabbitmq.com/docs/vhosts) provide logical grouping
+          and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
         examples: ['/', 'my-vhost']
   - id: registry.messaging.rocketmq
     type: attribute_group
