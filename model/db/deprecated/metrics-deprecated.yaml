@@ -61,12 +61,29 @@ groups:
     stability: development
     deprecated:
       reason: renamed
-      renamed_to: db.client.connection.max
-    brief: "Deprecated, use `db.client.connection.max` instead."
+      renamed_to: db.client.connection.limit
+    brief: "Deprecated, use `db.client.connection.limit` instead."
     instrument: updowncounter
     unit: "{connection}"
     attributes:
       - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connection.max
+    type: metric
+    metric_name: db.client.connection.max
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.limit
+    brief: "Deprecated, use `db.client.connection.limit` instead."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connections.pending_requests
