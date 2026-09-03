@@ -161,8 +161,8 @@
 /model/pprof/                      @open-telemetry/specs-semconv-approvers @open-telemetry/profiling-approvers
 
 # SDK health semantic conventions
-/docs/otel/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers
-/model/otel/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers
+/docs/otel/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers @open-telemetry/specs-approvers
+/model/otel/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers @open-telemetry/specs-approvers
 
 # Tooling
 /policies/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
