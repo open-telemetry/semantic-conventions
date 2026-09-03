@@ -72,6 +72,12 @@ groups:
       - ref: rpc.system.name
         requirement_level: required
         sampling_relevant: true
+      - ref: rpc.request.header
+        requirement_level: opt_in
+      - ref: rpc.response.header
+        requirement_level: opt_in
+      - ref: rpc.response.trailer
+        requirement_level: opt_in
 
   - id: span.rpc.call.server
     type: span
@@ -97,6 +103,12 @@ groups:
       - ref: rpc.system.name
         requirement_level: required
         sampling_relevant: true
+      - ref: rpc.request.header
+        requirement_level: opt_in
+      - ref: rpc.response.header
+        requirement_level: opt_in
+      - ref: rpc.response.trailer
+        requirement_level: opt_in
 
   - id: span.rpc.connect_rpc.call.client
     type: span
@@ -117,24 +129,82 @@ groups:
       - ref: rpc.status_code
         requirement_level:
           conditionally_required: if available.
-        brief: The [error code](https://connectrpc.com//docs/protocol/#error-codes) of the Connect response.
+        brief: The [error code](https://connectrpc.com/docs/protocol/#error-codes) of the Connect response.
         note: |
           All status codes except `OK` SHOULD be considered errors.
       - ref: rpc.request.header
         requirement_level: opt_in
-        brief: >
-          Connect RPC request headers, `<key>` being the normalized header name (lowercase),
-          the value being the values.
+        brief: &connect_request_header_brief Connect RPC [request headers](https://connectrpc.com/docs/protocol/).
+        note: &connect_request_header_note |
+          `<key>` is the normalized header name (lowercase), the value is the header values.
+
+          Instrumentations SHOULD require an explicit configuration of which headers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded
+          as the `rpc.request.header.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to headers.
+
+          Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
+          transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
+          Instrumentations SHOULD obtain them from the corresponding
+          [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
+          base64-encoded.
       - ref: rpc.response.header
         requirement_level: opt_in
-        brief: >
-          Connect RPC response headers, sent before the response payload, `<key>` being the
-          normalized header name (lowercase), the value being the values.
+        brief: &connect_response_header_brief Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload.
+        note: &connect_response_header_note |
+          `<key>` is the normalized header name (lowercase), the value is the header values.
+
+          Instrumentations SHOULD require an explicit configuration of which headers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+          as the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to headers.
+
+          Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
+          transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
+          Instrumentations SHOULD obtain them from the corresponding
+          [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
+          base64-encoded.
       - ref: rpc.response.trailer
         requirement_level: opt_in
-        brief: >
-          Connect RPC response trailers, sent after the response payload, `<key>` being the
-          normalized trailer name (lowercase), the value being the values.
+        brief: &connect_response_trailer_brief Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload.
+        note: &connect_response_trailer_note |
+          `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
+
+          Instrumentations SHOULD require an explicit configuration of which trailers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a trailer `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+          as the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to trailers.
+
+          Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
+          transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
+          Instrumentations SHOULD obtain them from the corresponding
+            [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/) and SHOULD NOT
+            rely on the underlying protocol details.
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
+          base64-encoded.
       - ref: server.address
         brief: The domain name or address of the Connect RPC server.
         requirement_level: required
@@ -177,19 +247,16 @@ groups:
           - `data_loss`
       - ref: rpc.request.header
         requirement_level: opt_in
-        brief: >
-          Connect RPC request headers, `<key>` being the normalized header name (lowercase),
-          the value being the values.
+        brief: *connect_request_header_brief
+        note: *connect_request_header_note
       - ref: rpc.response.header
         requirement_level: opt_in
-        brief: >
-          Connect RPC response headers, sent before the response payload, `<key>` being the
-          normalized header name (lowercase), the value being the values.
+        brief: *connect_response_header_brief
+        note: *connect_response_header_note
       - ref: rpc.response.trailer
         requirement_level: opt_in
-        brief: >
-          Connect RPC response trailers, sent after the response payload, `<key>` being the
-          normalized trailer name (lowercase), the value being the values.
+        brief: *connect_response_trailer_brief
+        note: *connect_response_trailer_note
 
   - id: span.rpc.grpc.call.client
     type: span
@@ -219,19 +286,61 @@ groups:
           All status codes except `OK` SHOULD be considered errors.
       - ref: rpc.request.header
         requirement_level: opt_in
-        brief: >
-          gRPC request headers, also called request metadata, `<key>` being the normalized header
-          name (lowercase), the value being the values.
+        brief: &grpc_request_header_brief gRPC request headers, also called [request metadata](https://grpc.io/docs/guides/metadata/).
+        note: &grpc_request_header_note |
+          `<key>` is the normalized header name (lowercase), the value is the header values.
+
+          Instrumentations SHOULD require an explicit configuration of which headers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded
+          as the `rpc.request.header.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to headers.
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
+          base64-encoded.
       - ref: rpc.response.header
         requirement_level: opt_in
-        brief: >
-          gRPC response headers, also called initial metadata, `<key>` being the normalized header
-          name (lowercase), the value being the values.
+        brief: &grpc_response_header_brief gRPC response headers, also called [initial metadata](https://grpc.io/docs/what-is-grpc/core-concepts/#rpc-life-cycle).
+        note: &grpc_response_header_note |
+          `<key>` is the normalized header name (lowercase), the value is the header values.
+
+          Instrumentations SHOULD require an explicit configuration of which headers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+          as the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to headers.
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
+          base64-encoded.
       - ref: rpc.response.trailer
         requirement_level: opt_in
-        brief: >
-          gRPC response trailers, also called trailing metadata, `<key>` being the normalized
-          trailer name (lowercase), the value being the values.
+        brief: &grpc_response_trailer_brief gRPC response trailers, also called [trailing metadata](https://grpc.io/docs/what-is-grpc/core-concepts/#rpc-life-cycle).
+        note: &grpc_response_trailer_note |
+          `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
+
+          Instrumentations SHOULD require an explicit configuration of which trailers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a trailer `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+          as the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to trailers.
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
+          base64-encoded.
       - ref: server.address
         note: |
           Instrumentations SHOULD populate `server.address` (along with `server.port`)
@@ -311,19 +420,16 @@ groups:
 
       - ref: rpc.request.header
         requirement_level: opt_in
-        brief: >
-          gRPC request headers, also called request metadata, `<key>` being the normalized header
-          name (lowercase), the value being the values.
+        brief: *grpc_request_header_brief
+        note: *grpc_request_header_note
       - ref: rpc.response.header
         requirement_level: opt_in
-        brief: >
-          gRPC response headers, also called initial metadata, `<key>` being the normalized header
-          name (lowercase), the value being the values.
+        brief: *grpc_response_header_brief
+        note: *grpc_response_header_note
       - ref: rpc.response.trailer
         requirement_level: opt_in
-        brief: >
-          gRPC response trailers, also called trailing metadata, `<key>` being the normalized
-          trailer name (lowercase), the value being the values.
+        brief: *grpc_response_trailer_brief
+        note: *grpc_response_trailer_note
       - ref: server.address
         note: |
            Instrumentations SHOULD populate `server.address` from the host
@@ -546,14 +652,70 @@ groups:
           See the `server.address` for details on parsing the target string.
       - ref: rpc.request.header
         requirement_level: opt_in
-        brief: >
-          Dubbo request attachments, sent as request headers by the Triple protocol, `<key>` being
-          the normalized key (lowercase), the value being the values.
+        brief: &dubbo_request_header_brief Dubbo request attachments.
+        note: &dubbo_request_header_note |
+          `<key>` is the normalized header name (lowercase), the value is the header values.
+
+          Instrumentations SHOULD require an explicit configuration of which headers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded
+          as the `rpc.request.header.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to headers.
+
+          Depending on the protocol, this attribute SHOULD capture:
+
+          - Triple: [Request attachments](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#322-requests).
+            Values associated with keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
+          - Dubbo2: None (the protocol does not support request headers).
+      - ref: rpc.response.header
+        requirement_level: opt_in
+        brief: &dubbo_response_header_brief Dubbo Triple response headers, sent before the response payload.
+        note: &dubbo_response_header_note |
+          `<key>` is the normalized header name (lowercase), the value is the header values.
+
+          Instrumentations SHOULD require an explicit configuration of which headers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+          as the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to headers.
+
+          Depending on the protocol, this attribute SHOULD capture:
+
+          - Triple: [Response headers](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#323-responses), not response attachments - those go to
+            `rpc.response.trailer.<key>`. Values associated with keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
+          - Dubbo2: None (the protocol does not support response headers).
       - ref: rpc.response.trailer
         requirement_level: opt_in
-        brief: >
-          Dubbo response attachments, sent as response trailers by the Triple protocol, `<key>`
-          being the normalized key (lowercase), the value being the values.
+        brief: &dubbo_response_trailer_brief Dubbo response attachments.
+        note: &dubbo_response_trailer_note |
+          `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
+
+          Instrumentations SHOULD require an explicit configuration of which trailers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a trailer `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+          as the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to trailers.
+
+          Depending on the protocol, this attribute SHOULD capture:
+
+          - Triple: [Response attachments](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#323-responses).
+            Values associated with keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
+          - Dubbo2: None (the protocol does not support response trailers).
 
   - id: span.rpc.dubbo.call.server
     type: span
@@ -603,11 +765,13 @@ groups:
           conditionally_required: if `server.address` is set and if the port is supported by the network transport used for communication.
       - ref: rpc.request.header
         requirement_level: opt_in
-        brief: >
-          Dubbo request attachments, sent as request headers by the Triple protocol, `<key>` being
-          the normalized key (lowercase), the value being the values.
+        brief: *dubbo_request_header_brief
+        note: *dubbo_request_header_note
+      - ref: rpc.response.header
+        requirement_level: opt_in
+        brief: *dubbo_response_header_brief
+        note: *dubbo_response_header_note
       - ref: rpc.response.trailer
         requirement_level: opt_in
-        brief: >
-          Dubbo response attachments, sent as response trailers by the Triple protocol, `<key>`
-          being the normalized key (lowercase), the value being the values.
+        brief: *dubbo_response_trailer_brief
+        note: *dubbo_response_trailer_note
