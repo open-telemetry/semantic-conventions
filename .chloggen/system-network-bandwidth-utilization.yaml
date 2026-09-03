@@ -1,0 +1,4 @@
+change_type: enhancement
+component: system
+note: Add `system.network.bandwidth.utilization` metric.
+issues: [3982]
