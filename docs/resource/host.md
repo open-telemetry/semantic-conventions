@@ -46,11 +46,10 @@ The value SHOULD conform to the following properties:
 * **[Repeatable](https://opentelemetry.io/docs/specs/otel/entities/data-model/#repeatable-identity)** - multiple observers on the same host come up with the same value;
 * **Persistent** - survives host restarts and software updates.
 
-**Collecting `host.id` From Known Environments**
-
-When `host.id` is derived from a cloud vendor instance ID, the resource SHOULD also carry
-the corresponding `cloud.provider` and `cloud.platform` attributes so that the source of
-the `host.id` value can be unambiguously determined.
+**Collecting `host.id` From Known Environments:** When `host.id` is derived from a
+cloud vendor instance ID, the resource SHOULD also carry the corresponding
+`cloud.provider` and `cloud.platform` attributes so that the source of the `host.id`
+value can be unambiguously determined.
 
 The following cloud environments are currently recognized:
 
@@ -65,11 +64,9 @@ The following cloud environments are currently recognized:
 The listed `cloud.provider`/`cloud.platform` values are for example only. Refer to the
 [`cloud`](/docs/registry/attributes/cloud.md) attribute definitions for the relevant set of values.
 
-**Non-privileged Machine ID Lookup**
-
-When collecting `host.id` for non-containerized systems, non-privileged lookups
-of the machine ID are preferred. SDK detector implementations MUST use the
-sources listed below to obtain the machine ID.
+**Non-privileged Machine ID Lookup:** When collecting `host.id` for non-containerized
+systems, non-privileged lookups of the machine ID are preferred. SDK detector
+implementations MUST use the sources listed below to obtain the machine ID.
 
 | OS | Primary | Fallback |
 | --- | --- | --- |
@@ -78,10 +75,9 @@ sources listed below to obtain the machine ID.
 | macOS | `IOPlatformUUID` line from the output of `/usr/sbin/ioreg -rd1 -c "IOPlatformExpertDevice"` | - |
 | Windows | `MachineGuid` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography` | - |
 
-**Privileged Machine ID Lookup**
-
-The `host.id` can be looked up using privileged sources. For example, Linux
-systems can use the output of `dmidecode -t system`, `dmidecode -t baseboard`,
+**Privileged Machine ID Lookup:** The `host.id` can be looked up using privileged
+sources. For example, Linux systems can use the output of `dmidecode -t system`,
+`dmidecode -t baseboard`,
 `dmidecode -t chassis`, or read the corresponding data from the filesystem
 (e.g. `cat /sys/devices/virtual/dmi/id/product_id`,
 `cat /sys/devices/virtual/dmi/id/product_uuid`, etc), however, SDK resource
@@ -89,10 +85,9 @@ detector implementations MUST NOT collect `host.id` from privileged sources. If
 privileged lookup of `host.id` is required, the value SHOULD be injected via the
 `OTEL_RESOURCE_ATTRIBUTES` environment variable.
 
-**Collecting `host.id` From User Configuration**
-
-If none of the above sources yields a non-empty value, the implementation MAY
-be unable to determine `host.id` automatically and SHOULD omit the attribute.
+**Collecting `host.id` From User Configuration:** If none of the above sources yields
+a non-empty value, the implementation MAY be unable to determine `host.id`
+automatically and SHOULD omit the attribute.
 In that case, the `host.id` can only be provided through user configuration
 or other available manual options. Users SHOULD ensure that the `host.id` value
 conforms to the properties stated above.
