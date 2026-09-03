@@ -276,10 +276,9 @@ groups:
           The RabbitMQ cluster name, obtained from the broker metadata exposed through
           the RabbitMQ client API.
         note: >
-          The cluster name is a user-configured identifier reported by the RabbitMQ
-          broker (see `rabbitmqctl set_cluster_name`). It identifies the cluster
-          independently of the individual nodes the client is configured to connect to,
-          and remains stable even if node hostnames, IP addresses, or ports change.
+          RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name)
+          from the first node in the cluster. Operators can override it with
+          `rabbitmqctl set_cluster_name`.
         examples: ['my-rabbitmq-cluster']
       - id: messaging.rabbitmq.vhost.name
         type: string
