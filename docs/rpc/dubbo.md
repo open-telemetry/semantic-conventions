@@ -199,7 +199,8 @@ the RPC library provides access to headers.
 Depending on the protocol, this attribute SHOULD capture:
 
 - Triple: [Response headers](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#323-responses), not response attachments - those go to
-  `rpc.response.trailer.<key>`. Values associated with keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
+  `rpc.response.trailer.<key>`. Values associated with keys ending in
+  [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
 - Dubbo2: None (the protocol does not support response headers).
 
 **[10] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
@@ -377,7 +378,8 @@ the RPC library provides access to headers.
 Depending on the protocol, this attribute SHOULD capture:
 
 - Triple: [Response headers](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#323-responses), not response attachments - those go to
-  `rpc.response.trailer.<key>`. Values associated with keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
+  `rpc.response.trailer.<key>`. Values associated with keys ending in
+  [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
 - Dubbo2: None (the protocol does not support response headers).
 
 **[10] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.

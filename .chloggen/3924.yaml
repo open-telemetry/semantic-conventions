@@ -4,7 +4,7 @@ component: rpc
 
 note: Replace `rpc.request.metadata.<key>` and `rpc.response.metadata.<key>` with `rpc.request.header.<key>`, `rpc.response.header.<key>`, and `rpc.response.trailer.<key>`.
 
-issues: [3924]
+issues: [3924, 4072]
 
 subtext: |
   gRPC and Connect RPC send response metadata both before and after the response payload and
