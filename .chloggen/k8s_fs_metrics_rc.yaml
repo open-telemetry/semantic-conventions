@@ -1,0 +1,8 @@
+change_type: enhancement
+component: k8s
+note: >
+  Promote `k8s.pod.filesystem.*`, `k8s.node.filesystem.*`, and `container.filesystem.*` metrics to `release_candidate`.
+  Container filesystem metrics (`container.filesystem.available`, `container.filesystem.capacity`, `container.filesystem.usage`)
+  also gain documentation notes mapping them to their cadvisor equivalents (`container_fs_limit_bytes`, `container_fs_usage_bytes`),
+  enabling use cases where metrics are retrieved directly from cadvisor rather than through the Kubelet stats summary API.
+issues: [4053]
