@@ -1,0 +1,70 @@
+groups:
+  - id: dotnet.memory_cache.metrics.attributes
+    type: attribute_group
+    brief: Common MemoryCache metric attributes.
+    attributes:
+      - ref: dotnet.cache.name
+        requirement_level: required
+
+  - id: metric.dotnet.cache.requests
+    type: metric
+    metric_name: dotnet.cache.requests
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: stable
+    brief: The number of requests to the MemoryCache.
+    instrument: counter
+    unit: "{request}"
+    note: |
+      Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+      This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
+    extends: dotnet.memory_cache.metrics.attributes
+    attributes:
+      - ref: dotnet.cache.request.result
+        requirement_level: required
+
+  - id: metric.dotnet.cache.evictions
+    type: metric
+    metric_name: dotnet.cache.evictions
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: stable
+    brief: The number of evictions from the MemoryCache.
+    instrument: counter
+    unit: "{eviction}"
+    note: |
+      Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+      This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
+    extends: dotnet.memory_cache.metrics.attributes
+
+  - id: metric.dotnet.cache.entries
+    type: metric
+    metric_name: dotnet.cache.entries
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: stable
+    brief: The number of entries currently in the MemoryCache.
+    instrument: updowncounter
+    unit: "{entry}"
+    note: |
+      Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+      This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
+    extends: dotnet.memory_cache.metrics.attributes
+
+  - id: metric.dotnet.cache.estimated_size
+    type: metric
+    metric_name: dotnet.cache.estimated_size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: stable
+    brief: The estimated size of the MemoryCache in application-defined units.
+    instrument: gauge
+    unit: "1"
+    note: |
+      Meter name: `Microsoft.Extensions.Caching.Memory.MemoryCache`; Added in: .NET 11.0
+      This metric is only emitted when `MemoryCacheOptions.TrackStatistics` is `true`.
+    extends: dotnet.memory_cache.metrics.attributes
