@@ -36,12 +36,14 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`dns.question.name`](/docs/registry/attributes/dns.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name being queried. [1] | `www.example.com`; `dot.net` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | Describes the error the DNS lookup failed with. [2] | `host_not_found`; `no_recovery`; `java.net.UnknownHostException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | Describes the error the DNS lookup failed with. [1] | `host_not_found`; `no_recovery`; `java.net.UnknownHostException` |
+| [`dns.question.name`](/docs/registry/attributes/dns.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [2] | string | The name being queried. [3] | `www.example.com`; `dot.net` |
 
-**[1] `dns.question.name`:** The name represents the queried domain name as it appears in the DNS query without any additional normalization.
+**[1] `error.type`:** Instrumentations SHOULD use error code such as one of errors reported by `getaddrinfo`([Linux or other POSIX systems](https://man7.org/linux/man-pages/man3/getaddrinfo.3.html) / [Windows](https://learn.microsoft.com/windows/win32/api/ws2tcpip/nf-ws2tcpip-getaddrinfo)) or one reported by the runtime or client library. If error code is not available, the full name of exception type SHOULD be used.
 
-**[2] `error.type`:** Instrumentations SHOULD use error code such as one of errors reported by `getaddrinfo`([Linux or other POSIX systems](https://man7.org/linux/man-pages/man3/getaddrinfo.3.html) / [Windows](https://learn.microsoft.com/windows/win32/api/ws2tcpip/nf-ws2tcpip-getaddrinfo)) or one reported by the runtime or client library. If error code is not available, the full name of exception type SHOULD be used.
+**[2] `dns.question.name`:** if and only if the instrumentation expects a low cardinality for `dns.question.name` (e.g., in-process instrumentation). Otherwise (e.g., for system-wide, out-of-process instrumentations), `dns.question.name` MUST be opt-in and enabled independently of the `dns.lookup.duration` metric.
+
+**[3] `dns.question.name`:** The name represents the queried domain name as it appears in the DNS query without any additional normalization.
 
 ---
 
