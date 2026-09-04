@@ -1,0 +1,37 @@
+file_format: definition/2
+
+span_refinements:
+  # IBM MQ
+  - id: span.messaging.ibmmq.send.producer
+    ref: messaging.send.producer
+    stability: development
+    brief: Describes a producer sending one or more messages to IBM MQ.
+    attributes:
+      - ref: messaging.ibmmq.queue_manager.id
+        requirement_level: opt_in
+        note: >
+          The queue manager that accepted the message, which is the queue manager the client is
+          connected to. When the destination is a remote queue definition or a clustered queue,
+          the message may subsequently be routed to a different queue manager, so this identifies
+          the point of ingress rather than the queue manager hosting the queue.
+
+  - id: span.messaging.ibmmq.receive.client
+    ref: messaging.receive.client
+    stability: development
+    brief: Describes a consumer receiving one or more messages from IBM MQ (pull-based).
+    attributes:
+      - ref: messaging.ibmmq.queue_manager.id
+        requirement_level: opt_in
+        note: &ibmmq_qmid_consumer_note >
+          The queue manager the message was retrieved from. A get is always local to the queue
+          manager the client is connected to, so this unambiguously identifies the queue manager
+          that held the message.
+
+  - id: span.messaging.ibmmq.process.consumer
+    ref: messaging.process.consumer
+    stability: development
+    brief: Describes a consumer processing one or more messages from IBM MQ (push-based).
+    attributes:
+      - ref: messaging.ibmmq.queue_manager.id
+        requirement_level: opt_in
+        note: *ibmmq_qmid_consumer_note

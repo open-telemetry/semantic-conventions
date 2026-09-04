@@ -430,3 +430,22 @@ groups:
         brief: >
           The UTC epoch seconds at which the message has been accepted and stored in the entity.
         examples: 1701393730
+  - id: registry.messaging.ibmmq
+    type: attribute_group
+    display_name: IBM MQ Attributes
+    brief: >
+      This group describes attributes specific to IBM MQ.
+    attributes:
+      - id: messaging.ibmmq.queue_manager.id
+        type: string
+        stability: development
+        brief: >
+          The intrinsic Queue Manager Identifier (QMID), a queue manager attribute generated
+          by IBM MQ when the queue manager is created, formatted as
+          `<QUEUE_MANAGER_NAME>_YYYY-MM-DD_HH.MM.SS`.
+        note: >
+          Queue manager *names* are not globally unique in federated architectures, so the QMID
+          is required to identify a queue manager unambiguously. Obtained from the
+          `MQCA_Q_MGR_IDENTIFIER` queue manager attribute, which is stored as a fixed width MQI
+          character field. The value reported MUST have the trailing padding removed.
+        examples: ['QM1_2026-08-10_23.23.00']
