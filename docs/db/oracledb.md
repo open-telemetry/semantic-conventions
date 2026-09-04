@@ -56,7 +56,7 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 | [`oracle.db.name`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database name associated with the connection. [19] | `ORCL1`; `FREE` |
 | [`oracle.db.pdb`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The pluggable database (PDB) name associated with the connection. [20] | `PDB1`; `FREEPDB` |
 | [`oracle.db.service`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The service name currently associated with the database connection. [21] | `order-processing-service`; `db_low.adb.oraclecloud.com`; `db_high.adb.oraclecloud.com` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [22] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [22] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [23] | `someval`; `55` |
 | [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [24] | `10`; `30`; `1000` |
 
@@ -68,9 +68,9 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[4] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[4] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[6] `db.collection.name`:** If the operation is executed via a higher-level API that does not support multiple collection names.
 
@@ -160,7 +160,15 @@ obtain the current service name for each operation without issuing an additional
 query (such as `SELECT SYS_CONTEXT`), it is RECOMMENDED to fall back to the
 service name originally provided at connection establishment.
 
-**[22] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[22] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
+examples.
 
 **[23] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.

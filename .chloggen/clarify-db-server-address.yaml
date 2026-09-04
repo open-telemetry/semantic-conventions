@@ -1,0 +1,11 @@
+change_type: enhancement
+
+component: db
+
+note: >
+  Clarify that database client `server.address` identifies the configured database target,
+  including multiple servers and service discovery.
+
+issues: [4041]
+
+subtext:

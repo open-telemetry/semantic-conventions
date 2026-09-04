@@ -52,7 +52,7 @@ with the endpoint identifier stored in `db.operation.name`, and the index stored
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [11] | `2`; `3`; `4` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a JSON string. [13] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` |
 | [`elasticsearch.node.name`](/docs/registry/attributes/elasticsearch.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Represents the human-readable identifier of the node/instance to which a request was routed. [14] | `instance-0000000001` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `db.operation.name`:** The `db.operation.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
 For batch operations, if the individual operations would all have the same `db.operation.name` when executed as non-batch operations, then that operation name SHOULD be used prepended by `bulk `. Otherwise, `db.operation.name` SHOULD be `bulk`.
@@ -129,9 +129,9 @@ When a query string value is redacted, the query string key SHOULD still be pres
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[7] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[7] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[8] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[9] `db.collection.name`:** The query may target multiple indexes or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
 
@@ -168,7 +168,15 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 
 **[14] `elasticsearch.node.name`:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[15] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[15] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
+examples.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
