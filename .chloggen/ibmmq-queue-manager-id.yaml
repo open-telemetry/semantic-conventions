@@ -4,5 +4,4 @@ note: >
   Add `messaging.ibmmq.queue_manager.id` (QMID) and reference it on the IBM MQ producer,
   receive and process spans. Queue manager names are not globally unique in federated
   architectures, so the QMID is needed to identify a queue manager unambiguously.
-# TODO replace with the tracking issue number once the new-conventions issue is filed.
-issues: [0]
+issues: [4081]
