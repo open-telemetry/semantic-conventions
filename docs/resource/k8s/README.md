@@ -81,7 +81,8 @@ conflict.
 | Identity | [`k8s.node.uid`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` |
 | Description | [`k8s.node.name`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the Node. | `node-1` |
 | Description | [`k8s.node.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `0`; `` |
-| Description | [`k8s.node.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `arm64`; `` |
+| Description | [`k8s.node.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the Node. [2] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.node.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `arm64`; `` |
 
 **[1] `k8s.node.annotation.<key>`:** Examples:
 
@@ -90,7 +91,13 @@ conflict.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.node.annotation.data` attribute with value `""`.
 
-**[2] `k8s.node.label.<key>`:** Examples:
+**[2] `k8s.node.creation_time`:** Date and time at which the object was created in the K8s API server.
+
+This attribute aligns with the `creationTimestamp` field of the
+[K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+in ISO 8601 (RFC 3339 compatible) format.
+
+**[3] `k8s.node.label.<key>`:** Examples:
 
 - A label `kubernetes.io/arch` with value `arm64` SHOULD be recorded
   as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
@@ -122,7 +129,8 @@ a namespace, but not across namespaces.
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the namespace that the pod is running in. | `default` |
 | Description | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `0`; `` |
-| Description | [`k8s.namespace.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `default`; `` |
+| Description | [`k8s.namespace.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the Namespace. [2] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.namespace.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `default`; `` |
 
 **[1] `k8s.namespace.annotation.<key>`:** Examples:
 
@@ -131,7 +139,13 @@ a namespace, but not across namespaces.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.namespace.annotation.data` attribute with value `""`.
 
-**[2] `k8s.namespace.label.<key>`:** Examples:
+**[2] `k8s.namespace.creation_time`:** Date and time at which the object was created in the K8s API server.
+
+This attribute aligns with the `creationTimestamp` field of the
+[K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+in ISO 8601 (RFC 3339 compatible) format.
+
+**[3] `k8s.namespace.label.<key>`:** Examples:
 
 - A label `kubernetes.io/metadata.name` with value `default` SHOULD be recorded
   as the `k8s.namespace.label.kubernetes.io/metadata.name` attribute with value `"default"`.
@@ -258,7 +272,8 @@ to a running container.
 | Identity | [`k8s.replicaset.uid`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | Description | [`k8s.replicaset.name`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the ReplicaSet. | `opentelemetry` |
 | Description | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `0`; `` |
-| Description | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `guestbook`; `` |
+| Description | [`k8s.replicaset.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the ReplicaSet. [2] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `guestbook`; `` |
 
 **[1] `k8s.replicaset.annotation.<key>`:** Examples:
 
@@ -267,7 +282,13 @@ to a running container.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.replicaset.annotation.data` attribute with value `""`.
 
-**[2] `k8s.replicaset.label.<key>`:** Examples:
+**[2] `k8s.replicaset.creation_time`:** Date and time at which the object was created in the K8s API server.
+
+This attribute aligns with the `creationTimestamp` field of the
+[K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+in ISO 8601 (RFC 3339 compatible) format.
+
+**[3] `k8s.replicaset.label.<key>`:** Examples:
 
 - A label `app` with value `guestbook` SHOULD be recorded
   as the `k8s.replicaset.label.app` attribute with value `"guestbook"`.
@@ -301,7 +322,8 @@ distributed among the nodes of a cluster.
 | Identity | [`k8s.deployment.uid`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | Description | [`k8s.deployment.name`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the Deployment. | `opentelemetry` |
 | Description | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `1`; `` |
-| Description | [`k8s.deployment.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `guestbook`; `` |
+| Description | [`k8s.deployment.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the Deployment. [2] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.deployment.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `guestbook`; `` |
 
 **[1] `k8s.deployment.annotation.<key>`:** Examples:
 
@@ -310,7 +332,13 @@ distributed among the nodes of a cluster.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.deployment.annotation.data` attribute with value `""`.
 
-**[2] `k8s.deployment.label.<key>`:** Examples:
+**[2] `k8s.deployment.creation_time`:** Date and time at which the object was created in the K8s API server.
+
+This attribute aligns with the `creationTimestamp` field of the
+[K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+in ISO 8601 (RFC 3339 compatible) format.
+
+**[3] `k8s.deployment.label.<key>`:** Examples:
 
 - A label `app` with value `guestbook` SHOULD be recorded
   as the `k8s.deployment.label.app` attribute with value `"guestbook"`.
@@ -343,7 +371,8 @@ about the ordering and uniqueness of these Pods.
 | Identity | [`k8s.statefulset.uid`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | Description | [`k8s.statefulset.name`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the StatefulSet. | `opentelemetry` |
 | Description | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `1`; `` |
-| Description | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `guestbook`; `` |
+| Description | [`k8s.statefulset.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the StatefulSet. [2] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `guestbook`; `` |
 
 **[1] `k8s.statefulset.annotation.<key>`:** Examples:
 
@@ -352,7 +381,13 @@ about the ordering and uniqueness of these Pods.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.statefulset.annotation.data` attribute with value `""`.
 
-**[2] `k8s.statefulset.label.<key>`:** Examples:
+**[2] `k8s.statefulset.creation_time`:** Date and time at which the object was created in the K8s API server.
+
+This attribute aligns with the `creationTimestamp` field of the
+[K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+in ISO 8601 (RFC 3339 compatible) format.
+
+**[3] `k8s.statefulset.label.<key>`:** Examples:
 
 - A label `app` with value `guestbook` SHOULD be recorded
   as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
@@ -384,7 +419,8 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 | Identity | [`k8s.daemonset.uid`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | Description | [`k8s.daemonset.name`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the DaemonSet. | `opentelemetry` |
 | Description | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `1`; `` |
-| Description | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `guestbook`; `` |
+| Description | [`k8s.daemonset.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the DaemonSet. [2] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `guestbook`; `` |
 
 **[1] `k8s.daemonset.annotation.<key>`:** Examples:
 
@@ -393,7 +429,13 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.daemonset.annotation.data` attribute with value `""`.
 
-**[2] `k8s.daemonset.label.<key>`:** Examples:
+**[2] `k8s.daemonset.creation_time`:** Date and time at which the object was created in the K8s API server.
+
+This attribute aligns with the `creationTimestamp` field of the
+[K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+in ISO 8601 (RFC 3339 compatible) format.
+
+**[3] `k8s.daemonset.label.<key>`:** Examples:
 
 - A label `app` with value `guestbook` SHOULD be recorded
   as the `k8s.daemonset.label.app` attribute with value `"guestbook"`.
@@ -426,7 +468,8 @@ successfully terminate.
 | Identity | [`k8s.job.uid`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | Description | [`k8s.job.name`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the Job. | `opentelemetry` |
 | Description | [`k8s.job.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `1`; `` |
-| Description | [`k8s.job.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `ci`; `` |
+| Description | [`k8s.job.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the Job. [2] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.job.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `ci`; `` |
 
 **[1] `k8s.job.annotation.<key>`:** Examples:
 
@@ -435,7 +478,13 @@ successfully terminate.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.job.annotation.data` attribute with value `""`.
 
-**[2] `k8s.job.label.<key>`:** Examples:
+**[2] `k8s.job.creation_time`:** Date and time at which the object was created in the K8s API server.
+
+This attribute aligns with the `creationTimestamp` field of the
+[K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+in ISO 8601 (RFC 3339 compatible) format.
+
+**[3] `k8s.job.label.<key>`:** Examples:
 
 - A label `jobtype` with value `ci` SHOULD be recorded
   as the `k8s.job.label.jobtype` attribute with value `"ci"`.
@@ -467,7 +516,8 @@ A CronJob creates Jobs on a repeating schedule.
 | Identity | [`k8s.cronjob.uid`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | Description | [`k8s.cronjob.name`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the CronJob. | `opentelemetry` |
 | Description | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [1] | `4`; `` |
-| Description | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [2] | `weekly`; `` |
+| Description | [`k8s.cronjob.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the CronJob. [2] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/k8s.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [3] | `weekly`; `` |
 
 **[1] `k8s.cronjob.annotation.<key>`:** Examples:
 
@@ -476,7 +526,13 @@ A CronJob creates Jobs on a repeating schedule.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.cronjob.annotation.data` attribute with value `""`.
 
-**[2] `k8s.cronjob.label.<key>`:** Examples:
+**[2] `k8s.cronjob.creation_time`:** Date and time at which the object was created in the K8s API server.
+
+This attribute aligns with the `creationTimestamp` field of the
+[K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+in ISO 8601 (RFC 3339 compatible) format.
+
+**[3] `k8s.cronjob.label.<key>`:** Examples:
 
 - A label `type` with value `weekly` SHOULD be recorded as the
   `k8s.cronjob.label.type` attribute with value `"weekly"`.
@@ -595,8 +651,9 @@ provisioned by an administrator or dynamically provisioned using StorageClasses.
 | Description | [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the PersistentVolume. | `pv-data-01` |
 | Description | [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 | Description | [`k8s.persistentvolume.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the PersistentVolume, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `kubernetes.io/aws-ebs`; `` |
-| Description | [`k8s.persistentvolume.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the PersistentVolume, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `ssd`; `` |
-| Description | [`k8s.persistentvolume.reclaim_policy`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The reclaim policy of the PersistentVolume. [3] | `Delete`; `Retain`; `Recycle` |
+| Description | [`k8s.persistentvolume.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the PersistentVolume. [2] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.persistentvolume.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the PersistentVolume, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `ssd`; `` |
+| Description | [`k8s.persistentvolume.reclaim_policy`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The reclaim policy of the PersistentVolume. [4] | `Delete`; `Retain`; `Recycle` |
 
 **[1] `k8s.persistentvolume.annotation.<key>`:** Examples:
 
@@ -605,14 +662,20 @@ provisioned by an administrator or dynamically provisioned using StorageClasses.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.persistentvolume.annotation.data` attribute with value `""`.
 
-**[2] `k8s.persistentvolume.label.<key>`:** Examples:
+**[2] `k8s.persistentvolume.creation_time`:** Date and time at which the object was created in the K8s API server.
+
+This attribute aligns with the `creationTimestamp` field of the
+[K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+in ISO 8601 (RFC 3339 compatible) format.
+
+**[3] `k8s.persistentvolume.label.<key>`:** Examples:
 
 - A label `type` with value `ssd` SHOULD be recorded as
   the `k8s.persistentvolume.label.type` attribute with value `"ssd"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.persistentvolume.label.data` attribute with value `""`.
 
-**[3] `k8s.persistentvolume.reclaim_policy`:** This attribute aligns with the `persistentVolumeReclaimPolicy` field of the
+**[4] `k8s.persistentvolume.reclaim_policy`:** This attribute aligns with the `persistentVolumeReclaimPolicy` field of the
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
 
 ---
@@ -652,7 +715,8 @@ to a Pod in that Pods consume node resources and PVCs consume PV resources.
 | Description | [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
 | Description | [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 | Description | [`k8s.persistentvolumeclaim.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the PersistentVolumeClaim, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `kubernetes.io/aws-ebs`; `` |
-| Description | [`k8s.persistentvolumeclaim.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the PersistentVolumeClaim, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `my-app`; `` |
+| Description | [`k8s.persistentvolumeclaim.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the PersistentVolumeClaim. [2] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.persistentvolumeclaim.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the PersistentVolumeClaim, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `my-app`; `` |
 
 **[1] `k8s.persistentvolumeclaim.annotation.<key>`:** Examples:
 
@@ -661,7 +725,13 @@ to a Pod in that Pods consume node resources and PVCs consume PV resources.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.persistentvolumeclaim.annotation.data` attribute with value `""`.
 
-**[2] `k8s.persistentvolumeclaim.label.<key>`:** Examples:
+**[2] `k8s.persistentvolumeclaim.creation_time`:** Date and time at which the object was created in the K8s API server.
+
+This attribute aligns with the `creationTimestamp` field of the
+[K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+in ISO 8601 (RFC 3339 compatible) format.
+
+**[3] `k8s.persistentvolumeclaim.label.<key>`:** Examples:
 
 - A label `app` with value `my-app` SHOULD be recorded as
   the `k8s.persistentvolumeclaim.label.app` attribute with value `"my-app"`.
