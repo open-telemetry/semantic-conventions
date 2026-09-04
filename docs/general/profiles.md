@@ -42,6 +42,7 @@ They may be used in any Profiles record they apply to.
 | --- | --- | --- |
 | `beam` | [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cpython` | [Python](https://wikipedia.org/wiki/Python_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cuda` | [CUDA](https://de.wikipedia.org/wiki/CUDA) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `dotnet` | [.NET](https://wikipedia.org/wiki/.NET) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `go` | [Go](https://wikipedia.org/wiki/Go_(programming_language)), | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jvm` | [JVM](https://wikipedia.org/wiki/Java_virtual_machine) | ![Development](https://img.shields.io/badge/-development-blue) |

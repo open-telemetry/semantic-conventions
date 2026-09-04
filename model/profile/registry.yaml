@@ -83,3 +83,8 @@ groups:
                 [LuaJIT](https://en.wikipedia.org/wiki/LuaJIT)
               value: "luajit"
               stability: development
+            - id: cuda
+              brief: >
+                [CUDA](https://de.wikipedia.org/wiki/CUDA)
+              value: "cuda"
+              stability: development
