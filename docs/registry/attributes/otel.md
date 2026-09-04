@@ -65,7 +65,7 @@ Attributes used for OpenTelemetry component self-monitoring
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
 The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
