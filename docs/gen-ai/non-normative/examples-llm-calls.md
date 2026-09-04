@@ -1,3 +1,7 @@
+---
+title: "Moved: Generative AI semantic conventions"
+---
+
 # Moved: Generative AI semantic conventions
 
 > [!IMPORTANT]

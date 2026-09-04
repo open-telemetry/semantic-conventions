@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for Microsoft Azure Cosmos DB client operations
 linkTitle: Cosmos DB
---->
+---
 
 # Semantic conventions for Microsoft Azure Cosmos DB client operations
 

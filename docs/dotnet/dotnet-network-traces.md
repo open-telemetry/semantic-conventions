@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic Conventions for network spans emitted by .NET
 linkTitle: HTTP request and connection spans
---->
+---
 
 # Semantic Conventions for network spans emitted by .NET
 
