@@ -386,7 +386,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.paging.faults` | Counter | `{fault}` | Pod memory paging faults. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.paging.faults` | Counter | `{fault}` | Pod memory paging faults. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** Cumulative number of major/minor page faults.
 This metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the Kubelet's stats API.
@@ -1164,7 +1164,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.paging.faults` | Counter | `{fault}` | Node memory paging faults. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
+| `k8s.node.paging.faults` | Counter | `{fault}` | Node memory paging faults. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
 
 **[1]:** Cumulative number of major/minor page faults.
 This metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) fields of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats) of the Kubelet's stats API.

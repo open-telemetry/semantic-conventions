@@ -185,7 +185,7 @@ groups:
   - id: metric.container.paging.faults
     type: metric
     metric_name: container.paging.faults
-    stability: development
+    stability: release_candidate
     annotations:
       code_generation:
         metric_value_type: int
