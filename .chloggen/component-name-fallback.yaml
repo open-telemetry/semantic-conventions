@@ -1,0 +1,6 @@
+change_type: enhancement
+component: otel
+note: >
+  Recommend `<otel.component.type>/<instance-counter>` as the format for
+  automatically assigned `otel.component.name` values.
+issues: [4077]
