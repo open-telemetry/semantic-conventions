@@ -1,0 +1,7 @@
+change_type: breaking
+
+component: db
+
+note: Rename `db.client.connection.max` to `db.client.connection.limit`
+
+issues: [4073]
