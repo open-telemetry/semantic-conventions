@@ -40,7 +40,7 @@
 
 **type:** `process.executable`
 
-**Description:** The executable of a process.
+**Description:** The executable running within a process and is designed to be common across processes.
 
 **Attributes:**
 
