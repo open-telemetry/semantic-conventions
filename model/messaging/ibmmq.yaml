@@ -7,8 +7,14 @@ span_refinements:
     stability: development
     brief: Describes a producer sending one or more messages to IBM MQ.
     attributes:
+      - ref: messaging.system
+        note: MUST be set to `"ibmmq"`.
+        examples: ['ibmmq']
+      - ref: error.type
+        examples: ['MQRC_Q_FULL', 'MQRC_NOT_AUTHORIZED', 'MQRC_CONNECTION_BROKEN']
+      - ref: messaging.destination.name
+        examples: ['MyQueue']
       - ref: messaging.ibmmq.queue_manager.id
-        requirement_level: opt_in
         note: >
           The queue manager that accepted the message, which is the queue manager the client is
           connected to. When the destination is a remote queue definition or a clustered queue,
@@ -20,8 +26,14 @@ span_refinements:
     stability: development
     brief: Describes a consumer receiving one or more messages from IBM MQ (pull-based).
     attributes:
+      - ref: messaging.system
+        note: MUST be set to `"ibmmq"`.
+        examples: ['ibmmq']
+      - ref: error.type
+        examples: ['MQRC_Q_FULL', 'MQRC_NOT_AUTHORIZED', 'MQRC_CONNECTION_BROKEN']
+      - ref: messaging.destination.name
+        examples: ['MyQueue']
       - ref: messaging.ibmmq.queue_manager.id
-        requirement_level: opt_in
         note: &ibmmq_qmid_consumer_note >
           The queue manager the message was retrieved from. A get is always local to the queue
           manager the client is connected to, so this unambiguously identifies the queue manager
@@ -32,6 +44,12 @@ span_refinements:
     stability: development
     brief: Describes a consumer processing one or more messages from IBM MQ (push-based).
     attributes:
+      - ref: messaging.system
+        note: MUST be set to `"ibmmq"`.
+        examples: ['ibmmq']
+      - ref: error.type
+        examples: ['MQRC_Q_FULL', 'MQRC_NOT_AUTHORIZED', 'MQRC_CONNECTION_BROKEN']
+      - ref: messaging.destination.name
+        examples: ['MyQueue']
       - ref: messaging.ibmmq.queue_manager.id
-        requirement_level: opt_in
         note: *ibmmq_qmid_consumer_note

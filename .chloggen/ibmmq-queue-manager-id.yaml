@@ -1,7 +1,8 @@
 change_type: enhancement
 component: messaging
 note: >
-  Add `messaging.ibmmq.queue_manager.id` (QMID) and reference it as `opt_in` on IBM MQ producer,
+  Add `messaging.ibmmq.queue_manager.id` (QMID) and reference it on the IBM MQ producer,
   receive and process spans. Queue manager names are not globally unique in federated
   architectures, so the QMID is needed to identify a queue manager unambiguously.
-issues: [4014]
+# TODO replace with the tracking issue number once the new-conventions issue is filed.
+issues: [0]

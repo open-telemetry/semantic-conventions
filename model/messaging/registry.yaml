@@ -212,6 +212,10 @@ groups:
               value: 'pulsar'
               brief: 'Apache Pulsar'
               stability: development
+            - id: ibmmq
+              value: 'ibmmq'
+              brief: 'IBM MQ'
+              stability: development
         stability: development
   - id: registry.messaging.kafka
     type: attribute_group
@@ -440,12 +444,13 @@ groups:
         type: string
         stability: development
         brief: >
-          The intrinsic Queue Manager Identifier (QMID), a queue manager attribute generated
+          The Queue Manager Identifier (QMID), a queue manager attribute generated
           by IBM MQ when the queue manager is created, formatted as
-          `<QUEUE_MANAGER_NAME>_YYYY-MM-DD_HH.MM.SS`.
+          `<QUEUE_MANAGER_NAME>_YYYY-MM-DD_HH.MM.SS`. The value reported MUST have the
+          trailing padding removed.
         note: >
           Queue manager *names* are not globally unique in federated architectures, so the QMID
-          is required to identify a queue manager unambiguously. Obtained from the
+          is required to identify a queue manager unambiguously. The value is obtained from the
           `MQCA_Q_MGR_IDENTIFIER` queue manager attribute, which is stored as a fixed width MQI
-          character field. The value reported MUST have the trailing padding removed.
+          character field.
         examples: ['QM1_2026-08-10_23.23.00']

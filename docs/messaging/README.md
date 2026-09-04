@@ -52,5 +52,6 @@ Technology specific semantic conventions are defined for the following messaging
 * [Google Cloud Pub/Sub](gcp-pubsub.md): Semantic Conventions for *Google Cloud Pub/Sub*.
 * [Azure Service Bus](azure-messaging.md#azure-service-bus): Semantic Conventions for *Azure Service Bus*.
 * [Azure Event Hubs](azure-messaging.md#azure-event-hubs): Semantic Conventions for *Azure Event Hubs*.
+* [IBM MQ](ibmmq.md): Semantic Conventions for *IBM MQ*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
