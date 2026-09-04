@@ -877,6 +877,42 @@ groups:
       - ref: network.interface.name
       - ref: network.io.direction
 
+  # k8s.node.pid.* metrics
+  - id: metric.k8s.node.pid.usage
+    type: metric
+    metric_name: k8s.node.pid.usage
+    stability: development
+    brief: "Total number of existing processes and threads on the node."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{pid}"
+    entity_associations:
+      - k8s.node
+    note: |
+      Derived from the Kubelet Summary API
+      ([RlimitStats.NumOfRunningProcesses](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#RlimitStats))
+      field of the [NodeStats.Rlimit](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats),
+      which reads the total count of scheduling entities (threads/processes across all states) from `/proc/loadavg`.
+  - id: metric.k8s.node.pid.limit
+    type: metric
+    metric_name: k8s.node.pid.limit
+    stability: development
+    brief: "Total number of processes/threads allowed by the operating system on the node."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{pid}"
+    entity_associations:
+      - k8s.node
+    note: |
+      Derived from the Kubelet Summary API
+      ([RlimitStats.MaxPID](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#RlimitStats))
+      field of the [NodeStats.Rlimit](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats),
+      representing the maximum PID limit (`pid_max`).
+
   # k8s.deployment.* metrics
   - id: metric.k8s.deployment.pod.desired
     type: metric
