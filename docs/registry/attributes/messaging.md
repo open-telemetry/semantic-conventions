@@ -137,8 +137,14 @@ This group describes attributes specific to RabbitMQ.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
+| <a id="messaging-rabbitmq-cluster-name" href="#messaging-rabbitmq-cluster-name">`messaging.rabbitmq.cluster.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The RabbitMQ cluster name, obtained from the broker metadata exposed through the RabbitMQ client API. [12] | `my-rabbitmq-cluster` |
 | <a id="messaging-rabbitmq-destination-routing-key" href="#messaging-rabbitmq-destination-routing-key">`messaging.rabbitmq.destination.routing_key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | RabbitMQ message routing key. | `myKey` |
 | <a id="messaging-rabbitmq-message-delivery-tag" href="#messaging-rabbitmq-message-delivery-tag">`messaging.rabbitmq.message.delivery_tag`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | RabbitMQ message delivery tag | `123` |
+| <a id="messaging-rabbitmq-vhost-name" href="#messaging-rabbitmq-vhost-name">`messaging.rabbitmq.vhost.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the RabbitMQ virtual host that the messaging operation is scoped to. [13] | `/`; `my-vhost` |
+
+**[12] `messaging.rabbitmq.cluster.name`:** The cluster name is a user-configured identifier reported by the RabbitMQ broker (see `rabbitmqctl set_cluster_name`). It identifies the cluster independently of the individual nodes the client is configured to connect to, and remains stable even if node hostnames, IP addresses, or ports change.
+
+**[13] `messaging.rabbitmq.vhost.name`:** RabbitMQ virtual hosts (vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
 
 ## RocketMQ Attributes
 
