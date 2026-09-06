@@ -1,0 +1,4 @@
+change_type: enhancement
+component: exceptions
+note: Indicate that span status description may contain sensitive information when it is set to the exception message.
+issues: [2967]

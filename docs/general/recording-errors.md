@@ -57,6 +57,13 @@ When the operation ends with an error, instrumentation:
   When the operation fails with an exception, the span status description SHOULD be set to
   the exception message.
 
+> [!WARNING]
+>
+> Like [`exception.message`](/docs/registry/attributes/exception.md#exception-message),
+> the span status description may contain sensitive information. Exception messages
+> frequently include the input value that caused the failure. Additional processing
+> in the telemetry pipeline may be necessary to remove sensitive information.
+
 Refer to the [recording exceptions](#recording-exceptions) on capturing exception
 details.
 
