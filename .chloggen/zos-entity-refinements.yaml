@@ -1,0 +1,4 @@
+change_type: enhancement
+component: zos
+note: Migrate z/OS entities to schema v2 and add z/OS entity refinements.
+issues: [3808]
