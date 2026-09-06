@@ -47,7 +47,7 @@ When not to define events:
 - For unstructured diagnostic messages that are not intended to be queried as
   named events - emit regular log records instead. These records are not modeled
   as events, but can still follow
-  [Semantic conventions for logs](/docs/general/logs.md).
+  [Semantic conventions for logs](/docs/registry/attributes/log.md).
 
 Events often complement span definitions. Events can be emitted inside or
 outside an active trace context.

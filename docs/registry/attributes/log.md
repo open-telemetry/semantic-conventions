@@ -15,7 +15,7 @@ This document defines log attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` |
+| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream the log record was emitted to. | `stdout`; `stderr` |
 
 ---
 
@@ -28,16 +28,16 @@ This document defines log attributes
 
 ## Log File Attributes
 
-Attributes for a file to which log was emitted.
+Attributes for a file to which the log record was emitted.
 
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="log-file-name" href="#log-file-name">`log.file.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file. | `audit.log` |
-| <a id="log-file-name-resolved" href="#log-file-name-resolved">`log.file.name_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file, with symlinks resolved. | `uuid.log` |
-| <a id="log-file-path" href="#log-file-path">`log.file.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file. | `/var/log/mysql/audit.log` |
-| <a id="log-file-path-resolved" href="#log-file-path-resolved">`log.file.path_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` |
+| <a id="log-file-name" href="#log-file-name">`log.file.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file to which the log record was emitted. | `audit.log` |
+| <a id="log-file-name-resolved" href="#log-file-name-resolved">`log.file.name_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file to which the log record was emitted, with symlinks resolved. | `uuid.log` |
+| <a id="log-file-path" href="#log-file-path">`log.file.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file to which the log record was emitted. | `/var/log/mysql/audit.log` |
+| <a id="log-file-path-resolved" href="#log-file-path-resolved">`log.file.path_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file to which the log record was emitted, with symlinks resolved. | `/var/lib/docker/uuid.log` |
 
 ## Log Record Attributes
 
