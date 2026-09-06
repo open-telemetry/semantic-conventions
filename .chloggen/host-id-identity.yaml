@@ -1,0 +1,4 @@
+change_type: enhancement
+component: host
+note: Define `host.id` as identifying for the `host` entity.
+issues: [3808]
