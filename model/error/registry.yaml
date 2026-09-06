@@ -7,6 +7,8 @@ groups:
     attributes:
       - id: error.type
         stability: stable
+        annotations:
+          enum_fallback: other
         brief: >
           Describes a class of error the operation ended with.
         type:
