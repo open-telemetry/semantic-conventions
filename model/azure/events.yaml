@@ -1,8 +1,8 @@
-groups:
-  - id: event.azure.resource.log
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.26.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+events:
+  - name: azure.resource.log
     stability: development
-    type: event
-    name: azure.resource.log
     brief: >
       Describes Azure Resource Log event, see
       [Azure Resource Log Top-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema)
@@ -12,80 +12,3 @@ groups:
       - ref: cloud.resource_id
         brief: The [Fully Qualified Azure Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) the log is emitted for.
         note: ""
-    body:
-      id: azure.resource.log
-      requirement_level: recommended
-      stability: development
-      type: map
-      fields:
-        - id: category
-          type: string
-          stability: development
-          brief: "The Azure category of the log entry."
-          requirement_level: recommended
-          examples: ["AuditEvent", "GatewayLogs", "ApplicationGatewayAccessLog"]
-        - id: correlation.id
-          type: string
-          requirement_level: recommended
-          stability: development
-          brief: "The correlation ID of the log entry."
-          examples: ["607964b6-41a5-4e24-a5db-db7aab3b9b34"]
-        - id: duration
-          type: int
-          stability: development
-          requirement_level: recommended
-          brief: "The duration of the operations in milliseconds."
-          examples: [1000]
-        - id: identity
-          type: undefined
-          stability: development
-          brief: >
-            "A JSON blob that describes the identity of the user or application that performed the operation."
-          note: |
-            Typically, this field includes the authorization and claims or JWT token from Active Directory.
-
-            > [!Warning]
-            > This field contains sensitive (PII) information.
-          requirement_level: opt_in
-        - id: operation.name
-          type: string
-          stability: development
-          requirement_level: recommended
-          brief: "The name of the operation."
-          examples: ["SecretGet", "Microsoft.ApiManagement/GatewayLogs", "ApplicationGatewayAccess"]
-        - id: operation.version
-          type: string
-          stability: development
-          requirement_level: recommended
-          brief: "The version of the operation."
-          examples: ["1.0"]
-        - id: properties
-          type: undefined
-          requirement_level: recommended
-          stability: development
-          brief: The properties provided in the Azure Resource Log.
-        - id: result.type
-          type: string
-          stability: development
-          requirement_level: recommended
-          brief: The status associated with the logged event.
-          examples: ["Succeeded", "Failed", "Started"]
-        - id: result.signature
-          type: string
-          stability: development
-          requirement_level: recommended
-          brief: The substatus of associated with the logged event.
-          examples: ["OK"]
-        - id: result.description
-          type: string
-          stability: development
-          requirement_level: recommended
-          brief: "The description of the result."
-          examples: ["The operation was successful", "The operation failed"]
-        - id: tenant.id
-          type: string
-          stability: development
-          brief: "The tenant ID of the Active Directory tenant that this event is tied to."
-          requirement_level:
-            conditionally_required: "if the event is tied to an Active Directory tenant."
-          examples: ["00000000-0000-0000-0000-000000000000"]
