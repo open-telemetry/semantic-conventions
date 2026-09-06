@@ -36,7 +36,7 @@ The following semantic conventions surrounding metrics are defined:
   * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
 * [OTel SDK Telemetry](/docs/otel/sdk-metrics.md): Metrics emitted by the OpenTelemetry SDK components.
 
-Apart from semantic conventions for metrics, [traces](trace.md), [logs](/docs/registry/attributes/log.md), and [events](events.md), OpenTelemetry also
+Apart from semantic conventions for metrics, [traces](trace.md), and [events](events.md), OpenTelemetry also
 defines the concept of overarching [Resources](https://opentelemetry.io/docs/specs/otel/resource/sdk/) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
