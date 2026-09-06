@@ -3,4 +3,4 @@ component: network
 note: >
   Add public `network.peer` and `network.local` attribute groups, replacing the
   internal `network-core` group.
-issues: [9999]
+issues: [4084]
