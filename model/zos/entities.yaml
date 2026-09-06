@@ -37,6 +37,7 @@ entity_refinements:
         brief: >
           Unique host ID. On z/OS, SHOULD be the concatenation of the sysplex name
           and the SMF system identifier (SMFID), separated by a dash.
+        note: ''
         examples: ['SYSPLEX1-SYS1']
 
   # Refines the generic 'os' entity with z/OS-specific notes for os.type,
