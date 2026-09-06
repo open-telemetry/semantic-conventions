@@ -672,29 +672,6 @@ groups:
           - Triple: [Request attachments](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#322-requests).
             Values associated with keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
           - Dubbo2: None (the protocol does not support request headers).
-      - ref: rpc.response.header
-        requirement_level: opt_in
-        brief: &dubbo_response_header_brief Dubbo Triple response headers, sent before the response payload.
-        note: &dubbo_response_header_note |
-          `<key>` is the normalized header name (lowercase), the value is the header values.
-
-          Instrumentations SHOULD require an explicit configuration of which headers are to be
-          captured. Capturing all of them can be a security risk - explicit configuration helps
-          avoid leaking sensitive information.
-
-          For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
-          as the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`.
-
-          The attribute value MUST consist of either multiple values as an array of strings or a
-          single-item array containing a possibly comma-concatenated string, depending on the way
-          the RPC library provides access to headers.
-
-          Depending on the protocol, this attribute SHOULD capture:
-
-          - Triple: [Response headers](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#323-responses), not response attachments - those go to
-            `rpc.response.trailer.<key>`. Values associated with keys ending in
-            [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
-          - Dubbo2: None (the protocol does not support response headers).
       - ref: rpc.response.trailer
         requirement_level: opt_in
         brief: &dubbo_response_trailer_brief Dubbo response attachments.
@@ -768,10 +745,6 @@ groups:
         requirement_level: opt_in
         brief: *dubbo_request_header_brief
         note: *dubbo_request_header_note
-      - ref: rpc.response.header
-        requirement_level: opt_in
-        brief: *dubbo_response_header_brief
-        note: *dubbo_response_header_note
       - ref: rpc.response.trailer
         requirement_level: opt_in
         brief: *dubbo_response_trailer_brief
