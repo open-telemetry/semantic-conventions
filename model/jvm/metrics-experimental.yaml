@@ -126,9 +126,9 @@ groups:
     instrument: updowncounter
     unit: "{thread}"
 
-  - id: metric.jvm.executor.thread.max
+  - id: metric.jvm.executor.thread.limit
     type: metric
-    metric_name: jvm.executor.thread.max
+    metric_name: jvm.executor.thread.limit
     annotations:
       code_generation:
         metric_value_type: int
@@ -180,6 +180,11 @@ groups:
     stability: development
     extends: attributes.jvm.executor
     brief: "The number of tasks completed by the executor."
+    note: >
+      A task SHOULD be counted as completed when the executor has finished processing it,
+      regardless of whether it returns normally, terminates with an exception, or is canceled.
+      Cancellation during processing does not complete the task until processing ends. A task
+      rejected or removed before processing begins SHOULD NOT be counted.
     instrument: counter
     unit: "{task}"
 
