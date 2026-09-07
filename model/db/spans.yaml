@@ -328,7 +328,8 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application
           without attempting to do any case normalization.
 
-          For batch operations, if the individual operations are known to have the same collection name
+          For batch operations, if the individual operations would all have the same
+          `db.collection.name` when executed as non-batch operations,
           then that collection name SHOULD be used.
       - ref: cassandra.query.idempotent
       - ref: cassandra.speculative_execution.count
@@ -381,9 +382,10 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application
           without attempting to do any case normalization.
 
-          For batch operations, if the individual operations are known to have the same operation name
-          then that operation name SHOULD be used prepended by `BATCH `,
-          otherwise `db.operation.name` SHOULD be `BATCH`.
+          For batch operations, if the individual operations would all have the same
+          `db.operation.name` when executed as non-batch operations,
+          then that operation name SHOULD be used prepended by `BATCH `.
+          Otherwise, `db.operation.name` SHOULD be `BATCH`.
         requirement_level: required
       - ref: db.response.status_code
         brief: >
@@ -542,7 +544,8 @@ groups:
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-          For batch operations, if the individual operations are known to have the same collection name
+          For batch operations, if the individual operations would all have the same
+          `db.collection.name` when executed as non-batch operations,
           then that collection name SHOULD be used.
         requirement_level: required
       - ref: db.namespace
@@ -582,9 +585,10 @@ groups:
           The `db.operation.name` SHOULD match the endpoint identifier provided in the request
           (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
 
-          For batch operations, if the individual operations are known to have the same operation name
-          then that operation name SHOULD be used prepended by `bulk `,
-          otherwise `db.operation.name` SHOULD be `bulk`.
+          For batch operations, if the individual operations would all have the same
+          `db.operation.name` when executed as non-batch operations,
+          then that operation name SHOULD be used prepended by `bulk `.
+          Otherwise, `db.operation.name` SHOULD be `bulk`.
         examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
       - ref: url.full
         sampling_relevant: true

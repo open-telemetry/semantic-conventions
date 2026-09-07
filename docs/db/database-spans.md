@@ -9,6 +9,9 @@ linkTitle: Spans
 <!-- START doctoc -->
 
 - [Name](#name)
+- [Database server address](#database-server-address)
+  - [Database server endpoints](#database-server-endpoints)
+  - [Service discovery](#service-discovery)
 - [Span definition](#span-definition)
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
 - [Database client span duration](#database-client-span-duration)
@@ -48,7 +51,7 @@ linkTitle: Spans
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://opentelemetry.io/docs/specs/otel/trace/api/#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
@@ -69,11 +72,86 @@ and SHOULD adhere to one of the following values, provided they are accessible:
 - `db.collection.name` SHOULD be used for operations on a specific database collection.
 - `db.stored_procedure.name` SHOULD be used for operations on a specific stored procedure.
 - `db.namespace` SHOULD be used for operations on a specific database namespace.
-- `server.address:server.port` SHOULD be used for other operations not targeting any specific collection(s),
-  stored procedure(s), or namespace(s).
+- `server.address` SHOULD be used for operations without a specific collection, stored procedure,
+  or namespace. If `server.port` is set, instrumentation SHOULD append it to `server.address`
+  using `:` as the separator.
 
 If a corresponding `{target}` value is not available for a specific operation, the instrumentation SHOULD omit the `{target}`.
 For example, for an operation describing SQL query on an anonymous table like `SELECT * FROM (SELECT * FROM table) t`, span name should be `SELECT`.
+
+## Database server address
+
+Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
+when the client discovers or selects different database servers.
+
+When the client connects through an intermediary, `server.address` SHOULD identify the configured database
+address behind the intermediary, if available.
+
+Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
+configuration.
+
+Instrumentation SHOULD record the server contacted for an operation in `network.peer.address` and
+`network.peer.port` when available.
+
+How instrumentation records `server.address` and `server.port` depends on whether the database client is
+configured with database server endpoints or uses service discovery.
+
+### Database server endpoints
+
+When the client is configured with one or more database server endpoints, `server.address` SHOULD identify
+those endpoints. This includes seed and contact-point lists, even if the client later discovers additional
+topology from them.
+
+A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
+hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
+square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
+perform reverse DNS lookups for IP addresses.
+
+Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
+endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
+carry no semantic meaning.
+
+After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
+the first five endpoints from the resulting list in `server.address`.
+
+`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
+an unambiguous single path segment.
+
+Record port information for database server endpoints as follows:
+
+- If all endpoints use the default port, ports SHOULD be omitted from `server.address` and `server.port` SHOULD
+  NOT be set.
+- If the client is configured with a single endpoint that uses a non-default port, the port SHOULD be omitted
+  from `server.address` and SHOULD be recorded in `server.port`.
+- If the client is configured with multiple endpoints and any endpoint uses a non-default port, each endpoint's
+  port SHOULD be included in `server.address` and `server.port` SHOULD NOT be set.
+
+Examples:
+
+| Client configuration | `server.address` | `server.port` |
+| --- | --- | --- |
+| Single server on a non-default port: `db.example.com:15432` | `db.example.com` | `15432` |
+| Multiple servers using the default port: `db-a.example.com,db-b.example.com` | `db-a.example.com,db-b.example.com` | Not set |
+| Multiple servers using a shared port: `db-a.example.com,db-b.example.com` with port `6432` | `db-a.example.com:6432,db-b.example.com:6432` | Not set |
+| Multiple servers using different ports: `db-a.example.com:5432,db-b.example.com:6432` | `db-a.example.com:5432,db-b.example.com:6432` | Not set |
+
+### Service discovery
+
+For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
+configuration. Depending on the client, this value identifies either a logical service or the discovery
+service used to obtain database server endpoints. Ports for configured discovery service endpoints SHOULD
+remain part of `server.address`. `server.port` SHOULD NOT be set.
+
+Query and fragment components SHOULD be omitted unless they are part of the service identity.
+
+Examples:
+
+| Client configuration | `server.address` | `server.port` |
+| --- | --- | --- |
+| Service discovery through DNS SRV: `mongodb+srv://cluster.example.com` | `mongodb+srv://cluster.example.com` | Not set |
+| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/orders` | `zookeeper://registry.example.com:2181/orders` | Not set |
+| Service discovery through Redis Sentinel: `sentinel-a.example.com:26379,sentinel-b.example.com:26379/mymaster` | `sentinel-a.example.com:26379,sentinel-b.example.com:26379/mymaster` | Not set |
 
 ## Span definition
 
@@ -126,7 +204,7 @@ classify as errors.
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [17] | string | The name of a stored procedure within the database. [18] | `GetCustomer` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this database system. | string | Peer address of the database node where the operation was performed. [19] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [21] | `someval`; `55` |
 | [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [22] | `10`; `30`; `1000` |
 
@@ -141,8 +219,9 @@ The collection name SHOULD NOT be extracted from `db.query.text`,
 when the database system supports query text with multiple collections
 in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same
-collection name then that collection name SHOULD be used.
+For batch operations, if the individual operations would all have the same
+`db.collection.name` when executed as non-batch operations,
+then that collection name SHOULD be used.
 
 **[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
@@ -160,9 +239,10 @@ in non-batch operations.
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.
 
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations would all have the same
+`db.operation.name` when executed as non-batch operations,
+then that operation name SHOULD be used prepended by `BATCH `.
+Otherwise, `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[7] `db.response.status_code`:** If the operation failed and status code is available.
@@ -174,9 +254,9 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[10] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[10] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[11] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[12] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
 or more database operations explicitly submitted as separate operations in a single
@@ -213,16 +293,17 @@ that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
-For batch operations, if the individual operations are known to have the same query summary
-then that query summary SHOULD be used prepended by `BATCH `,
-otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations would all have the same
+`db.query.summary` when executed as non-batch operations,
+then that query summary SHOULD be used prepended by `BATCH `.
+Otherwise, `db.query.summary` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[15] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
 
 **[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
-For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 **[17] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
@@ -230,13 +311,22 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 **[18] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-For batch operations, if the individual operations are known to have the same
-stored procedure name then that stored procedure name SHOULD be used.
+For batch operations, if the individual operations would all have the same
+`db.stored_procedure.name` when executed as non-batch operations,
+then that stored procedure name SHOULD be used.
 
 **[19] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[20] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[20] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
+examples.
 
 **[21] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
@@ -575,4 +665,4 @@ More specific Semantic Conventions are defined for the following database techno
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

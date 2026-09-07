@@ -137,12 +137,16 @@ normalized-link-check:
 	fi
 
 .PHONY: markdown-link-check
-markdown-link-check: normalized-link-check
+markdown-link-check: normalized-link-check spec-link-redirect-check
 	.github/scripts/link-check.sh $(FILES)
 
 .PHONY: markdown-link-check-local-only
 markdown-link-check-local-only: normalized-link-check
 	.github/scripts/link-check.sh --local-links-only $(FILES)
+
+.PHONY: spec-link-redirect-check
+spec-link-redirect-check:
+	.github/scripts/link-check.sh --config .github/scripts/lychee-spec-links-config.toml $(FILES)
 
 # This target runs doctoc on all files that contain
 # a comment <!-- START doctoc -->.
@@ -390,4 +394,3 @@ areas-table-check:
 
 .PHONY: generate-all
 generate-all: table-generation registry-generation areas-table-generation generate-gh-issue-templates
-

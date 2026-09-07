@@ -1,0 +1,4 @@
+change_type: breaking
+component: rpc
+note: Rename `rpc.response.status_code` to `rpc.status_code`.
+issues: [3870]

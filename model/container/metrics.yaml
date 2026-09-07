@@ -6,13 +6,21 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     entity_associations:
       - container
     brief: "The time the container has been running."
-    note: |
+    note: >
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
+
+      In K8s environments, this metric can be derived from Kubelet's stats API and specifically from the
+      [ContainerStats.StartTime](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L161)
+      field, where `StartTime` represents the container creation time as
+      [noted in the Kubelet source](https://github.com/kubernetes/kubernetes/blob/v1.36.3/pkg/kubelet/stats/cri_stats_provider.go#L776).
+      This value resets on every container restart and aligns with
+      [ContainerStateRunning.startedAt](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#ContainerStateRunning)
+      from the K8s API.
     instrument: gauge
     unit: "s"
   # container.cpu.* metrics and attribute group
@@ -245,7 +253,7 @@ groups:
   - id: metric.container.filesystem.available
     type: metric
     metric_name: container.filesystem.available
-    stability: development
+    stability: release_candidate
     brief: "Container filesystem available bytes."
     instrument: updowncounter
     unit: "By"
@@ -254,15 +262,17 @@ groups:
         metric_value_type: int
     entity_associations:
       - container
-    note: |
+    note: >
+      Available filesystem space for the container's `rootfs`.
+
       In K8s, this metric is derived from the
-      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
-      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#ContainerStats)
       of the Kubelet's stats API.
   - id: metric.container.filesystem.capacity
     type: metric
     metric_name: container.filesystem.capacity
-    stability: development
+    stability: release_candidate
     brief: "Container filesystem capacity."
     instrument: updowncounter
     unit: "By"
@@ -271,15 +281,21 @@ groups:
         metric_value_type: int
     entity_associations:
       - container
-    note: |
+    note: >
+      Total filesystem capacity for the container's `rootfs`.
+
+      In general, this metric can be derived from
+      [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics)
+      and specifically the `container_fs_limit_bytes` metric for the container's `rootfs` device.
+
       In K8s, this metric is derived from the
-      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
-      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#ContainerStats)
       of the Kubelet's stats API.
   - id: metric.container.filesystem.usage
     type: metric
     metric_name: container.filesystem.usage
-    stability: development
+    stability: release_candidate
     brief: "Container filesystem usage."
     instrument: updowncounter
     unit: "By"
@@ -288,10 +304,18 @@ groups:
         metric_value_type: int
     entity_associations:
       - container
-    note: |
-      This may not equal capacity - available.
+    note: >
+      Filesystem space used by the container's `rootfs`.
+
+      In general, this metric can be derived from
+      [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics)
+      and specifically the `container_fs_usage_bytes` metric for the container's `rootfs` device.
 
       In K8s, this metric is derived from the
-      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
-      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#ContainerStats)
       of the Kubelet's stats API.
+
+      Capacity and available are reported for
+      the backing filesystem, which may be shared with other workloads; therefore,
+      usage may not equal `capacity - available`.

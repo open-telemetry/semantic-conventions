@@ -37,8 +37,9 @@ The collection name SHOULD NOT be extracted from `db.query.text`,
 when the database system supports query text with multiple collections
 in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same
-collection name then that collection name SHOULD be used.
+For batch operations, if the individual operations would all have the same
+`db.collection.name` when executed as non-batch operations,
+then that collection name SHOULD be used.
 
 **[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
@@ -77,9 +78,10 @@ in non-batch operations.
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.
 
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations would all have the same
+`db.operation.name` when executed as non-batch operations,
+then that operation name SHOULD be used prepended by `BATCH `.
+Otherwise, `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[5] `db.operation.parameter.<key>`:** For example, a client-side maximum number of rows to read from the database
@@ -122,13 +124,14 @@ that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
-For batch operations, if the individual operations are known to have the same query summary
-then that query summary SHOULD be used prepended by `BATCH `,
-otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations would all have the same
+`db.query.summary` when executed as non-batch operations,
+then that query summary SHOULD be used prepended by `BATCH `.
+Otherwise, `db.query.summary` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[8] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
-For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 **[9] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
@@ -137,8 +140,9 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 **[10] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-For batch operations, if the individual operations are known to have the same
-stored procedure name then that stored procedure name SHOULD be used.
+For batch operations, if the individual operations would all have the same
+`db.stored_procedure.name` when executed as non-batch operations,
+then that stored procedure name SHOULD be used.
 
 **[11] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 

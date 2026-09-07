@@ -1,0 +1,9 @@
+change_type: enhancement
+
+component: k8s
+
+note: Promote `k8s.pod.network.io`, `k8s.pod.network.errors`, `k8s.node.network.io`, and `k8s.node.network.errors` metrics to `release_candidate`
+
+issues: [3946]
+
+subtext:

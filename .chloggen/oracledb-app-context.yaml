@@ -1,0 +1,7 @@
+change_type: enhancement
+component: db
+note: Add application context propagation to Oracle DB via piggybacking
+issues: [3863]
+subtext: |
+  Also recommends driver-provided APIs for updating `V$SESSION.ACTION`
+  instead of issuing SQL or PL/SQL directly.

@@ -12,5 +12,5 @@ Semantic conventions are defined for the following signals:
 
 * [Events](azure-events.md)
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
 [AzureResourceSchema]: https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema

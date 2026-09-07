@@ -10,4 +10,4 @@ Semantic conventions for NFS are defined for the following signals:
 
 * [NFS Metrics](nfs-metrics.md)
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

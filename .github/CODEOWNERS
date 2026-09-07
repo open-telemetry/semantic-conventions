@@ -47,7 +47,7 @@
 /docs/url/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/http/                           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/client/                         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/network/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
+/model/network/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers @open-telemetry/semconv-network-approvers
 /model/server/                         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/url/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/user-agent/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
@@ -113,13 +113,19 @@
 
 
 # Security semantic conventions
-/docs/dns/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
-/model/dns/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+/docs/dns/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers @open-telemetry/semconv-network-approvers
+/model/dns/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers @open-telemetry/semconv-network-approvers
 /model/file/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 # /model/network/                 is defined in HTTP section
 # /model/process/                 is defined in system section
 /model/tls/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 /model/user/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+
+# Network semantic conventions
+# /docs/dns/, /model/dns/         are defined in the Security section
+# /model/network/                 is defined in the HTTP section
+/model/source/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-network-approvers
+/model/destination/               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-network-approvers
 
 # CI/CD semantic conventions
 /docs/cicd/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
@@ -155,8 +161,8 @@
 /model/pprof/                      @open-telemetry/specs-semconv-approvers @open-telemetry/profiling-approvers
 
 # SDK health semantic conventions
-/docs/otel/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers
-/model/otel/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers
+/docs/otel/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers @open-telemetry/specs-approvers
+/model/otel/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers @open-telemetry/specs-approvers
 
 # Tooling
 /policies/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
@@ -192,7 +198,7 @@
 /model/oracle-cloud               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-oracle-cloud-approvers
 
 # JavaScript semantic conventions
-/model/nodejs                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
-/model/v8js                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
-/docs/runtime/v8js-metrics.md     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
-/docs/runtime/nodejs-metrics.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
+/model/nodejs                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approvers
+/model/v8js                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approvers
+/docs/runtime/v8js-metrics.md     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approvers
+/docs/runtime/nodejs-metrics.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approvers
