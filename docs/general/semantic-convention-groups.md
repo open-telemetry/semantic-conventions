@@ -91,4 +91,4 @@ users to opt into it.
 
 [Stability]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability
 [MaturityLevel]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.60.0/oteps/0232-maturity-of-otel.md
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

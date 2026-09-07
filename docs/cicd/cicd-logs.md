@@ -18,4 +18,4 @@ When a trace context is available (cf. [CI/CD Spans](cicd-spans.md)) then emitte
 Any resources of the [CI/CD and VCS resource conventions][cicdres] that apply SHOULD be used.
 
 [cicdres]: /docs/resource/cicd.md "CI/CD and VCS resource conventions"
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

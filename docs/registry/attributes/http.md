@@ -15,19 +15,44 @@ This document defines semantic convention attributes in the HTTP namespace.
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` |
+| <a id="http-request-body-content" href="#http-request-body-content">`http.request.body.content`</a> | ![Development](https://img.shields.io/badge/-development-blue) | any | The content of the HTTP request body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed, captured as a string when the request content is textual or as byte array otherwise. [1] | `Hello world!`; `{"foo": "bar"}` |
 | <a id="http-request-body-size" href="#http-request-body-size">`http.request.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
-| <a id="http-request-header" href="#http-request-header">`http.request.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` |
-| <a id="http-request-method" href="#http-request-method">`http.request.method`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` |
+| <a id="http-request-header" href="#http-request-header">`http.request.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [2] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` |
+| <a id="http-request-method" href="#http-request-method">`http.request.method`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` |
 | <a id="http-request-method-original" href="#http-request-method-original">`http.request.method_original`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` |
-| <a id="http-request-resend-count" href="#http-request-resend-count">`http.request.resend_count`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` |
+| <a id="http-request-resend-count" href="#http-request-resend-count">`http.request.resend_count`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | The ordinal number of request resending attempt (for any reason, including redirects). [4] | `3` |
 | <a id="http-request-size" href="#http-request-size">`http.request.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` |
+| <a id="http-response-body-content" href="#http-response-body-content">`http.response.body.content`</a> | ![Development](https://img.shields.io/badge/-development-blue) | any | The content of the HTTP response body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed, captured as a string when the response content is textual or as byte array otherwise. [5] | `Hello world!`; `{"foo": "bar"}` |
 | <a id="http-response-body-size" href="#http-response-body-size">`http.response.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
-| <a id="http-response-header" href="#http-response-header">`http.response.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `["application/json"]`; `["abc", "def"]` |
+| <a id="http-response-header" href="#http-response-header">`http.response.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [6] | `["application/json"]`; `["abc", "def"]` |
 | <a id="http-response-size" href="#http-response-size">`http.response.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
 | <a id="http-response-status-code" href="#http-response-status-code">`http.response.status_code`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
-| <a id="http-route" href="#http-route">`http.route`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [5] | `/users/:userID?`; `my-controller/my-action/{id?}` |
+| <a id="http-route" href="#http-route">`http.route`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [7] | `/users/:userID?`; `my-controller/my-action/{id?}` |
 
-**[1] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+**[1] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
+boundary so that the recorded value remains valid text.
+
+Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
+
+> [!WARNING]
+> This attribute may contain sensitive information.
+
+When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form,
+also it allows to implement sanitization if needed.
+
+Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
+such as checking if the type/subtype (compared case-insensitively, ignoring any parameters) starts with `text/`, ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml`,
+is `application/x-www-form-urlencoded`, or if the header declares a `charset` parameter.
+
+Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+application.
+
+When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
+The value MUST be either a string or a byte array. Instrumentations MUST NOT record a parsed or otherwise structured representation of the body,
+and MUST NOT base64-encode binary content into a string value.
+
+**[2] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 The `User-Agent` header is already captured in the `user_agent.original` attribute.
@@ -44,7 +69,7 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[2] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[3] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
 the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
 and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
@@ -67,9 +92,35 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
+**[4] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
-**[4] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+**[5] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
+boundary so that the recorded value remains valid text.
+
+Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
+
+> [!WARNING]
+> This attribute may contain sensitive information.
+
+When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form,
+also it allows to implement sanitization if needed.
+
+Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
+such as checking if the type/subtype (compared case-insensitively, ignoring any parameters) starts with `text/`, ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml`,
+is `application/x-www-form-urlencoded`, or if the header declares a `charset` parameter.
+
+Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+application.
+
+When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
+Note that HTTP client spans [SHOULD end sometime after the response headers are fully read](/docs/http/http-spans.md#http-client-span-duration),
+which may or may not include reading the response body, so on client spans this attribute is often absent or holds only part of the body.
+
+The value MUST be either a string or a byte array. Instrumentations MUST NOT record a parsed or otherwise structured representation of the body,
+and MUST NOT base64-encode binary content into a string value.
+
+**[6] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
@@ -85,7 +136,7 @@ Examples:
 - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
-**[5] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[7] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that

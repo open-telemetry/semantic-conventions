@@ -56,7 +56,7 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 | [`oracle.db.name`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database name associated with the connection. [19] | `ORCL1`; `FREE` |
 | [`oracle.db.pdb`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The pluggable database (PDB) name associated with the connection. [20] | `PDB1`; `FREEPDB` |
 | [`oracle.db.service`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The service name currently associated with the database connection. [21] | `order-processing-service`; `db_low.adb.oraclecloud.com`; `db_high.adb.oraclecloud.com` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [22] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [22] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [23] | `someval`; `55` |
 | [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [24] | `10`; `30`; `1000` |
 
@@ -68,9 +68,9 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[4] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[4] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[6] `db.collection.name`:** If the operation is executed via a higher-level API that does not support multiple collection names.
 
@@ -115,16 +115,17 @@ that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
-For batch operations, if the individual operations are known to have the same query summary
-then that query summary SHOULD be used prepended by `BATCH `,
-otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations would all have the same
+`db.query.summary` when executed as non-batch operations,
+then that query summary SHOULD be used prepended by `BATCH `.
+Otherwise, `db.query.summary` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[13] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
 
 **[14] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
-For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 **[15] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
@@ -132,8 +133,9 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 **[16] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-For batch operations, if the individual operations are known to have the same
-stored procedure name then that stored procedure name SHOULD be used.
+For batch operations, if the individual operations would all have the same
+`db.stored_procedure.name` when executed as non-batch operations,
+then that stored procedure name SHOULD be used.
 
 **[17] `oracle.db.domain`:** This attribute SHOULD be set to the value of the `DB_DOMAIN` initialization parameter,
 as exposed in `v$parameter`. `DB_DOMAIN` defines the domain portion of the global
@@ -158,7 +160,15 @@ obtain the current service name for each operation without issuing an additional
 query (such as `SELECT SYS_CONTEXT`), it is RECOMMENDED to fall back to the
 service name originally provided at connection establishment.
 
-**[22] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[22] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
+examples.
 
 **[23] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
@@ -403,4 +413,4 @@ Oracle Database driver instrumentation SHOULD collect metrics according to the g
 
 `db.system.name` MUST be set to `"oracle.db"`.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

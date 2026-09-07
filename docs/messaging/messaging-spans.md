@@ -196,7 +196,7 @@ in such a way that it cannot be changed by intermediaries.
 
 ### Span name
 
-Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.60.0/specification/trace/api.md#span).
+Messaging spans SHOULD follow the overall [guidelines for span names](https://opentelemetry.io/docs/specs/otel/trace/api/#span).
 
 The **span name** SHOULD be `{messaging.operation.name} {destination}`
 (see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
@@ -1481,4 +1481,4 @@ flowchart LR;
 | `messaging.message.id` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` | 2 | | |
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

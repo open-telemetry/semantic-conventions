@@ -11,7 +11,7 @@
     "test": "npm run check"
   },
   "devDependencies": {
-    "cspell": "10.0.1",
+    "cspell": "10.1.1",
     "doctoc": "2.5.0",
     "markdownlint-cli2": "0.23.2",
     "prettier": "3.9.6",
