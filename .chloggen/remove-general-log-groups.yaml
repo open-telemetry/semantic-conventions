@@ -1,6 +1,6 @@
 change_type: enhancement
 component: log
 note: >
-  Remove `docs/general/logs.md` and attribute groups covere there (`log.record`, `attributes.log`, and `attributes.log.file`)
+  Remove `docs/general/logs.md` and attribute groups covered there (`log.record`, `attributes.log`, and `attributes.log.file`)
   in favor of attributes defined in the registry.
 issues: [4083]
