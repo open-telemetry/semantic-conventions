@@ -59,10 +59,11 @@ When the operation ends with an error, instrumentation:
 
 > [!WARNING]
 >
-> Like [`exception.message`](/docs/registry/attributes/exception.md#exception-message),
-> the span status description may contain sensitive information. Exception messages
-> frequently include the input value that caused the failure. Additional processing
-> in the telemetry pipeline may be necessary to remove sensitive information.
+> The span status description may contain sensitive information, in particular when it is
+> set to the exception message as described above. Like
+> [`exception.message`](/docs/registry/attributes/exception.md#exception-message), it
+> frequently includes the input value that caused the failure. Additional processing in the
+> telemetry pipeline may be necessary to remove sensitive information.
 
 Refer to the [recording exceptions](#recording-exceptions) on capturing exception
 details.
