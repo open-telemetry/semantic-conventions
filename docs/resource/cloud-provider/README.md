@@ -1,3 +1,7 @@
+---
+title: Cloud provider
+---
+
 # Cloud provider
 
 **Status**: [Development][DocumentStatus]

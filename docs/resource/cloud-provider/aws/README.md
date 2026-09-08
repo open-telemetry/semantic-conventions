@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: AWS semantic conventions
 linkTitle: AWS
---->
+---
 
 # AWS semantic conventions
 

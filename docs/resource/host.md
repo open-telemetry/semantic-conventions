@@ -1,3 +1,7 @@
+---
+title: Host
+---
+
 # Host
 
 The `host.*` namespace SHOULD be exclusively used to capture resource attributes.

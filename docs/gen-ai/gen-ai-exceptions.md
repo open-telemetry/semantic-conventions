@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: "Moved: Generative AI semantic conventions"
 linkTitle: Exceptions
---->
+---
 
 # Moved: Generative AI semantic conventions
 

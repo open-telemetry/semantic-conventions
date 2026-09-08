@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for HTTP client and server metrics emitted by .NET
 linkTitle: HTTP
---->
+---
 
 # Semantic conventions for HTTP client and server metrics emitted by .NET
 

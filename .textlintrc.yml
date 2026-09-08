@@ -40,6 +40,11 @@ rules:
     ignore: [
       GAE
     ]
+  frontmatter:
+    ordered-properties: ["title", "linkTitle"]
+    require-ordered-properties: false
+    title-must-match-h1: true
+    exclude-paths: ["!docs/**"]
   period-in-header: true
   terminology:
     defaultTerms: true

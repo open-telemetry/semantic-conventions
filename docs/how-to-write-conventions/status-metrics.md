@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: State Metrics
 linkTitle: Status Metrics
---->
+---
 
 # State Metrics
 

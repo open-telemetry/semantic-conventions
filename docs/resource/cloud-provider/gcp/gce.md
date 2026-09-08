@@ -1,3 +1,8 @@
+---
+title: Google Compute Engine
+link: Compute Engine
+---
+
 # Google Compute Engine
 
 <!-- semconv entity.gcp.gce -->

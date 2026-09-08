@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Service semantic conventions
 linkTitle: Service
---->
+---
 
 # Service semantic conventions
 
