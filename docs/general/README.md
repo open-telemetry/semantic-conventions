@@ -6,7 +6,7 @@ auto_gen: below
 
 # General semantic conventions
 
-This document defines general Semantic Conventions for spans, metrics, logs and events.
+This document defines general Semantic Conventions for spans, metrics, and events.
 
 The following general Semantic Conventions are defined:
 
