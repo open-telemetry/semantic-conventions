@@ -5,7 +5,8 @@ groups:
     extends: attributes.db.client.connection
     attributes:
       - ref: db.system.name
-        requirement_level: required
+        requirement_level:
+          conditionally_required: If available.
       - ref: db.namespace
         requirement_level:
           conditionally_required: If available.

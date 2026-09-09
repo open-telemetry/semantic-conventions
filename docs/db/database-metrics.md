@@ -460,18 +460,18 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. The fallback value does not need to be unique within the application. Instrumentations that use a different fallback SHOULD document it. | `myDataSource` |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. | `myDataSource` |
 | [`db.client.connection.state`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of a connection in the pool | `idle` |
-| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [1] | `customers`; `test.users` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | int | Server port number. [4] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
+**[1] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+**[2] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[3] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
@@ -565,17 +565,17 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. The fallback value does not need to be unique within the application. Instrumentations that use a different fallback SHOULD document it. | `myDataSource` |
-| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. | `myDataSource` |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [1] | `customers`; `test.users` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | int | Server port number. [4] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
+**[1] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+**[2] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[3] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
@@ -660,17 +660,17 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. The fallback value does not need to be unique within the application. Instrumentations that use a different fallback SHOULD document it. | `myDataSource` |
-| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. | `myDataSource` |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [1] | `customers`; `test.users` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | int | Server port number. [4] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
+**[1] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+**[2] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[3] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
@@ -755,17 +755,17 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. The fallback value does not need to be unique within the application. Instrumentations that use a different fallback SHOULD document it. | `myDataSource` |
-| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. | `myDataSource` |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [1] | `customers`; `test.users` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | int | Server port number. [4] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
+**[1] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+**[2] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[3] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
@@ -850,17 +850,17 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. The fallback value does not need to be unique within the application. Instrumentations that use a different fallback SHOULD document it. | `myDataSource` |
-| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. | `myDataSource` |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [1] | `customers`; `test.users` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | int | Server port number. [4] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
+**[1] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+**[2] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[3] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
@@ -945,17 +945,17 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. The fallback value does not need to be unique within the application. Instrumentations that use a different fallback SHOULD document it. | `myDataSource` |
-| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. | `myDataSource` |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [1] | `customers`; `test.users` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | int | Server port number. [4] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
+**[1] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+**[2] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[3] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
@@ -1040,17 +1040,17 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. The fallback value does not need to be unique within the application. Instrumentations that use a different fallback SHOULD document it. | `myDataSource` |
-| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. | `myDataSource` |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [1] | `customers`; `test.users` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | int | Server port number. [4] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
+**[1] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+**[2] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[3] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
@@ -1135,17 +1135,17 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. The fallback value does not need to be unique within the application. Instrumentations that use a different fallback SHOULD document it. | `myDataSource` |
-| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. | `myDataSource` |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [1] | `customers`; `test.users` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | int | Server port number. [4] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
+**[1] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+**[2] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[3] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
@@ -1230,17 +1230,17 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. The fallback value does not need to be unique within the application. Instrumentations that use a different fallback SHOULD document it. | `myDataSource` |
-| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set; otherwise `db.system.name`; otherwise the connection pool library name. | `myDataSource` |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The name of the database, fully qualified within the server address and port. [1] | `customers`; `test.users` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | int | Server port number. [4] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
+**[1] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+**[2] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[3] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
