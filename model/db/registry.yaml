@@ -400,11 +400,11 @@ groups:
         type: string
         stability: development
         brief: >
-          The name of the connection pool; unique within the instrumented application.
-          In case the connection pool implementation doesn't provide a name,
-          instrumentation SHOULD use a combination of parameters that would make the name
-          unique, for example, combining attributes `server.address` and `server.port`,
-          formatted as `server.address:server.port`.
-          Instrumentations that generate connection pool name following different patterns
-          SHOULD document it.
+          The name of the connection pool.
+          If the connection pool does not have a name, instrumentation SHOULD use
+          `db.namespace`; otherwise `server.address`, with `server.port` appended using
+          `:` if set; otherwise `db.system.name`; otherwise the connection pool
+          library name.
+          The fallback value does not need to be unique within the application.
+          Instrumentations that use a different fallback SHOULD document it.
         examples: ["myDataSource"]
