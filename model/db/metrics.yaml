@@ -1,4 +1,17 @@
 groups:
+  - id: attributes.metrics.db.client.connection.pool
+    type: attribute_group
+    brief: "Database client connection pool metric attributes."
+    extends: attributes.db.client.connection
+    attributes:
+      - ref: db.system.name
+        requirement_level: required
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+
   - id: metric.db.client.operation.duration
     type: metric
     metric_name: db.client.operation.duration
@@ -47,10 +60,9 @@ groups:
     brief: "The number of connections that are currently in state described by the `state` attribute."
     instrument: updowncounter
     unit: "{connection}"
+    extends: attributes.metrics.db.client.connection.pool
     attributes:
       - ref: db.client.connection.state
-        requirement_level: required
-      - ref: db.client.connection.pool.name
         requirement_level: required
 
   - id: metric.db.client.connection.idle.max
@@ -63,9 +75,7 @@ groups:
     brief: "The maximum number of idle open connections allowed."
     instrument: updowncounter
     unit: "{connection}"
-    attributes:
-      - ref: db.client.connection.pool.name
-        requirement_level: required
+    extends: attributes.metrics.db.client.connection.pool
 
   - id: metric.db.client.connection.idle.min
     type: metric
@@ -77,9 +87,7 @@ groups:
     brief: "The minimum number of idle open connections allowed."
     instrument: updowncounter
     unit: "{connection}"
-    attributes:
-      - ref: db.client.connection.pool.name
-        requirement_level: required
+    extends: attributes.metrics.db.client.connection.pool
 
   - id: metric.db.client.connection.limit
     type: metric
@@ -91,9 +99,7 @@ groups:
     brief: "The maximum number of open connections allowed."
     instrument: updowncounter
     unit: "{connection}"
-    attributes:
-      - ref: db.client.connection.pool.name
-        requirement_level: required
+    extends: attributes.metrics.db.client.connection.pool
 
   - id: metric.db.client.connection.pending_requests
     type: metric
@@ -105,9 +111,7 @@ groups:
     brief: "The number of current pending requests for an open connection."
     instrument: updowncounter
     unit: "{request}"
-    attributes:
-      - ref: db.client.connection.pool.name
-        requirement_level: required
+    extends: attributes.metrics.db.client.connection.pool
 
   - id: metric.db.client.connection.timeouts
     type: metric
@@ -119,9 +123,7 @@ groups:
     brief: "The number of connection timeouts that have occurred trying to obtain a connection from the pool."
     instrument: counter
     unit: "{timeout}"
-    attributes:
-      - ref: db.client.connection.pool.name
-        requirement_level: required
+    extends: attributes.metrics.db.client.connection.pool
 
   - id: metric.db.client.connection.create_time
     type: metric
@@ -133,9 +135,7 @@ groups:
     brief: "The time it took to create a new connection."
     instrument: histogram
     unit: "s"
-    attributes:
-      - ref: db.client.connection.pool.name
-        requirement_level: required
+    extends: attributes.metrics.db.client.connection.pool
 
   - id: metric.db.client.connection.wait_time
     type: metric
@@ -147,9 +147,7 @@ groups:
     brief: "The time it took to obtain an open connection from the pool."
     instrument: histogram
     unit: "s"
-    attributes:
-      - ref: db.client.connection.pool.name
-        requirement_level: required
+    extends: attributes.metrics.db.client.connection.pool
 
   - id: metric.db.client.connection.use_time
     type: metric
@@ -161,9 +159,7 @@ groups:
     brief: "The time between borrowing a connection and returning it to the pool."
     instrument: histogram
     unit: "s"
-    attributes:
-      - ref: db.client.connection.pool.name
-        requirement_level: required
+    extends: attributes.metrics.db.client.connection.pool
 
   - id: metric.db.client.response.returned_rows
     type: metric
