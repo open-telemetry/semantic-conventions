@@ -1,4 +1,4 @@
 change_type: enhancement
 component: host
-note: Define `host.id` as identifying for the `host` entity.
+note: Define attribute roles for the `host` entity, make `host.id` identifying.
 issues: [4086]
