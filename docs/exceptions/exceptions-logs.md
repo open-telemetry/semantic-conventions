@@ -39,7 +39,7 @@ emitted through the [Logger API](https://opentelemetry.io/docs/specs/otel/logs/a
 >     emitting exceptions as span events (existing behavior) and the SDK MUST log
 >     a warning using the SDK internal logger with the message that "The
 >     `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable is ignored
->     because no logging provider is configured."
+>     because no logger provider is configured."
 > * SHOULD maintain (security patching at a minimum) their existing major version
 >   for at least six months after it starts emitting both sets of conventions.
 > * MAY drop the environment variable in their next major version and emit exceptions
