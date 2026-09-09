@@ -97,17 +97,19 @@ groups:
         type: string
         stability: development
         brief: Name of the executor.
-        examples: [ "pool-1-thread-*", "ForkJoinPool.commonPool-worker-*" ]
+        examples: [ "pool-1-thread-*", "ForkJoinPool.commonPool-worker-*", "orders-vt-*" ]
         note: >
           The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present,
           the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique
           within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique
-          within the instrumented application. If the executor implementation does not provide
-          an explicit name, instrumentation SHOULD derive a name from available
-          implementation-specific metadata, such as a normalized worker thread name. If an
-          instrumentation normalizes variable portions of a name, it SHOULD use the literal `*`
-          character as the replacement token; `*` is part of the emitted attribute value and
-          does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+          when an executor-specific name is available. If the executor implementation does not
+          provide an explicit name, instrumentation SHOULD derive a name from available
+          implementation-specific metadata, such as a normalized worker thread name. If no
+          executor-specific name or metadata is available, instrumentation MAY use `unknown`.
+          The `unknown` value does not identify an executor, and metrics from multiple executors
+          using this value MAY be aggregated. Users requiring per-executor metric series SHOULD
+          configure a distinct name through the executor's `ThreadFactory`. Instrumentations
+          SHOULD document how the name is derived and how users can configure it.
       - id: jvm.executor.owner.name
         type: string
         stability: development
