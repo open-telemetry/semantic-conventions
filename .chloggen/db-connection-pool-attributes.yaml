@@ -6,6 +6,6 @@ note: >
   Add database system, namespace, server address, and server port attributes to database
   client connection pool metrics.
 
-issues: [4058]
+issues: [4097]
 
 subtext:
