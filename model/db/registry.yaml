@@ -403,6 +403,8 @@ groups:
           The name of the connection pool.
           If the connection pool does not have a name, instrumentation SHOULD use
           `db.namespace`; otherwise `server.address`, with `server.port` appended using
-          `:` if set; otherwise `db.system.name`; otherwise the connection pool
+          `:` if set. When appending a port to an IPv6 address, instrumentation MUST
+          enclose the address in square brackets. If `server.address` is not available,
+          instrumentation SHOULD use `db.system.name`; otherwise the connection pool
           library name.
         examples: ["myDataSource"]
