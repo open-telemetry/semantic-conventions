@@ -307,6 +307,9 @@ Define which additional properties this span needs to be useful:
 - Include `server.address` and `server.port` on client spans.
 
 - Include applicable `network.*` attributes on spans that describe network calls.
+  See [Choosing network attributes](/docs/network/README.md#choosing-address-and-port-attributes)
+  for help picking among `client.*` / `server.*`, `source.*` / `destination.*`, and
+  `network.local.*` / `network.peer.*`.
 
 - Include some form of operation name to describe the action being performed.
 

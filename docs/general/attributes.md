@@ -13,7 +13,7 @@ Particular operations may refer to or require some of these attributes.
 
 <!-- START doctoc -->
 
-- [Server, client and shared network attributes](#server-client-and-shared-network-attributes)
+- [General network attributes](#general-network-attributes)
   - [Address and port attributes](#address-and-port-attributes)
   - [Server attributes](#server-attributes)
     - [`server.address`](#serveraddress)
@@ -36,18 +36,20 @@ Particular operations may refer to or require some of these attributes.
 
 <!-- Keep old anchor IDs -->
 <a id="server-and-client-attributes"></a>
+<a id="server-client-and-shared-network-attributes"></a>
 
-## Server, client and shared network attributes
+## General network attributes
 
-In an ideal situation, not accounting for proxies, multiple IP addresses or hostname,
-the `server.*` attributes are the same on the client and server.
+These attributes describe _who_ is communicating and _how_: the addresses and ports that identify
+the two parties, together with the transport and protocol carrying the exchange. Because the same
+exchange looks different depending on where it is observed, OpenTelemetry defines several
+address/port pairs, each answering a distinct question, and more than one pair MAY apply to the
+same telemetry.
 
 ### Address and port attributes
 
-For all IP-based protocols, the "address" should be just the IP-level address.
-Protocol-specific parts of an address are split into other attributes (when applicable) such as "port" attributes for
-TCP and UDP. If such transport-specific information is collected and the attribute name does not already uniquely
-identify the transport, then setting [`network.transport`](#other-network-attributes) is especially encouraged.
+For IP-based communication, the "address" attributes hold the IP-level address, and
+protocol-specific parts such as the port are split into separate "port" attributes.
 
 ### Server attributes
 
@@ -58,7 +60,11 @@ identify the transport, then setting [`network.transport`](#other-network-attrib
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
-These attributes may be used to describe the server in a connection-based network interaction where there is one side that initiates the connection (the client is the side that initiates the connection). This covers all TCP network interactions since TCP is connection-based and one side initiates the connection (an exception is made for peer-to-peer communication over TCP where the "user-facing" surface of the protocol / API doesn't expose a clear notion of client and server). This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
+`server.*` attributes describe the server in a connection-based network interaction: the side that accepts the connection (the client is the side that initiates it). They identify the logical server the client intended to reach, which - behind proxies or load balancers - can differ from the concrete socket endpoint. Which socket attribute holds that concrete endpoint depends on perspective: on a client span the server is the directly connected peer (`network.peer.*`); on a server span it is the local socket (`network.local.*`).
+
+Use them for interactions with a clear initiator and acceptor. This covers all TCP interactions and connection-oriented UDP interactions such as QUIC (HTTP/3) and DNS. It does not cover peer-to-peer communication where the protocol or API exposes no clear notion of client and server (even over TCP); use `source.*` / `destination.*` there instead.
+
+For help deciding among `client.*` / `server.*`, `source.*` / `destination.*`, and `network.local.*` / `network.peer.*`, see [Choosing network attributes](/docs/network/README.md#choosing-address-and-port-attributes).
 
 **Attributes:**
 
@@ -77,6 +83,9 @@ These attributes may be used to describe the server in a connection-based networ
 
 `server.address` and `server.port` represent logical server name and port. Semantic conventions that refer to these attributes SHOULD
 specify what these attributes mean in their context.
+
+In an ideal situation, not accounting for proxies, multiple IP addresses or hostname,
+the `server.*` attributes are the same on the client and server.
 
 #### `server.address`
 
@@ -103,7 +112,11 @@ For UNIX domain socket, `server.address` attribute represents remote endpoint ad
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
-These attributes may be used to describe the client in a connection-based network interaction where there is one side that initiates the connection (the client is the side that initiates the connection). This covers all TCP network interactions since TCP is connection-based and one side initiates the connection (an exception is made for peer-to-peer communication over TCP where the "user-facing" surface of the protocol / API doesn't expose a clear notion of client and server). This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
+`client.*` attributes describe the client in a connection-based network interaction: the side that initiates the connection (the server is the side that accepts it). They identify the logical client, which - behind proxies or load balancers - can differ from the concrete socket endpoint and is typically recovered from headers such as `X-Forwarded-For`. Which socket attribute holds that concrete endpoint depends on perspective: on a server span the client is the directly connected peer (`network.peer.*`); on a client span it is the local socket (`network.local.*`).
+
+Use them for interactions with a clear initiator and acceptor. This covers all TCP interactions and connection-oriented UDP interactions such as QUIC (HTTP/3) and DNS. It does not cover peer-to-peer communication where the protocol or API exposes no clear notion of client and server (even over TCP); use `source.*` / `destination.*` there instead.
+
+For help deciding among `client.*` / `server.*`, `source.*` / `destination.*`, and `network.local.*` / `network.peer.*`, see [Choosing network attributes](/docs/network/README.md#choosing-address-and-port-attributes).
 
 **Attributes:**
 
@@ -112,9 +125,9 @@ These attributes may be used to describe the client in a connection-based networ
 | [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Client port number. [2] | `65123` |
 
-**[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
+**[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+**[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -131,16 +144,20 @@ These attributes may be used to describe the client in a connection-based networ
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-These attributes may be used to describe the sender of a network exchange/packet. These should be used when there is no client/server relationship between the two sides, or when that relationship is unknown. This covers low-level network interactions (e.g. packet tracing) where you don't know if there was a connection or which side initiated it. This also covers unidirectional UDP flows and peer-to-peer communication where the "user-facing" surface of the protocol / API doesn't expose a clear notion of client and server.
+`source.*` attributes describe the sender of a network exchange or packet, recorded as observed at the point of instrumentation rather than resolved to an identity behind intermediaries such as proxies.
+
+Use them when there is no client/server relationship between the two sides, or when that relationship is unknown - for example low-level or packet-level telemetry (packet tracing, flow export) where you cannot tell whether a connection exists or which side initiated it, unidirectional UDP flows, and peer-to-peer protocols such as gossip, BitTorrent, or blockchain node-to-node communication. When the initiator and acceptor roles are known, prefer `client.*` / `server.*`.
+
+For help deciding among `client.*` / `server.*`, `source.*` / `destination.*`, and `network.local.*` / `network.peer.*`, see [Choosing network attributes](/docs/network/README.md#choosing-address-and-port-attributes).
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`source.address`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`source.address`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Source address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the sender was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `source.example.com`; `/tmp/my.sock` |
 | [`source.port`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Source port number | `3389`; `2888` |
 
-**[1] `source.address`:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
+**[1] `source.address`:** `source.address` SHOULD be the sender address as observed at the point of instrumentation, for example the source of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address behind intermediaries such as proxies or load balancers, and reverse DNS lookup SHOULD NOT be used to obtain a domain name.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -155,21 +172,26 @@ These attributes may be used to describe the sender of a network exchange/packet
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-These attributes may be used to describe the receiver of a network exchange/packet. These should be used when there is no client/server relationship between the two sides, or when that relationship is unknown. This covers low-level network interactions (e.g. packet tracing) where you don't know if there was a connection or which side initiated it. This also covers unidirectional UDP flows and peer-to-peer communication where the "user-facing" surface of the protocol / API doesn't expose a clear notion of client and server.
+`destination.*` attributes describe the receiver of a network exchange or packet, recorded as observed at the point of instrumentation rather than resolved to an identity behind intermediaries such as proxies.
+
+Use them when there is no client/server relationship between the two sides, or when that relationship is unknown - for example low-level or packet-level telemetry (packet tracing, flow export) where you cannot tell whether a connection exists or which side initiated it, unidirectional UDP flows, and peer-to-peer protocols such as gossip, BitTorrent, or blockchain node-to-node communication. When the initiator and acceptor roles are known, prefer `client.*` / `server.*`.
+
+For help deciding among `client.*` / `server.*`, `source.*` / `destination.*`, and `network.local.*` / `network.peer.*`, see [Choosing network attributes](/docs/network/README.md#choosing-address-and-port-attributes).
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`destination.address`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`destination.address`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Destination address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the receiver was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `destination.example.com`; `/tmp/my.sock` |
 | [`destination.port`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Destination port number | `3389`; `2888` |
 
-**[1] `destination.address`:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
+**[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address behind intermediaries such as proxies or load balancers, and reverse DNS lookup SHOULD NOT be used to obtain a domain name.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
+<!-- Keep old anchor IDs -->
 <a id="network-attributes"></a>
 
 ### Other network attributes
