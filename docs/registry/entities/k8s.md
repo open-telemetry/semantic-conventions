@@ -167,8 +167,8 @@ conflict.
 | Description | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [8] | `apps/v1`; `autoscaling/v2` |
 | Description | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The kind of the target resource to scale for the HorizontalPodAutoscaler. [9] | `Deployment`; `StatefulSet` |
 | Description | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [10] | `my-deployment`; `my-statefulset` |
-| Description | [`k8s.hpa.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation key-value pairs placed on the HorizontalPodAutoscaler. [11] | `4`; `` |
-| Description | [`k8s.hpa.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label key-value pairs placed on the HorizontalPodAutoscaler. [12] | `weekly`; `` |
+| Description | [`k8s.hpa.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the HorizontalPodAutoscaler, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [11] | `4`; `` |
+| Description | [`k8s.hpa.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the HorizontalPodAutoscaler, the `<key>` being the label name, the value being the label value, even if the value is empty. [12] | `checkout`; `` |
 
 **[8] `k8s.hpa.scaletargetref.api_version`:** This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
 
@@ -176,9 +176,27 @@ conflict.
 
 **[10] `k8s.hpa.scaletargetref.name`:** This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
 
-**[11] `k8s.hpa.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[11] `k8s.hpa.annotation.<key>`:** Examples:
 
-**[12] `k8s.hpa.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+- An annotation `replicas` with value `4` SHOULD be recorded as
+  the `k8s.hpa.annotation.replicas` attribute with value `"4"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.hpa.annotation.data` attribute with value `""`.
+
+> [!WARNING]
+>
+> Annotation values are user-defined and may contain sensitive (PII) data.
+
+**[12] `k8s.hpa.label.<key>`:** Examples:
+
+- A label `team` with value `checkout` SHOULD be recorded as
+  the `k8s.hpa.label.team` attribute with value `"checkout"`.
+- A label `data` with empty string value SHOULD be recorded as
+  the `k8s.hpa.label.data` attribute with value `""`.
+
+> [!WARNING]
+>
+> Label values are user-defined and may contain sensitive (PII) data.
 
 ## K8s Job
 

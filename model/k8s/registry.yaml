@@ -467,18 +467,36 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the HorizontalPodAutoscaler.
+          The label placed on the HorizontalPodAutoscaler, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
-        examples: ['weekly', '']
+          Examples:
+
+          - A label `team` with value `checkout` SHOULD be recorded as
+            the `k8s.hpa.label.team` attribute with value `"checkout"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.hpa.label.data` attribute with value `""`.
+
+          > [!WARNING]
+          >
+          > Label values are user-defined and may contain sensitive (PII) data.
+        examples: ['checkout', '']
       - id: k8s.hpa.annotation
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the HorizontalPodAutoscaler.
+          The annotation placed on the HorizontalPodAutoscaler, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-        examples: [ '4', '' ]
+          Examples:
+
+          - An annotation `replicas` with value `4` SHOULD be recorded as
+            the `k8s.hpa.annotation.replicas` attribute with value `"4"`.
+          - An annotation `data` with empty string value SHOULD be recorded as
+            the `k8s.hpa.annotation.data` attribute with value `""`.
+
+          > [!WARNING]
+          >
+          > Annotation values are user-defined and may contain sensitive (PII) data.
+        examples: ['4', '']
       - id: k8s.job.uid
         type: string
         stability: stable
