@@ -130,7 +130,7 @@ When defining a new attribute:
     ```
 
     This annotation renders a warning advising applications to configure SDK attribute limits and instrumentations to enforce safety size limits.
-  - Unbounded attributes MUST NOT be `required` on any signal.
+  - Unbounded attributes MUST NOT be `required` on any signal or attribute group.
   - Consider defining a corresponding reference attribute (see [attributes referencing external content](/docs/general/naming.md#attributes-referencing-external-content)).
 
 Consider the scope of the attribute and how it may evolve in the future:
