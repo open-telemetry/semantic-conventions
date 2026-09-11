@@ -4,7 +4,10 @@ attributes:
   - key: destination.address
     type: string
     stability: development
-    brief: "Destination address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the receiver was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup."
+    brief: >
+      Destination address as observed at the point of instrumentation - typically an IP address, or
+      a UNIX domain socket name; a domain name only when the receiver was addressed by name (for
+      example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup.
     note: >
       `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the
       destination of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address

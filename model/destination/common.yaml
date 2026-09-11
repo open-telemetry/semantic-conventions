@@ -16,6 +16,11 @@ attribute_groups:
       unidirectional UDP flows, and peer-to-peer protocols such as gossip, BitTorrent, or blockchain
       node-to-node communication. When the initiator and acceptor
       roles are known, prefer `client.*` / `server.*`.
+
+
+      For help deciding among `client.*` / `server.*`, `source.*` / `destination.*`, and
+      `network.local.*` / `network.peer.*`, see
+      [Choosing network attributes](/docs/network/README.md#choosing-address-and-port-attributes).
     attributes:
       - ref: destination.address
       - ref: destination.port

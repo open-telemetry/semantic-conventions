@@ -123,6 +123,7 @@
 # Network semantic conventions
 # /docs/dns/, /model/dns/         are defined in the Security section
 # /model/network/                 is defined in the HTTP section
+/docs/network/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-network-approvers
 /model/source/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-network-approvers
 /model/destination/               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-network-approvers
 

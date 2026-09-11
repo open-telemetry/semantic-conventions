@@ -17,6 +17,11 @@ attribute_groups:
       and connection-oriented UDP interactions such as QUIC (HTTP/3) and DNS. It does not cover
       peer-to-peer communication where the protocol or API exposes no clear notion of client and
       server (even over TCP); use `source.*` / `destination.*` there instead.
+
+
+      For help deciding among `client.*` / `server.*`, `source.*` / `destination.*`, and
+      `network.local.*` / `network.peer.*`, see
+      [Choosing network attributes](/docs/network/README.md#choosing-address-and-port-attributes).
     attributes:
       - ref: server.address
       - ref: server.port
