@@ -124,11 +124,13 @@ When defining a new attribute:
 
   When an attribute value cannot be bounded by nature (for example, queries, request or response bodies):
   - Mark it in the registry with:
+
     ```yaml
     annotations:
       value:
         unbounded_size: true
     ```
+
     This annotation renders a warning advising applications to configure SDK attribute limits and instrumentations to enforce safety size limits.
   - Unbounded attributes MUST NOT be `required` on any signal or attribute group.
   - Consider defining a corresponding reference attribute (see [attributes referencing external content](/docs/general/naming.md#attributes-referencing-external-content)).

@@ -1,0 +1,4 @@
+change_type: enhancement
+component: general
+note: Support unbounded attributes with `annotations.value.unbounded_size: true`, add `*_ref` attribute conventions, and enforce both via Rego policies.
+issues: [4102]
