@@ -31,6 +31,9 @@ groups:
           >
           > This attribute may contain sensitive information.
       - id: exception.stacktrace
+        annotations:
+          value:
+            unbounded_size: true
         type: string
         stability: stable
         brief: >
