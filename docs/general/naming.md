@@ -247,8 +247,9 @@ When attribute values contain large, binary, or sensitive data, telemetry
 pipelines or instrumentations may offload them to external storage and replace
 the attribute with a reference.
 
-- Reference attributes SHOULD use the `_ref` suffix appended to the base attribute name (for example, `http.request.body.content_ref`).
-- The attribute value type SHOULD be `string` containing an identifier or locator for the referenced content (such as a URI, URL, storage path, ARN, or external ID).
+- Reference attributes MUST use the `_ref` suffix appended to the base attribute name (for example, `http.request.body.content_ref`).
+- Reference attributes MUST have a corresponding base attribute (without `_ref`) defined in the registry.
+- The attribute value type MUST be `string` containing an identifier or locator for the referenced content (such as a URI, URL, storage path, ARN, or external ID).
 
 > [!NOTE]
 > How the referenced content is stored, secured, transferred, or retrieved is out of
