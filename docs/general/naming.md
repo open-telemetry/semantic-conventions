@@ -20,6 +20,7 @@ aliases: [attribute-naming]
   - [otel.\* namespace](#otel-namespace)
   - [Attribute name pluralization guidelines](#attribute-name-pluralization-guidelines)
   - [Signal-specific attributes](#signal-specific-attributes)
+  - [Attributes referencing external content](#attributes-referencing-external-content)
 - [Metrics](#metrics)
   - [Naming rules for counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
@@ -237,6 +238,24 @@ Examples:
 
 Metric `http.server.request.duration` uses attributes from the registry such as
 `server.port`, `error.type`.
+
+### Attributes referencing external content
+
+**Status**: [Development][DocumentStatus]
+
+When attribute values contain large, binary, or sensitive data, telemetry
+pipelines or instrumentations may offload them to external storage and replace
+the attribute with a reference.
+
+- Reference attributes SHOULD use the `_ref` suffix appended to the base attribute name (for example, `http.request.body.content_ref`).
+- The attribute value type SHOULD be `string` containing an identifier or locator for the referenced content (such as a URI, URL, storage path, ARN, or external ID).
+
+> [!NOTE]
+> How the referenced content is stored, secured, transferred, or retrieved is out of
+> scope for OpenTelemetry semantic conventions.
+
+It is RECOMMENDED to define `_ref` attributes in semantic conventions when
+there is known instrumentation or pipeline support for offloading specific attributes.
 
 ## Metrics
 
