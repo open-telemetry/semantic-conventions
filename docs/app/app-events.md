@@ -152,12 +152,7 @@ data from other sources as well as facilitate deduplication.
 
 **[6] `exception.message`:** If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
 
-**[7] `exception.stacktrace`:**
-
-> [!WARNING]
-> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
-
-If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
+**[7] `exception.stacktrace`:** If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
 
 **[8] `exception.type`:** If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
 
