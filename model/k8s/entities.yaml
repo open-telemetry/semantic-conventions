@@ -236,6 +236,12 @@ groups:
       - ref: k8s.hpa.scaletargetref.api_version
         role: descriptive
         requirement_level: recommended
+      - ref: k8s.hpa.label
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.hpa.annotation
+        role: descriptive
+        requirement_level: opt_in
 
   - id: entity.k8s.resourcequota
     type: entity
