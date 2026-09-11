@@ -7,9 +7,11 @@ attribute_groups:
     brief: >
       `client.*` attributes describe the client in a connection-based network interaction: the side
       that initiates the connection (the server is the side that accepts it). They identify the
-      logical client, which - behind proxies or load balancers - can differ from the directly
-      connected peer (see `network.peer.*`) and is typically recovered from headers such as
-      `X-Forwarded-For`.
+      logical client, which - behind proxies or load balancers - can differ from the concrete
+      socket endpoint and is typically recovered from headers such as `X-Forwarded-For`. Which
+      socket attribute holds that concrete endpoint depends on perspective: on a server span the
+      client is the directly connected peer (`network.peer.*`); on a client span it is the local
+      socket (`network.local.*`).
 
 
       Use them for interactions with a clear initiator and acceptor. This covers all TCP interactions

@@ -19,9 +19,8 @@ Particular operations may refer to or require some of these attributes.
     - [Why these pairs are not interchangeable](#why-these-pairs-are-not-interchangeable)
     - [How they coexist](#how-they-coexist)
     - [Decision guide](#decision-guide)
-    - [Direction mapping](#direction-mapping)
+    - [Flow direction vs. socket vantage](#flow-direction-vs-socket-vantage)
     - [What flow exporters observe](#what-flow-exporters-observe)
-    - [Open questions (draft — for SIG discussion)](#open-questions-draft--for-sig-discussion)
   - [Server attributes](#server-attributes)
     - [`server.address`](#serveraddress)
   - [Client attributes](#client-attributes)
@@ -96,10 +95,10 @@ The pairs map roughly onto observation layers:
        (gossip, BitTorrent, blockchain, WebRTC)
    ─────────────────────────────────────────────────────────────────────────────────────────────────
    L4  Transport flow / packet direction           source / destination
-       (NetFlow, IPFIX, eBPF flows, pcap)          (+ network.local/peer when endpoint-observed)
+       (NetFlow, IPFIX, eBPF flows, pcap)          (same family at endpoint or mid-path)
    ─────────────────────────────────────────────────────────────────────────────────────────────────
-   L3  Network routing / forwarding                (not covered by these pairs — see Open questions)
-   L2  Link / neighbor discovery                   (not covered by these pairs — see Open questions)
+   L3  Network routing / forwarding                (not covered by these pairs today)
+   L2  Link / neighbor discovery                   (not covered by these pairs today)
 ```
 
 #### Why these pairs are not interchangeable
@@ -167,9 +166,20 @@ differ.
      (may be proxy, node, or post-NAT addresses — not the same as L7 client/server)
 ```
 
-`server.address` answers "who did I intend to talk to?"; `network.peer.address` answers "which
-specific box did this connection land on?". Folding the latter into the former would lose
-node-level diagnosis under load balancers, connection pools, and replicas. See
+Which logical role maps to the concrete socket depends on the span's perspective: logical
+identity and physical adjacency are recorded from whichever side emits the telemetry.
+
+| Span perspective | Remote endpoint (logical vs. concrete) | Local endpoint (logical vs. concrete) |
+| --- | --- | --- |
+| Client span | `server.*` vs. `network.peer.*` | `client.*` vs. `network.local.*` |
+| Server span | `client.*` vs. `network.peer.*` | `server.*` vs. `network.local.*` |
+
+On a client span, `server.address` answers "who did I intend to talk to?" while
+`network.peer.address` answers "which specific box did this connection land on?". On a server span
+the roles invert: `network.peer.address` is the directly connected client or proxy, while
+`client.address` is the logical (de-proxied) client. Folding the concrete peer into the logical
+role - in either direction - would lose node-level diagnosis under load balancers, connection
+pools, and replicas. See
 [`network.peer.*` and `network.local.*` attributes](#networkpeer-and-networklocal-attributes) for
 socket-level details and proxy examples.
 
@@ -188,12 +198,12 @@ socket-level details and proxy examples.
    │
    ├─ L4 flow, packet, or mid-path metering (no / unknown app roles)
    │     → source / destination  (direction of this exchange, as observed)
-   │     → network.local / network.peer only if you are an endpoint of the socket
-   │       (router/switch NetFlow/IPFIX is mid-path: source/destination only;
-   │        set local/peer only for host-based flow, e.g. host IPFIX / eBPF)
+   │       used consistently whether observed at an endpoint or mid-path
+   │       (network.local / network.peer are for connection/socket-level telemetry,
+   │        not a substitute encoding for a flow record's endpoints)
    │
    └─ L2 / L3 adjacency, routing, or neighbor discovery
-         → not covered by these pairs today (see Open questions)
+         → not covered by these pairs today
 ```
 
 | If you know… | Prefer |
@@ -204,15 +214,50 @@ socket-level details and proxy examples.
 | Concrete socket endpoint (L4/L7; also BGP TCP) | `network.local` / `network.peer` |
 | Logical service name _and_ concrete node | `server.*` **and** `network.peer.*` together |
 
-#### Direction mapping
+> [!NOTE]
+> The `client` / `server` roles come from protocol or connection semantics - who initiated the
+> connection and who accepted it - which at L7 is almost always known. In the rare case where the
+> initiator cannot be determined, a best-effort heuristic MAY be used as a last resort, for example
+> treating the well-known / lower port as the server and the ephemeral / higher port as the client.
+> Such a heuristic is best-effort only and can be wrong (ephemeral port ranges vary by platform,
+> both ends may use registered ports, and peer-to-peer protocols have no roles), so fall back to
+> `source` / `destination` when it would not be reliable.
 
-When an endpoint observer also records flow direction, `source` / `destination` relate to
-`network.local` / `network.peer` by direction (this is a mapping, not synonymy):
+<!-- -->
+
+> [!NOTE]
+> Choosing `source` / `destination` requires more than the absence of a client/server role: each
+> telemetry record must have a well-defined direction, identifying who sent and who received _that_
+> exchange. This holds naturally for a single packet, a unidirectional flow, or one peer-to-peer
+> message. A bidirectional aggregate (for example a flow record that sums both directions of a
+> connection) has no single sender, so `source` / `destination` are ambiguous for it. Such telemetry
+> should either be split into per-direction records, or adopt a stable forward/reverse orientation
+> (for example, keying `source` to the flow initiator). A standard orientation semantic
+> convention is out of scope for this guidance and is a work in progress (see
+> [open-telemetry/opentelemetry-ebpf-instrumentation#1659](https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/issues/1659)
+> and [#3828](https://github.com/open-telemetry/semantic-conventions/pull/3828)).
+
+#### Flow direction vs. socket vantage
+
+Flow and packet telemetry uses `source` / `destination` consistently, whether observed at an
+endpoint (host IPFIX, eBPF) or mid-path (router/switch NetFlow/IPFIX), so that the same flow is
+represented the same way regardless of vantage. `network.local` / `network.peer` are not an
+alternative encoding for a flow's endpoints: they describe the concrete socket of a
+connection-oriented interaction and belong on connection/socket-level telemetry (for example a
+`client` / `server` span, or a BGP TCP session).
+
+The two families are related but not synonymous. On an endpoint the vantage
+(`network.local` / `network.peer`) is fixed while the direction (`source` / `destination`) flips
+per exchange:
 
 ```text
    transmit :  local → source        peer  → destination
    receive  :  peer  → source        local → destination
 ```
+
+Use this correspondence to reason about telemetry that already carries both families (such as a
+connection span that also reports direction); it is not a license to move a flow record onto
+`network.local` / `network.peer`.
 
 #### What flow exporters observe
 
@@ -229,24 +274,6 @@ L3/L4 observers generally cannot see behind an L7 proxy or SNAT, so in flow tele
 This is why L4 `source` / `destination` are recorded as observed and are not resolved behind
 intermediaries; use `client.*` / `server.*` when the logical, de-proxied identity is needed.
 
-#### Open questions (draft — for SIG discussion)
-
-> [!NOTE]
-> These items are unresolved and are included to seed discussion for a draft PR. They are expected
-> to be resolved (and this section removed or rewritten) before the guidance is finalized.
-
-- **L2/L3 attribute home.** Whether L2/L3 routing and neighbor telemetry (OSPF, BGP, LLDP, ARP)
-  should reuse `network.local` / `network.peer`, use net-new attributes, or a hybrid, is not decided.
-  `getsockname` / `getpeername` map cleanly to sockets (and BGP TCP sessions) but not to OSPF / LLDP /
-  ARP neighbor tables. If net-new attributes are chosen, one candidate family is
-  `network.neighbor.local.*` / `network.neighbor.peer.*` (aligning with LLDP/ARP "neighbor"
-  terminology); a `network.routing.*` family could alternatively cover routing-protocol adjacencies.
-  ([#3947](https://github.com/open-telemetry/semantic-conventions/issues/3947))
-- **Client/server fallback heuristic.** When the initiator is not known from the protocol, whether to
-  adopt a best-effort heuristic (for example, higher/ephemeral port as client, lower/well-known port
-  as server) is undecided; any such heuristic would be best-effort only.
-  ([#3947](https://github.com/open-telemetry/semantic-conventions/issues/3947))
-
 ### Server attributes
 
 <!-- semconv server -->
@@ -256,7 +283,7 @@ intermediaries; use `client.*` / `server.*` when the logical, de-proxied identit
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
-`server.*` attributes describe the server in a connection-based network interaction: the side that accepts the connection (the client is the side that initiates it). They identify the logical server the client intended to reach, which - behind proxies or load balancers - can differ from the directly connected peer (see `network.peer.*`).
+`server.*` attributes describe the server in a connection-based network interaction: the side that accepts the connection (the client is the side that initiates it). They identify the logical server the client intended to reach, which - behind proxies or load balancers - can differ from the concrete socket endpoint. Which socket attribute holds that concrete endpoint depends on perspective: on a client span the server is the directly connected peer (`network.peer.*`); on a server span it is the local socket (`network.local.*`).
 
 Use them for interactions with a clear initiator and acceptor. This covers all TCP interactions and connection-oriented UDP interactions such as QUIC (HTTP/3) and DNS. It does not cover peer-to-peer communication where the protocol or API exposes no clear notion of client and server (even over TCP); use `source.*` / `destination.*` there instead.
 
@@ -306,7 +333,7 @@ For UNIX domain socket, `server.address` attribute represents remote endpoint ad
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
-`client.*` attributes describe the client in a connection-based network interaction: the side that initiates the connection (the server is the side that accepts it). They identify the logical client, which - behind proxies or load balancers - can differ from the directly connected peer (see `network.peer.*`) and is typically recovered from headers such as `X-Forwarded-For`.
+`client.*` attributes describe the client in a connection-based network interaction: the side that initiates the connection (the server is the side that accepts it). They identify the logical client, which - behind proxies or load balancers - can differ from the concrete socket endpoint and is typically recovered from headers such as `X-Forwarded-For`. Which socket attribute holds that concrete endpoint depends on perspective: on a server span the client is the directly connected peer (`network.peer.*`); on a client span it is the local socket (`network.local.*`).
 
 Use them for interactions with a clear initiator and acceptor. This covers all TCP interactions and connection-oriented UDP interactions such as QUIC (HTTP/3) and DNS. It does not cover peer-to-peer communication where the protocol or API exposes no clear notion of client and server (even over TCP); use `source.*` / `destination.*` there instead.
 
@@ -344,10 +371,10 @@ Use them when there is no client/server relationship between the two sides, or w
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`source.address`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`source.address`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Source address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the sender was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `source.example.com`; `/tmp/my.sock` |
 | [`source.port`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Source port number | `3389`; `2888` |
 
-**[1] `source.address`:** `source.address` SHOULD be the sender address as observed at the point of instrumentation, for example the source of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address behind intermediaries such as proxies or load balancers.
+**[1] `source.address`:** `source.address` SHOULD be the sender address as observed at the point of instrumentation, for example the source of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address behind intermediaries such as proxies or load balancers, and reverse DNS lookup SHOULD NOT be used to obtain a domain name.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -370,10 +397,10 @@ Use them when there is no client/server relationship between the two sides, or w
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`destination.address`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`destination.address`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Destination address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the receiver was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `destination.example.com`; `/tmp/my.sock` |
 | [`destination.port`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Destination port number | `3389`; `2888` |
 
-**[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address behind intermediaries such as proxies or load balancers.
+**[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address behind intermediaries such as proxies or load balancers, and reverse DNS lookup SHOULD NOT be used to obtain a domain name.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

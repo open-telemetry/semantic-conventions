@@ -9,7 +9,7 @@
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="destination-address" href="#destination-address">`destination.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="destination-address" href="#destination-address">`destination.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the receiver was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `destination.example.com`; `/tmp/my.sock` |
 | <a id="destination-port" href="#destination-port">`destination.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Destination port number | `3389`; `2888` |
 
-**[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address behind intermediaries such as proxies or load balancers.
+**[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address behind intermediaries such as proxies or load balancers, and reverse DNS lookup SHOULD NOT be used to obtain a domain name.
