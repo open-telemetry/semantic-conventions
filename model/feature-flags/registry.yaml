@@ -89,9 +89,6 @@ groups:
         brief: >
           The reason code which shows how a feature flag value was determined.
       - id: feature_flag.result.value
-        annotations:
-          value:
-            unbounded_size: true
         type: any
         stability: release_candidate
         examples: ["#ff0000", true, 3]
