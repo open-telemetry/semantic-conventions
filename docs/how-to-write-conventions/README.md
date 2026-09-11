@@ -119,11 +119,9 @@ When defining a new attribute:
 
 - Define new attributes with `development` stability.
 - Provide realistic examples
-- Avoid defining attributes with potentially unbounded values, such as strings longer than
-  1 KB or arrays with more than 1,000 elements.
-
-  When an attribute value cannot be bounded by nature (for example, queries, request or response bodies):
-  - Mark it in the registry with:
+- Attributes should generally have bounded values (for example, strings under 1 KB or small arrays).
+  When captured data is unbounded by nature (such as queries, payloads, or raw records):
+  - Mark the attribute in the registry with:
 
     ```yaml
     annotations:
