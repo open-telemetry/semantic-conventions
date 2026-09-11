@@ -1,6 +1,7 @@
 change_type: enhancement
-component: server
+component: network
 note: >
   Add guidance for choosing between `client.*` / `server.*`, `source.*` / `destination.*`, and
-  `network.local.*` / `network.peer.*` in the general attributes documentation.
+  `network.local.*` / `network.peer.*` in a dedicated Network semantic conventions document
+  (`docs/network/`).
 issues: [3947, 1721]

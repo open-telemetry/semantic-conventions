@@ -4,7 +4,10 @@ attributes:
   - key: source.address
     type: string
     stability: development
-    brief: "Source address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the sender was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup."
+    brief: >
+      Source address as observed at the point of instrumentation - typically an IP address, or a
+      UNIX domain socket name; a domain name only when the sender was addressed by name (for example
+      a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup.
     note: >
       `source.address` SHOULD be the sender address as observed at the point of instrumentation, for example the
       source of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address
