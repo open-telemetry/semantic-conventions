@@ -4,6 +4,7 @@
 # Messaging
 
 - [General Messaging Attributes](#general-messaging-attributes)
+- [RabbitMQ Attributes](#rabbitmq-attributes)
 - [Deprecated Messaging Attributes](#deprecated-messaging-attributes)
 
 ## General Messaging Attributes
@@ -87,6 +88,21 @@ size should be used.
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 
+## RabbitMQ Attributes
+
+This group describes attributes specific to RabbitMQ.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="messaging-rabbitmq-cluster-name" href="#messaging-rabbitmq-cluster-name">`messaging.rabbitmq.cluster.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The RabbitMQ cluster name, obtained from the broker metadata exposed through the RabbitMQ client API. [10] | `my-rabbitmq-cluster` |
+| <a id="messaging-rabbitmq-vhost-name" href="#messaging-rabbitmq-vhost-name">`messaging.rabbitmq.vhost.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the RabbitMQ virtual host that the messaging operation is scoped to. [11] | `/`; `my-vhost` |
+
+**[10] `messaging.rabbitmq.cluster.name`:** RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name) from the first node in the cluster. Operators can override it with `rabbitmqctl set_cluster_name`.
+
+**[11] `messaging.rabbitmq.vhost.name`:** RabbitMQ [virtual hosts](https://www.rabbitmq.com/docs/vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
+
 ## Deprecated Messaging Attributes
 
 Describes deprecated messaging attributes.
@@ -104,10 +120,10 @@ Describes deprecated messaging attributes.
 | <a id="messaging-gcp-pubsub-message-ack-id" href="#messaging-gcp-pubsub-message-ack-id">`messaging.gcp_pubsub.message.ack_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gcp.pubsub.message.ack_id`. | string | Deprecated, use `gcp.pubsub.message.ack_id` instead. | `ack_id` |
 | <a id="messaging-gcp-pubsub-message-delivery-attempt" href="#messaging-gcp-pubsub-message-delivery-attempt">`messaging.gcp_pubsub.message.delivery_attempt`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gcp.pubsub.message.delivery_attempt`. | int | Deprecated, use `gcp.pubsub.message.delivery_attempt` instead. | `2` |
 | <a id="messaging-gcp-pubsub-message-ordering-key" href="#messaging-gcp-pubsub-message-ordering-key">`messaging.gcp_pubsub.message.ordering_key`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gcp.pubsub.message.ordering_key`. | string | Deprecated, use `gcp.pubsub.message.ordering_key` instead. | `ordering_key` |
-| <a id="messaging-kafka-cluster-id" href="#messaging-kafka-cluster-id">`messaging.kafka.cluster.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `kafka.cluster.id`. | string | Deprecated, use `kafka.cluster.id` instead. [10] | `MkU3OEVBNTcwNTJENDM2Qk` |
+| <a id="messaging-kafka-cluster-id" href="#messaging-kafka-cluster-id">`messaging.kafka.cluster.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `kafka.cluster.id`. | string | Deprecated, use `kafka.cluster.id` instead. [12] | `MkU3OEVBNTcwNTJENDM2Qk` |
 | <a id="messaging-kafka-consumer-group" href="#messaging-kafka-consumer-group">`messaging.kafka.consumer.group`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name`. | string | Deprecated, use `messaging.consumer.group.name` instead. | `my-group` |
 | <a id="messaging-kafka-destination-partition" href="#messaging-kafka-destination-partition">`messaging.kafka.destination.partition`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Record string representation of the partition ID in `messaging.destination.partition.id` attribute. | int | Deprecated, use `messaging.destination.partition.id` instead. | `2` |
-| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `kafka.message.key`. | string | Deprecated, use `kafka.message.key` instead. [11] | `myKey` |
+| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `kafka.message.key`. | string | Deprecated, use `kafka.message.key` instead. [13] | `myKey` |
 | <a id="messaging-kafka-message-offset" href="#messaging-kafka-message-offset">`messaging.kafka.message.offset`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `kafka.offset`. | int | Deprecated, use `kafka.offset` instead. | `42` |
 | <a id="messaging-kafka-message-tombstone" href="#messaging-kafka-message-tombstone">`messaging.kafka.message.tombstone`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `kafka.message.tombstone`. | boolean | Deprecated, use `kafka.message.tombstone` instead. | |
 | <a id="messaging-kafka-offset" href="#messaging-kafka-offset">`messaging.kafka.offset`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `kafka.offset`. | int | Deprecated, use `kafka.offset` instead. | `42` |
@@ -127,13 +143,13 @@ Describes deprecated messaging attributes.
 | <a id="messaging-servicebus-disposition-status" href="#messaging-servicebus-disposition-status">`messaging.servicebus.disposition_status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.servicebus.disposition_status`. | string | Deprecated, use `azure.servicebus.disposition_status` instead. | `complete`; `abandon`; `dead_letter` [(see more)](#messaging-servicebus-disposition-status-values) |
 | <a id="messaging-servicebus-message-delivery-count" href="#messaging-servicebus-message-delivery-count">`messaging.servicebus.message.delivery_count`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.servicebus.message.delivery_count`. | int | Deprecated, use `azure.servicebus.message.delivery_count` instead. | `2` |
 | <a id="messaging-servicebus-message-enqueued-time" href="#messaging-servicebus-message-enqueued-time">`messaging.servicebus.message.enqueued_time`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.servicebus.message.enqueued_time`. | int | Deprecated, use `azure.servicebus.message.enqueued_time` instead. | `1701393730` |
-| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.system.name`. | string | Deprecated, use `messaging.system.name` instead. [12] | `activemq`; `aws.sns`; `aws_sqs` [(see more)](#messaging-system-values) |
+| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.system.name`. | string | Deprecated, use `messaging.system.name` instead. [14] | `activemq`; `aws.sns`; `aws_sqs` [(see more)](#messaging-system-values) |
 
-**[10] `messaging.kafka.cluster.id`:** The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
+**[12] `messaging.kafka.cluster.id`:** The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
 
-**[11] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[13] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
-**[12] `messaging.system`:** The actual messaging system may differ from the one known by the client.
+**[14] `messaging.system`:** The actual messaging system may differ from the one known by the client.
 For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system`
 is set to `kafka` based on the instrumentation's best knowledge.
 
