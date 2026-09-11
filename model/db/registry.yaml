@@ -86,9 +86,6 @@ groups:
             'SET mykey ?',
           ]
       - id: db.query.parameter
-        annotations:
-          value:
-            unbounded_size: true
         type: template[string]
         stability: development
         brief: >
@@ -160,9 +157,6 @@ groups:
           then that stored procedure name SHOULD be used.
         examples: ["GetCustomer"]
       - id: db.operation.parameter
-        annotations:
-          value:
-            unbounded_size: true
         type: template[string]
         stability: development
         brief: >
