@@ -8,7 +8,9 @@ attribute_groups:
       `server.*` attributes describe the server in a connection-based network interaction: the side
       that accepts the connection (the client is the side that initiates it). They identify the
       logical server the client intended to reach, which - behind proxies or load balancers - can
-      differ from the directly connected peer (see `network.peer.*`).
+      differ from the concrete socket endpoint. Which socket attribute holds that concrete endpoint
+      depends on perspective: on a client span the server is the directly connected peer
+      (`network.peer.*`); on a server span it is the local socket (`network.local.*`).
 
 
       Use them for interactions with a clear initiator and acceptor. This covers all TCP interactions
