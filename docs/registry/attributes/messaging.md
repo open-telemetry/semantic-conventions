@@ -142,9 +142,9 @@ This group describes attributes specific to RabbitMQ.
 | <a id="messaging-rabbitmq-message-delivery-tag" href="#messaging-rabbitmq-message-delivery-tag">`messaging.rabbitmq.message.delivery_tag`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | RabbitMQ message delivery tag | `123` |
 | <a id="messaging-rabbitmq-vhost-name" href="#messaging-rabbitmq-vhost-name">`messaging.rabbitmq.vhost.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the RabbitMQ virtual host that the messaging operation is scoped to. [13] | `/`; `my-vhost` |
 
-**[12] `messaging.rabbitmq.cluster.name`:** The cluster name is a user-configured identifier reported by the RabbitMQ broker (see `rabbitmqctl set_cluster_name`). It identifies the cluster independently of the individual nodes the client is configured to connect to, and remains stable even if node hostnames, IP addresses, or ports change.
+**[12] `messaging.rabbitmq.cluster.name`:** RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name) from the first node in the cluster. Operators can override it with `rabbitmqctl set_cluster_name`.
 
-**[13] `messaging.rabbitmq.vhost.name`:** RabbitMQ virtual hosts (vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
+**[13] `messaging.rabbitmq.vhost.name`:** RabbitMQ [virtual hosts](https://www.rabbitmq.com/docs/vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
 
 ## RocketMQ Attributes
 

@@ -142,9 +142,9 @@ it's RECOMMENDED to:
 
 **[10] `messaging.operation.type`:** SHOULD be set to `send`.
 
-**[11] `messaging.rabbitmq.cluster.name`:** The cluster name is a user-configured identifier reported by the RabbitMQ broker (see `rabbitmqctl set_cluster_name`). It identifies the cluster independently of the individual nodes the client is configured to connect to, and remains stable even if node hostnames, IP addresses, or ports change.
+**[11] `messaging.rabbitmq.cluster.name`:** RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name) from the first node in the cluster. Operators can override it with `rabbitmqctl set_cluster_name`.
 
-**[12] `messaging.rabbitmq.vhost.name`:** RabbitMQ virtual hosts (vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
+**[12] `messaging.rabbitmq.vhost.name`:** RabbitMQ [virtual hosts](https://www.rabbitmq.com/docs/vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
 
 **[13] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -311,9 +311,9 @@ it's RECOMMENDED to:
 
 **[10] `messaging.operation.type`:** SHOULD be set to `receive`.
 
-**[11] `messaging.rabbitmq.cluster.name`:** The cluster name is a user-configured identifier reported by the RabbitMQ broker (see `rabbitmqctl set_cluster_name`). It identifies the cluster independently of the individual nodes the client is configured to connect to, and remains stable even if node hostnames, IP addresses, or ports change.
+**[11] `messaging.rabbitmq.cluster.name`:** RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name) from the first node in the cluster. Operators can override it with `rabbitmqctl set_cluster_name`.
 
-**[12] `messaging.rabbitmq.vhost.name`:** RabbitMQ virtual hosts (vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
+**[12] `messaging.rabbitmq.vhost.name`:** RabbitMQ [virtual hosts](https://www.rabbitmq.com/docs/vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
 
 **[13] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -482,9 +482,9 @@ it's RECOMMENDED to:
 
 **[10] `messaging.operation.type`:** SHOULD be set to `process`.
 
-**[11] `messaging.rabbitmq.cluster.name`:** The cluster name is a user-configured identifier reported by the RabbitMQ broker (see `rabbitmqctl set_cluster_name`). It identifies the cluster independently of the individual nodes the client is configured to connect to, and remains stable even if node hostnames, IP addresses, or ports change.
+**[11] `messaging.rabbitmq.cluster.name`:** RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name) from the first node in the cluster. Operators can override it with `rabbitmqctl set_cluster_name`.
 
-**[12] `messaging.rabbitmq.vhost.name`:** RabbitMQ virtual hosts (vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
+**[12] `messaging.rabbitmq.vhost.name`:** RabbitMQ [virtual hosts](https://www.rabbitmq.com/docs/vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
 
 **[13] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
@@ -637,9 +637,9 @@ it's RECOMMENDED to:
 
 **[8] `messaging.operation.type`:** SHOULD be set to `settle`.
 
-**[9] `messaging.rabbitmq.cluster.name`:** The cluster name is a user-configured identifier reported by the RabbitMQ broker (see `rabbitmqctl set_cluster_name`). It identifies the cluster independently of the individual nodes the client is configured to connect to, and remains stable even if node hostnames, IP addresses, or ports change.
+**[9] `messaging.rabbitmq.cluster.name`:** RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name) from the first node in the cluster. Operators can override it with `rabbitmqctl set_cluster_name`.
 
-**[10] `messaging.rabbitmq.vhost.name`:** RabbitMQ virtual hosts (vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
+**[10] `messaging.rabbitmq.vhost.name`:** RabbitMQ [virtual hosts](https://www.rabbitmq.com/docs/vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
 
 **[11] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
