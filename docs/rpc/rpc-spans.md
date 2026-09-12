@@ -96,6 +96,9 @@ document for details on how to record span status.
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if applicable and if `server.address` is set. | int | Server port number. [6] | `80`; `8080`; `443` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [7] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
+| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC request headers or metadata, `<key>` being the normalized header name (lowercase), the value being the header values. [8] | `["1.2.3.4", "1.2.3.5"]` |
+| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response headers or metadata sent before the response payload, `<key>` being the normalized header name (lowercase), the value being the header values. [9] | `["attribute_value"]` |
+| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response trailers or metadata sent after the response payload, `<key>` being the normalized trailer name (lowercase), the value being the trailer values. [10] | `["attribute_value"]` |
 
 **[1] `rpc.system.name`:** The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.
 
@@ -145,6 +148,45 @@ When address is an IP address, instrumentations SHOULD NOT do a reverse DNS look
 **[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[7] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
+
+**[8] `rpc.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
+the `rpc.request.header.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+
+The attribute value MUST consist of either multiple header values as an array of
+strings or a single-item array containing a possibly comma-concatenated string,
+depending on the way the RPC library provides access to headers.
+
+Values that the RPC system exposes as binary data, or that are otherwise not valid
+UTF-8 strings, SHOULD be recorded base64-encoded.
+
+**[9] `rpc.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
+the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`
+
+The attribute value MUST consist of either multiple header values as an array of
+strings or a single-item array containing a possibly comma-concatenated string,
+depending on the way the RPC library provides access to headers.
+
+Values that the RPC system exposes as binary data, or that are otherwise not valid
+UTF-8 strings, SHOULD be recorded base64-encoded.
+
+**[10] `rpc.response.trailer.<key>`:** Instrumentations SHOULD require an explicit configuration of which trailers are to be captured.
+Including all response trailers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+For example, a trailer `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
+the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value"]`
+
+The attribute value MUST consist of either multiple trailer values as an array of
+strings or a single-item array containing a possibly comma-concatenated string,
+depending on the way the RPC library provides access to trailers.
+
+Values that the RPC system exposes as binary data, or that are otherwise not valid
+UTF-8 strings, SHOULD be recorded base64-encoded.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -215,6 +257,9 @@ document for details on how to record span status.
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [6] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when available. | string | A string identifying a group of RPC server instances request is sent to. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC request headers or metadata, `<key>` being the normalized header name (lowercase), the value being the header values. [8] | `["1.2.3.4", "1.2.3.5"]` |
+| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response headers or metadata sent before the response payload, `<key>` being the normalized header name (lowercase), the value being the header values. [9] | `["attribute_value"]` |
+| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response trailers or metadata sent after the response payload, `<key>` being the normalized trailer name (lowercase), the value being the trailer values. [10] | `["attribute_value"]` |
 
 **[1] `rpc.system.name`:** The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.
 
@@ -262,6 +307,45 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.sta
 **[6] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
 
 **[7] `server.address`:** `server.address` and `server.port` describe the address the client used to reach this server, as reported by the transport or RPC framework. Instrumentations SHOULD NOT use actual network-level connection information to populate these attributes. If the address used by the client is unavailable, instrumentations SHOULD NOT set these attributes.
+
+**[8] `rpc.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
+the `rpc.request.header.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+
+The attribute value MUST consist of either multiple header values as an array of
+strings or a single-item array containing a possibly comma-concatenated string,
+depending on the way the RPC library provides access to headers.
+
+Values that the RPC system exposes as binary data, or that are otherwise not valid
+UTF-8 strings, SHOULD be recorded base64-encoded.
+
+**[9] `rpc.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
+the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`
+
+The attribute value MUST consist of either multiple header values as an array of
+strings or a single-item array containing a possibly comma-concatenated string,
+depending on the way the RPC library provides access to headers.
+
+Values that the RPC system exposes as binary data, or that are otherwise not valid
+UTF-8 strings, SHOULD be recorded base64-encoded.
+
+**[10] `rpc.response.trailer.<key>`:** Instrumentations SHOULD require an explicit configuration of which trailers are to be captured.
+Including all response trailers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+For example, a trailer `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
+the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value"]`
+
+The attribute value MUST consist of either multiple trailer values as an array of
+strings or a single-item array containing a possibly comma-concatenated string,
+depending on the way the RPC library provides access to trailers.
+
+Values that the RPC system exposes as binary data, or that are otherwise not valid
+UTF-8 strings, SHOULD be recorded base64-encoded.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
