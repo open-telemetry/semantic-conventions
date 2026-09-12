@@ -174,7 +174,7 @@ groups:
   - id: metric.k8s.pod.paging.faults
     type: metric
     metric_name: k8s.pod.paging.faults
-    stability: development
+    stability: release_candidate
     brief: "Pod memory paging faults."
     annotations:
       code_generation:
@@ -184,13 +184,18 @@ groups:
     attributes:
       - ref: system.paging.fault.type
     note: >
-      Cumulative number of major/minor page faults.
+      Cumulative number of major and minor page faults.
 
-      This metric is derived from the
-      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
-      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      The [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
       field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
-      of the Kubelet's stats API.
+      of the Kubelet's stats API maps directly to `system.paging.fault.type=major`.
+
+      The [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field reports the total number of page faults (equivalent to `pgfault` in the cgroup `memory.stat`),
+      with minor and major combined.
+      The minor page faults MUST therefore be derived as
+      `MemoryStats.PageFaults - MemoryStats.MajorPageFaults`,
+      so that summing the metric over `system.paging.fault.type` yields the total number of page faults.
     instrument: counter
     unit: "{fault}"
 
@@ -828,7 +833,7 @@ groups:
   - id: metric.k8s.node.paging.faults
     type: metric
     metric_name: k8s.node.paging.faults
-    stability: development
+    stability: release_candidate
     brief: "Node memory paging faults."
     annotations:
       code_generation:
@@ -838,13 +843,18 @@ groups:
     attributes:
       - ref: system.paging.fault.type
     note: >
-      Cumulative number of major/minor page faults.
+      Cumulative number of major and minor page faults.
 
-      This metric is derived from the
-      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
-      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      The [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
       fields of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
-      of the Kubelet's stats API.
+      of the Kubelet's stats API maps directly to `system.paging.fault.type=major`.
+
+      The [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field reports the total number of page faults (equivalent to `pgfault` in the cgroup `memory.stat`),
+      with minor and major combined.
+      The minor page faults MUST therefore be derived as
+      `MemoryStats.PageFaults - MemoryStats.MajorPageFaults`,
+      so that summing the metric over `system.paging.fault.type` yields the total number of page faults.
     instrument: counter
     unit: "{fault}"
 
