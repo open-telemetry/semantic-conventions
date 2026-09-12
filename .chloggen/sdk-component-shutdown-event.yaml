@@ -1,0 +1,10 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Add the `otel.sdk.component.shutdown` self-observability event.
+
+issues: [3718]
+
+subtext:
