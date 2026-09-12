@@ -37,6 +37,12 @@ groups:
       - ref: service.instance.id
         role: identifying
         requirement_level: required
+      - ref: service.instance.cost_center.id
+        requirement_level: opt_in
+        role: descriptive
+      - ref: service.instance.cost_center.name
+        requirement_level: opt_in
+        role: descriptive
   - id: entity.service.namespace
     type: entity
     name: service.namespace
