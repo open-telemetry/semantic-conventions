@@ -85,3 +85,117 @@ groups:
     brief: "Number of buffers in the pool."
     instrument: updowncounter
     unit: "{buffer}"
+
+  - id: attributes.jvm.executor
+    type: attribute_group
+    brief: "Describes JVM executor metric attributes."
+    attributes:
+      - ref: jvm.executor.name
+        requirement_level: required
+      - ref: jvm.executor.owner.name
+        requirement_level: recommended
+      - ref: jvm.executor.type
+        requirement_level: required
+
+  - id: metric.jvm.executor.thread.count
+    type: metric
+    metric_name: jvm.executor.thread.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    extends: attributes.jvm.executor
+    brief: >
+      The number of executor threads that are currently in the state described by the
+      `jvm.executor.thread.state` attribute.
+    instrument: updowncounter
+    unit: "{thread}"
+    attributes:
+      - ref: jvm.executor.thread.state
+        requirement_level: required
+
+  - id: metric.jvm.executor.thread.core
+    type: metric
+    metric_name: jvm.executor.thread.core
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    extends: attributes.jvm.executor
+    brief: "The number of core threads configured for the executor."
+    instrument: updowncounter
+    unit: "{thread}"
+
+  - id: metric.jvm.executor.thread.limit
+    type: metric
+    metric_name: jvm.executor.thread.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    extends: attributes.jvm.executor
+    brief: "The maximum number of threads allowed for the executor."
+    note: >
+      Instrumentations SHOULD emit this metric only when the maximum thread count is finite and
+      represents a meaningful operational limit. This metric SHOULD NOT be emitted for unbounded
+      or effectively unbounded executors. For example, an executor with a maximum thread count of
+      `Integer.MAX_VALUE` is effectively unbounded.
+    instrument: updowncounter
+    unit: "{thread}"
+
+  - id: metric.jvm.executor.queue.size
+    type: metric
+    metric_name: jvm.executor.queue.size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    extends: attributes.jvm.executor
+    brief: "The number of tasks currently queued for execution."
+    instrument: updowncounter
+    unit: "{task}"
+
+  - id: metric.jvm.executor.queue.capacity
+    type: metric
+    metric_name: jvm.executor.queue.capacity
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    extends: attributes.jvm.executor
+    brief: "The maximum number of tasks the executor queue can hold."
+    note: >
+      Instrumentations SHOULD emit this metric only when the queue has a finite capacity that
+      represents a meaningful operational limit. This metric SHOULD NOT be emitted for unbounded
+      or effectively unbounded queues.
+    instrument: updowncounter
+    unit: "{task}"
+
+  - id: metric.jvm.executor.task.completed
+    type: metric
+    metric_name: jvm.executor.task.completed
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    extends: attributes.jvm.executor
+    brief: "The number of tasks completed by the executor."
+    note: >
+      A task SHOULD be counted as completed when the executor has finished processing it,
+      regardless of whether it returns normally, terminates with an exception, or is canceled.
+      Cancellation during processing does not complete the task until processing ends. A task
+      rejected or removed before processing begins SHOULD NOT be counted.
+    instrument: counter
+    unit: "{task}"
+
+  - id: metric.jvm.executor.task.rejected
+    type: metric
+    metric_name: jvm.executor.task.rejected
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    extends: attributes.jvm.executor
+    brief: "The number of tasks rejected by the executor."
+    instrument: counter
+    unit: "{task}"
