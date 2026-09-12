@@ -36,3 +36,15 @@
 {% macro sentence_case(text) %}
   {{- text[:1].upper() + text[1:].lower() -}}
 {% endmacro %}
+
+{% macro note(attribute) -%}
+{%- set is_unbounded = attribute.annotations is defined and attribute.annotations.value is defined and attribute.annotations.value.unbounded_size -%}
+{%- if is_unbounded -%}
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+{%- if attribute.note %}
+
+{% endif -%}
+{%- endif -%}
+{%- if attribute.note -%}{{ attribute.note }}{%- endif -%}
+{%- endmacro %}

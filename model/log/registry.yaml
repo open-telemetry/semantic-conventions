@@ -70,6 +70,9 @@ groups:
           but other identifiers (e.g. UUID) may be used as needed.
         examples: ["01ARZ3NDEKTSV4RRFFQ69G5FAV"]
       - id: log.record.original
+        annotations:
+          value:
+            unbounded_size: true
         type: string
         stability: development
         brief: >

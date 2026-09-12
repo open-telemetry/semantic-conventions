@@ -60,6 +60,9 @@ groups:
           system specific term if more applicable.
         examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.query.text
+        annotations:
+          value:
+            unbounded_size: true
         type: string
         stability: stable
         brief: >
