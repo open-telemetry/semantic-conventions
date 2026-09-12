@@ -11,7 +11,18 @@ This document defines .NET related attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
+| <a id="dotnet-cache-name" href="#dotnet-cache-name">`dotnet.cache.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the MemoryCache instance. | `Default`; `users` |
+| <a id="dotnet-cache-request-result" href="#dotnet-cache-request-result">`dotnet.cache.request.result`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The result of a MemoryCache request. | `hit`; `miss` |
 | <a id="dotnet-gc-heap-generation" href="#dotnet-gc-heap-generation">`dotnet.gc.heap.generation`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
+
+---
+
+`dotnet.cache.request.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `hit` | The requested value was found in the cache. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `miss` | The requested value was not found in the cache. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 

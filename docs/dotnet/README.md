@@ -17,4 +17,5 @@ The following metrics are currently supported:
 * [HTTP](dotnet-http-metrics.md): Semantic Conventions for HTTP client and server *metrics*.
 * [Kestrel](dotnet-kestrel-metrics.md): Semantic Conventions for Kestrel web server *metrics*.
 * [SignalR](dotnet-signalr-metrics.md): Semantic Conventions for SignalR server *metrics*.
+* [MemoryCache](dotnet-memory-cache-metrics.md): Semantic Conventions for `MemoryCache` *metrics*.
 * [Runtime](/docs/runtime/dotnet-metrics.md): Semantic conventions for .NET Runtime *metrics*.
