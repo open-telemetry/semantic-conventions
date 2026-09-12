@@ -37,21 +37,19 @@ filters:
 rules:
   common-misspellings:
     # Misspellings to be ignored (case-insensitive)
-    ignore: [
-      GAE
-    ]
+    ignore: [GAE]
   period-in-header: true
   terminology:
     defaultTerms: true
     skip: []
     exclude:
-      - 'bug[- ]fix(es)?'
-      - 'client ?side'
+      - "bug[- ]fix(es)?"
+      - "client ?side"
       - "indexes\\b"
-      - 'readme(s)?'
-      - 'server ?side'
-      - 'to-?do(s)?(?=[ ,.])'
-      - 'web[- ]?site(s)?'
+      - "readme(s)?"
+      - "server ?side"
+      - "to-?do(s)?(?=[ ,.])"
+      - "web[- ]?site(s)?"
     terms:
       - Actix
       - Ajax
@@ -147,13 +145,13 @@ rules:
       # details, see
       # https://github.com/sapegin/textlint-rule-terminology/blob/ca36a645c56d21f27cb9d902b5fb9584030c59e3/index.js#L137-L142.
       #
-      - ['3rd[- ]party', third-party]
-      - ['auto[- ]c(onfigur)(es?|ations?)', 'autoc$1$2'] # cSpell:disable-line
-      - ['back[- ]end(s)?', 'backend$1']
-      - ['bugfix(es?)', 'bug fix$1']
+      - ["3rd[- ]party", third-party]
+      - ["auto[- ]c(onfigur)(es?|ations?)", "autoc$1$2"] # cSpell:disable-line
+      - ["back[- ]end(s)?", "backend$1"]
+      - ["bugfix(es?)", "bug fix$1"]
       - [byte code, bytecode]
-      - ['cicd', 'CI/CD']
-      - ['(cloud)-(native)', '$1 $2']
+      - ["cicd", "CI/CD"]
+      - ["(cloud)-(native)", "$1 $2"]
       - [cpp, C++]
       - # dotnet|.net -> .NET, but NOT for strings like:
         # - File extension: file.net
@@ -174,11 +172,11 @@ rules:
         # - Compound names: java.util.List
         - '(?<![.-])java\b(?![.])'
         - Java
-      - ['java[- ]?agent', Java agent]
-      - ['java ?doc(s)?', 'Javadoc$1']
-      - ['mac ?os', macOS]
-      - ['meta[- ]data', metadata]
-      - ['nd-?json', NDJSON]
+      - ["java[- ]?agent", Java agent]
+      - ["java ?doc(s)?", "Javadoc$1"]
+      - ["mac ?os", macOS]
+      - ["meta[- ]data", metadata]
+      - ["nd-?json", NDJSON]
       - ['node\.?js', Node.js]
       - [open-source, open source]
       - # OpenTelemetry
@@ -195,17 +193,17 @@ rules:
       - [os x, macOS]
       - [protable, portable]
       - [postgres, PostgreSQL]
-      - ['psr[ -]?([0-9]+)', PSR-$1]
-      - ['react[ .]js', React]
-      - ['regexp?(s)?', regular expression$1]
+      - ["psr[ -]?([0-9]+)", PSR-$1]
+      - ["react[ .]js", React]
+      - ["regexp?(s)?", regular expression$1]
       - [repo\b, repository]
       - [repos, repositories]
-      - ['screen[- ]shot(s)?', screenshot$1]
-      - ['time[- ]stamp(s)?', timestamp$1]
+      - ["screen[- ]shot(s)?", screenshot$1]
+      - ["time[- ]stamp(s)?", timestamp$1]
       - ["to-?do(s)?", "TODO$1"]
       - ["uid['’]?(s)?", UID$1]
-      - ['(walk)-(throughs?)', $1$2] # cSpell:disable-line
-      - ['(work)-(arounds?)', $1$2]
+      - ["(walk)-(throughs?)", $1$2] # cSpell:disable-line
+      - ["(work)-(arounds?)", $1$2]
       # Enable the following to find and replace "instrumentation module/package" with "instrumentation library":
       # - ["(auto(matic)?[- ])?instrumentation (module|package)", "instrumentation library"]
       # - ["(auto(matic)?[- ])?instrumentation (modules|packages)", "instrumentation libraries"]
