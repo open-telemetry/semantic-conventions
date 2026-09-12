@@ -380,14 +380,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -755,14 +747,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`url.query`](/docs/registry/attributes/url.md)
 * [`url.scheme`](/docs/registry/attributes/url.md)
 * [`user_agent.original`](/docs/registry/attributes/user-agent.md)
-
----
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
