@@ -29,7 +29,7 @@ This can be used to determine the impact a feature has on a request, enabling en
 Feature flag evaluations SHOULD be recorded as attributes on the [Event](https://opentelemetry.io/docs/specs/otel/logs/data-model/#events) passed to the [Logger](https://opentelemetry.io/docs/specs/otel/logs/api/#logger) emit operations.
 
 > [!NOTE]
-> Events are in-development and not yet available in some languages. Check the [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.60.0/spec-compliance-matrix.md#logs) to see the implementation status in the corresponding language.
+> Events are in-development and not yet available in some languages. Check the [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.61.0/spec-compliance-matrix.md#logs) to see the implementation status in the corresponding language.
 
 ## Evaluation event
 
