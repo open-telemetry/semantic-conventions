@@ -196,6 +196,12 @@ groups:
         metric_value_type: int
     stability: development
     extends: attributes.jvm.executor
-    brief: "The number of tasks rejected by the executor."
+    brief: "The number of task submissions rejected by the executor."
+    note: >
+      A task submission SHOULD be counted as rejected when the executor invokes its
+      rejection handler, regardless of whether the handler subsequently executes the
+      task in the caller (for example, `CallerRunsPolicy`) or discards or replaces a
+      queued task (for example, `DiscardOldestPolicy`). This metric counts rejected
+      submissions, not tasks ultimately discarded from the queue.
     instrument: counter
     unit: "{task}"

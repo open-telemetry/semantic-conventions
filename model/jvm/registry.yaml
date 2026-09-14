@@ -109,7 +109,12 @@ groups:
           The `unknown` value does not identify an executor, and metrics from multiple executors
           using this value MAY be aggregated. Users requiring per-executor metric series SHOULD
           configure a distinct name through the executor's `ThreadFactory`. Instrumentations
-          SHOULD document how the name is derived and how users can configure it.
+          SHOULD document how the name is derived and how users can configure it. Once metric
+          series registration for an executor has started, `jvm.executor.name` and
+          `jvm.executor.owner.name` MUST remain stable for the lifetime of that registration.
+          Instrumentations SHOULD determine these attributes before the first worker is registered.
+          Instrumentations MUST NOT re-register cumulative metrics under a new attribute set or
+          replay prior cumulative values under new attributes.
       - id: jvm.executor.owner.name
         type: string
         stability: development
