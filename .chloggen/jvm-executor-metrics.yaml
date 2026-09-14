@@ -1,5 +1,8 @@
 change_type: enhancement
 component: jvm
-note: "Define development semantic conventions for JVM executor metrics, including stable executor identity attributes, rejected task submission semantics, and user-configured names for unnamed executors."
+note: >-
+  Define development semantic conventions for JVM executor metrics, including stable
+  executor identity attributes, rejected task submission semantics, and user-configured
+  names for unnamed executors.
 issues: [3956]
 subtext:
