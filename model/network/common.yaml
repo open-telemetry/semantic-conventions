@@ -1,14 +1,44 @@
-groups:
-  - id: network-core
-    type: attribute_group
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.26.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
+  - id: network.peer
+    visibility: public
+    stability: development
     brief: >
-      These attributes may be used for any network related operation.
+      These attributes identify the network peer that is directly connected to the local endpoint.
+    note: |
+      > [!NOTE]
+      > Specific structures and methods to obtain socket-level attributes are mentioned here only as examples.
+      > Instrumentations would usually use the socket API provided by their environment or socket implementations.
+
+      When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/connect.2.html) /
+      [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect)) with the `AF_INET` address family,
+      `network.peer.address` and `network.peer.port` represent the `sin_addr` and `sin_port` fields of the `sockaddr_in` structure.
+
+      `network.peer.address` and `network.peer.port` can be obtained by calling `getpeername` ([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getpeername.2.html) /
+      [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getpeername)).
     attributes:
-      - ref: network.transport
-      - ref: network.type
-      - ref: network.protocol.name
-      - ref: network.protocol.version
       - ref: network.peer.address
+        note: This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
       - ref: network.peer.port
+
+  - id: network.local
+    visibility: public
+    stability: development
+    brief: >
+      These attributes identify the local endpoint of a network connection.
+    note: |
+      > [!NOTE]
+      > Specific structures and methods to obtain socket-level attributes are mentioned here only as examples.
+      > Instrumentations would usually use the socket API provided by their environment or socket implementations.
+
+      When binding using `bind(2)` ([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/bind.2.html) /
+      [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-bind)) with the `AF_INET` address family,
+      `network.local.address` and `network.local.port` represent the `sin_addr` and `sin_port` fields of the `sockaddr_in` structure.
+
+      `network.local.address` and `network.local.port` can be obtained by calling `getsockname` ([Linux or other POSIX systems](https://man7.org/linux/man-pages/man2/getsockname.2.html) /
+      [Windows](https://docs.microsoft.com/windows/win32/api/winsock2/nf-winsock2-getsockname)).
+    attributes:
       - ref: network.local.address
+        note: This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
       - ref: network.local.port
