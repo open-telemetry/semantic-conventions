@@ -176,7 +176,6 @@ words:
   - Undeprecate
   - bfcache
   - IPFIX
-  - SNAT
 ignoreWords:
   - gitea
   - rego

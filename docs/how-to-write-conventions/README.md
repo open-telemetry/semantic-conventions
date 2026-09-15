@@ -304,10 +304,12 @@ Define which additional properties this span needs to be useful:
   domain-specific error code, include that as a separate attribute as well.
   Document which error codes constitute an error.
 
-- Include `server.address` and `server.port` on client spans.
+- Include `server.address` and `server.port` on client spans. They represent the logical server
+  name and port; semantic conventions that refer to these attributes SHOULD specify what they mean
+  in their context.
 
 - Include applicable `network.*` attributes on spans that describe network calls.
-  See [Choosing network attributes](/docs/network/README.md#choosing-address-and-port-attributes)
+  See [Choosing network address and port attributes](/docs/network/choosing-network-attributes.md)
   for help picking among `client.*` / `server.*`, `source.*` / `destination.*`, and
   `network.local.*` / `network.peer.*`.
 

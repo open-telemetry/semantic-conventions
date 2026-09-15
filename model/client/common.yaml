@@ -8,21 +8,13 @@ attribute_groups:
       `client.*` attributes describe the client in a connection-based network interaction: the side
       that initiates the connection (the server is the side that accepts it). They identify the
       logical client, which - behind proxies or load balancers - can differ from the concrete
-      socket endpoint and is typically recovered from headers such as `X-Forwarded-For`. Which
-      socket attribute holds that concrete endpoint depends on perspective: on a server span the
-      client is the directly connected peer (`network.peer.*`); on a client span it is the local
-      socket (`network.local.*`).
+      socket endpoint and is typically recovered from headers such as `X-Forwarded-For`.
 
 
-      Use them for interactions with a clear initiator and acceptor. This covers all TCP interactions
-      and connection-oriented UDP interactions such as QUIC (HTTP/3) and DNS. It does not cover
-      peer-to-peer communication where the protocol or API exposes no clear notion of client and
-      server (even over TCP); use `source.*` / `destination.*` there instead.
-
-
-      For help deciding among `client.*` / `server.*`, `source.*` / `destination.*`, and
-      `network.local.*` / `network.peer.*`, see
-      [Choosing network attributes](/docs/network/README.md#choosing-address-and-port-attributes).
+      Use them for interactions with a clear initiator and acceptor. This covers common TCP
+      interactions, connection-oriented UDP such as QUIC (HTTP/3), and request/response protocols
+      such as DNS and SNMP polling. It does not cover peer-to-peer communication where the protocol
+      or API exposes no clear notion of client and server (even over TCP).
     attributes:
       - ref: client.address
       - ref: client.port

@@ -11,16 +11,7 @@ attribute_groups:
 
 
       Use them when there is no client/server relationship between the two sides, or when that
-      relationship is unknown - for example low-level or packet-level telemetry (packet tracing,
-      flow export) where you cannot tell whether a connection exists or which side initiated it,
-      unidirectional UDP flows, and peer-to-peer protocols such as gossip, BitTorrent, or blockchain
-      node-to-node communication. When the initiator and acceptor
-      roles are known, prefer `client.*` / `server.*`.
-
-
-      For help deciding among `client.*` / `server.*`, `source.*` / `destination.*`, and
-      `network.local.*` / `network.peer.*`, see
-      [Choosing network attributes](/docs/network/README.md#choosing-address-and-port-attributes).
+      relationship is unknown - for example, packet-level telemetry and peer-to-peer protocols.
     attributes:
       - ref: destination.address
       - ref: destination.port
