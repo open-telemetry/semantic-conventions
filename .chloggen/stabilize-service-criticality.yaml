@@ -1,0 +1,7 @@
+change_type: "enhancement"
+component: "service"
+note: "Mark `service.criticality` attribute and its values as stable."
+issues: [3643]
+subtext: |
+  The `service.criticality` attribute and its enum values (`critical`, `high`, `medium`, `low`)
+  have been promoted to stable status.
