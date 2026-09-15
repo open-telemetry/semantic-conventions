@@ -19,7 +19,7 @@ Only checks that are **not** available upstream are kept here:
 - `brief.rego` - requires a non-empty `brief` on every attribute and signal.
   This is a semantic-conventions editorial requirement rather than a general
   registry rule.
-- `reference_attributes.rego` - requires attributes ending with `_ref` to have a counterpart attribute without `_ref` and have type `string`.
+- `reference_attributes.rego` - requires attributes ending with `_ref` to have type `string` and to have a counterpart attribute without `_ref`.
 - `unbounded_attributes.rego` - requires attributes marked with `unbounded_size: true` to never have requirement level `required`.
 
 ## Exceptions

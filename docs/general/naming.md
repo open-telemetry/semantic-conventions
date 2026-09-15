@@ -247,16 +247,18 @@ When attribute values contain large, binary, or sensitive data, telemetry
 pipelines or instrumentations may offload them to external storage and replace
 the attribute with a reference.
 
-- Reference attributes MUST use the `_ref` suffix appended to the base attribute name (for example, `http.request.body.content_ref`).
+- Reference attributes SHOULD use the `_ref` suffix appended to the base attribute name (for example, `http.request.body.content_ref`).
 - Reference attributes MUST have a corresponding base attribute (without `_ref`) defined in the registry.
-- The attribute value type MUST be `string` containing an identifier or locator for the referenced content (such as a URI, URL, storage path, ARN, or external ID).
-
-> [!NOTE]
-> How the referenced content is stored, secured, transferred, or retrieved is out of
-> scope for OpenTelemetry semantic conventions.
+- The attribute value type MUST be `string` and SHOULD be an [absolute URI](https://datatracker.ietf.org/doc/html/rfc3986#section-4.3)
+  for the offloaded content.
 
 It is RECOMMENDED to define `_ref` attributes in semantic conventions when
 there is known instrumentation or pipeline support for offloading specific attributes.
+
+> [!NOTE]
+> How the referenced content is stored, secured, transferred, or retrieved is out of
+> scope for OpenTelemetry semantic conventions. Telemetry pipelines and consumers
+> should not assume the content is always immediately uploaded or retrievable.
 
 ## Metrics
 
