@@ -1,0 +1,22 @@
+groups:
+  - id: entity.azure.container_app.instance
+    type: entity
+    stability: development
+    name: azure.container_app.instance
+    brief: >
+      Resource used by an Azure Container App replica.
+    attributes:
+      - ref: azure.container_app.instance.id
+        role: identifying
+        requirement_level: required
+
+  - id: entity.azure.container_app
+    type: entity
+    stability: development
+    name: azure.container_app
+    brief: >
+      Resource used by a revision of an Azure Container App. Does not apply to Azure Container Apps Jobs.
+    attributes:
+      - ref: azure.container_app.revision.name
+        role: identifying
+        requirement_level: required
