@@ -119,8 +119,19 @@ When defining a new attribute:
 
 - Define new attributes with `development` stability.
 - Provide realistic examples
-- Avoid defining attributes with potentially unbounded values, such as strings longer than
-  1 KB or arrays with more than 1,000 elements. Such values should be recorded in the log or event body instead. <!-- This may change, check out https://github.com/open-telemetry/semantic-conventions/issues/1651 to monitor the progress -->
+- Attributes should generally have bounded values (for example, strings under 1 KB or small arrays).
+  When captured data is unbounded by nature (such as queries, payloads, or raw records):
+  - Mark the attribute in the registry with:
+
+    ```yaml
+    annotations:
+      value:
+        unbounded_size: true
+    ```
+
+    This annotation renders a warning advising applications to configure SDK attribute limits and instrumentations to enforce safety size limits.
+  - Unbounded attributes MUST NOT be `required` on any signal or attribute group.
+  - Consider defining a corresponding reference attribute (see [attributes referencing external content](/docs/general/naming.md#attributes-referencing-external-content)).
 
 Consider the scope of the attribute and how it may evolve in the future:
 
