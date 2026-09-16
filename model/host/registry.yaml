@@ -144,3 +144,12 @@ groups:
         brief: >
           The amount of level 2 memory cache available to the processor (in Bytes).
         examples: [ 12288000 ]
+      - id: host.cpu.logical_count
+        stability: development
+        type: int
+        brief: >
+          Number of logical processor cores on the host.
+        note: >
+          This is the CPU capacity of the machine the kernel runs on. A value constrained by
+          CPU affinity, cgroup limits, or the process's own runtime view MUST NOT be reported.
+        examples: [ 8, 64 ]

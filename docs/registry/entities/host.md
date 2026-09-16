@@ -88,9 +88,12 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`host.cpu.cache.l2.size`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
 | Other | [`host.cpu.family`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
+| Other | [`host.cpu.logical_count`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of logical processor cores on the host. [4] | `8`; `64` |
 | Other | [`host.cpu.model.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |
 | Other | [`host.cpu.model.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
 | Other | [`host.cpu.stepping`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Stepping or core revisions. | `1`; `r1p1` |
-| Other | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Processor manufacturer identifier. A maximum 12-character string. [4] | `GenuineIntel` |
+| Other | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Processor manufacturer identifier. A maximum 12-character string. [5] | `GenuineIntel` |
 
-**[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
+**[4] `host.cpu.logical_count`:** This is the CPU capacity of the machine the kernel runs on. A value constrained by CPU affinity, cgroup limits, or the process's own runtime view MUST NOT be reported.
+
+**[5] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.

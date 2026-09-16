@@ -1,0 +1,12 @@
+change_type: enhancement
+component: host
+note: >
+  Add the `host.cpu.logical_count` resource attribute, reporting the total number of
+  logical CPUs on the host.
+issues: [977]
+subtext: |
+  The `system.cpu.logical.count` metric already exposes this value, but signals that are
+  not metrics (for example profiles) cannot correlate against it, and consumers of a
+  resource have no way to learn the CPU capacity of the host it describes. The attribute
+  is explicitly defined as host capacity: implementations must not derive it from the
+  observing process's CPU affinity mask or from a cgroup CPU quota.
