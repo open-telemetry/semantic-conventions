@@ -1,0 +1,13 @@
+change_type: enhancement
+
+component: exceptions
+
+note: >
+  Instrumentations should log a warning through the SDK logging facilities when the
+  `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable is ignored.
+
+issues: [4095]
+
+subtext: |
+  Without the warning, an instrumentation that falls back to emitting exceptions as span
+  events gives users no indication that their opt-in did not take effect.
