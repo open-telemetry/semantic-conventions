@@ -131,7 +131,7 @@ groups:
           The revision most often refers to a commit object in Git, or a revision number in SVN.
         note: |
           `head` refers to where you are right now; the current reference at a
-          given time.The revision can be a full [hash value (see
+          given time. The revision can be a full [hash value (see
           glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
           of the recorded change to a ref within a repository pointing to a
           commit [commit](https://git-scm.com/docs/git-commit) object. It does
@@ -285,3 +285,13 @@ groups:
             "gitea",
             "bitbucket",
           ]
+      - id: vcs.operation.name
+        type: string
+        stability: development
+        brief: >
+          The type of action or operation performed by a VCS.
+        note: >
+          For example, in Git, operations include `clone`, `fetch`, `pull`, `push`, `checkout`, etc.
+          In other VCS systems like Perforce or SVN, the operation names may be different (e.g. `sync`, `update`).
+          It SHOULD be the exact operation name as executed by the tool.
+        examples: ["clone", "fetch", "pull", "push", "checkout", "sync"]

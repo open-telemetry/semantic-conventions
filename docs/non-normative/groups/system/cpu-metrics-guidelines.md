@@ -4,9 +4,9 @@ The [**Instrument Naming**](/docs/general/naming.md#instrument-naming) section
 defines the `*.usage`, `*.limit`, `*.utilization`, and `*.time` metrics, but it
 does **not** specify their
 [**requirement levels**](/docs/general/signal-requirement-level.md)
-(`recommended`, `opt-in`). Because these metrics convey overlapping
-information in different forms, implementations may become inconsistent without
-explicit guidance.
+(`recommended`, `opt-in`). Because these metrics convey overlapping information
+in different forms, implementations may become inconsistent without explicit
+guidance.
 
 This document provides guidance regarding the requirement level of the CPU
 metrics across the different areas of the Semantic Conventions.
