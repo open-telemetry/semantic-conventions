@@ -18,7 +18,7 @@ These attributes may be used for any network related operation.
 | <a id="network-carrier-mcc" href="#network-carrier-mcc">`network.carrier.mcc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mobile carrier country code. | `310` |
 | <a id="network-carrier-mnc" href="#network-carrier-mnc">`network.carrier.mnc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mobile carrier network code. | `001` |
 | <a id="network-carrier-name" href="#network-carrier-name">`network.carrier.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the mobile carrier. | `sprint` |
-| <a id="network-connection-state" href="#network-connection-state">`network.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of network connection [1] | `close_wait` |
+| <a id="network-connection-state" href="#network-connection-state">`network.connection.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The state of network connection [1] | `close_wait` |
 | <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection. | `LTE` |
 | <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The internet connection type. | `wifi` |
 | <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The network interface name. | `lo`; `eth0` |
@@ -52,17 +52,17 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `close_wait` | close_wait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closed` | closed | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closing` | closing | ![Development](https://img.shields.io/badge/-development-blue) |
-| `established` | established | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_1` | fin_wait_1 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_2` | fin_wait_2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `last_ack` | last_ack | ![Development](https://img.shields.io/badge/-development-blue) |
-| `listen` | listen | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_received` | syn_received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_sent` | syn_sent | ![Development](https://img.shields.io/badge/-development-blue) |
-| `time_wait` | time_wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `close_wait` | close_wait | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `closed` | closed | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `closing` | closing | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `established` | established | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fin_wait_1` | fin_wait_1 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fin_wait_2` | fin_wait_2 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `last_ack` | last_ack | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `listen` | listen | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `syn_received` | syn_received | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `syn_sent` | syn_sent | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `time_wait` | time_wait | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 

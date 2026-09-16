@@ -17,7 +17,7 @@ Describes System attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="system-device" href="#system-device">`system.device`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The device identifier | `(identifier)` |
+| <a id="system-device" href="#system-device">`system.device`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The device identifier | `(identifier)` |
 
 ## Filesystem Attributes
 
@@ -27,10 +27,10 @@ Describes Filesystem attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="system-filesystem-mode" href="#system-filesystem-mode">`system.filesystem.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem mode | `rw, ro` |
-| <a id="system-filesystem-mountpoint" href="#system-filesystem-mountpoint">`system.filesystem.mountpoint`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem mount path | `/mnt/data` |
-| <a id="system-filesystem-state" href="#system-filesystem-state">`system.filesystem.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem state | `used` |
-| <a id="system-filesystem-type" href="#system-filesystem-type">`system.filesystem.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem type | `ext4` |
+| <a id="system-filesystem-mode" href="#system-filesystem-mode">`system.filesystem.mode`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The filesystem mode | `rw, ro` |
+| <a id="system-filesystem-mountpoint" href="#system-filesystem-mountpoint">`system.filesystem.mountpoint`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The filesystem mount path | `/mnt/data` |
+| <a id="system-filesystem-state" href="#system-filesystem-state">`system.filesystem.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The filesystem state | `used` |
+| <a id="system-filesystem-type" href="#system-filesystem-type">`system.filesystem.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The filesystem type | `ext4` |
 
 ---
 
@@ -38,9 +38,9 @@ Describes Filesystem attributes
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | free | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `reserved` | reserved | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `used` | used | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -48,12 +48,12 @@ Describes Filesystem attributes
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exfat | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `ext4` | ext4 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fat32` | fat32 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hfsplus` | hfsplus | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `ntfs` | ntfs | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `refs` | refs | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ## System Memory Attributes
 
@@ -63,9 +63,9 @@ Describes System Memory attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="system-memory-linux-hugepages-state" href="#system-memory-linux-hugepages-state">`system.memory.linux.hugepages.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Linux HugePages memory state | `free`; `used` |
-| <a id="system-memory-linux-slab-state" href="#system-memory-linux-slab-state">`system.memory.linux.slab.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` |
-| <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory state | `free`; `cached` |
+| <a id="system-memory-linux-hugepages-state" href="#system-memory-linux-hugepages-state">`system.memory.linux.hugepages.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The Linux HugePages memory state | `free`; `used` |
+| <a id="system-memory-linux-slab-state" href="#system-memory-linux-slab-state">`system.memory.linux.slab.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` |
+| <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The memory state | `free`; `cached` |
 
 ---
 
@@ -73,8 +73,8 @@ Describes System Memory attributes
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | free | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `used` | used | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -82,8 +82,8 @@ Describes System Memory attributes
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `reclaimable` | reclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unreclaimable` | unreclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reclaimable` | reclaimable | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `unreclaimable` | unreclaimable | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -91,10 +91,10 @@ Describes System Memory attributes
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `buffers` | buffers | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `cached` | cached | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `free` | free | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `used` | Actual used virtual memory in bytes. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
@@ -106,9 +106,9 @@ Describes System Memory Paging attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="system-paging-direction" href="#system-paging-direction">`system.paging.direction`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The paging access direction | `in` |
+| <a id="system-paging-direction" href="#system-paging-direction">`system.paging.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The paging access direction | `in` |
 | <a id="system-paging-fault-type" href="#system-paging-fault-type">`system.paging.fault.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The paging fault type | `minor` |
-| <a id="system-paging-state" href="#system-paging-state">`system.paging.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory paging state | `free` |
+| <a id="system-paging-state" href="#system-paging-state">`system.paging.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The memory paging state | `free` |
 
 ---
 
@@ -116,8 +116,8 @@ Describes System Memory Paging attributes
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `in` | in | ![Development](https://img.shields.io/badge/-development-blue) |
-| `out` | out | ![Development](https://img.shields.io/badge/-development-blue) |
+| `in` | in | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `out` | out | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -134,8 +134,8 @@ Describes System Memory Paging attributes
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | free | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `used` | used | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ## Deprecated System Attributes
 
