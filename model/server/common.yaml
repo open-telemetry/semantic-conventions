@@ -13,4 +13,8 @@ attribute_groups:
       This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
     attributes:
       - ref: server.address
+      - ref: server.as.number
+        requirement_level: opt_in
+      - ref: server.as.organization.name
+        requirement_level: opt_in
       - ref: server.port

@@ -9,6 +9,24 @@ attributes:
       When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent
       the client address behind any intermediaries,  for example proxies, if it's available.
     examples: ['client.example.com', '10.1.2.80', '/tmp/my.sock']
+  - key: client.as.number
+    stability: development
+    type: int
+    brief: "The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the client IP address."
+    note: >
+      This attribute SHOULD only be set when the client address is an IP address and the
+      ASN is available from routing, enrichment, or lookup data. The value SHOULD be
+      represented as an integer without the `AS` prefix.
+    examples: [64496, 15169]
+  - key: client.as.organization.name
+    stability: development
+    type: string
+    brief: "The name of the organization associated with the autonomous system of the client IP address."
+    note: >
+      This attribute SHOULD only be set when `client.as.number` is set and the organization
+      name is available. The value SHOULD be the organization name as provided by the lookup
+      or enrichment source, not the AS name or short code.
+    examples: ["Example Networks Inc.", "Google LLC"]
   - key: client.port
     stability: stable
     type: int
