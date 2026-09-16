@@ -85,6 +85,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.span.started` | Counter | `{span}` | The number of created spans. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Implementations MUST record this metric for all spans, even for non-recording ones.
+In OpenTelemetry SDKs a `Tracer` is enabled by default, and can be disabled via configuration i.e. `TracerConfig.enabled` = `false` when supported;
+a disabled `Tracer` is a No-op: starting a span on it does not create an SDK span, so those spans are not counted.
 
 **Attributes:**
 
