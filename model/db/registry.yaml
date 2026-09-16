@@ -305,7 +305,7 @@ groups:
               stability: development
             - id: ibm.db2
               value: "ibm.db2"
-              brief: "[IBM Db2](https://www.ibm.com/db2)"
+              brief: "[IBM Db2](https://www.ibm.com/products/db2)"
               stability: development
             - id: ibm.informix
               value: "ibm.informix"

@@ -171,10 +171,10 @@
 /docs/non-normative/code-generation.md  @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
 
 # Mainframe
-/docs/mainframe                   @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
-/model/mainframe                  @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
-/docs/zos                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
-/model/zos                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+/docs/mainframe                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mainframe-approvers
+/model/mainframe                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mainframe-approvers
+/docs/zos                         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mainframe-approvers
+/model/zos                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mainframe-approvers
 
 # Service semantic conventions
 /model/service/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-service-and-deployment-approvers

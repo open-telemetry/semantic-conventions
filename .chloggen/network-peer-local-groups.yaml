@@ -1,0 +1,6 @@
+change_type: enhancement
+component: network
+note: >
+  Add public `network.peer` and `network.local` attribute groups, replacing the
+  internal `network-core` group.
+issues: [4084]
