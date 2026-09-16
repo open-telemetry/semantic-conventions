@@ -1,0 +1,13 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Clarify that `otel.sdk.processor.span.processed` and `otel.sdk.processor.log.processed` count a record as successfully processed
+  when the processor completes its intended handling of it, and that for spans this includes `RECORD_ONLY` spans that the SDK
+  Simple and Batching Span Processors do not forward to an exporter (so a span counted as successfully processed is not necessarily
+  delivered to an exporter).
+
+issues: [3954]
+
+subtext:
