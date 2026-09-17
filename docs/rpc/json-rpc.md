@@ -72,6 +72,9 @@ If the request has completed successfully, instrumentations SHOULD NOT set
 
 **[2] `rpc.status_code`:** All JSON RPC error codes SHOULD be considered errors.
 
+Instrumentations MAY use additional context or provide configuration options to customize
+which error codes are considered errors.
+
 **[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[4] `jsonrpc.request.id`:** Under the [JSON-RPC specification](https://www.jsonrpc.org/specification), the `id` property may be a string, number, null, or omitted entirely. When omitted, the request is treated as a notification. Using `null` is not equivalent to omitting the `id`, but it is discouraged.
@@ -155,6 +158,9 @@ If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
 **[2] `rpc.status_code`:** All JSON RPC error codes SHOULD be considered errors.
+
+Instrumentations MAY use additional context or provide configuration options to customize
+which error codes are considered errors.
 
 **[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
