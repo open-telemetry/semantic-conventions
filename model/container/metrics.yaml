@@ -226,7 +226,7 @@ groups:
       - container
     attributes:
       - ref: disk.io.direction
-      - ref: system.device
+      - ref: system.device.name
 
   # container.network.io.* metrics and attribute group
   - id: metric.container.network.io
