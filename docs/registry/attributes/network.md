@@ -24,27 +24,39 @@ These attributes may be used for any network related operation.
 | <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The network interface name. | `lo`; `eth0` |
 | <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
 | <a id="network-local-address" href="#network-local-address">`network.local.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Local address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| <a id="network-local-as-number" href="#network-local-as-number">`network.local.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the local IP address. [2] | `64496`; `15169` |
+| <a id="network-local-as-organization-name" href="#network-local-as-organization-name">`network.local.as.organization.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the local IP address. [3] | `Example Networks Inc.`; `Google LLC` |
 | <a id="network-local-port" href="#network-local-port">`network.local.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Local port number of the network connection. | `65123` |
 | <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| <a id="network-peer-as-number" href="#network-peer-as-number">`network.peer.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address. [4] | `64496`; `15169` |
+| <a id="network-peer-as-organization-name" href="#network-peer-as-organization-name">`network.peer.as.organization.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the peer IP address. [5] | `Example Networks Inc.`; `Google LLC` |
 | <a id="network-peer-port" href="#network-peer-port">`network.peer.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Peer port number of the network connection. | `65123` |
-| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `amqp`; `http`; `mqtt` |
-| <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [3] | `1.1`; `2` |
-| <a id="network-transport" href="#network-transport">`network.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` |
-| <a id="network-type" href="#network-type">`network.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` |
+| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [6] | `amqp`; `http`; `mqtt` |
+| <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [7] | `1.1`; `2` |
+| <a id="network-transport" href="#network-transport">`network.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [8] | `tcp`; `udp` |
+| <a id="network-type" href="#network-type">`network.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [9] | `ipv4`; `ipv6` |
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
-**[2] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
+**[2] `network.local.as.number`:** This attribute SHOULD only be set when the local address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
 
-**[3] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[3] `network.local.as.organization.name`:** This attribute SHOULD only be set when `network.local.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[4] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[4] `network.peer.as.number`:** This attribute SHOULD only be set when the peer address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+
+**[5] `network.peer.as.organization.name`:** This attribute SHOULD only be set when `network.peer.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+
+**[6] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
+
+**[7] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+
+**[8] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[5] `network.type`:** The value SHOULD be normalized to lowercase.
+**[9] `network.type`:** The value SHOULD be normalized to lowercase.
 
 ---
 
@@ -174,10 +186,10 @@ These attributes may be used for any network related operation.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `inproc` | In-process communication. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inproc` | In-process communication. [10] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | Something else (non IP-based). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pipe` | Named or anonymous pipe. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[6]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
+**[10]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.

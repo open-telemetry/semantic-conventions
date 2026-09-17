@@ -10,8 +10,14 @@
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="server-address" href="#server-address">`server.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| <a id="server-port" href="#server-port">`server.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Server port number. [2] | `80`; `8080`; `443` |
+| <a id="server-as-number" href="#server-as-number">`server.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the server IP address. [2] | `64496`; `15169` |
+| <a id="server-as-organization-name" href="#server-as-organization-name">`server.as.organization.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the server IP address. [3] | `Example Networks Inc.`; `Google LLC` |
+| <a id="server-port" href="#server-port">`server.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Server port number. [4] | `80`; `8080`; `443` |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[2] `server.as.number`:** This attribute SHOULD only be set when the server address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+
+**[3] `server.as.organization.name`:** This attribute SHOULD only be set when `server.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+
+**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.

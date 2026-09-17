@@ -9,6 +9,24 @@ attributes:
       When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
       the server address behind any intermediaries, for example proxies, if it's available.
     examples: ['example.com', '10.1.2.80', '/tmp/my.sock']
+  - key: server.as.number
+    stability: development
+    type: int
+    brief: "The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the server IP address."
+    note: >
+      This attribute SHOULD only be set when the server address is an IP address and the
+      ASN is available from routing, enrichment, or lookup data. The value SHOULD be
+      represented as an integer without the `AS` prefix.
+    examples: [64496, 15169]
+  - key: server.as.organization.name
+    stability: development
+    type: string
+    brief: "The name of the organization associated with the autonomous system of the server IP address."
+    note: >
+      This attribute SHOULD only be set when `server.as.number` is set and the organization
+      name is available. The value SHOULD be the organization name as provided by the lookup
+      or enrichment source, not the AS name or short code.
+    examples: ["Example Networks Inc.", "Google LLC"]
   - key: server.port
     stability: stable
     type: int
