@@ -1,0 +1,12 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Clarify that `otel.sdk.processor.span.processed` and `otel.sdk.processor.log.processed` count only the records a processor passes
+  on, or fails to pass on. Records a processor does not pass on by design are not counted; for the built-in Simple and Batching Span
+  Processors this excludes `RECORD_ONLY` (recording but not sampled) spans, which are not exported.
+
+issues: [3954]
+
+subtext:
