@@ -175,6 +175,23 @@ words:
   - Depluralize
   - Undeprecate
   - bfcache
+  - dccp
+  - eigrp
+  - ethertype
+  - ethertypes
+  - fcoe
+  - icmpv6
+  - igmp
+  - ipsec
+  - macsec
+  - mvrp
+  - ospf
+  - ospfigp
+  - qinq
+  - rdma
+  - roce
+  - sctp
+  - vrrp
 ignoreWords:
   - gitea
   - rego

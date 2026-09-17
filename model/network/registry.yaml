@@ -176,17 +176,73 @@ groups:
         stability: stable
         type:
           members:
+            - id: icmp
+              value: 'icmp'
+              brief: "ICMP (IANA protocol 1)"
+              stability: development
+            - id: igmp
+              value: 'igmp'
+              brief: "IGMP (IANA protocol 2)"
+              stability: development
+            - id: ipv4
+              value: 'ipv4'
+              brief: "IPv4 encapsulation / IP-in-IP (IANA protocol 4)."
+              stability: development
             - id: tcp
               value: 'tcp'
-              brief: "TCP"
+              brief: "TCP (IANA protocol 6)"
               stability: stable
             - id: udp
               value: 'udp'
-              brief: "UDP"
+              brief: "UDP (IANA protocol 17)"
               stability: stable
+            - id: dccp
+              value: 'dccp'
+              brief: "DCCP (IANA protocol 33)"
+              stability: development
+            - id: ipv6
+              value: 'ipv6'
+              brief: "IPv6 encapsulation (IANA protocol 41)."
+              stability: development
+            - id: gre
+              value: 'gre'
+              brief: "GRE (IANA protocol 47)"
+              stability: development
+            - id: esp
+              value: 'esp'
+              brief: "IPsec ESP (IANA protocol 50)"
+              stability: development
+            - id: ah
+              value: 'ah'
+              brief: "IPsec AH (IANA protocol 51)"
+              stability: development
+            - id: ipv6_icmp
+              value: 'ipv6-icmp'
+              brief: "ICMPv6 (IANA protocol 58, keyword IPv6-ICMP)"
+              stability: development
+            - id: eigrp
+              value: 'eigrp'
+              brief: "EIGRP (IANA protocol 88)"
+              stability: development
+            - id: ospfigp
+              value: 'ospfigp'
+              brief: "OSPF (IANA protocol 89, keyword OSPFIGP)"
+              stability: development
+            - id: pim
+              value: 'pim'
+              brief: "PIM (IANA protocol 103)"
+              stability: development
+            - id: vrrp
+              value: 'vrrp'
+              brief: "VRRP (IANA protocol 112)"
+              stability: development
+            - id: sctp
+              value: 'sctp'
+              brief: "SCTP (IANA protocol 132)"
+              stability: development
             - id: pipe
               value: "pipe"
-              brief: 'Named or anonymous pipe.'
+              brief: 'Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP).'
               stability: stable
             - id: unix
               value: 'unix'
@@ -194,33 +250,101 @@ groups:
               stability: stable
             - id: quic
               value: 'quic'
-              brief: "QUIC"
+              brief: "QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP."
               stability: stable
         brief: >
-          [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or
+          [OSI transport layer](https://wikipedia.org/wiki/Transport_layer),
+          [IANA protocol number](https://www.iana.org/assignments/protocol-numbers)
+          keyword for IP packets, or
           [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
         note: |
           The value SHOULD be normalized to lowercase.
 
+          For IP packets, well-known values are IANA protocol-number
+          keywords, lowercased
+          ([Assigned Internet Protocol Numbers](https://www.iana.org/assignments/protocol-numbers))
+          from the IPv4 `Protocol` or IPv6 `Next Header` field. `ipv4` and
+          `ipv6` mean IP-in-IP encapsulation, not `network.type`. `pipe`,
+          `unix`, and `quic` are not IANA protocol numbers.
+
           Consider always setting the transport when setting a port number, since
           a port number is ambiguous without knowing the transport. For example
           different processes could be listening on TCP port 12345 and UDP port 12345.
-        examples: ['tcp', 'udp']
+
+          If the instrumentation unwraps IP-in-IP, GRE, or ESP, it SHOULD set
+          `network.transport` to the inner protocol. Otherwise it MAY emit
+          `ipv4`, `ipv6`, `gre`, or `esp`.
+        examples: ['tcp', 'udp', 'icmp']
       - id: network.type
         stability: stable
         type:
           members:
             - id: ipv4
               value: 'ipv4'
-              brief: "IPv4"
+              brief: "IPv4 (EtherType 0x0800)"
               stability: stable
+            - id: arp
+              value: 'arp'
+              brief: "Address Resolution Protocol (ARP). EtherType 0x0806."
+              stability: development
+            - id: ethernet
+              value: 'ethernet'
+              brief: "Transparent Ethernet Bridging. EtherType 0x6558."
+              stability: development
+            - id: vlan
+              value: 'vlan'
+              brief: "IEEE 802.1Q Customer VLAN Tag (C-Tag). EtherType 0x8100."
+              stability: development
             - id: ipv6
               value: 'ipv6'
-              brief: "IPv6"
+              brief: "IPv6 (EtherType 0x86DD)"
               stability: stable
-        brief: '[OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.'
-        note: The value SHOULD be normalized to lowercase.
-        examples: ['ipv4', 'ipv6']
+            - id: qinq
+              value: 'qinq'
+              brief: "IEEE 802.1ad / 802.1Q Service VLAN Tag (S-Tag). EtherType 0x88A8."
+              stability: development
+            - id: macsec
+              value: 'macsec'
+              brief: "IEEE 802.1AE MACsec. EtherType 0x88E5."
+              stability: development
+            - id: pbb
+              value: 'pbb'
+              brief: "Provider Backbone Bridging instance tag. EtherType 0x88E7."
+              stability: development
+            - id: mvrp
+              value: 'mvrp'
+              brief: "Multiple VLAN Registration Protocol (MVRP). EtherType 0x88F5."
+              stability: development
+            - id: fibre_channel
+              value: 'fibre_channel'
+              brief: "Fibre Channel over Ethernet (FCoE). EtherType 0x8906."
+              stability: development
+            - id: roce
+              value: 'roce'
+              brief: "RDMA over Converged Ethernet (RoCE). EtherType 0x8915."
+              stability: development
+            - id: loopback
+              value: 'loopback'
+              brief: "Loopback. EtherType 0x9000."
+              stability: development
+        brief: >
+          [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame,
+          or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI
+          equivalent for non-Ethernet networks.
+        note: |
+          The value SHOULD be normalized to lowercase.
+
+          Well-known values are IEEE 802 EtherTypes. See
+          [IANA IEEE 802 Numbers](https://www.iana.org/assignments/ieee-802-numbers#ieee-802-numbers-1).
+          An EtherType may name an L2 encapsulation (`vlan`) or an L3 payload
+          (`ipv4`).
+
+          If the instrumentation unwraps L2 encapsulations (`vlan`, `qinq`,
+          `macsec`, `pbb`), it SHOULD set `network.type` to the inner EtherType.
+          Otherwise it MAY emit the encapsulation type.
+
+          `ipv4` and `ipv6` here are EtherTypes, not IANA protocol numbers.
+        examples: ['ipv4', 'ipv6', 'arp']
       - id: network.io.direction
         type:
           members:

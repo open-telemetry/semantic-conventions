@@ -47,18 +47,40 @@ In case instrumentation does not recognize `EndPoint` implementation, it sets th
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [2] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 
 **[1] `network.transport`:** The value SHOULD be normalized to lowercase.
 
+For IP packets, well-known values are IANA protocol-number
+keywords, lowercased
+([Assigned Internet Protocol Numbers](https://www.iana.org/assignments/protocol-numbers))
+from the IPv4 `Protocol` or IPv6 `Next Header` field. `ipv4` and
+`ipv6` mean IP-in-IP encapsulation, not `network.type`. `pipe`,
+`unix`, and `quic` are not IANA protocol numbers.
+
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
+If the instrumentation unwraps IP-in-IP, GRE, or ESP, it SHOULD set
+`network.transport` to the inner protocol. Otherwise it MAY emit
+`ipv4`, `ipv6`, `gre`, or `esp`.
+
 **[2] `network.type`:** The value SHOULD be normalized to lowercase.
+
+Well-known values are IEEE 802 EtherTypes. See
+[IANA IEEE 802 Numbers](https://www.iana.org/assignments/ieee-802-numbers#ieee-802-numbers-1).
+An EtherType may name an L2 encapsulation (`vlan`) or an L3 payload
+(`ipv4`).
+
+If the instrumentation unwraps L2 encapsulations (`vlan`, `qinq`,
+`macsec`, `pbb`), it SHOULD set `network.type` to the inner EtherType.
+Otherwise it MAY emit the encapsulation type.
+
+`ipv4` and `ipv6` here are EtherTypes, not IANA protocol numbers.
 
 **[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -72,11 +94,25 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ah` | IPsec AH (IANA protocol 51) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dccp` | DCCP (IANA protocol 33) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eigrp` | EIGRP (IANA protocol 88) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esp` | IPsec ESP (IANA protocol 50) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gre` | GRE (IANA protocol 47) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `icmp` | ICMP (IANA protocol 1) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `igmp` | IGMP (IANA protocol 2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 encapsulation / IP-in-IP (IANA protocol 4). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6` | IPv6 encapsulation (IANA protocol 41). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6-icmp` | ICMPv6 (IANA protocol 58, keyword IPv6-ICMP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ospfigp` | OSPF (IANA protocol 89, keyword OSPFIGP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pim` | PIM (IANA protocol 103) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `sctp` | SCTP (IANA protocol 132) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP (IANA protocol 6) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP (IANA protocol 17) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `vrrp` | VRRP (IANA protocol 112) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -86,8 +122,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `macsec` | IEEE 802.1AE MACsec. EtherType 0x88E5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mvrp` | Multiple VLAN Registration Protocol (MVRP). EtherType 0x88F5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pbb` | Provider Backbone Bridging instance tag. EtherType 0x88E7. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `qinq` | IEEE 802.1ad / 802.1Q Service VLAN Tag (S-Tag). EtherType 0x88A8. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `roce` | RDMA over Converged Ethernet (RoCE). EtherType 0x8915. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vlan` | IEEE 802.1Q Customer VLAN Tag (C-Tag). EtherType 0x8100. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -115,8 +161,8 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. [1] | `connection_reset`; `invalid_handshake` [(see more)](#error-type-values) |
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `http`; `web_sockets` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [3] | `1.1`; `2` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `unix` [(see more)](#network-transport-values) |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [5] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [7] | `80`; `8080`; `443` |
 | [`tls.protocol.version`](/docs/registry/attributes/tls.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values) | `1.2`; `3` |
@@ -179,11 +225,33 @@ In other cases, `error.type` contains the fully qualified type name of the excep
 
 **[4] `network.transport`:** The value SHOULD be normalized to lowercase.
 
+For IP packets, well-known values are IANA protocol-number
+keywords, lowercased
+([Assigned Internet Protocol Numbers](https://www.iana.org/assignments/protocol-numbers))
+from the IPv4 `Protocol` or IPv6 `Next Header` field. `ipv4` and
+`ipv6` mean IP-in-IP encapsulation, not `network.type`. `pipe`,
+`unix`, and `quic` are not IANA protocol numbers.
+
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
+If the instrumentation unwraps IP-in-IP, GRE, or ESP, it SHOULD set
+`network.transport` to the inner protocol. Otherwise it MAY emit
+`ipv4`, `ipv6`, `gre`, or `esp`.
+
 **[5] `network.type`:** The value SHOULD be normalized to lowercase.
+
+Well-known values are IEEE 802 EtherTypes. See
+[IANA IEEE 802 Numbers](https://www.iana.org/assignments/ieee-802-numbers#ieee-802-numbers-1).
+An EtherType may name an L2 encapsulation (`vlan`) or an L3 payload
+(`ipv4`).
+
+If the instrumentation unwraps L2 encapsulations (`vlan`, `qinq`,
+`macsec`, `pbb`), it SHOULD set `network.type` to the inner EtherType.
+Otherwise it MAY emit the encapsulation type.
+
+`ipv4` and `ipv6` here are EtherTypes, not IANA protocol numbers.
 
 **[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -207,11 +275,25 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ah` | IPsec AH (IANA protocol 51) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dccp` | DCCP (IANA protocol 33) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eigrp` | EIGRP (IANA protocol 88) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esp` | IPsec ESP (IANA protocol 50) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gre` | GRE (IANA protocol 47) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `icmp` | ICMP (IANA protocol 1) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `igmp` | IGMP (IANA protocol 2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 encapsulation / IP-in-IP (IANA protocol 4). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6` | IPv6 encapsulation (IANA protocol 41). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6-icmp` | ICMPv6 (IANA protocol 58, keyword IPv6-ICMP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ospfigp` | OSPF (IANA protocol 89, keyword OSPFIGP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pim` | PIM (IANA protocol 103) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `sctp` | SCTP (IANA protocol 132) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP (IANA protocol 6) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP (IANA protocol 17) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `vrrp` | VRRP (IANA protocol 112) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -221,8 +303,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `macsec` | IEEE 802.1AE MACsec. EtherType 0x88E5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mvrp` | Multiple VLAN Registration Protocol (MVRP). EtherType 0x88F5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pbb` | Provider Backbone Bridging instance tag. EtherType 0x88E7. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `qinq` | IEEE 802.1ad / 802.1Q Service VLAN Tag (S-Tag). EtherType 0x88A8. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `roce` | RDMA over Converged Ethernet (RoCE). EtherType 0x8915. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vlan` | IEEE 802.1Q Customer VLAN Tag (C-Tag). EtherType 0x8100. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -246,18 +338,40 @@ Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [2] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 
 **[1] `network.transport`:** The value SHOULD be normalized to lowercase.
 
+For IP packets, well-known values are IANA protocol-number
+keywords, lowercased
+([Assigned Internet Protocol Numbers](https://www.iana.org/assignments/protocol-numbers))
+from the IPv4 `Protocol` or IPv6 `Next Header` field. `ipv4` and
+`ipv6` mean IP-in-IP encapsulation, not `network.type`. `pipe`,
+`unix`, and `quic` are not IANA protocol numbers.
+
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
+If the instrumentation unwraps IP-in-IP, GRE, or ESP, it SHOULD set
+`network.transport` to the inner protocol. Otherwise it MAY emit
+`ipv4`, `ipv6`, `gre`, or `esp`.
+
 **[2] `network.type`:** The value SHOULD be normalized to lowercase.
+
+Well-known values are IEEE 802 EtherTypes. See
+[IANA IEEE 802 Numbers](https://www.iana.org/assignments/ieee-802-numbers#ieee-802-numbers-1).
+An EtherType may name an L2 encapsulation (`vlan`) or an L3 payload
+(`ipv4`).
+
+If the instrumentation unwraps L2 encapsulations (`vlan`, `qinq`,
+`macsec`, `pbb`), it SHOULD set `network.type` to the inner EtherType.
+Otherwise it MAY emit the encapsulation type.
+
+`ipv4` and `ipv6` here are EtherTypes, not IANA protocol numbers.
 
 **[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -271,11 +385,25 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ah` | IPsec AH (IANA protocol 51) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dccp` | DCCP (IANA protocol 33) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eigrp` | EIGRP (IANA protocol 88) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esp` | IPsec ESP (IANA protocol 50) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gre` | GRE (IANA protocol 47) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `icmp` | ICMP (IANA protocol 1) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `igmp` | IGMP (IANA protocol 2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 encapsulation / IP-in-IP (IANA protocol 4). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6` | IPv6 encapsulation (IANA protocol 41). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6-icmp` | ICMPv6 (IANA protocol 58, keyword IPv6-ICMP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ospfigp` | OSPF (IANA protocol 89, keyword OSPFIGP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pim` | PIM (IANA protocol 103) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `sctp` | SCTP (IANA protocol 132) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP (IANA protocol 6) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP (IANA protocol 17) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `vrrp` | VRRP (IANA protocol 112) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -285,8 +413,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `macsec` | IEEE 802.1AE MACsec. EtherType 0x88E5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mvrp` | Multiple VLAN Registration Protocol (MVRP). EtherType 0x88F5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pbb` | Provider Backbone Bridging instance tag. EtherType 0x88E7. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `qinq` | IEEE 802.1ad / 802.1Q Service VLAN Tag (S-Tag). EtherType 0x88A8. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `roce` | RDMA over Converged Ethernet (RoCE). EtherType 0x8915. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vlan` | IEEE 802.1Q Customer VLAN Tag (C-Tag). EtherType 0x8100. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -309,18 +447,40 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [2] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 
 **[1] `network.transport`:** The value SHOULD be normalized to lowercase.
 
+For IP packets, well-known values are IANA protocol-number
+keywords, lowercased
+([Assigned Internet Protocol Numbers](https://www.iana.org/assignments/protocol-numbers))
+from the IPv4 `Protocol` or IPv6 `Next Header` field. `ipv4` and
+`ipv6` mean IP-in-IP encapsulation, not `network.type`. `pipe`,
+`unix`, and `quic` are not IANA protocol numbers.
+
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
+If the instrumentation unwraps IP-in-IP, GRE, or ESP, it SHOULD set
+`network.transport` to the inner protocol. Otherwise it MAY emit
+`ipv4`, `ipv6`, `gre`, or `esp`.
+
 **[2] `network.type`:** The value SHOULD be normalized to lowercase.
+
+Well-known values are IEEE 802 EtherTypes. See
+[IANA IEEE 802 Numbers](https://www.iana.org/assignments/ieee-802-numbers#ieee-802-numbers-1).
+An EtherType may name an L2 encapsulation (`vlan`) or an L3 payload
+(`ipv4`).
+
+If the instrumentation unwraps L2 encapsulations (`vlan`, `qinq`,
+`macsec`, `pbb`), it SHOULD set `network.type` to the inner EtherType.
+Otherwise it MAY emit the encapsulation type.
+
+`ipv4` and `ipv6` here are EtherTypes, not IANA protocol numbers.
 
 **[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -334,11 +494,25 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ah` | IPsec AH (IANA protocol 51) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dccp` | DCCP (IANA protocol 33) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eigrp` | EIGRP (IANA protocol 88) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esp` | IPsec ESP (IANA protocol 50) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gre` | GRE (IANA protocol 47) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `icmp` | ICMP (IANA protocol 1) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `igmp` | IGMP (IANA protocol 2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 encapsulation / IP-in-IP (IANA protocol 4). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6` | IPv6 encapsulation (IANA protocol 41). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6-icmp` | ICMPv6 (IANA protocol 58, keyword IPv6-ICMP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ospfigp` | OSPF (IANA protocol 89, keyword OSPFIGP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pim` | PIM (IANA protocol 103) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `sctp` | SCTP (IANA protocol 132) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP (IANA protocol 6) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP (IANA protocol 17) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `vrrp` | VRRP (IANA protocol 112) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -348,8 +522,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `macsec` | IEEE 802.1AE MACsec. EtherType 0x88E5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mvrp` | Multiple VLAN Registration Protocol (MVRP). EtherType 0x88F5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pbb` | Provider Backbone Bridging instance tag. EtherType 0x88E7. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `qinq` | IEEE 802.1ad / 802.1Q Service VLAN Tag (S-Tag). EtherType 0x88A8. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `roce` | RDMA over Converged Ethernet (RoCE). EtherType 0x8915. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vlan` | IEEE 802.1Q Customer VLAN Tag (C-Tag). EtherType 0x8100. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -374,8 +558,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | --- | --- | --- | --- | --- | --- |
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [1] | `http`; `web_sockets` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `unix` [(see more)](#network-transport-values) |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [4] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [4] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [6] | `80`; `8080`; `443` |
 
@@ -385,11 +569,33 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[3] `network.transport`:** The value SHOULD be normalized to lowercase.
 
+For IP packets, well-known values are IANA protocol-number
+keywords, lowercased
+([Assigned Internet Protocol Numbers](https://www.iana.org/assignments/protocol-numbers))
+from the IPv4 `Protocol` or IPv6 `Next Header` field. `ipv4` and
+`ipv6` mean IP-in-IP encapsulation, not `network.type`. `pipe`,
+`unix`, and `quic` are not IANA protocol numbers.
+
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
+If the instrumentation unwraps IP-in-IP, GRE, or ESP, it SHOULD set
+`network.transport` to the inner protocol. Otherwise it MAY emit
+`ipv4`, `ipv6`, `gre`, or `esp`.
+
 **[4] `network.type`:** The value SHOULD be normalized to lowercase.
+
+Well-known values are IEEE 802 EtherTypes. See
+[IANA IEEE 802 Numbers](https://www.iana.org/assignments/ieee-802-numbers#ieee-802-numbers-1).
+An EtherType may name an L2 encapsulation (`vlan`) or an L3 payload
+(`ipv4`).
+
+If the instrumentation unwraps L2 encapsulations (`vlan`, `qinq`,
+`macsec`, `pbb`), it SHOULD set `network.type` to the inner EtherType.
+Otherwise it MAY emit the encapsulation type.
+
+`ipv4` and `ipv6` here are EtherTypes, not IANA protocol numbers.
 
 **[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -403,11 +609,25 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ah` | IPsec AH (IANA protocol 51) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dccp` | DCCP (IANA protocol 33) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eigrp` | EIGRP (IANA protocol 88) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esp` | IPsec ESP (IANA protocol 50) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gre` | GRE (IANA protocol 47) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `icmp` | ICMP (IANA protocol 1) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `igmp` | IGMP (IANA protocol 2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 encapsulation / IP-in-IP (IANA protocol 4). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6` | IPv6 encapsulation (IANA protocol 41). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6-icmp` | ICMPv6 (IANA protocol 58, keyword IPv6-ICMP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ospfigp` | OSPF (IANA protocol 89, keyword OSPFIGP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pim` | PIM (IANA protocol 103) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `sctp` | SCTP (IANA protocol 132) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP (IANA protocol 6) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP (IANA protocol 17) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `vrrp` | VRRP (IANA protocol 112) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -417,8 +637,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `macsec` | IEEE 802.1AE MACsec. EtherType 0x88E5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mvrp` | Multiple VLAN Registration Protocol (MVRP). EtherType 0x88F5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pbb` | Provider Backbone Bridging instance tag. EtherType 0x88E7. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `qinq` | IEEE 802.1ad / 802.1Q Service VLAN Tag (S-Tag). EtherType 0x88A8. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `roce` | RDMA over Converged Ethernet (RoCE). EtherType 0x8915. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vlan` | IEEE 802.1Q Customer VLAN Tag (C-Tag). EtherType 0x8100. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -443,18 +673,40 @@ Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [2] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 
 **[1] `network.transport`:** The value SHOULD be normalized to lowercase.
 
+For IP packets, well-known values are IANA protocol-number
+keywords, lowercased
+([Assigned Internet Protocol Numbers](https://www.iana.org/assignments/protocol-numbers))
+from the IPv4 `Protocol` or IPv6 `Next Header` field. `ipv4` and
+`ipv6` mean IP-in-IP encapsulation, not `network.type`. `pipe`,
+`unix`, and `quic` are not IANA protocol numbers.
+
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
+If the instrumentation unwraps IP-in-IP, GRE, or ESP, it SHOULD set
+`network.transport` to the inner protocol. Otherwise it MAY emit
+`ipv4`, `ipv6`, `gre`, or `esp`.
+
 **[2] `network.type`:** The value SHOULD be normalized to lowercase.
+
+Well-known values are IEEE 802 EtherTypes. See
+[IANA IEEE 802 Numbers](https://www.iana.org/assignments/ieee-802-numbers#ieee-802-numbers-1).
+An EtherType may name an L2 encapsulation (`vlan`) or an L3 payload
+(`ipv4`).
+
+If the instrumentation unwraps L2 encapsulations (`vlan`, `qinq`,
+`macsec`, `pbb`), it SHOULD set `network.type` to the inner EtherType.
+Otherwise it MAY emit the encapsulation type.
+
+`ipv4` and `ipv6` here are EtherTypes, not IANA protocol numbers.
 
 **[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -468,11 +720,25 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ah` | IPsec AH (IANA protocol 51) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dccp` | DCCP (IANA protocol 33) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eigrp` | EIGRP (IANA protocol 88) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esp` | IPsec ESP (IANA protocol 50) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gre` | GRE (IANA protocol 47) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `icmp` | ICMP (IANA protocol 1) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `igmp` | IGMP (IANA protocol 2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 encapsulation / IP-in-IP (IANA protocol 4). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6` | IPv6 encapsulation (IANA protocol 41). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6-icmp` | ICMPv6 (IANA protocol 58, keyword IPv6-ICMP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ospfigp` | OSPF (IANA protocol 89, keyword OSPFIGP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pim` | PIM (IANA protocol 103) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `sctp` | SCTP (IANA protocol 132) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP (IANA protocol 6) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP (IANA protocol 17) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `vrrp` | VRRP (IANA protocol 112) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -482,8 +748,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `macsec` | IEEE 802.1AE MACsec. EtherType 0x88E5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mvrp` | Multiple VLAN Registration Protocol (MVRP). EtherType 0x88F5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pbb` | Provider Backbone Bridging instance tag. EtherType 0x88E7. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `qinq` | IEEE 802.1ad / 802.1Q Service VLAN Tag (S-Tag). EtherType 0x88A8. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `roce` | RDMA over Converged Ethernet (RoCE). EtherType 0x8915. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vlan` | IEEE 802.1Q Customer VLAN Tag (C-Tag). EtherType 0x8100. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -509,8 +785,8 @@ this metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` [(see more)](#error-type-values) |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `unix` [(see more)](#network-transport-values) |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [3] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [3] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [5] | `80`; `8080`; `443` |
 | [`tls.protocol.version`](/docs/registry/attributes/tls.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values) | `1.2`; `3` |
@@ -519,11 +795,33 @@ this metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 **[2] `network.transport`:** The value SHOULD be normalized to lowercase.
 
+For IP packets, well-known values are IANA protocol-number
+keywords, lowercased
+([Assigned Internet Protocol Numbers](https://www.iana.org/assignments/protocol-numbers))
+from the IPv4 `Protocol` or IPv6 `Next Header` field. `ipv4` and
+`ipv6` mean IP-in-IP encapsulation, not `network.type`. `pipe`,
+`unix`, and `quic` are not IANA protocol numbers.
+
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
+If the instrumentation unwraps IP-in-IP, GRE, or ESP, it SHOULD set
+`network.transport` to the inner protocol. Otherwise it MAY emit
+`ipv4`, `ipv6`, `gre`, or `esp`.
+
 **[3] `network.type`:** The value SHOULD be normalized to lowercase.
+
+Well-known values are IEEE 802 EtherTypes. See
+[IANA IEEE 802 Numbers](https://www.iana.org/assignments/ieee-802-numbers#ieee-802-numbers-1).
+An EtherType may name an L2 encapsulation (`vlan`) or an L3 payload
+(`ipv4`).
+
+If the instrumentation unwraps L2 encapsulations (`vlan`, `qinq`,
+`macsec`, `pbb`), it SHOULD set `network.type` to the inner EtherType.
+Otherwise it MAY emit the encapsulation type.
+
+`ipv4` and `ipv6` here are EtherTypes, not IANA protocol numbers.
 
 **[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -547,11 +845,25 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ah` | IPsec AH (IANA protocol 51) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dccp` | DCCP (IANA protocol 33) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eigrp` | EIGRP (IANA protocol 88) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esp` | IPsec ESP (IANA protocol 50) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gre` | GRE (IANA protocol 47) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `icmp` | ICMP (IANA protocol 1) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `igmp` | IGMP (IANA protocol 2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 encapsulation / IP-in-IP (IANA protocol 4). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6` | IPv6 encapsulation (IANA protocol 41). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6-icmp` | ICMPv6 (IANA protocol 58, keyword IPv6-ICMP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ospfigp` | OSPF (IANA protocol 89, keyword OSPFIGP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pim` | PIM (IANA protocol 103) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `sctp` | SCTP (IANA protocol 132) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP (IANA protocol 6) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP (IANA protocol 17) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `vrrp` | VRRP (IANA protocol 112) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -561,8 +873,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `macsec` | IEEE 802.1AE MACsec. EtherType 0x88E5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mvrp` | Multiple VLAN Registration Protocol (MVRP). EtherType 0x88F5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pbb` | Provider Backbone Bridging instance tag. EtherType 0x88E7. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `qinq` | IEEE 802.1ad / 802.1Q Service VLAN Tag (S-Tag). EtherType 0x88A8. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `roce` | RDMA over Converged Ethernet (RoCE). EtherType 0x8915. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vlan` | IEEE 802.1Q Customer VLAN Tag (C-Tag). EtherType 0x8100. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -585,18 +907,40 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [2] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 
 **[1] `network.transport`:** The value SHOULD be normalized to lowercase.
 
+For IP packets, well-known values are IANA protocol-number
+keywords, lowercased
+([Assigned Internet Protocol Numbers](https://www.iana.org/assignments/protocol-numbers))
+from the IPv4 `Protocol` or IPv6 `Next Header` field. `ipv4` and
+`ipv6` mean IP-in-IP encapsulation, not `network.type`. `pipe`,
+`unix`, and `quic` are not IANA protocol numbers.
+
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
+If the instrumentation unwraps IP-in-IP, GRE, or ESP, it SHOULD set
+`network.transport` to the inner protocol. Otherwise it MAY emit
+`ipv4`, `ipv6`, `gre`, or `esp`.
+
 **[2] `network.type`:** The value SHOULD be normalized to lowercase.
+
+Well-known values are IEEE 802 EtherTypes. See
+[IANA IEEE 802 Numbers](https://www.iana.org/assignments/ieee-802-numbers#ieee-802-numbers-1).
+An EtherType may name an L2 encapsulation (`vlan`) or an L3 payload
+(`ipv4`).
+
+If the instrumentation unwraps L2 encapsulations (`vlan`, `qinq`,
+`macsec`, `pbb`), it SHOULD set `network.type` to the inner EtherType.
+Otherwise it MAY emit the encapsulation type.
+
+`ipv4` and `ipv6` here are EtherTypes, not IANA protocol numbers.
 
 **[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -610,11 +954,25 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ah` | IPsec AH (IANA protocol 51) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dccp` | DCCP (IANA protocol 33) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eigrp` | EIGRP (IANA protocol 88) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esp` | IPsec ESP (IANA protocol 50) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gre` | GRE (IANA protocol 47) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `icmp` | ICMP (IANA protocol 1) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `igmp` | IGMP (IANA protocol 2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 encapsulation / IP-in-IP (IANA protocol 4). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6` | IPv6 encapsulation (IANA protocol 41). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6-icmp` | ICMPv6 (IANA protocol 58, keyword IPv6-ICMP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ospfigp` | OSPF (IANA protocol 89, keyword OSPFIGP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pim` | PIM (IANA protocol 103) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `sctp` | SCTP (IANA protocol 132) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP (IANA protocol 6) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP (IANA protocol 17) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `vrrp` | VRRP (IANA protocol 112) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -624,8 +982,18 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `macsec` | IEEE 802.1AE MACsec. EtherType 0x88E5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mvrp` | Multiple VLAN Registration Protocol (MVRP). EtherType 0x88F5. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pbb` | Provider Backbone Bridging instance tag. EtherType 0x88E7. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `qinq` | IEEE 802.1ad / 802.1Q Service VLAN Tag (S-Tag). EtherType 0x88A8. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `roce` | RDMA over Converged Ethernet (RoCE). EtherType 0x8915. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vlan` | IEEE 802.1Q Customer VLAN Tag (C-Tag). EtherType 0x8100. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
