@@ -94,6 +94,9 @@ RPC client stub method on the client side.
 
 **[4] `rpc.status_code`:** All status codes except `OK` SHOULD be considered errors.
 
+Instrumentations MAY use additional context or provide configuration options to customize
+which status codes are considered errors.
+
 **[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[6] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
@@ -208,6 +211,9 @@ RPC client stub method on the client side.
 - `internal`
 - `unavailable`
 - `data_loss`
+
+Instrumentations MAY use additional context or provide configuration options to customize
+which error codes are considered errors.
 
 **[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
