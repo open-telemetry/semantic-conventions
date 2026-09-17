@@ -13,7 +13,7 @@ Describes V8 JS Engine Runtime related attributes.
 | --- | --- | --- | --- | --- |
 | <a id="v8js-gc-type" href="#v8js-gc-type">`v8js.gc.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of garbage collection. | `major`; `minor`; `incremental` |
 | <a id="v8js-heap-space-name" href="#v8js-heap-space-name">`v8js.heap.space.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |
-| <a id="v8js-resource-type" href="#v8js-resource-type">`v8js.resource.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPWrap` |
+| <a id="v8js-resource-type" href="#v8js-resource-type">`v8js.resource.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPSocketWrap` |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics).
 The set of reported spaces depends on the V8 version the runtime embeds.
@@ -60,6 +60,6 @@ The set of reported spaces depends on the V8 version the runtime embeds.
 | --- | --- | --- |
 | `Immediate` | Active `setImmediate` callbacks. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TCPServerWrap` | Active TCP Servers. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `TCPWrap` | Active TCP connections. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `TCPSocketWrap` | Active TCP connections. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Timeout` | Active `setTimeout` or `setInterval` timers. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TTYWrap` | Active Terminal I/O (stdin/stdout). | ![Development](https://img.shields.io/badge/-development-blue) |
