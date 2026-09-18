@@ -171,7 +171,7 @@ There are two ways HTTP client spans can be implemented in an instrumentation:
 | [`http.response.body.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
 | [`http.response.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [14] | `["application/json"]`; `["abc", "def"]` |
 | [`http.response.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [15] | `tcp`; `udp` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [15] | `tcp`; `udp`; `icmp` |
 | [`url.scheme`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` |
 | [`url.template`](/docs/registry/attributes/url.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [16] | `/users/{id}`; `/users/:id`; `/users?id={id}` |
 | [`user_agent.original`](/docs/registry/attributes/user-agent.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` |
@@ -410,11 +410,25 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ah` | IPsec AH (IANA protocol 51) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dccp` | DCCP (IANA protocol 33) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eigrp` | EIGRP (IANA protocol 88) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esp` | IPsec ESP (IANA protocol 50) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gre` | GRE (IANA protocol 47) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `icmp` | ICMP (IANA protocol 1) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `igmp` | IGMP (IANA protocol 2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 encapsulation / IP-in-IP (IANA protocol 4). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6` | IPv6 encapsulation (IANA protocol 41). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6-icmp` | ICMPv6 (IANA protocol 58, keyword IPv6-ICMP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ospfigp` | OSPF (IANA protocol 89, keyword OSPFIGP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pim` | PIM (IANA protocol 103) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `sctp` | SCTP (IANA protocol 132) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP (IANA protocol 6) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP (IANA protocol 17) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `vrrp` | VRRP (IANA protocol 112) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -552,7 +566,7 @@ This span represents an inbound HTTP request.
 | [`http.response.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
 | [`network.local.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.local.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | int | Local socket port. Useful in case of a multi-port host. | `65123` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [19] | `tcp`; `udp` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [19] | `tcp`; `udp`; `icmp` |
 | [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [20] | `bot`; `test` |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
@@ -788,11 +802,25 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ah` | IPsec AH (IANA protocol 51) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dccp` | DCCP (IANA protocol 33) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eigrp` | EIGRP (IANA protocol 88) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esp` | IPsec ESP (IANA protocol 50) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gre` | GRE (IANA protocol 47) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `icmp` | ICMP (IANA protocol 1) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `igmp` | IGMP (IANA protocol 2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv4` | IPv4 encapsulation / IP-in-IP (IANA protocol 4). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6` | IPv6 encapsulation (IANA protocol 41). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ipv6-icmp` | ICMPv6 (IANA protocol 58, keyword IPv6-ICMP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ospfigp` | OSPF (IANA protocol 89, keyword OSPFIGP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pim` | PIM (IANA protocol 103) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. Not IANA protocol 131 (Private IP Encapsulation within IP). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC transport protocol. Not an IANA protocol number; QUIC typically runs over UDP. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `sctp` | SCTP (IANA protocol 132) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tcp` | TCP (IANA protocol 6) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP (IANA protocol 17) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `vrrp` | VRRP (IANA protocol 112) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
