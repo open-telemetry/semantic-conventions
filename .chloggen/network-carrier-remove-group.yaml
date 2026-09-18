@@ -1,0 +1,8 @@
+change_type: enhancement
+component: network
+note: >
+  Remove the network connection and carrier attributes section from
+  `docs/general/attributes.md`. The `network.carrier.*` and `network.connection.*`
+  attributes remain available in the
+  [attribute registry](/docs/registry/attributes/network.md).
+issues: [4048]

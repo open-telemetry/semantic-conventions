@@ -316,4 +316,4 @@ gRPC instrumentations SHOULD collect metrics according to the general
 
 `rpc.system.name` MUST be set to `"grpc"`.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

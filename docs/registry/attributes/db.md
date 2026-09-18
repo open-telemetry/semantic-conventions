@@ -15,7 +15,7 @@ This group defines the attributes used to describe telemetry in the context of d
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` |
+| <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the connection pool. If the connection pool does not have a name, instrumentation SHOULD use `db.namespace`; otherwise `server.address`, with `server.port` appended using `:` if set. When appending a port to an IPv6 address, instrumentation MUST enclose the address in square brackets. If `server.address` is not available, instrumentation SHOULD use `db.system.name`; otherwise the connection pool library name. | `myDataSource` |
 | <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of a connection in the pool | `idle` [(see more)](#db-client-connection-state-values) |
 | <a id="db-collection-name" href="#db-collection-name">`db.collection.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` |
 | <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
@@ -183,7 +183,7 @@ then that stored procedure name SHOULD be used.
 | `hbase` | [Apache HBase](https://hbase.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `hive` | [Apache Hive](https://hive.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.db2` | [IBM Db2](https://www.ibm.com/products/db2) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |

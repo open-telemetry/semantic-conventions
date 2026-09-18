@@ -1,0 +1,4 @@
+change_type: deprecation
+component: azure
+note: Move the `azure.resource.log` event to schema v2 and deprecate section describing its body fields.
+issues: [4085]

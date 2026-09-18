@@ -77,7 +77,6 @@ body:
         - area:oci
         - area:onc-rpc
         - area:openshift
-        - area:opentracing
         - area:oracle-cloud
         - area:oracledb
         - area:os

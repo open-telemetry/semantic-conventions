@@ -1121,4 +1121,4 @@ flowchart TD;
 | `messaging.gcp_pubsub.message.delivery_attempt` | | | | `0` | |
 | `messaging.gcp_pubsub.message.ack_deadline` | | | | | `0` |
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
