@@ -53,13 +53,13 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`feature_flag.key`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The lookup key of the feature flag. | `logo-color` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Describes a class of error the operation ended with. [2] | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Describes a class of error the operation ended with. [2] | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` [(see more)](#error-type-values) |
 | [`feature_flag.result.value`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [3] | any | The evaluated value of the feature flag. [4] | `#ff0000`; `true`; `3` |
 | [`feature_flag.result.variant`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [5] | string | A semantic identifier for an evaluated flag value. [6] | `red`; `true`; `on` |
 | [`feature_flag.context.id`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` |
 | [`feature_flag.error.message`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` [7] | string | A message providing more detail about an error that occurred during feature flag evaluation in human-readable form. [8] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
 | [`feature_flag.provider.name`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | Identifies the feature flag provider. | `Flag Manager` |
-| [`feature_flag.result.reason`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` |
+| [`feature_flag.result.reason`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` [(see more)](#feature-flag-result-reason-values) |
 | [`feature_flag.set.id`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` |
 | [`feature_flag.version`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` |
 
@@ -99,6 +99,8 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -106,6 +108,8 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="feature-flag-result-reason-values"></a>
 
 `feature_flag.result.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
