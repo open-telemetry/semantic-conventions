@@ -190,6 +190,20 @@ groups:
           This attribute aligns with the `startTime` field of the
           [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core),
           in ISO 8601 (RFC 3339 compatible) format.
+      - id: k8s.pod.creation_time
+        type: string
+        stability: development
+        brief: >
+          The creation timestamp of the Pod.
+        examples: ['2025-12-04T08:41:03Z']
+        note: |
+          Date and time at which the object was created in the K8s API server.
+          This can deviate significantly from `k8s.pod.start_time`, which is the time
+          at which the Pod was acknowledged by the Kubelet.
+
+          This attribute aligns with the `creationTimestamp` field of the
+          [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.pod.label
         type: template[string]
         stability: stable

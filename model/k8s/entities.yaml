@@ -87,6 +87,9 @@ groups:
       - ref: k8s.pod.start_time
         role: descriptive
         requirement_level: opt_in
+      - ref: k8s.pod.creation_time
+        role: descriptive
+        requirement_level: opt_in
 
   - id: entity.k8s.container
     type: entity
