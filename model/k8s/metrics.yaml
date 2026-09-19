@@ -91,6 +91,118 @@ groups:
       usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     unit: "{cpu}"
+  - id: metric.k8s.pod.cpu.limit.desired
+    type: metric
+    metric_name: k8s.pod.cpu.limit.desired
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Maximum CPU resource limit as defined by the Pod spec."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core)
+      (spec.resources). See
+      <https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/>
+      for more details on Pod level resources. Note that Kubernetes can default unset Pod level limits
+      based on the aggregated limits of the Pod's containers. Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/>.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.pod.cpu.limit.current
+    type: metric
+    metric_name: k8s.pod.cpu.limit.current
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Maximum CPU resource limit currently configured for a running Pod."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core)
+      (status.resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.pod.cpu.limit.utilization
+    type: metric
+    metric_name: k8s.pod.cpu.limit.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of Pod CPU usage to its current CPU limit."
+    entity_associations:
+      - k8s.pod
+    note: |
+      The current CPU limit reflects the actual resources applied at the Pod level, as reported by
+      [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+      The value range is [0.0,1.0]. A value of 1.0 means the Pod is using 100% of its actual CPU limit.
+      If the CPU limit is not set, this metric SHOULD NOT be emitted for that Pod.
+    instrument: gauge
+    unit: "1"
+  - id: metric.k8s.pod.cpu.request.desired
+    type: metric
+    metric_name: k8s.pod.cpu.request.desired
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "CPU resource requested as defined by the Pod spec."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core)
+      (spec.resources). See
+      <https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/>
+      for more details on Pod level resources. Note that Kubernetes can default unset Pod level requests
+      based on the aggregated requests of the Pod's containers. Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/>.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.pod.cpu.request.current
+    type: metric
+    metric_name: k8s.pod.cpu.request.current
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "CPU resource requested currently configured for a running Pod."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core)
+      (status.resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.pod.cpu.request.utilization
+    type: metric
+    metric_name: k8s.pod.cpu.request.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of Pod CPU usage to its current CPU request."
+    entity_associations:
+      - k8s.pod
+    note: |
+      The current CPU request reflects the request applied at the Pod level, as reported by
+      [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+      The value range is [0.0,1.0]. A value of 1.0 means the Pod is using 100% of its actual CPU request.
+      If the CPU request is not set, this metric SHOULD NOT be emitted for that Pod.
+    instrument: gauge
+    unit: "1"
 
   # k8s.pod.memory.* metrics
   - id: metric.k8s.pod.memory.usage
