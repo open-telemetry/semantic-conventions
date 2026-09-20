@@ -1,0 +1,11 @@
+change_type: enhancement
+
+component: db
+
+note: >
+  Add Valkey semantic conventions, including a `valkey` member for `db.system.name`.
+
+# TODO: replace with the tracking issue number, or this PR's number.
+issues: [0]
+
+subtext:

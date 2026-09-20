@@ -131,6 +131,7 @@ rules:
       - TypeScript
       - UNIX
       - URL
+      - Valkey
       - WordPress
       - WSGI
       - YouTube

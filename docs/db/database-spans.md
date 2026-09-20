@@ -414,6 +414,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `sqlite` | [SQLite](https://www.sqlite.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `valkey` | [Valkey](https://valkey.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -664,5 +665,6 @@ More specific Semantic Conventions are defined for the following database techno
 * [Microsoft SQL Server](sql-server.md): Semantic Conventions for *Microsoft SQL Server*.
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
+* [Valkey](valkey.md): Semantic Conventions for *Valkey*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

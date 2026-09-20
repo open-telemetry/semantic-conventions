@@ -54,5 +54,6 @@ Technology specific semantic conventions are defined for the following databases
 * [Oracle Database](oracledb.md): Semantic Conventions for *Oracle Database*.
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
+* [Valkey](valkey.md): Semantic Conventions for *Valkey*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

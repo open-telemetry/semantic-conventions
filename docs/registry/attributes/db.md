@@ -202,6 +202,7 @@ then that stored procedure name SHOULD be used.
 | `sqlite` | [SQLite](https://www.sqlite.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `valkey` | [Valkey](https://valkey.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Database Attributes
 

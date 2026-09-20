@@ -383,6 +383,10 @@ groups:
               value: "trino"
               brief: "[Trino](https://trino.io/)"
               stability: development
+            - id: valkey
+              value: "valkey"
+              brief: "[Valkey](https://valkey.io/)"
+              stability: development
         stability: stable
       - id: db.client.connection.state
         stability: development
