@@ -199,8 +199,9 @@ groups:
     note: |
       The current CPU request reflects the request applied at the Pod level, as reported by
       [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
-      The value range is [0.0,1.0]. A value of 1.0 means the Pod is using 100% of its actual CPU request.
-      If the CPU request is not set, this metric SHOULD NOT be emitted for that Pod.
+      A value of 1.0 means the Pod is using exactly its CPU request. Since a CPU request is a scheduling
+      reservation and not a hard cap, values above 1.0 are possible and indicate the Pod is using more CPU
+      than requested. If the CPU request is not set, this metric SHOULD NOT be emitted for that Pod.
     instrument: gauge
     unit: "1"
 
@@ -1563,8 +1564,9 @@ groups:
     note: |
       The current CPU request reflects the request applied to the running container, as reported by
       [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
-      The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its actual CPU request.
-      If the CPU request is not set, this metric SHOULD NOT be emitted for that container.
+      A value of 1.0 means the container is using exactly its CPU request. Since a CPU request is a scheduling
+      reservation and not a hard cap, values above 1.0 are possible and indicate the container is using more CPU
+      than requested. If the CPU request is not set, this metric SHOULD NOT be emitted for that container.
     instrument: gauge
     unit: "1"
   - id: metric.k8s.container.memory.limit.desired
