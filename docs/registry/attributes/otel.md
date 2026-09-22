@@ -74,7 +74,8 @@ instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart, but a particular value is not required to identify the same logical component after restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
