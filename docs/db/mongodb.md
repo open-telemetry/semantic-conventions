@@ -138,34 +138,36 @@ Compatible servers may expose support through different versions or
 capabilities. If document-valued `comment` support is unknown or unavailable,
 instrumentation MUST skip context injection for the operation.
 
-When this mechanism is enabled and the application has either not set `comment`
-or set it to a string, instrumentation MUST set `comment` to a BSON document
-containing a valid
+When this mechanism is enabled and the target server supports document-valued
+`comment`, instrumentation MUST set `comment` to a BSON document containing a valid
 [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) string
 and MAY include a valid
 [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) string.
 The instrumentation SHOULD use the W3C Trace Context propagator to populate
-these fields. The propagation document MUST NOT contain `baggage` or fields
-other than `traceparent`, `tracestate`, and an application-provided `text`
-field.
+these fields. The propagation document MUST NOT contain top-level fields other
+than `traceparent`, `tracestate`, and the optional `originalComment` field.
+In particular, `baggage` MUST NOT be injected as a top-level field.
 
-For example, with the default W3C Trace Context propagator:
+The optional `originalComment` field contains the application-provided comment,
+which can be any BSON type. When the application has set `comment`,
+instrumentation MUST preserve its value and BSON type unchanged in
+`originalComment`, including an explicitly set BSON `null`. When the application
+has not set `comment`, instrumentation MUST omit `originalComment`.
+
+For example, with the default W3C Trace Context propagator and an
+application-provided document comment:
 
 ```json
 {
   "comment": {
     "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
     "tracestate": "congo=t61rcWkgMzE",
-    "text": "monthly rollup"
+    "originalComment": {
+      "job": "monthly rollup"
+    }
   }
 }
 ```
-
-The optional `text` field contains an application-provided string comment. When
-the application has set `comment` to a string, instrumentation SHOULD move that
-value to `text` and inject the propagation document. When the application has
-set `comment` to any other BSON type, instrumentation MUST NOT overwrite it and
-SHOULD skip context injection for the operation.
 
 Servers supporting this mechanism MUST attempt to extract context only when
 `comment` is a BSON document containing a top-level `traceparent` string. A
@@ -173,13 +175,15 @@ server MUST ignore the propagated context when `traceparent` is invalid or
 unsupported. An invalid `tracestate` MUST be ignored without affecting a valid
 `traceparent`. Failure to extract context MUST NOT cause the database operation
 to fail. Servers SHOULD leave `comment` unchanged after extraction. A server MAY
-instead replace the propagation document with the value of `text`, or remove
-`comment` when `text` is not present.
+instead remove the propagation document. In that case, it MUST restore `comment`
+to the value and BSON type of `originalComment` if that field is present
+(including when its value is `null`), or remove `comment` if it is absent.
 
 MongoDB servers and compatible servers may expose or persist `comment` in logs,
 profiling data, or diagnostic interfaces. Instrumentations SHOULD document that
 every field injected into `comment` may be visible to users with access to those
-outputs.
+outputs, and that wrapping an application-provided comment may change the
+structure exposed in those outputs.
 
 The MongoDB wire protocol limits the whole command document to the server's
 advertised `maxBsonObjectSize`. Instrumentations SHOULD keep the propagation
