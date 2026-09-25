@@ -1,0 +1,13 @@
+change_type: enhancement
+component: network
+note: >
+  Expand `network.type` with common IEEE/IANA EtherTypes and `network.transport`
+  with common IANA protocol-number keywords, as development members, so packet
+  and flow instrumentations can emit values such as `arp` and `icmp` without
+  Weaver overrides.
+issues: [4122]
+subtext: >
+  `network.type` maps Ethernet EtherTypes (L2 or L3 depending on the frame).
+  `network.transport` maps IANA protocol-number keywords, lowercased, for IP
+  packets; `ipv4`/`ipv6` there mean encapsulation, not address family. Existing
+  `tcp`, `udp`, `pipe`, `unix`, and `quic` members are unchanged.
