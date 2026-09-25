@@ -331,7 +331,20 @@ Define which additional properties this span needs to be useful:
 
 #### Defining metrics
 
-TBD
+When a metric and a span describe the same operation, prefer the metric's
+attributes to be a subset of the span's attributes. This keeps the dimensions
+used to describe the operation consistent across signals and allows telemetry
+consumers to use the metric's attribute key-value pairs when searching for
+spans that represent the same operation.
+
+This does not mean that every span attribute should also be a metric attribute.
+Span-only attributes are appropriate when they are too high-cardinality,
+expensive to collect, sensitive, or otherwise unsuitable as metric dimensions.
+
+If a proposed metric attribute also describes the operation itself, consider
+whether it should be available on the corresponding span as well. Exceptions
+are possible when the signals have different observability needs, but those
+differences should be intentional rather than accidental.
 
 #### Defining entities
 
