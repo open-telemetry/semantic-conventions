@@ -1,0 +1,11 @@
+change_type: enhancement
+
+component: exceptions
+
+note: >
+  Add requirement to log a warning if an instrumentation cannot respect the value of
+  `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN`.
+
+issues: [4095]
+
+subtext:
