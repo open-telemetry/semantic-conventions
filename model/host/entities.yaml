@@ -8,32 +8,6 @@ groups:
     attributes:
       - ref: host.id
         role: identifying
-        note: |
-          Collecting `host.id` from non-containerized systems
-
-          **Non-privileged Machine ID Lookup**
-
-          When collecting `host.id` for non-containerized systems non-privileged lookups
-          of the machine ID are preferred. SDK detector implementations MUST use the
-          sources listed below to obtain the machine ID.
-
-          | OS | Primary | Fallback |
-          | --- | --- | --- |
-          | Linux | contents of `/etc/machine-id` | contents of `/var/lib/dbus/machine-id` |
-          | BSD | contents of `/etc/hostid` | output of `/bin/kenv -q smbios.system.uuid` |
-          | macOS | `IOPlatformUUID` line from the output of `/usr/sbin/ioreg -rd1 -c "IOPlatformExpertDevice"` | - |
-          | Windows | `MachineGuid` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography` | - |
-
-          **Privileged Machine ID Lookup**
-
-          The `host.id` can be looked up using privileged sources. For example, Linux
-          systems can use the output of `dmidecode -t system`, `dmidecode -t baseboard`,
-          `dmidecode -t chassis`, or read the corresponding data from the filesystem
-          (e.g. `cat /sys/devices/virtual/dmi/id/product_id`,
-          `cat /sys/devices/virtual/dmi/id/product_uuid`, etc), however, SDK resource
-          detector implementations MUST not collect `host.id` from privileged sources. If
-          privileged lookup of `host.id` is required, the value should be injected via the
-          `OTEL_RESOURCE_ATTRIBUTES` environment variable.
       - ref: host.name
         role: descriptive
       - ref: host.type

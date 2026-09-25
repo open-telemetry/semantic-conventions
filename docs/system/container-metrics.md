@@ -236,10 +236,10 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.paging.faults` | Counter | `{fault}` | Container memory paging faults. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
+| `container.paging.faults` | Counter | `{fault}` | Container memory paging faults. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`container`](/docs/registry/entities/container.md#container) |
 
-**[1]:** In general, this metric can be derived from [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics) and specifically the `container_memory_failures_total{failure_type=pgfault, scope=container}` and `container_memory_failures_total{failure_type=pgmajfault, scope=container}`metric.
-In K8s, this metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) field of the [ContainerStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#ContainerStats) of the Kubelet's stats API.
+**[1]:** In general, this metric can be derived from [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics). The `container_memory_failures_total{failure_type=pgfault, scope=container}` counter reports the total page faults (minor + major), while `container_memory_failures_total{failure_type=pgmajfault, scope=container}` reports only major faults. The minor page faults MUST be derived as the difference between the two.
+In K8s, this metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) fields of the [ContainerStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#ContainerStats) of the Kubelet's stats API. `MemoryStats.PageFaults` reports the total number of page faults (equivalent to `pgfault` in the cgroup `memory.stat`), with minor and major combined. The minor page faults MUST therefore be derived as `MemoryStats.PageFaults - MemoryStats.MajorPageFaults`, so that summing the metric over `system.paging.fault.type` yields the total number of page faults.
 
 **Attributes:**
 
@@ -282,7 +282,7 @@ This metric is [opt-in][MetricOptIn].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [(see more)](#disk-io-direction-values) |
-| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
 
 ---
 

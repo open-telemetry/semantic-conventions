@@ -17,7 +17,7 @@ Describes System attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="system-device" href="#system-device">`system.device`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The device identifier | `(identifier)` |
+| <a id="system-device-name" href="#system-device-name">`system.device.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
 
 ## Filesystem Attributes
 
@@ -163,6 +163,7 @@ Deprecated system attributes.
 | --- | --- | --- | --- | --- |
 | <a id="system-cpu-logical-number" href="#system-cpu-logical-number">`system.cpu.logical_number`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.logical_number`. | int | Deprecated, use `cpu.logical_number` instead. | `1` |
 | <a id="system-cpu-state" href="#system-cpu-state">`system.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` [(see more)](#system-cpu-state-values) |
+| <a id="system-device" href="#system-device">`system.device`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.device.name`. | string | Deprecated, use `system.device.name` instead. | `(identifier)` |
 | <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.connection.state`. | string | Deprecated, use `network.connection.state` instead. | `close_wait` [(see more)](#system-network-state-values) |
 | <a id="system-paging-type" href="#system-paging-type">`system.paging.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. | string | Deprecated, use `system.paging.fault.type` instead. | `minor` [(see more)](#system-paging-type-values) |
 | <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. | string | Deprecated, use `process.state` instead. | `running` [(see more)](#system-process-status-values) |
