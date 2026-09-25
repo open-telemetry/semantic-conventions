@@ -1,6 +1,6 @@
 # For settings, see
 # https://www.streetsidesoftware.com/vscode-spell-checker/docs/configuration/
-version: '0.2'
+version: "0.2"
 language: en-US
 caseSensitive: true
 allowCompoundWords: true
@@ -8,14 +8,14 @@ useGitignore: true
 import:
   - https://cdn.jsdelivr.net/npm/@cspell/dict-people-names/cspell-ext.json
 ignorePaths:
-  - '**/*.svg'
-  - 'schemas/*'
-  - 'internal/*'
-  - '**.j2'
-  - '**.rego'
-  - 'package.json'
-  - '**/deprecated/*.yaml'
-  - 'docs/registry/attributes/gen-ai.md'
+  - "**/*.svg"
+  - "schemas/*"
+  - "internal/*"
+  - "**.j2"
+  - "**.rego"
+  - "package.json"
+  - "**/deprecated/*.yaml"
+  - "docs/registry/attributes/gen-ai.md"
 patterns:
   - name: CodeBlock
     pattern: |
@@ -41,14 +41,14 @@ patterns:
           \)              # Match the closing parentheses for the URL.
       /x
   - name: Href
-    pattern: "href=\".+\""        # Matches any href attribute in HTML tags.
+    pattern: 'href=".+"' # Matches any href attribute in HTML tags.
   - name: Redirect
     pattern: |
       /
         redirect:.+$     # Matches any front-matter redirect line.
       /mx
   - name: "Semconv marker"
-    pattern: "<!-- semconv.* -->"     # Matches any semconv marker line.
+    pattern: "<!-- semconv.* -->" # Matches any semconv marker line.
   - name: "GitHub Handle"
     pattern: "@[a-zA-Z0-9-_]+\\b"
 languageSettings:

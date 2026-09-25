@@ -20,7 +20,7 @@
 | Description | [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` |
 
 **[1] `vcs.ref.head.revision`:** `head` refers to where you are right now; the current reference at a
-given time.The revision can be a full [hash value (see
+given time. The revision can be a full [hash value (see
 glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
