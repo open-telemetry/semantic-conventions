@@ -655,7 +655,7 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[13] `server.address`:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
-**[14] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+**[14] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
 
 **[15] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character

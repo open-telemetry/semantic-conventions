@@ -5,12 +5,35 @@ attribute_groups:
     visibility: public
     stability: stable
     brief: >
-      These attributes may be used to describe the server in a connection-based network interaction
-      where there is one side that initiates the connection (the client is the side that initiates the connection).
-      This covers all TCP network interactions since TCP is connection-based and one side initiates the
-      connection (an exception is made for peer-to-peer communication over TCP where the "user-facing" surface of the
-      protocol / API doesn't expose a clear notion of client and server).
-      This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
+      `server.*` attributes describe the server in a connection-based network interaction: the side
+      that accepts the connection (the client is the side that initiates it). They identify the
+      logical server the client intended to reach, which - behind proxies or load balancers - can
+      differ from the concrete socket endpoint.
+
+
+      Use them for interactions with a clear initiator and acceptor. This covers common TCP
+      interactions, connection-oriented UDP such as QUIC (HTTP/3), and request/response protocols
+      such as DNS and SNMP polling. It does not cover peer-to-peer communication where the protocol
+      or API exposes no clear notion of client and server (even over TCP).
     attributes:
       - ref: server.address
+        note: >
+          On the client side, `server.address` is the remote service name; on the server side, it is the local service name
+          as seen externally by clients. These normally match - for example, for the URL `https://example.com/foo` it is
+          `"example.com"` on both sides. When a client reaches the server through an intermediary such as a proxy,
+          `server.address` SHOULD represent the server behind the intermediary, if available.
+
+
+          For IP-based communication, prefer a DNS hostname of the service. Instrumentation is often given the address as a
+          URL, connection string, or hostname, so `server.address` SHOULD be set to the known hostname available to it,
+          which may be a DNS name or an IP address (for example `"127.0.0.1"` for `https://127.0.0.1/foo`). If only an IP
+          address is available, populate `server.address` with it; a reverse DNS lookup SHOULD NOT be used to obtain a name.
+
+
+          If `network.transport` is `"pipe"`, use the absolute path to the file representing it; for an anonymous pipe with
+          no such file, set `server.address` to an empty string to distinguish it from an unknown or uninstrumented value.
+
+
+          For a UNIX domain socket, `server.address` is the remote endpoint address on the client side and the local
+          endpoint address on the server side.
       - ref: server.port
