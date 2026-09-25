@@ -282,7 +282,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.resource.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPWrap` |
+| [`v8js.resource.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPSocketWrap` |
 
 ---
 
@@ -292,7 +292,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- |
 | `Immediate` | Active `setImmediate` callbacks. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TCPServerWrap` | Active TCP Servers. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `TCPWrap` | Active TCP connections. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `TCPSocketWrap` | Active TCP connections. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Timeout` | Active `setTimeout` or `setInterval` timers. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TTYWrap` | Active Terminal I/O (stdin/stdout). | ![Development](https://img.shields.io/badge/-development-blue) |
 
