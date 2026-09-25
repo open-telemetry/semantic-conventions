@@ -43,14 +43,16 @@ The `android.app.state` and `ios.app.state` fields are mutually exclusive and MU
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`android.app.state`](/docs/registry/attributes/android.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `android` | string | This attribute represents the state of the application. [1] | `created` |
-| [`ios.app.state`](/docs/registry/attributes/ios.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `ios` | string | This attribute represents the state of the application. [2] | `active`; `inactive`; `background` |
+| [`android.app.state`](/docs/registry/attributes/android.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `android` | string | This attribute represents the state of the application. [1] | `created` [(see more)](#android-app-state-values) |
+| [`ios.app.state`](/docs/registry/attributes/ios.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `ios` | string | This attribute represents the state of the application. [2] | `active`; `inactive`; `background` [(see more)](#ios-app-state-values) |
 
 **[1] `android.app.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lifecycle-callbacks), and from which the `OS identifiers` are derived.
 
 **[2] `ios.app.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
 ---
+
+<a id="android-app-state-values"></a>
 
 `android.app.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -61,6 +63,8 @@ The `android.app.state` and `ios.app.state` fields are mutually exclusive and MU
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="ios-app-state-values"></a>
 
 `ios.app.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -93,9 +93,11 @@ Added in .NET 9.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type. | `version_negotiation_error`; `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type. | `version_negotiation_error`; `System.OperationCanceledException` [(see more)](#error-type-values) |
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -140,7 +142,7 @@ Added in .NET 9.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type. | `name_resolution_error`; `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type. | `name_resolution_error`; `System.OperationCanceledException` [(see more)](#error-type-values) |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer IP address of the socket connection. [1] | `10.1.2.80`; `/tmp/my.sock` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [3] | `80`; `8080`; `443` |
@@ -153,6 +155,8 @@ Added in .NET 9.
 **[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -198,7 +202,7 @@ and `DNS reverse lookup {dns.question.name}` for reverse lookup (hostnames from 
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The error code or exception name returned by [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns). [1] | `host_not_found`; `try_again` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The error code or exception name returned by [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns). [1] | `host_not_found`; `try_again` [(see more)](#error-type-values) |
 | [`dns.answers`](/docs/registry/attributes/dns.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` if DNS lookup was successful. | string[] | List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup). | `["10.0.0.1", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"]` |
 | [`dns.question.name`](/docs/registry/attributes/dns.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The domain name or an IP address being queried. | `www.example.com`; `opentelemetry.io` |
 
@@ -213,6 +217,8 @@ and `DNS reverse lookup {dns.question.name}` for reverse lookup (hostnames from 
 See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror) for more details.
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -254,11 +260,11 @@ otherwise.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | Socket error code. [1] | `connection_refused`; `address_not_available` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | Socket error code. [1] | `connection_refused`; `address_not_available` [(see more)](#error-type-values) |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [2] | int | Peer port number of the network connection. | `65123` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [3] | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp`; `unix` |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if `network.peer.address` is an IP address. | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [3] | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if `network.peer.address` is an IP address. | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 
 **[1] `error.type`:** The following errors codes are reported:
 
@@ -297,6 +303,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -304,6 +312,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-transport-values"></a>
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -316,6 +326,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-type-values"></a>
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -358,14 +370,16 @@ side and `TLS server handshake` when authenticating the server.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | Describes a class of error the operation ended with. | `System.Net.Security.Authentication.AuthenticationException`; `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | Describes a class of error the operation ended with. | `System.Net.Security.Authentication.AuthenticationException`; `System.OperationCanceledException` [(see more)](#error-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when authenticating the client. | string | The [server name indication (SNI)](https://en.wikipedia.org/wiki/Server_Name_Indication) used in the 'Client Hello' message during TLS handshake. [1] | `opentelemetry.io`; `example.com` |
-| [`tls.protocol.name`](/docs/registry/attributes/tls.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when available | string | Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values) | `ssl`; `tls` |
+| [`tls.protocol.name`](/docs/registry/attributes/tls.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when available | string | Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values) | `ssl`; `tls` [(see more)](#tls-protocol-name-values) |
 | [`tls.protocol.version`](/docs/registry/attributes/tls.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when available | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values) | `1.2`; `3` |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -374,6 +388,8 @@ side and `TLS server handshake` when authenticating the server.
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="tls-protocol-name-values"></a>
 
 `tls.protocol.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

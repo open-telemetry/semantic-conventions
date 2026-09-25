@@ -16,7 +16,7 @@
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`service.name`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Logical name of the service. [1] | `shoppingcart` |
-| Description | [`service.criticality`](/docs/registry/attributes/service.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Recommended` | string | The operational criticality of the service. [2] | `critical`; `high`; `medium`; `low` |
+| Description | [`service.criticality`](/docs/registry/attributes/service.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Recommended` | string | The operational criticality of the service. [2] | `critical`; `high`; `medium`; `low` [(see more)](#service-criticality-values) |
 | Description | [`service.version`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
 
 **[1] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with the process executable name, e.g. `unknown_service:bash`. If the process executable name is not available, the value MUST be set to `unknown_service`.
@@ -25,6 +25,8 @@ The process executable name is the name of the process executable, the same valu
 **[2] `service.criticality`:** Application developers are encouraged to set `service.criticality` to express the operational importance of their services. Telemetry consumers MAY use this attribute to optimize telemetry collection or improve user experience.
 
 ---
+
+<a id="service-criticality-values"></a>
 
 `service.criticality` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

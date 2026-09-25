@@ -37,7 +37,7 @@ An Error is defined as when the `{process.exit.code}` attribute is not 0.
 | [`process.executable.name`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
 | [`process.exit.code`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | int | The exit code of the process. | `127` |
 | [`process.pid`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | int | Process identifier (PID). | `1234` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if process.exit.code is not 0 | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if process.exit.code is not 0 | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
 | [`process.command_args`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |
 | [`process.executable.path`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
 
@@ -68,6 +68,8 @@ it's RECOMMENDED to:
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -106,7 +108,7 @@ An Error is defined as when the `{process.exit.code}` attribute is not 0.
 | [`process.executable.name`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
 | [`process.exit.code`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | int | The exit code of the process. | `127` |
 | [`process.pid`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | int | Process identifier (PID). | `1234` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if process.exit.code is not 0 | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if process.exit.code is not 0 | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
 | [`process.command_args`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |
 | [`process.executable.path`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
 
@@ -137,6 +139,8 @@ it's RECOMMENDED to:
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
