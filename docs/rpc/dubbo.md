@@ -84,6 +84,9 @@ Status codes reference:
 - Dubbo2: [Dubbo2 Protocol Status Codes](https://dubbo.apache.org/en/overview/reference/protocols/tcp/#protocol-specification)
 - Dubbo3 Triple protocol: [Triple Protocol Error Codes](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#311-request)
 
+Instrumentations MAY use additional context or provide configuration options to customize
+which status codes are considered errors.
+
 **[3] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
 or a component-specific, low cardinality error identifier.
@@ -250,6 +253,9 @@ Status codes reference:
 
 - Dubbo2: [Dubbo2 Protocol Status Codes](https://dubbo.apache.org/en/overview/reference/protocols/tcp/#protocol-specification)
 - Dubbo3 Triple protocol: [Triple Protocol Error Codes](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#311-request)
+
+Instrumentations MAY use additional context or provide configuration options to customize
+which status codes are considered errors.
 
 **[2] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)

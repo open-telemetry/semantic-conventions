@@ -87,6 +87,9 @@ RPC client stub method on the client side.
 
 **[2] `rpc.status_code`:** All status codes except `OK` SHOULD be considered errors.
 
+Instrumentations MAY use additional context or provide configuration options to customize
+which status codes are considered errors.
+
 **[3] `server.address`:** Instrumentations SHOULD populate `server.address` (along with `server.port`)
 based on the configuration used when creating the gRPC channel and
 SHOULD NOT use actual network-level connection information for this purpose
@@ -219,6 +222,9 @@ for the details on which values classify as errors.
 - `INTERNAL`
 - `UNAVAILABLE`
 - `DATA_LOSS`
+
+Instrumentations MAY use additional context or provide configuration options to customize
+which status codes are considered errors.
 
 **[2] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)

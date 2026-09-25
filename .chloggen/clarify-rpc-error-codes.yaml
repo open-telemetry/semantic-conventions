@@ -1,0 +1,9 @@
+change_type: enhancement
+
+component: rpc
+
+note: >
+  Clarify that RPC instrumentations may use additional context or provide configuration
+  options to customize which status or error codes are considered errors.
+
+issues: [3704]
