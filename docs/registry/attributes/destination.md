@@ -10,6 +10,12 @@
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="destination-address" href="#destination-address">`destination.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="destination-as-number" href="#destination-as-number">`destination.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the destination IP address. [2] | `64496`; `15169` |
+| <a id="destination-as-organization-name" href="#destination-as-organization-name">`destination.as.organization.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the destination IP address. [3] | `Example Networks Inc.`; `Google LLC` |
 | <a id="destination-port" href="#destination-port">`destination.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Destination port number | `3389`; `2888` |
 
 **[1] `destination.address`:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
+
+**[2] `destination.as.number`:** This attribute SHOULD only be set when the destination address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+
+**[3] `destination.as.organization.name`:** This attribute SHOULD only be set when `destination.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.

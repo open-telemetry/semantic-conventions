@@ -20,6 +20,10 @@ attribute_groups:
     attributes:
       - ref: network.peer.address
         note: This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
+      - ref: network.peer.as.number
+        requirement_level: opt_in
+      - ref: network.peer.as.organization.name
+        requirement_level: opt_in
       - ref: network.peer.port
 
   - id: network.local
@@ -41,4 +45,8 @@ attribute_groups:
     attributes:
       - ref: network.local.address
         note: This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
+      - ref: network.local.as.number
+        requirement_level: opt_in
+      - ref: network.local.as.organization.name
+        requirement_level: opt_in
       - ref: network.local.port
