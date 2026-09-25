@@ -1,0 +1,23 @@
+change_type: breaking
+
+component: rpc
+
+note: Replace `rpc.request.metadata.<key>` and `rpc.response.metadata.<key>` with `rpc.request.header.<key>`, `rpc.response.header.<key>`, and `rpc.response.trailer.<key>`.
+
+issues: [3924, 4072]
+
+subtext: |
+  gRPC and Connect RPC send response metadata both before and after the response payload and
+  expose the two separately on their APIs. `rpc.response.metadata.<key>` did not record which
+  of the two a value came from, so this change splits it into `rpc.response.header.<key>` for
+  metadata sent before the response payload and `rpc.response.trailer.<key>` for metadata sent
+  after it. Dubbo Triple has the same split: instrumentations record Triple response headers as
+  `rpc.response.header.<key>` and Dubbo response attachments, which Triple sends as trailers, as
+  `rpc.response.trailer.<key>`.
+
+  No RPC system sends metadata after the request payload, so there is no `rpc.request.trailer`
+  attribute and the request side is a plain rename.
+
+  The already-deprecated `rpc.grpc.*` and `rpc.connect_rpc.*` metadata attributes now point at
+  the new attributes directly instead of at the deprecated `rpc.request.metadata.<key>` and
+  `rpc.response.metadata.<key>`.
