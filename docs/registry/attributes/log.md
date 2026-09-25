@@ -50,7 +50,12 @@ This document defines the generic attributes that may be used in any Log Record.
 | <a id="log-record-original" href="#log-record-original">`log.record.original`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` |
 | <a id="log-record-uid" href="#log-record-uid">`log.record.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` |
 
-**[1] `log.record.original`:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
+**[1] `log.record.original`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
 
 **[2] `log.record.uid`:** If an ID is provided, other log records with the same ID will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
 The ID MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.

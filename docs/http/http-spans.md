@@ -282,7 +282,12 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[10] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[11] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+**[11] `http.request.body.content`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
 boundary so that the recorded value remains valid text.
 
@@ -322,7 +327,12 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[13] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+**[13] `http.response.body.content`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
 boundary so that the recorded value remains valid text.
 
@@ -657,7 +667,12 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[14] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
-**[15] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+**[15] `http.request.body.content`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
 boundary so that the recorded value remains valid text.
 
@@ -697,7 +712,12 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[17] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+**[17] `http.response.body.content`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
 boundary so that the recorded value remains valid text.
 

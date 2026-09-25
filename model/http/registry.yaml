@@ -205,6 +205,9 @@ groups:
         stability: development
         examples: ["active", "idle"]
       - id: http.request.body.content
+        annotations:
+          value:
+            unbounded_size: true
         type: any
         brief: >
           The content of the HTTP request body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed,
@@ -235,6 +238,9 @@ groups:
         examples: ['Hello world!', '{"foo": "bar"}']
         stability: development
       - id: http.response.body.content
+        annotations:
+          value:
+            unbounded_size: true
         type: any
         brief: >
           The content of the HTTP response body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed,
