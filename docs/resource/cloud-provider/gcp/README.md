@@ -17,4 +17,4 @@ provider (like account ID, operating system, etc), it belongs in the parent
 - [Compute Engine](./gce.md)
 - [AppHub](./apphub.md)
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

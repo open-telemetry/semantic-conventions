@@ -7,7 +7,7 @@ linkTitle: HTTP
 **Status**: [Mixed][DocumentStatus]
 
 This document defines semantic conventions for HTTP spans, metrics and logs.
-They can be used for http and https schemes
+They can be used for HTTP and HTTPS schemes
 and various HTTP versions like 1.1, 2 and SPDY.
 
 > [!IMPORTANT]
@@ -44,4 +44,4 @@ Semantic conventions for HTTP are defined for the following signals:
 
 For help migrating from non-stable to stable conventions, see [the migration guide](../non-normative/http-migration.md).
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

@@ -22,7 +22,7 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: if applicable and if `server.address` is set.
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         requirement_level:
           conditionally_required: if available.
       - ref: error.type
@@ -34,9 +34,9 @@ groups:
           `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
           or a component-specific, low cardinality error identifier.
 
-          If a response status code is returned and status indicates an error,
+          If a status code is returned and it indicates an error,
           `error.type` SHOULD be set to that status code. Check system-specific conventions
-          for the details on which values of `rpc.response.status_code` are considered errors.
+          for the details on which values of `rpc.status_code` are considered errors.
 
           The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.

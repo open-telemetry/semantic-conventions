@@ -1,0 +1,7 @@
+change_type: enhancement
+component: rpc
+note: >
+  Clarify how to populate `server.address` and `server.port` on RPC server spans.
+  Change requirement level of `server.address` to `opt_in` on `rpc.server.call.duration`
+  metric and to `recommended` on server spans.
+issues: [3784]

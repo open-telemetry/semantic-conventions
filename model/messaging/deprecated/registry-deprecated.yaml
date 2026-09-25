@@ -12,7 +12,7 @@ groups:
         examples: 2
         deprecated:
           reason: uncategorized
-          note: Record string representation of the partition id in `messaging.destination.partition.id` attribute.
+          note: Record string representation of the partition ID in `messaging.destination.partition.id` attribute.
         stability: development
       - id: messaging.operation
         type: string

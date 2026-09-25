@@ -83,4 +83,4 @@ The english-language semantics of this are heavily debatable, thus for the sake
 of consistency it is recommended to adopt this naming scheme if there is no
 obvious verbiage available.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

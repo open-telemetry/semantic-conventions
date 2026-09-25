@@ -1,0 +1,391 @@
+file_format: definition/2
+
+span_refinements:
+  # Azure Service Bus
+  - id: span.messaging.servicebus.create.producer
+    ref: messaging.create.producer
+    stability: development
+    brief: Describes a message being created for sending to Azure Service Bus.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
+        examples: ['servicebus']
+      - ref: error.type
+        examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
+      - ref: messaging.message.conversation_id
+        brief: &servicebus_conversation_id_brief >
+          Message [correlation ID](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
+      - ref: messaging.operation.name
+        brief: Azure Service Bus operation name.
+        note: SHOULD be set to `create`.
+        examples: ['create']
+
+  - id: span.messaging.servicebus.send.producer
+    ref: messaging.send.producer
+    stability: development
+    brief: Describes a producer sending one or more messages to Azure Service Bus.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
+        examples: ['servicebus']
+      - ref: error.type
+        examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
+      - ref: messaging.message.conversation_id
+        brief: *servicebus_conversation_id_brief
+      - ref: messaging.operation.name
+        brief: Azure Service Bus operation name.
+        note: |
+          SHOULD match one of the following values:
+
+          - `send`
+          - `schedule`
+        examples: ['send', 'schedule']
+
+  - id: span.messaging.servicebus.send.client
+    ref: messaging.send.client
+    stability: development
+    brief: Describes a producer sending one or more messages to Azure Service Bus.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
+        examples: ['servicebus']
+      - ref: error.type
+        examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
+      - ref: messaging.message.conversation_id
+        brief: *servicebus_conversation_id_brief
+      - ref: messaging.operation.name
+        brief: Azure Service Bus operation name.
+        note: |
+          SHOULD match one of the following values:
+
+          - `send`
+          - `schedule`
+        examples: ['send', 'schedule']
+
+  - id: span.messaging.servicebus.receive.client
+    ref: messaging.receive.client
+    stability: development
+    brief: Describes a consumer receiving one or more messages from Azure Service Bus.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
+        examples: ['servicebus']
+      - ref: error.type
+        examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
+      - ref: messaging.destination.subscription.name
+        brief: "Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions)."
+        note: ""
+        requirement_level:
+          conditionally_required: If messages are received from the subscription.
+        sampling_relevant: true
+      - ref: messaging.servicebus.message.delivery_count
+        requirement_level:
+          conditionally_required: If delivery count is available and is bigger than 0.
+      - ref: messaging.servicebus.message.enqueued_time
+      - ref: messaging.message.conversation_id
+        brief: *servicebus_conversation_id_brief
+      - ref: messaging.operation.name
+        brief: Azure Service Bus operation name.
+        note: |
+          SHOULD match one of the following values:
+
+          - `receive`
+          - `peek`
+          - `receive_deferred`
+        examples: ['receive', 'peek', 'receive_deferred']
+
+  - id: span.messaging.servicebus.process.consumer
+    ref: messaging.process.consumer
+    stability: development
+    brief: Describes a consumer processing one or more messages from Azure Service Bus (push-based).
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
+        examples: ['servicebus']
+      - ref: error.type
+        examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
+      - ref: messaging.destination.subscription.name
+        brief: "Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions)."
+        note: ""
+        requirement_level:
+          conditionally_required: If messages are received from the subscription.
+        sampling_relevant: true
+      - ref: messaging.servicebus.message.delivery_count
+        requirement_level:
+          conditionally_required: If delivery count is available and is bigger than 0.
+      - ref: messaging.servicebus.message.enqueued_time
+      - ref: messaging.message.conversation_id
+        brief: *servicebus_conversation_id_brief
+      - ref: messaging.operation.name
+        brief: Azure Service Bus operation name.
+        note: SHOULD be set to `process`.
+        examples: ['process']
+
+  - id: span.messaging.servicebus.settle.client
+    ref: messaging.settle.client
+    stability: development
+    brief: Describes settling (complete/abandon/defer/dead-letter) one or more Azure Service Bus messages.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
+        examples: ['servicebus']
+      - ref: error.type
+        examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
+      - ref: messaging.destination.subscription.name
+        brief: "Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions)."
+        note: ""
+        requirement_level:
+          conditionally_required: If messages are received from the subscription.
+        sampling_relevant: true
+      - ref: messaging.servicebus.disposition_status
+        requirement_level:
+          conditionally_required: If the message is settled with a specific disposition status.
+      - ref: messaging.message.conversation_id
+        brief: *servicebus_conversation_id_brief
+      - ref: messaging.operation.name
+        brief: Azure Service Bus operation name.
+        note: |
+          SHOULD match one of the following values:
+
+          - `abandon`
+          - `complete`
+          - `defer`
+          - `dead_letter`
+          - `delete`
+        examples: ['complete', 'abandon', 'dead_letter']
+
+  - id: span.messaging.eventhubs.create.producer
+    ref: messaging.create.producer
+    stability: development
+    brief: Describes a message being created for sending to Azure Event Hubs.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
+        examples: ['eventhubs']
+      - ref: error.type
+        examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.destination.partition.id
+        requirement_level:
+          conditionally_required: If available.
+      - ref: messaging.operation.name
+        brief: Azure Event Hubs operation name.
+        examples: ['create']
+        note: SHOULD be set to `create`.
+
+  - id: span.messaging.eventhubs.send.producer
+    ref: messaging.send.producer
+    stability: development
+    brief: Describes a producer sending one or more messages to Azure Event Hubs.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
+        examples: ['eventhubs']
+      - ref: error.type
+        examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.destination.partition.id
+        requirement_level:
+          conditionally_required: If available.
+      - ref: messaging.operation.name
+        brief: Azure Event Hubs operation name.
+        examples: ['send']
+        note: SHOULD be set to `send`.
+
+  - id: span.messaging.eventhubs.send.client
+    ref: messaging.send.client
+    stability: development
+    brief: Describes a producer sending one or more messages to Azure Event Hubs.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
+        examples: ['eventhubs']
+      - ref: error.type
+        examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.destination.partition.id
+        requirement_level:
+          conditionally_required: If available.
+      - ref: messaging.operation.name
+        brief: Azure Event Hubs operation name.
+        examples: ['send']
+        note: SHOULD be set to `send`.
+
+  - id: span.messaging.eventhubs.receive.client
+    ref: messaging.receive.client
+    stability: development
+    brief: Describes a consumer receiving one or more messages from Azure Event Hubs (pull-based).
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
+        examples: ['eventhubs']
+      - ref: error.type
+        examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.consumer.group.name
+        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/azure/event-hubs/event-hubs-features#consumer-groups)."
+        note: ""
+        requirement_level: recommended
+        sampling_relevant: true
+      - ref: messaging.destination.partition.id
+        requirement_level:
+          conditionally_required: If available.
+      - ref: messaging.eventhubs.message.enqueued_time
+      - ref: messaging.operation.name
+        brief: Azure Event Hubs operation name.
+        examples: ['receive']
+        note: SHOULD be set to `receive`.
+
+  - id: span.messaging.eventhubs.process.consumer
+    ref: messaging.process.consumer
+    stability: development
+    brief: Describes a consumer processing one or more messages from Azure Event Hubs (push-based).
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
+        examples: ['eventhubs']
+      - ref: error.type
+        examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.consumer.group.name
+        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/azure/event-hubs/event-hubs-features#consumer-groups)."
+        note: ""
+        requirement_level: recommended
+        sampling_relevant: true
+      - ref: messaging.destination.partition.id
+        requirement_level:
+          conditionally_required: If available.
+      - ref: messaging.eventhubs.message.enqueued_time
+      - ref: messaging.operation.name
+        brief: Azure Event Hubs operation name.
+        examples: ['process']
+        note: SHOULD be set to `process`.
+
+  - id: span.messaging.eventhubs.settle.client
+    ref: messaging.settle.client
+    stability: development
+    brief: Describes checkpointing (settling) processed messages in Azure Event Hubs.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
+        examples: ['eventhubs']
+      - ref: error.type
+        examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.consumer.group.name
+        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/azure/event-hubs/event-hubs-features#consumer-groups)."
+        note: ""
+        requirement_level: recommended
+        sampling_relevant: true
+      - ref: messaging.destination.partition.id
+        brief: >
+          String representation of the partition ID messages are checkpointed for, unique within the Event Hub.
+        requirement_level:
+          conditionally_required: If available.
+      - ref: messaging.operation.name
+        brief: Azure Event Hubs operation name.
+        note: SHOULD be set to `checkpoint`.
+        examples: ['checkpoint']
+
+# Azure operations that do not map to a generic messaging operation type.
+spans:
+  - type: messaging.servicebus.generic.client
+    kind: client
+    requirement_level: recommended
+    stability: development
+    brief: >
+      Describes an Azure Service Bus client operation that is not covered by a more specific
+      (create, send, receive, process, or settle) span.
+    name:
+      note: >
+        SHOULD be `{messaging.operation.name} {destination}`, see
+        [Span name](/docs/messaging/messaging-spans.md#span-name).
+    note: |
+      Catch-all span for Azure Service Bus client operations - such as session management or
+      lock renewal - that do not map to a create, send, receive, process, or settle span.
+    attributes:
+      - ref_group: messaging.attributes.consumer
+      - ref_group: messaging.attributes.network
+      - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
+        examples: ['servicebus']
+        sampling_relevant: true
+      - ref: error.type
+        examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
+      - ref: messaging.operation.name
+        brief: Azure Service Bus operation name.
+        note: |
+          SHOULD be set to the name of the client method in snake_case, for example:
+
+          - session operations: `accept_session`, `get_session_state`, `set_session_state`, `renew_session_lock`
+          - lock renewal: `renew_message_lock`
+          - scheduling operations: `cancel_scheduled`
+          - transaction operations: `create_transaction`, `commit_transaction`, `rollback_transaction`
+        examples: ['accept_session', 'renew_message_lock', 'create_transaction']
+        sampling_relevant: true
+      - ref: messaging.message.conversation_id
+        brief: *servicebus_conversation_id_brief
+      - ref: messaging.destination.name
+        sampling_relevant: true
+      - ref: messaging.destination.subscription.name
+        brief: "Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions)."
+        note: ""
+        requirement_level:
+          conditionally_required: If messages are received from the subscription.
+        sampling_relevant: true
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+
+  - type: messaging.eventhubs.generic.client
+    kind: client
+    requirement_level: recommended
+    stability: development
+    brief: >
+      Describes an Azure Event Hubs client operation that is not covered by a more specific
+      (create, send, receive, process, or settle) span.
+    name:
+      note: >
+        SHOULD be `{messaging.operation.name} {destination}`, see
+        [Span name](/docs/messaging/messaging-spans.md#span-name).
+    note: |
+      Catch-all span for Azure Event Hubs client operations - such as metadata retrieval - that
+      do not map to a create, send, receive, process, or settle span.
+    attributes:
+      - ref_group: messaging.attributes.consumer
+      - ref_group: messaging.attributes.network
+      - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
+        examples: ['eventhubs']
+        sampling_relevant: true
+      - ref: error.type
+        examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
+      - ref: messaging.operation.name
+        brief: Azure Event Hubs operation name.
+        note: |
+          SHOULD be set to the name of the client method in snake_case, for example:
+
+          - `get_partition_properties`
+          - `get_event_hub_properties`
+        examples: ['get_partition_properties', 'get_event_hub_properties']
+        sampling_relevant: true
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+        sampling_relevant: true
+      - ref: messaging.destination.partition.id
+        brief: >
+          String representation of the partition ID, unique within the Event Hub.
+        requirement_level:
+          conditionally_required: If available.
+        sampling_relevant: true
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true

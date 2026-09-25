@@ -168,7 +168,7 @@ groups:
               stability: development
             - id: user_name
               value: 'user_name'
-              brief: "Identity user name updated."
+              brief: "Identity username updated."
               stability: development
             - id: add_password
               value: 'add_password'

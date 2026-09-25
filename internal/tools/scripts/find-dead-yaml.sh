@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Description: This script checks if all signal groups declared in a YAML file are present in the markdown files under a specified directory.
 # Usage: ./check_lines.sh <groups_list> <md_directory_path>
@@ -24,7 +24,8 @@ echo "Indexing semconv lines in .md files under: $docs_folder ..."
 while IFS= read -r LINE; do
   semconv_snippets["$LINE"]=1
 done < <(
-  grep -rhoP '<!--\s*semconv\s+\K[a-z0-9._]+(?=\s*-->)' "$docs_folder" --include="*.md"
+  find "$docs_folder" -type f -name "*.md" -exec grep -hoE '<!--[[:space:]]*semconv[[:space:]]+[a-z0-9._]+[[:space:]]*-->' {} + \
+    | sed -E 's/<!--[[:space:]]*semconv[[:space:]]+([a-z0-9._]+)[[:space:]]*-->/\1/'
 )
 
 not_found_groups=()

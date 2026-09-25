@@ -57,4 +57,4 @@ semantic conventions when instrumenting runtime environments.
 [`process.runtime`](/docs/resource/process.md#process-runtimes)
 resource attributes SHOULD be included on runtime metric events as appropriate.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

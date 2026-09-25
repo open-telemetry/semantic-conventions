@@ -9,6 +9,75 @@
 
 <!-- next version -->
 
+## v1.44.0
+
+### 🛑 Breaking changes 🛑
+
+- `browser`: Reworked the `browser.web_vital` event - moved `name`/`value`/`delta`/`id` from the event body to `browser.web_vital.*` attributes, and added new attributes per current instrumentation. ([#3401](https://github.com/open-telemetry/semantic-conventions/issues/3401))
+- `k8s`: Rename `k8s.node.memory.paging.faults`, `k8s.pod.memory.paging.faults` and `container.memory.paging.faults` metrics by dropping the `memory` namespace segment.
+  ([#3805](https://github.com/open-telemetry/semantic-conventions/issues/3805))
+  Renamed metrics:
+  - k8s.pod.memory.paging.faults -> k8s.pod.paging.faults
+  - k8s.node.memory.paging.faults -> k8s.node.paging.faults
+  - container.memory.paging.faults -> container.paging.faults
+- `k8s`: Change {container, k8s.pod, k8s.node}.memory.usage to updowncounter ([#3889](https://github.com/open-telemetry/semantic-conventions/issues/3889))
+
+### 💡 Enhancements 💡
+
+- `cloud`: Add Scaleway Cloud to cloud.provider and scaleway_cloud_compute to cloud.platform ([#2773](https://github.com/open-telemetry/semantic-conventions/issues/2773))
+- `db`: Clarify `db.query.parameter.<key>` semantics around sensitive data handling.
+ ([#3831](https://github.com/open-telemetry/semantic-conventions/issues/3831))
+- `faas`: The general FaaS attributes are now defined on the FaaS spans that use them, so each span documents its full attribute set. ([#3905](https://github.com/open-telemetry/semantic-conventions/issues/3905))
+- `host`: Update the recommendations to use full path to commands when collecting `host.id` attribute value.
+ ([#3896](https://github.com/open-telemetry/semantic-conventions/issues/3896))
+- `hw`: Per-component `hw.errors` and `hw.status` metrics now document the full set of component-specific attributes (e.g. `hw.model`, `hw.vendor`) alongside the generic ones.
+ ([#3808](https://github.com/open-telemetry/semantic-conventions/issues/3808))
+- `k8s`: Add `k8s.node.filesystem.inode.count` and `k8s.node.filesystem.inode.free` metrics to track Kubernetes node root filesystem inode capacity and usage. ([#3858](https://github.com/open-telemetry/semantic-conventions/issues/3858))
+- `k8s`: Promote a selection of container and K8s memory metrics to release_candidate ([#3882](https://github.com/open-telemetry/semantic-conventions/issues/3882))
+  The following metrics are being promoted to release_candidate:
+  - container.memory.usage
+  - container.memory.available
+  - container.memory.rss
+  - container.memory.working_set
+  - k8s.pod.memory.usage
+  - k8s.pod.memory.available
+  - k8s.pod.memory.rss
+  - k8s.pod.memory.working_set
+  - k8s.node.memory.usage
+  - k8s.node.memory.available
+  - k8s.node.memory.rss
+  - k8s.node.memory.working_set
+
+- `k8s`: Clarify how `cpu.usage` is calculated for K8s and container entities. ([#2418](https://github.com/open-telemetry/semantic-conventions/issues/2418))
+  CPU usage is measured in cores/CPUs and is calculated based on the formula:
+  `usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds`
+  This PR improves the description making it aligned with the corresponding
+  system and process metrics.
+
+- `messaging`: Add `messaging.kafka.cluster.id` attribute identifying the Kafka cluster a client is connected to, and reference it from Kafka spans. ([#32](https://github.com/open-telemetry/semantic-conventions/issues/32))
+- `messaging`: Define a span per messaging operation type (create, send, receive, process, settle) and refine them for each messaging system. ([#3904](https://github.com/open-telemetry/semantic-conventions/issues/3904))
+- `network`: Promote `network.interface.name` attribute to `release_candidate` ([#3953](https://github.com/open-telemetry/semantic-conventions/issues/3953))
+- `otel`: Clarify that `otel.sdk.processor.span.processed` and `otel.sdk.processor.log.processed` are recorded when the processor passes items to the exporter, not when an item is accepted into a queue or when the export operation completes, and that the export outcome does not affect these metrics.
+ ([#3902](https://github.com/open-telemetry/semantic-conventions/issues/3902))
+- `process`: Add process.disk.operations, process.memory.utilization, and process.signals_pending metrics ([#3937](https://github.com/open-telemetry/semantic-conventions/issues/3937))
+  Process namespace has been made release candidate. During migration of process metrics to release
+  candidate in hostmetrics receiver, it was discovered that the following process metrics were not
+  present in process semantic conventions: process.disk.operations, process.memory.utilization,
+  and process.signals_pending.
+
+- `server, client, source, destination`: The descriptions of the `server`, `client`, `source`, and `destination` attribute groups are now documented in [General attributes](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/general/attributes.md) instead of the attribute registry pages.
+ ([#3935](https://github.com/open-telemetry/semantic-conventions/issues/3935))
+- `system`: Add `system.process.limit` metric representing the maximum number of concurrent tasks/threads allowed by the operating system. ([#3859](https://github.com/open-telemetry/semantic-conventions/issues/3859))
+
+### 🧰 Bug fixes 🧰
+
+- `otel`: Clarify that `already_shutdown` on `otel.sdk.processor.span.processed` and `otel.sdk.processor.log.processed` is a value-only requirement for the `error.type` attribute: whether and when a processor drops records because it has already been shut down is governed by the SDK specification, not by this metric.
+ ([#3957](https://github.com/open-telemetry/semantic-conventions/issues/3957))
+- `rpc`: Fix wording in `server.address` note to say "reverse DNS lookup" instead of "reverse proxy lookup".
+ ([#3871](https://github.com/open-telemetry/semantic-conventions/issues/3871))
+- `rpc`: Remove tracing-only `rpc.method_original` guidance from the shared `rpc.method` definition.
+ ([#3872](https://github.com/open-telemetry/semantic-conventions/issues/3872))
+
 ## v1.43.0
 
 ### 🚩 Deprecations 🚩
@@ -27,7 +96,7 @@
   The `network.io.direction` brief was updated based on review feedback to clarify that
   it describes traffic at the observing interface boundary and is not intended to represent
   logical connection or network flow direction.
-  
+
 - `otel`: Clarify that the `otel.span.sampling_result` attribute of `otel.sdk.span.live` can only take values `RECORD_ONLY` and `RECORD_AND_SAMPLE`, not `DROP`, since the metric does not count non-recording spans.
  ([#3782](https://github.com/open-telemetry/semantic-conventions/issues/3782))
 - `process`: Promote process metrics and entity to release_candidate ([#3041](https://github.com/open-telemetry/semantic-conventions/issues/3041))
@@ -41,7 +110,7 @@
 - `db`: Align Oracle Database `db.query.text` guidance with other SQL database conventions. ([#3790](https://github.com/open-telemetry/semantic-conventions/issues/3790))
   Parameterized query text is now recommended to be collected by default, while
   query parameter values remain opt-in.
-  
+
 ## v1.42.0
 
 ### 🛑 Breaking changes 🛑
@@ -51,10 +120,10 @@
   `model/gen-ai/`, `model/openai/`, and `model/mcp/` (and documented under
   `docs/gen-ai/`) are deprecated in this repository and have moved to the
   [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
-  
+
   Instrumentations following the new repository's conventions should refer to
   it for the corresponding `schema_url` to use.
-  
+
 - `http`: Change `network.peer.address` attribute requirement level from Recommended to Opt-In on the `http.client.open_connections` and `http.client.connection.duration` metrics. ([#3279](https://github.com/open-telemetry/semantic-conventions/issues/3279))
   `network.peer.address` is typically high-cardinality (one time series per remote IP)
   and causes unbounded growth of metric streams over the lifetime of the process when
@@ -62,7 +131,7 @@
   since it is an UpDownCounter, and possible for `http.client.connection.duration` when
   the histogram is configured for cumulative). Operators that need this attribute can
   still opt-in.
-  
+
 - `v8js`: Rename `v8js.memory.heap.limit` to `v8js.memory.heap.space.size` (per-space pre-allocated size from `v8.getHeapSpaceStatistics()`),
 and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute heap size limit from `v8.getHeapStatistics().heap_size_limit`
 (controlled by `--max-old-space-size` or V8 defaults).
@@ -75,7 +144,7 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
   the browser runtime attributes (brands, platform, language) are immutable for the SDK
   lifetime, while the document URL changes on every navigation. The new attribute follows
   RFC3986 and has `Recommended` requirement level at `Development` stability.
-  
+
 ### 💡 Enhancements 💡
 
 - `app`: Defines a basic crash of an end-user facing app that requires a minimal amount of information. ([#3448](https://github.com/open-telemetry/semantic-conventions/issues/3448))
@@ -87,7 +156,7 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
 - `k8s`: Promote `k8s.pod.cpu.time`, `k8s.node.cpu.time` and `container.cpu.time` metrics to `release_candidate` ([#3001](https://github.com/open-telemetry/semantic-conventions/issues/3001))
 - `k8s`: Add metric `k8s.container.ephemeral_storage.usage` to track ephemeral storage usage by containers. ([#3681](https://github.com/open-telemetry/semantic-conventions/issues/3681))
   This metric includes an attribute `k8s.container.ephemeral_storage.fs_type` to distinguish between `rootfs` and `logs` usage.
-  
+
 - `k8s`: Promote a selection of k8s and container registry attributes to `stable` ([#3382](https://github.com/open-telemetry/semantic-conventions/issues/3382))
 - `otel`: Clarify semantics of SDK exporter metrics when the exporter performs retries: an export operation is considered finished only after the final attempt has concluded, items are counted exactly once per operation, and `otel.sdk.exporter.operation.duration` records one observation per operation covering all attempts and backoff. Also drop a spurious `error.type` note from the `*.inflight` metrics, which do not carry an `error.type` attribute.
  ([#3770](https://github.com/open-telemetry/semantic-conventions/issues/3770))
@@ -98,7 +167,7 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
 - `service`: Mark `service.criticality` attribute as alpha. ([#2986](https://github.com/open-telemetry/semantic-conventions/issues/2986))
   The `service.criticality` attribute and its allowed values (`critical`, `high`, `medium`, `low`)
   are now in alpha status.
-  
+
 - `system, file`: Add support for filesystem lock counts ([#3611](https://github.com/open-telemetry/semantic-conventions/issues/3611))
 - `v8js`: Update `v8js.gc.duration` metric to match bucket boundaries used by Node.js instrumentation. ([#3761](https://github.com/open-telemetry/semantic-conventions/issues/3761))
 
@@ -119,7 +188,7 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
   potentially unbounded in length, and high-cardinality. Moving from Recommended to Opt-In
   ensures operators make an informed decision before enabling this attribute.
   Also updated the note to use SHOULD for stronger normative language regarding sanitization.
-  
+
 - `process`: Move process.executable to its own entity. ([#3535](https://github.com/open-telemetry/semantic-conventions/issues/3535))
   - Move process.executable to its own entity
   - Identifying attribute:
@@ -130,11 +199,11 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
     - process.executable.build_id.gnu
     - process.executable.path
     - process.executable.name
-  
+
 - `process`: Update requirement levels for process attributes to ensure consistent identification and description across platforms. ([#864](https://github.com/open-telemetry/semantic-conventions/issues/864))
   - Changed `process.pid` and `process.creation.time` to be `Required` (Identity).
   - Changed process descriptive attributes to be `Optional`.
-  
+
 - `rpc`: Remove `client.address` and `client.port` attributes from RPC server spans. ([#3487](https://github.com/open-telemetry/semantic-conventions/issues/3487), [#3488](https://github.com/open-telemetry/semantic-conventions/issues/3488))
 
 ### 💡 Enhancements 💡
@@ -149,10 +218,10 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
 - `db`: Clarify database client span duration. ([#3479](https://github.com/open-telemetry/semantic-conventions/issues/3479))
 - `deployment`: Stabilize `deployment.environment.name` attribute. ([#3339](https://github.com/open-telemetry/semantic-conventions/issues/3339))
   The `deployment.environment.name` attribute is promoted from development to stable.
-  
+
 - `deployment`: Add enum values for `deployment.environment.name` attribute. ([#2910](https://github.com/open-telemetry/semantic-conventions/issues/2910))
   The `deployment.environment.name` attribute now has well-known enum values: Production, Staging, Test, and Development.
-  
+
 - `exception`: Improve exception event definition: add guidance on how to set event name and severity.
  ([#3311](https://github.com/open-telemetry/semantic-conventions/issues/3311))
 - `exceptions`: Add guidance that `error.type` and `exception.type` may unwrap uninformative wrapper types. ([#3588](https://github.com/open-telemetry/semantic-conventions/issues/3588), [#3623](https://github.com/open-telemetry/semantic-conventions/issues/3623))
@@ -160,26 +229,26 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
   This domain-specific exception event provides a structured way to record
   exceptions that occur during FaaS function invocations:
   - `faas.invocation.exception` for exceptions during function execution
-  
+
 - `gen-ai`: Enhance the definition of `gen_ai.tool.definitions` attribute. ([#2721](https://github.com/open-telemetry/semantic-conventions/issues/2721), [#1835](https://github.com/open-telemetry/semantic-conventions/issues/1835))
   The schema of `gen_ai.tool.definitions` attribute is now enhanced to:
   - Add JSON schema of `gen_ai.tool.definitions` attribute.
   - Document the behavior of capturing tool definitions.
   - Capture the tool definitions in a simplified format if the content capturing is disabled.
-  
+
 - `gen-ai`: Add `gen_ai.usage.reasoning.output_tokens` attribute for reasoning tokens ([#3194](https://github.com/open-telemetry/semantic-conventions/issues/3194))
   - Add `gen_ai.usage.reasoning.output_tokens` for tokens used for reasoning
-  
+
 - `gen-ai`: Define `gen_ai.client.operation.exception` event for recording exceptions during Generative AI client operations ([#3436](https://github.com/open-telemetry/semantic-conventions/issues/3436))
   This domain-specific exception event provides a structured way to record
   exceptions that occur during Generative AI client operations (API errors,
   rate limiting, timeouts).
-  
+
 - `gen-ai`: Add invoke workflow operation name support to the gen-ai semantic conventions. ([#2912](https://github.com/open-telemetry/semantic-conventions/issues/2912))
 - `gen-ai`: Add `gen_ai.client.operation.time_to_first_chunk` and `gen_ai.client.operation.time_per_output_chunk` metrics. ([#3113](https://github.com/open-telemetry/semantic-conventions/issues/3113))
   - Add `gen_ai.client.operation.time_to_first_chunk` metric to track time from client request to first chunk of response.
   - Add `gen_ai.client.operation.time_per_output_chunk` metric to track time per output chunk of response.
-  
+
 - `gen-ai`: Split `invoke_agent` into separate client and internal spans, and split attributes from inference hierarchy. ([#2632](https://github.com/open-telemetry/semantic-conventions/issues/2632))
   The `invoke_agent` client span now extends a dedicated `attributes.gen_ai.invoke_agent.client`
   attribute group instead of `attributes.gen_ai.inference.client`. This removes
@@ -187,12 +256,12 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
   and adds `gen_ai.agent.version`.
   A new `invoke_agent` internal span is added for in-process agents (e.g., LangChain, CrewAI),
   which does not include `server.address`, `server.port`, or token usage attributes.
-  
+
 - `gen-ai`: Added `gen_ai.response.model` attribute to embeddings spans. ([#3499](https://github.com/open-telemetry/semantic-conventions/issues/3499))
 - `gen_ai`: Add streaming attributes for GenAI inference spans ([#3598](https://github.com/open-telemetry/semantic-conventions/issues/3598))
   Adds `gen_ai.request.stream` (boolean) and `gen_ai.response.time_to_first_chunk` (double)
   attributes for streaming inference operations.
-  
+
 - `go`: Add the go.cpu.time opt-in metric, and add go.cpu.detailed_state and go.memory.detailed_type attributes to CPU and memory metrics respectively with wildcard values. ([#3354](https://github.com/open-telemetry/semantic-conventions/issues/3354))
 - `go`: Add the opt-in go.memory.gc.cycles metric. ([#3353](https://github.com/open-telemetry/semantic-conventions/issues/3353))
 - `http`: Clarify that intentional client-side cancellation of HTTP requests SHOULD NOT be treated as an error. ([#3495](https://github.com/open-telemetry/semantic-conventions/issues/3495))
@@ -204,16 +273,16 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
   - `k8s.persistentvolume.status.phase`, `k8s.persistentvolume.storage.capacity`
   - `k8s.persistentvolumeclaim.status.phase`, `k8s.persistentvolumeclaim.storage.request`,
     `k8s.persistentvolumeclaim.storage.capacity`
-  
+
 - `k8s`: Update CPU metrics for container CPU limit and request to handle resize. ([#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558))
   Introduced new metrics for container CPU limit and request that account for
   KEP 1287 allowing for in-place updates of container resources.
-  
+
 - `k8s`: Promote a selection of k8s/container attributes to release_candidate ([#3491](https://github.com/open-telemetry/semantic-conventions/issues/3491), [#3380](https://github.com/open-telemetry/semantic-conventions/issues/3380))
 - `k8s`: Split container memory limit/request into desired/current to handle in-place resize ([#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558))
   Introduced new metrics for container memory limit and request that account for
   KEP 1287 allowing for in-place updates of container resources.
-  
+
 - `k8s`: Add `k8s.node.system_container.*` metrics to capture node-level system daemon metrics. ([#3531](https://github.com/open-telemetry/semantic-conventions/issues/3531))
 - `messaging`: Define domain-specific exception events for messaging ([#3435](https://github.com/open-telemetry/semantic-conventions/issues/3435))
   These domain-specific exception events provide a structured way to record
@@ -223,14 +292,14 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
   - `messaging.receive.exception` for messaging receive operations
   - `messaging.settle.exception` for messaging settle operations
   - `messaging.process.exception` for messaging process operations
-  
+
 - `otel`: Stabilize the `otel.event.name` attribute. ([#2913](https://github.com/open-telemetry/semantic-conventions/issues/2913))
 - `process`: Added specific requirement levels to all attribute refs within process metrics. ([#864](https://github.com/open-telemetry/semantic-conventions/issues/864))
 - `process`: Update process.executable.build_id.htlhash description to be generic ([#3563](https://github.com/open-telemetry/semantic-conventions/issues/3563))
 - `system`: Add Linux HugePages system memory metrics. ([#3362](https://github.com/open-telemetry/semantic-conventions/issues/3362))
 - `telemetry`: Promote `telemetry.distro.name` and `telemetry.distro.version` attributes to 'stable'. ([#3650](https://github.com/open-telemetry/semantic-conventions/issues/3650))
   The `telemetry.distro.name` and `telemetry.distro.version` attributes and the `telemetry.distro` entity are promoted from development to stable.
-  
+
 - `v8js`: Add `v8js.resource.active` gauge for tracking resources that keep the event loop active. ([#3445](https://github.com/open-telemetry/semantic-conventions/issues/3445))
 
 ## v1.40.0
@@ -271,7 +340,7 @@ PDB name, instance name, and service name — has been moved to dedicated attrib
   exceptions that occur during operations in each area:
   - `db.client.operation.exception` for database client operations
   - `rpc.client.call.exception` and `rpc.server.call.exception` for RPC
-  
+
 - `docs`: Add how-to guide for defining spans ([#3240](https://github.com/open-telemetry/semantic-conventions/issues/3240))
 - `event`: Allow event body to represent a display message. ([#3343](https://github.com/open-telemetry/semantic-conventions/issues/3343))
 - `exception`: Indicate that `exception.message` attribute may contain sensitive information. ([#2967](https://github.com/open-telemetry/semantic-conventions/issues/2967), [#3310](https://github.com/open-telemetry/semantic-conventions/issues/3310))
@@ -286,7 +355,7 @@ PDB name, instance name, and service name — has been moved to dedicated attrib
   - Add `gen_ai.usage.cache_creation.input_tokens` attribute for tokens written to provider cache
   - Add provider-specific token handling notes to OpenAI span
   - Add Anthropic span with computation guidance for `gen_ai.usage.input_tokens`
-  
+
 - `gen_ai`: Added `sampling-relevant` flag to relevant GenAI span attributes to indicate their importance for sampling decisions. ([#2994](https://github.com/open-telemetry/semantic-conventions/issues/2994))
 - `http`: Defined declarative configuration for overriding known HTTP methods. ([#3394](https://github.com/open-telemetry/semantic-conventions/issues/3394))
 - `http`: Define declarative configuration for sensitive query parameters. ([#3403](https://github.com/open-telemetry/semantic-conventions/issues/3403))
@@ -294,7 +363,7 @@ PDB name, instance name, and service name — has been moved to dedicated attrib
   These domain-specific exception events provide a structured way to record
   exceptions that occur during HTTP client requests (network failures, timeouts)
   and HTTP server request processing (application errors, internal failures).
-  
+
 - `jvm`: Add `jvm.file_descriptor.limit` as an in-development metric to track the maximum number of open file descriptors as reported by the JVM. ([#3430](https://github.com/open-telemetry/semantic-conventions/issues/3430))
 - `k8s`: Promote a selection of k8s and container attributes to beta ([#3120](https://github.com/open-telemetry/semantic-conventions/issues/3120))
 - `k8s`: Add k8s.service entity with endpoint and load balancer ingress metrics ([#3294](https://github.com/open-telemetry/semantic-conventions/issues/3294))
@@ -306,7 +375,7 @@ PDB name, instance name, and service name — has been moved to dedicated attrib
   - `k8s.service.traffic_distribution`, `k8s.service.publish_not_ready_addresses`
   New entity:
   - `entity.k8s.service`: k8s service entity with identifying and descriptive attributes
-  
+
 - `openai`: Add `openai.api.type` attribute to distinguish between different OpenAI API types for similar operations. ([#3337](https://github.com/open-telemetry/semantic-conventions/issues/3337))
 - `pprof`: add `pprof.scope.default_sample_type` and `pprof.scope.sample_type_order` attributes to support lossless conversion of pprof profiles. ([#3078](https://github.com/open-telemetry/semantic-conventions/issues/3078))
 - `rpc`: Mark core RPC (plus gRPC and Apache Dubbo) semantic conventions as release candidate. ([#3446](https://github.com/open-telemetry/semantic-conventions/issues/3446))
@@ -321,10 +390,10 @@ PDB name, instance name, and service name — has been moved to dedicated attrib
 - `service`: Add `service.criticality` attribute to classify services based on operational importance ([#2986](https://github.com/open-telemetry/semantic-conventions/issues/2986))
   This attribute enables observability platforms to implement criticality-aware tracing, monitoring,
   and sampling strategies. Supports four levels: critical, high, medium, and low.
-  
+
 - `service`: Stabilize `service.instance.id` attribute. ([#1519](https://github.com/open-telemetry/semantic-conventions/issues/1519))
   The `service.instance.id` attribute and entity are promoted from development to stable.
-  
+
 - `service`: Stabilize `service.namespace` attribute. ([#3254](https://github.com/open-telemetry/semantic-conventions/issues/3254))
   The `service.namespace` attribute is promoted from development to stable.
 
@@ -372,20 +441,20 @@ Deprecate `process.open_file_descriptor.count`
 - `k8s`: Promote a selection of k8s and container attributes to alpha ([#3120](https://github.com/open-telemetry/semantic-conventions/issues/3120))
   The selected attributes being promoted are used by the Collector Contrib components
   that are targeting stability. See [opentelemetry-collector-contrib/#44130](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/44130)
-  
+
 - `k8s`: Define roles for k8s entities' attributes ([#3017](https://github.com/open-telemetry/semantic-conventions/issues/3017))
 - `mcp`: Add MCP semantic conventions ([#2043](https://github.com/open-telemetry/semantic-conventions/issues/2043), [#2083](https://github.com/open-telemetry/semantic-conventions/issues/2083))
 - `otel`: Add `otel.event.name` attribute for use by non-OTLP exporters and logging libraries. ([#2913](https://github.com/open-telemetry/semantic-conventions/issues/2913))
   The `otel.event.name` attribute can be used by:
   - Non-OTLP exporters to emit the `EventName`
   - Applications using existing logging libraries to add event name information that can be used to set the `EventName` field by Collector or SDK components
-  
+
 - `pprof`: add various pprof attributes to support lossless conversion from and to OTel profiles. ([#3078](https://github.com/open-telemetry/semantic-conventions/issues/3078))
 - `rpc`: Use consistent set of attributes between RPC spans and metrics ([#2922](https://github.com/open-telemetry/semantic-conventions/issues/2922), [#3197](https://github.com/open-telemetry/semantic-conventions/issues/3197))
   - Use `rpc.response.status_code` on common metrics and spans.
   - Make `error.type` note consistent between metrics and spans.
   - Promote notes on `rpc.method` and `rpc.service` to attribute definition.
-  
+
 - `rpc`: Mark `rpc.system.name`, `rpc.method`, `rpc.service`, `server.address`, and `server.port` as sampling relevant attributes in RPC spans.
  ([#3202](https://github.com/open-telemetry/semantic-conventions/issues/3202))
 - `service`: Splits service into three entities: namespace, service and instance. ([#2880](https://github.com/open-telemetry/semantic-conventions/issues/2880))
@@ -406,7 +475,7 @@ Deprecate `process.open_file_descriptor.count`
   - k8s.node.allocatable.cpu -> k8s.node.cpu.allocatable
   - k8s.node.allocatable.memory -> k8s.node.memory.allocatable
   - k8s.node.allocatable.ephemeral_storage -> k8s.node.ephemeral_storage.allocatable
-  
+
 - `k8s`: Fix plural-named updowncounter k8s metrics ([#2301](https://github.com/open-telemetry/semantic-conventions/issues/2301))
   Renamed metrics:
   - k8s.node.allocatable.pods -> k8s.node.pod.allocatable
@@ -434,7 +503,7 @@ Deprecate `process.open_file_descriptor.count`
   - k8s.hpa.current_pods -> k8s.hpa.pod.current
   - k8s.hpa.max_pods -> k8s.hpa.pod.max
   - k8s.hpa.min_pods -> k8s.hpa.pod.min
-  
+
 - `process`: Renames process.context_switch_type to process.context_switch.type ([#1501](https://github.com/open-telemetry/semantic-conventions/issues/1501))
 - `rpc`: Attributes for rpc metric are now explicitly associated with metrics. ([#2311](https://github.com/open-telemetry/semantic-conventions/issues/2311))
   The breaking change is due to the removal of network.type from the metrics.
@@ -471,7 +540,7 @@ Rename metric `v8js.heap.space.physical_size` to `v8js.memory.heap.space.physica
 - `gen_ai`: Add `gen_ai.embeddings.dimension.count` attribute to capture the dimension count of embeddings. ([#2361](https://github.com/open-telemetry/semantic-conventions/issues/2361))
   The `gen_ai.embeddings.dimension.count` is added to the `span.gen_ai.embeddings.client` span
   and `gen_ai.client.operation.duration` metric.
-  
+
 - `gen_ai`: Add multimodal `uri`, `file`, and `blob` parts to GenAI JSON Schemas ([#1556](https://github.com/open-telemetry/semantic-conventions/issues/1556))
 - `gen_ai, db, enduser, messaging`: Fix deprecation reasons - use uncategorized when attribute type is changing. Fix missing/invalid deprecations on (deprecated) `gen_ai.system` attribute.
  ([#2688](https://github.com/open-telemetry/semantic-conventions/issues/2688))
@@ -491,7 +560,7 @@ Rename metric `v8js.heap.space.physical_size` to `v8js.memory.heap.space.physica
 - `rpc`: Remove `network.type` attribute from RPC spans and metrics ([#2851](https://github.com/open-telemetry/semantic-conventions/issues/2851))
   The `network.type` attribute is no longer included in RPC semantic conventions.
   It remains available in the attribute registry for opt-in usage when needed.
-  
+
 - `rpc`: Adds in explicitly defined grpc spans. ([#2720](https://github.com/open-telemetry/semantic-conventions/issues/2720))
 - `rpc`: Update the RPC stability warning and guidance for instrumentation authors ([#2718](https://github.com/open-telemetry/semantic-conventions/issues/2718))
 - `rpc`: The rpc spans now contains the `error.type` attribute to report the type of error that occurred. ([#2812](https://github.com/open-telemetry/semantic-conventions/issues/2812))
@@ -501,7 +570,7 @@ Rename metric `v8js.heap.space.physical_size` to `v8js.memory.heap.space.physica
 - `dns`: Simplify `dns.question.name` note to remove incorrect custom encoding requirements ([#2143](https://github.com/open-telemetry/semantic-conventions/issues/2143))
   The note now simply states that the domain name should be captured as it appears in the DNS query
   without any additional normalization, removing the previous incorrect custom encoding requirements.
-  
+
 - `nfs`: nfs/metrics.yaml: nfs.server.net.count: add missing network.transport attribute. Implementation not merged, so not a breaking change. ([#39978](https://github.com/open-telemetry/semantic-conventions/issues/39978))
 - `system`: The `system.network.dropped` and `system.network.packets` metrics have been added as deprecated rather than being removed. ([#2828](https://github.com/open-telemetry/semantic-conventions/issues/2828))
 
@@ -616,13 +685,13 @@ we now have `gen_ai.system_instructions`, `gen_ai.input.messages`, and
   - `k8s.hpa.scaletargetref.kind`
   - `k8s.hpa.scaletargetref.name`
   - `k8s.hpa.scaletargetref.api_version`
-  
+
 - `k8s`: Adds metrics and attributes to track k8s HPA's metric target values for CPU resources. ([#2182](https://github.com/open-telemetry/semantic-conventions/issues/2182))
   Below metrics are introduced to provide insight into HPA scaling configuration for CPU.
   - `k8s.hpa.metric.target.cpu.value`
   - `k8s.hpa.metric.target.cpu.average_value`
   - `k8s.hpa.metric.target.cpu.average_utilization`
-  
+
 - `k8s`: Explains the rationale behind the Kubernetes resource naming convention. ([#2245](https://github.com/open-telemetry/semantic-conventions/issues/2245))
 - `all`: Adds modelling guide for resource and entity. ([#2246](https://github.com/open-telemetry/semantic-conventions/issues/2246))
 - `service`: Adds stability policies for Entity groups. ([#2378](https://github.com/open-telemetry/semantic-conventions/issues/2378))
@@ -639,7 +708,7 @@ we now have `gen_ai.system_instructions`, `gen_ai.input.messages`, and
 
 - `all`: Convert deprecated text to structured format. ([#2047](https://github.com/open-telemetry/semantic-conventions/issues/2047))
   This is a breaking change from the schema perspective, but does not change anything for instrumentations or the end users. It breaks compatibility with the (old) [code generation tooling](https://github.com/open-telemetry/build-tools/issues/322). Please use [weaver](https://github.com/open-telemetry/weaver) to generate Semantic Conventions markdown or code.
-  
+
 - `feature_flag`: Move the evaluated value from the event body to attributes ([#1990](https://github.com/open-telemetry/semantic-conventions/issues/1990))
 - `process`: Require sensitive data sanitization for `process.command_args` and `process.command_line` ([#626](https://github.com/open-telemetry/semantic-conventions/issues/626))
 
@@ -686,11 +755,11 @@ This release marks the first where the core of database semantic conventions hav
   Add `cicd.pipeline.action.name`, `cicd.worker.id`, `cicd.worker.name`, `cicd.worker.url.full` and`cicd.pipeline.task.run.result` to attribute registry.
   Define resources `cicd.pipeline`, `cicd.pipeline.run` and `cicd.worker`.
   Add entity associations in cicd metrics for these new cicd resources.
-  
+
 - `vcs`: Add resource conventions for VCS systems and VCS references. ([#1713](https://github.com/open-telemetry/semantic-conventions/issues/1713))
   Define resources `vcs.repo` and `vcs.ref`.
   Add entity associations in vcs metrics for these new vcs resources.
-  
+
 - `gen-ai`: Adding span for invoke agent ([#1842](https://github.com/open-telemetry/semantic-conventions/issues/1842))
 - `gen-ai`: Adding gen_ai.tool.description to the span attributes ([#2087](https://github.com/open-telemetry/semantic-conventions/issues/2087))
 - `gen-ai`: Separate inference and embeddings span definitions, remove irrelevant attributes from the create agent span. ([#1924](https://github.com/open-telemetry/semantic-conventions/issues/1924), [#2122](https://github.com/open-telemetry/semantic-conventions/issues/2122))
@@ -761,7 +830,7 @@ This release marks the first where the core of database semantic conventions hav
   The `device.app.lifecycle` event has been reworked to use attributes instead
   of event body fields. The `ios.app.state` and `android.app.state` attributes
   have been reintroduced to the attribute registry.
-  
+
 - `system`: Move CPU-related system.cpu.* metrics to CPU namespace ([#1873](https://github.com/open-telemetry/semantic-conventions/issues/1873))
 - `k8s`: Change k8s.replication_controller metrics to k8s.replicationcontroller ([#1848](https://github.com/open-telemetry/semantic-conventions/issues/1848))
 - `db`: Rename `db.system` to `db.system.name` in database metrics, and update the values to be consistent with database spans. ([#1581](https://github.com/open-telemetry/semantic-conventions/issues/1581))
@@ -777,7 +846,7 @@ This release marks the first where the core of database semantic conventions hav
   Enables recording target number of completions to generate
 - `enduser`: Undeprecate 'enduser.id' and introduce new attribute `enduser.pseudo.id` ([#1104](https://github.com/open-telemetry/semantic-conventions/issues/1104))
   The new attribute `enduser.pseudo.id` is intended to provide a unique identifier of a pseudonymous enduser.
-  
+
 - `k8s`: Add `k8s.hpa`, `k8s.resourcequota` and `k8s.replicationcontroller`  attributes and resources ([#1656](https://github.com/open-telemetry/semantic-conventions/issues/1656))
 - `k8s`: How to populate resource attributes based on attributes, labels and transformation ([#236](https://github.com/open-telemetry/semantic-conventions/issues/236))
 - `process`: Adjust the semantic expectations for `process.executable.name` ([#1736](https://github.com/open-telemetry/semantic-conventions/issues/1736))
@@ -804,7 +873,7 @@ Rename `db.client.cosmosdb.*` metrics to `azure.cosmosdb.client.*`.
   `code.lineno` renamed to `code.line.number`
   `code.column` renamed to `code.column.number`
   `code.filepath` renamed to `code.file.path`
-  
+
 - `system`: Replace `system.network.state` with `network.connection.state` ([#308](https://github.com/open-telemetry/semantic-conventions/issues/308))
 - `messaging`: RabbitMQ: Specify how to populate `messaging.destination.name` ([#1529](https://github.com/open-telemetry/semantic-conventions/issues/1529))
 
@@ -818,18 +887,18 @@ Rename `db.client.cosmosdb.*` metrics to `azure.cosmosdb.client.*`.
 - `gen_ai`: Yamlify gen_ai events and clean up examples. ([#1469](https://github.com/open-telemetry/semantic-conventions/issues/1469))
 - `cicd`: Add CICD metrics ([#1600](https://github.com/open-telemetry/semantic-conventions/issues/1600))
   Makes the following changes:
-  
+
   - Add metrics `cicd.pipeline.run.duration`, `cicd.pipeline.run.active`, `cicd.worker.count`,
     `cicd.pipeline.run.errors` and `cicd.system.errors`.
   - The CICD attributes `cicd.pipeline.run.state`, `cicd.pipeline.result`, `cicd.system.component`, `cicd.worker.state` have been added to the registry.
-  
+
 - `gen-ai`: Adds OpenAI API compatible `gen_ai.system` attribute values: `az.ai.openai`, `deepseek`, `gemini`, `groq`,
 `perplexity` and `xai`. Elaborates that `openai` can be ambiguous due to API emulation.
  ([#1655](https://github.com/open-telemetry/semantic-conventions/issues/1655))
 - `docs`: Update attribute, events, and metrics naming guidance to include new best practices. ([#1694](https://github.com/open-telemetry/semantic-conventions/issues/1694))
   - Use namespaces (with `.` delimiter) whenever possible.
   - Use precise, descriptive, unambiguous names that leave room for expansion.
-  
+
 - `docs, db`: Add common guidance for recording errors on spans and metrics, clarify DB conventions. ([#1516](https://github.com/open-telemetry/semantic-conventions/issues/1516), [#1536](https://github.com/open-telemetry/semantic-conventions/issues/1536), [#1716](https://github.com/open-telemetry/semantic-conventions/issues/1716))
 - `gen-ai`: Adds `mistral_ai` as a `gen_ai.system` attribute value. ([#1719](https://github.com/open-telemetry/semantic-conventions/issues/1719))
 - `process`: Update `process.runtime` example for the Python language. ([#1772](https://github.com/open-telemetry/semantic-conventions/issues/1772))
@@ -838,7 +907,7 @@ Rename `db.client.cosmosdb.*` metrics to `azure.cosmosdb.client.*`.
   This addition focused on providing consistency between these metrics, while
   also ensuring alignment with recommendations from Kubernetes.
   More details in [#1637](https://github.com/open-telemetry/semantic-conventions/issues/1637)
-  
+
 - `k8s`: Add k8s deamonset related metrics ([#1649](https://github.com/open-telemetry/semantic-conventions/issues/1649))
 - `k8s`: Add k8s metrics for job and cronjob ([#1660](https://github.com/open-telemetry/semantic-conventions/issues/1660))
 - `k8s`: Add k8s.namespace.phase metric along with the respective attribute ([#1668](https://github.com/open-telemetry/semantic-conventions/issues/1668))

@@ -15,7 +15,7 @@ This document defines log attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` |
+| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream the log record was emitted to. | `stdout`; `stderr` |
 
 ---
 
@@ -28,16 +28,16 @@ This document defines log attributes
 
 ## Log File Attributes
 
-Attributes for a file to which log was emitted.
+Attributes for a file to which the log record was emitted.
 
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="log-file-name" href="#log-file-name">`log.file.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file. | `audit.log` |
-| <a id="log-file-name-resolved" href="#log-file-name-resolved">`log.file.name_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file, with symlinks resolved. | `uuid.log` |
-| <a id="log-file-path" href="#log-file-path">`log.file.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file. | `/var/log/mysql/audit.log` |
-| <a id="log-file-path-resolved" href="#log-file-path-resolved">`log.file.path_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` |
+| <a id="log-file-name" href="#log-file-name">`log.file.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file to which the log record was emitted. | `audit.log` |
+| <a id="log-file-name-resolved" href="#log-file-name-resolved">`log.file.name_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file to which the log record was emitted, with symlinks resolved. | `uuid.log` |
+| <a id="log-file-path" href="#log-file-path">`log.file.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file to which the log record was emitted. | `/var/log/mysql/audit.log` |
+| <a id="log-file-path-resolved" href="#log-file-path-resolved">`log.file.path_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file to which the log record was emitted, with symlinks resolved. | `/var/lib/docker/uuid.log` |
 
 ## Log Record Attributes
 
@@ -52,5 +52,5 @@ This document defines the generic attributes that may be used in any Log Record.
 
 **[1] `log.record.original`:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
 
-**[2] `log.record.uid`:** If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
-The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
+**[2] `log.record.uid`:** If an ID is provided, other log records with the same ID will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
+The ID MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.

@@ -1,14 +1,35 @@
 groups:
-  - id: attributes.db.client.minimal
+  - id: attributes.db.client.connection
     type: attribute_group
-    brief: 'Database Client attributes'
+    brief: 'Database client connection attributes'
     attributes:
       - ref: server.address
         brief: >
-          Name of the database host.
+          The database address specified in the client configuration.
+        note: |
+          Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+          It SHOULD NOT derive the value from the server selected for an operation.
+
+          > [!WARNING]
+          >
+          > `server.address` MUST NOT contain credentials or other sensitive information.
+
+          See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
+          examples.
       - ref: server.port
+        note: >
+          `server.port` SHOULD reflect the database port specified in the client configuration.
+          It SHOULD NOT be derived from the server selected for an operation.
         requirement_level:
-          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+          conditionally_required: >
+            If `server.address` is set and the client is configured with a single database server endpoint
+            that uses a non-default port.
+
+  - id: attributes.db.client.minimal
+    type: attribute_group
+    brief: 'Database Client attributes'
+    extends: attributes.db.client.connection
+    attributes:
       - ref: db.response.status_code
         requirement_level:
           conditionally_required: If the operation failed and status code is available.

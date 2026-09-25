@@ -1,0 +1,125 @@
+file_format: definition/2
+
+attribute_groups:
+  # RabbitMQ destination attributes shared by producer and consumer spans.
+  - id: messaging.rabbitmq.attributes.destination
+    visibility: internal
+    attributes:
+      - ref: messaging.rabbitmq.destination.routing_key
+        requirement_level:
+          conditionally_required: If not empty.
+      - ref: messaging.destination.temporary
+        requirement_level:
+          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref: messaging.destination.anonymous
+        requirement_level:
+          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+
+span_refinements:
+  # RabbitMQ
+  - id: span.messaging.rabbitmq.send.producer
+    ref: messaging.send.producer
+    stability: development
+    brief: Describes a producer publishing one or more messages to RabbitMQ.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"rabbitmq"`.
+        examples: ['rabbitmq']
+      - ref: error.type
+        examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
+      - ref_group: messaging.rabbitmq.attributes.destination
+      - ref: messaging.message.conversation_id
+        brief: &rabbitmq_conversation_id_brief >
+          Message [correlation ID](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
+      - ref: messaging.destination.name
+        note: |
+          The RabbitMQ destination is defined by an *exchange* and a *routing key*.
+
+          SHOULD be set to `{exchange}:{routing key}` when both values are present and non-empty.
+          When only one is available, only that value SHOULD be used, e.g. `{exchange}` or `{routing key}`.
+          Otherwise, it SHOULD be set to `amq.default` when the default exchange is used and no routing key is provided.
+        examples: ['direct_logs:warning', 'logs', 'amq.default']
+        requirement_level: required
+      - ref: network.peer.address
+        requirement_level: recommended
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+
+  - id: span.messaging.rabbitmq.receive.client
+    ref: messaging.receive.client
+    stability: development
+    brief: Describes a consumer receiving one or more messages from RabbitMQ (pull-based).
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"rabbitmq"`.
+        examples: ['rabbitmq']
+      - ref: error.type
+        examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
+      - ref_group: messaging.rabbitmq.attributes.destination
+      - ref: messaging.rabbitmq.message.delivery_tag
+        requirement_level:
+          conditionally_required: When available.
+      - ref: messaging.message.conversation_id
+        brief: *rabbitmq_conversation_id_brief
+      - ref: messaging.destination.name
+        note: &rabbitmq_consumer_destination_name_note |
+          The RabbitMQ destination is defined by an *exchange*, a *routing key*, and a *queue*.
+
+          SHOULD be set to `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
+          If any has an empty value (e.g. the default exchange is used) it SHOULD be omitted.
+          When `{routing key}` and `{queue}` are equal, only one of them SHOULD be used,
+          e.g. `{exchange}:{routing key}`.
+        examples: ['direct_logs:warning:my_queue', 'direct_logs:warning', 'logs']
+        requirement_level: required
+      - ref: network.peer.address
+        requirement_level: recommended
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+
+  - id: span.messaging.rabbitmq.process.consumer
+    ref: messaging.process.consumer
+    stability: development
+    brief: Describes a consumer processing one or more messages from RabbitMQ (push-based).
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"rabbitmq"`.
+        examples: ['rabbitmq']
+      - ref: error.type
+        examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
+      - ref_group: messaging.rabbitmq.attributes.destination
+      - ref: messaging.rabbitmq.message.delivery_tag
+        requirement_level:
+          conditionally_required: When available.
+      - ref: messaging.message.conversation_id
+        brief: *rabbitmq_conversation_id_brief
+      - ref: messaging.destination.name
+        note: *rabbitmq_consumer_destination_name_note
+        examples: ['direct_logs:warning:my_queue', 'direct_logs:warning', 'logs']
+        requirement_level: required
+
+  - id: span.messaging.rabbitmq.settle.client
+    ref: messaging.settle.client
+    stability: development
+    brief: Describes a consumer settling (ack/nack/reject) one or more messages on RabbitMQ.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"rabbitmq"`.
+        examples: ['rabbitmq']
+      - ref: error.type
+        examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
+      - ref: messaging.rabbitmq.message.delivery_tag
+        requirement_level:
+          conditionally_required: When available.
+      - ref: messaging.message.conversation_id
+        brief: *rabbitmq_conversation_id_brief
+      - ref: messaging.destination.name
+        note: *rabbitmq_consumer_destination_name_note
+        examples: ['direct_logs:warning:my_queue', 'direct_logs:warning', 'logs']
+        requirement_level: required
+      - ref: network.peer.address
+        requirement_level: recommended
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.

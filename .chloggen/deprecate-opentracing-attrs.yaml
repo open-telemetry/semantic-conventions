@@ -1,0 +1,4 @@
+change_type: deprecation
+component: opentracing
+note: Deprecate OpenTracing compatibility document and `opentracing.ref_type` attribute.
+issues: [4049]

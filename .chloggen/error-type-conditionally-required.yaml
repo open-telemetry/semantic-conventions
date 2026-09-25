@@ -1,0 +1,13 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Mark `error.type` as conditionally required on
+  `otel.sdk.processor.{span,log}.processed` and
+  `otel.sdk.exporter.{span,log,metric_data_point}.exported`, matching
+  `otel.sdk.exporter.operation.duration`.
+
+issues: [3954]
+
+subtext:

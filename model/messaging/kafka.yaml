@@ -1,0 +1,138 @@
+file_format: definition/2
+
+attribute_groups:
+  # Attributes of an individual Kafka message.
+  - id: messaging.kafka.attributes.common
+    visibility: internal
+    attributes:
+      - ref: messaging.kafka.message.key
+        requirement_level:
+          recommended: If span describes operation on a single message.
+      - ref: messaging.kafka.offset
+        requirement_level:
+          recommended: If span describes operation on a single message.
+      - ref: messaging.kafka.message.tombstone
+        requirement_level:
+          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+
+span_refinements:
+  - id: span.messaging.kafka.create.producer
+    ref: messaging.create.producer
+    stability: development
+    brief: Describes a message being created for sending to Apache Kafka.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"kafka"`.
+        examples: ['kafka']
+      - ref: error.type
+        examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.kafka.message.key
+        requirement_level:
+          recommended: If span describes operation on a single message.
+      - ref: messaging.kafka.message.tombstone
+        requirement_level:
+          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+
+  - id: span.messaging.kafka.send.producer
+    ref: messaging.send.producer
+    stability: development
+    brief: Describes a producer sending one or more messages to Apache Kafka.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"kafka"`.
+        examples: ['kafka']
+      - ref: error.type
+        examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.kafka.cluster.id
+      - ref: messaging.destination.partition.id
+      - ref_group: messaging.kafka.attributes.common
+
+  - id: span.messaging.kafka.send.client
+    ref: messaging.send.client
+    stability: development
+    brief: Describes a producer sending one or more messages to Apache Kafka.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"kafka"`.
+        examples: ['kafka']
+      - ref: error.type
+        examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.kafka.cluster.id
+      - ref: messaging.destination.partition.id
+      - ref_group: messaging.kafka.attributes.common
+
+  - id: span.messaging.kafka.receive.client
+    ref: messaging.receive.client
+    stability: development
+    brief: Describes a consumer receiving one or more messages from Apache Kafka (pull-based).
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"kafka"`.
+        examples: ['kafka']
+      - ref: error.type
+        examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.consumer.group.name
+        brief: "Kafka [consumer group ID](https://docs.confluent.io/platform/current/clients/consumer.html)."
+        note: ""
+        requirement_level:
+          conditionally_required: If applicable.
+        sampling_relevant: true
+      - ref: messaging.kafka.cluster.id
+      - ref: messaging.destination.partition.id
+      - ref_group: messaging.kafka.attributes.common
+
+  - id: span.messaging.kafka.settle.client
+    ref: messaging.settle.client
+    stability: development
+    brief: Describes a consumer committing offsets (settling) one or more messages from Apache Kafka.
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"kafka"`.
+        examples: ['kafka']
+      - ref: error.type
+        examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.consumer.group.name
+        brief: "Kafka [consumer group ID](https://docs.confluent.io/platform/current/clients/consumer.html)."
+        note: ""
+        requirement_level:
+          conditionally_required: If applicable.
+        sampling_relevant: true
+      - ref: messaging.kafka.cluster.id
+      - ref: messaging.destination.partition.id
+      - ref: messaging.kafka.offset
+        requirement_level:
+          recommended: If span describes operation on a single message.
+
+  - id: span.messaging.kafka.process.consumer
+    ref: messaging.process.consumer
+    stability: development
+    brief: Describes a consumer processing one or more messages from Apache Kafka (push-based).
+    attributes:
+      - ref: messaging.system
+        note: MUST be set to `"kafka"`.
+        examples: ['kafka']
+      - ref: error.type
+        examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.consumer.group.name
+        brief: "Kafka [consumer group ID](https://docs.confluent.io/platform/current/clients/consumer.html)."
+        note: ""
+        requirement_level:
+          conditionally_required: If applicable.
+        sampling_relevant: true
+      - ref: messaging.kafka.cluster.id
+      - ref: messaging.destination.partition.id
+        brief: String representation of the partition ID the message (or batch) is received from.
+        requirement_level: recommended
+      - ref_group: messaging.kafka.attributes.common

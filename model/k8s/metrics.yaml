@@ -6,13 +6,19 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The time the Pod has been running."
     entity_associations:
       - k8s.pod
-    note: |
+    note: >
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
+
+      This metric is derived from the
+      [PodStats.StartTime](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L122)
+      field of Kubelet's stats API, where `StartTime` represents the pod sandbox creation time as
+      [noted in the Kubelet source](https://github.com/kubernetes/kubernetes/blob/v1.36.3/pkg/kubelet/stats/cri_stats_provider.go#L299).
+      This value resets when the node restarts, as the pod sandbox is recreated.
     instrument: gauge
     unit: "s"
 
@@ -78,9 +84,11 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
+    brief: "Pod's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
-      CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
+      CPU usage of the specific Pod on all available CPU cores. It is calculated as the change in
+      cumulative CPU time (k8s.pod.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     unit: "{cpu}"
 
@@ -91,18 +99,23 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Memory usage of the Pod."
     entity_associations:
       - k8s.pod
-    note: >
-      Total memory usage of the Pod
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
+    note: >
+      Total memory in use. This includes all memory regardless of when it was accessed.
+
+      This metric is derived from the
+      [MemoryStats.UsageBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
   - id: metric.k8s.pod.memory.available
     type: metric
     metric_name: k8s.pod.memory.available
-    stability: development
+    stability: release_candidate
     annotations:
       code_generation:
         metric_value_type: int
@@ -122,7 +135,7 @@ groups:
   - id: metric.k8s.pod.memory.rss
     type: metric
     metric_name: k8s.pod.memory.rss
-    stability: development
+    stability: release_candidate
     brief: "Pod memory RSS."
     annotations:
       code_generation:
@@ -141,7 +154,7 @@ groups:
   - id: metric.k8s.pod.memory.working_set
     type: metric
     metric_name: k8s.pod.memory.working_set
-    stability: development
+    stability: release_candidate
     entity_associations:
       - k8s.pod
     brief: "Pod memory working set."
@@ -161,7 +174,7 @@ groups:
   - id: metric.k8s.pod.paging.faults
     type: metric
     metric_name: k8s.pod.paging.faults
-    stability: development
+    stability: release_candidate
     brief: "Pod memory paging faults."
     annotations:
       code_generation:
@@ -171,13 +184,18 @@ groups:
     attributes:
       - ref: system.paging.fault.type
     note: >
-      Cumulative number of major/minor page faults.
+      Cumulative number of major and minor page faults.
 
-      This metric is derived from the
-      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
-      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      The [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
       field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
-      of the Kubelet's stats API.
+      of the Kubelet's stats API maps directly to `system.paging.fault.type=major`.
+
+      The [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field reports the total number of page faults (equivalent to `pgfault` in the cgroup `memory.stat`),
+      with minor and major combined.
+      The minor page faults MUST therefore be derived as
+      `MemoryStats.PageFaults - MemoryStats.MajorPageFaults`,
+      so that summing the metric over `system.paging.fault.type` yields the total number of page faults.
     instrument: counter
     unit: "{fault}"
 
@@ -188,7 +206,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Network bytes for the Pod."
     instrument: counter
     unit: "By"
@@ -203,7 +221,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Pod network errors."
     instrument: counter
     entity_associations:
@@ -217,7 +235,7 @@ groups:
   - id: metric.k8s.pod.filesystem.available
     type: metric
     metric_name: k8s.pod.filesystem.available
-    stability: development
+    stability: release_candidate
     brief: "Pod filesystem available bytes."
     instrument: updowncounter
     unit: "By"
@@ -228,13 +246,13 @@ groups:
       - k8s.pod
     note: |
       This metric is derived from the
-      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
-      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats)
+      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
       of the Kubelet's stats API.
   - id: metric.k8s.pod.filesystem.capacity
     type: metric
     metric_name: k8s.pod.filesystem.capacity
-    stability: development
+    stability: release_candidate
     brief: "Pod filesystem capacity."
     instrument: updowncounter
     unit: "By"
@@ -245,13 +263,13 @@ groups:
       - k8s.pod
     note: |
       This metric is derived from the
-      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
-      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats)
+      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
       of the Kubelet's stats API.
   - id: metric.k8s.pod.filesystem.usage
     type: metric
     metric_name: k8s.pod.filesystem.usage
-    stability: development
+    stability: release_candidate
     brief: "Pod filesystem usage."
     instrument: updowncounter
     unit: "By"
@@ -261,12 +279,13 @@ groups:
     entity_associations:
       - k8s.pod
     note: |
-      This may not equal capacity - available.
-
       This metric is derived from the
-      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
-      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats)
+      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
       of the Kubelet's stats API.
+
+      Capacity and available are reported for the backing filesystem, which may be shared
+      with other workloads; therefore, usage may not equal `capacity - available`.
 
   # k8s.pod.volume.* metrics
   - id: metric.k8s.pod.volume.available
@@ -283,8 +302,8 @@ groups:
       - k8s.pod
     note: |
       This metric is derived from the
-      [VolumeStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
-      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      [VolumeStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
     attributes:
       - ref: k8s.volume.name
@@ -305,8 +324,8 @@ groups:
       - k8s.pod
     note: |
       This metric is derived from the
-      [VolumeStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
-      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      [VolumeStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
     attributes:
       - ref: k8s.volume.name
@@ -329,8 +348,8 @@ groups:
       This may not equal capacity - available.
 
       This metric is derived from the
-      [VolumeStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
-      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      [VolumeStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
     attributes:
       - ref: k8s.volume.name
@@ -351,8 +370,8 @@ groups:
       - k8s.pod
     note: |
       This metric is derived from the
-      [VolumeStats.Inodes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
-      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      [VolumeStats.Inodes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
     attributes:
       - ref: k8s.volume.name
@@ -373,8 +392,8 @@ groups:
       - k8s.pod
     note: |
       This metric is derived from the
-      [VolumeStats.InodesUsed](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
-      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      [VolumeStats.InodesUsed](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
 
       This may not be equal to `inodes - free` because filesystem may share inodes with other filesystems.
@@ -397,8 +416,8 @@ groups:
       - k8s.pod
     note: |
       This metric is derived from the
-      [VolumeStats.InodesFree](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
-      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      [VolumeStats.InodesFree](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
     attributes:
       - ref: k8s.volume.name
@@ -451,11 +470,17 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The time the Node has been running."
-    note: |
+    note: >
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
+
+      This metric is derived from the
+      [NodeStats.StartTime](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L42)
+      field of Kubelet's stats API, which is set to the
+      [system boot time](https://github.com/kubernetes/kubernetes/blob/v1.36.3/pkg/kubelet/server/stats/summary.go#L113).
+      This value resets when the node reboots.
     instrument: gauge
     unit: "s"
     entity_associations:
@@ -468,7 +493,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Amount of cpu allocatable on the node."
+    brief: "Amount of CPU allocatable on the node."
     entity_associations:
       - k8s.node
     instrument: updowncounter
@@ -552,9 +577,11 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
+    brief: "Node's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
-      CPU usage of the specific Node on all available CPU cores, averaged over the sample window
+      CPU usage of the specific Node on all available CPU cores. It is calculated as the change in
+      cumulative CPU time (k8s.node.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     entity_associations:
       - k8s.node
@@ -568,13 +595,11 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Node's system container CPU usage, measured in cpus."
+    brief: "Node's system container CPU usage, measured in CPUs."
     note: >
-      This metric is derived from the
-      [CPUStats.UsageNanoCores](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L233)
-      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
-      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
-      of the Kubelet's stats API.
+      CPU usage of the specific System Container on all available CPU cores. It is calculated as the change in
+      cumulative CPU time (k8s.node.system_container.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     entity_associations:
       - k8s.node.system_container
@@ -638,7 +663,7 @@ groups:
   - id: metric.k8s.node.filesystem.available
     type: metric
     metric_name: k8s.node.filesystem.available
-    stability: development
+    stability: release_candidate
     brief: "Node filesystem available bytes."
     instrument: updowncounter
     unit: "By"
@@ -649,13 +674,13 @@ groups:
       - k8s.node
     note: |
       This metric is derived from the
-      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
-      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
       of the Kubelet's stats API.
   - id: metric.k8s.node.filesystem.capacity
     type: metric
     metric_name: k8s.node.filesystem.capacity
-    stability: development
+    stability: release_candidate
     brief: "Node filesystem capacity."
     instrument: updowncounter
     unit: "By"
@@ -666,13 +691,13 @@ groups:
       - k8s.node
     note: |
       This metric is derived from the
-      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
-      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
       of the Kubelet's stats API.
   - id: metric.k8s.node.filesystem.usage
     type: metric
     metric_name: k8s.node.filesystem.usage
-    stability: development
+    stability: release_candidate
     brief: "Node filesystem usage."
     instrument: updowncounter
     unit: "By"
@@ -682,11 +707,48 @@ groups:
     entity_associations:
       - k8s.node
     note: |
-      This may not equal capacity - available.
-
       This metric is derived from the
-      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
-      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+
+      Capacity and available are reported for the backing filesystem,
+      which may be shared with other workloads; therefore,
+      usage may not equal `capacity - available`.
+
+  - id: metric.k8s.node.filesystem.inode.count
+    type: metric
+    metric_name: k8s.node.filesystem.inode.count
+    stability: release_candidate
+    brief: "The total inodes in the node's root filesystem."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.node
+    note: |
+      This metric is derived from the
+      [FsStats.Inodes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.node.filesystem.inode.free
+    type: metric
+    metric_name: k8s.node.filesystem.inode.free
+    stability: release_candidate
+    brief: "The free inodes in the node's root filesystem."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.node
+    note: |
+      This metric is derived from the
+      [FsStats.InodesFree](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
       of the Kubelet's stats API.
 
   # k8s.node.memory.* metrics
@@ -696,18 +758,23 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Memory usage of the Node."
     note: >
-      Total memory usage of the Node
-    instrument: gauge
+      Total memory in use. This includes all memory regardless of when it was accessed.
+
+      This metric is derived from the
+      [MemoryStats.UsageBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
     entity_associations:
       - k8s.node
     unit: "By"
   - id: metric.k8s.node.memory.available
     type: metric
     metric_name: k8s.node.memory.available
-    stability: development
+    stability: release_candidate
     brief: "Node memory available."
     annotations:
       code_generation:
@@ -727,7 +794,7 @@ groups:
   - id: metric.k8s.node.memory.rss
     type: metric
     metric_name: k8s.node.memory.rss
-    stability: development
+    stability: release_candidate
     brief: "Node memory RSS."
     annotations:
       code_generation:
@@ -746,7 +813,7 @@ groups:
   - id: metric.k8s.node.memory.working_set
     type: metric
     metric_name: k8s.node.memory.working_set
-    stability: development
+    stability: release_candidate
     brief: "Node memory working set."
     annotations:
       code_generation:
@@ -766,7 +833,7 @@ groups:
   - id: metric.k8s.node.paging.faults
     type: metric
     metric_name: k8s.node.paging.faults
-    stability: development
+    stability: release_candidate
     brief: "Node memory paging faults."
     annotations:
       code_generation:
@@ -776,13 +843,18 @@ groups:
     attributes:
       - ref: system.paging.fault.type
     note: >
-      Cumulative number of major/minor page faults.
+      Cumulative number of major and minor page faults.
 
-      This metric is derived from the
-      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
-      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
-      fields of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
-      of the Kubelet's stats API.
+      The [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API maps directly to `system.paging.fault.type=major`.
+
+      The [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field reports the total number of page faults (equivalent to `pgfault` in the cgroup `memory.stat`),
+      with minor and major combined.
+      The minor page faults MUST therefore be derived as
+      `MemoryStats.PageFaults - MemoryStats.MajorPageFaults`,
+      so that summing the metric over `system.paging.fault.type` yields the total number of page faults.
     instrument: counter
     unit: "{fault}"
 
@@ -793,7 +865,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Network bytes for the Node."
     instrument: counter
     unit: "By"
@@ -808,7 +880,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Node network errors."
     instrument: counter
     unit: "{error}"
@@ -972,6 +1044,21 @@ groups:
     brief: "Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision."
     note: |
       This metric aligns with the `updatedReplicas` field of the
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#statefulsetstatus-v1-apps).
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.statefulset.pod.available
+    type: metric
+    metric_name: k8s.statefulset.pod.available
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    entity_associations:
+      - k8s.statefulset
+    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this statefulset."
+    note: |
+      This metric aligns with the `availableReplicas` field of the
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#statefulsetstatus-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
@@ -1461,7 +1548,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
+      See the [Kubernetes ResourceRequirements API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.storage.request
@@ -1475,7 +1562,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
+      See the [Kubernetes ResourceRequirements API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.ephemeral_storage.limit
@@ -1489,7 +1576,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
+      See the [Kubernetes ResourceRequirements API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.ephemeral_storage.request
@@ -1503,7 +1590,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
+      See the [Kubernetes ResourceRequirements API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.ephemeral_storage.usage
@@ -1993,6 +2080,7 @@ groups:
       See [K8s EndpointConditions](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/) for more details.
 
       The conditions represent:
+
       - `ready`: Endpoints capable of receiving new connections.
       - `serving`: Endpoints currently handling traffic.
       - `terminating`: Endpoints that are being phased out but may still be handling existing connections.

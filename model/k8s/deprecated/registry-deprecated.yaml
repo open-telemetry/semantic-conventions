@@ -2,7 +2,7 @@ groups:
   - id: registry.k8s.deprecated
     type: attribute_group
     display_name: Deprecated Kubernetes Attributes
-    brief: "Describes deprecated k8s attributes."
+    brief: "Describes deprecated K8s attributes."
     attributes:
       - id: k8s.pod.labels
         type: template[string]

@@ -25,6 +25,26 @@ groups:
         requirement_level:
           conditionally_required: If and only if it's different than `rpc.method`.
 
+  - id: attributes.rpc.server.server
+    type: attribute_group
+    extends: rpc
+    brief: >
+      `server.address` and `server.port` for RPC server spans.
+    attributes:
+      - ref: server.address
+        requirement_level:
+          recommended: when available.
+        note: >
+          `server.address` and `server.port` describe the address the client
+          used to reach this server, as reported by the transport or RPC
+          framework. Instrumentations SHOULD NOT use actual network-level
+          connection information to populate these attributes. If the address
+          used by the client is unavailable, instrumentations SHOULD NOT set
+          these attributes.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if applicable and if `server.address` is set.
+
   - id: span.rpc.call.client
     type: span
     stability: release_candidate
@@ -56,7 +76,7 @@ groups:
   - id: span.rpc.call.server
     type: span
     stability: release_candidate
-    extends: rpc
+    extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -94,7 +114,7 @@ groups:
     extends: rpc
     span_kind: client
     attributes:
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         requirement_level:
           conditionally_required: if available.
         brief: The [error code](https://connectrpc.com//docs/protocol/#error-codes) of the Connect response.
@@ -118,7 +138,7 @@ groups:
   - id: span.rpc.connect_rpc.call.server
     type: span
     stability: development
-    extends: rpc
+    extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -131,7 +151,7 @@ groups:
       **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status.
     attributes:
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         requirement_level:
           conditionally_required: if available.
         brief: The [error code](https://connectrpc.com/docs/protocol/#error-codes) of the Connect response.
@@ -161,14 +181,14 @@ groups:
       **Span kind** MUST be `CLIENT`.
 
       **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      document for details on how to record span status. See also `rpc.status_code` attribute
       for the details on which values classify as errors.
     extends: rpc
     span_kind: client
     attributes:
       - ref: rpc.method
         requirement_level: required
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         requirement_level: required
         brief: >
           The string representation of the [status code](https://github.com/grpc/grpc/blob/v1.75.0/doc/statuscodes.md)
@@ -227,7 +247,7 @@ groups:
   - id: span.rpc.grpc.call.server
     type: span
     stability: release_candidate
-    extends: rpc
+    extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -238,10 +258,10 @@ groups:
       **Span kind** MUST be `SERVER`.
 
       **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      document for details on how to record span status. See also `rpc.status_code` attribute
       for the details on which values classify as errors.
     attributes:
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         requirement_level: required
         brief: >
           The string representation of the [status code](https://github.com/grpc/grpc/blob/v1.75.0/doc/statuscodes.md)
@@ -260,6 +280,25 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
+      - ref: server.address
+        note: |
+           Instrumentations SHOULD populate `server.address` from the host
+           component of the HTTP/2 `:authority` pseudo-header the client used to
+           reach this server.
+
+           Instrumentations SHOULD NOT use actual network-level connection
+           information for this purpose.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If `server.address` is set and the port is present in `:authority`.
+        note: |
+           Instrumentations SHOULD populate `server.port` from the port
+           component of the HTTP/2 `:authority` pseudo-header the client used to
+           reach this server.
+
+           Instrumentations SHOULD NOT use actual network-level connection
+           information for this purpose.
+        examples: [50051]
 
   - id: span.rpc.jsonrpc.call.client
     type: span
@@ -297,7 +336,7 @@ groups:
           When tracing instrumentation converts RPC method to `_OTHER`, it MUST
           also set `rpc.method_original` span attribute to the original value.
         requirement_level: opt_in
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         brief: >
           The [`error.code`](https://www.jsonrpc.org/specification#error_object)
           property of response if it is an error response recorded as a string.
@@ -316,7 +355,7 @@ groups:
   - id: span.rpc.jsonrpc.call.server
     type: span
     stability: development
-    extends: rpc
+    extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -349,7 +388,7 @@ groups:
           When tracing instrumentation converts RPC method to `_OTHER`, it MUST
           also set `rpc.method_original` span attribute to the original value.
         requirement_level: opt_in
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         brief: >
           The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of
           response recorded as a string.
@@ -370,14 +409,14 @@ groups:
       **Span kind** MUST be `CLIENT`.
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      document for details on how to record span status. See also `rpc.status_code` attribute
       for the details on which values classify as errors.
     extends: rpc
     span_kind: client
     attributes:
       - ref: rpc.method
         requirement_level: required
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         requirement_level: required
         brief: >
           The string representation of the Dubbo response status code returned by the server or generated by the client.
@@ -469,7 +508,7 @@ groups:
   - id: span.rpc.dubbo.call.server
     type: span
     stability: release_candidate
-    extends: rpc
+    extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -480,10 +519,10 @@ groups:
       **Span kind** MUST be `SERVER`.
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      document for details on how to record span status. See also `rpc.status_code` attribute
       for the details on which values classify as errors.
     attributes:
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         requirement_level: required
         brief: >
           The string representation of the Dubbo response status code returned by the server.

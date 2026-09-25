@@ -8,7 +8,7 @@ groups:
       - id: log.iostream
         stability: development
         brief: >
-          The stream associated with the log. See below for a list of well-known values.
+          The stream the log record was emitted to.
         type:
           members:
             - id: stdout
@@ -24,31 +24,31 @@ groups:
     type: attribute_group
     display_name: Log File Attributes
     brief: >
-      Attributes for a file to which log was emitted.
+      Attributes for a file to which the log record was emitted.
     attributes:
       - id: log.file.name
         type: string
         stability: development
         brief: >
-          The basename of the file.
+          The basename of the file to which the log record was emitted.
         examples: [ "audit.log" ]
       - id: log.file.path
         type: string
         stability: development
         brief: >
-          The full path to the file.
+          The full path to the file to which the log record was emitted.
         examples: [ "/var/log/mysql/audit.log" ]
       - id: log.file.name_resolved
         type: string
         stability: development
         brief: >
-          The basename of the file, with symlinks resolved.
+          The basename of the file to which the log record was emitted, with symlinks resolved.
         examples: [ "uuid.log" ]
       - id: log.file.path_resolved
         type: string
         stability: development
         brief: >
-          The full path to the file, with symlinks resolved.
+          The full path to the file to which the log record was emitted, with symlinks resolved.
         examples: [ "/var/lib/docker/uuid.log" ]
 
   - id: registry.log.record
@@ -63,10 +63,10 @@ groups:
         brief: >
           A unique identifier for the Log Record.
         note: >
-          If an id is provided, other log records with the same id will be considered duplicates and can be removed safely.
+          If an ID is provided, other log records with the same ID will be considered duplicates and can be removed safely.
           This means, that two distinguishable log records MUST have different values.
 
-          The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec),
+          The ID MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec),
           but other identifiers (e.g. UUID) may be used as needed.
         examples: ["01ARZ3NDEKTSV4RRFFQ69G5FAV"]
       - id: log.record.original

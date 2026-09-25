@@ -73,7 +73,7 @@ Names SHOULD follow these rules:
 
 - For each multi-word dot-delimited component of the name separate the
   words by underscores (i.e. use snake_case). For example
-  `http.response.status_code` denotes the status code in the http namespace.
+  `http.response.status_code` denotes the status code in the HTTP namespace.
 
   Known exceptions include
   [K8s API names](../non-normative/naming-known-exceptions.md) where a single
@@ -94,7 +94,7 @@ Names SHOULD follow these rules:
 
 - Use shorter names when it does not compromise clarity. Drop namespace
   components or words in multi-word components when they are not necessary. For example,
-  `vcs.change.id` describes pull request id as precisely as `vcs.repository.change.id` does.
+  `vcs.change.id` describes pull request ID as precisely as `vcs.repository.change.id` does.
 
 ## Name abbreviation guidelines
 
@@ -440,4 +440,4 @@ attribute use the same system name (`azure.cosmosdb`).
   conventions don't follow the system-specific naming guidance yet, and will be
   updated one-by-one.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

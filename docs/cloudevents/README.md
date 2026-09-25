@@ -12,4 +12,4 @@ Semantic conventions for CloudEvents are defined for the following signals:
 
 - [CloudEvents Spans](cloudevents-spans.md): Semantic Conventions for modeling CloudEvents as _spans_.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

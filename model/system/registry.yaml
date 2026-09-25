@@ -5,11 +5,13 @@ groups:
     display_name: General System Attributes
     brief: "Describes System attributes"
     attributes:
-      - id: system.device
+      - id: system.device.name
         type: string
         stability: development
-        brief: "The device identifier"
-        examples: ["(identifier)"]
+        brief: >
+          The OS level identifier for a device, such as disk,
+          partition or network interface.
+        examples: ["/dev/sda", "eth0", "\\network-drive"]
   # system.memory.* attribute group
   - id: registry.system.memory
     type: attribute_group

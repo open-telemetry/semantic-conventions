@@ -3,10 +3,14 @@ templates:
     # attribute groups and entities are auto-generated and don't need manual code
     # snippets, let's filter them out from the check.
     filter: >
-      .groups
-      | map(select(.type != "attribute_group" and .type != "entity"))
-      | map(select(has("deprecated") | not))
-      | .[].id
+      [
+        (semconv_events({"v2": true, "exclude_deprecated": true}) | map("event." + .name)),
+        (semconv_metrics({"v2": true, "exclude_deprecated": true}) | map("metric." + .name)),
+        (semconv_spans({"v2": true, "exclude_deprecated": true}) | map("span." + .type)),
+        (.refinements.spans // [] | map(select(.id != .type and .deprecated == null)) | map("span." + .id)),
+        (.refinements.metrics // [] | map(select(.id != .name and .deprecated == null)) | map("metric." + .id)),
+        (.refinements.events // [] | map(select(.id != .name and .deprecated == null)) | map("event." + .id))
+      ] | flatten
     application_mode: single
 whitespace_control:
   trim_blocks: true

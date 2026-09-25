@@ -41,7 +41,7 @@ groups:
               stability: development
             - id: hpux
               value: 'hpux'
-              brief: "HP-UX (Hewlett Packard Unix)"
+              brief: "HP-UX (Hewlett Packard UNIX)"
               stability: development
             - id: aix
               value: 'aix'
