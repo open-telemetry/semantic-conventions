@@ -346,6 +346,9 @@ Follow the [Semantic conventions for events](/docs/general/events.md).
 - All conventions MUST be defined in YAML before they can be declared stable
 - Conventions that are not used by instrumentations MUST NOT be declared stable
 
+The following workflow helps contributors plan a stabilization; the linked
+stability guarantees and versioning rules define the requirements.
+
 Stabilization covers the emitted telemetry, not just the `stability` field in
 the model. For non-trivial efforts, follow the
 [project proposal process](https://github.com/open-telemetry/community/blob/main/project-management.md)
@@ -363,9 +366,9 @@ Before proposing stable status:
 3. Review the resulting telemetry against the
    [stability guarantees](/docs/general/semantic-convention-groups.md#group-stability)
    and the [versioning rules](https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability).
-   In particular, a stable group should not depend on a less mature attribute
-   unless the reference is `opt_in`. Resolve changes that would break existing
-   consumers before promoting the convention.
+   Check references to less mature attributes against the linked group-stability
+   rules, including the `opt_in` exception. Resolve changes that would break
+   existing consumers before promoting the convention.
 4. Consider `release_candidate` while collecting broader implementation and
    production feedback. It signals that the convention is ready for wider use
    but may still need validation. Agree on review criteria and timing with the
