@@ -139,22 +139,22 @@ capabilities. If document-valued `comment` support is unknown or unavailable,
 instrumentation MUST skip context injection for the operation.
 
 When this mechanism is enabled and the target server supports document-valued
-`comment`, instrumentation MUST set `comment` to a BSON document containing a valid
-[`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) string
-and MAY include a valid
-[`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) string.
-The instrumentation SHOULD use the W3C Trace Context propagator to populate
-these fields. The propagation document MUST NOT contain top-level fields other
-than `traceparent`, `tracestate`, and the optional `originalComment` field.
-In particular, `baggage` MUST NOT be injected as a top-level field.
+`comment`, instrumentation MUST use the selected propagator to inject string
+key-value pairs into the top-level fields of a BSON document in `comment`.
 
-The optional `originalComment` field contains the application-provided comment,
-which can be any BSON type. When the application has set `comment`,
+The instrumentation SHOULD allow users to pass a propagator to overwrite the
+global propagator. If no propagator is provided by the user, instrumentation
+SHOULD use the global propagator. The override applies only to this
+instrumentation.
+
+The optional `originalComment` field is reserved for the application-provided
+comment, which can be any BSON type. When the application has set `comment`,
 instrumentation MUST preserve its value and BSON type unchanged in
 `originalComment`, including an explicitly set BSON `null`. When the application
 has not set `comment`, instrumentation MUST omit `originalComment`.
+Instrumentation MUST prevent propagators from setting `originalComment`.
 
-For example, with the default W3C Trace Context propagator and an
+For example, with a W3C Trace Context propagator and an
 application-provided document comment:
 
 ```json
@@ -170,14 +170,20 @@ application-provided document comment:
 ```
 
 Servers supporting this mechanism MUST attempt to extract context only when
-`comment` is a BSON document containing a top-level `traceparent` string. A
-server MUST ignore the propagated context when `traceparent` is invalid or
-unsupported. An invalid `tracestate` MUST be ignored without affecting a valid
-`traceparent`. Failure to extract context MUST NOT cause the database operation
-to fail. Servers SHOULD leave `comment` unchanged after extraction. A server MAY
-instead remove the propagation document. In that case, it MUST restore `comment`
-to the value and BSON type of `originalComment` if that field is present
-(including when its value is `null`), or remove `comment` if it is absent.
+`comment` is a BSON document, using the top-level string fields recognized by
+their supported propagators. Successful extraction requires compatible
+propagation formats on the client and server. When extracting W3C Trace Context,
+a server MUST ignore the trace context when
+[`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) is missing,
+invalid, or unsupported. An invalid
+[`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) MUST be
+ignored without affecting a valid `traceparent`. Failure to extract context
+MUST NOT cause the database operation to fail.
+Servers SHOULD leave `comment` unchanged after extraction. A server MAY
+instead remove the propagation document after successful extraction. In that
+case, it MUST restore `comment` to the value and BSON type of `originalComment`
+if that field is present (including when its value is `null`), or remove
+`comment` if it is absent.
 
 MongoDB servers and compatible servers may expose or persist `comment` in logs,
 profiling data, or diagnostic interfaces. Instrumentations SHOULD document that
