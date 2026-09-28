@@ -2,6 +2,11 @@
 file_format: definition/2
 events:
   - name: faas.invocation.exception
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during FaaS function invocation,

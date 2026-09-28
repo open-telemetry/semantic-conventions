@@ -296,6 +296,11 @@ span_refinements:
 # Azure operations that do not map to a generic messaging operation type.
 spans:
   - type: messaging.servicebus.generic.client
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Other
     kind: client
     requirement_level: recommended
     stability: development
@@ -345,6 +350,11 @@ spans:
         sampling_relevant: true
 
   - type: messaging.eventhubs.generic.client
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Other
     kind: client
     requirement_level: recommended
     stability: development

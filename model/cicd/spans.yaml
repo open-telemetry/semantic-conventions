@@ -1,6 +1,11 @@
 groups:
   - id: span.cicd.pipeline.run.server
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Deploy
     span_kind: server
     brief: This span describes a CI/CD pipeline run.
     note: |
@@ -25,6 +30,11 @@ groups:
         requirement_level: opt_in
   - id: span.cicd.pipeline.task.internal
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Deploy
     span_kind: internal
     brief: This span describes task execution in a pipeline run.
     stability: release_candidate

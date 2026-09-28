@@ -19,6 +19,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     brief: "Duration of database client operations."
     note: >
       Batch operations SHOULD be recorded as a single operation.
@@ -57,6 +61,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     brief: "The number of connections that are currently in state described by the `state` attribute."
     instrument: updowncounter
@@ -72,6 +80,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     brief: "The maximum number of idle open connections allowed."
     instrument: updowncounter
@@ -84,6 +96,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     brief: "The minimum number of idle open connections allowed."
     instrument: updowncounter
@@ -96,6 +112,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     brief: "The maximum number of open connections allowed."
     instrument: updowncounter
@@ -108,6 +128,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     brief: "The number of current pending requests for an open connection."
     instrument: updowncounter
@@ -120,6 +144,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     brief: "The number of connection timeouts that have occurred trying to obtain a connection from the pool."
     instrument: counter
@@ -132,6 +160,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     brief: "The time it took to create a new connection."
     instrument: histogram
@@ -144,6 +176,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     brief: "The time it took to obtain an open connection from the pool."
     instrument: histogram
@@ -156,6 +192,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     brief: "The time between borrowing a connection and returning it to the pool."
     instrument: histogram
@@ -168,6 +208,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     brief: "The actual number of records returned by the database operation."
     instrument: histogram
     unit: "{row}"

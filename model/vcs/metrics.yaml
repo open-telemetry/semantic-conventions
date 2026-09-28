@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     brief: 'The number of changes (pull requests/merge requests/changelists) in a repository, categorized by their state (e.g. open or merged).'
     instrument: updowncounter
     unit: "{change}"
@@ -28,6 +32,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     brief: 'The time duration a change (pull request/merge request/changelist) has been in a given state.'
     instrument: gauge
     unit: "s"
@@ -53,6 +61,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     brief: 'The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval.'
     instrument: gauge
     unit: "s"
@@ -83,6 +95,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     brief: 'The amount of time since its creation it took a change (pull request/merge request/changelist) to get merged into the target(base) ref.'
     instrument: gauge
     unit: "s"
@@ -113,6 +129,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     brief: 'The number of repositories in an organization.'
     instrument: updowncounter
     unit: "{repository}"
@@ -128,6 +148,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     brief: 'The number of refs of type branch or tag in a repository.'
     instrument: updowncounter
     unit: "{ref}"
@@ -151,6 +175,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     brief: 'The number of lines added/removed in a ref (branch) relative to the ref from the `vcs.ref.base.name` attribute.'
     note: |
       This metric should be reported for each `vcs.line_change.type` value. For example if a ref added 3 lines and removed 2 lines,
@@ -189,6 +217,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     brief: 'The number of revisions (commits) a ref (branch) is ahead/behind the branch from the `vcs.ref.base.name` attribute.'
     note: |
       This metric should be reported for each `vcs.revision_delta.direction` value. For example if branch `a` is 3 commits behind and 2 commits ahead of `trunk`,
@@ -226,6 +258,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     brief: 'Time a ref (branch) created from the default branch (trunk) has existed. The `ref.type` attribute will always be `branch`.'
     instrument: gauge
     unit: "s"
@@ -251,6 +287,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     brief: 'The number of unique contributors to a repository.'
     instrument: gauge
     unit: "{contributor}"

@@ -2,6 +2,11 @@
 file_format: definition/2
 events:
   - name: exception
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Alert
     stability: stable
     brief: >
       This event describes a single exception.

@@ -47,6 +47,11 @@ groups:
 
   - id: span.rpc.call.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: release_candidate
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
@@ -75,6 +80,11 @@ groups:
 
   - id: span.rpc.call.server
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: release_candidate
     extends: attributes.rpc.server.server
     span_kind: server
@@ -100,6 +110,11 @@ groups:
 
   - id: span.rpc.connect_rpc.call.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
@@ -137,6 +152,11 @@ groups:
 
   - id: span.rpc.connect_rpc.call.server
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: development
     extends: attributes.rpc.server.server
     span_kind: server
@@ -171,6 +191,11 @@ groups:
 
   - id: span.rpc.grpc.call.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: release_candidate
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
@@ -246,6 +271,11 @@ groups:
         examples: [50051]
   - id: span.rpc.grpc.call.server
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: release_candidate
     extends: attributes.rpc.server.server
     span_kind: server
@@ -302,6 +332,11 @@ groups:
 
   - id: span.rpc.jsonrpc.call.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
@@ -354,6 +389,11 @@ groups:
 
   - id: span.rpc.jsonrpc.call.server
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: development
     extends: attributes.rpc.server.server
     span_kind: server
@@ -399,6 +439,11 @@ groups:
 
   - id: span.rpc.dubbo.call.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: release_candidate
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
@@ -507,6 +552,11 @@ groups:
 
   - id: span.rpc.dubbo.call.server
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: release_candidate
     extends: attributes.rpc.server.server
     span_kind: server

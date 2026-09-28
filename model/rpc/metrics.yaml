@@ -36,6 +36,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Collect
     stability: release_candidate
     brief: Measures the duration of an incoming Remote Procedure Call (RPC).
     instrument: histogram
@@ -53,6 +57,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Collect
     stability: release_candidate
     brief: Measures the duration of an outgoing Remote Procedure Call (RPC).
     instrument: histogram

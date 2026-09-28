@@ -2,6 +2,11 @@ groups:
   - id: event.browser.web_vital
     stability: development
     type: event
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     name: browser.web_vital
     brief: >
       This event describes the website performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).

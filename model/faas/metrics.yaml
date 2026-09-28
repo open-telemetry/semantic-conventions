@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Collect
     stability: development
     brief: "Measures the duration of the function's logic execution."
     instrument: histogram
@@ -18,6 +22,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Collect
     stability: development
     brief: "Measures the duration of the function's initialization, such as a cold start."
     instrument: histogram
@@ -31,6 +39,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Collect
     stability: development
     brief: "Number of invocation cold starts."
     instrument: counter
@@ -44,6 +56,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Collect
     stability: development
     brief: "Number of invocation errors."
     instrument: counter
@@ -57,6 +73,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Collect
     stability: development
     brief: "Number of successful invocations."
     instrument: counter
@@ -70,6 +90,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Collect
     stability: development
     brief: "Number of invocation timeouts."
     instrument: counter
@@ -83,6 +107,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     brief: "Distribution of max memory usage per invocation."
     instrument: histogram
@@ -96,6 +124,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     brief: "Distribution of CPU usage per invocation."
     instrument: histogram
@@ -109,6 +141,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: development
     brief: "Distribution of net I/O usage per invocation."
     instrument: histogram

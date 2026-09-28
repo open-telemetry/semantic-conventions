@@ -22,6 +22,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Network Device
+        action: Collect
     stability: development
     brief: "Link speed."
     instrument: updowncounter
@@ -34,6 +38,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Network Performance
+        type: Network Device
+        action: Collect
     stability: development
     brief: "Utilization of the network bandwidth as a fraction."
     instrument: gauge
@@ -46,6 +54,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Network Device
+        action: Collect
     stability: development
     brief: "Received and transmitted network traffic in bytes."
     instrument: counter
@@ -61,6 +73,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Network Device
+        action: Collect
     stability: development
     brief: "Received and transmitted network traffic in packets (or frames)."
     instrument: counter
@@ -76,6 +92,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Network Device
+        action: Collect
     stability: development
     brief: "Link status: `1` (up) or `0` (down)."
     instrument: updowncounter

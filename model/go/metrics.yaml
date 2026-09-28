@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Memory used by the Go runtime."
     note: >
       Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
@@ -23,6 +27,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Go runtime memory limit configured by the user, if a limit exists."
     note: >
       Computed from `/gc/gomemlimit:bytes`.
@@ -37,6 +45,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Memory allocated to the heap by the application."
     note: >
       Computed from `/gc/heap/allocs:bytes`.
@@ -50,6 +62,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Count of allocations to the heap by the application."
     note: >
       Computed from `/gc/heap/allocs:objects`.
@@ -63,6 +79,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Heap size target for the end of the GC cycle."
     note: >
       Computed from `/gc/heap/goal:bytes`.
@@ -76,6 +96,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Number of completed GC cycles."
     note: >
       Computed from `/gc/cycles/total:gc-cycles`.
@@ -89,6 +113,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Distribution of individual GC-related stop-the-world pause latencies. This is the time from deciding to stop the world until the world is started again."
     note: >
       Computed from `/sched/pauses/total/gc:seconds`.
@@ -103,6 +131,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Count of live goroutines."
     note: >
       Computed from `/sched/goroutines:goroutines`.
@@ -116,6 +148,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "The number of OS threads that can execute user-level Go code simultaneously."
     note: >
       Computed from `/sched/gomaxprocs:threads`.
@@ -129,6 +165,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "The time goroutines have spent in the scheduler in a runnable state before actually running."
     note: >
       Computed from `/sched/latencies:seconds`.
@@ -143,6 +183,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Heap size target percentage configured by the user, otherwise 100."
     note: >
       The value range is [0.0,100.0].
@@ -157,6 +201,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Estimated CPU time spent by the Go runtime."
     note: >
       Computed from `/cpu/classes/...` metrics.

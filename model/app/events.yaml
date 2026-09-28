@@ -2,6 +2,11 @@ groups:
   - id: event.app.crash
     stability: development
     type: event
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Alert
     name: app.crash
     brief: |
       This event represents a termination of a user-facing application due to
@@ -48,6 +53,11 @@ groups:
   - id: event.app.screen.click
     stability: development
     type: event
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Other
     name: app.screen.click
     brief: >
       This event represents an instantaneous click on the screen of an application.
@@ -72,6 +82,11 @@ groups:
   - id: event.app.widget.click
     stability: development
     type: event
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Other
     name: app.widget.click
     brief: >
       This event indicates that an application widget has been clicked.
@@ -94,6 +109,11 @@ groups:
   - id: event.app.jank
     stability: development
     type: event
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Alert
     name: app.jank
     brief: >
       This event indicates that the application has detected substandard UI

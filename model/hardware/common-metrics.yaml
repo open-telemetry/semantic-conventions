@@ -6,6 +6,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Energy consumed by the component."
     instrument: counter
@@ -20,6 +24,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Number of errors encountered by the component."
     instrument: counter
@@ -43,6 +51,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Instantaneous power consumed by the component."
     note: >
@@ -59,6 +71,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Operational status: `1` (true) or `0` (false) for each of the possible states."
     instrument: updowncounter

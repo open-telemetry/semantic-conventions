@@ -1,6 +1,11 @@
 groups:
   - id: span.aws.lambda.server
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Start
     span_kind: server
     stability: development
     brief: >

@@ -35,6 +35,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Collect
     brief: "Duration of messaging operation initiated by a producer or consumer client."
     note: >
       This metric SHOULD NOT be used to report processing duration - processing duration is reported in `messaging.process.duration` metric.
@@ -55,6 +59,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Collect
     brief: "Duration of processing operation."
     note: >
       This metric MUST be reported for operations with `messaging.operation.type` that matches `process`.
@@ -73,6 +81,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Collect
     brief: "Number of messages producer attempted to send to the broker."
     note: >
       This metric MUST NOT count messages that were created but haven't yet been sent.
@@ -90,6 +102,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Collect
     brief: "Number of messages that were delivered to the application."
     note: >
       Records the number of messages pulled from the broker or number of messages dispatched to the application in push-based scenarios.

@@ -18,6 +18,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "Operations performed by the tape drive."
     instrument: counter

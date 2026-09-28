@@ -1,6 +1,11 @@
 groups:
   - id: span.dotnet.http.request.wait_for_connection.internal
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Start
     stability: development
     span_kind: internal
     brief: The span describes the time it takes for the HTTP request to obtain a connection from the connection pool.
@@ -30,6 +35,11 @@ groups:
 
   - id: span.dotnet.http.connection_setup.internal
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Start
     stability: development
     span_kind: internal
     brief: >
@@ -67,6 +77,11 @@ groups:
 
   - id: span.dotnet.socket.connect.internal
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Start
     stability: development
     span_kind: internal
     brief: >
@@ -125,6 +140,11 @@ groups:
 
   - id: span.dotnet.dns.lookup.internal
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Network Performance
+        type: DNS Metrics
+        action: Collect
     stability: development
     span_kind: internal
     brief: >
@@ -171,6 +191,11 @@ groups:
 
   - id: span.dotnet.tls.handshake.internal
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Start
     span_kind: internal
     stability: development
     brief: >

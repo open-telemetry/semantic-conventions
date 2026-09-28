@@ -20,6 +20,10 @@ metrics:
         # TODO hw.cpu.speed is used as a namespace by hw.cpu.speed.limit
         policy_exceptions:
           - metric_namespace_collision
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "CPU current frequency."
     instrument: gauge
@@ -33,6 +37,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "CPU maximum frequency."
     instrument: gauge

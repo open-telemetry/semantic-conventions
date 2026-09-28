@@ -6,6 +6,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "The time the system has been running."
     note: |
@@ -23,6 +27,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Reports the number of actual physical processor cores on the hardware."
     note: "Calculated by multiplying the number of sockets by the number of cores per socket"
@@ -38,6 +46,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking."
     note: "Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core"
@@ -53,6 +65,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Seconds each logical CPU spent on each mode."
     instrument: counter
@@ -71,6 +87,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time."
     instrument: gauge
@@ -89,6 +109,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Operating frequency of the logical CPU in Hertz."
     instrument: gauge
@@ -105,6 +129,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Reports memory in use by state."
     instrument: updowncounter
@@ -120,6 +148,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Total virtual memory available in the system."
     instrument: updowncounter
@@ -134,6 +166,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: Percentage of memory bytes in use.
     instrument: gauge
@@ -150,6 +186,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "UNIX swap or windows pagefile usage."
     instrument: updowncounter
@@ -168,6 +208,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: Swap (UNIX) or pagefile (windows) utilization.
     instrument: gauge
@@ -186,6 +230,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: The number of page faults.
     instrument: counter
@@ -202,6 +250,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     brief: The number of paging operations.
     instrument: counter
     unit: "{operation}"
@@ -218,6 +270,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: Disk bytes transferred.
     instrument: counter
@@ -234,6 +290,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: Disk operations count.
     instrument: counter
@@ -250,6 +310,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "Time disk spent activated."
     instrument: counter
@@ -272,6 +336,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "Sum of the time each operation took to complete."
     instrument: counter
@@ -293,6 +361,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: The number of disk reads/writes merged into single physical disk access operations.
     instrument: counter
@@ -309,6 +381,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "The total storage capacity of the disk."
     instrument: updowncounter
@@ -325,6 +401,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: "Reports a filesystem's space usage across different states."
     note: |
@@ -349,6 +429,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: Fraction of filesystem bytes used.
     instrument: gauge
@@ -370,6 +454,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: "The total storage capacity of the filesystem."
     instrument: updowncounter
@@ -390,6 +478,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: "Filesystem lock counts."
     instrument: updowncounter
@@ -411,6 +503,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: development
     brief: "Count of packets that are dropped or discarded even though there was no error."
     instrument: counter
@@ -433,6 +529,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: development
     brief: The number of packets transferred.
     instrument: counter
@@ -449,6 +549,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: development
     brief: "Count of network errors detected."
     instrument: counter
@@ -471,6 +575,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: development
     brief: The number of bytes transmitted and received.
     instrument: counter
@@ -487,6 +595,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: development
     brief: The number of connections.
     instrument: updowncounter
@@ -505,6 +617,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     brief: "Total number of processes in each state."
     instrument: updowncounter
@@ -520,6 +636,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     brief: "Total number of processes created over uptime of the host."
     instrument: counter
@@ -534,6 +654,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     brief: "The maximum number of concurrent processes/tasks allowed by the operating system."
     instrument: updowncounter
@@ -553,6 +677,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "An estimate of how much memory is available for starting new applications, without causing swapping."
     note: |
@@ -573,6 +701,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Shared memory used (mostly by tmpfs)."
     note: |
@@ -589,6 +721,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Total number of hugepages available."
     instrument: updowncounter
@@ -603,6 +739,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "System hugepage size in bytes."
     instrument: updowncounter
@@ -617,6 +757,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Number of reserved hugepages."
     note: |
@@ -635,6 +779,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Number of surplus hugepages."
     note: |
@@ -653,6 +801,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Number of hugepages in use by state."
     instrument: updowncounter
@@ -668,6 +820,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Percentage of hugepages in use by state."
     instrument: gauge
@@ -683,6 +839,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Reports the memory used by the Linux kernel for managing caches of frequently used objects."
     note: |

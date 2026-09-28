@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of created spans with `recording=true` for which the end operation has not been called yet."
     note: |
@@ -20,6 +24,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of created spans."
     instrument: counter
@@ -36,6 +44,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of spans in the queue of a given instance of an SDK span processor."
     note: |
@@ -52,6 +64,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold."
     note: |
@@ -68,6 +84,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of spans for which the processing has finished, either successful or failed."
     note: |
@@ -98,6 +118,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)."
     note: |
@@ -121,6 +145,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of spans for which the export has finished, either successful or failed."
     note: |
@@ -152,6 +180,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of log records submitted to an enabled `Logger`."
     instrument: counter
@@ -169,6 +201,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of log records in the queue of a given instance of an SDK log processor."
     note: |
@@ -185,6 +221,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold."
     note: |
@@ -201,6 +241,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of log records for which the processing has finished, either successful or failed."
     note: |
@@ -231,6 +275,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)."
     note: |
@@ -254,6 +302,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of log records for which the export has finished, either successful or failed."
     note: |
@@ -285,6 +337,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)."
     note: |
@@ -308,6 +364,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The number of metric data points for which the export has finished, either successful or failed."
     note: |
@@ -339,6 +399,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The duration of the collect operation of the metric reader."
     note: |
@@ -357,6 +421,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: "The duration of exporting a batch of telemetry records."
     note: |

@@ -2,6 +2,11 @@
 file_format: definition/2
 events:
   - name: rpc.client.call.exception
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during an outgoing RPC call,
@@ -18,6 +23,11 @@ events:
       - ref_group: exception
 
   - name: rpc.server.call.exception
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during incoming RPC call processing,

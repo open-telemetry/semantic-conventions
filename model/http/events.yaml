@@ -2,6 +2,11 @@
 file_format: definition/2
 events:
   - name: http.client.request.exception
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: HTTP Activity
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during an HTTP client request,
@@ -22,6 +27,11 @@ events:
       - ref_group: exception
 
   - name: http.server.request.exception
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: HTTP Activity
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during HTTP server request processing,

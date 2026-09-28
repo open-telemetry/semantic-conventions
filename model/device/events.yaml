@@ -2,6 +2,11 @@ groups:
   - id: event.device.app.lifecycle
     stability: development
     type: event
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Update
     name: device.app.lifecycle
     brief: >
       This event represents an occurrence of a lifecycle transition on Android or iOS platform.

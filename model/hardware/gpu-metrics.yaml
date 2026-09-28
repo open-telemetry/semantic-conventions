@@ -22,6 +22,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Received and transmitted bytes by the GPU."
     instrument: counter
@@ -37,6 +41,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Size of the GPU memory."
     instrument: updowncounter
@@ -49,6 +57,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Fraction of GPU memory used."
     instrument: gauge
@@ -61,6 +73,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "GPU memory used."
     instrument: updowncounter
@@ -73,6 +89,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Fraction of time spent in a specific task."
     instrument: gauge

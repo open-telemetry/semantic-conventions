@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     extends: attributes.jvm.memory
     brief: "Measure of initial memory requested."
@@ -17,6 +21,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     brief: "Recent CPU utilization for the whole system as reported by the JVM."
     note: >
@@ -33,6 +41,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     brief: "Average CPU load of the whole system for the last minute as reported by the JVM."
     note: >
@@ -56,6 +68,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     extends: attributes.jvm.buffer
     brief: "Measure of memory used by buffers."
@@ -68,6 +84,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     extends: attributes.jvm.buffer
     brief: "Measure of total memory capacity of buffers."
@@ -80,6 +100,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     extends: attributes.jvm.buffer
     brief: "Number of buffers in the pool."

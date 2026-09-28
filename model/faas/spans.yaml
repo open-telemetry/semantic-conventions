@@ -16,6 +16,11 @@ attribute_groups:
 
 spans:
   - type: faas.server
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Start
     kind: server
     requirement_level: recommended
     stability: development
@@ -29,6 +34,11 @@ spans:
       - ref_group: faas.attributes.server
 
   - type: faas.datasource.server
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Start
     kind: server
     requirement_level: recommended
     stability: development
@@ -50,6 +60,11 @@ spans:
       - ref: faas.document.name
 
   - type: faas.timer.server
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Start
     kind: server
     requirement_level: recommended
     stability: development
@@ -66,6 +81,11 @@ spans:
       - ref: faas.cron
 
   - type: faas.client
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Start
     kind: client
     requirement_level: recommended
     stability: development

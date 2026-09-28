@@ -6,6 +6,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: release_candidate
     entity_associations:
       - container
@@ -30,6 +34,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: release_candidate
     brief: "Total CPU time consumed."
     note: >
@@ -72,6 +80,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Container's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
@@ -98,6 +110,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: release_candidate
     brief: "Memory usage of the container."
     instrument: updowncounter
@@ -122,6 +138,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     entity_associations:
       - container
     brief: "Container memory available."
@@ -150,6 +170,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     note: >
       In general, this metric can be derived from
       [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics)
@@ -168,6 +192,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     entity_associations:
       - container
     brief: "Container memory working set."
@@ -189,6 +217,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     entity_associations:
       - container
     brief: "Container memory paging faults."
@@ -222,6 +254,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "Disk bytes for the container."
     note: >
@@ -242,6 +278,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: development
     brief: "Network bytes for the container."
     note: >
@@ -267,6 +307,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     entity_associations:
       - container
     note: >
@@ -286,6 +330,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     entity_associations:
       - container
     note: >
@@ -309,6 +357,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     entity_associations:
       - container
     note: >

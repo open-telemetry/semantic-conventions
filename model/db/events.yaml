@@ -2,6 +2,11 @@
 file_format: definition/2
 events:
   - name: db.client.operation.exception
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during a database client operation,

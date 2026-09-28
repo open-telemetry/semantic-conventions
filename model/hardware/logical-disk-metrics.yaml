@@ -6,6 +6,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "Size of the logical disk."
     instrument: updowncounter
@@ -20,6 +24,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "Logical disk space usage."
     instrument: updowncounter
@@ -37,6 +45,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "Logical disk space utilization as a fraction."
     instrument: gauge

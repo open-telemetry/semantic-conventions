@@ -10,6 +10,10 @@ metrics:
         # TODO hw.fan.speed is used as a namespace by hw.fan.speed.limit
         policy_exceptions:
           - metric_namespace_collision
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Fan speed in revolutions per minute."
     instrument: gauge
@@ -24,6 +28,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Speed limit in rpm."
     instrument: gauge
@@ -41,6 +49,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Fan speed expressed as a fraction of its maximum speed."
     instrument: gauge

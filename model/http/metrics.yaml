@@ -44,6 +44,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Network Performance
+        type: HTTP Metrics
+        action: Collect
     brief: "Duration of HTTP server requests."
     instrument: histogram
     unit: "s"
@@ -56,6 +60,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: HTTP Metrics
+        action: Collect
     stability: development
     brief: "Number of active HTTP server requests."
     instrument: updowncounter
@@ -93,6 +101,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: HTTP Metrics
+        action: Collect
     stability: development
     brief: "Size of HTTP server request bodies."
     instrument: histogram
@@ -109,6 +121,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: HTTP Metrics
+        action: Collect
     stability: development
     brief: "Size of HTTP server response bodies."
     instrument: histogram
@@ -125,6 +141,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Network Performance
+        type: HTTP Metrics
+        action: Collect
     brief: "Duration of HTTP client requests."
     instrument: histogram
     unit: "s"
@@ -137,6 +157,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: HTTP Metrics
+        action: Collect
     stability: development
     brief: "Size of HTTP client request bodies."
     instrument: histogram
@@ -153,6 +177,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: HTTP Metrics
+        action: Collect
     stability: development
     brief: "Size of HTTP client response bodies."
     instrument: histogram
@@ -169,6 +197,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: development
     brief: "Number of outbound HTTP connections that are currently active or idle on the client."
     instrument: updowncounter
@@ -194,6 +226,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: development
     brief: "The duration of the successfully established outbound HTTP connections."
     instrument: histogram
@@ -217,6 +253,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: HTTP Metrics
+        action: Collect
     stability: development
     brief: "Number of active HTTP requests."
     instrument: updowncounter

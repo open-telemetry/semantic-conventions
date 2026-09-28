@@ -82,6 +82,11 @@ attribute_groups:
 
 spans:
   - type: messaging.create.producer
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Create
     kind: producer
     requirement_level: recommended
     stability: development
@@ -123,6 +128,11 @@ spans:
       - ref_group: messaging.attributes.message_size
 
   - type: messaging.send.producer
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Create
     kind: producer
     requirement_level: recommended
     stability: development
@@ -166,6 +176,11 @@ spans:
       - ref: messaging.client.id
 
   - type: messaging.send.client
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Other
     kind: client
     requirement_level: recommended
     stability: development
@@ -210,6 +225,11 @@ spans:
       - ref: messaging.client.id
 
   - type: messaging.receive.client
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Collect
     kind: client
     requirement_level: recommended
     stability: development
@@ -248,6 +268,11 @@ spans:
 
 
   - type: messaging.process.consumer
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Other
     kind: consumer
     requirement_level: recommended
     stability: development
@@ -290,6 +315,11 @@ spans:
         sampling_relevant: true
 
   - type: messaging.settle.client
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Resolve
     kind: client
     requirement_level: recommended
     stability: development

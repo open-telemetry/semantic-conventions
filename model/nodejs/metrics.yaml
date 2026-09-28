@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Event loop minimum delay."
     instrument: gauge
     unit: "s"
@@ -18,6 +22,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Event loop maximum delay."
     instrument: gauge
     unit: "s"
@@ -31,6 +39,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Event loop mean delay."
     instrument: gauge
     unit: "s"
@@ -44,6 +56,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Event loop standard deviation delay."
     instrument: gauge
     unit: "s"
@@ -57,6 +73,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Event loop 50 percentile delay."
     instrument: gauge
     unit: "s"
@@ -70,6 +90,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Event loop 90 percentile delay."
     instrument: gauge
     unit: "s"
@@ -83,6 +107,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Event loop 99 percentile delay."
     instrument: gauge
     unit: "s"
@@ -96,6 +124,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Event loop utilization."
     instrument: gauge
     unit: "1"
@@ -110,6 +142,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Cumulative duration of time the event loop has been in each state."
     instrument: counter
     unit: "s"

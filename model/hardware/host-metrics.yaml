@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Ambient (external) temperature of the physical host."
     instrument: gauge
@@ -17,6 +21,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Total energy consumed by the entire physical host, in joules."
     instrument: counter
@@ -33,6 +41,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: >
       By how many degrees Celsius the temperature of the physical host can be increased, before reaching a warning
@@ -47,6 +59,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: >
       Instantaneous power consumed by the entire physical host in Watts (`hw.host.energy` is preferred).

@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     brief: "[Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation."
     instrument: histogram
     unit: "{request_unit}"
@@ -26,6 +30,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     brief: "Number of active client instances."
     instrument: updowncounter
     unit: "{instance}"

@@ -6,6 +6,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: release_candidate
     brief: "The time the Pod has been running."
     entity_associations:
@@ -29,6 +33,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Describes the number of K8s Pods that are currently in a state for a given reason."
     entity_associations:
@@ -47,6 +55,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Describes number of K8s Pods that are currently in a given phase."
     entity_associations:
@@ -67,6 +79,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: release_candidate
     brief: "Total CPU time consumed."
     entity_associations:
@@ -83,6 +99,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Pod's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
@@ -97,6 +117,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Maximum CPU resource limit as defined by the Pod spec."
     entity_associations:
@@ -118,6 +142,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Maximum CPU resource limit currently configured for a running Pod."
     entity_associations:
@@ -136,6 +164,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The ratio of Pod CPU usage to its current CPU limit."
     entity_associations:
@@ -153,6 +185,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "CPU resource requested as defined by the Pod spec."
     entity_associations:
@@ -174,6 +210,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "CPU resource requested currently configured for a running Pod."
     entity_associations:
@@ -192,6 +232,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The ratio of Pod CPU usage to its current CPU request."
     entity_associations:
@@ -212,6 +256,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: release_candidate
     brief: "Memory usage of the Pod."
     entity_associations:
@@ -232,6 +280,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     entity_associations:
       - k8s.pod
     brief: "Pod memory available."
@@ -253,6 +305,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     entity_associations:
       - k8s.pod
     note: >
@@ -274,6 +330,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     note: >
       The amount of working set memory. This includes recently accessed memory,
       dirty memory, and kernel memory. WorkingSetBytes is <= UsageBytes.
@@ -292,6 +352,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     entity_associations:
       - k8s.pod
     attributes:
@@ -319,6 +383,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: release_candidate
     brief: "Network bytes for the Pod."
     instrument: counter
@@ -334,6 +402,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: release_candidate
     brief: "Pod network errors."
     instrument: counter
@@ -355,6 +427,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     entity_associations:
       - k8s.pod
     note: |
@@ -372,6 +448,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     entity_associations:
       - k8s.pod
     note: |
@@ -389,6 +469,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     entity_associations:
       - k8s.pod
     note: |
@@ -408,6 +492,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     brief: "Pod volume storage space available."
     instrument: updowncounter
     unit: "By"
@@ -432,6 +520,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     unit: "By"
     entity_associations:
       - k8s.pod
@@ -454,6 +546,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     unit: "By"
     entity_associations:
       - k8s.pod
@@ -478,6 +574,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     unit: "{inode}"
     entity_associations:
       - k8s.pod
@@ -500,6 +600,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     unit: "{inode}"
     entity_associations:
       - k8s.pod
@@ -524,6 +628,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     unit: "{inode}"
     entity_associations:
       - k8s.pod
@@ -545,6 +653,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Describes the number of K8s containers that are currently in a given state."
     note: |
@@ -563,6 +675,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Describes the number of K8s containers that are currently in a state for a given reason."
     instrument: updowncounter
@@ -583,6 +699,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: release_candidate
     brief: "The time the Node has been running."
     note: >
@@ -605,6 +725,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Amount of CPU allocatable on the node."
     entity_associations:
@@ -617,6 +741,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Amount of ephemeral-storage allocatable on the node."
     entity_associations:
@@ -629,6 +757,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Amount of memory allocatable on the node."
     entity_associations:
@@ -641,6 +773,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Amount of pods allocatable on the node."
     entity_associations:
@@ -654,6 +790,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Describes the condition of a particular Node."
     note: >
@@ -675,6 +815,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: release_candidate
     brief: "Total CPU time consumed."
     note: >
@@ -689,6 +833,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Node's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
@@ -707,6 +855,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Node's system container CPU usage, measured in CPUs."
     note: >
@@ -723,6 +875,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Node's system container CPU time."
     note: >
@@ -741,6 +897,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Node's system container memory usage."
     note: >
@@ -759,6 +919,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "The amount of working set memory."
     note: >
@@ -783,6 +947,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     entity_associations:
       - k8s.node
     note: |
@@ -800,6 +968,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     entity_associations:
       - k8s.node
     note: |
@@ -817,6 +989,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     entity_associations:
       - k8s.node
     note: |
@@ -838,6 +1014,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     unit: "{inode}"
     entity_associations:
       - k8s.node
@@ -855,6 +1035,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     unit: "{inode}"
     entity_associations:
       - k8s.node
@@ -871,6 +1055,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: release_candidate
     brief: "Memory usage of the Node."
     note: >
@@ -892,6 +1080,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     entity_associations:
       - k8s.node
     note: >
@@ -912,6 +1104,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     entity_associations:
       - k8s.node
     note: >
@@ -931,6 +1127,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     entity_associations:
       - k8s.node
     note: >
@@ -951,6 +1151,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     entity_associations:
       - k8s.node
     attributes:
@@ -978,6 +1182,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: release_candidate
     brief: "Network bytes for the Node."
     instrument: counter
@@ -993,6 +1201,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: release_candidate
     brief: "Node network errors."
     instrument: counter
@@ -1013,6 +1225,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     unit: "{thread}"
     entity_associations:
       - k8s.node
@@ -1030,6 +1246,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     unit: "{thread}"
     entity_associations:
       - k8s.node
@@ -1046,6 +1266,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Number of desired replica pods in this deployment."
     entity_associations:
@@ -1061,6 +1285,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     entity_associations:
       - k8s.deployment
@@ -1078,6 +1306,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Number of desired replica pods in this replicaset."
     entity_associations:
@@ -1093,6 +1325,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     entity_associations:
       - k8s.replicaset
@@ -1110,6 +1346,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Number of desired replica pods in this replication controller."
     entity_associations:
@@ -1125,6 +1365,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     entity_associations:
       - k8s.replicationcontroller
@@ -1142,6 +1386,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Number of desired replica pods in this statefulset."
     entity_associations:
@@ -1157,6 +1405,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     entity_associations:
       - k8s.statefulset
@@ -1172,6 +1424,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     entity_associations:
       - k8s.statefulset
@@ -1187,6 +1443,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     entity_associations:
       - k8s.statefulset
@@ -1202,6 +1462,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     entity_associations:
       - k8s.statefulset
@@ -1219,6 +1483,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Configuration
+        type: Scaling Event
+        action: Collect
     stability: development
     brief: "Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler."
     note: |
@@ -1234,6 +1502,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Configuration
+        type: Scaling Event
+        action: Collect
     stability: development
     brief: "Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler."
     note: |
@@ -1249,6 +1521,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Configuration
+        type: Scaling Event
+        action: Collect
     stability: development
     brief: "The upper limit for the number of replica pods to which the autoscaler can scale up."
     note: |
@@ -1264,6 +1540,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Configuration
+        type: Scaling Event
+        action: Collect
     stability: development
     brief: "The lower limit for the number of replica pods to which the autoscaler can scale down."
     note: |
@@ -1275,6 +1555,11 @@ groups:
     unit: "{pod}"
   - id: metric.k8s.hpa.metric.target.cpu.value
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Configuration
+        type: Scaling Event
+        action: Collect
     metric_name: k8s.hpa.metric.target.cpu.value
     stability: development
     brief: "Target value for CPU resource in HPA config."
@@ -1295,6 +1580,11 @@ groups:
       - k8s.namespace
   - id: metric.k8s.hpa.metric.target.cpu.average_value
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Configuration
+        type: Scaling Event
+        action: Collect
     metric_name: k8s.hpa.metric.target.cpu.average_value
     stability: development
     brief: "Target average value for CPU resource in HPA config."
@@ -1315,6 +1605,11 @@ groups:
       - k8s.namespace
   - id: metric.k8s.hpa.metric.target.cpu.average_utilization
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Configuration
+        type: Scaling Event
+        action: Collect
     metric_name: k8s.hpa.metric.target.cpu.average_utilization
     stability: development
     brief: "Target average utilization, in percentage, for CPU resource in HPA config."
@@ -1341,6 +1636,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod."
     note: |
@@ -1356,6 +1655,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Number of nodes that should be running the daemon pod (including nodes currently running the daemon pod)."
     note: |
@@ -1371,6 +1674,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Number of nodes that are running the daemon pod, but are not supposed to run the daemon pod."
     note: |
@@ -1386,6 +1693,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready."
     note: |
@@ -1403,6 +1714,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The number of pending and actively running pods for a job."
     instrument: updowncounter
@@ -1418,6 +1733,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The number of pods which reached phase Failed for a job."
     instrument: updowncounter
@@ -1433,6 +1752,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The number of pods which reached phase Succeeded for a job."
     instrument: updowncounter
@@ -1448,6 +1771,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The desired number of successfully finished pods the job should be run with."
     instrument: updowncounter
@@ -1463,6 +1790,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The max desired number of pods the job should run at any given time."
     instrument: updowncounter
@@ -1480,6 +1811,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The number of actively running jobs for a cronjob."
     instrument: updowncounter
@@ -1497,6 +1832,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Describes number of K8s namespaces that are currently in a given phase."
     instrument: updowncounter
@@ -1514,6 +1853,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Maximum CPU resource limit as defined by the container spec."
     entity_associations:
@@ -1532,6 +1875,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Maximum CPU resource limit currently configured for a running container."
     entity_associations:
@@ -1550,6 +1897,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The ratio of container CPU usage to its current CPU limit."
     entity_associations:
@@ -1567,6 +1918,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "CPU resource requested as defined by the container spec."
     entity_associations:
@@ -1585,6 +1940,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "CPU resource requested currently configured for a running container."
     entity_associations:
@@ -1603,6 +1962,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The ratio of container CPU usage to its current CPU request."
     entity_associations:
@@ -1621,6 +1984,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Maximum memory resource limit as defined by the container spec."
     entity_associations:
@@ -1639,6 +2006,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Maximum memory resource limit currently configured for a running container."
     entity_associations:
@@ -1657,6 +2028,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Memory resource requested as defined by the container spec."
     entity_associations:
@@ -1675,6 +2050,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Memory resource request currently configured for a running container."
     entity_associations:
@@ -1693,6 +2072,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Maximum storage resource limit set for the container."
     entity_associations:
@@ -1707,6 +2090,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Storage resource requested for the container."
     entity_associations:
@@ -1721,6 +2108,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Maximum ephemeral storage resource limit set for the container."
     entity_associations:
@@ -1735,6 +2126,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Ephemeral storage resource requested for the container."
     entity_associations:
@@ -1749,6 +2144,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "The ephemeral storage used by a container."
     entity_associations:
@@ -1766,6 +2165,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: "Describes how many times the container has restarted (since the last counter reset)."
     instrument: updowncounter
@@ -1784,6 +2187,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: >
       Indicates whether the container is currently marked as ready to accept traffic,
@@ -1803,6 +2210,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The CPU limits in a specific namespace.
@@ -1820,6 +2231,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The CPU limits in a specific namespace.
@@ -1837,6 +2252,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The CPU requests in a specific namespace.
@@ -1854,6 +2273,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The CPU requests in a specific namespace.
@@ -1873,6 +2296,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The memory limits in a specific namespace.
@@ -1890,6 +2317,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The memory limits in a specific namespace.
@@ -1907,6 +2338,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The memory requests in a specific namespace.
@@ -1924,6 +2359,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The memory requests in a specific namespace.
@@ -1943,6 +2382,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The huge page requests in a specific namespace.
@@ -1963,6 +2406,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The huge page requests in a specific namespace.
@@ -1985,6 +2432,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The storage requests in a specific namespace.
@@ -2011,6 +2462,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The storage requests in a specific namespace.
@@ -2039,6 +2494,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: |
       The total number of PersistentVolumeClaims that can exist in the namespace.
@@ -2065,6 +2524,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: |
       The total number of PersistentVolumeClaims that can exist in the namespace.
@@ -2093,6 +2556,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The sum of local ephemeral storage requests in the namespace.
@@ -2110,6 +2577,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The sum of local ephemeral storage requests in the namespace.
@@ -2127,6 +2598,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The sum of local ephemeral storage limits in the namespace.
@@ -2144,6 +2619,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The sum of local ephemeral storage limits in the namespace.
@@ -2163,6 +2642,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The object count limits in a specific namespace.
@@ -2183,6 +2666,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The object count limits in a specific namespace.
@@ -2205,6 +2692,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Connection Metrics
+        action: Collect
     stability: development
     brief: "Number of endpoints for a service by condition and address type."
     instrument: gauge
@@ -2244,6 +2735,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Network Performance
+        type: Load Balancer
+        action: Collect
     stability: development
     brief: "Number of load balancer ingress points (external IPs/hostnames) assigned to the service."
     instrument: gauge
@@ -2271,6 +2766,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: "Number of PersistentVolumes in a given phase."
     instrument: updowncounter
@@ -2292,6 +2791,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: "Number of PersistentVolumeClaims in a given phase."
     instrument: updowncounter
@@ -2312,6 +2815,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: "The storage capacity of the PersistentVolume."
     instrument: updowncounter
@@ -2328,6 +2835,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: "The storage requested by the PersistentVolumeClaim."
     instrument: updowncounter
@@ -2344,6 +2855,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     stability: development
     brief: "The actual storage capacity provisioned for the PersistentVolumeClaim."
     instrument: updowncounter

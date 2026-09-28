@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Garbage collection duration."
     instrument: histogram
     unit: "s"
@@ -21,6 +25,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Heap space available size."
     instrument: updowncounter
     unit: "By"
@@ -37,6 +45,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Committed size of a heap space."
     instrument: updowncounter
     unit: "By"
@@ -53,6 +65,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Total heap memory size pre-allocated for a heap space."
     instrument: updowncounter
     unit: "By"
@@ -70,6 +86,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Heap Memory size allocated."
     instrument: updowncounter
     unit: "By"
@@ -87,6 +107,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "Gauge of the active resources that are currently keeping the event loop alive."
     instrument: gauge
     unit: "{resource}"

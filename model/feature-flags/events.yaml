@@ -1,6 +1,11 @@
 groups:
   - id: event.feature_flag.evaluation
     type: event
+    annotations:
+      ocsf_bridge:
+        category: Configuration
+        type: Config Change
+        action: Collect
     name: feature_flag.evaluation
     stability: release_candidate
     brief: >

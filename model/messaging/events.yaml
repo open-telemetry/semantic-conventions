@@ -2,6 +2,11 @@
 file_format: definition/2
 events:
   - name: messaging.create.exception
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during a messaging create operation.
@@ -16,6 +21,11 @@ events:
       - ref_group: exception
 
   - name: messaging.send.exception
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during a messaging send operation.
@@ -30,6 +40,11 @@ events:
       - ref_group: exception
 
   - name: messaging.receive.exception
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during a messaging receive operation.
@@ -44,6 +59,11 @@ events:
       - ref_group: exception
 
   - name: messaging.settle.exception
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during a messaging settle operation.
@@ -58,6 +78,11 @@ events:
       - ref_group: exception
 
   - name: messaging.process.exception
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Message Queue
+        action: Alert
     stability: development
     brief: >
       This event represents an exception that occurred during messaging process operations.

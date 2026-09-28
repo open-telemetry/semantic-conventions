@@ -10,6 +10,10 @@ metrics:
         # TODO hw.temperature is used as a namespace by hw.temperature.limit
         policy_exceptions:
           - metric_namespace_collision
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Temperature in degrees Celsius."
     instrument: gauge
@@ -24,6 +28,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Host Metrics
+        action: Collect
     stability: development
     brief: "Temperature limit in degrees Celsius."
     instrument: gauge

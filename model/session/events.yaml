@@ -2,6 +2,11 @@
 file_format: definition/2
 events:
   - name: session.start
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Start
     stability: development
     brief: >
       Indicates that a new session has been started, optionally linking to the prior session.
@@ -28,6 +33,11 @@ events:
         brief: The previous `session.id` for this user.
 
   - name: session.end
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Stop
     stability: development
     brief: >
       Indicates that a session has ended.

@@ -1,6 +1,11 @@
 groups:
   - id: span.graphql.server
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: development
     span_kind: server
     brief: >

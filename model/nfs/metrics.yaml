@@ -2,6 +2,11 @@ groups:
   # metric.nfs.client.* metrics
   - id: metric.nfs.client.net.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.client.net.count
     stability: development
     brief: "Reports the count of kernel NFS client TCP segments and UDP datagrams handled."
@@ -16,6 +21,11 @@ groups:
 
   - id: metric.nfs.client.net.tcp.connection.accepted
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.client.net.tcp.connection.accepted
     stability: development
     brief: "Reports the count of kernel NFS client TCP connections accepted."
@@ -28,6 +38,11 @@ groups:
 
   - id: metric.nfs.client.rpc.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.client.rpc.count
     stability: development
     brief: "Reports the count of kernel NFS client RPCs sent, regardless of whether they're accepted/rejected by the server."
@@ -40,6 +55,11 @@ groups:
 
   - id: metric.nfs.client.rpc.retransmit.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.client.rpc.retransmit.count
     stability: development
     brief: "Reports the count of kernel NFS client RPC retransmits."
@@ -52,6 +72,11 @@ groups:
 
   - id: metric.nfs.client.rpc.authrefresh.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.client.rpc.authrefresh.count
     stability: development
     brief: "Reports the count of kernel NFS client RPC authentication refreshes."
@@ -64,6 +89,11 @@ groups:
 
   - id: metric.nfs.client.operation.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.client.operation.count
     stability: development
     brief: "Reports the count of kernel NFSv4+ client operations."
@@ -77,6 +107,11 @@ groups:
 
   - id: metric.nfs.client.procedure.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.client.procedure.count
     stability: development
     brief: "Reports the count of kernel NFS client procedures."
@@ -91,6 +126,11 @@ groups:
   # metric.nfs.server.* metrics
   - id: metric.nfs.server.repcache.requests
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.server.repcache.requests
     stability: development
     brief: "Reports the kernel NFS server reply cache request count by cache hit status."
@@ -103,6 +143,11 @@ groups:
 
   - id: metric.nfs.server.fh.stale.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.server.fh.stale.count
     stability: development
     brief: "Reports the count of kernel NFS server stale file handles."
@@ -115,6 +160,11 @@ groups:
 
   - id: metric.nfs.server.io
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.server.io
     stability: development
     brief: "Reports the count of kernel NFS server bytes returned to receive and transmit (read and write) requests."
@@ -129,6 +179,11 @@ groups:
 
   - id: metric.nfs.server.thread.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.server.thread.count
     stability: development
     brief: "Reports the count of kernel NFS server available threads."
@@ -141,6 +196,11 @@ groups:
 
   - id: metric.nfs.server.net.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.server.net.count
     stability: development
     brief: "Reports the count of kernel NFS server TCP segments and UDP datagrams handled."
@@ -155,6 +215,11 @@ groups:
 
   - id: metric.nfs.server.net.tcp.connection.accepted
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.server.net.tcp.connection.accepted
     stability: development
     brief: "Reports the count of kernel NFS server TCP connections accepted."
@@ -167,6 +232,11 @@ groups:
 
   - id: metric.nfs.server.rpc.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.server.rpc.count
     stability: development
     brief: "Reports the count of kernel NFS server RPCs handled."
@@ -182,6 +252,11 @@ groups:
 
   - id: metric.nfs.server.operation.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.server.operation.count
     stability: development
     brief: "Reports the count of kernel NFSv4+ server operations."
@@ -195,6 +270,11 @@ groups:
 
   - id: metric.nfs.server.procedure.count
     type: metric
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Filesystem Activity
+        action: Collect
     metric_name: nfs.server.procedure.count
     stability: development
     brief: "Reports the count of kernel NFS server procedures."

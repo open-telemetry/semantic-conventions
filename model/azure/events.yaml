@@ -2,6 +2,11 @@
 file_format: definition/2
 events:
   - name: azure.resource.log
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: Application Activity
+        action: Collect
     stability: development
     brief: >
       Describes Azure Resource Log event, see

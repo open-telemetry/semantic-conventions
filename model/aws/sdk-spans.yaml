@@ -1,6 +1,11 @@
 groups:
   - id: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: API Activity
+        action: Other
     stability: development
     span_kind: client
     brief: >
@@ -58,6 +63,11 @@ groups:
     extends: span.aws.client
     stability: development
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
@@ -72,6 +82,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Update
     stability: development
     span_kind: client
     attributes:
@@ -89,6 +104,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Create
     stability: development
     span_kind: client
     attributes:
@@ -117,6 +137,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Delete
     stability: development
     span_kind: client
     attributes:
@@ -137,6 +162,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Delete
     stability: development
     span_kind: client
     attributes:
@@ -153,6 +183,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     span_kind: client
     attributes:
@@ -169,6 +204,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     span_kind: client
     attributes:
@@ -191,6 +231,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     span_kind: client
     attributes:
@@ -208,6 +253,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Create
     stability: development
     span_kind: client
     attributes:
@@ -225,6 +275,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     span_kind: client
     attributes:
@@ -257,6 +312,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Collect
     stability: development
     span_kind: client
     attributes:
@@ -295,6 +355,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Update
     span_kind: client
     stability: development
     attributes:
@@ -315,6 +380,11 @@ groups:
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Update
     stability: development
     span_kind: client
     attributes:
@@ -337,6 +407,11 @@ groups:
   - id: span.aws.s3.client
     extends: span.aws.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Object Storage
+        action: Other
     stability: development
     span_kind: client
     brief: >

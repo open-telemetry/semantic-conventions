@@ -6,6 +6,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The enforced hard limit of the resource across all projects.
@@ -24,6 +28,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The current observed total usage of the resource across all projects.
@@ -42,6 +50,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The enforced hard limit of the resource across all projects.
@@ -60,6 +72,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The current observed total usage of the resource across all projects.
@@ -80,6 +96,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The enforced hard limit of the resource across all projects.
@@ -98,6 +118,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The current observed total usage of the resource across all projects.
@@ -116,6 +140,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The enforced hard limit of the resource across all projects.
@@ -134,6 +162,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The current observed total usage of the resource across all projects.
@@ -154,6 +186,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The enforced hard limit of the resource across all projects.
@@ -175,6 +211,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The current observed total usage of the resource across all projects.
@@ -198,6 +238,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The enforced hard limit of the resource across all projects.
@@ -225,6 +269,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The current observed total usage of the resource across all projects.
@@ -254,6 +302,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The enforced hard limit of the resource across all projects.
@@ -279,6 +331,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The current observed total usage of the resource across all projects.
@@ -306,6 +362,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The enforced hard limit of the resource across all projects.
@@ -324,6 +384,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The current observed total usage of the resource across all projects.
@@ -342,6 +406,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The enforced hard limit of the resource across all projects.
@@ -360,6 +428,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The current observed total usage of the resource across all projects.
@@ -380,6 +452,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The enforced hard limit of the resource across all projects.
@@ -401,6 +477,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Container Activity
+        action: Collect
     stability: development
     brief: |
       The current observed total usage of the resource across all projects.

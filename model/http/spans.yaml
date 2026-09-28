@@ -1,6 +1,11 @@
 groups:
   - id: span.http.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: HTTP Activity
+        action: Other
     extends: attributes.http.client
     span_kind: client
     stability: stable
@@ -71,6 +76,11 @@ groups:
 
   - id: span.http.server
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Application
+        type: HTTP Activity
+        action: Other
     extends: attributes.http.server
     span_kind: server
     brief: >

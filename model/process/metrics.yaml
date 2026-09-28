@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "Total CPU seconds broken down by different CPU modes."
     instrument: counter
@@ -27,6 +31,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief:
       Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs
@@ -51,6 +59,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "The amount of physical memory in use."
     instrument: updowncounter
@@ -65,6 +77,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "The amount of committed virtual memory."
     instrument: updowncounter
@@ -79,6 +95,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "Disk bytes transferred."
     instrument: counter
@@ -95,6 +115,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     brief: "Number of disk operations performed by the process."
     instrument: counter
@@ -111,6 +135,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     brief: "Percentage of total physical memory that is used by the process."
     instrument: gauge
@@ -124,6 +152,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: development
     brief: "Number of pending signals for the process."
     instrument: updowncounter
@@ -137,6 +169,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "Network bytes transferred."
     instrument: counter
@@ -153,6 +189,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "Process threads count."
     instrument: updowncounter
@@ -166,6 +206,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "Number of UNIX file descriptors in use by the process."
     instrument: updowncounter
@@ -179,6 +223,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "Number of handles held by the process."
     instrument: updowncounter
@@ -192,6 +240,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "Number of times the process has been context switched."
     instrument: counter
@@ -208,6 +260,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "Number of page faults the process has made."
     instrument: counter
@@ -228,6 +284,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     stability: release_candidate
     brief: "The time the process has been running."
     note: |

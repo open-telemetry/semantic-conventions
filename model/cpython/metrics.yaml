@@ -5,6 +5,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "The number of times a generation was collected since interpreter start."
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
@@ -21,6 +25,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "The total number of objects collected inside a generation since interpreter start."
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
@@ -37,6 +45,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Compute
+        type: Process Metrics
+        action: Collect
     brief: "The total number of objects which were found to be uncollectable inside a generation since interpreter start."
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).

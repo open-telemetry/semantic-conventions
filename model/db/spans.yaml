@@ -114,6 +114,11 @@ groups:
 
   - id: span.db.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     stability: stable
     brief: This span describes database client call.
     note: |
@@ -152,6 +157,11 @@ groups:
 
   - id: span.db.sql_server.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     stability: stable
     extends: span.db.sql.client
     span_kind: client
@@ -192,6 +202,11 @@ groups:
 
   - id: span.db.postgresql.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     stability: stable
     extends: span.db.sql.client
     span_kind: client
@@ -232,6 +247,11 @@ groups:
         examples: ["08000", "08P01"]
   - id: span.db.mysql.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     stability: stable
     extends: span.db.sql.client
     span_kind: client
@@ -264,6 +284,11 @@ groups:
 
   - id: span.db.mariadb.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     stability: stable
     extends: span.db.sql.client
     span_kind: client
@@ -304,6 +329,11 @@ groups:
         examples: ["1008", "3058"]
   - id: span.db.cassandra.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     span_kind: client
     stability: development
     extends: trace.db.common.query_and_collection
@@ -352,6 +382,11 @@ groups:
         examples: ["102", "40020"]
   - id: span.db.hbase.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     span_kind: client
     stability: development
     extends: trace.db.common.minimal
@@ -395,6 +430,11 @@ groups:
           conditionally_required: If response was received.
   - id: span.db.couchdb.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     span_kind: client
     stability: development
     extends: trace.db.common.minimal
@@ -434,6 +474,11 @@ groups:
 
   - id: span.db.redis.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Cache Activity
+        action: Other
     stability: development
     span_kind: client
     extends: trace.db.common.minimal
@@ -520,6 +565,11 @@ groups:
 
   - id: span.db.mongodb.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     stability: development
     span_kind: client
     extends: trace.db.common.minimal
@@ -565,6 +615,11 @@ groups:
 
   - id: span.db.elasticsearch.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     stability: development
     span_kind: client
     extends: trace.db.common.minimal
@@ -647,6 +702,11 @@ groups:
           conditionally_required: If response was received.
   - id: span.db.sql.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     span_kind: client
     stability: stable
     extends: trace.db.common.query
@@ -769,6 +829,11 @@ groups:
 
   - id: span.azure.cosmosdb.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     stability: development
     span_kind: client
     extends: trace.db.common.minimal
@@ -985,6 +1050,11 @@ groups:
         requirement_level: opt_in
   - id: span.db.oracledb.client
     type: span
+    annotations:
+      ocsf_bridge:
+        category: Storage
+        type: Database Activity
+        action: Other
     stability: release_candidate
     extends: span.db.sql.client
     span_kind: client

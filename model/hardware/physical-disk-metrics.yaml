@@ -22,6 +22,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: double
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "Endurance remaining for this SSD disk."
     instrument: gauge
@@ -37,6 +41,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "Size of the disk."
     instrument: updowncounter
@@ -49,6 +57,10 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: int
+      ocsf_bridge:
+        category: Storage
+        type: Disk IO Metrics
+        action: Collect
     stability: development
     brief: "Value of the corresponding [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute."
     instrument: gauge
