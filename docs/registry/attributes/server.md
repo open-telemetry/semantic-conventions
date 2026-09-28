@@ -10,8 +10,11 @@
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="server-address" href="#server-address">`server.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| <a id="server-port" href="#server-port">`server.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Server port number. [2] | `80`; `8080`; `443` |
+| <a id="server-cidr" href="#server-cidr">`server.cidr`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CIDR block associated with the server IP address. [2] | `192.0.2.0/24`; `2001:db8::/32` |
+| <a id="server-port" href="#server-port">`server.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Server port number. [3] | `80`; `8080`; `443` |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[2] `server.cidr`:** The value MUST use CIDR notation and the address portion MUST be the canonical network address for the prefix, with all host bits set to zero. This attribute MAY be set whether or not `server.address` is set. If `server.address` is also set to an IP address, the IP address MUST be contained in this CIDR block.
+
+**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.

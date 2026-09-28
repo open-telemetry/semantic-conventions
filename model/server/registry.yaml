@@ -9,6 +9,16 @@ attributes:
       When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
       the server address behind any intermediaries, for example proxies, if it's available.
     examples: ['example.com', '10.1.2.80', '/tmp/my.sock']
+  - key: server.cidr
+    stability: development
+    type: string
+    brief: "The CIDR block associated with the server IP address."
+    note: >
+      The value MUST use CIDR notation and the address portion MUST be the canonical
+      network address for the prefix, with all host bits set to zero. This attribute MAY
+      be set whether or not `server.address` is set. If `server.address` is also set to an
+      IP address, the IP address MUST be contained in this CIDR block.
+    examples: ['192.0.2.0/24', '2001:db8::/32']
   - key: server.port
     stability: stable
     type: int

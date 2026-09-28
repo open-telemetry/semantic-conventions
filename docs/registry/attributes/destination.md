@@ -10,6 +10,9 @@
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="destination-address" href="#destination-address">`destination.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="destination-cidr" href="#destination-cidr">`destination.cidr`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CIDR block associated with the destination IP address. [2] | `192.0.2.0/24`; `2001:db8::/32` |
 | <a id="destination-port" href="#destination-port">`destination.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Destination port number | `3389`; `2888` |
 
 **[1] `destination.address`:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
+
+**[2] `destination.cidr`:** The value MUST use CIDR notation and the address portion MUST be the canonical network address for the prefix, with all host bits set to zero. This attribute MAY be set whether or not `destination.address` is set. If `destination.address` is also set to an IP address, the IP address MUST be contained in this CIDR block.

@@ -142,6 +142,16 @@ groups:
         type: string
         brief: Local address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
+      - id: network.local.cidr
+        stability: development
+        type: string
+        brief: "The CIDR block associated with the local IP address."
+        note: >
+          The value MUST use CIDR notation and the address portion MUST be the canonical
+          network address for the prefix, with all host bits set to zero. This attribute MAY
+          be set whether or not `network.local.address` is set. If `network.local.address` is
+          also set to an IP address, the IP address MUST be contained in this CIDR block.
+        examples: ['192.0.2.0/24', '2001:db8::/32']
       - id: network.local.port
         stability: stable
         type: int
@@ -152,6 +162,16 @@ groups:
         type: string
         brief: Peer address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
+      - id: network.peer.cidr
+        stability: development
+        type: string
+        brief: "The CIDR block associated with the peer IP address."
+        note: >
+          The value MUST use CIDR notation and the address portion MUST be the canonical
+          network address for the prefix, with all host bits set to zero. This attribute MAY
+          be set whether or not `network.peer.address` is set. If `network.peer.address` is
+          also set to an IP address, the IP address MUST be contained in this CIDR block.
+        examples: ['192.0.2.0/24', '2001:db8::/32']
       - id: network.peer.port
         stability: stable
         type: int
