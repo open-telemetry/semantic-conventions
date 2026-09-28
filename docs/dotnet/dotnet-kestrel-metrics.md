@@ -124,7 +124,7 @@ Otherwise it MAY emit the encapsulation type.
 | --- | --- | --- |
 | `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcoe` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -295,7 +295,7 @@ Otherwise it MAY emit the encapsulation type.
 | --- | --- | --- |
 | `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcoe` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -405,7 +405,7 @@ Otherwise it MAY emit the encapsulation type.
 | --- | --- | --- |
 | `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcoe` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -514,7 +514,7 @@ Otherwise it MAY emit the encapsulation type.
 | --- | --- | --- |
 | `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcoe` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -629,7 +629,7 @@ Otherwise it MAY emit the encapsulation type.
 | --- | --- | --- |
 | `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcoe` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -740,7 +740,7 @@ Otherwise it MAY emit the encapsulation type.
 | --- | --- | --- |
 | `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcoe` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -775,8 +775,8 @@ this metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `unix` [(see more)](#network-transport-values) |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [3] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [3] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [5] | `80`; `8080`; `443` |
 | [`tls.protocol.version`](/docs/registry/attributes/tls.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values) | `1.2`; `3` |
@@ -855,7 +855,7 @@ Otherwise it MAY emit the encapsulation type.
 | --- | --- | --- |
 | `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcoe` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -964,7 +964,7 @@ Otherwise it MAY emit the encapsulation type.
 | --- | --- | --- |
 | `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcoe` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |

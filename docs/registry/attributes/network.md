@@ -31,10 +31,10 @@ These attributes may be used for any network related operation.
 | <a id="network-peer-as-number" href="#network-peer-as-number">`network.peer.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address. [4] | `64496`; `15169` |
 | <a id="network-peer-as-organization" href="#network-peer-as-organization">`network.peer.as.organization`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the peer IP address. [5] | `Example Networks Inc.`; `Google LLC` |
 | <a id="network-peer-port" href="#network-peer-port">`network.peer.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Peer port number of the network connection. | `65123` |
-| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `amqp`; `http`; `mqtt` |
-| <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [3] | `1.1`; `2` |
-| <a id="network-transport" href="#network-transport">`network.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp`; `icmp` [(see more)](#network-transport-values) |
-| <a id="network-type" href="#network-type">`network.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [5] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
+| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [6] | `amqp`; `http`; `mqtt` |
+| <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [7] | `1.1`; `2` |
+| <a id="network-transport" href="#network-transport">`network.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer), [IANA protocol number](https://www.iana.org/assignments/protocol-numbers) keyword for IP packets, or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [8] | `tcp`; `udp`; `icmp` [(see more)](#network-transport-values) |
+| <a id="network-type" href="#network-type">`network.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [EtherType](https://wikipedia.org/wiki/EtherType) of the observed frame, or [OSI network layer](https://wikipedia.org/wiki/Network_layer) / non-OSI equivalent for non-Ethernet networks. [9] | `ipv4`; `ipv6`; `arp` [(see more)](#network-type-values) |
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
@@ -67,7 +67,7 @@ If the instrumentation unwraps IP-in-IP, GRE, or ESP, it SHOULD set
 `network.transport` to the inner protocol. Otherwise it MAY emit
 `ipv4`, `ipv6`, `gre`, or `esp`.
 
-**[5] `network.type`:** The value SHOULD be normalized to lowercase.
+**[9] `network.type`:** The value SHOULD be normalized to lowercase.
 
 Well-known values are IEEE 802 EtherTypes. See
 [IANA IEEE 802 Numbers](https://www.iana.org/assignments/ieee-802-numbers#ieee-802-numbers-1).
@@ -193,7 +193,7 @@ Otherwise it MAY emit the encapsulation type.
 | --- | --- | --- |
 | `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcoe` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
