@@ -91,6 +91,119 @@ groups:
       usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     unit: "{cpu}"
+  - id: metric.k8s.pod.cpu.limit.desired
+    type: metric
+    metric_name: k8s.pod.cpu.limit.desired
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Maximum CPU resource limit as defined by the Pod spec."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core)
+      (spec.resources). See
+      <https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/>
+      for more details on Pod level resources. Note that Kubernetes can default unset Pod level limits
+      based on the aggregated limits of the Pod's containers. Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/>.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.pod.cpu.limit.current
+    type: metric
+    metric_name: k8s.pod.cpu.limit.current
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Maximum CPU resource limit currently configured for a running Pod."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core)
+      (status.resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.pod.cpu.limit.utilization
+    type: metric
+    metric_name: k8s.pod.cpu.limit.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of Pod CPU usage to its current CPU limit."
+    entity_associations:
+      - k8s.pod
+    note: |
+      The current CPU limit reflects the actual resources applied at the Pod level, as reported by
+      [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+      The value range is [0.0,1.0]. A value of 1.0 means the Pod is using 100% of its actual CPU limit.
+      If the CPU limit is not set, this metric SHOULD NOT be emitted for that Pod.
+    instrument: gauge
+    unit: "1"
+  - id: metric.k8s.pod.cpu.request.desired
+    type: metric
+    metric_name: k8s.pod.cpu.request.desired
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "CPU resource requested as defined by the Pod spec."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core)
+      (spec.resources). See
+      <https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/>
+      for more details on Pod level resources. Note that Kubernetes can default unset Pod level requests
+      based on the aggregated requests of the Pod's containers. Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/>.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.pod.cpu.request.current
+    type: metric
+    metric_name: k8s.pod.cpu.request.current
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "CPU resource requested currently configured for a running Pod."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core)
+      (status.resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.pod.cpu.request.utilization
+    type: metric
+    metric_name: k8s.pod.cpu.request.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of Pod CPU usage to its current CPU request."
+    entity_associations:
+      - k8s.pod
+    note: |
+      The current CPU request reflects the request applied at the Pod level, as reported by
+      [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+      A value of 1.0 means the Pod is using exactly its CPU request. Since a CPU request is a scheduling
+      reservation and not a hard cap, values above 1.0 are possible and indicate the Pod is using more CPU
+      than requested. If the CPU request is not set, this metric SHOULD NOT be emitted for that Pod.
+    instrument: gauge
+    unit: "1"
 
   # k8s.pod.memory.* metrics
   - id: metric.k8s.pod.memory.usage
@@ -174,7 +287,7 @@ groups:
   - id: metric.k8s.pod.paging.faults
     type: metric
     metric_name: k8s.pod.paging.faults
-    stability: development
+    stability: release_candidate
     brief: "Pod memory paging faults."
     annotations:
       code_generation:
@@ -184,13 +297,18 @@ groups:
     attributes:
       - ref: system.paging.fault.type
     note: >
-      Cumulative number of major/minor page faults.
+      Cumulative number of major and minor page faults.
 
-      This metric is derived from the
-      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
-      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      The [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
       field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
-      of the Kubelet's stats API.
+      of the Kubelet's stats API maps directly to `system.paging.fault.type=major`.
+
+      The [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field reports the total number of page faults (equivalent to `pgfault` in the cgroup `memory.stat`),
+      with minor and major combined.
+      The minor page faults MUST therefore be derived as
+      `MemoryStats.PageFaults - MemoryStats.MajorPageFaults`,
+      so that summing the metric over `system.paging.fault.type` yields the total number of page faults.
     instrument: counter
     unit: "{fault}"
 
@@ -828,7 +946,7 @@ groups:
   - id: metric.k8s.node.paging.faults
     type: metric
     metric_name: k8s.node.paging.faults
-    stability: development
+    stability: release_candidate
     brief: "Node memory paging faults."
     annotations:
       code_generation:
@@ -838,13 +956,18 @@ groups:
     attributes:
       - ref: system.paging.fault.type
     note: >
-      Cumulative number of major/minor page faults.
+      Cumulative number of major and minor page faults.
 
-      This metric is derived from the
-      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
-      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
-      fields of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
-      of the Kubelet's stats API.
+      The [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API maps directly to `system.paging.fault.type=major`.
+
+      The [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field reports the total number of page faults (equivalent to `pgfault` in the cgroup `memory.stat`),
+      with minor and major combined.
+      The minor page faults MUST therefore be derived as
+      `MemoryStats.PageFaults - MemoryStats.MajorPageFaults`,
+      so that summing the metric over `system.paging.fault.type` yields the total number of page faults.
     instrument: counter
     unit: "{fault}"
 
@@ -879,6 +1002,42 @@ groups:
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
+
+  # k8s.node.pid.* metrics
+  - id: metric.k8s.node.pid.usage
+    type: metric
+    metric_name: k8s.node.pid.usage
+    stability: development
+    brief: "Total number of existing processes and threads on the node."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{thread}"
+    entity_associations:
+      - k8s.node
+    note: |
+      Derived from the Kubelet Summary API
+      ([RlimitStats.NumOfRunningProcesses](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#RlimitStats))
+      field of the [NodeStats.Rlimit](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats),
+      which reads the total count of scheduling entities (threads/processes across all states) from `/proc/loadavg`.
+  - id: metric.k8s.node.pid.limit
+    type: metric
+    metric_name: k8s.node.pid.limit
+    stability: development
+    brief: "Total number of processes/threads allowed by the operating system on the node."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{thread}"
+    entity_associations:
+      - k8s.node
+    note: |
+      Derived from the Kubelet Summary API
+      ([RlimitStats.MaxPID](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#RlimitStats))
+      field of the [NodeStats.Rlimit](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats),
+      representing the system-wide task limit (the lower of `kernel.pid_max` and `kernel.threads-max`).
 
   # k8s.deployment.* metrics
   - id: metric.k8s.deployment.pod.desired
@@ -1451,8 +1610,9 @@ groups:
     note: |
       The current CPU request reflects the request applied to the running container, as reported by
       [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
-      The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its actual CPU request.
-      If the CPU request is not set, this metric SHOULD NOT be emitted for that container.
+      A value of 1.0 means the container is using exactly its CPU request. Since a CPU request is a scheduling
+      reservation and not a hard cap, values above 1.0 are possible and indicate the container is using more CPU
+      than requested. If the CPU request is not set, this metric SHOULD NOT be emitted for that container.
     instrument: gauge
     unit: "1"
   - id: metric.k8s.container.memory.limit.desired
