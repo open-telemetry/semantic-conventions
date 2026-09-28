@@ -15,6 +15,6 @@
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `server.cidr`:** The value MUST use CIDR notation and the address portion MUST be the canonical network address for the prefix, with all host bits set to zero. This attribute MAY be set whether or not `server.address` is set. If `server.address` is also set to an IP address, the IP address MUST be contained in this CIDR block.
+**[2] `server.cidr`:** The value MUST be an IPv4 or IPv6 address prefix in CIDR notation. IPv4 prefixes MUST use dotted-decimal address notation and a prefix length from 0 to 32, as defined in [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html). IPv6 prefixes MUST use a prefix length from 0 to 128, and the address MUST use the canonical text representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The address portion MUST be the canonical network address for the prefix, with all host bits set to zero. This attribute MUST NOT contain a domain name or UNIX domain socket name. This attribute MAY be set whether or not `server.address` is set. If `server.address` is also set to an IP address, the IP address MUST be contained in this CIDR block.
 
 **[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.

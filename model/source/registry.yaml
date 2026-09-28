@@ -14,9 +14,14 @@ attributes:
     stability: development
     brief: "The CIDR block associated with the source IP address."
     note: >
-      The value MUST use CIDR notation and the address portion MUST be the canonical
-      network address for the prefix, with all host bits set to zero. This attribute MAY
-      be set whether or not `source.address` is set. If `source.address` is also set to an
+      The value MUST be an IPv4 or IPv6 address prefix in CIDR notation. IPv4 prefixes
+      MUST use dotted-decimal address notation and a prefix length from 0 to 32, as defined
+      in [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html). IPv6 prefixes MUST use a
+      prefix length from 0 to 128, and the address MUST use the canonical text representation
+      defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The address portion
+      MUST be the canonical network address for the prefix, with all host bits set to zero.
+      This attribute MUST NOT contain a domain name or UNIX domain socket name. This attribute
+      MAY be set whether or not `source.address` is set. If `source.address` is also set to an
       IP address, the IP address MUST be contained in this CIDR block.
     examples: ['192.0.2.0/24', '2001:db8::/32']
   - key: source.port
