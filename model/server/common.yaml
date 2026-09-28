@@ -15,6 +15,6 @@ attribute_groups:
       - ref: server.address
       - ref: server.as.number
         requirement_level: opt_in
-      - ref: server.as.organization.name
+      - ref: server.as.organization
         requirement_level: opt_in
       - ref: server.port

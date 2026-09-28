@@ -151,7 +151,7 @@ groups:
           the ASN is available from routing, enrichment, or lookup data. The value SHOULD
           be represented as an integer without the `AS` prefix.
         examples: [64496, 15169]
-      - id: network.local.as.organization.name
+      - id: network.local.as.organization
         stability: development
         type: string
         brief: "The name of the organization associated with the autonomous system of the local IP address."
@@ -179,7 +179,7 @@ groups:
           the ASN is available from routing, enrichment, or lookup data. The value SHOULD
           be represented as an integer without the `AS` prefix.
         examples: [64496, 15169]
-      - id: network.peer.as.organization.name
+      - id: network.peer.as.organization
         stability: development
         type: string
         brief: "The name of the organization associated with the autonomous system of the peer IP address."

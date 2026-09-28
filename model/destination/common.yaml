@@ -15,6 +15,6 @@ attribute_groups:
       - ref: destination.address
       - ref: destination.as.number
         requirement_level: opt_in
-      - ref: destination.as.organization.name
+      - ref: destination.as.organization
         requirement_level: opt_in
       - ref: destination.port

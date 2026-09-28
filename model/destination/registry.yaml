@@ -18,7 +18,7 @@ attributes:
       the ASN is available from routing, enrichment, or lookup data. The value SHOULD be
       represented as an integer without the `AS` prefix.
     examples: [64496, 15169]
-  - key: destination.as.organization.name
+  - key: destination.as.organization
     type: string
     stability: development
     brief: "The name of the organization associated with the autonomous system of the destination IP address."
