@@ -51,6 +51,7 @@ groups:
           recommended: If `network.peer.address` is set.
       - ref: network.transport
         requirement_level: opt_in
+        examples: ['tcp', 'udp']
         note: >
           Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
           Other obscure implementations are possible.
@@ -132,6 +133,7 @@ groups:
           recommended: If `network.peer.address` is set.
       - ref: network.transport
         requirement_level: opt_in
+        examples: ['tcp', 'udp']
         note: >
           Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
           Other obscure implementations are possible.

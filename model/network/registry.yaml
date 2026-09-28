@@ -315,8 +315,8 @@ groups:
               value: 'mvrp'
               brief: "Multiple VLAN Registration Protocol (MVRP). EtherType 0x88F5."
               stability: development
-            - id: fibre_channel
-              value: 'fibre_channel'
+            - id: fcoe
+              value: 'fcoe'
               brief: "Fibre Channel over Ethernet (FCoE). EtherType 0x8906."
               stability: development
             - id: roce

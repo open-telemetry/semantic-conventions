@@ -371,7 +371,7 @@ Otherwise it MAY emit the encapsulation type.
 | --- | --- | --- |
 | `arp` | Address Resolution Protocol (ARP). EtherType 0x0806. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ethernet` | Transparent Ethernet Bridging. EtherType 0x6558. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fibre_channel` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcoe` | Fibre Channel over Ethernet (FCoE). EtherType 0x8906. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ipv4` | IPv4 (EtherType 0x0800) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 (EtherType 0x86DD) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `loopback` | Loopback. EtherType 0x9000. | ![Development](https://img.shields.io/badge/-development-blue) |
