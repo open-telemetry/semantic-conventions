@@ -184,6 +184,14 @@ for naming guidance.
 >
 > OpenTelemetry instrumentations that use enum attributes SHOULD document their values before releasing **stable** artifacts and MAY support undocumented values in unstable artifacts or behind a feature flag.
 
+The `cloud.provider` and `cloud.platform` attributes are open enums: their
+values do not have to be listed here before an instrumentation can use them.
+If only one implementation uses a value, document it with that implementation
+(for example, a Collector resource detector). Before proposing it as a
+well-known value here, look for another independent implementation that uses
+the same value and link to both in the proposal. This helps reviewers assess
+whether the value is useful beyond one implementation.
+
 Only define new system identifiers when you also document how conventions apply
 to that system. For example, when adding a new `db.system.name` value, create
 documentation and span definitions that show how generic attributes work for that
