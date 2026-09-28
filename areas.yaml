@@ -213,8 +213,8 @@ areas:
 
   - name: "Semantic Conventions: Mainframe"
     owner:
-      - name: "sig-mainframe-approvers"
-        github: sig-mainframe-approvers
+      - name: "semconv-mainframe-approvers"
+        github: semconv-mainframe-approvers
     project: "https://github.com/open-telemetry/community/blob/main/projects/mainframe.md"
     board: "N/A"
     labels:

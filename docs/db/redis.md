@@ -43,7 +43,7 @@ looking confusing.
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If operation applies to a specific Lua script. | string | The name or sha1 digest of a Lua script in the database. [10] | `GetCustomer` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the database node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 For [transactions and pipelined calls](https://redis.io/docs/latest/develop/clients/redis-py/transpipe/), if the individual operations are known to have the same command then that command SHOULD be used prepended by `MULTI ` or `PIPELINE `. Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
@@ -64,9 +64,9 @@ Instrumentation SHOULD document if `db.namespace` reflects the database index pr
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[6] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[6] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[7] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[8] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
 or more database operations explicitly submitted as separate operations in a single
@@ -99,7 +99,15 @@ The value provided for `db.query.text` SHOULD correspond to the syntax of the Re
 
 **[11] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[12] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
+examples.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
