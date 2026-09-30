@@ -29,7 +29,7 @@ This can be used to determine the impact a feature has on a request, enabling en
 Feature flag evaluations SHOULD be recorded as attributes on the [Event](https://opentelemetry.io/docs/specs/otel/logs/data-model/#events) passed to the [Logger](https://opentelemetry.io/docs/specs/otel/logs/api/#logger) emit operations.
 
 > [!NOTE]
-> Events are in-development and not yet available in some languages. Check the [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.60.0/spec-compliance-matrix.md#logs) to see the implementation status in the corresponding language.
+> Events are in-development and not yet available in some languages. Check the [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.61.0/spec-compliance-matrix.md#logs) to see the implementation status in the corresponding language.
 
 ## Evaluation event
 
@@ -59,7 +59,7 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 | [`feature_flag.context.id`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` |
 | [`feature_flag.error.message`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` [7] | string | A message providing more detail about an error that occurred during feature flag evaluation in human-readable form. [8] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
 | [`feature_flag.provider.name`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | Identifies the feature flag provider. | `Flag Manager` |
-| [`feature_flag.result.reason`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` |
+| [`feature_flag.result.reason`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` [(see more)](#feature-flag-result-reason-values) |
 | [`feature_flag.set.id`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` |
 | [`feature_flag.version`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` |
 
@@ -98,6 +98,8 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 **[8] `feature_flag.error.message`:** Should not simply duplicate the value of `error.type`, but should provide more context. For example, if `error.type` is `invalid_context` the `feature_flag.error.message` may enumerate which context keys are missing or invalid.
 
 ---
+
+<a id="feature-flag-result-reason-values"></a>
 
 `feature_flag.result.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

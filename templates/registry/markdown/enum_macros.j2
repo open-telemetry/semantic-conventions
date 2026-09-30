@@ -5,6 +5,8 @@
 {% macro table(enum, notes) %}
 ---
 
+<a id="{{ enum.name | kebab_case }}-values"></a>
+
 `{{enum.name}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -18,6 +20,8 @@
 {%- if is_fallback_only(enum, enum.type.members) == "False" -%}{{ table(enum, notes) -}}{%- endif -%}
 {% endfor %}{% endmacro %}
 {% macro field_table(enum, notes) %}{% if is_fallback_only(enum, enum.members) == "False" %}
+<a id="{{ enum.id | kebab_case }}-values"></a>
+
 `{{enum.id}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |

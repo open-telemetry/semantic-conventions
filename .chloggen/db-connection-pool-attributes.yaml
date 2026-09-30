@@ -1,0 +1,11 @@
+change_type: enhancement
+
+component: db
+
+note: >
+  Add `db.system.name`, `db.namespace`, `server.address`, and `server.port` attributes
+  to database client connection pool metrics.
+
+issues: [4097]
+
+subtext:
