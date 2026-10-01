@@ -284,6 +284,123 @@ groups:
       of the Kubelet's stats API.
     instrument: updowncounter
     unit: "By"
+  - id: metric.k8s.pod.memory.limit.desired
+    type: metric
+    metric_name: k8s.pod.memory.limit.desired
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Maximum memory resource limit as defined by the Pod spec."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core)
+      (spec.resources). See
+      <https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/>
+      for more details on Pod level resources. Note that Kubernetes can default unset Pod level limits
+      based on the aggregated limits of the Pod's containers. Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/>.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.pod.memory.limit.current
+    type: metric
+    metric_name: k8s.pod.memory.limit.current
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Maximum memory resource limit currently configured for a running Pod."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core)
+      (status.resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.pod.memory.limit.utilization
+    type: metric
+    metric_name: k8s.pod.memory.limit.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of Pod memory working set to its current memory limit."
+    entity_associations:
+      - k8s.pod
+    note: |
+      The numerator is the Pod memory working set, as reported by `k8s.pod.memory.working_set`, since the
+      working set excludes reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions. The current memory limit
+      reflects the actual resources applied at the Pod level, as reported by
+      [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+      The value range is [0.0,1.0]. A value of 1.0 means the Pod is using 100% of its actual memory limit.
+      If the memory limit is not set, this metric SHOULD NOT be emitted for that Pod.
+    instrument: gauge
+    unit: "1"
+  - id: metric.k8s.pod.memory.request.desired
+    type: metric
+    metric_name: k8s.pod.memory.request.desired
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory resource requested as defined by the Pod spec."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core)
+      (spec.resources). See
+      <https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/>
+      for more details on Pod level resources. Note that Kubernetes can default unset Pod level requests
+      based on the aggregated requests of the Pod's containers. Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/>.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.pod.memory.request.current
+    type: metric
+    metric_name: k8s.pod.memory.request.current
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory resource request currently configured for a running Pod."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core)
+      (status.resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.pod.memory.request.utilization
+    type: metric
+    metric_name: k8s.pod.memory.request.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of Pod memory working set to its current memory request."
+    entity_associations:
+      - k8s.pod
+    note: |
+      The numerator is the Pod memory working set, as reported by `k8s.pod.memory.working_set`, since the
+      working set excludes reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions. The current memory request
+      reflects the request applied at the Pod level, as reported by
+      [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+      A value of 1.0 means the Pod is using exactly its memory request. Since a memory request is a
+      scheduling reservation and not a hard cap, values above 1.0 are possible and indicate the Pod is using
+      more memory than requested. If the memory request is not set, this metric SHOULD NOT be emitted for that Pod.
+    instrument: gauge
+    unit: "1"
   - id: metric.k8s.pod.paging.faults
     type: metric
     metric_name: k8s.pod.paging.faults
@@ -1651,6 +1768,25 @@ groups:
       <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "By"
+  - id: metric.k8s.container.memory.limit.utilization
+    type: metric
+    metric_name: k8s.container.memory.limit.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of container memory working set to its current memory limit."
+    entity_associations:
+      - k8s.container
+    note: |
+      The numerator is the container memory working set, as reported by `container.memory.working_set`, since
+      the working set excludes reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions. The current memory limit
+      reflects the actual resources applied to the container, as reported by
+      [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
+      The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its actual memory limit.
+      If the memory limit is not set, this metric SHOULD NOT be emitted for that container.
+    instrument: gauge
+    unit: "1"
   - id: metric.k8s.container.memory.request.desired
     type: metric
     metric_name: k8s.container.memory.request.desired
@@ -1687,6 +1823,27 @@ groups:
       <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "By"
+  - id: metric.k8s.container.memory.request.utilization
+    type: metric
+    metric_name: k8s.container.memory.request.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of container memory working set to its current memory request."
+    entity_associations:
+      - k8s.container
+    note: |
+      The numerator is the container memory working set, as reported by `container.memory.working_set`, since
+      the working set excludes reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions. The current memory request
+      reflects the request applied to the running container, as reported by
+      [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
+      A value of 1.0 means the container is using exactly its memory request. Since a memory request is a
+      scheduling reservation and not a hard cap, values above 1.0 are possible and indicate the container is
+      using more memory than requested. If the memory request is not set, this metric SHOULD NOT be emitted for
+      that container.
+    instrument: gauge
+    unit: "1"
   - id: metric.k8s.container.storage.limit
     type: metric
     metric_name: k8s.container.storage.limit
