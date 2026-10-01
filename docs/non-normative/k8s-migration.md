@@ -65,6 +65,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Filesystem metrics](#k8s-filesystem-metrics)
   - [K8s Pod Volume metrics](#k8s-pod-volume-metrics)
   - [K8s Pod CPU metrics](#k8s-pod-cpu-metrics)
+  - [K8s Pod memory limit and request metrics](#k8s-pod-memory-limit-and-request-metrics)
   - [K8s Pod Memory metrics](#k8s-pod-memory-metrics)
   - [Container memory metrics](#container-memory-metrics)
   - [K8s Node memory metrics](#k8s-node-memory-metrics)
@@ -333,6 +334,7 @@ available)
 - [#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558) (CPU and memory resize: desired/current split)
 - [#3559](https://github.com/open-telemetry/semantic-conventions/pull/3559) (CPU metrics)
 - [#3646](https://github.com/open-telemetry/semantic-conventions/pull/3646) (Memory metrics)
+- [#4133](https://github.com/open-telemetry/semantic-conventions/issues/4133) (Memory utilization metrics)
 
 The changes in their metrics are the following:
 
@@ -352,10 +354,19 @@ The changes in their metrics are the following:
 | `k8s.container.ready` (type: `gauge`) | `k8s.container.ready` (type: `updowncounter`) |
 | `k8s.container.cpu_limit_utilization` (type: `gauge`) | `k8s.container.cpu.limit.utilization` (type: `gauge`) |
 | `k8s.container.cpu_request_utilization` (type: `gauge`) | `k8s.container.cpu.request.utilization` (type: `gauge`) |
+| `k8s.container.memory_limit_utilization` (type: `gauge`) | `k8s.container.memory.limit.utilization` (type: `gauge`) |
+| `k8s.container.memory_request_utilization` (type: `gauge`) | `k8s.container.memory.request.utilization` (type: `gauge`) |
 
 <!-- prettier-ignore-end -->
 
 **Note:** For CPU and memory limit and request, SemConv splits each into `desired` (from spec) and `current` (from container status) to support [K8s container resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
+
+**Note:** The Collector's [kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kubeletstatsreceiver/documentation.md)
+receiver computes the container memory utilization ratios from memory usage, which includes reclaimable page
+cache and can make a container appear close to its limit when it is not under memory pressure (see
+[opentelemetry-collector-contrib#40444](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/40444)).
+SemConv instead uses the container memory working set (`container.memory.working_set`) as the numerator, since the
+working set excludes reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions.
 
 ### K8s ResourceQuota metrics
 
@@ -485,6 +496,40 @@ Pod level value, as reported by
 
 **Note:** SemConv additionally defines `k8s.pod.cpu.limit.desired`, `k8s.pod.cpu.limit.current`,
 `k8s.pod.cpu.request.desired` and `k8s.pod.cpu.request.current`, which have no Collector equivalent today.
+As for containers, limit and request are split into `desired` (from `spec.resources`) and `current` (from
+`status.resources`) to support
+[Pod level resources](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/)
+and [Pod level resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
+
+### K8s Pod memory limit and request metrics
+
+The K8s Pod memory utilization metrics implemented by the Collector and specifically the
+[kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kubeletstatsreceiver/documentation.md)
+receiver were introduced as semantic conventions in:
+
+- [#4133](https://github.com/open-telemetry/semantic-conventions/issues/4133) (Pod level memory limit and request metrics)
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New (SemConv) |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `k8s.pod.memory_limit_utilization` (type: `gauge`) | `k8s.pod.memory.limit.utilization` (type: `gauge`) |
+| `k8s.pod.memory_request_utilization` (type: `gauge`) | `k8s.pod.memory.request.utilization` (type: `gauge`) |
+
+<!-- prettier-ignore-end -->
+
+**Note:** The Collector computes these ratios from the Pod's memory usage against the sum of the Pod's
+container limits/requests, and does not emit the metric if any container is missing one. SemConv instead
+uses the Pod memory working set (`k8s.pod.memory.working_set`) as the numerator, since the working set excludes
+reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions (see
+[opentelemetry-collector-contrib#40444](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/40444)),
+and defines the denominator as the Pod level value, as reported by
+[PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+
+**Note:** SemConv additionally defines `k8s.pod.memory.limit.desired`, `k8s.pod.memory.limit.current`,
+`k8s.pod.memory.request.desired` and `k8s.pod.memory.request.current`, which have no Collector equivalent today.
 As for containers, limit and request are split into `desired` (from `spec.resources`) and `current` (from
 `status.resources`) to support
 [Pod level resources](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/)
