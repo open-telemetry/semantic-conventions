@@ -366,7 +366,7 @@ receiver computes the container memory utilization ratios from memory usage, whi
 cache and can make a container appear close to its limit when it is not under memory pressure (see
 [opentelemetry-collector-contrib#40444](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/40444)).
 SemConv instead uses the container memory working set (`container.memory.working_set`) as the numerator, since the
-working set excludes reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions.
+working set excludes reclaimable page cache and is used by the kubelet when evaluating memory pressure for eviction.
 
 ### K8s ResourceQuota metrics
 
@@ -523,7 +523,7 @@ The changes in their metrics are the following:
 **Note:** The Collector computes these ratios from the Pod's memory usage against the sum of the Pod's
 container limits/requests, and does not emit the metric if any container is missing one. SemConv instead
 uses the Pod memory working set (`k8s.pod.memory.working_set`) as the numerator, since the working set excludes
-reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions (see
+reclaimable page cache and is used by the kubelet when evaluating memory pressure for eviction (see
 [opentelemetry-collector-contrib#40444](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/40444)),
 and defines the denominator as the Pod level value, as reported by
 [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).

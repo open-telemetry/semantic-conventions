@@ -601,7 +601,7 @@ This metric is [opt-in][MetricOptIn].
 | `k8s.pod.memory.limit.utilization` | Gauge | `1` | The ratio of Pod memory working set to its current memory limit. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** The numerator is the Pod memory working set, as reported by `k8s.pod.memory.working_set`, since the
-working set excludes reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions. The current memory limit
+working set excludes reclaimable page cache and is used by the kubelet when evaluating memory pressure for eviction. The current memory limit
 reflects the actual resources applied at the Pod level, as reported by
 [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
 The value range is [0.0,1.0]. A value of 1.0 means the Pod is using 100% of its actual memory limit.
@@ -674,7 +674,7 @@ This metric is [opt-in][MetricOptIn].
 | `k8s.pod.memory.request.utilization` | Gauge | `1` | The ratio of Pod memory working set to its current memory request. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** The numerator is the Pod memory working set, as reported by `k8s.pod.memory.working_set`, since the
-working set excludes reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions. The current memory request
+working set excludes reclaimable page cache and is used by the kubelet when evaluating memory pressure for eviction. The current memory request
 reflects the request applied at the Pod level, as reported by
 [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
 A value of 1.0 means the Pod is using exactly its memory request. Since a memory request is a
@@ -2716,7 +2716,7 @@ This metric is [opt-in][MetricOptIn].
 | `k8s.container.memory.limit.utilization` | Gauge | `1` | The ratio of container memory working set to its current memory limit. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
 **[1]:** The numerator is the container memory working set, as reported by `container.memory.working_set`, since
-the working set excludes reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions. The current memory limit
+the working set excludes reclaimable page cache and is used by the kubelet when evaluating memory pressure for eviction. The current memory limit
 reflects the actual resources applied to the container, as reported by
 [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
 The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its actual memory limit.
@@ -2786,7 +2786,7 @@ This metric is [opt-in][MetricOptIn].
 | `k8s.container.memory.request.utilization` | Gauge | `1` | The ratio of container memory working set to its current memory request. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
 **[1]:** The numerator is the container memory working set, as reported by `container.memory.working_set`, since
-the working set excludes reclaimable page cache and is what the kubelet uses for memory pressure eviction decisions. The current memory request
+the working set excludes reclaimable page cache and is used by the kubelet when evaluating memory pressure for eviction. The current memory request
 reflects the request applied to the running container, as reported by
 [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
 A value of 1.0 means the container is using exactly its memory request. Since a memory request is a
