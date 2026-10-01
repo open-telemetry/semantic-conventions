@@ -166,8 +166,13 @@ all known CPU modes. Metrics like `system.cpu.time` depend on having all modes
 defined. Authors should document all known values upfront, though new values
 may be added later to support new operating systems or CPU architectures.
 
-**Open enums** like `error.type` allow conventions and instrumentations to define
-their own applicable values.
+**Open enums** like `error.type`, `cloud.provider`, and `cloud.platform`
+allow conventions and instrumentations to define their own applicable values
+without adding them to semantic conventions first. Values used by only one
+implementation can be documented with that implementation. When proposing a
+well-known value here, look for another independent implementation that uses
+the same value and link to both in the proposal. This helps reviewers assess
+whether the value is useful beyond one implementation.
 
 **System identifier enums** specify a system, project, provider, product, or protocol.
 For example, `db.system.name` contains database names like `mongodb` or `mysql`.
@@ -183,14 +188,6 @@ for naming guidance.
 > System identifier enums don't need to list every possible system, component, or technology.
 >
 > OpenTelemetry instrumentations that use enum attributes SHOULD document their values before releasing **stable** artifacts and MAY support undocumented values in unstable artifacts or behind a feature flag.
-
-The `cloud.provider` and `cloud.platform` attributes are open enums: their
-values do not have to be listed here before an instrumentation can use them.
-If only one implementation uses a value, document it with that implementation
-(for example, a Collector resource detector). Before proposing it as a
-well-known value here, look for another independent implementation that uses
-the same value and link to both in the proposal. This helps reviewers assess
-whether the value is useful beyond one implementation.
 
 Only define new system identifiers when you also document how conventions apply
 to that system. For example, when adding a new `db.system.name` value, create
