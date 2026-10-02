@@ -166,8 +166,13 @@ all known CPU modes. Metrics like `system.cpu.time` depend on having all modes
 defined. Authors should document all known values upfront, though new values
 may be added later to support new operating systems or CPU architectures.
 
-**Open enums** like `error.type` allow conventions and instrumentations to define
-their own applicable values.
+**Open enums** like `error.type`, `cloud.provider`, and `cloud.platform`
+allow conventions and instrumentations to define their own applicable values
+without adding them to semantic conventions first. Values used by only one
+implementation can be documented with that implementation. When proposing a
+well-known value here, look for another independent implementation that uses
+the same value and link to both in the proposal. This helps reviewers assess
+whether the value is useful beyond one implementation.
 
 **System identifier enums** specify a system, project, provider, product, or protocol.
 For example, `db.system.name` contains database names like `mongodb` or `mysql`.
