@@ -16,29 +16,65 @@ groups:
           `rpc.status_code` means in the context of that system and which values
           are considered to represent errors.
         examples: ["OK", "DEADLINE_EXCEEDED", "-32602"]
-      - id: rpc.request.metadata
+      - id: rpc.request.header
         type: template[string[]]
         stability: development
         brief: >
-          RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values.
+          RPC request headers or metadata, `<key>` being the normalized header name (lowercase),
+          the value being the header values.
         note: |
-          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-          Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+          Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+          Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-          For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-          `rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+          For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
+          the `rpc.request.header.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+
+          The attribute value MUST consist of either multiple header values as an array of
+          strings or a single-item array containing a possibly comma-concatenated string,
+          depending on the way the RPC library provides access to headers.
+
+          Values that the RPC system exposes as binary data, or that are otherwise not valid
+          UTF-8 strings, SHOULD be recorded base64-encoded.
         examples: [["1.2.3.4", "1.2.3.5"]]
-      - id: rpc.response.metadata
+      - id: rpc.response.header
         type: template[string[]]
         stability: development
         brief: >
-          RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values.
+          RPC response headers or metadata sent before the response payload, `<key>` being the
+          normalized header name (lowercase), the value being the header values.
         note: |
-          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-          Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+          Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+          Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-          For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-          the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+          For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
+          the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`
+
+          The attribute value MUST consist of either multiple header values as an array of
+          strings or a single-item array containing a possibly comma-concatenated string,
+          depending on the way the RPC library provides access to headers.
+
+          Values that the RPC system exposes as binary data, or that are otherwise not valid
+          UTF-8 strings, SHOULD be recorded base64-encoded.
+        examples: [["attribute_value"]]
+      - id: rpc.response.trailer
+        type: template[string[]]
+        stability: development
+        brief: >
+          RPC response trailers or metadata sent after the response payload, `<key>` being the
+          normalized trailer name (lowercase), the value being the trailer values.
+        note: |
+          Instrumentations SHOULD require an explicit configuration of which trailers are to be captured.
+          Including all response trailers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+          For example, a trailer `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
+          the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value"]`
+
+          The attribute value MUST consist of either multiple trailer values as an array of
+          strings or a single-item array containing a possibly comma-concatenated string,
+          depending on the way the RPC library provides access to trailers.
+
+          Values that the RPC system exposes as binary data, or that are otherwise not valid
+          UTF-8 strings, SHOULD be recorded base64-encoded.
         examples: [["attribute_value"]]
       - id: rpc.method
         type: string
