@@ -69,9 +69,7 @@ Describes System Memory attributes
 | --- | --- | --- | --- | --- |
 | <a id="system-memory-linux-hugepages-state" href="#system-memory-linux-hugepages-state">`system.memory.linux.hugepages.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Linux HugePages memory state | `free`; `used` [(see more)](#system-memory-linux-hugepages-state-values) |
 | <a id="system-memory-linux-slab-state" href="#system-memory-linux-slab-state">`system.memory.linux.slab.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` [(see more)](#system-memory-linux-slab-state-values) |
-| <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory state [1] | `used`; `available` [(see more)](#system-memory-state-values) |
-
-**[1] `system.memory.state`:** The sum of the `used` and `available` states SHOULD be equal to the total memory reported by the `system.memory.limit` metric.
+| <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
 
 ---
 
@@ -103,12 +101,12 @@ Describes System Memory attributes
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | An estimate of how much memory is available for starting new applications, without causing swapping. [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Actual used virtual memory in bytes. [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[2]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemAvailable" from /proc/meminfo.
+**[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemAvailable" from /proc/meminfo.
 
-**[3]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
+**[2]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
 ## System Paging Attributes
 

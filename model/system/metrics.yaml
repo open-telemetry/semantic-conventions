@@ -106,7 +106,9 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Reports memory in use by state."
+    brief: "Reports memory by state."
+    note: |
+      The sum of the `used` and `available` state values SHOULD be equal to `system.memory.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
@@ -135,7 +137,9 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Percentage of memory bytes in use.
+    brief: Fraction of memory bytes by state.
+    note: |
+      The sum of the `used` and `available` state values SHOULD be equal to 1.
     instrument: gauge
     unit: "1"
     attributes:

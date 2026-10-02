@@ -66,9 +66,6 @@ groups:
                 note: "Removed, report memory usage with the `used` and `available` states instead."
         stability: development
         brief: "The memory state"
-        note: >
-          The sum of the `used` and `available` states SHOULD be equal to the total
-          memory reported by the `system.memory.limit` metric.
         examples: ["used", "available"]
       - id: system.memory.linux.slab.state
         type:
