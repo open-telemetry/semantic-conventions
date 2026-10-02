@@ -35,6 +35,7 @@ Semantic Conventions are defined for the following areas:
 * [GraphQL](graphql/README.md): Semantic Conventions for GraphQL implementations.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
 * [Messaging](messaging/README.md): Semantic Conventions for messaging operations and systems.
+* [Network](network/README.md): Semantic Conventions for network communication.
 * [Object Stores](object-stores/README.md): Semantic Conventions for object stores operations.
 * [RPC](rpc/README.md): Semantic Conventions for RPC client and server operations.
 * [System](system/README.md): System Semantic Conventions.
