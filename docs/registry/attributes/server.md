@@ -10,8 +10,16 @@
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="server-address" href="#server-address">`server.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| <a id="server-port" href="#server-port">`server.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Server port number. [2] | `80`; `8080`; `443` |
+| <a id="server-mac" href="#server-mac">`server.mac`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Server Media Access Control (MAC) address. [2] | `00-00-5E-00-53-23` |
+| <a id="server-port" href="#server-port">`server.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Server port number. [3] | `80`; `8080`; `443` |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[2] `server.mac`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information.
+
+**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
