@@ -148,16 +148,17 @@ This metric is [recommended][MetricRecommended].
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -216,16 +217,17 @@ This metric is [recommended][MetricRecommended].
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -320,16 +322,17 @@ it's RECOMMENDED to:
 **[2] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -401,16 +404,17 @@ If the exporter retries failed export attempts, spans remain inflight across all
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -507,16 +511,17 @@ it's RECOMMENDED to:
 **[2] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -614,16 +619,17 @@ This metric is [recommended][MetricRecommended].
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -682,16 +688,17 @@ This metric is [recommended][MetricRecommended].
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -786,16 +793,17 @@ it's RECOMMENDED to:
 **[2] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -867,16 +875,17 @@ If the exporter retries failed export attempts, log records remain inflight acro
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -973,16 +982,17 @@ it's RECOMMENDED to:
 **[2] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -1060,16 +1070,17 @@ If the exporter retries failed export attempts, metric data points remain inflig
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -1166,16 +1177,17 @@ it's RECOMMENDED to:
 **[2] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -1280,16 +1292,17 @@ it's RECOMMENDED to:
 **[2] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
@@ -1396,16 +1409,17 @@ it's RECOMMENDED to:
 **[2] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+When no application-provided name is configured, implementations SHOULD follow a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
-The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` is implementation-defined. Implementations MUST ensure that the resulting `otel.component.name` is unique within the enclosing SDK instance.
+For example, implementations MAY use a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
-These values will therefore be reused in the case of an application restart.
+Automatically assigned names may remain stable across application restarts when the set and initialization order
+of components are unchanged. They are not durable identifiers: adding, removing, or reordering components may change them.
 
 **[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
