@@ -1,0 +1,13 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Clarify that `otel.sdk.span.started` does not count spans started on a
+  disabled `Tracer` (`TracerConfig.enabled` = `false`), since such a `Tracer` is
+  a No-op and does not create an SDK span. This mirrors the equivalent
+  clarification already made for disabled `Logger`s on `otel.sdk.log.created`.
+
+issues: [3954]
+
+subtext:
