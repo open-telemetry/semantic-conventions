@@ -10,6 +10,7 @@ linkTitle: MongoDB
 
 - [Spans](#spans)
   - [Example](#example)
+- [Context propagation](#context-propagation)
 - [Metrics](#metrics)
 
 <!-- END doctoc -->
@@ -130,6 +131,80 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `db.namespace`         | `"shopDb"`                 |
 | `db.query.text`        | not set                    |
 | `db.operation.name`    | `"findAndModify"`          |
+
+## Context propagation
+
+**Status**: [Development][DocumentStatus]
+
+Instrumentations MAY propagate context to MongoDB servers and compatible
+servers through the [`comment` command field](https://www.mongodb.com/docs/manual/reference/command/find/).
+This context propagation mechanism SHOULD NOT be enabled by default, but
+instrumentation MAY allow users to opt into it.
+
+Before injecting context, instrumentation MUST determine that the target server
+accepts a BSON document as the value of `comment`. MongoDB 4.4 and later accept
+all BSON types for `comment`, while earlier versions accept only strings.
+Compatible servers may expose support through different versions or
+capabilities. If document-valued `comment` support is unknown or unavailable,
+instrumentation MUST skip context injection for the operation.
+
+When this mechanism is enabled and the target server supports document-valued
+`comment`, instrumentation MUST use the selected propagator to inject string
+key-value pairs into the top-level fields of a BSON document in `comment`.
+
+The instrumentation SHOULD allow users to pass a propagator to overwrite the
+global propagator. If no propagator is provided by the user, instrumentation
+SHOULD use the global propagator. The override applies only to this
+instrumentation.
+
+The optional `originalComment` field is reserved for the application-provided
+comment, which can be any BSON type. When the application has set `comment`,
+instrumentation MUST preserve its value and BSON type unchanged in
+`originalComment`, including an explicitly set BSON `null`. When the application
+has not set `comment`, instrumentation MUST omit `originalComment`.
+Instrumentation MUST prevent propagators from setting `originalComment`.
+
+For example, with a W3C Trace Context propagator and an
+application-provided document comment:
+
+```json
+{
+  "comment": {
+    "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
+    "tracestate": "congo=t61rcWkgMzE",
+    "originalComment": {
+      "job": "monthly rollup"
+    }
+  }
+}
+```
+
+Servers supporting this mechanism MUST attempt to extract context only when
+`comment` is a BSON document, using the top-level string fields recognized by
+their supported propagators. Successful extraction requires compatible
+propagation formats on the client and server. When extracting W3C Trace Context,
+a server MUST ignore the trace context when
+[`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) is missing,
+invalid, or unsupported. An invalid
+[`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) MUST be
+ignored without affecting a valid `traceparent`. Failure to extract context
+MUST NOT cause the database operation to fail.
+Servers SHOULD leave `comment` unchanged after extraction. A server MAY
+instead remove the propagation document after successful extraction. In that
+case, it MUST restore `comment` to the value and BSON type of `originalComment`
+if that field is present (including when its value is `null`), or remove
+`comment` if it is absent.
+
+MongoDB servers and compatible servers may expose or persist `comment` in logs,
+profiling data, or diagnostic interfaces. Instrumentations SHOULD document that
+every field injected into `comment` may be visible to users with access to those
+outputs, and that wrapping an application-provided comment may change the
+structure exposed in those outputs.
+
+The MongoDB wire protocol limits the whole command document to the server's
+advertised `maxBsonObjectSize`. Instrumentations SHOULD keep the propagation
+document compact and MUST NOT assume that the entire advertised size is
+available for `comment`.
 
 ## Metrics
 
