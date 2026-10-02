@@ -195,6 +195,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibmmq` | IBM MQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -357,6 +358,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibmmq` | IBM MQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -520,6 +522,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibmmq` | IBM MQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -685,6 +688,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibmmq` | IBM MQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -849,6 +853,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibmmq` | IBM MQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1010,6 +1015,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibmmq` | IBM MQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
