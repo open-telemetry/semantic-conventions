@@ -10,6 +10,9 @@
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="destination-address" href="#destination-address">`destination.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="destination-cidr" href="#destination-cidr">`destination.cidr`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CIDR block associated with the destination IP address. [2] | `192.0.2.0/24`; `2001:db8::/32` |
 | <a id="destination-port" href="#destination-port">`destination.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Destination port number | `3389`; `2888` |
 
 **[1] `destination.address`:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
+
+**[2] `destination.cidr`:** The value MUST be an IPv4 or IPv6 address prefix in CIDR notation. IPv4 prefixes MUST use dotted-decimal address notation and a prefix length from 0 to 32, as defined in [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html). IPv6 prefixes MUST use a prefix length from 0 to 128, and the address MUST use the canonical text representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The address portion MUST be the canonical network address for the prefix, with all host bits set to zero. This attribute MUST NOT contain a domain name or UNIX domain socket name. This attribute MAY be set whether or not `destination.address` is set. If `destination.address` is also set to an IP address, the IP address MUST be contained in this CIDR block.

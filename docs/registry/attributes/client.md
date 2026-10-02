@@ -10,8 +10,11 @@
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="client-address" href="#client-address">`client.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| <a id="client-port" href="#client-port">`client.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Client port number. [2] | `65123` |
+| <a id="client-cidr" href="#client-cidr">`client.cidr`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CIDR block associated with the client IP address. [2] | `192.0.2.0/24`; `2001:db8::/32` |
+| <a id="client-port" href="#client-port">`client.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Client port number. [3] | `65123` |
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
-**[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+**[2] `client.cidr`:** The value MUST be an IPv4 or IPv6 address prefix in CIDR notation. IPv4 prefixes MUST use dotted-decimal address notation and a prefix length from 0 to 32, as defined in [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html). IPv6 prefixes MUST use a prefix length from 0 to 128, and the address MUST use the canonical text representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The address portion MUST be the canonical network address for the prefix, with all host bits set to zero. This attribute MUST NOT contain a domain name or UNIX domain socket name. This attribute MAY be set whether or not `client.address` is set. If `client.address` is also set to an IP address, the IP address MUST be contained in this CIDR block.
+
+**[3] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.

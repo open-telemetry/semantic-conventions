@@ -24,27 +24,33 @@ These attributes may be used for any network related operation.
 | <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The network interface name. | `lo`; `eth0` |
 | <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [(see more)](#network-io-direction-values) |
 | <a id="network-local-address" href="#network-local-address">`network.local.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Local address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| <a id="network-local-cidr" href="#network-local-cidr">`network.local.cidr`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CIDR block associated with the local IP address. [2] | `192.0.2.0/24`; `2001:db8::/32` |
 | <a id="network-local-port" href="#network-local-port">`network.local.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Local port number of the network connection. | `65123` |
 | <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| <a id="network-peer-cidr" href="#network-peer-cidr">`network.peer.cidr`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CIDR block associated with the peer IP address. [3] | `192.0.2.0/24`; `2001:db8::/32` |
 | <a id="network-peer-port" href="#network-peer-port">`network.peer.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Peer port number of the network connection. | `65123` |
-| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `amqp`; `http`; `mqtt` |
-| <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [3] | `1.1`; `2` |
-| <a id="network-transport" href="#network-transport">`network.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` [(see more)](#network-transport-values) |
-| <a id="network-type" href="#network-type">`network.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [4] | `amqp`; `http`; `mqtt` |
+| <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [5] | `1.1`; `2` |
+| <a id="network-transport" href="#network-transport">`network.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [6] | `tcp`; `udp` [(see more)](#network-transport-values) |
+| <a id="network-type" href="#network-type">`network.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [7] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
-**[2] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
+**[2] `network.local.cidr`:** The value MUST be an IPv4 or IPv6 address prefix in CIDR notation. IPv4 prefixes MUST use dotted-decimal address notation and a prefix length from 0 to 32, as defined in [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html). IPv6 prefixes MUST use a prefix length from 0 to 128, and the address MUST use the canonical text representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The address portion MUST be the canonical network address for the prefix, with all host bits set to zero. This attribute MUST NOT contain a domain name or UNIX domain socket name. This attribute MAY be set whether or not `network.local.address` is set. If `network.local.address` is also set to an IP address, the IP address MUST be contained in this CIDR block.
 
-**[3] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[3] `network.peer.cidr`:** The value MUST be an IPv4 or IPv6 address prefix in CIDR notation. IPv4 prefixes MUST use dotted-decimal address notation and a prefix length from 0 to 32, as defined in [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html). IPv6 prefixes MUST use a prefix length from 0 to 128, and the address MUST use the canonical text representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The address portion MUST be the canonical network address for the prefix, with all host bits set to zero. This attribute MUST NOT contain a domain name or UNIX domain socket name. This attribute MAY be set whether or not `network.peer.address` is set. If `network.peer.address` is also set to an IP address, the IP address MUST be contained in this CIDR block.
 
-**[4] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[4] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
+
+**[5] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+
+**[6] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[5] `network.type`:** The value SHOULD be normalized to lowercase.
+**[7] `network.type`:** The value SHOULD be normalized to lowercase.
 
 ---
 
@@ -190,10 +196,10 @@ These attributes may be used for any network related operation.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `inproc` | In-process communication. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inproc` | In-process communication. [8] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | Something else (non IP-based). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pipe` | Named or anonymous pipe. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[6]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
+**[8]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
