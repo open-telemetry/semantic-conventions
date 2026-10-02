@@ -74,7 +74,7 @@ injected into the message(s) as the creation context. See
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning`; `logs`; `amq.default` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `send`; `publish` |
 | [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` [(see more)](#messaging-system-values) |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` [(see more)](#error-type-values) |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.anonymous`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). | |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` |
@@ -168,16 +168,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
-<a id="error-type-values"></a>
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
 <a id="messaging-operation-type-values"></a>
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -241,7 +231,7 @@ call methods of messaging SDKs to receive messages. See
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning:my_queue`; `direct_logs:warning`; `logs` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `receive`; `poll` |
 | [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` [(see more)](#messaging-system-values) |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` [(see more)](#error-type-values) |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.anonymous`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). | |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` |
@@ -337,16 +327,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
-<a id="error-type-values"></a>
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
 <a id="messaging-operation-type-values"></a>
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -414,7 +394,7 @@ message creation context is used as the parent, see
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning:my_queue`; `direct_logs:warning`; `logs` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `process`; `consume` |
 | [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` [(see more)](#messaging-system-values) |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` [(see more)](#error-type-values) |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.anonymous`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). | |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` |
@@ -504,16 +484,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
-<a id="error-type-values"></a>
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
 <a id="messaging-operation-type-values"></a>
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -576,7 +546,7 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning:my_queue`; `direct_logs:warning`; `logs` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `ack`; `nack`; `settle` |
 | [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` [(see more)](#messaging-system-values) |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` [(see more)](#error-type-values) |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [8] | `settle` [(see more)](#messaging-operation-type-values) |
@@ -654,16 +624,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.system`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
-
----
-
-<a id="error-type-values"></a>
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
