@@ -43,19 +43,205 @@ document for details on how to record span status.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The domain name or address of the Connect RPC server. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`rpc.system.name`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The Remote Procedure Call (RPC) system. [1] | `connectrpc` [(see more)](#rpc-system-name-values) |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The domain name or address of the Connect RPC server. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` [(see more)](#error-type-values) |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if available. | string | The fully-qualified logical name of the method from the RPC interface perspective. [4] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
+| [`rpc.method_original`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If and only if it's different than `rpc.method`. | string | The original name of the method used by the client. | `com.myservice.EchoService/catchAll`; `com.myservice.EchoService/unknownMethod`; `InvalidMethod` |
+| [`rpc.status_code`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if available. | string | The [error code](https://connectrpc.com/docs/protocol/#error-codes) of the Connect response. [5] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if available. | int | Server port number. [6] | `80`; `8080`; `443` |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [7] | `10.1.2.80`; `/tmp/my.sock` |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
+| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [request headers](https://connectrpc.com/docs/protocol/). [8] | `["1.2.3.4", "1.2.3.5"]` |
+| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload. [9] | `["attribute_value"]` |
+| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload. [10] | `["attribute_value"]` |
+
+**[1] `rpc.system.name`:** MUST be set to `connectrpc`.
+
+**[2] `server.address`:** When an IP address is provided instead of a domain name, instrumentations SHOULD NOT do a reverse DNS lookup to obtain DNS name and SHOULD set `server.address` to the provided IP address.
+
+**[3] `error.type`:** If the RPC fails with an error before status code is returned,
+`error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
+or a component-specific, low cardinality error identifier.
+
+If a status code is returned and it indicates an error,
+`error.type` SHOULD be set to that status code. Check system-specific conventions
+for the details on which values of `rpc.status_code` are considered errors.
+
+The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
+
+If the request has completed successfully, instrumentations SHOULD NOT set
+`error.type`.
+
+**[4] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
+
+Some RPC frameworks or libraries provide a fixed set of recognized methods
+for client stubs and server implementations. Instrumentations for such
+frameworks MUST set this attribute to the original method name only
+when the method is recognized by the framework or library.
+
+When the method is not recognized, for example, when the server receives
+a request for a method that is not predefined on the server, or when
+instrumentation is not able to reliably detect if the method is predefined,
+the attribute MUST be set to `_OTHER`.
+
+If the RPC instrumentation could end up converting valid RPC methods to
+`_OTHER`, then it SHOULD provide a way to configure the list of recognized
+RPC methods.
+
+The `rpc.method` can be different from the name of any implementing
+method/function.
+The `code.function.name` attribute may be used to record the fully-qualified
+method actually executing the call on the server side, or the
+RPC client stub method on the client side.
+
+**[5] `rpc.status_code`:** All status codes except `OK` SHOULD be considered errors.
+
+Instrumentations MAY use additional context or provide configuration options to customize
+which status codes are considered errors.
+
+**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[7] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
+
+**[8] `rpc.request.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
+
+Instrumentations SHOULD require an explicit configuration of which headers are to be
+captured. Capturing all of them can be a security risk - explicit configuration helps
+avoid leaking sensitive information.
+
+For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded
+as the `rpc.request.header.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`.
+
+The attribute value MUST consist of either multiple values as an array of strings or a
+single-item array containing a possibly comma-concatenated string, depending on the way
+the RPC library provides access to headers.
+
+Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
+transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
+Instrumentations SHOULD obtain them from the corresponding
+[Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
+
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
+
+**[9] `rpc.response.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
+
+Instrumentations SHOULD require an explicit configuration of which headers are to be
+captured. Capturing all of them can be a security risk - explicit configuration helps
+avoid leaking sensitive information.
+
+For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+as the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`.
+
+The attribute value MUST consist of either multiple values as an array of strings or a
+single-item array containing a possibly comma-concatenated string, depending on the way
+the RPC library provides access to headers.
+
+Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
+transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
+Instrumentations SHOULD obtain them from the corresponding
+[Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
+
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
+
+**[10] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
+
+Instrumentations SHOULD require an explicit configuration of which trailers are to be
+captured. Capturing all of them can be a security risk - explicit configuration helps
+avoid leaking sensitive information.
+
+For example, a trailer `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+as the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value"]`.
+
+The attribute value MUST consist of either multiple values as an array of strings or a
+single-item array containing a possibly comma-concatenated string, depending on the way
+the RPC library provides access to trailers.
+
+Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
+transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
+Instrumentations SHOULD obtain them from the corresponding
+  [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/) and SHOULD NOT
+  rely on the underlying protocol details.
+
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`rpc.method`](/docs/registry/attributes/rpc.md)
+* [`rpc.system.name`](/docs/registry/attributes/rpc.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
+
+---
+
+<a id="error-type-values"></a>
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+<a id="rpc-system-name-values"></a>
+
+`rpc.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `connectrpc` | [Connect RPC](https://connectrpc.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dubbo` | [Apache Dubbo](https://dubbo.apache.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `grpc` | [gRPC](https://grpc.io/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `jsonrpc` | [JSON-RPC](https://www.jsonrpc.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+### Server
+
+<!-- semconv span.rpc.connect_rpc.call.server -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents an incoming Remote Procedure Call (RPC).
+
+`rpc.system.name` MUST be set to `"connectrpc"` and SHOULD be provided **at span creation time.**
+
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+**Span kind** MUST be `SERVER`.
+
+**Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status.
+
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- |
+| [`rpc.system.name`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The Remote Procedure Call (RPC) system. [1] | `connectrpc` [(see more)](#rpc-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [2] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` [(see more)](#error-type-values) |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if available. | string | The fully-qualified logical name of the method from the RPC interface perspective. [3] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
 | [`rpc.method_original`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If and only if it's different than `rpc.method`. | string | The original name of the method used by the client. | `com.myservice.EchoService/catchAll`; `com.myservice.EchoService/unknownMethod`; `InvalidMethod` |
 | [`rpc.status_code`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if available. | string | The [error code](https://connectrpc.com/docs/protocol/#error-codes) of the Connect response. [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if available. | int | Server port number. [5] | `80`; `8080`; `443` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if applicable and if `server.address` is set. | int | Server port number. [5] | `80`; `8080`; `443` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [6] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [request headers](https://connectrpc.com/docs/protocol/). [7] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload. [8] | `["attribute_value"]` |
-| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload. [9] | `["attribute_value"]` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when available. | string | A string identifying a group of RPC server instances request is sent to. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [request headers](https://connectrpc.com/docs/protocol/). [8] | `["1.2.3.4", "1.2.3.5"]` |
+| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload. [9] | `["attribute_value"]` |
+| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload. [10] | `["attribute_value"]` |
 
-**[1] `server.address`:** When an IP address is provided instead of a domain name, instrumentations SHOULD NOT do a reverse DNS lookup to obtain DNS name and SHOULD set `server.address` to the provided IP address.
+**[1] `rpc.system.name`:** MUST be set to `connectrpc`.
 
 **[2] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
@@ -93,173 +279,7 @@ The `code.function.name` attribute may be used to record the fully-qualified
 method actually executing the call on the server side, or the
 RPC client stub method on the client side.
 
-**[4] `rpc.status_code`:** All status codes except `OK` SHOULD be considered errors.
-
-Instrumentations MAY use additional context or provide configuration options to customize
-which status codes are considered errors.
-
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[6] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
-
-**[7] `rpc.request.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
-
-Instrumentations SHOULD require an explicit configuration of which headers are to be
-captured. Capturing all of them can be a security risk - explicit configuration helps
-avoid leaking sensitive information.
-
-For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded
-as the `rpc.request.header.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`.
-
-The attribute value MUST consist of either multiple values as an array of strings or a
-single-item array containing a possibly comma-concatenated string, depending on the way
-the RPC library provides access to headers.
-
-Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
-transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
-Instrumentations SHOULD obtain them from the corresponding
-[Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
-
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
-base64-encoded when recorded.
-
-**[8] `rpc.response.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
-
-Instrumentations SHOULD require an explicit configuration of which headers are to be
-captured. Capturing all of them can be a security risk - explicit configuration helps
-avoid leaking sensitive information.
-
-For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
-as the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`.
-
-The attribute value MUST consist of either multiple values as an array of strings or a
-single-item array containing a possibly comma-concatenated string, depending on the way
-the RPC library provides access to headers.
-
-Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
-transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
-Instrumentations SHOULD obtain them from the corresponding
-[Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
-
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
-base64-encoded when recorded.
-
-**[9] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
-
-Instrumentations SHOULD require an explicit configuration of which trailers are to be
-captured. Capturing all of them can be a security risk - explicit configuration helps
-avoid leaking sensitive information.
-
-For example, a trailer `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
-as the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value"]`.
-
-The attribute value MUST consist of either multiple values as an array of strings or a
-single-item array containing a possibly comma-concatenated string, depending on the way
-the RPC library provides access to trailers.
-
-Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
-transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
-Instrumentations SHOULD obtain them from the corresponding
-  [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/) and SHOULD NOT
-  rely on the underlying protocol details.
-
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
-base64-encoded when recorded.
-
-The following attributes can be important for making sampling decisions
-and SHOULD be provided **at span creation time** (if provided at all):
-
-* [`rpc.method`](/docs/registry/attributes/rpc.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
-
----
-
-<a id="error-type-values"></a>
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Server
-
-<!-- semconv span.rpc.connect_rpc.call.server -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-This span represents an incoming Remote Procedure Call (RPC).
-
-`rpc.system.name` MUST be set to `"connectrpc"` and SHOULD be provided **at span creation time.**
-
-**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
-
-**Span kind** MUST be `SERVER`.
-
-**Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
-document for details on how to record span status.
-
-**Attributes:**
-
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [1] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` [(see more)](#error-type-values) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if available. | string | The fully-qualified logical name of the method from the RPC interface perspective. [2] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
-| [`rpc.method_original`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If and only if it's different than `rpc.method`. | string | The original name of the method used by the client. | `com.myservice.EchoService/catchAll`; `com.myservice.EchoService/unknownMethod`; `InvalidMethod` |
-| [`rpc.status_code`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if available. | string | The [error code](https://connectrpc.com/docs/protocol/#error-codes) of the Connect response. [3] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if applicable and if `server.address` is set. | int | Server port number. [4] | `80`; `8080`; `443` |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [5] | `10.1.2.80`; `/tmp/my.sock` |
-| [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when available. | string | A string identifying a group of RPC server instances request is sent to. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [request headers](https://connectrpc.com/docs/protocol/). [7] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload. [8] | `["attribute_value"]` |
-| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload. [9] | `["attribute_value"]` |
-
-**[1] `error.type`:** If the RPC fails with an error before status code is returned,
-`error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
-or a component-specific, low cardinality error identifier.
-
-If a status code is returned and it indicates an error,
-`error.type` SHOULD be set to that status code. Check system-specific conventions
-for the details on which values of `rpc.status_code` are considered errors.
-
-The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
-Instrumentations SHOULD document the list of errors they report.
-
-If the request has completed successfully, instrumentations SHOULD NOT set
-`error.type`.
-
-**[2] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
-
-Some RPC frameworks or libraries provide a fixed set of recognized methods
-for client stubs and server implementations. Instrumentations for such
-frameworks MUST set this attribute to the original method name only
-when the method is recognized by the framework or library.
-
-When the method is not recognized, for example, when the server receives
-a request for a method that is not predefined on the server, or when
-instrumentation is not able to reliably detect if the method is predefined,
-the attribute MUST be set to `_OTHER`.
-
-If the RPC instrumentation could end up converting valid RPC methods to
-`_OTHER`, then it SHOULD provide a way to configure the list of recognized
-RPC methods.
-
-The `rpc.method` can be different from the name of any implementing
-method/function.
-The `code.function.name` attribute may be used to record the fully-qualified
-method actually executing the call on the server side, or the
-RPC client stub method on the client side.
-
-**[3] `rpc.status_code`:** The following error codes SHOULD be considered errors:
+**[4] `rpc.status_code`:** The following error codes SHOULD be considered errors:
 
 - `unknown`
 - `deadline_exceeded`
@@ -271,13 +291,13 @@ RPC client stub method on the client side.
 Instrumentations MAY use additional context or provide configuration options to customize
 which error codes are considered errors.
 
-**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[5] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
+**[6] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
 
-**[6] `server.address`:** `server.address` and `server.port` describe the address the client used to reach this server, as reported by the transport or RPC framework. Instrumentations SHOULD NOT use actual network-level connection information to populate these attributes. If the address used by the client is unavailable, instrumentations SHOULD NOT set these attributes.
+**[7] `server.address`:** `server.address` and `server.port` describe the address the client used to reach this server, as reported by the transport or RPC framework. Instrumentations SHOULD NOT use actual network-level connection information to populate these attributes. If the address used by the client is unavailable, instrumentations SHOULD NOT set these attributes.
 
-**[7] `rpc.request.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
+**[8] `rpc.request.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
 
 Instrumentations SHOULD require an explicit configuration of which headers are to be
 captured. Capturing all of them can be a security risk - explicit configuration helps
@@ -298,7 +318,7 @@ Instrumentations SHOULD obtain them from the corresponding
 Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
 base64-encoded when recorded.
 
-**[8] `rpc.response.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
+**[9] `rpc.response.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
 
 Instrumentations SHOULD require an explicit configuration of which headers are to be
 captured. Capturing all of them can be a security risk - explicit configuration helps
@@ -319,7 +339,7 @@ Instrumentations SHOULD obtain them from the corresponding
 Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
 base64-encoded when recorded.
 
-**[9] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
+**[10] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
 
 Instrumentations SHOULD require an explicit configuration of which trailers are to be
 captured. Capturing all of them can be a security risk - explicit configuration helps
@@ -345,6 +365,7 @@ The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`rpc.method`](/docs/registry/attributes/rpc.md)
+* [`rpc.system.name`](/docs/registry/attributes/rpc.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 
@@ -357,6 +378,19 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value | Description | Stability |
 | --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+<a id="rpc-system-name-values"></a>
+
+`rpc.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `connectrpc` | [Connect RPC](https://connectrpc.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dubbo` | [Apache Dubbo](https://dubbo.apache.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `grpc` | [gRPC](https://grpc.io/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `jsonrpc` | [JSON-RPC](https://www.jsonrpc.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
