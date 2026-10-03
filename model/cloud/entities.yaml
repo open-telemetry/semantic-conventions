@@ -10,5 +10,6 @@ groups:
       - ref: cloud.account.id
       - ref: cloud.region
       - ref: cloud.resource_id
+        role: identifying
       - ref: cloud.availability_zone
       - ref: cloud.platform

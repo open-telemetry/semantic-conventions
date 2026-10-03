@@ -7,6 +7,7 @@ groups:
       The system component which is monitored.
     attributes:
       - ref: cloudfoundry.system.id
+        role: identifying
       - ref: cloudfoundry.system.instance.id
   - id: entity.cloudfoundry.app
     type: entity
@@ -16,6 +17,7 @@ groups:
       The application which is monitored.
     attributes:
       - ref: cloudfoundry.app.id
+        role: identifying
       - ref: cloudfoundry.app.name
   - id: entity.cloudfoundry.space
     type: entity
@@ -25,6 +27,7 @@ groups:
       The space of the application which is monitored.
     attributes:
       - ref: cloudfoundry.space.id
+        role: identifying
       - ref: cloudfoundry.space.name
   - id: entity.cloudfoundry.org
     type: entity
@@ -34,6 +37,7 @@ groups:
       The organization of the application which is monitored.
     attributes:
       - ref: cloudfoundry.org.id
+        role: identifying
       - ref: cloudfoundry.org.name
   - id: entity.cloudfoundry.process
     type: entity
@@ -43,4 +47,5 @@ groups:
       The process of the application which is monitored.
     attributes:
       - ref: cloudfoundry.process.id
+        role: identifying
       - ref: cloudfoundry.process.type

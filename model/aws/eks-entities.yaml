@@ -7,4 +7,5 @@ groups:
       Entities used by AWS Elastic Kubernetes Service (EKS).
     attributes:
       - ref: aws.eks.cluster.arn
+        role: identifying
         requirement_level: recommended

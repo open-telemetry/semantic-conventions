@@ -1,0 +1,4 @@
+change_type: enhancement
+component: cloud
+note: Define identifying attributes for cloud entities for Weaver schema v2 migration.
+issues: [3808]

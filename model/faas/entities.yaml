@@ -10,5 +10,6 @@ groups:
         requirement_level: required
       - ref: faas.version
       - ref: faas.instance
+        role: identifying
       - ref: faas.max_memory
       - ref: cloud.resource_id
