@@ -1,0 +1,4 @@
+change_type: enhancement
+component: host
+note: Define identifying attributes for host entities for Weaver schema v2 migration.
+issues: [3808]

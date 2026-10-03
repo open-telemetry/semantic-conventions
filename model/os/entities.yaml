@@ -13,8 +13,10 @@ groups:
         requirement_level: required
       - ref: os.description
       - ref: os.name
+        role: identifying
       - ref: os.version
       - ref: os.build_id
+        role: identifying
         note: >
           `build_id` values SHOULD be obtained from the following sources:
 
