@@ -1,0 +1,4 @@
+change_type: enhancement
+component: container
+note: Define identifying attributes for container entities for Weaver schema v2 migration.
+issues: [3808]
