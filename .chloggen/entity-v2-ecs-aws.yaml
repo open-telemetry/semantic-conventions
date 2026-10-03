@@ -1,0 +1,4 @@
+change_type: breaking
+component: aws
+note: Replace the AWS ECS entity with task, cluster, and container instance entities identified by their ARNs.
+issues: [3808]
