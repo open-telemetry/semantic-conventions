@@ -13,6 +13,7 @@ groups:
       - ref: browser.mobile
       - ref: browser.language
       - ref: user_agent.original
+        role: identifying
         brief: 'Full user-agent string provided by the browser'
         note: >
           To retrieve the value, the legacy `navigator.userAgent` API can be used.
