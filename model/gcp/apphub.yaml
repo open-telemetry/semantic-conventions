@@ -12,6 +12,7 @@ groups:
       - ref: gcp.apphub.application.location
         requirement_level: required
       - ref: gcp.apphub.application.id
+        role: identifying
         requirement_level: required
   - id: entity.gcp.apphub.service
     type: entity
@@ -22,6 +23,7 @@ groups:
       See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
     attributes:
       - ref: gcp.apphub.service.id
+        role: identifying
         requirement_level: required
       - ref: gcp.apphub.service.environment_type
         requirement_level: required
@@ -36,6 +38,7 @@ groups:
       See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
     attributes:
       - ref: gcp.apphub.workload.id
+        role: identifying
         requirement_level: required
       - ref: gcp.apphub.workload.environment_type
         requirement_level: required

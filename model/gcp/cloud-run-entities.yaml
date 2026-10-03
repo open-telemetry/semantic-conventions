@@ -4,9 +4,11 @@ groups:
     stability: development
     name: gcp.cloud_run
     brief: >
-      Resource used by Google Cloud Run.
+      A task within a Google Cloud Run job execution.
     attributes:
       - ref: gcp.cloud_run.job.execution
+        role: identifying
         requirement_level: recommended
       - ref: gcp.cloud_run.job.task_index
+        role: identifying
         requirement_level: recommended
