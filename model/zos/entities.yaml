@@ -11,5 +11,6 @@ groups:
       - ref: zos.sysplex.name
         requirement_level: required
       - ref: zos.smf.id
+        role: identifying
         requirement_level: required
       - ref: mainframe.lpar.name
