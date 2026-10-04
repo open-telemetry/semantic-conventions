@@ -10,11 +10,14 @@ groups:
       the process, i.e., the virtualized guest rather than the underlying host.
     attributes:
       - ref: os.type
+        role: descriptive
         requirement_level: required
       - ref: os.description
+        role: descriptive
       - ref: os.name
         role: identifying
       - ref: os.version
+        role: descriptive
       - ref: os.build_id
         role: identifying
         note: >

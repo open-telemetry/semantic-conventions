@@ -44,8 +44,11 @@ groups:
         role: identifying
         requirement_level: opt_in
       - ref: host.cpu.model.name
+        role: descriptive
         requirement_level: opt_in
       - ref: host.cpu.stepping
+        role: descriptive
         requirement_level: opt_in
       - ref: host.cpu.cache.l2.size
+        role: descriptive
         requirement_level: opt_in
