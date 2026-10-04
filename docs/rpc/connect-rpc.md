@@ -30,8 +30,6 @@ The Semantic Conventions for [Connect](https://connectrpc.com/) extend and overr
 
 This span represents an outgoing Remote Procedure Call (RPC).
 
-`rpc.system.name` MUST be set to `"connectrpc"` and SHOULD be provided **at span creation time.**
-
 **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
 **Span kind** MUST be `CLIENT`.
@@ -214,8 +212,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 This span represents an incoming Remote Procedure Call (RPC).
-
-`rpc.system.name` MUST be set to `"connectrpc"` and SHOULD be provided **at span creation time.**
 
 **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
