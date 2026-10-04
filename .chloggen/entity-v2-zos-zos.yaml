@@ -1,4 +1,4 @@
 change_type: enhancement
 component: zos
 note: Define identifying attributes for zos entities for Weaver schema v2 migration.
-issues: [3808]
+issues: [4174]
