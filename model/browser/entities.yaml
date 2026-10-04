@@ -9,9 +9,13 @@ groups:
         running in a web browser (regardless of whether running on a mobile or desktop device).
     attributes:
       - ref: browser.brands
+        role: descriptive
       - ref: browser.platform
+        role: descriptive
       - ref: browser.mobile
+        role: descriptive
       - ref: browser.language
+        role: descriptive
       - ref: user_agent.original
         role: identifying
         brief: 'Full user-agent string provided by the browser'
