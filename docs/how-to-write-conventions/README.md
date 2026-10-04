@@ -331,6 +331,8 @@ Define which additional properties this span needs to be useful:
 
 #### Defining metrics
 
+TBD
+
 When a metric and a span describe the same operation, prefer the metric's
 attributes to be a subset of the span's attributes. This keeps the dimensions
 used to describe the operation consistent across signals and allows telemetry
