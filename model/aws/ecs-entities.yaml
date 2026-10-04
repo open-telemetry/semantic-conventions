@@ -35,14 +35,12 @@ groups:
         role: identifying
         requirement_level: recommended
 
-  - id: entity.aws.ecs.container_instance
+  - id: entity.aws.ecs.container
     type: entity
     stability: development
-    name: aws.ecs.container_instance
+    name: aws.ecs.container
     brief: >
-      An AWS Elastic Container Service (ECS) container instance.
-    note: >
-      Represents the compute instance registered with ECS, not an individual application container.
+      An application container running in an AWS Elastic Container Service (ECS) task.
     attributes:
       - ref: aws.ecs.container.arn
         role: identifying

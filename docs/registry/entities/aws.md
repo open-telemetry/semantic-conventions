@@ -17,19 +17,19 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`aws.ecs.cluster.arn`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html). | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` |
 
-## AWS ECS Container Instance
+## AWS ECS Container
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `aws.ecs.container_instance`
+**type:** `aws.ecs.container`
 
-**Description:** An AWS Elastic Container Service (ECS) container instance.
+**Description:** An application container running in an AWS Elastic Container Service (ECS) task.
 
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`aws.ecs.container.arn`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html). | `arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9` |
+| Identity | [`aws.ecs.container.arn`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Amazon Resource Name (ARN) of an [ECS container](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-metadata-endpoint-v4-response.html). | `arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9` |
 
 ## AWS ECS Task
 

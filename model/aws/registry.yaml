@@ -265,7 +265,7 @@ groups:
         type: string
         stability: development
         brief: >
-          The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
+          The Amazon Resource Name (ARN) of an [ECS container](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-metadata-endpoint-v4-response.html).
         examples:
           [
             "arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9",
