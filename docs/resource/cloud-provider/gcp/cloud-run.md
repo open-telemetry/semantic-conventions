@@ -13,7 +13,7 @@ These conventions are recommended for resources running on Cloud Run.
 
 **type:** `gcp.cloud_run`
 
-**Description:** A task within a Google Cloud Run job execution.
+**Description:** Resource used by Google Cloud Run.
 
 **Attributes:**
 

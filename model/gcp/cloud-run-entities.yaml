@@ -4,7 +4,7 @@ groups:
     stability: development
     name: gcp.cloud_run
     brief: >
-      A task within a Google Cloud Run job execution.
+      Resource used by Google Cloud Run.
     attributes:
       - ref: gcp.cloud_run.job.execution
         role: identifying
