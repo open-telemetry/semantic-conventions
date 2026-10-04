@@ -1,4 +1,4 @@
 change_type: enhancement
 component: heroku
 note: Define identifying attributes for heroku entities for Weaver schema v2 migration.
-issues: [3808]
+issues: [4169]
