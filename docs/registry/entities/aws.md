@@ -49,8 +49,6 @@
 | Description | [`aws.ecs.task.family`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` |
 | Description | [`aws.ecs.task.revision`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The revision for the task definition used to create the ECS task. | `8`; `26` |
 
-
-
 ---
 
 <a id="aws-ecs-launchtype-values"></a>
