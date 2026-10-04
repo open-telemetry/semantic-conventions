@@ -1,4 +1,4 @@
 change_type: enhancement
 component: otel
-note: Define identifying attributes for otel entities for Weaver schema v2 migration.
+note: Define identifying attributes for OTel entities for Weaver schema v2 migration.
 issues: [3808]

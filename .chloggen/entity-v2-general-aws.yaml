@@ -1,4 +1,4 @@
 change_type: enhancement
 component: aws
-note: Define identifying attributes for aws entities for Weaver schema v2 migration.
+note: Define identifying attributes for AWS entities for Weaver schema v2 migration.
 issues: [3808]
