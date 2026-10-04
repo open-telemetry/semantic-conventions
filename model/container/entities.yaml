@@ -7,16 +7,22 @@ groups:
       A container instance.
     attributes:
       - ref: container.name
+        role: descriptive
       - ref: container.id
         role: identifying
       - ref: container.command
+        role: descriptive
         requirement_level: opt_in
       - ref: container.command_line
+        role: descriptive
         requirement_level: opt_in
       - ref: container.command_args
+        role: descriptive
         requirement_level: opt_in
       - ref: container.label
+        role: descriptive
       - ref: oci.manifest.digest
+        role: descriptive
   - id: entity.container.image
     type: entity
     stability: development
@@ -25,10 +31,13 @@ groups:
       The image used for the container.
     attributes:
       - ref: container.image.name
+        role: descriptive
       - ref: container.image.tags
+        role: descriptive
       - ref: container.image.id
         role: identifying
       - ref: container.image.repo_digests
+        role: descriptive
   - id: entity.container.runtime
     type: entity
     stability: development
