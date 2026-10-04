@@ -11,18 +11,14 @@
 
 **Description:** The device on which the process represented by this resource is running.
 
-> [!warning]
-> This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
-
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`device.id`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A unique identifier representing the device [1] | `123456789012345`; `01:23:45:67:89:AB` |
-| Other | [`device.manufacturer`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the device manufacturer [2] | `Apple`; `Samsung` |
-| Other | [`device.model.identifier`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The model identifier for the device [3] | `iPhone3,4`; `SM-G920F` |
-| Other | [`device.model.name`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The marketing name for the device model [4] | `iPhone 6s Plus`; `Samsung Galaxy S6` |
+| Description | [`device.manufacturer`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the device manufacturer [2] | `Apple`; `Samsung` |
+| Description | [`device.model.identifier`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The model identifier for the device [3] | `iPhone3,4`; `SM-G920F` |
+| Description | [`device.model.name`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The marketing name for the device model [4] | `iPhone 6s Plus`; `Samsung Galaxy S6` |
 
 **[1] `device.id`:** Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
 However, it might be resettable by the user for all apps on a device.
