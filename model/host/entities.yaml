@@ -35,8 +35,10 @@ groups:
       A host's CPU information
     attributes:
       - ref: host.cpu.vendor.id
+        role: identifying
         requirement_level: opt_in
       - ref: host.cpu.family
+        role: identifying
         requirement_level: opt_in
       - ref: host.cpu.model.id
         role: identifying
