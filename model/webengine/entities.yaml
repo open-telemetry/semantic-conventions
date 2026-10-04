@@ -13,4 +13,5 @@ groups:
         role: identifying
         requirement_level: recommended
       - ref: webengine.description
+        role: descriptive
         requirement_level: recommended
