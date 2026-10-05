@@ -161,8 +161,8 @@ The attribute value MUST consist of either multiple values as an array of string
 single-item array containing a possibly comma-concatenated string, depending on the way
 the RPC library provides access to headers.
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 **[9] `rpc.response.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
 
@@ -177,8 +177,8 @@ The attribute value MUST consist of either multiple values as an array of string
 single-item array containing a possibly comma-concatenated string, depending on the way
 the RPC library provides access to headers.
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 **[10] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
 
@@ -193,8 +193,8 @@ The attribute value MUST consist of either multiple values as an array of string
 single-item array containing a possibly comma-concatenated string, depending on the way
 the RPC library provides access to trailers.
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -333,8 +333,8 @@ The attribute value MUST consist of either multiple values as an array of string
 single-item array containing a possibly comma-concatenated string, depending on the way
 the RPC library provides access to headers.
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 **[9] `rpc.response.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
 
@@ -349,8 +349,8 @@ The attribute value MUST consist of either multiple values as an array of string
 single-item array containing a possibly comma-concatenated string, depending on the way
 the RPC library provides access to headers.
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 **[10] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
 
@@ -365,8 +365,8 @@ The attribute value MUST consist of either multiple values as an array of string
 single-item array containing a possibly comma-concatenated string, depending on the way
 the RPC library provides access to trailers.
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):

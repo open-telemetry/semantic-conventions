@@ -157,8 +157,8 @@ groups:
           Instrumentations SHOULD obtain them from the corresponding
           [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
 
-          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-          base64-encoded.
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
       - ref: rpc.response.header
         requirement_level: opt_in
         brief: &connect_response_header_brief Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload.
@@ -181,8 +181,8 @@ groups:
           Instrumentations SHOULD obtain them from the corresponding
           [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
 
-          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-          base64-encoded.
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
       - ref: rpc.response.trailer
         requirement_level: opt_in
         brief: &connect_response_trailer_brief Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload.
@@ -206,8 +206,8 @@ groups:
             [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/) and SHOULD NOT
             rely on the underlying protocol details.
 
-          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-          base64-encoded.
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
       - ref: server.address
         brief: The domain name or address of the Connect RPC server.
         requirement_level: required
@@ -310,8 +310,8 @@ groups:
           single-item array containing a possibly comma-concatenated string, depending on the way
           the RPC library provides access to headers.
 
-          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-          base64-encoded.
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
       - ref: rpc.response.header
         requirement_level: opt_in
         brief: &grpc_response_header_brief gRPC response headers, also called [initial metadata](https://grpc.io/docs/what-is-grpc/core-concepts/#rpc-life-cycle).
@@ -329,8 +329,8 @@ groups:
           single-item array containing a possibly comma-concatenated string, depending on the way
           the RPC library provides access to headers.
 
-          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-          base64-encoded.
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
       - ref: rpc.response.trailer
         requirement_level: opt_in
         brief: &grpc_response_trailer_brief gRPC response trailers, also called [trailing metadata](https://grpc.io/docs/what-is-grpc/core-concepts/#rpc-life-cycle).
@@ -348,8 +348,8 @@ groups:
           single-item array containing a possibly comma-concatenated string, depending on the way
           the RPC library provides access to trailers.
 
-          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-          base64-encoded.
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
       - ref: server.address
         note: |
           Instrumentations SHOULD populate `server.address` (along with `server.port`)

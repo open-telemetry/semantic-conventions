@@ -34,7 +34,7 @@ groups:
           depending on the way the RPC library provides access to headers.
 
           Values that the RPC system exposes as binary data, or that are otherwise not valid
-          UTF-8 strings, SHOULD be recorded base64-encoded.
+          UTF-8 strings, SHOULD be base64-encoded when recorded.
         examples: [["1.2.3.4", "1.2.3.5"]]
       - id: rpc.response.header
         type: template[string[]]
@@ -54,7 +54,7 @@ groups:
           depending on the way the RPC library provides access to headers.
 
           Values that the RPC system exposes as binary data, or that are otherwise not valid
-          UTF-8 strings, SHOULD be recorded base64-encoded.
+          UTF-8 strings, SHOULD be base64-encoded when recorded.
         examples: [["attribute_value"]]
       - id: rpc.response.trailer
         type: template[string[]]
@@ -74,7 +74,7 @@ groups:
           depending on the way the RPC library provides access to trailers.
 
           Values that the RPC system exposes as binary data, or that are otherwise not valid
-          UTF-8 strings, SHOULD be recorded base64-encoded.
+          UTF-8 strings, SHOULD be base64-encoded when recorded.
         examples: [["attribute_value"]]
       - id: rpc.method
         type: string

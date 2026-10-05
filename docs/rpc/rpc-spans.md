@@ -160,7 +160,7 @@ strings or a single-item array containing a possibly comma-concatenated string,
 depending on the way the RPC library provides access to headers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded.
+UTF-8 strings, SHOULD be base64-encoded when recorded.
 
 **[9] `rpc.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -173,7 +173,7 @@ strings or a single-item array containing a possibly comma-concatenated string,
 depending on the way the RPC library provides access to headers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded.
+UTF-8 strings, SHOULD be base64-encoded when recorded.
 
 **[10] `rpc.response.trailer.<key>`:** Instrumentations SHOULD require an explicit configuration of which trailers are to be captured.
 Including all response trailers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -186,7 +186,7 @@ strings or a single-item array containing a possibly comma-concatenated string,
 depending on the way the RPC library provides access to trailers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded.
+UTF-8 strings, SHOULD be base64-encoded when recorded.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -323,7 +323,7 @@ strings or a single-item array containing a possibly comma-concatenated string,
 depending on the way the RPC library provides access to headers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded.
+UTF-8 strings, SHOULD be base64-encoded when recorded.
 
 **[9] `rpc.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -336,7 +336,7 @@ strings or a single-item array containing a possibly comma-concatenated string,
 depending on the way the RPC library provides access to headers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded.
+UTF-8 strings, SHOULD be base64-encoded when recorded.
 
 **[10] `rpc.response.trailer.<key>`:** Instrumentations SHOULD require an explicit configuration of which trailers are to be captured.
 Including all response trailers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -349,7 +349,7 @@ strings or a single-item array containing a possibly comma-concatenated string,
 depending on the way the RPC library provides access to trailers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded.
+UTF-8 strings, SHOULD be base64-encoded when recorded.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):

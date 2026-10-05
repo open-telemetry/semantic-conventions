@@ -55,7 +55,7 @@ strings or a single-item array containing a possibly comma-concatenated string,
 depending on the way the RPC library provides access to headers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded.
+UTF-8 strings, SHOULD be base64-encoded when recorded.
 
 **[3] `rpc.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -68,7 +68,7 @@ strings or a single-item array containing a possibly comma-concatenated string,
 depending on the way the RPC library provides access to headers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded.
+UTF-8 strings, SHOULD be base64-encoded when recorded.
 
 **[4] `rpc.response.trailer.<key>`:** Instrumentations SHOULD require an explicit configuration of which trailers are to be captured.
 Including all response trailers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -81,7 +81,7 @@ strings or a single-item array containing a possibly comma-concatenated string,
 depending on the way the RPC library provides access to trailers.
 
 Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be recorded base64-encoded.
+UTF-8 strings, SHOULD be base64-encoded when recorded.
 
 **[5] `rpc.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.status_code` means in the context of that system and which values are considered to represent errors.

@@ -120,8 +120,8 @@ transmitted over the wire depends on the underlying protocol (Connect, gRPC, or 
 Instrumentations SHOULD obtain them from the corresponding
 [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 **[8] `rpc.response.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
 
@@ -141,8 +141,8 @@ transmitted over the wire depends on the underlying protocol (Connect, gRPC, or 
 Instrumentations SHOULD obtain them from the corresponding
 [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 **[9] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
 
@@ -163,8 +163,8 @@ Instrumentations SHOULD obtain them from the corresponding
   [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/) and SHOULD NOT
   rely on the underlying protocol details.
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -295,8 +295,8 @@ transmitted over the wire depends on the underlying protocol (Connect, gRPC, or 
 Instrumentations SHOULD obtain them from the corresponding
 [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 **[8] `rpc.response.header.<key>`:** `<key>` is the normalized header name (lowercase), the value is the header values.
 
@@ -316,8 +316,8 @@ transmitted over the wire depends on the underlying protocol (Connect, gRPC, or 
 Instrumentations SHOULD obtain them from the corresponding
 [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 **[9] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
 
@@ -338,8 +338,8 @@ Instrumentations SHOULD obtain them from the corresponding
   [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/) and SHOULD NOT
   rely on the underlying protocol details.
 
-Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be recorded
-base64-encoded.
+Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+base64-encoded when recorded.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
