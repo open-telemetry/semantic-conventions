@@ -39,42 +39,66 @@ groups:
         deprecated:
           reason: obsoleted
           note: Deprecated, no replacement at this time.
+      - id: rpc.request.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.request.header` instead.
+        examples: [["1.2.3.4", "1.2.3.5"]]
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.request.header
+      - id: rpc.response.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.response.header` and `rpc.response.trailer`.
+        examples: [["attribute_value"]]
+        deprecated:
+          reason: uncategorized
+          note: >
+            Split to `rpc.response.header` for metadata sent before the response payload
+            and `rpc.response.trailer` for metadata sent after it.
       - id: rpc.connect_rpc.request.metadata
         type: template[string[]]
         stability: development
         brief: >
-          Deprecated, use `rpc.request.metadata` instead.
+          Deprecated, use `rpc.request.header` instead.
         deprecated:
           reason: renamed
-          renamed_to: rpc.request.metadata
+          renamed_to: rpc.request.header
         examples: [["1.2.3.4", "1.2.3.5"]]
       - id: rpc.connect_rpc.response.metadata
         type: template[string[]]
         stability: development
         brief: >
-          Deprecated, use `rpc.response.metadata` instead.
+          Deprecated, use `rpc.response.header` and `rpc.response.trailer`.
         examples: [["attribute_value"]]
         deprecated:
-          reason: renamed
-          renamed_to: rpc.response.metadata
+          reason: uncategorized
+          note: >
+            Split to `rpc.response.header` for metadata sent before the response payload
+            and `rpc.response.trailer` for metadata sent after it.
       - id: rpc.grpc.request.metadata
         type: template[string[]]
         stability: development
         brief: >
-          Deprecated, use `rpc.request.metadata` instead.
+          Deprecated, use `rpc.request.header` instead.
         examples: [["1.2.3.4", "1.2.3.5"]]
         deprecated:
           reason: renamed
-          renamed_to: rpc.request.metadata
+          renamed_to: rpc.request.header
       - id: rpc.grpc.response.metadata
         type: template[string[]]
         stability: development
         brief: >
-          Deprecated, use `rpc.response.metadata` instead.
+          Deprecated, use `rpc.response.header` and `rpc.response.trailer`.
         examples: [["attribute_value"]]
         deprecated:
-          reason: renamed
-          renamed_to: rpc.response.metadata
+          reason: uncategorized
+          note: >
+            Split to `rpc.response.header` for metadata sent before the response payload
+            and `rpc.response.trailer` for metadata sent after it.
       - id: rpc.response.status_code
         type: string
         stability: release_candidate
