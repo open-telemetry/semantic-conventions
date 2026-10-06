@@ -117,11 +117,11 @@ conforms to the properties stated above.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`host.cpu.family`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
-| Identity | [`host.cpu.model.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |
-| Identity | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Processor manufacturer identifier. A maximum 12-character string. [4] | `GenuineIntel` |
-| Description | [`host.cpu.cache.l2.size`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
-| Description | [`host.cpu.model.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
-| Description | [`host.cpu.stepping`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Stepping or core revisions. | `1`; `r1p1` |
+| Identity | [`host.cpu.family`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
+| Identity | [`host.cpu.model.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |
+| Identity | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Processor manufacturer identifier. A maximum 12-character string. [4] | `GenuineIntel` |
+| Description | [`host.cpu.cache.l2.size`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
+| Description | [`host.cpu.model.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
+| Description | [`host.cpu.stepping`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Stepping or core revisions. | `1`; `r1p1` |
 
 **[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
