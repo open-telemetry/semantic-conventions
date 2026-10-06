@@ -37,6 +37,16 @@ Instrumentations SHOULD emit the signal if and only if the user configures
 the instrumentation to do so. Instrumentations that don't support configuration
 MUST NOT emit `Opt-In` signals.
 
+If the OpenTelemetry API for a signal provides a generic opt-in/opt-out mechanism,
+that mechanism SHOULD be used instead of a custom configuration mechanism:
+
+- For **log-based events** and **entities**, instrumentations SHOULD use [`Logger.Enabled`](https://opentelemetry.io/docs/specs/otel/logs/api/#enabled)
+  (passing the event name) to determine if the event is enabled.
+- For **metrics**, instrumentations SHOULD use synchronous [`Instrument.Enabled`](https://opentelemetry.io/docs/specs/otel/metrics/api/#enabled)
+  (which reflects SDK [Views](https://opentelemetry.io/docs/specs/otel/metrics/sdk/#instrument-enabled) and `Drop` aggregation) to check if the instrument is enabled.
+- For **spans**, instrumentations SHOULD use [`Tracer.Enabled`](https://opentelemetry.io/docs/specs/otel/trace/api/#enabled)
+  and standard SDK [Samplers](https://opentelemetry.io/docs/specs/otel/trace/sdk/#sampler) along with [`Span.IsRecording`](https://opentelemetry.io/docs/specs/otel/trace/api/#isrecording).
+
 This requirement level is recommended for signals that are expensive to retrieve,
 usually pose a security or privacy risk, or are not essential for most applications.
 These should therefore only be enabled deliberately by a user making an informed decision.
