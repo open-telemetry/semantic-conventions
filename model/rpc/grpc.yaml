@@ -137,10 +137,6 @@ span_refinements:
     attributes:
       - ref_group: rpc.grpc.attributes.common
       - ref_group: rpc.grpc.attributes.client
-      - ref: rpc.request.metadata
-        requirement_level: opt_in
-      - ref: rpc.response.metadata
-        requirement_level: opt_in
 
   - id: span.rpc.grpc.call.server
     ref: rpc.call.server
@@ -162,10 +158,6 @@ span_refinements:
       - ref: server.port
         requirement_level:
           conditionally_required: If `server.address` is set and the port is present in `:authority`.
-      - ref: rpc.request.metadata
-        requirement_level: opt_in
-      - ref: rpc.response.metadata
-        requirement_level: opt_in
 
 metric_refinements:
   - id: metric.rpc.grpc.server.call.duration

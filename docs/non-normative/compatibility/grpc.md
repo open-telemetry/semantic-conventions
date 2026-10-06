@@ -90,7 +90,7 @@ OpenTelemetry to gRPC, they should be preserved.
 - `network.peer.port`
 - `server.address`
 - `server.port`
-- `rpc.request.metadata.<key>` and `rpc.response.metadata.<key>`
+- `rpc.request.header.<key>`, `rpc.response.header.<key>` and `rpc.response.trailer.<key>`
 - `rpc.method_original`
 
 ### Events

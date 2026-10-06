@@ -32,7 +32,7 @@ The following semantic conventions for spans are defined:
 * [Object Stores](/docs/object-stores/README.md): Semantic Conventions for object stores spans.
 * [RPC/RMI](/docs/rpc/rpc-spans.md): For remote procedure call (e.g., gRPC) spans.
 
-Apart from semantic conventions for traces, [metrics](metrics.md), [logs](logs.md), and [events](events.md),
+Apart from semantic conventions for traces, [metrics](metrics.md), and [events](events.md),
 OpenTelemetry also defines the concept of overarching [Resources](https://opentelemetry.io/docs/specs/otel/resource/sdk/) with their own
 [Resource Semantic Conventions](/docs/resource/README.md).
 
