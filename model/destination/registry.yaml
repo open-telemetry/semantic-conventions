@@ -9,7 +9,7 @@ attributes:
       When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent
       the destination address behind any intermediaries, for example proxies, if it's available.
     examples: ['destination.example.com', '10.1.2.80', '/tmp/my.sock']
-  - key: destination.mac
+  - key: destination.mac.address
     type: string
     stability: development
     brief: 'Destination Media Access Control (MAC) address.'

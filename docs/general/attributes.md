@@ -67,13 +67,13 @@ These attributes may be used to describe the server in a connection-based networ
 | --- | --- | --- | --- | --- | --- |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [2] | `80`; `8080`; `443` |
-| [`server.mac`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Server Media Access Control (MAC) address. [3] | `00-00-5E-00-53-23` |
+| [`server.mac.address`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Server Media Access Control (MAC) address. [3] | `00-00-5E-00-53-23` |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3] `server.mac`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[3] `server.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
@@ -120,13 +120,13 @@ These attributes may be used to describe the client in a connection-based networ
 | --- | --- | --- | --- | --- | --- |
 | [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Client port number. [2] | `65123` |
-| [`client.mac`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Client Media Access Control (MAC) address. [3] | `00-00-5E-00-53-23` |
+| [`client.mac.address`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Client Media Access Control (MAC) address. [3] | `00-00-5E-00-53-23` |
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
 **[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
-**[3] `client.mac`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[3] `client.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
@@ -156,11 +156,11 @@ These attributes may be used to describe the sender of a network exchange/packet
 | --- | --- | --- | --- | --- | --- |
 | [`source.address`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`source.port`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Source port number | `3389`; `2888` |
-| [`source.mac`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Source Media Access Control (MAC) address. [2] | `00-00-5E-00-53-23` |
+| [`source.mac.address`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Source Media Access Control (MAC) address. [2] | `00-00-5E-00-53-23` |
 
 **[1] `source.address`:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `source.mac`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[2] `source.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
@@ -188,11 +188,11 @@ These attributes may be used to describe the receiver of a network exchange/pack
 | --- | --- | --- | --- | --- | --- |
 | [`destination.address`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`destination.port`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Destination port number | `3389`; `2888` |
-| [`destination.mac`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Destination Media Access Control (MAC) address. [2] | `00-00-5E-00-53-23` |
+| [`destination.mac.address`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Destination Media Access Control (MAC) address. [2] | `00-00-5E-00-53-23` |
 
 **[1] `destination.address`:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `destination.mac`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[2] `destination.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
@@ -235,11 +235,11 @@ When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.
 | --- | --- | --- | --- | --- | --- |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [1] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Peer port number of the network connection. | `65123` |
-| [`network.peer.mac`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Peer Media Access Control (MAC) address of the network connection. [2] | `00-00-5E-00-53-23` |
+| [`network.peer.mac.address`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Peer Media Access Control (MAC) address of the network connection. [2] | `00-00-5E-00-53-23` |
 
 **[1] `network.peer.address`:** This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
 
-**[2] `network.peer.mac`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[2] `network.peer.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
@@ -294,11 +294,11 @@ When binding using `bind(2)` ([Linux or other POSIX systems](https://man7.org/li
 | --- | --- | --- | --- | --- | --- |
 | [`network.local.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Local address of the network connection - IP address or UNIX domain socket name. [1] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.local.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Local port number of the network connection. | `65123` |
-| [`network.local.mac`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Local Media Access Control (MAC) address of the network connection. [2] | `00-00-5E-00-53-23` |
+| [`network.local.mac.address`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Local Media Access Control (MAC) address of the network connection. [2] | `00-00-5E-00-53-23` |
 
 **[1] `network.local.address`:** This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
 
-**[2] `network.local.mac`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[2] `network.local.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]

@@ -142,7 +142,7 @@ groups:
         type: string
         brief: Local address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
-      - id: network.local.mac
+      - id: network.local.mac.address
         stability: development
         type: string
         brief: 'Local Media Access Control (MAC) address of the network connection.'
@@ -164,7 +164,7 @@ groups:
         type: string
         brief: Peer address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
-      - id: network.peer.mac
+      - id: network.peer.mac.address
         stability: development
         type: string
         brief: 'Peer Media Access Control (MAC) address of the network connection.'

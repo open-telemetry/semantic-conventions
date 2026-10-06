@@ -24,10 +24,10 @@ These attributes may be used for any network related operation.
 | <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The network interface name. | `lo`; `eth0` |
 | <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [(see more)](#network-io-direction-values) |
 | <a id="network-local-address" href="#network-local-address">`network.local.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Local address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
-| <a id="network-local-mac" href="#network-local-mac">`network.local.mac`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Local Media Access Control (MAC) address of the network connection. [2] | `00-00-5E-00-53-23` |
+| <a id="network-local-mac-address" href="#network-local-mac-address">`network.local.mac.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Local Media Access Control (MAC) address of the network connection. [2] | `00-00-5E-00-53-23` |
 | <a id="network-local-port" href="#network-local-port">`network.local.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Local port number of the network connection. | `65123` |
 | <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
-| <a id="network-peer-mac" href="#network-peer-mac">`network.peer.mac`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Peer Media Access Control (MAC) address of the network connection. [3] | `00-00-5E-00-53-23` |
+| <a id="network-peer-mac-address" href="#network-peer-mac-address">`network.peer.mac.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Peer Media Access Control (MAC) address of the network connection. [3] | `00-00-5E-00-53-23` |
 | <a id="network-peer-port" href="#network-peer-port">`network.peer.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Peer port number of the network connection. | `65123` |
 | <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [4] | `amqp`; `http`; `mqtt` |
 | <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [5] | `1.1`; `2` |
@@ -36,14 +36,14 @@ These attributes may be used for any network related operation.
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
-**[2] `network.local.mac`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[2] `network.local.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
 >
 > This attribute may contain sensitive (PII) information.
 
-**[3] `network.peer.mac`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[3] `network.peer.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]

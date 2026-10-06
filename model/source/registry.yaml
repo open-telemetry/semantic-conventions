@@ -9,7 +9,7 @@ attributes:
       When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent
       the source address behind any intermediaries, for example proxies, if it's available.
     examples: ['source.example.com', '10.1.2.80', '/tmp/my.sock']
-  - key: source.mac
+  - key: source.mac.address
     type: string
     stability: development
     brief: 'Source Media Access Control (MAC) address.'

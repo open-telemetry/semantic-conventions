@@ -9,7 +9,7 @@ attributes:
       When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
       the server address behind any intermediaries, for example proxies, if it's available.
     examples: ['example.com', '10.1.2.80', '/tmp/my.sock']
-  - key: server.mac
+  - key: server.mac.address
     stability: development
     type: string
     brief: 'Server Media Access Control (MAC) address.'

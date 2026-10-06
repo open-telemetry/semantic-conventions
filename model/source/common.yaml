@@ -13,6 +13,6 @@ attribute_groups:
       "user-facing" surface of the protocol / API doesn't expose a clear notion of client and server.
     attributes:
       - ref: source.address
-      - ref: source.mac
+      - ref: source.mac.address
         requirement_level: opt_in
       - ref: source.port
