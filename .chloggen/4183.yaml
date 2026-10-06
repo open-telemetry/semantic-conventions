@@ -1,0 +1,7 @@
+change_type: enhancement
+
+component: docs
+
+note: Clarify that generic opt-in/opt-out mechanisms provided by the OpenTelemetry API/SDK should be used instead of custom mechanisms.
+
+issues: [4183]
