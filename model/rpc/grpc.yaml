@@ -119,56 +119,6 @@ attribute_groups:
           information for this purpose.
         examples: [50051]
 
-span_refinements:
-  - id: span.rpc.grpc.call.client
-    ref: rpc.call.client
-    stability: release_candidate
-    annotations:
-      compatibility:
-        # The existing gRPC span is now a refinement of the shared RPC span.
-        policy_exceptions:
-          - span_missing
-    brief: This span represents an outgoing Remote Procedure Call (RPC).
-    note: |
-      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
-
-      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
-
-      **Span kind** MUST be `CLIENT`.
-
-      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. See also `rpc.status_code` attribute
-      for the details on which values classify as errors.
-    attributes:
-      - ref_group: rpc.grpc.attributes.common
-      - ref_group: rpc.grpc.attributes.client
-
-  - id: span.rpc.grpc.call.server
-    ref: rpc.call.server
-    stability: release_candidate
-    annotations:
-      compatibility:
-        # The existing gRPC span is now a refinement of the shared RPC span.
-        policy_exceptions:
-          - span_missing
-    brief: This span represents an incoming Remote Procedure Call (RPC).
-    note: |
-      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
-
-      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
-
-      **Span kind** MUST be `SERVER`.
-
-      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. See also `rpc.status_code` attribute
-      for the details on which values classify as errors.
-    attributes:
-      - ref_group: rpc.grpc.attributes.common
-      - ref_group: rpc.grpc.attributes.server
-      - ref: server.port
-        requirement_level:
-          conditionally_required: If `server.address` is set and the port is present in `:authority`.
-
 metric_refinements:
   - id: metric.rpc.grpc.server.call.duration
     ref: rpc.server.call.duration
