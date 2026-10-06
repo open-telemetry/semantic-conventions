@@ -26,7 +26,7 @@ jobs:
       run: make check-file-and-folder-names-in-docs
 
     - name: run markdownlint
-      uses: DavidAnson/markdownlint-cli2-action@6bf21b07787794f89a243495939cd651942aeabe # v24.1.0
+      uses: DavidAnson/markdownlint-cli2-action@21c1be1b93ad9ed58fa840aacc3f279cde2a72ff # v24.2.0
       with:
         globs: '**/*.md'
 
@@ -74,7 +74,7 @@ jobs:
       with:
         persist-credentials: false
 
-    - uses: streetsidesoftware/cspell-action@de2a73e963e7443969755b648a1008f77033c5b2 # v8.4.0
+    - uses: streetsidesoftware/cspell-action@6f3c77c1406bc930f944ba97e9801a22e42caf58 # v9.1.0
       with:
         incremental_files_only: false # check all files, not just changed files
         config: .cspell.yaml
