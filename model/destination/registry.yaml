@@ -9,21 +9,30 @@ attributes:
       When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent
       the destination address behind any intermediaries, for example proxies, if it's available.
     examples: ['destination.example.com', '10.1.2.80', '/tmp/my.sock']
-  - key: destination.cidr
+  - key: destination.prefix.address
     type: string
     stability: development
-    brief: "The CIDR block associated with the destination IP address."
+    brief: "The network address of the IP prefix associated with the destination IP address."
     note: >
-      The value MUST be an IPv4 or IPv6 address prefix in CIDR notation. IPv4 prefixes
-      MUST use dotted-decimal address notation and a prefix length from 0 to 32, as defined
-      in [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html). IPv6 prefixes MUST use a
-      prefix length from 0 to 128, and the address MUST use the canonical text representation
-      defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The address portion
-      MUST be the canonical network address for the prefix, with all host bits set to zero.
-      This attribute MUST NOT contain a domain name or UNIX domain socket name. This attribute
-      MAY be set whether or not `destination.address` is set. If `destination.address` is also
-      set to an IP address, the IP address MUST be contained in this CIDR block.
-    examples: ['192.0.2.0/24', '2001:db8::/32']
+      The value MUST be an IPv4 or IPv6 network address, with all host bits set to zero
+      according to `destination.prefix.length`. IPv4 addresses MUST use dotted-decimal
+      notation. IPv6 addresses MUST use the canonical text representation defined in
+      [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The value MUST NOT contain
+      a prefix length, domain name, UNIX domain socket name, or IPv6 zone identifier.
+      This attribute MUST be set together with `destination.prefix.length`. The prefix
+      attributes MAY be set whether or not `destination.address` is set. If
+      `destination.address` is also set to an IP address, it MUST use the same IP version
+      and be contained in the prefix represented by these two attributes.
+    examples: ['192.0.2.0', '2001:db8::']
+  - key: destination.prefix.length
+    type: int
+    stability: development
+    brief: "The number of leading bits in the IP prefix associated with the destination IP address."
+    note: >
+      The value MUST be an integer from 0 to 32 for IPv4, as defined in
+      [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html), or from 0 to 128 for IPv6.
+      This attribute MUST be set together with `destination.prefix.address`.
+    examples: [24, 32]
   - key: destination.port
     type: int
     stability: development

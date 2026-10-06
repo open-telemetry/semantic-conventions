@@ -1,0 +1,7 @@
+change_type: enhancement
+component: network
+note: >
+  Add IP prefix address and length attributes for local, peer, client, server,
+  source, and destination network endpoints.
+issues: [3731]
+subtext:
