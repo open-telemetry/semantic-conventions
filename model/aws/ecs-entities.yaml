@@ -1,24 +1,47 @@
 groups:
-  - id: entity.aws.ecs
+  - id: entity.aws.ecs.task
     type: entity
     stability: development
-    name: aws.ecs
+    name: aws.ecs.task
     brief: >
-      Entities used by AWS Elastic Container Service (ECS).
+      A running AWS Elastic Container Service (ECS) task.
     attributes:
-      - ref: aws.ecs.container.arn
-        requirement_level: recommended
-      - ref: aws.ecs.cluster.arn
+      - ref: aws.ecs.task.arn
+        role: identifying
         requirement_level: recommended
       - ref: aws.ecs.launchtype
-        requirement_level: recommended
-      - ref: aws.ecs.task.arn
+        role: descriptive
         requirement_level: recommended
       - ref: aws.ecs.task.family
+        role: descriptive
         requirement_level: recommended
       - ref: aws.ecs.task.id
+        role: descriptive
         requirement_level:
-          conditionally_required: If and only if `task.arn` is populated.
+          conditionally_required: If and only if `aws.ecs.task.arn` is populated.
         examples: [ '10838bed-421f-43ef-870a-f43feacbbb5b', '23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd' ]
       - ref: aws.ecs.task.revision
+        role: descriptive
+        requirement_level: recommended
+
+  - id: entity.aws.ecs.cluster
+    type: entity
+    stability: development
+    name: aws.ecs.cluster
+    brief: >
+      An AWS Elastic Container Service (ECS) cluster.
+    attributes:
+      - ref: aws.ecs.cluster.arn
+        role: identifying
+        requirement_level: recommended
+
+  - id: entity.aws.ecs.container
+    type: entity
+    stability: development
+    name: aws.ecs.container
+    brief: >
+      An application container running in an AWS Elastic Container Service (ECS) task.
+    attributes:
+      - ref: aws.ecs.container.arn
+        role: identifying
         requirement_level: recommended

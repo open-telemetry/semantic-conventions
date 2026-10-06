@@ -24,7 +24,9 @@ Currently, the following namespaces exist:
 | App | | |
 | | [app](app.md#app) | ![Development](https://img.shields.io/badge/-development-blue) |
 | AWS | | |
-| | [aws.ecs](aws.md#aws-ecs) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [aws.ecs.cluster](aws.md#aws-ecs-cluster) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [aws.ecs.container](aws.md#aws-ecs-container) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [aws.ecs.task](aws.md#aws-ecs-task) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.eks](aws.md#aws-eks) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.log](aws.md#aws-log) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Browser | | |
