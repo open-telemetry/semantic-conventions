@@ -8,21 +8,7 @@ attribute_groups:
         note: "MUST be set to `grpc`."
         examples: ["grpc"]
       - ref: error.type
-        note: |
-          If the RPC fails with an error before status code is returned,
-          `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
-          or a component-specific, low cardinality error identifier.
-
-          If a status code is returned and it indicates an error,
-          `error.type` SHOULD be set to that status code. See the `rpc.status_code`
-          attribute for the list of gRPC status codes that are considered errors.
-
-          The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
-          Instrumentations SHOULD document the list of errors they report.
-
-          If the request has completed successfully, instrumentations SHOULD NOT set
-          `error.type`.
-        examples: ["DEADLINE_EXCEEDED", "UNIMPLEMENTED", "UNAVAILABLE"]
+        examples: ["UNKNOWN", "DEADLINE_EXCEEDED", "UNIMPLEMENTED", "INTERNAL", "UNAVAILABLE", "DATA_LOSS"]
 
   - id: rpc.grpc.attributes.client
     visibility: internal
@@ -37,6 +23,9 @@ attribute_groups:
         examples: ["OK", "DEADLINE_EXCEEDED", "UNAVAILABLE"]
         note: |
           All status codes except `OK` SHOULD be considered errors.
+
+          Instrumentations MAY use additional context or provide configuration options to customize
+          which status codes are considered errors.
       - ref: server.address
         requirement_level: required
         note: |
@@ -101,6 +90,9 @@ attribute_groups:
           - `INTERNAL`
           - `UNAVAILABLE`
           - `DATA_LOSS`
+
+          Instrumentations MAY use additional context or provide configuration options to customize
+          which status codes are considered errors.
       - ref: server.address
         note: |
           Instrumentations SHOULD populate `server.address` from the host
@@ -119,6 +111,119 @@ attribute_groups:
           information for this purpose.
         examples: [50051]
 
+  - id: rpc.grpc.attributes.span
+    visibility: internal
+    attributes:
+      - ref: rpc.request.header
+        requirement_level: opt_in
+        brief: gRPC request headers, also called [request metadata](https://grpc.io/docs/guides/metadata/).
+        note: |
+          `<key>` is the normalized header name (lowercase), the value is the header values.
+
+          Instrumentations SHOULD require an explicit configuration of which headers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded
+          as the `rpc.request.header.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to headers.
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
+      - ref: rpc.response.header
+        requirement_level: opt_in
+        brief: gRPC response headers, also called [initial metadata](https://grpc.io/docs/what-is-grpc/core-concepts/#rpc-life-cycle).
+        note: |
+          `<key>` is the normalized header name (lowercase), the value is the header values.
+
+          Instrumentations SHOULD require an explicit configuration of which headers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+          as the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to headers.
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
+      - ref: rpc.response.trailer
+        requirement_level: opt_in
+        brief: gRPC response trailers, also called [trailing metadata](https://grpc.io/docs/what-is-grpc/core-concepts/#rpc-life-cycle).
+        note: |
+          `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
+
+          Instrumentations SHOULD require an explicit configuration of which trailers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a trailer `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+          as the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to trailers.
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
+
+span_refinements:
+  - id: span.rpc.grpc.call.client
+    ref: rpc.call.client
+    stability: release_candidate
+    annotations:
+      compatibility:
+        # The existing gRPC span is now a refinement of the shared RPC span.
+        policy_exceptions:
+          - span_missing
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. See also `rpc.status_code` attribute
+      for the details on which values classify as errors.
+    attributes:
+      - ref_group: rpc.grpc.attributes.common
+      - ref_group: rpc.grpc.attributes.client
+      - ref_group: rpc.grpc.attributes.span
+
+  - id: span.rpc.grpc.call.server
+    ref: rpc.call.server
+    stability: release_candidate
+    annotations:
+      compatibility:
+        # The existing gRPC span is now a refinement of the shared RPC span.
+        policy_exceptions:
+          - span_missing
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. See also `rpc.status_code` attribute
+      for the details on which values classify as errors.
+    attributes:
+      - ref_group: rpc.grpc.attributes.common
+      - ref_group: rpc.grpc.attributes.server
+      - ref_group: rpc.grpc.attributes.span
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If `server.address` is set and the port is present in `:authority`.
+
 metric_refinements:
   - id: metric.rpc.grpc.server.call.duration
     ref: rpc.server.call.duration
@@ -126,8 +231,6 @@ metric_refinements:
     note: |
       When this metric is reported alongside an RPC server span, the metric value
       SHOULD be the same as the RPC server span duration.
-
-      `rpc.system.name` MUST be set to `"grpc"`.
     attributes:
       - ref_group: rpc.grpc.attributes.common
       - ref_group: rpc.grpc.attributes.server
@@ -138,8 +241,6 @@ metric_refinements:
     note: |
       When this metric is reported alongside an RPC client span, the metric value
       SHOULD be the same as the RPC client span duration.
-
-      `rpc.system.name` MUST be set to `"grpc"`.
     attributes:
       - ref_group: rpc.grpc.attributes.common
       - ref_group: rpc.grpc.attributes.client

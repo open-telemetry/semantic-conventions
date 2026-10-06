@@ -5,4 +5,6 @@ note: >
   `rpc.client.call.duration`, rendered on the gRPC page. The `rpc.method`
   requirement level differs between client (required) and server
   (conditionally required), matching the corresponding gRPC span conventions.
+  Convert gRPC spans to refinements and share gRPC attribute definitions
+  across spans and metrics.
 issues: [3868]
