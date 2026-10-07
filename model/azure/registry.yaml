@@ -13,6 +13,24 @@ groups:
           [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal)
           the resource belongs to.
         examples: ["my-resource-group", "rg-myapp-prod"]
+      - id: azure.app_service_plan.instance.name
+        type: string
+        stability: development
+        brief: >
+          The name of the [App Service plan](https://learn.microsoft.com/azure/app-service/overview-hosting-plans)
+          instance running the app, as reported in the `Instance` dimension of
+          [Azure Monitor metrics](https://learn.microsoft.com/azure/app-service/monitor-app-service-reference#metric-dimensions).
+        note: |
+          Applies to Azure apps hosted on App Service plans, including, but not limited to,
+          App Service web apps and some Azure Functions. Detectors SHOULD set it from the first
+          non-empty value of the `COMPUTERNAME`, `WEBSITE_POD_NAME`, and `CONTAINER_NAME`
+          environment variables.
+
+          This is one of two values Azure uses as an app's instance. It is not to be confused
+          with `WEBSITE_INSTANCE_ID`, which detectors use for `service.instance.id` or
+          `faas.instance`. Apps on the same plan that run on the same instance report the same
+          value.
+        examples: ["ln0xsdlwk0002TS", "wn0xsdwk00010C", "0--13377339-6ebe-4309-b59c-eac2c54213f0"]
   - id: registry.azure.client.sdk
     type: attribute_group
     display_name: Azure Client Library Attributes
