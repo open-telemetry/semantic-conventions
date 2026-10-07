@@ -25,4 +25,5 @@ subtext: |
   `k8s.pod.memory.request.current`, `k8s.pod.memory.request.utilization`,
   `k8s.container.memory.limit.utilization` and `k8s.container.memory.request.utilization`,
   aligning memory with the equivalent CPU metrics. The utilization metrics use the
-  memory working set as the numerator.
+  memory working set as the numerator. Also clarifies the `k8s.pod.memory.working_set`
+  description (`inactive_file` exclusion and its use in kubelet eviction ranking).
