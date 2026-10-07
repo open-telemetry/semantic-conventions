@@ -316,4 +316,12 @@ gRPC instrumentations SHOULD collect metrics according to the general
 
 `rpc.system.name` MUST be set to `"grpc"`.
 
+For `rpc.client.call.duration` and `rpc.server.call.duration`, the instruments
+SHOULD be specified with
+[`ExplicitBucketBoundaries`](https://opentelemetry.io/docs/specs/otel/metrics/api/#instrument-advisory-parameters)
+of `[ 0, 0.00001, 0.00005, 0.0001, 0.0003, 0.0006, 0.0008, 0.001, 0.002, 0.003, 0.004, 0.005, 0.006, 0.008, 0.01, 0.013, 0.016, 0.02, 0.025, 0.03, 0.04, 0.05, 0.065, 0.08, 0.1, 0.13, 0.16, 0.2, 0.25, 0.3, 0.4, 0.5, 0.65, 0.8, 1, 2, 5, 10, 20, 50, 100 ]`
+in seconds, instead of the general RPC bucket boundaries.
+These boundaries match the [gRPC metrics conventions](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md#units),
+which preserve compatibility with gRPC OpenCensus metrics.
+
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

@@ -103,7 +103,10 @@ Metric changes:
 - **Description**: `Measures the duration of inbound RPC.` &rarr;
   `Measures the duration of inbound remote procedure calls (RPC).` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Histogram buckets**: boundaries updated to reflect change from milliseconds
-  to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
+  to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961)).
+  [General RPC boundaries](/docs/rpc/rpc-metrics.md#metric-rpcservercallduration)
+  cover 0.1 ms to 100 s, with a [gRPC-specific recommendation](/docs/rpc/grpc.md#metrics)
+  matching native gRPC latency boundaries.
 - **Requirement level**: Made required ([#3284](https://github.com/open-telemetry/semantic-conventions/pull/3284))
 - **Attributes**: see table below
 
@@ -135,7 +138,10 @@ Metric changes:
 - **Description**: `Measures the duration of outbound RPC.` &rarr;
   `Measures the duration of outbound remote procedure calls (RPC).` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Histogram buckets**: boundaries updated to reflect change from milliseconds
-  to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
+  to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961)).
+  [General RPC boundaries](/docs/rpc/rpc-metrics.md#metric-rpcclientcallduration)
+  cover 0.1 ms to 100 s, with a [gRPC-specific recommendation](/docs/rpc/grpc.md#metrics)
+  matching native gRPC latency boundaries.
 - **Requirement level**: Made required ([#3284](https://github.com/open-telemetry/semantic-conventions/pull/3284))
 - **Attributes**: see table below
 
