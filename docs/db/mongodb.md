@@ -140,7 +140,8 @@ instrumentation MUST skip context injection for the operation.
 
 When this mechanism is enabled and the target server supports document-valued
 `comment`, instrumentation MUST use the selected propagator to inject string
-key-value pairs into the top-level fields of a BSON document in `comment`.
+key-value pairs into the top-level fields of a BSON document in `comment`,
+unless doing so would exceed an applicable size limit.
 
 The instrumentation SHOULD allow users to pass a propagator to overwrite the
 global propagator. If no propagator is provided by the user, instrumentation
@@ -191,10 +192,17 @@ every field injected into `comment` may be visible to users with access to those
 outputs, and that wrapping an application-provided comment may change the
 structure exposed in those outputs.
 
-The MongoDB wire protocol limits the whole command document to the server's
-advertised `maxBsonObjectSize`. Instrumentations SHOULD keep the propagation
-document compact and MUST NOT assume that the entire advertised size is
-available for `comment`.
+The propagation document counts toward applicable BSON document and wire
+message size limits. Instrumentations SHOULD keep it compact and MUST NOT
+assume that the entire size limit is available for `comment`.
+
+If context injection would cause an otherwise valid command to exceed an
+applicable size limit, instrumentation MUST skip injection and send the
+original command unchanged. This includes preserving the value and BSON type
+of any application-provided `comment`, including explicit BSON `null`, or
+leaving `comment` absent if it was not provided. Instrumentation MUST NOT
+truncate an application-provided comment or fail the operation because
+context injection would exceed a size limit.
 
 ## Metrics
 
