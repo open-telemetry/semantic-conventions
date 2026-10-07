@@ -276,10 +276,7 @@ groups:
         metric_value_type: int
     note: >
       The amount of working set memory. This includes recently accessed memory,
-      dirty memory, and kernel memory. On Linux, the working set is calculated by
-      excluding `inactive_file` from memory usage. The kubelet uses the working set
-      when ranking Pods for eviction under memory pressure. The working set can still
-      include cached file-backed memory. WorkingSetBytes is <= UsageBytes.
+      dirty memory, and kernel memory. WorkingSetBytes is <= UsageBytes.
 
       This metric is derived from the
       [MemoryStats.WorkingSetBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
