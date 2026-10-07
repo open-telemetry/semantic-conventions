@@ -523,7 +523,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.pod.memory.working_set` | UpDownCounter | `By` | Pod memory working set. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
-**[1]:** The amount of working set memory. This includes recently accessed memory, dirty memory, and kernel memory. WorkingSetBytes is <= UsageBytes.
+**[1]:** The amount of working set memory. This includes recently accessed memory, dirty memory, and kernel memory. On Linux, the working set is calculated by excluding `inactive_file` from memory usage. The kubelet uses the working set when ranking Pods for eviction under memory pressure. The working set can still include cached file-backed memory. WorkingSetBytes is <= UsageBytes.
 This metric is derived from the [MemoryStats.WorkingSetBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the Kubelet's stats API.
 
 <!-- prettier-ignore-end -->
