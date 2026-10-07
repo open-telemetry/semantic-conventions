@@ -277,7 +277,8 @@ groups:
     note: >
       The amount of working set memory. This includes recently accessed memory,
       dirty memory, and kernel memory. On Linux, the working set is calculated by
-      excluding `inactive_file` from memory usage. The kubelet uses the working set
+      excluding inactive file-backed memory from memory usage (`inactive_file` on
+      cgroup v2, `total_inactive_file` on cgroup v1). The kubelet uses the working set
       when ranking Pods for eviction under memory pressure. The working set can still
       include cached file-backed memory. WorkingSetBytes is <= UsageBytes.
 
