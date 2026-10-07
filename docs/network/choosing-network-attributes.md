@@ -69,8 +69,8 @@ The pairs map roughly onto observation layers:
    L4  Transport flow / packet direction           source / destination
        (NetFlow, IPFIX, eBPF flows, pcap)          (same family at endpoint or mid-path)
    ─────────────────────────────────────────────────────────────────────────────────────────────────
-   L3  Network routing / forwarding                (not covered by these pairs today)
-   L2  Link / neighbor discovery                   (not covered by these pairs today)
+   L3  Network routing / forwarding                (not covered by these semantic conventions)
+   L2  Link / neighbor discovery                   (not covered by these semantic conventions)
 ```
 
 ## Why these pairs are not interchangeable
@@ -114,11 +114,12 @@ differ.
 ```text
    External client → reverse proxy / LB → app → DB cluster (this query → node B)
 
-   ┌──────────┐      ┌────────────┐      ┌──────────┐      ┌─────────────────────┐
-   │  CLIENT  │─────>│ PROXY / LB │─────>│   APP    │─────>│  db.example.com     │
-   │203.0.113 │      │  10.0.0.9  │      │10.0.0.20 │      │  ┌ A ┐ ┌ B ┐ ┌ C ┐  │
-   └──────────┘      └────────────┘      └──────────┘      │  │.7 │ │.8 │ │.9 │  │
-                                                           └─────────────────────┘
+   ┌──────────┐      ┌────────────┐      ┌─────────────────┐      ┌─────────────────────┐
+   │  CLIENT  │─────>│ PROXY / LB │─────>│       APP       │─────>│         DB          │
+   │203.0.113 │      │  10.0.0.9  │      │ api.example.com │      │  db.example.com     │
+   └──────────┘      └────────────┘      │    10.0.0.20    │      │  ┌ A ┐ ┌ B ┐ ┌ C ┐  │
+                                         └─────────────────┘      │  │.7 │ │.8 │ │.9 │  │
+                                                                  └─────────────────────┘
 
    On the APP's outbound DB client span:
      server.address        = db.example.com   ← logical destination
@@ -136,17 +137,17 @@ differ.
      (may be proxy, node, or post-NAT addresses — not the same as L7 client/server)
 ```
 
-Which logical role maps to the concrete socket depends on the span's perspective: logical
+Which logical role maps to the concrete socket depends on the instrumentation perspective: logical
 identity and physical adjacency are recorded from whichever side emits the telemetry.
 
-| Span perspective | Remote endpoint (logical vs. concrete) | Local endpoint (logical vs. concrete) |
+| Instrumentation perspective | Remote endpoint (logical vs. concrete) | Local endpoint (logical vs. concrete) |
 | --- | --- | --- |
-| Client span | `server.*` vs. `network.peer.*` | `client.*` vs. `network.local.*` |
-| Server span | `client.*` vs. `network.peer.*` | `server.*` vs. `network.local.*` |
+| Client | `server.*` vs. `network.peer.*` | `client.*` vs. `network.local.*` |
+| Server | `client.*` vs. `network.peer.*` | `server.*` vs. `network.local.*` |
 
-On a client span, `server.address` answers "who did I intend to talk to?" while
-`network.peer.address` answers "which specific box did this connection land on?". On a server span
-the roles invert: `network.peer.address` is the directly connected client or proxy, while
+When instrumenting the client, `server.address` answers "who did I intend to talk to?" while
+`network.peer.address` answers "which specific box did this connection land on?". When instrumenting
+the server, the roles invert: `network.peer.address` is the directly connected client or proxy, while
 `client.address` is the logical (de-proxied) client. Folding the concrete peer into the logical
 role, in either direction, would lose node-level diagnosis under load balancers, connection
 pools, and replicas. See the [`network.*` registry](/docs/registry/attributes/network.md) for
@@ -190,7 +191,7 @@ they are typically Opt-In.
    │        not a substitute encoding for a flow record's endpoints)
    │
    └─ L2 / L3 adjacency, routing, or neighbor discovery
-         → not covered by these pairs today
+         → not covered by these semantic conventions
 ```
 
 | If you know… | Prefer |
@@ -201,13 +202,9 @@ they are typically Opt-In.
 | Concrete socket endpoint (L4/L7; also BGP TCP) | `network.local` / `network.peer` |
 | Logical service name _and_ concrete node | `server.*` **and** `network.peer.*` together |
 
-The `client` / `server` roles come from protocol or connection semantics - who initiated the
-connection and who accepted it - which at L7 is almost always known. In the rare case where the
-initiator cannot be determined, a best-effort heuristic MAY be used as a last resort, for example
-treating the well-known / lower port as the server and the ephemeral / higher port as the client.
-Such a heuristic is best-effort only and can be wrong (ephemeral port ranges vary by platform, both
-ends may use registered ports, and peer-to-peer protocols have no roles), so fall back to
-`source` / `destination` when it would not be reliable.
+The semantic conventions for a domain choose the pair. When they use `client` / `server`, an
+operation whose initiator cannot be determined still uses `client` / `server`; the domain convention
+MAY say how to assign the role. Use `source` / `destination` for exchanges with no client/server role.
 
 ## Flow and packet telemetry
 
