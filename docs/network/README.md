@@ -6,20 +6,7 @@ linkTitle: Network
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions for network-centric observability:
-telemetry taken from the network itself, not only from an application's view of
-its own connections. That includes traditional methods such as NetFlow, IPFIX,
-and SNMP, as well as eBPF and other on-path observers, and the shared address
-and protocol attributes that application instrumentations also reuse.
-
-Semantic conventions for Network will be defined for the following signals,
-and will be added as they are defined:
-
-- **Spans** - for example flow traces
-- **Metrics** - for example protocol, flow, and SNMP metrics
-- **Events** - for example SNMP traps and routing updates
-- **Entities** - network entities across the OSI model (interfaces, peers,
-  sessions, flows)
+This document defines semantic conventions for network communication.
 
 ## Guidance
 

@@ -55,7 +55,7 @@ to the same telemetry.
 | Attribute pair | Question answered | Layer | Address form | Typical source |
 | --- | --- | --- | --- | --- |
 | [`client.*`](/docs/registry/attributes/client.md) / [`server.*`](/docs/registry/attributes/server.md) | Who initiated vs. accepted the connection? (protocol roles) | Application (L7) | Logical / de-proxied when available (e.g. `X-Forwarded-For`, `Forwarded`, PROXY protocol) | Protocol or instrumentation library |
-| [`source.*`](/docs/registry/attributes/source.md) / [`destination.*`](/docs/registry/attributes/destination.md) | Who sent vs. received this exchange? (direction) | Flow / packet (L4), or any exchange with no clear client/server role | As observed at the point of instrumentation | The 5-tuple seen on the wire or socket at the meter |
+| [`source.*`](/docs/registry/attributes/source.md) / [`destination.*`](/docs/registry/attributes/destination.md) | Who sent vs. received this exchange? (direction) | Flow / packet (L4), or any exchange with no clear client/server role | As observed at the point of instrumentation | Packet headers or socket addresses |
 | [`network.local.*`](/docs/registry/attributes/network.md) / [`network.peer.*`](/docs/registry/attributes/network.md) | Which end is mine vs. the directly connected peer? (vantage) | Direct connection / socket | Physical socket endpoints | `getsockname` / `getpeername` |
 
 The pairs map roughly onto observation layers:
@@ -132,7 +132,7 @@ differ.
      network.local.address = 10.0.0.20        ← app's accepting socket
 
    If the same path is also observed as L4 flows (eBPF / NetFlow):
-     source / destination  = as-observed 5-tuple at that metering point
+     source / destination  = as-observed addresses and ports at that observation point
      (may be proxy, node, or post-NAT addresses — not the same as L7 client/server)
 ```
 
@@ -183,7 +183,7 @@ they are typically Opt-In.
    │         (gossip, BitTorrent, blockchain, WebRTC)
    │         → source / destination
    │
-   ├─ L4 flow, packet, or mid-path metering (no / unknown app roles)
+   ├─ L4 flow, packet, or mid-path observation (no / unknown app roles)
    │     → source / destination  (direction of this exchange, as observed)
    │       used consistently whether observed at an endpoint or mid-path
    │       (network.local / network.peer are for connection/socket-level telemetry,
@@ -212,14 +212,15 @@ ends may use registered ports, and peer-to-peer protocols have no roles), so fal
 ## Flow and packet telemetry
 
 Flow and packet telemetry uses `source` / `destination` for the direction of each exchange, recorded
-as observed at the metering point, so the same flow is represented the same way regardless of vantage
+as observed at the observation point, so the same flow is represented the same way regardless of vantage
 (endpoint host IPFIX/eBPF, or mid-path router/switch NetFlow/IPFIX). `network.local` / `network.peer`
 are not an alternative encoding for a flow's endpoints; they describe the concrete socket of a
 connection-oriented interaction (for example a `client` / `server` span or a BGP TCP session).
 
-Because they are recorded as observed, `source` / `destination` hold whatever address and port are
-present where the flow is metered; they are never resolved to a logical identity behind an
-intermediary. The same flow can therefore carry different values at different observation points -
+Because they are recorded as observed, `source` / `destination` hold the address and port
+available at the observation point. Instrumentation captures that available address and does
+not try to resolve the address behind an intermediary.
+The same flow can therefore carry different values at different observation points -
 for example a mid-path router or switch sees the addresses on the wire at that hop (before or after
 translation, depending on where it sits relative to a NAT or load balancer), while a host may see
 its own address or a peer's. Use `client.*` / `server.*` when you need the logical, de-proxied
@@ -319,7 +320,7 @@ Use them for interactions with a clear initiator and acceptor. This covers commo
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-`source.*` attributes describe the sender of a network exchange or packet, recorded as observed at the point of instrumentation rather than resolved to an identity behind intermediaries such as proxies.
+`source.*` attributes describe the sender of a network exchange or packet. They capture the address available at the point of instrumentation and do not try to resolve the address behind intermediaries such as proxies.
 
 Use them when there is no client/server relationship between the two sides, or when that relationship is unknown - for example, packet-level telemetry and peer-to-peer protocols.
 
@@ -330,7 +331,7 @@ Use them when there is no client/server relationship between the two sides, or w
 | [`source.address`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Source address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the sender was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `source.example.com`; `/tmp/my.sock` |
 | [`source.port`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Source port number | `3389`; `2888` |
 
-**[1] `source.address`:** `source.address` SHOULD be the sender address as observed at the point of instrumentation, for example the source of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address behind intermediaries such as proxies or load balancers, and reverse DNS lookup SHOULD NOT be used to obtain a domain name.
+**[1] `source.address`:** `source.address` SHOULD be the sender address as observed at the point of instrumentation, for example the source of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD capture the available address and SHOULD NOT try to resolve the address behind intermediaries such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -345,7 +346,7 @@ Use them when there is no client/server relationship between the two sides, or w
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-`destination.*` attributes describe the receiver of a network exchange or packet, recorded as observed at the point of instrumentation rather than resolved to an identity behind intermediaries such as proxies.
+`destination.*` attributes describe the receiver of a network exchange or packet. They capture the address available at the point of instrumentation and do not try to resolve the address behind intermediaries such as proxies.
 
 Use them when there is no client/server relationship between the two sides, or when that relationship is unknown - for example, packet-level telemetry and peer-to-peer protocols.
 
@@ -356,7 +357,7 @@ Use them when there is no client/server relationship between the two sides, or w
 | [`destination.address`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Destination address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the receiver was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `destination.example.com`; `/tmp/my.sock` |
 | [`destination.port`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Destination port number | `3389`; `2888` |
 
-**[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address behind intermediaries such as proxies or load balancers, and reverse DNS lookup SHOULD NOT be used to obtain a domain name.
+**[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD capture the available address and SHOULD NOT try to resolve the address behind intermediaries such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

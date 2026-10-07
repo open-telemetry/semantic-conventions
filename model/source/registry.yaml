@@ -10,9 +10,9 @@ attributes:
       a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup.
     note: >
       `source.address` SHOULD be the sender address as observed at the point of instrumentation, for example the
-      source of the packet, flow, or exchange seen on the wire or socket. It SHOULD NOT be resolved to an address
-      behind intermediaries such as proxies or load balancers, and reverse DNS lookup SHOULD NOT be used to obtain
-      a domain name.
+      source of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD
+      capture the available address and SHOULD NOT try to resolve the address behind intermediaries
+      such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
     examples: ['10.1.2.80', 'source.example.com', '/tmp/my.sock']
   - key: source.port
     type: int
