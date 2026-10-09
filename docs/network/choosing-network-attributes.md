@@ -6,36 +6,34 @@ linkTitle: Choosing network address and port attributes
 
 **Status**: [Development][DocumentStatus]
 
-Attributing an address to a communication is harder than it first appears, because the same
-exchange looks different depending on where it is observed:
+The address you record depends on where you observe the exchange:
 
-- At a communicating **endpoint**, a process sees its own socket and the socket of whatever it is
-  directly connected to - which may be the other party, or an intermediary.
-- At an **intermediary** such as a proxy, load balancer, or NAT gateway, addresses are frequently
-  rewritten, so the addresses on the inbound side differ from those on the outbound side.
-- At a **pass-through observer** such as a switch or router interface, a network tap, or a flow
-  exporter, there may be no socket at all - only the addresses carried in the packets crossing
-  that point.
+- An **endpoint** sees its own socket and the socket it is directly connected to. That peer may be
+  the other party, or an intermediary.
+- An **intermediary** (proxy, load balancer, or NAT) rewrites addresses, so the inbound side and the
+  outbound side differ.
+- A **pass-through observer** (switch, router, tap, or flow exporter) has no socket. It only sees
+  the addresses on the packets crossing that point.
 
-Because of this, no single address/port pair can answer every question. The address of the
-_logical_ service a client intended to reach, the address _actually observed on the wire_ at a
-given point, and the address of the _directly connected_ node can all differ - especially when
-intermediaries are involved. OpenTelemetry therefore defines several address/port pairs, each
-answering a distinct question, and more than one pair MAY apply to the same telemetry. The sections
-below explain how to pick the right one(s); the [Attribute reference](#attribute-reference) lists
-the attributes in each family.
+The logical service a client intended to reach, the address observed at a given point, and the
+directly connected socket can all be different. OpenTelemetry defines a separate address/port pair
+for each, and more than one pair MAY apply to the same telemetry. The
+[Attribute reference](#attribute-reference) lists the attributes in each family.
 
 <!-- START doctoc -->
 
 - [Address and port attributes](#address-and-port-attributes)
-- [Why these pairs are not interchangeable](#why-these-pairs-are-not-interchangeable)
+- [Decision guide](#decision-guide)
 - [How they coexist](#how-they-coexist)
-  - [Client/server examples using `network.peer.*`](#clientserver-examples-using-networkpeer)
+  - [`client.*` / `server.*` and the socket](#client--server-and-the-socket)
+    - [Logical service and concrete node](#logical-service-and-concrete-node)
     - [Simple client/server example](#simple-clientserver-example)
     - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
     - [Client/server example with forward proxy](#clientserver-example-with-forward-proxy)
-- [Decision guide](#decision-guide)
-- [Flow and packet telemetry](#flow-and-packet-telemetry)
+  - [`source.*` / `destination.*` and the socket](#source--destination-and-the-socket)
+    - [One endpoint, both directions](#one-endpoint-both-directions)
+    - [Router before NAT](#router-before-nat)
+    - [Broadcast, multicast, and anycast](#broadcast-multicast-and-anycast)
 - [Attribute reference](#attribute-reference)
   - [Server](#server)
   - [Client](#client)
@@ -48,195 +46,301 @@ the attributes in each family.
 
 ## Address and port attributes
 
-OpenTelemetry defines three pairs of address/port attributes for the two sides of a network
-interaction. They answer different questions and are not synonyms; more than one pair MAY apply
-to the same telemetry.
+Each pair covers one of the three addresses above: the logical service, the address observed at this
+point, and the directly connected socket.
 
 | Attribute pair | Question answered | Layer | Address form | Typical source |
 | --- | --- | --- | --- | --- |
 | [`client.*`](/docs/registry/attributes/client.md) / [`server.*`](/docs/registry/attributes/server.md) | Who initiated vs. accepted the connection? (protocol roles) | Application (L7) | Logical / de-proxied when available (e.g. `X-Forwarded-For`, `Forwarded`, PROXY protocol) | Protocol or instrumentation library |
-| [`source.*`](/docs/registry/attributes/source.md) / [`destination.*`](/docs/registry/attributes/destination.md) | Who sent vs. received this exchange? (direction) | Flow / packet (L4), or any exchange with no clear client/server role | As observed at the point of instrumentation | Packet headers or socket addresses |
+| [`source.*`](/docs/registry/attributes/source.md) / [`destination.*`](/docs/registry/attributes/destination.md) | Who sent vs. received this exchange? (direction) | Flow / packet (L4), or any exchange with no clear client/server role (L7) | As observed at the point of instrumentation | Packet headers or socket addresses |
 | [`network.local.*`](/docs/registry/attributes/network.md) / [`network.peer.*`](/docs/registry/attributes/network.md) | Which end is mine vs. the directly connected peer? (vantage) | Direct connection / socket | Physical socket endpoints | `getsockname` / `getpeername` |
-
-The pairs map roughly onto observation layers:
-
-```text
-   L7  Application / protocol roles                client / server
-       (HTTP, gRPC, DB wire protocols, …)          (+ network.local/peer = concrete socket node)
-       symmetric peers, no clear roles             source / destination
-       (gossip, BitTorrent, blockchain, WebRTC)
-   ─────────────────────────────────────────────────────────────────────────────────────────────────
-   L4  Transport flow / packet direction           source / destination
-       (NetFlow, IPFIX, eBPF flows, pcap)          (same family at endpoint or mid-path)
-   ─────────────────────────────────────────────────────────────────────────────────────────────────
-   L3  Network routing / forwarding                (not covered by these semantic conventions)
-   L2  Link / neighbor discovery                   (not covered by these semantic conventions)
-```
-
-## Why these pairs are not interchangeable
-
-Each pair answers a different question, and only some pin down _which_ address to record:
-
-```text
-   ROLE (who initiated?)                              [client / server]
-     client ●───────────────────────────────────────────● server
-
-   DIRECTION (who sent THIS exchange?)                [source / destination]
-     source ●───────────────────────────────────────────● destination
-
-   VANTAGE (my end vs directly wired other)           [network.local / network.peer]
-     local  ●───────────────────────────────────────────● peer
-```
-
-| Pair | What the label means | Which address is recorded |
-| --- | --- | --- |
-| `client` / `server` | who initiated vs. accepted | Logical / de-proxied |
-| `source` / `destination` | who sent vs. received this exchange | As observed at the observation point |
-| `network.local` / `network.peer` | this end vs. the directly connected other | Physical (`getsockname` / `getpeername`) |
-
-`network.peer` is not simply `source` or `destination`: on an endpoint the vantage is fixed while
-the direction flips per exchange:
-
-```text
-   transmit :  local → source        peer  → destination
-   receive  :  peer  → source        local → destination
-```
-
-Mid-path observers (routers, taps) often have no local socket at all, so `network.local` /
-`network.peer` do not apply, while `source` / `destination` remain well-defined from packet headers.
-
-## How they coexist
-
-At L7, logical role and concrete adjacency are independent dimensions. Emitting both is correct,
-not redundant: emit `server.address` (logical) and `network.peer.address` (concrete node) when they
-differ.
-
-```text
-   External client → reverse proxy / LB → app → DB cluster (this query → node B)
-
-   ┌──────────┐      ┌────────────┐      ┌─────────────────┐      ┌─────────────────────┐
-   │  CLIENT  │─────>│ PROXY / LB │─────>│       APP       │─────>│         DB          │
-   │203.0.113 │      │  10.0.0.9  │      │ api.example.com │      │  db.example.com     │
-   └──────────┘      └────────────┘      │    10.0.0.20    │      │  ┌ A ┐ ┌ B ┐ ┌ C ┐  │
-                                         └─────────────────┘      │  │.7 │ │.8 │ │.9 │  │
-                                                                  └─────────────────────┘
-
-   On the APP's outbound DB client span:
-     server.address        = db.example.com   ← logical destination
-     network.peer.address  = 10.0.0.8         ← concrete node B
-     network.local.address = 10.0.0.20        ← app's socket
-
-   On the APP's inbound HTTP server span:
-     client.address        = 203.0.113.x      ← logical client
-     server.address        = api.example.com
-     network.peer.address  = 10.0.0.9         ← concrete: the proxy's IP
-     network.local.address = 10.0.0.20        ← app's accepting socket
-
-   If the same path is also observed as L4 flows (eBPF / NetFlow):
-     source / destination  = as-observed addresses and ports at that observation point
-     (may be proxy, node, or post-NAT addresses — not the same as L7 client/server)
-```
-
-Which logical role maps to the concrete socket depends on the instrumentation perspective: logical
-identity and physical adjacency are recorded from whichever side emits the telemetry.
-
-| Instrumentation perspective | Remote endpoint (logical vs. concrete) | Local endpoint (logical vs. concrete) |
-| --- | --- | --- |
-| Client | `server.*` vs. `network.peer.*` | `client.*` vs. `network.local.*` |
-| Server | `client.*` vs. `network.peer.*` | `server.*` vs. `network.local.*` |
-
-When instrumenting the client, `server.address` answers "who did I intend to talk to?" while
-`network.peer.address` answers "which specific box did this connection land on?". When instrumenting
-the server, the roles invert: `network.peer.address` is the directly connected client or proxy, while
-`client.address` is the logical (de-proxied) client. Folding the concrete peer into the logical
-role, in either direction, would lose node-level diagnosis under load balancers, connection
-pools, and replicas. See the [`network.*` registry](/docs/registry/attributes/network.md) for
-socket-level details.
-
-### Client/server examples using `network.peer.*`
-
-The following examples show how the logical role (`server.*` / `client.*`) and the concrete socket
-(`network.peer.*`) differ across proxy topologies. `network.local.*` attributes are not shown since
-they are typically Opt-In.
-
-#### Simple client/server example
-
-![simple.png](simple.png)
-
-#### Client/server example with reverse proxy
-
-![reverse-proxy.png](reverse-proxy.png)
-
-#### Client/server example with forward proxy
-
-![forward-proxy.png](forward-proxy.png)
 
 ## Decision guide
 
 ```text
    What are you instrumenting?
    │
-   ├─ L7 protocol / application API
-   │   ├─ clear initiator and acceptor
-   │   │     → client / server  (roles; logical / de-proxied)
-   │   │     → also network.local / network.peer for the concrete socket
-   │   └─ symmetric peers, no clear client/server role
-   │         (gossip, BitTorrent, blockchain, WebRTC)
+   ├─ L7 application / protocol role
+   │   ├─ clear initiator and acceptor (HTTP, gRPC, DB protocols, …)
+   │   │     → client / server
+   │   │         note: logical, de-proxied when that address is available
+   │   │     → network.local / network.peer
+   │   └─ symmetric peers, no clear client/server (gossip, BitTorrent, blockchain, WebRTC)
    │         → source / destination
+   │              note: as observed at this point; do not resolve past intermediaries
+   │         → network.local / network.peer
    │
-   ├─ L4 flow, packet, or mid-path observation (no / unknown app roles)
-   │     → source / destination  (direction of this exchange, as observed)
-   │       used consistently whether observed at an endpoint or mid-path
-   │       (network.local / network.peer are for connection/socket-level telemetry,
-   │        not a substitute encoding for a flow record's endpoints)
+   ├─ L4 flow or packet (NetFlow, IPFIX, eBPF flows, pcap)
+   │     → source / destination
+   │         note: a host and a mid-path observer both use this pair,
+   │               recording the address seen at that point;
+   │               do not resolve past intermediaries
+   │     → network.local / network.peer
+   │         note: only when this observer has a socket;
+   │               not a substitute for source / destination
    │
    └─ L2 / L3 adjacency, routing, or neighbor discovery
          → not covered by these semantic conventions
 ```
 
-| If you know… | Prefer |
-| --- | --- |
-| Protocol initiator / acceptor (L7) | `client` / `server` |
-| Packet or flow direction (L4) | `source` / `destination` |
-| Symmetric peers with no clear client/server role | `source` / `destination` |
-| Concrete socket endpoint (L4/L7; also BGP TCP) | `network.local` / `network.peer` |
-| Logical service name _and_ concrete node | `server.*` **and** `network.peer.*` together |
+When an area's semantic convention uses `client` / `server`, an operation whose initiator
+cannot be determined still uses `client` / `server`. That convention MAY say how to assign
+the role.
 
-The semantic conventions for a domain choose the pair. When they use `client` / `server`, an
-operation whose initiator cannot be determined still uses `client` / `server`; the domain convention
-MAY say how to assign the role. Use `source` / `destination` for exchanges with no client/server role.
+## How they coexist
 
-## Flow and packet telemetry
+### `client.*` / `server.*` and the socket
 
-Flow and packet telemetry uses `source` / `destination` for the direction of each exchange, recorded
-as observed at the observation point, so the same flow is represented the same way regardless of vantage
-(endpoint host IPFIX/eBPF, or mid-path router/switch NetFlow/IPFIX). `network.local` / `network.peer`
-are not an alternative encoding for a flow's endpoints; they describe the concrete socket of a
-connection-oriented interaction (for example a `client` / `server` span or a BGP TCP session).
+For `client.*` / `server.*` and `network.peer.*`: when instrumenting the client, `server.address`
+answers "who did I intend to talk to?" and `network.peer.address` answers "which host did this
+connection land on?". When instrumenting the server, that flips: `network.peer.address` is the
+directly connected client or proxy, and `client.address` is the logical client. Folding the concrete
+peer into the logical role, in either direction, loses node-level diagnosis under load balancers,
+connection pools, and replicas. See the
+[`network.*` registry](/docs/registry/attributes/network.md) for socket-level details.
 
-Because they are recorded as observed, `source` / `destination` hold the address and port
-available at the observation point. Instrumentation captures that available address and does
-not try to resolve the address behind an intermediary.
-The same flow can therefore carry different values at different observation points -
-for example a mid-path router or switch sees the addresses on the wire at that hop (before or after
-translation, depending on where it sits relative to a NAT or load balancer), while a host may see
-its own address or a peer's. Use `client.*` / `server.*` when you need the logical, de-proxied
-identity instead.
+| Instrumentation perspective | Remote endpoint (logical vs. concrete) | Local endpoint (logical vs. concrete) |
+| --- | --- | --- |
+| Client | `server.*` vs. `network.peer.*` | `client.*` vs. `network.local.*` |
+| Server | `client.*` vs. `network.peer.*` | `server.*` vs. `network.local.*` |
 
-> [!NOTE]
-> `source` / `destination` require more than the absence of a client/server role: each record must
-> have a well-defined direction, identifying who sent and who received _that_ exchange. This holds for
-> a single packet, a unidirectional flow, or one peer-to-peer message, but not for a bidirectional
-> aggregate (for example a flow record summing both directions), which has no single sender. Split such
-> telemetry into per-direction records, or adopt a stable orientation (for example keying `source` to
-> the initiator); a standard orientation convention is out of scope here and a work in progress (see
-> [opentelemetry-ebpf-instrumentation#1659](https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/issues/1659)
-> and [#3828](https://github.com/open-telemetry/semantic-conventions/pull/3828)). Likewise,
-> identifying _which_ observation point a record came from is out of scope for this guide and will be
-> addressed by the flow semantic conventions. For broadcast and multicast, `destination.*` is the
-> group or broadcast address on the packet, not each host that received a copy; for anycast it is the
-> VIP, not the replica's unique address. Naming those receivers is out of scope here (see
-> [#4121](https://github.com/open-telemetry/semantic-conventions/issues/4121)).
+#### Logical service and concrete node
+
+`server.address` is the service the client intended to reach. `network.peer.address` is the node
+that accepted this connection.
+
+```text
+  ┌─────────────────────┐       ┌─────────────────────┐
+  │ app                 │       │ replica B           │
+  │ ip: 10.0.0.20       │ ────> │ ip: 10.0.0.8        │
+  └─────────────────────┘       │ db.example.com:5432 │
+                                └─────────────────────┘
+
+  Reported on the app's DB client span:
+    server.address       = db.example.com
+    server.port          = 5432
+    network.peer.address = 10.0.0.8
+    network.peer.port    = 5432
+```
+
+The following examples show how the logical role (`server.*` / `client.*`) and the concrete socket
+(`network.peer.*`) differ across proxy topologies. `network.local.*` is usually omitted;
+area-specific conventions mark it Opt-In. The reverse-proxy server example includes it so the listen
+socket is visible next to the external `server.*`.
+
+#### Simple client/server example
+
+```text
+  ────> public connection (the client-server connection)
+
+  ┌┄ logical client ┄┄┄┄┄┄┄┄┐       ┌┄ logical server ┄┄┄┄┄┄┄┄┐
+  ┆                         ┆       ┆                         ┆
+  ┆ ┌─────────────────────┐ ┆       ┆ ┌─────────────────────┐ ┆
+  ┆ │ client              │ ┆       ┆ │ server              │ ┆
+  ┆ │ ip: 101.102.103.104 │ ┆ ────> ┆ │ ip: 201.202.203.204 │ ┆
+  ┆ │ port: 50101         │ ┆       ┆ │ port: 9876          │ ┆
+  ┆ │ hostname: client.io │ ┆       ┆ │ hostname: server.io │ ┆
+  ┆ └─────────────────────┘ ┆       ┆ └─────────────────────┘ ┆
+  ┆                         ┆       ┆                         ┆
+  └┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┘       └┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┘
+
+  Reported by the client:                         Reported by the server:
+    client.address       = 101.102.103.104          client.address       = 101.102.103.104
+    client.port          = 50101                    client.port          = 50101
+    server.address       = server.io                server.address       = server.io
+    server.port          = 9876                     server.port          = 9876
+    network.peer.address = 201.202.203.204          network.peer.address = 101.102.103.104
+    network.peer.port    = 9876                     network.peer.port    = 50101
+```
+
+#### Client/server example with reverse proxy
+
+`server.*` is the external host (`server.io:9876`), from `Host` or `X-Forwarded-Host`, not the
+listen socket `the-server:5678`. That socket is `network.local.*` on the server report. This
+picture gives the proxy one address. `client.port` is set only when the intermediary forwarded
+that port. `X-Forwarded-For` carries the address and not the port, so
+the server report omits `client.port`. `network.peer.port` is the proxy's port on the accepted
+connection (`52323`).
+
+```text
+  ────> public connection (the client-server connection)
+  ····> local connection (the connection behind the proxy)
+
+  ┌┄ logical client ┄┄┄┄┄┄┄┄┐       ┌┄ logical server ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┐
+  ┆                         ┆       ┆                                                       ┆
+  ┆ ┌─────────────────────┐ ┆       ┆ ┌─────────────────────┐       ┌─────────────────────┐ ┆
+  ┆ │ client              │ ┆       ┆ │ reverse proxy       │       │ server              │ ┆
+  ┆ │ ip: 101.102.103.104 │ ┆ ────> ┆ │ ip: 201.202.203.204 │ ····> │ ip: 10.11.12.13     │ ┆
+  ┆ │ port: 50101         │ ┆       ┆ │ port: 9876          │       │ port: 5678          │ ┆
+  ┆ │ hostname: client.io │ ┆       ┆ │ hostname: server.io │       │ hostname: the-server│ ┆
+  ┆ └─────────────────────┘ ┆       ┆ └─────────────────────┘       └─────────────────────┘ ┆
+  ┆                         ┆       ┆                                                       ┆
+  └┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┘       └┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┘
+
+  Reported by the client:                         Reported by the server:
+    client.address       = 101.102.103.104          client.address        = 101.102.103.104
+    client.port          = 50101
+    server.address       = server.io                server.address        = server.io
+    server.port          = 9876                     server.port           = 9876
+    network.peer.address = 201.202.203.204          network.peer.address  = 201.202.203.204
+    network.peer.port    = 9876                     network.peer.port     = 52323
+                                                    network.local.address = 10.11.12.13
+                                                    network.local.port    = 5678
+```
+
+#### Client/server example with forward proxy
+
+The server knows the original client, so `client.address` is `101.102.103.104` and
+`network.peer.address` is the proxy `1.2.3.4`. `client.port` is omitted, as in the reverse proxy.
+When the original client was not forwarded, `client.address` is the immediate peer and matches
+`network.peer.address`.
+
+```text
+  ────> public connection (the client-server connection)
+  ····> local connection (the connection behind the proxy)
+
+  ┌┄ logical client ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┐       ┌┄ logical server ┄┄┄┄┄┄┄┄┐
+  ┆                                                       ┆       ┆                         ┆
+  ┆ ┌─────────────────────┐       ┌─────────────────────┐ ┆       ┆ ┌─────────────────────┐ ┆
+  ┆ │ client              │       │ forward proxy       │ ┆       ┆ │ server              │ ┆
+  ┆ │ ip: 101.102.103.104 │ ····> │ ip: 1.2.3.4         │ ┆ ────> ┆ │ ip: 201.202.203.204 │ ┆
+  ┆ │ port: 50101         │       │ port: 4321          │ ┆       ┆ │ port: 5678          │ ┆
+  ┆ │ hostname: client.io │       │ hostname: proxy.io  │ ┆       ┆ │ hostname: server.io │ ┆
+  ┆ └─────────────────────┘       └─────────────────────┘ ┆       ┆ └─────────────────────┘ ┆
+  ┆                                                       ┆       ┆                         ┆
+  └┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┘       └┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┘
+
+  Reported by the client:                         Reported by the server:
+    client.address       = 101.102.103.104          client.address        = 101.102.103.104
+    client.port          = 50101
+    server.address       = server.io                server.address        = server.io
+    server.port          = 5678                     server.port           = 5678
+    network.peer.address = 1.2.3.4                  network.peer.address  = 1.2.3.4
+    network.peer.port    = 4321                     network.peer.port     = 52323
+```
+
+### `source.*` / `destination.*` and the socket
+
+`network.peer` is not `source` or `destination`. On an endpoint the vantage is fixed while the
+direction of each exchange flips:
+
+```text
+   transmit :  local → source        peer  → destination
+   receive  :  peer  → source        local → destination
+```
+
+A mid-path observer such as a router often has no local socket, so `network.local` /
+`network.peer` do not apply. `source` / `destination` remain well-defined from the packet headers.
+
+#### One endpoint, both directions
+
+```text
+  ────> transmit    <──── receive
+
+  ┌─────────────────────┐       ┌─────────────────────┐
+  │ host A              │       │ host B              │
+  │ ip: 101.102.103.104 │ ────> │ ip: 201.202.203.204 │
+  │ port: 50101         │ <──── │ port: 9876          │
+  └─────────────────────┘       └─────────────────────┘
+
+  Reported by A, transmit:                          Reported by A, receive:
+    source.address         = 101.102.103.104          source.address         = 201.202.203.204
+    source.port            = 50101                    source.port            = 9876
+    destination.address    = 201.202.203.204          destination.address    = 101.102.103.104
+    destination.port       = 9876                     destination.port       = 50101
+    network.local.address  = 101.102.103.104          network.local.address  = 101.102.103.104
+    network.local.port     = 50101                    network.local.port     = 50101
+    network.peer.address   = 201.202.203.204          network.peer.address   = 201.202.203.204
+    network.peer.port      = 9876                     network.peer.port      = 9876
+```
+
+`source` / `destination` name one sender and one receiver.
+A single packet, a one-way flow, or one peer-to-peer message fits.
+A record that sums both directions does not.
+Split that record by direction, or pick a stable orientation, such as `source` = the initiator.
+There is no standard orientation yet
+([opentelemetry-ebpf-instrumentation#1659](https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation/issues/1659),
+[#3828](https://github.com/open-telemetry/semantic-conventions/pull/3828)).
+
+#### Router before NAT
+
+A NAT between the router and host B rewrites host A's source to `101.102.103.104:40000`.
+The router is before that translation and has no socket for this flow.
+
+```text
+  ────> packet
+
+  ┌─────────────────────┐       ┌─────────────────────┐       ┌─────────────────────┐       ┌─────────────────────┐
+  │ host A              │       │ router              │       │ NAT                 │       │ host B              │
+  │ ip: 10.1.2.80       │ ────> │ no socket           │ ────> │ src 101.102.103.104 │ ────> │ ip: 201.202.203.204 │
+  │ port: 50101         │       │                     │       │ port: 40000         │       │ port: 9876          │
+  └─────────────────────┘       └─────────────────────┘       └─────────────────────┘       └─────────────────────┘
+
+  Reported by the router, before NAT:            Reported by host B, after NAT:
+    source.address      = 10.1.2.80                source.address         = 101.102.103.104
+    source.port         = 50101                    source.port            = 40000
+    destination.address = 201.202.203.204          destination.address    = 201.202.203.204
+    destination.port    = 9876                     destination.port       = 9876
+                                                   network.local.address  = 201.202.203.204
+                                                   network.local.port     = 9876
+                                                   network.peer.address   = 101.102.103.104
+                                                   network.peer.port      = 40000
+```
+
+Two observers of the same flow can disagree, and both can be right.
+Each records the address it sees.
+This guide does not say how to name which point a record came from.
+
+#### Broadcast, multicast, and anycast
+
+For broadcast and multicast, `destination.*` is the group address on the packet, not each host that
+received a copy. Host B below receives a copy of host A's packet. A group is not a connected peer,
+so `network.peer` does not apply. `network.local.*` is the socket on the host that sends or receives.
+
+```text
+  ────> packet addressed to 239.1.1.1:9876
+
+  ┌─────────────────────┐       ┌─────────────────────┐
+  │ host A              │       │ host B              │
+  │ ip: 101.102.103.104 │ ────> │ ip: 201.202.203.204 │
+  │ port: 50101         │       │ port: 9876          │
+  └─────────────────────┘       └─────────────────────┘
+
+  Reported by host A:                           Reported by host B:
+    source.address         = 101.102.103.104      source.address         = 101.102.103.104
+    source.port            = 50101                source.port            = 50101
+    destination.address    = 239.1.1.1            destination.address    = 239.1.1.1
+    destination.port       = 9876                 destination.port       = 9876
+    network.local.address  = 101.102.103.104      network.local.address  = 201.202.203.204
+    network.local.port     = 50101                network.local.port     = 9876
+```
+
+For anycast, `destination.*` is the VIP on the packet, not the replica's own address.
+`network.local.*` is the replica's socket. `network.peer` is host A, the peer connected to that
+socket.
+
+```text
+  ────> packet addressed to the VIP 201.202.203.204:9876
+
+  ┌─────────────────────┐       ┌─────────────────────┐
+  │ host A              │       │ replica             │
+  │ ip: 101.102.103.104 │ ────> │ ip: 10.11.12.13     │
+  │ port: 50101         │       │ port: 9876          │
+  └─────────────────────┘       └─────────────────────┘
+
+  Reported by the replica:
+    source.address         = 101.102.103.104
+    source.port            = 50101
+    destination.address    = 201.202.203.204
+    destination.port       = 9876
+    network.local.address  = 10.11.12.13
+    network.local.port     = 9876
+    network.peer.address   = 101.102.103.104
+    network.peer.port      = 50101
+```
+
+Naming each host that receives a copy is out of scope
+([#4121](https://github.com/open-telemetry/semantic-conventions/issues/4121)).
 
 ## Attribute reference
 
