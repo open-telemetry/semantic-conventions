@@ -9,7 +9,10 @@ groups:
     brief: A software resource running on a z/OS system.
     attributes:
       - ref: zos.sysplex.name
+        role: descriptive
         requirement_level: required
       - ref: zos.smf.id
+        role: identifying
         requirement_level: required
       - ref: mainframe.lpar.name
+        role: descriptive
