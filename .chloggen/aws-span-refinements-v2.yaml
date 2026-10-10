@@ -1,0 +1,7 @@
+change_type: enhancement
+component: aws
+note: Define AWS Lambda, S3, and DynamoDB spans as refinements of the FaaS server and AWS SDK client spans.
+issues: [3808]
+subtext: |
+  The AWS Lambda span now lists the attributes it inherits from the FaaS server span, including
+  the required `faas.trigger`.
