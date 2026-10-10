@@ -7,8 +7,10 @@ groups:
       Resources used by Google Compute Engine (GCE).
     attributes:
       - ref: gcp.gce.instance.name
+        role: identifying
         requirement_level: recommended
       - ref: gcp.gce.instance.hostname
+        role: descriptive
         requirement_level: recommended
       - ref: gcp.gce.instance.labels
         stability: development
