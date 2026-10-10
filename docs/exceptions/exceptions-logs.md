@@ -36,7 +36,15 @@ emitted through the [Logger API](https://opentelemetry.io/docs/specs/otel/logs/a
 >   * `logs` - emit exceptions as logs only.
 >   * `logs/dup` - emit both span events and logs, allowing for a phased rollout.
 >   * The default behavior (in the absence of one of these values) is to continue
->     emitting exceptions as span events (existing behavior).
+>   emitting exceptions as span events (existing behavior).
+>   * When `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` is set to `logs` or `logs/dup`, but
+>     exceptions cannot be emitted as logs because no `LoggerProvider` is configured,
+>     the instrumentation MUST keep emitting exceptions as span events and MUST log
+>     the following warning through the SDK internal logger:
+>
+>     ```text
+>     The OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN environment variable is ignored because no logger provider is configured.
+>     ```
 > * SHOULD maintain (security patching at a minimum) their existing major version
 >   for at least six months after it starts emitting both sets of conventions.
 > * MAY drop the environment variable in their next major version and emit exceptions
