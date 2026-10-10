@@ -1,0 +1,7 @@
+change_type: enhancement
+component: network
+note: >
+  Add Autonomous System Number and organization name attributes for local,
+  peer, client, server, source, and destination network endpoints.
+issues: [1663, 3740]
+subtext:
