@@ -357,12 +357,58 @@ Follow the [Semantic conventions for events](/docs/general/events.md).
 - All conventions MUST be defined in YAML before they can be declared stable
 - Conventions that are not used by instrumentations MUST NOT be declared stable
 
-TODO:
+The following workflow helps contributors plan a stabilization; the linked
+stability guarantees and versioning rules define the requirements.
 
-- migration plan
+Stabilization covers the emitted telemetry, not just the `stability` field in
+the model. For non-trivial efforts, follow the
+[project proposal process](https://github.com/open-telemetry/community/blob/main/project-management.md)
+and involve the area owners and maintainers of affected instrumentations.
+
+Before proposing stable status:
+
+1. Define the scope: list the groups and attributes to stabilize, what remains
+   unstable, the affected instrumentations, and the intended release and review
+   timeline. A project proposal can track these deliverables across SIGs.
+2. Link to implementations that emit the proposed conventions. Check that the
+   names, units, attribute availability, well-known values, and error cases work
+   in practice. Record any differences between implementations that still need
+   a decision.
+3. Review the resulting telemetry against the
+   [stability guarantees](/docs/general/semantic-convention-groups.md#group-stability)
+   and the [versioning rules](https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability).
+   Check references to less mature attributes against the linked group-stability
+   rules, including the `opt_in` exception. Resolve changes that would break
+   existing consumers before promoting the convention.
+4. Consider `release_candidate` while collecting broader implementation and
+   production feedback. It signals that the convention is ready for wider use
+   but may still need validation. Agree on review criteria and timing with the
+   area owners; this page does not set a universal waiting period.
+5. Prepare a migration plan for existing users, then update the YAML stability,
+   generated documentation, and changelog as described in
+   [CONTRIBUTING.md](/CONTRIBUTING.md). Review the plan with affected
+   instrumentation maintainers before changing their default output.
 
 ### Migration plan
 
-TODO
+A migration guide should let an instrumentation author and a telemetry consumer
+understand what each needs to change. Include:
+
+- The old and new convention versions, affected signals and instrumentations,
+  and a table of changed names, units, well-known values, or requirements.
+- The default behavior during rollout, any opt-in or dual-emission configuration,
+  and when the old output will stop being supported. State how users can test or
+  roll back the change and update queries, dashboards, and alerts.
+- Known gaps, such as an old field without a direct replacement, and links to
+  the corresponding implementation work.
+
+The [HTTP](/docs/non-normative/http-migration.md),
+[database](/docs/non-normative/db-migration.md), and
+[RPC](/docs/non-normative/rpc-migration.md) guides show concrete plans. Their
+`OTEL_SEMCONV_STABILITY_OPT_IN` values and support periods are specific to those
+areas; decide the appropriate behavior for the convention being stabilized.
+Because there is currently a
+[moratorium on relying on schema transformations](https://opentelemetry.io/docs/specs/otel/telemetry-stability/),
+do not assume a schema file alone will preserve compatibility for users.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
