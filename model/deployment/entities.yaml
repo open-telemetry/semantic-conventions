@@ -8,4 +8,4 @@ groups:
     attributes:
       - ref: deployment.environment.name
         role: identifying
-        requirement_level: recommended
+        requirement_level: required
