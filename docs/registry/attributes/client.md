@@ -11,7 +11,13 @@
 | --- | --- | --- | --- | --- |
 | <a id="client-address" href="#client-address">`client.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | <a id="client-port" href="#client-port">`client.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Client port number. [2] | `65123` |
+| <a id="client-prefix-address" href="#client-prefix-address">`client.prefix.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The network address of the IP prefix associated with the client IP address. [3] | `192.0.2.0`; `2001:db8::` |
+| <a id="client-prefix-length" href="#client-prefix-length">`client.prefix.length`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of leading bits in the IP prefix associated with the client IP address. [4] | `24`; `32` |
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
 **[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+
+**[3] `client.prefix.address`:** The value MUST be an IPv4 or IPv6 network address, with all host bits set to zero according to `client.prefix.length`. IPv4 addresses MUST use dotted-decimal notation. IPv6 addresses MUST use the canonical text representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The value MUST NOT contain a prefix length, domain name, UNIX domain socket name, or IPv6 zone identifier. This attribute MUST be set together with `client.prefix.length`. The prefix attributes MAY be set whether or not `client.address` is set. If `client.address` is also set to an IP address, it MUST use the same IP version and be contained in the prefix represented by these two attributes.
+
+**[4] `client.prefix.length`:** The value MUST be an integer from 0 to 32 for IPv4, as defined in [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html), or from 0 to 128 for IPv6. This attribute MUST be set together with `client.prefix.address`.

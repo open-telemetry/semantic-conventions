@@ -11,7 +11,13 @@
 | --- | --- | --- | --- | --- |
 | <a id="server-address" href="#server-address">`server.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | <a id="server-port" href="#server-port">`server.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Server port number. [2] | `80`; `8080`; `443` |
+| <a id="server-prefix-address" href="#server-prefix-address">`server.prefix.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The network address of the IP prefix associated with the server IP address. [3] | `192.0.2.0`; `2001:db8::` |
+| <a id="server-prefix-length" href="#server-prefix-length">`server.prefix.length`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of leading bits in the IP prefix associated with the server IP address. [4] | `24`; `32` |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[3] `server.prefix.address`:** The value MUST be an IPv4 or IPv6 network address, with all host bits set to zero according to `server.prefix.length`. IPv4 addresses MUST use dotted-decimal notation. IPv6 addresses MUST use the canonical text representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The value MUST NOT contain a prefix length, domain name, UNIX domain socket name, or IPv6 zone identifier. This attribute MUST be set together with `server.prefix.length`. The prefix attributes MAY be set whether or not `server.address` is set. If `server.address` is also set to an IP address, it MUST use the same IP version and be contained in the prefix represented by these two attributes.
+
+**[4] `server.prefix.length`:** The value MUST be an integer from 0 to 32 for IPv4, as defined in [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html), or from 0 to 128 for IPv6. This attribute MUST be set together with `server.prefix.address`.
