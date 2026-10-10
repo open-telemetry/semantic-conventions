@@ -523,7 +523,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.pod.memory.working_set` | UpDownCounter | `By` | Pod memory working set. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
-**[1]:** The amount of working set memory. This includes recently accessed memory, dirty memory, and kernel memory. WorkingSetBytes is <= UsageBytes.
+**[1]:** The amount of working set memory. This includes recently accessed memory, dirty memory, and kernel memory. On Linux, the working set is calculated by excluding inactive file-backed memory from memory usage (`inactive_file` on cgroup v2, `total_inactive_file` on cgroup v1), so active file-backed memory remains included. The kubelet uses the Pod working set when ranking Pods for eviction under memory pressure. `WorkingSetBytes` is less than or equal to `UsageBytes`.
 This metric is derived from the [MemoryStats.WorkingSetBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the Kubelet's stats API.
 
 <!-- prettier-ignore-end -->
@@ -1329,7 +1329,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.node.memory.working_set` | UpDownCounter | `By` | Node memory working set. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
 
-**[1]:** The amount of working set memory. This includes recently accessed memory, dirty memory, and kernel memory. WorkingSetBytes is <= UsageBytes.
+**[1]:** The amount of working set memory. This includes recently accessed memory, dirty memory, and kernel memory. On Linux, the working set is calculated by excluding inactive file-backed memory from memory usage (`inactive_file` on cgroup v2, `total_inactive_file` on cgroup v1), so active file-backed memory remains included. On Linux, the kubelet uses the node working set when determining memory availability for the `memory.available` eviction signal. `WorkingSetBytes` is less than or equal to `UsageBytes`.
 This metric is derived from the [MemoryStats.WorkingSetBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) field of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats) of the Kubelet's stats API.
 
 <!-- prettier-ignore-end -->
