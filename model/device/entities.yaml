@@ -7,7 +7,11 @@ groups:
       The device on which the process represented by this resource is running.
     attributes:
       - ref: device.id
+        role: identifying
         requirement_level: opt_in
       - ref: device.manufacturer
+        role: descriptive
       - ref: device.model.identifier
+        role: descriptive
       - ref: device.model.name
+        role: descriptive

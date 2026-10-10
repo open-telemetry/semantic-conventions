@@ -1,0 +1,4 @@
+change_type: enhancement
+component: device
+note: Define identifying attributes for device entities for Weaver schema v2 migration.
+issues: [4166]
