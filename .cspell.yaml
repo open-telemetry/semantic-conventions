@@ -175,6 +175,7 @@ words:
   - Depluralize
   - Undeprecate
   - bfcache
+  - IPFIX
 ignoreWords:
   - gitea
   - rego
