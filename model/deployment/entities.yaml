@@ -7,4 +7,5 @@ groups:
       The software deployment.
     attributes:
       - ref: deployment.environment.name
-        requirement_level: recommended
+        role: identifying
+        requirement_level: required
