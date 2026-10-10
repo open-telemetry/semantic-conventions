@@ -1,0 +1,4 @@
+change_type: enhancement
+component: android
+note: Define identifying attributes for Android entities for Weaver schema v2 migration.
+issues: [4168]
