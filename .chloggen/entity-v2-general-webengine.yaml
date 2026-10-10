@@ -1,0 +1,4 @@
+change_type: enhancement
+component: webengine
+note: Define identifying attributes for webengine entities for Weaver schema v2 migration.
+issues: [4169]

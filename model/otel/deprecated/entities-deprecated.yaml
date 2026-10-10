@@ -9,6 +9,8 @@ groups:
     brief: Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
     attributes:
       - ref: otel.scope.name
+        role: identifying
         requirement_level: recommended
       - ref: otel.scope.version
+        role: identifying
         requirement_level: recommended

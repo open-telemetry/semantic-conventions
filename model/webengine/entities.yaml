@@ -7,8 +7,11 @@ groups:
        Resource describing the packaged software running the application code. Web engines are typically executed using process.runtime.
     attributes:
       - ref: webengine.name
+        role: identifying
         requirement_level: required
       - ref: webengine.version
+        role: identifying
         requirement_level: recommended
       - ref: webengine.description
+        role: descriptive
         requirement_level: recommended
