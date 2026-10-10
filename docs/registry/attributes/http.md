@@ -29,7 +29,12 @@ This document defines semantic convention attributes in the HTTP namespace.
 | <a id="http-response-status-code" href="#http-response-status-code">`http.response.status_code`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
 | <a id="http-route" href="#http-route">`http.route`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [7] | `/users/:userID?`; `my-controller/my-action/{id?}` |
 
-**[1] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+**[1] `http.request.body.content`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
 boundary so that the recorded value remains valid text.
 
@@ -94,7 +99,12 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[4] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
-**[5] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+**[5] `http.response.body.content`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
 boundary so that the recorded value remains valid text.
 
