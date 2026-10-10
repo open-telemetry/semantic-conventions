@@ -1,0 +1,4 @@
+change_type: enhancement
+component: browser
+note: Define identifying attributes for browser entities for Weaver schema v2 migration.
+issues: [4172]
