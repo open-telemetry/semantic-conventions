@@ -10,6 +10,7 @@ groups:
         role: descriptive
       - ref: container.id
         role: identifying
+        requirement_level: required
       - ref: container.command
         role: descriptive
         requirement_level: opt_in
@@ -36,6 +37,7 @@ groups:
         role: descriptive
       - ref: container.image.id
         role: identifying
+        requirement_level: required
       - ref: container.image.repo_digests
         role: descriptive
   - id: entity.container.runtime
@@ -49,5 +51,7 @@ groups:
         role: descriptive
       - ref: container.runtime.name
         role: identifying
+        requirement_level: required
       - ref: container.runtime.version
         role: identifying
+        requirement_level: required
