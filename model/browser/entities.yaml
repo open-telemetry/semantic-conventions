@@ -1,28 +1,4 @@
 groups:
-  - id: entity.browser
-    type: entity
-    stability: development
-    name: browser
-    brief: >
-        The web browser in which the application represented by the resource is running.
-        The `browser.*` attributes MUST be used only for resources that represent applications
-        running in a web browser (regardless of whether running on a mobile or desktop device).
-    attributes:
-      - ref: browser.brands
-        role: descriptive
-      - ref: browser.platform
-        role: descriptive
-      - ref: browser.mobile
-        role: descriptive
-      - ref: browser.language
-        role: descriptive
-      - ref: user_agent.original
-        role: identifying
-        brief: 'Full user-agent string provided by the browser'
-        note: >
-          To retrieve the value, the legacy `navigator.userAgent` API can be used.
-        examples: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36']
-
   - id: entity.browser.document
     type: entity
     stability: development

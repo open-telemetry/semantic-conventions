@@ -1,4 +1,4 @@
 change_type: enhancement
 component: browser
-note: Define identifying attributes for browser entities for Weaver schema v2 migration.
+note: Convert the browser entity to a public attribute group.
 issues: [4172]
