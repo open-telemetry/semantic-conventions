@@ -1,0 +1,18 @@
+groups:
+  - id: entity.heroku.app
+    type: entity
+    stability: development
+    name: heroku.app
+    requirement_level: opt_in
+    brief: >
+      A Heroku application.
+    attributes:
+      - ref: heroku.release.creation_timestamp
+        role: descriptive
+        requirement_level: recommended
+      - ref: heroku.release.commit
+        role: descriptive
+        requirement_level: recommended
+      - ref: heroku.app.id
+        role: identifying
+        requirement_level: required
