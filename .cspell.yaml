@@ -175,6 +175,7 @@ words:
   - Depluralize
   - Undeprecate
   - bfcache
+  - QMID
 ignoreWords:
   - gitea
   - rego
