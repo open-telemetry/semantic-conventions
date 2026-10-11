@@ -8,3 +8,4 @@ groups:
     attributes:
       - ref: android.os.api_level
         role: identifying
+        requirement_level: required
