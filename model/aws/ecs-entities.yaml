@@ -8,7 +8,7 @@ groups:
     attributes:
       - ref: aws.ecs.task.arn
         role: identifying
-        requirement_level: recommended
+        requirement_level: required
       - ref: aws.ecs.launchtype
         role: descriptive
         requirement_level: recommended
@@ -33,7 +33,7 @@ groups:
     attributes:
       - ref: aws.ecs.cluster.arn
         role: identifying
-        requirement_level: recommended
+        requirement_level: required
 
   - id: entity.aws.ecs.container
     type: entity
@@ -44,4 +44,4 @@ groups:
     attributes:
       - ref: aws.ecs.container.arn
         role: identifying
-        requirement_level: recommended
+        requirement_level: required
