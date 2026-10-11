@@ -1,0 +1,4 @@
+change_type: enhancement
+component: heroku
+note: Rename the Heroku entity to `heroku.app` and make it opt-in, with required identifying `heroku.app.id` and recommended descriptive release attributes.
+issues: [4169]

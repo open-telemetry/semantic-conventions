@@ -60,7 +60,7 @@ Currently, the following namespaces exist:
 | | [gcp.gce](gcp.md#gcp-gce) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [gcp.gce.instance_group_manager](gcp.md#gcp-gce-instance-group-manager) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Heroku | | |
-| | [heroku](heroku.md#heroku) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [heroku.app](heroku.md#heroku-app) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Host | | |
 | | [host](host.md#host) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [host.cpu](host.md#host-cpu) | ![Development](https://img.shields.io/badge/-development-blue) |

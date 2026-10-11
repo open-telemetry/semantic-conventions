@@ -1,4 +1,0 @@
-change_type: enhancement
-component: webengine
-note: Define `webengine.name` as identifying and keep `webengine.version` recommended and descriptive for Weaver schema v2 migration.
-issues: [4169]
