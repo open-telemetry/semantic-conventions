@@ -11,11 +11,24 @@
 | --- | --- | --- | --- | --- |
 | <a id="source-address" href="#source-address">`source.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | <a id="source-port" href="#source-port">`source.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Source port number | `3389`; `2888` |
-| <a id="source-prefix-address" href="#source-prefix-address">`source.prefix.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The network address of the IP prefix associated with the source IP address. [2] | `192.0.2.0`; `2001:db8::` |
-| <a id="source-prefix-length" href="#source-prefix-length">`source.prefix.length`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of leading bits in the IP prefix associated with the source IP address. [3] | `24`; `32` |
+| <a id="source-prefix" href="#source-prefix">`source.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the source IP address, in CIDR notation. [2] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `source.address`:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `source.prefix.address`:** The value MUST be an IPv4 or IPv6 network address, with all host bits set to zero according to `source.prefix.length`. IPv4 addresses MUST use dotted-decimal notation. IPv6 addresses MUST use the canonical text representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html). The value MUST NOT contain a prefix length, domain name, UNIX domain socket name, or IPv6 zone identifier. This attribute MUST be set together with `source.prefix.length`. The prefix attributes MAY be set whether or not `source.address` is set. If `source.address` is also set to an IP address, it MUST use the same IP version and be contained in the prefix represented by these two attributes.
+**[2] `source.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+[RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+[RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+the address MUST be set to zero. The value MUST NOT contain a domain name,
+UNIX domain socket name, or IPv6 zone identifier.
 
-**[3] `source.prefix.length`:** The value MUST be an integer from 0 to 32 for IPv4, as defined in [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html), or from 0 to 128 for IPv6. This attribute MUST be set together with `source.prefix.address`.
+Instrumentation or Collector receivers that populate this attribute MUST
+convert native representations, such as an address and subnet mask or an
+address and prefix length, to equivalent CIDR notation before emitting it.
+
+This attribute MAY be set whether or not `source.address` is set. If
+`source.address` is also set to an IP address, it MUST use the same IP version
+and be contained in this prefix.

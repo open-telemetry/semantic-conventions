@@ -1,7 +1,8 @@
 change_type: enhancement
 component: network
 note: >
-  Add IP prefix address and length attributes for local, peer, client, server,
-  source, and destination network endpoints.
+  Add IP prefix attributes in CIDR notation for local, peer, client, server,
+  source, and destination network endpoints, with normalization by instrumentation
+  or Collector receivers.
 issues: [3731]
 subtext:
