@@ -3,7 +3,7 @@ file_format: definition/2
 attribute_groups:
   - id: network.peer
     visibility: public
-    stability: development
+    stability: stable
     brief: >
       These attributes identify the network peer that is directly connected to the local endpoint.
     note: |
@@ -24,7 +24,7 @@ attribute_groups:
 
   - id: network.local
     visibility: public
-    stability: development
+    stability: stable
     brief: >
       These attributes identify the local endpoint of a network connection.
     note: |
