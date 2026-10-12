@@ -9,11 +9,11 @@
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="destination-address" href="#destination-address">`destination.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="destination-address" href="#destination-address">`destination.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the receiver was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `destination.example.com`; `/tmp/my.sock` |
 | <a id="destination-port" href="#destination-port">`destination.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Destination port number | `3389`; `2888` |
 | <a id="destination-prefix" href="#destination-prefix">`destination.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the destination IP address, in CIDR notation. [2] | `192.0.2.0/24`; `2001:db8::/32` |
 
-**[1] `destination.address`:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
+**[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD capture the available address and SHOULD NOT try to resolve the address behind intermediaries such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
 
 **[2] `destination.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and

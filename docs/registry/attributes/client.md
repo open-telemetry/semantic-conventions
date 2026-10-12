@@ -13,9 +13,9 @@
 | <a id="client-port" href="#client-port">`client.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Client port number. [2] | `65123` |
 | <a id="client-prefix" href="#client-prefix">`client.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the client IP address, in CIDR notation. [3] | `192.0.2.0/24`; `2001:db8::/32` |
 
-**[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
+**[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+**[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
 
 **[3] `client.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
