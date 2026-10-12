@@ -9,11 +9,11 @@
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="source-address" href="#source-address">`source.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="source-address" href="#source-address">`source.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the sender was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `source.example.com`; `/tmp/my.sock` |
 | <a id="source-mac-address" href="#source-mac-address">`source.mac.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source Media Access Control (MAC) address. [2] | `00-00-5E-00-53-23` |
 | <a id="source-port" href="#source-port">`source.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Source port number | `3389`; `2888` |
 
-**[1] `source.address`:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
+**[1] `source.address`:** `source.address` SHOULD be the sender address as observed at the point of instrumentation, for example the source of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD capture the available address and SHOULD NOT try to resolve the address behind intermediaries such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
 
 **[2] `source.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
