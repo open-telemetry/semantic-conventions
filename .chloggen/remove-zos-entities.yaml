@@ -1,0 +1,4 @@
+change_type: deprecation
+component: zos
+note: Remove z/OS entities and deprecate z/OS attributes in favor of `open-telemetry/semantic-conventions-mainframe`.
+issues: [4174, 3808]
