@@ -1,0 +1,261 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.26.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+
+span_refinements:
+  - id: span.dynamodb.batchgetitem.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.BatchGetItem` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+      - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
+
+  - id: span.dynamodb.batchwriteitem.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.BatchWriteItem` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+      - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
+
+  - id: span.dynamodb.createtable.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.CreateTable` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.global_secondary_indexes
+        requirement_level: recommended
+      - ref: aws.dynamodb.local_secondary_indexes
+        requirement_level: recommended
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+        brief: "A single-element array with the value of the TableName request parameter."
+        examples:
+          - Users
+      - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
+      - ref: aws.dynamodb.provisioned_read_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.provisioned_write_capacity
+        requirement_level: recommended
+
+  - id: span.dynamodb.deleteitem.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.DeleteItem` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+        brief: "A single-element array with the value of the TableName request parameter."
+        examples:
+          - Users
+      - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
+
+  - id: span.dynamodb.deletetable.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.DeleteTable` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+        brief: "A single-element array with the value of the TableName request parameter."
+        examples:
+          - Users
+
+  - id: span.dynamodb.describetable.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.DescribeTable` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+        brief: "A single-element array with the value of the TableName request parameter."
+        examples:
+          - Users
+
+  - id: span.dynamodb.getitem.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.GetItem` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+        brief: "A single-element array with the value of the TableName request parameter."
+        examples:
+          - Users
+      - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.consistent_read
+        requirement_level: recommended
+      - ref: aws.dynamodb.projection
+        requirement_level: recommended
+
+  - id: span.dynamodb.listtables.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.ListTables` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.exclusive_start_table
+        requirement_level: recommended
+      - ref: aws.dynamodb.table_count
+        requirement_level: recommended
+      - ref: aws.dynamodb.limit
+        requirement_level: recommended
+
+  - id: span.dynamodb.putitem.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.PutItem` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+      - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
+
+  - id: span.dynamodb.query.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.Query` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.scan_forward
+        requirement_level: recommended
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+        brief: "A single-element array with the value of the TableName request parameter."
+        examples:
+          - Users
+      - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.consistent_read
+        requirement_level: recommended
+      - ref: aws.dynamodb.limit
+        requirement_level: recommended
+      - ref: aws.dynamodb.projection
+        requirement_level: recommended
+      - ref: aws.dynamodb.attributes_to_get
+        requirement_level: recommended
+      - ref: aws.dynamodb.index_name
+        requirement_level: recommended
+      - ref: aws.dynamodb.select
+        requirement_level: recommended
+
+  - id: span.dynamodb.scan.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.Scan` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.segment
+        requirement_level: recommended
+      - ref: aws.dynamodb.total_segments
+        requirement_level: recommended
+      - ref: aws.dynamodb.count
+        requirement_level: recommended
+      - ref: aws.dynamodb.scanned_count
+        requirement_level: recommended
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+        brief: "A single-element array with the value of the TableName request parameter."
+        examples:
+          - Users
+      - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.consistent_read
+        requirement_level: recommended
+      - ref: aws.dynamodb.limit
+        requirement_level: recommended
+      - ref: aws.dynamodb.projection
+        requirement_level: recommended
+      - ref: aws.dynamodb.attributes_to_get
+        requirement_level: recommended
+      - ref: aws.dynamodb.index_name
+        requirement_level: recommended
+      - ref: aws.dynamodb.select
+        requirement_level: recommended
+
+  - id: span.dynamodb.updateitem.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.UpdateItem` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+        brief: "A single-element array with the value of the TableName request parameter."
+        examples:
+          - Users
+      - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.item_collection_metrics
+        requirement_level: recommended
+
+  - id: span.dynamodb.updatetable.client
+    ref: aws.client
+    brief: >
+      This span represents a `DynamoDB.UpdateTable` call.
+    note: >
+      `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+    stability: development
+    attributes:
+      - ref: aws.dynamodb.attribute_definitions
+        requirement_level: recommended
+      - ref: aws.dynamodb.global_secondary_index_updates
+        requirement_level: recommended
+      - ref: aws.dynamodb.table_names
+        requirement_level: recommended
+        brief: "A single-element array with the value of the TableName request parameter."
+        examples:
+          - Users
+      - ref: aws.dynamodb.consumed_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.provisioned_read_capacity
+        requirement_level: recommended
+      - ref: aws.dynamodb.provisioned_write_capacity
+        requirement_level: recommended

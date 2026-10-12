@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.26.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+
+span_refinements:
+  - id: span.aws.s3.client
+    ref: aws.client
+    stability: development
+    brief: >
+      Semantic Conventions for AWS S3 client spans extend the general
+      [AWS SDK Semantic Conventions](/docs/cloud-providers/aws-sdk.md)
+    attributes:
+      - ref: aws.s3.bucket
+        requirement_level: recommended
+      - ref: aws.s3.key
+        requirement_level: recommended
+      - ref: aws.s3.copy_source
+        requirement_level: recommended
+      - ref: aws.s3.upload_id
+        requirement_level: recommended
+      - ref: aws.s3.delete
+        requirement_level: recommended
+      - ref: aws.s3.part_number
+        requirement_level: recommended

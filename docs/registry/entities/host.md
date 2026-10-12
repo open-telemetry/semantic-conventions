@@ -16,7 +16,7 @@
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`host.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique host ID, determined by the first matching source in the priority order. [1] | `fdbf79e8af94cb7f9e8df36789187052` |
-| Description | [`host.arch`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |
+| Description | [`host.arch`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` [(see more)](#host-arch-values) |
 | Description | [`host.image.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` |
 | Description | [`host.image.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` |
 | Description | [`host.image.version`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` |
@@ -90,6 +90,8 @@ conforms to the properties stated above.
 
 ---
 
+<a id="host-arch-values"></a>
+
 `host.arch` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -111,19 +113,15 @@ conforms to the properties stated above.
 
 **Description:** A host's CPU information
 
-> [!warning]
-> This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
-
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`host.cpu.cache.l2.size`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
-| Other | [`host.cpu.family`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
-| Other | [`host.cpu.model.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |
-| Other | [`host.cpu.model.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
-| Other | [`host.cpu.stepping`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Stepping or core revisions. | `1`; `r1p1` |
-| Other | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Processor manufacturer identifier. A maximum 12-character string. [4] | `GenuineIntel` |
+| Identity | [`host.cpu.family`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
+| Identity | [`host.cpu.model.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |
+| Identity | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Processor manufacturer identifier. A maximum 12-character string. [4] | `GenuineIntel` |
+| Description | [`host.cpu.cache.l2.size`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
+| Description | [`host.cpu.model.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
+| Description | [`host.cpu.stepping`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Stepping or core revisions. | `1`; `r1p1` |
 
 **[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.

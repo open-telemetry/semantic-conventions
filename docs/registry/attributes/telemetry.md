@@ -13,7 +13,7 @@ This document defines attributes for telemetry SDK.
 | --- | --- | --- | --- | --- |
 | <a id="telemetry-distro-name" href="#telemetry-distro-name">`telemetry.distro.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` |
 | <a id="telemetry-distro-version" href="#telemetry-distro-version">`telemetry.distro.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` |
-| <a id="telemetry-sdk-language" href="#telemetry-sdk-language">`telemetry.sdk.language`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` |
+| <a id="telemetry-sdk-language" href="#telemetry-sdk-language">`telemetry.sdk.language`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` [(see more)](#telemetry-sdk-language-values) |
 | <a id="telemetry-sdk-name" href="#telemetry-sdk-name">`telemetry.sdk.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` |
 | <a id="telemetry-sdk-version" href="#telemetry-sdk-version">`telemetry.sdk.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version string of the telemetry SDK. | `1.2.3` |
 
@@ -28,6 +28,8 @@ The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
 All custom identifiers SHOULD be stable across different versions of an implementation.
 
 ---
+
+<a id="telemetry-sdk-language-values"></a>
 
 `telemetry.sdk.language` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

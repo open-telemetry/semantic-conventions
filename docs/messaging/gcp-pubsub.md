@@ -80,12 +80,12 @@ span (`messaging.send.producer`) instead and omit the "Create" span. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. [1] | `create` |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` [(see more)](#messaging-system-values) |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` [(see more)](#error-type-values) |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The message destination name [5] | `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` |
 | [`messaging.gcp_pubsub.message.ordering_key`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the message type has an ordering key set. | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [8] | `create` |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [8] | `create` [(see more)](#messaging-operation-type-values) |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
@@ -159,6 +159,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -166,6 +168,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="messaging-operation-type-values"></a>
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -178,6 +182,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="messaging-system-values"></a>
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -224,13 +230,13 @@ injected into the message(s) as the creation context. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. [1] | `send` |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` [(see more)](#messaging-system-values) |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` [(see more)](#error-type-values) |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
 | [`messaging.gcp_pubsub.message.ordering_key`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the message type has an ordering key set. | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` [(see more)](#messaging-operation-type-values) |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` |
@@ -315,6 +321,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -322,6 +330,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="messaging-operation-type-values"></a>
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -334,6 +344,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="messaging-system-values"></a>
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -381,13 +393,13 @@ creation context that was injected into the message. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. [1] | `send` |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` [(see more)](#messaging-system-values) |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` [(see more)](#error-type-values) |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
 | [`messaging.gcp_pubsub.message.ordering_key`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the message type has an ordering key set. | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` [(see more)](#messaging-operation-type-values) |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` |
@@ -472,6 +484,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -479,6 +493,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="messaging-operation-type-values"></a>
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -491,6 +507,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="messaging-system-values"></a>
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -537,13 +555,13 @@ call methods of messaging SDKs to receive messages. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. [1] | `receive` |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` [(see more)](#messaging-system-values) |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` [(see more)](#error-type-values) |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
 | [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview). | `subscription-a` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `receive` |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `receive` [(see more)](#messaging-operation-type-values) |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.gcp_pubsub.message.ack_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The ack ID for a given message. | `ack_id` |
@@ -631,6 +649,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -638,6 +658,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="messaging-operation-type-values"></a>
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -650,6 +672,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="messaging-system-values"></a>
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -700,13 +724,13 @@ message creation context is used as the parent, see
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. [1] | `subscribe` |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` [(see more)](#messaging-system-values) |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` [(see more)](#error-type-values) |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
 | [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview). | `subscription-a` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `process` |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `process` [(see more)](#messaging-operation-type-values) |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.gcp_pubsub.message.ack_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The ack ID for a given message. | `ack_id` |
@@ -789,6 +813,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -796,6 +822,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="messaging-operation-type-values"></a>
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -808,6 +836,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="messaging-system-values"></a>
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -853,13 +883,13 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. [1] | `ack`; `nack`; `modack` |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `gcp_pubsub` [(see more)](#messaging-system-values) |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `NOT_FOUND`; `RESOURCE_EXHAUSTED`; `UNAVAILABLE` [(see more)](#error-type-values) |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
 | [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview). | `subscription-a` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `settle` |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `settle` [(see more)](#messaging-operation-type-values) |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.gcp_pubsub.message.ack_deadline`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The ack deadline in seconds set for the modify ack deadline request. | `10` |
@@ -944,6 +974,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -951,6 +983,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="messaging-operation-type-values"></a>
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -963,6 +997,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="messaging-system-values"></a>
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
