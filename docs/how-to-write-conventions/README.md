@@ -444,8 +444,8 @@ be placed under that metric's namespace, see
 
 ##### Metric attributes
 
-Each attribute multiplies the number of timeseries a metric produces by the number
-of distinct values it can take. Only include attributes that are useful for grouping
+Each attribute can multiply the number of timeseries a metric produces by up to the
+number of distinct values it can take. Only include attributes that are useful for grouping
 or filtering in aggregate.
 See the [general metrics guidelines](/docs/general/metrics.md#general-guidelines).
 
