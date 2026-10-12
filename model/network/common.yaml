@@ -1,9 +1,9 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.26.1/schemas/semconv.schema.v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.27.0/schemas/semconv.schema.v2.json
 file_format: definition/2
 attribute_groups:
   - id: network.peer
     visibility: public
-    stability: development
+    stability: stable
     brief: >
       These attributes identify the network peer that is directly connected to the local endpoint.
     note: |
@@ -28,7 +28,7 @@ attribute_groups:
 
   - id: network.local
     visibility: public
-    stability: development
+    stability: stable
     brief: >
       These attributes identify the local endpoint of a network connection.
     note: |
