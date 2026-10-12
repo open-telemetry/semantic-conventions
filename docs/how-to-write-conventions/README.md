@@ -434,8 +434,13 @@ Follow the [naming guidelines](/docs/general/naming.md), in particular the
 [metric naming rules](/docs/general/naming.md#metrics) and the
 [well-known instrument names](/docs/general/naming.md#instrument-naming).
 
-Use the same namespace as the related attributes. For example, the
-`http.server.request.duration` metric uses the `http.*` namespace.
+Name the metric under the namespace of the domain it describes, which is usually
+the namespace of its domain-specific attributes. For example, the
+`http.server.request.duration` metric uses the `http.*` namespace, like
+`http.request.method`, even though it also uses general-purpose attributes such as
+`server.port` and `error.type`. Attributes that only apply to a single metric should
+be placed under that metric's namespace, see
+[signal-specific attributes](/docs/general/naming.md#signal-specific-attributes).
 
 ##### Metric attributes
 
