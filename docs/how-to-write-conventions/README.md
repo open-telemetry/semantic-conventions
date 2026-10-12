@@ -451,10 +451,11 @@ See the [general metrics guidelines](/docs/general/metrics.md#general-guidelines
 
 - Attributes on a metric should have low cardinality.
 - Specify a [requirement level](/docs/general/attribute-requirement-level.md) for
-  each attribute. Attributes that are still useful but may have high cardinality,
-  may be controlled by an attacker (for example, values derived from request headers),
-  are expensive to obtain, or may contain sensitive information should be `opt-in`.
-  Explain the risk in the attribute's `note`, as [HTTP metrics](/docs/http/http-metrics.md)
+  each attribute. Attributes that may have high cardinality, including values an
+  attacker can control (for example, values derived from request headers),
+  [can only be `opt-in`](/docs/general/attribute-requirement-level.md#requirement-levels).
+  Attributes that are expensive to obtain or may contain sensitive information
+  should also be `opt-in`. Explain the risk in the attribute's `note`, as [HTTP metrics](/docs/http/http-metrics.md)
   do for `server.address`.
 - For metrics that describe operations that can fail, follow
   [Recording errors on metrics](/docs/general/recording-errors.md#recording-errors-on-metrics).
