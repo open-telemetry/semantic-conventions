@@ -10,7 +10,7 @@ change_type: enhancement
 component: k8s
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add Pod level memory limit and request metrics, and container memory limit and request utilization metrics.
+note: Add Pod level memory limit and request metrics.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
@@ -21,8 +21,5 @@ issues: [4133]
 # Use pipe (|) for multiline entries.
 subtext: |
   Introduces `k8s.pod.memory.limit.desired`, `k8s.pod.memory.limit.current`,
-  `k8s.pod.memory.limit.utilization`, `k8s.pod.memory.request.desired`,
-  `k8s.pod.memory.request.current`, `k8s.pod.memory.request.utilization`,
-  `k8s.container.memory.limit.utilization` and `k8s.container.memory.request.utilization`,
-  aligning memory with the equivalent CPU metrics. The utilization metrics use the
-  memory working set as the numerator.
+  `k8s.pod.memory.request.desired` and `k8s.pod.memory.request.current`,
+  aligning Pod level memory with the equivalent Pod level CPU metrics.
