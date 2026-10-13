@@ -109,7 +109,6 @@ reported by `cf spaces`.
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`cloudfoundry.system.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A guid or another name describing the event source. [9] | `cf/gorouter` |
-| Description | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A guid describing the concrete instance of the event source. [10] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 
 **[9] `cloudfoundry.system.id`:** CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
@@ -120,6 +119,20 @@ When system components are instrumented, values from the
 [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
 should be used. The `system.id` should be set to
 `spec.deployment/spec.name`.
+
+## CloudFoundry System Instance
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `cloudfoundry.system.instance`
+
+**Description:** A concrete instance of the system component which is monitored.
+
+**Attributes:**
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A guid describing the concrete instance of the event source. [10] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 
 **[10] `cloudfoundry.system.instance.id`:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is

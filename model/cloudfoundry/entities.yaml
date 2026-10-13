@@ -9,8 +9,16 @@ groups:
       - ref: cloudfoundry.system.id
         role: identifying
         requirement_level: required
+  - id: entity.cloudfoundry.system.instance
+    type: entity
+    stability: development
+    name: cloudfoundry.system.instance
+    brief: >
+      A concrete instance of the system component which is monitored.
+    attributes:
       - ref: cloudfoundry.system.instance.id
-        role: descriptive
+        role: identifying
+        requirement_level: required
   - id: entity.cloudfoundry.app
     type: entity
     stability: development
