@@ -1,4 +1,4 @@
-change_type: enhancement
+change_type: breaking
 component: aws
-note: Define required identifying attributes for AWS entities for Weaver schema v2 migration and rename the `aws.eks` entity to `aws.eks.cluster`.
+note: Remove the `aws.eks` entity in favor of the `aws.eks.cluster` entity and define required identifying attributes for AWS entities for Weaver schema v2 migration.
 issues: [4169]

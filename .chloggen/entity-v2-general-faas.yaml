@@ -1,4 +1,4 @@
-change_type: enhancement
+change_type: breaking
 component: faas
-note: Define required identifying attributes for faas entities for Weaver schema v2 migration and rename the `faas` entity to `faas.instance`.
+note: Remove the `faas` entity in favor of the `faas.instance` entity and define required identifying attributes for faas entities for Weaver schema v2 migration.
 issues: [4169]

@@ -1,4 +1,4 @@
-change_type: enhancement
+change_type: breaking
 component: heroku
-note: Rename the Heroku entity to `heroku.app` and make it opt-in, with required identifying `heroku.app.id` and recommended descriptive release attributes.
+note: Remove the `heroku` entity in favor of the opt-in `heroku.app` entity, with required identifying `heroku.app.id` and recommended descriptive release attributes.
 issues: [4169]
