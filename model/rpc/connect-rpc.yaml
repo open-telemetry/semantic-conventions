@@ -1,0 +1,165 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.26.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+
+attribute_groups:
+  - id: rpc.connect_rpc.attributes.common
+    visibility: internal
+    attributes:
+      - ref: rpc.system.name
+        note: 'MUST be set to `connectrpc`.'
+        examples: ['connectrpc']
+
+span_refinements:
+  - id: span.rpc.connect_rpc.call.client
+    ref: rpc.call.client
+    annotations:
+      compatibility:
+        policy_exceptions: [span_missing]
+    stability: development
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    attributes:
+      - ref_group: rpc.connect_rpc.attributes.common
+      - ref: rpc.status_code
+        requirement_level:
+          conditionally_required: if available.
+        brief: The [error code](https://connectrpc.com/docs/protocol/#error-codes) of the Connect response.
+        note: |
+          All status codes except `OK` SHOULD be considered errors.
+
+          Instrumentations MAY use additional context or provide configuration options to customize
+          which status codes are considered errors.
+      - ref: rpc.request.header
+        requirement_level: opt_in
+        brief: &connect_request_header_brief Connect RPC [request headers](https://connectrpc.com/docs/protocol/).
+        note: &connect_request_header_note |
+          `<key>` is the normalized header name (lowercase), the value is the header values.
+
+          Instrumentations SHOULD require an explicit configuration of which headers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a header `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded
+          as the `rpc.request.header.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to headers.
+
+          Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
+          transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
+          Instrumentations SHOULD obtain them from the corresponding
+          [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
+      - ref: rpc.response.header
+        requirement_level: opt_in
+        brief: &connect_response_header_brief Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload.
+        note: &connect_response_header_note |
+          `<key>` is the normalized header name (lowercase), the value is the header values.
+
+          Instrumentations SHOULD require an explicit configuration of which headers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+          as the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to headers.
+
+          Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
+          transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
+          Instrumentations SHOULD obtain them from the corresponding
+          [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/).
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
+      - ref: rpc.response.trailer
+        requirement_level: opt_in
+        brief: &connect_response_trailer_brief Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload.
+        note: &connect_response_trailer_note |
+          `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
+
+          Instrumentations SHOULD require an explicit configuration of which trailers are to be
+          captured. Capturing all of them can be a security risk - explicit configuration helps
+          avoid leaking sensitive information.
+
+          For example, a trailer `my-custom-key` with value `["attribute_value"]` SHOULD be recorded
+          as the `rpc.response.trailer.my-custom-key` attribute with value `["attribute_value"]`.
+
+          The attribute value MUST consist of either multiple values as an array of strings or a
+          single-item array containing a possibly comma-concatenated string, depending on the way
+          the RPC library provides access to trailers.
+
+          Connect RPC libraries provide APIs to retrieve headers and trailers, but the way they are
+          transmitted over the wire depends on the underlying protocol (Connect, gRPC, or gRPC-Web).
+          Instrumentations SHOULD obtain them from the corresponding
+            [Connect RPC library API](https://connectrpc.com/docs/go/headers-and-trailers/) and SHOULD NOT
+            rely on the underlying protocol details.
+
+          Values under keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be
+          base64-encoded when recorded.
+      - ref: server.address
+        brief: The domain name or address of the Connect RPC server.
+        requirement_level: required
+        note: >
+          When an IP address is provided instead of a domain name,
+          instrumentations SHOULD NOT do a reverse DNS lookup to obtain DNS
+          name and SHOULD set `server.address` to the provided IP address.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if available.
+
+  - id: span.rpc.connect_rpc.call.server
+    ref: rpc.call.server
+    annotations:
+      compatibility:
+        policy_exceptions: [span_missing]
+    stability: development
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    attributes:
+      - ref_group: rpc.connect_rpc.attributes.common
+      - ref: rpc.status_code
+        requirement_level:
+          conditionally_required: if available.
+        brief: The [error code](https://connectrpc.com/docs/protocol/#error-codes) of the Connect response.
+        note: |
+          The following error codes SHOULD be considered errors:
+
+          - `unknown`
+          - `deadline_exceeded`
+          - `unimplemented`
+          - `internal`
+          - `unavailable`
+          - `data_loss`
+
+          Instrumentations MAY use additional context or provide configuration options to customize
+          which error codes are considered errors.
+      - ref: rpc.request.header
+        requirement_level: opt_in
+        brief: *connect_request_header_brief
+        note: *connect_request_header_note
+      - ref: rpc.response.header
+        requirement_level: opt_in
+        brief: *connect_response_header_brief
+        note: *connect_response_header_note
+      - ref: rpc.response.trailer
+        requirement_level: opt_in
+        brief: *connect_response_trailer_brief
+        note: *connect_response_trailer_note

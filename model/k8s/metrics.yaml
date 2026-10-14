@@ -83,7 +83,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "Pod's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific Pod on all available CPU cores. It is calculated as the change in
@@ -689,7 +689,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "Node's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific Node on all available CPU cores. It is calculated as the change in
