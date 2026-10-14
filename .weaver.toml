@@ -1,0 +1,4 @@
+[[policy.finding_filters]]
+exclude = ["compatibility_entity_missing"]
+signal_type = "entity"
+signal_names = ["gcp.cloud_run", "gcp.gce"]
