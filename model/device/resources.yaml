@@ -4,9 +4,6 @@ attribute_groups:
   - id: device
     visibility: public
     stability: development
-    annotations:
-      compatibility:
-        policy_exceptions: [entity_missing]
     brief: >
       The device on which the process represented by this resource is running.
     attributes:
