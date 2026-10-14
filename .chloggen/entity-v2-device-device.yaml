@@ -1,4 +1,4 @@
-change_type: enhancement
+change_type: breaking
 component: device
-note: Convert the device entity to a public attribute group.
+note: Remove the `device` entity in favor of the `device` attribute group. Usage on resources stays the same.
 issues: [4166]
