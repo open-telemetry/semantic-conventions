@@ -4,9 +4,6 @@ attribute_groups:
   - id: browser
     visibility: public
     stability: development
-    annotations:
-      compatibility:
-        policy_exceptions: [entity_missing]
     brief: >
       The web browser in which the application represented by the resource is running.
       The `browser.*` attributes MUST be used only for resources that represent applications
