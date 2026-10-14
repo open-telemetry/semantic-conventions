@@ -1,4 +1,4 @@
-change_type: enhancement
+change_type: breaking
 component: android
-note: Convert the Android entity to a public attribute group.
+note: Remove the `android` entity in favor of the `android` attribute group. Usage on resources stays the same.
 issues: [4168]
