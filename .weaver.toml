@@ -1,4 +1,3 @@
-# Entities intentionally removed as part of the semconv v2 migration.
 [[policy.finding_filters]]
 exclude = ["compatibility_entity_missing"]
 signal_type = "entity"
