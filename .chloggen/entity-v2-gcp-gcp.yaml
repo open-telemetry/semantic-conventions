@@ -1,4 +1,4 @@
-change_type: enhancement
+change_type: breaking
 component: gcp
-note: Define required identifying attributes for GCP entities for Weaver schema v2 migration. Rename `gcp.gce` to `gcp.gce.instance` and `gcp.cloud_run` to `gcp.cloud_run.job.task`.
+note: Remove the `gcp.gce` and `gcp.cloud_run` entities in favor of `gcp.gce.instance` and `gcp.cloud_run.job.task` entities, and define required identifying attributes for GCP entities for Weaver schema v2 migration.
 issues: [4173]
