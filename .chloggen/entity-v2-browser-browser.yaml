@@ -1,4 +1,4 @@
-change_type: enhancement
+change_type: breaking
 component: browser
-note: Convert the browser entity to a public attribute group.
+note: Remove the `browser` entity in favor of the `browser` attribute group. Usage on resources stays the same.
 issues: [4172]
