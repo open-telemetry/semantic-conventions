@@ -319,8 +319,10 @@ check-policies:
 		-v $(shell mktemp -d):/home/weaver/.weaver \
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+		--mount 'type=bind,source=$(PWD)/.weaver.toml,target=/home/weaver/.weaver.toml,readonly' \
 		${WEAVER_CONTAINER} registry check \
 		--v2 \
+		--config=/home/weaver/.weaver.toml \
 		--registry=/home/weaver/source \
 		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
 		--policy=/home/weaver/policies \

@@ -4,9 +4,6 @@ attribute_groups:
   - id: android
     visibility: public
     stability: development
-    annotations:
-      compatibility:
-        policy_exceptions: [entity_missing]
     brief: >
       The Android platform on which the Android application is running.
     attributes:
