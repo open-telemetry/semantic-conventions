@@ -11,8 +11,10 @@ Attributes specific to a CPU instance.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The logical CPU number [0..n-1] | `1` |
+| <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The identifier of a logical execution target (CPU) as seen by the operating system, in the range [0..n-1]. [1] | `1` |
 | <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The mode of the CPU | `user`; `system` [(see more)](#cpu-mode-values) |
+
+**[1] `cpu.logical_number`:** On systems with simultaneous multithreading (SMT) enabled — such as Intel Hyper-Threading or AMD SMT — this value will usually differ from the physical core number, because each core presents multiple logical CPUs for the system to use.
 
 ---
 
