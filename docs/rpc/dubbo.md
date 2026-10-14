@@ -32,8 +32,6 @@ The Semantic Conventions for [Apache Dubbo](https://dubbo.apache.org/) extend an
 
 This span represents an outgoing Remote Procedure Call (RPC).
 
-`rpc.system.name` MUST be set to `"dubbo"` and SHOULD be provided **at span creation time.**
-
 **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
 **Span kind** MUST be `CLIENT`.
@@ -268,8 +266,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 **Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 This span represents an incoming Remote Procedure Call (RPC).
-
-`rpc.system.name` MUST be set to `"dubbo"` and SHOULD be provided **at span creation time.**
 
 **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 

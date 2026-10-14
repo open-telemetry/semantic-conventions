@@ -221,8 +221,6 @@ span_refinements:
         policy_exceptions: [span_missing]
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
-      `rpc.system.name` MUST be set to `"dubbo"` and SHOULD be provided **at span creation time.**
-
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
       **Span kind** MUST be `CLIENT`.
@@ -243,8 +241,6 @@ span_refinements:
         policy_exceptions: [span_missing]
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
-      `rpc.system.name` MUST be set to `"dubbo"` and SHOULD be provided **at span creation time.**
-
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
       **Span kind** MUST be `SERVER`.
