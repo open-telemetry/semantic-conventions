@@ -31,6 +31,8 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
 This document describes requirements, recommendations, and best practices on how to define conventions
 for new areas or make substantial changes to the existing ones.
 
+For an end-to-end contribution workflow, see [How to modify semantic conventions](modify-conventions.md).
+
 ## Defining new conventions
 
 - New conventions MUST have a group of codeowners. See [project management](https://github.com/open-telemetry/community/blob/main/project-management.md) for more details.
