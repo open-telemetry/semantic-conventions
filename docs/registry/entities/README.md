@@ -19,8 +19,6 @@ Currently, the following namespaces exist:
 
 | Namespace | Entity | Stability |
 | --------- | ------ | --------- |
-| Android | | |
-| | [android](android.md#android) | ![Development](https://img.shields.io/badge/-development-blue) |
 | App | | |
 | | [app](app.md#app) | ![Development](https://img.shields.io/badge/-development-blue) |
 | AWS | | |
