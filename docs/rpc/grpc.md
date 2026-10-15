@@ -434,7 +434,7 @@ gRPC instrumentations SHOULD collect metrics according to the general
 
 The call-duration bucket recommendations below match the
 [gRPC metrics conventions](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md#units),
-which preserve compatibility with gRPC OpenCensus metrics.
+which preserve compatibility with gRPC metrics.
 
 ### Metric: `rpc.server.call.duration` (gRPC)
 
