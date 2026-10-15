@@ -23,7 +23,7 @@ Currently, the following namespaces exist:
 | | [app](app.md#app) | ![Development](https://img.shields.io/badge/-development-blue) |
 | AWS | | |
 | | [aws.ecs](aws.md#aws-ecs) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [aws.eks](aws.md#aws-eks) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [aws.eks.cluster](aws.md#aws-eks-cluster) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.log](aws.md#aws-log) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Browser | | |
 | | [browser](browser.md#browser) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -33,7 +33,7 @@ Currently, the following namespaces exist:
 | | [cicd.pipeline.run](cicd.md#cicd-pipeline-run) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | | [cicd.worker](cicd.md#cicd-worker) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | Cloud | | |
-| | [cloud](cloud.md#cloud) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [cloud.resource](cloud.md#cloud-resource) | ![Development](https://img.shields.io/badge/-development-blue) |
 | CloudFoundry | | |
 | | [cloudfoundry.app](cloudfoundry.md#cloudfoundry-app) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [cloudfoundry.org](cloudfoundry.md#cloudfoundry-org) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -49,7 +49,7 @@ Currently, the following namespaces exist:
 | Device | | |
 | | [device](device.md#device) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Faas | | |
-| | [faas](faas.md#faas) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [faas.instance](faas.md#faas-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
 | GCP | | |
 | | [gcp.apphub.application](gcp.md#gcp-apphub-application) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [gcp.apphub.service](gcp.md#gcp-apphub-service) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -58,7 +58,7 @@ Currently, the following namespaces exist:
 | | [gcp.gce](gcp.md#gcp-gce) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [gcp.gce.instance_group_manager](gcp.md#gcp-gce-instance-group-manager) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Heroku | | |
-| | [heroku](heroku.md#heroku) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [heroku.app](heroku.md#heroku-app) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Host | | |
 | | [host](host.md#host) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [host.cpu](host.md#host-cpu) | ![Development](https://img.shields.io/badge/-development-blue) |

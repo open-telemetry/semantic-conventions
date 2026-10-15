@@ -1,14 +1,18 @@
 groups:
-  - id: entity.heroku
+  - id: entity.heroku.app
     type: entity
     stability: development
-    name: heroku
+    name: heroku.app
+    requirement_level: opt_in
     brief: >
-      [Heroku dyno metadata](https://devcenter.heroku.com/articles/dyno-metadata)
+      A Heroku application.
     attributes:
       - ref: heroku.release.creation_timestamp
-        requirement_level: opt_in
+        role: descriptive
+        requirement_level: recommended
       - ref: heroku.release.commit
-        requirement_level: opt_in
+        role: descriptive
+        requirement_level: recommended
       - ref: heroku.app.id
-        requirement_level: opt_in
+        role: identifying
+        requirement_level: required

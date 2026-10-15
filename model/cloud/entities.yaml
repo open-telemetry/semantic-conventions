@@ -1,14 +1,21 @@
 groups:
-  - id: entity.cloud
+  - id: entity.cloud.resource
     type: entity
     stability: development
-    name: cloud
+    name: cloud.resource
     brief: >
-      A cloud environment (e.g. GCP, Azure, AWS)
+      A resource in a cloud environment (e.g. GCP, Azure, AWS).
     attributes:
       - ref: cloud.provider
+        role: descriptive
       - ref: cloud.account.id
+        role: descriptive
       - ref: cloud.region
+        role: descriptive
       - ref: cloud.resource_id
+        role: identifying
+        requirement_level: required
       - ref: cloud.availability_zone
+        role: descriptive
       - ref: cloud.platform
+        role: descriptive
