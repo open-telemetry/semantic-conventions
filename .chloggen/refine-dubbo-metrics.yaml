@@ -10,5 +10,4 @@ issues: [4120]
 subtext: |
   Require client `server.port` only when `server.address` is set and a port is
   specified in the direct provider target URL, excluding registry discovery targets.
-  Dubbo spans now explicitly include `rpc.system.name` and the opt-in
-  `rpc.response.header.<key>` attribute inherited from the generic RPC spans.
+  Dubbo spans now explicitly include `rpc.system.name`.

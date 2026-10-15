@@ -54,8 +54,7 @@ for the details on which values classify as errors.
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [8] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
 | [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Dubbo request attachments. [9] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response headers or metadata sent before the response payload, `<key>` being the normalized header name (lowercase), the value being the header values. [10] | `["attribute_value"]` |
-| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Dubbo response attachments. [11] | `["attribute_value"]` |
+| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Dubbo response attachments. [10] | `["attribute_value"]` |
 
 **[1] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
 
@@ -189,20 +188,7 @@ Depending on the protocol, this attribute SHOULD capture:
   Values associated with keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
 - Dubbo2: None (the protocol does not support request headers).
 
-**[10] `rpc.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
-Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`
-
-The attribute value MUST consist of either multiple header values as an array of
-strings or a single-item array containing a possibly comma-concatenated string,
-depending on the way the RPC library provides access to headers.
-
-Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be base64-encoded when recorded.
-
-**[11] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
+**[10] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
 
 Instrumentations SHOULD require an explicit configuration of which trailers are to be
 captured. Capturing all of them can be a security risk - explicit configuration helps
@@ -289,8 +275,7 @@ for the details on which values classify as errors.
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when available. | string | A string identifying a group of RPC server instances request is sent to. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Dubbo request attachments. [9] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response headers or metadata sent before the response payload, `<key>` being the normalized header name (lowercase), the value being the header values. [10] | `["attribute_value"]` |
-| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Dubbo response attachments. [11] | `["attribute_value"]` |
+| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Dubbo response attachments. [10] | `["attribute_value"]` |
 
 **[1] `rpc.status_code`:** For Dubbo2, the following status codes SHOULD be considered errors:
 
@@ -381,20 +366,7 @@ Depending on the protocol, this attribute SHOULD capture:
   Values associated with keys ending in [`-bin`](https://github.com/grpc/grpc/blob/v1.75.0/doc/PROTOCOL-HTTP2.md#requests) are binary and SHOULD be base64-encoded.
 - Dubbo2: None (the protocol does not support request headers).
 
-**[10] `rpc.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
-Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-For example, a header `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-the `rpc.response.header.my-custom-key` attribute with value `["attribute_value"]`
-
-The attribute value MUST consist of either multiple header values as an array of
-strings or a single-item array containing a possibly comma-concatenated string,
-depending on the way the RPC library provides access to headers.
-
-Values that the RPC system exposes as binary data, or that are otherwise not valid
-UTF-8 strings, SHOULD be base64-encoded when recorded.
-
-**[11] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
+**[10] `rpc.response.trailer.<key>`:** `<key>` is the normalized trailer name (lowercase), the value is the trailer values.
 
 Instrumentations SHOULD require an explicit configuration of which trailers are to be
 captured. Capturing all of them can be a security risk - explicit configuration helps

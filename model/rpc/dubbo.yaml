@@ -232,6 +232,7 @@ span_refinements:
       - ref_group: rpc.dubbo.attributes.common
       - ref_group: rpc.dubbo.attributes.client
       - ref_group: rpc.dubbo.attributes.span
+      - unref: rpc.response.header
 
   - id: span.rpc.dubbo.call.server
     ref: rpc.call.server
@@ -252,6 +253,7 @@ span_refinements:
       - ref_group: rpc.dubbo.attributes.common
       - ref_group: rpc.dubbo.attributes.server
       - ref_group: rpc.dubbo.attributes.span
+      - unref: rpc.response.header
       - ref: server.port
         requirement_level:
           conditionally_required: if `server.address` is set and if the port is supported by the network transport used for communication.
