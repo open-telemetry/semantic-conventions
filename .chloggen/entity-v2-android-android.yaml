@@ -1,0 +1,4 @@
+change_type: breaking
+component: android
+note: Remove the `android` entity in favor of the `android` attribute group. Usage on resources stays the same.
+issues: [4168]
