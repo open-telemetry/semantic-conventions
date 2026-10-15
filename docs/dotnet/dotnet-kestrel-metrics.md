@@ -47,8 +47,8 @@ In case instrumentation does not recognize `EndPoint` implementation, it sets th
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 
@@ -66,6 +66,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+<a id="network-transport-values"></a>
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -77,6 +79,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-type-values"></a>
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -108,11 +112,11 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. [1] | `connection_reset`; `invalid_handshake` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. [1] | `connection_reset`; `invalid_handshake` [(see more)](#error-type-values) |
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `http`; `web_sockets` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [3] | `1.1`; `2` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `unix` |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [7] | `80`; `8080`; `443` |
 | [`tls.protocol.version`](/docs/registry/attributes/tls.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values) | `1.2`; `3` |
@@ -187,6 +191,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -194,6 +200,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-transport-values"></a>
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -206,6 +214,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-type-values"></a>
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -236,8 +246,8 @@ Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 
@@ -255,6 +265,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+<a id="network-transport-values"></a>
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -266,6 +278,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-type-values"></a>
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -295,8 +309,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 
@@ -314,6 +328,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+<a id="network-transport-values"></a>
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -325,6 +341,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-type-values"></a>
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -356,8 +374,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | --- | --- | --- | --- | --- | --- |
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [1] | `http`; `web_sockets` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `unix` |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [4] | `ipv4`; `ipv6` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [4] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [6] | `80`; `8080`; `443` |
 
@@ -379,6 +397,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+<a id="network-transport-values"></a>
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -390,6 +410,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-type-values"></a>
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -421,8 +443,8 @@ Meter name: `Microsoft.AspNetCore.Server.Kestrel`; Added in: ASP.NET Core 8.0
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 
@@ -440,6 +462,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+<a id="network-transport-values"></a>
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -451,6 +475,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-type-values"></a>
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -482,9 +508,9 @@ this metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `unix` |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [3] | `ipv4`; `ipv6` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` [(see more)](#error-type-values) |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [3] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [5] | `80`; `8080`; `443` |
 | [`tls.protocol.version`](/docs/registry/attributes/tls.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values) | `1.2`; `3` |
@@ -505,6 +531,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -512,6 +540,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-transport-values"></a>
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -524,6 +554,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-type-values"></a>
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -553,8 +585,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` |
-| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `unix` [(see more)](#network-transport-values) |
+| [`network.type`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if the transport is `tcp` or `udp` | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [4] | `80`; `8080`; `443` |
 
@@ -572,6 +604,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+<a id="network-transport-values"></a>
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -583,6 +617,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="network-type-values"></a>
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

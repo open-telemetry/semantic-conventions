@@ -64,6 +64,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
   - [K8s Filesystem metrics](#k8s-filesystem-metrics)
   - [K8s Pod Volume metrics](#k8s-pod-volume-metrics)
+  - [K8s Pod CPU metrics](#k8s-pod-cpu-metrics)
   - [K8s Pod Memory metrics](#k8s-pod-memory-metrics)
   - [Container memory metrics](#container-memory-metrics)
   - [K8s Node memory metrics](#k8s-node-memory-metrics)
@@ -457,6 +458,38 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-end -->
 
+### K8s Pod CPU metrics
+
+The K8s Pod CPU utilization metrics implemented by the Collector and specifically the
+[kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kubeletstatsreceiver/documentation.md)
+receiver were introduced as semantic conventions in:
+
+- [#4064](https://github.com/open-telemetry/semantic-conventions/issues/4064) (Pod level CPU limit and request metrics)
+- [opentelemetry-collector-contrib#42485](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/42485)
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New (SemConv) |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `k8s.pod.cpu_limit_utilization` (type: `gauge`) | `k8s.pod.cpu.limit.utilization` (type: `gauge`) |
+| `k8s.pod.cpu_request_utilization` (type: `gauge`) | `k8s.pod.cpu.request.utilization` (type: `gauge`) |
+
+<!-- prettier-ignore-end -->
+
+**Note:** The Collector computes these ratios against the sum of the Pod's container limits/requests and
+does not emit the metric if any container is missing one. SemConv instead defines the denominator as the
+Pod level value, as reported by
+[PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+
+**Note:** SemConv additionally defines `k8s.pod.cpu.limit.desired`, `k8s.pod.cpu.limit.current`,
+`k8s.pod.cpu.request.desired` and `k8s.pod.cpu.request.current`, which have no Collector equivalent today.
+As for containers, limit and request are split into `desired` (from `spec.resources`) and `current` (from
+`status.resources`) to support
+[Pod level resources](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/)
+and [Pod level resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
+
 ### K8s Pod Memory metrics
 
 The K8s Pod memory metrics implemented by the Collector and specifically the
@@ -504,10 +537,10 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                         |
-| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `k8s.node.memory.page_faults`                                                      | `k8s.node.paging.faults` with attribute `system.paging.type` set to `minor` |
-| `k8s.node.memory.major_page_faults`                                                | `k8s.node.paging.faults` with attribute `system.paging.type` set to `major` |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                               |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `k8s.node.memory.page_faults`                                                      | `k8s.node.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
+| `k8s.node.memory.major_page_faults`                                                | `k8s.node.paging.faults` with attribute `system.paging.fault.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
