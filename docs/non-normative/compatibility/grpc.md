@@ -34,7 +34,8 @@ See the [gRPC conventions](https://github.com/grpc/proposal/blob/master/A66-otel
 and the [OpenTelemetry conventions](/docs/rpc/rpc-metrics.md) for details.
 
 The [OpenTelemetry gRPC bucket recommendations](/docs/rpc/grpc.md#metrics) for
-call-duration metrics match the [native gRPC latency boundaries](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md#units).
+call-duration metrics match the latency boundaries used by
+[gRPC's existing OpenTelemetry metrics](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md#units).
 
 ### Metric mapping
 

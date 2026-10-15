@@ -432,9 +432,8 @@ gRPC instrumentations SHOULD collect metrics according to the general
 
 `rpc.system.name` MUST be set to `"grpc"`.
 
-The call-duration bucket recommendations below match the
-[gRPC metrics conventions](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md#units),
-which preserve compatibility with gRPC metrics.
+The call-duration bucket recommendations below match those used by
+[gRPC's existing OpenTelemetry metrics](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md#units).
 
 ### Metric: `rpc.server.call.duration` (gRPC)
 

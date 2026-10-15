@@ -10,7 +10,7 @@ change_type: enhancement
 component: rpc
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Update RPC call-duration histogram bucket recommendations and align gRPC boundaries with its native metrics conventions.
+note: Update RPC call-duration histogram bucket recommendations and align gRPC boundaries with gRPC's existing OpenTelemetry metrics.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
