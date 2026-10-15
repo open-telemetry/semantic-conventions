@@ -1,4 +1,4 @@
 [[policy.finding_filters]]
 exclude = ["compatibility_entity_missing"]
 signal_type = "entity"
-signal_names = ["aws.ecs"]
+signal_names = ["android", "aws.ecs"]
