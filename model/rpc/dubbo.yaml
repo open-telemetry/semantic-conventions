@@ -215,7 +215,6 @@ attribute_groups:
 span_refinements:
   - id: span.rpc.dubbo.call.client
     ref: rpc.call.client
-    stability: release_candidate
     annotations:
       compatibility:
         policy_exceptions: [span_missing]
@@ -236,7 +235,6 @@ span_refinements:
 
   - id: span.rpc.dubbo.call.server
     ref: rpc.call.server
-    stability: release_candidate
     annotations:
       compatibility:
         policy_exceptions: [span_missing]
@@ -259,9 +257,6 @@ metric_refinements:
   - id: metric.rpc.dubbo.server.call.duration
     ref: rpc.server.call.duration
     brief: Measures the duration of an incoming Dubbo call.
-    note: |
-      When this metric is reported alongside an RPC server span, the metric value
-      SHOULD be the same as the RPC server span duration.
     attributes:
       - ref_group: rpc.dubbo.attributes.common
       - ref_group: rpc.dubbo.attributes.server
@@ -269,9 +264,6 @@ metric_refinements:
   - id: metric.rpc.dubbo.client.call.duration
     ref: rpc.client.call.duration
     brief: Measures the duration of an outgoing Dubbo call.
-    note: |
-      When this metric is reported alongside an RPC client span, the metric value
-      SHOULD be the same as the RPC client span duration.
     attributes:
       - ref_group: rpc.dubbo.attributes.common
       - ref_group: rpc.dubbo.attributes.client
