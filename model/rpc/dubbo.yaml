@@ -254,9 +254,6 @@ span_refinements:
       - ref_group: rpc.dubbo.attributes.server
       - ref_group: rpc.dubbo.attributes.span
       - unref: rpc.response.header
-      - ref: server.port
-        requirement_level:
-          conditionally_required: if `server.address` is set and if the port is supported by the network transport used for communication.
 
 metric_refinements:
   - id: metric.rpc.dubbo.server.call.duration
