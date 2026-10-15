@@ -1,0 +1,7 @@
+change_type: enhancement
+component: network
+note: >
+  Add `*.mac.address` attributes for local, peer, client, server, source, and
+  destination network endpoints.
+issues: [2416]
+subtext:

@@ -17,4 +17,6 @@ attribute_groups:
       or API exposes no clear notion of client and server (even over TCP).
     attributes:
       - ref: client.address
+      - ref: client.mac.address
+        requirement_level: opt_in
       - ref: client.port
