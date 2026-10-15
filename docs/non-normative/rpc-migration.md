@@ -106,7 +106,7 @@ Metric changes:
   to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961)).
   [General RPC boundaries](/docs/rpc/rpc-metrics.md#metric-rpcservercallduration)
   cover 0.1 ms to 100 s, with a [gRPC-specific recommendation](/docs/rpc/grpc.md#metrics)
-  matching native gRPC latency boundaries.
+  matching native gRPC latency boundaries ([#4185](https://github.com/open-telemetry/semantic-conventions/pull/4185)).
 - **Requirement level**: Made required ([#3284](https://github.com/open-telemetry/semantic-conventions/pull/3284))
 - **Attributes**: see table below
 
