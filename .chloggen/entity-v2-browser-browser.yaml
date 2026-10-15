@@ -1,0 +1,4 @@
+change_type: breaking
+component: browser
+note: Remove the `browser` entity in favor of the `browser` attribute group. Usage on resources stays the same.
+issues: [4172]
