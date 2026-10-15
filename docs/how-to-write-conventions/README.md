@@ -21,6 +21,11 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
       - [Kind](#kind)
       - [Attributes](#attributes)
     - [Defining metrics](#defining-metrics)
+      - [What does this metric measure](#what-does-this-metric-measure)
+      - [Instrument](#instrument)
+      - [Unit](#unit)
+      - [Metric name](#metric-name)
+      - [Metric attributes](#metric-attributes)
     - [Defining entities](#defining-entities)
     - [Defining events](#defining-events)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
@@ -352,7 +357,125 @@ Define which additional properties this span needs to be useful:
 
 #### Defining metrics
 
-TBD
+Metrics describe aggregated behavior: how many operations happened, how long they
+took, how much of a resource is used. Define metrics for the questions users need to
+answer on dashboards and alerts without inspecting individual operations.
+
+Good candidates for metrics include:
+
+- The duration of an operation that is also described by a span.
+  For example, `http.client.request.duration` accompanies the HTTP client span.
+- The current amount, limit, or utilization of a resource, such as memory, connections
+  in a pool, or messages in a queue.
+- Counts of discrete occurrences that are relevant in aggregate, such as page faults or
+  dropped packets.
+
+When not to define metrics:
+
+- If the value can be derived from another metric. For example, the number of
+  requests can be derived from the count of a `*.duration` histogram, so a separate
+  request counter is not necessary.
+- If the metric is only meaningful with high-cardinality attributes, such as
+  a user, request, or object identifier. Consider spans or events instead.
+- If there is an existing metric that measures a very similar thing. Reuse it,
+  possibly with additional attributes.
+
+A metric definition should describe [what it measures](#what-does-this-metric-measure),
+the [instrument](#instrument) and [unit](#unit), its [name](#metric-name),
+the list of applicable [attributes](#metric-attributes), and its
+[requirement level](/docs/general/signal-requirement-level.md).
+Metrics that are expensive to collect, may pose a security or privacy risk,
+or are not essential for most applications should be `opt-in`.
+
+See the [Metrics semantic conventions](/docs/general/metrics.md) general guidelines
+for additional details.
+
+##### What does this metric measure
+
+- Describe when and how the value is recorded. For example, state when the duration
+  measurement starts and ends, or whether the value is reported by the instrumented
+  system or computed by the instrumentation.
+- If the metric accompanies a span, measure the same operation the span represents,
+  so that span and metric data can be correlated.
+- If the metric represents a client call, specify whether it captures the logical call
+  or individual attempts.
+
+##### Instrument
+
+Pick the instrument based on how the value behaves and how it will be aggregated:
+
+- **Histogram** - for distributions of individual measurements, such as operation
+  durations or payload sizes. Consider recommending
+  [`ExplicitBucketBoundaries`](https://opentelemetry.io/docs/specs/otel/metrics/api/#instrument-advisory-parameters)
+  suitable for the expected value range (see [HTTP metrics](/docs/http/http-metrics.md)
+  for an example).
+- **Counter** - for monotonically increasing values, such as the number of bytes
+  sent or the total CPU time.
+- **UpDownCounter** - for additive values that can increase and decrease, such as the
+  number of active requests or the memory in use, where summing values across
+  instances is meaningful.
+- **Gauge** - for non-additive values sampled at a point in time, such as a temperature
+  or a utilization ratio, where summing values across instances is not meaningful.
+
+To represent which state from a closed set something is in, follow the
+[status metrics](status-metrics.md) pattern.
+
+See [Instrument types](/docs/general/metrics.md#instrument-types) and
+[Consistent UpDownCounter timeseries](/docs/general/metrics.md#consistent-updowncounter-timeseries)
+for additional requirements.
+
+##### Unit
+
+Follow the [instrument units](/docs/general/metrics.md#instrument-units) guidance.
+
+##### Metric name
+
+Follow the [naming guidelines](/docs/general/naming.md), in particular the
+[metric naming rules](/docs/general/naming.md#metrics) and the
+[well-known instrument names](/docs/general/naming.md#instrument-naming).
+
+Name the metric under the namespace of the domain it describes, which is usually
+the namespace of its domain-specific attributes. For example, the
+`http.server.request.duration` metric uses the `http.*` namespace, like
+`http.request.method`, even though it also uses general-purpose attributes such as
+`server.port` and `error.type`. Attributes that only apply to a single metric should
+be placed under that metric's namespace, see
+[signal-specific attributes](/docs/general/naming.md#signal-specific-attributes).
+
+##### Metric attributes
+
+Each attribute can multiply the number of timeseries a metric produces by up to the
+number of distinct values it can take. Only include attributes that are useful for grouping
+or filtering in aggregate.
+See the [general metrics guidelines](/docs/general/metrics.md#general-guidelines).
+
+- Attributes on a metric should have low cardinality.
+- Specify a [requirement level](/docs/general/attribute-requirement-level.md) for
+  each attribute. Attributes that may have high cardinality, including values an
+  attacker can control (for example, values derived from request headers),
+  [can only be `opt-in`](/docs/general/attribute-requirement-level.md#requirement-levels).
+  Attributes that are expensive to obtain or may contain sensitive information
+  should also be `opt-in`. Explain the risk in the attribute's `note`, as [HTTP metrics](/docs/http/http-metrics.md)
+  do for `server.address`.
+- For metrics that describe operations that can fail, follow
+  [Recording errors on metrics](/docs/general/recording-errors.md#recording-errors-on-metrics).
+
+Relation to span attributes:
+
+When a metric and a span describe the same operation, prefer the metric's
+attributes to be a subset of the span's attributes. This keeps the dimensions
+used to describe the operation consistent across signals and allows telemetry
+consumers to use the metric's attribute key-value pairs when searching for
+spans that represent the same operation.
+
+This does not mean that every span attribute should also be a metric attribute.
+Span-only attributes are appropriate when they are too high-cardinality,
+expensive to collect, sensitive, or otherwise unsuitable as metric dimensions.
+
+If a proposed metric attribute also describes the operation itself, consider
+whether it should be available on the corresponding span as well. Exceptions
+are possible when the signals have different observability needs, but those
+differences should be intentional rather than accidental.
 
 #### Defining entities
 
