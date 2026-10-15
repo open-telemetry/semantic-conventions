@@ -284,6 +284,84 @@ groups:
       of the Kubelet's stats API.
     instrument: updowncounter
     unit: "By"
+  - id: metric.k8s.pod.memory.limit.desired
+    type: metric
+    metric_name: k8s.pod.memory.limit.desired
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Maximum memory resource limit as defined by the Pod spec."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core)
+      (spec.resources). See
+      <https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/>
+      for more details on Pod level resources. Note that Kubernetes can default unset Pod level limits
+      based on the aggregated limits of the Pod's containers. Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/>.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.pod.memory.limit.current
+    type: metric
+    metric_name: k8s.pod.memory.limit.current
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Maximum memory resource limit currently configured for a running Pod."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core)
+      (status.resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.pod.memory.request.desired
+    type: metric
+    metric_name: k8s.pod.memory.request.desired
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory resource requested as defined by the Pod spec."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core)
+      (spec.resources). See
+      <https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/>
+      for more details on Pod level resources. Note that Kubernetes can default unset Pod level requests
+      based on the aggregated requests of the Pod's containers. Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/>.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.pod.memory.request.current
+    type: metric
+    metric_name: k8s.pod.memory.request.current
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory resource request currently configured for a running Pod."
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#resourcerequirements-v1-core) field of
+      [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core)
+      (status.resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "By"
   - id: metric.k8s.pod.paging.faults
     type: metric
     metric_name: k8s.pod.paging.faults
