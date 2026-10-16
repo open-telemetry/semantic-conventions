@@ -31,7 +31,7 @@ The Semantic Conventions for *Oracle Database* extend and override the [Database
 
 Spans representing calls to a Oracle SQL Database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system.name` MUST be set to `"oracle.db"` and SHOULD be provided **at span creation time**.
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 
 **Span kind** SHOULD be `CLIENT`.
 
@@ -51,14 +51,15 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 | [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [11] | string | Low cardinality summary of a database query. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [13] | string | The database query being executed. [14] | `SELECT * FROM wuser_table where username = ?` |
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [15] | string | The name of a stored procedure within the database. [16] | `GetCustomer` |
-| [`oracle.db.domain`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database domain associated with the connection. [17] | `example.com`; `corp.internal`; `prod.db.local` |
-| [`oracle.db.instance.name`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The instance name associated with the connection in an Oracle Real Application Clusters environment. [18] | `ORCL1`; `ORCL2`; `ORCL3` |
-| [`oracle.db.name`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database name associated with the connection. [19] | `ORCL1`; `FREE` |
-| [`oracle.db.pdb`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The pluggable database (PDB) name associated with the connection. [20] | `PDB1`; `FREEPDB` |
-| [`oracle.db.service`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The service name currently associated with the database connection. [21] | `order-processing-service`; `db_low.adb.oraclecloud.com`; `db_high.adb.oraclecloud.com` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [22] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [23] | `someval`; `55` |
-| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [24] | `10`; `30`; `1000` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database management system (DBMS) product as identified by the client instrumentation. [17] | `oracle.db` [(see more)](#db-system-name-values) |
+| [`oracle.db.domain`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database domain associated with the connection. [18] | `example.com`; `corp.internal`; `prod.db.local` |
+| [`oracle.db.instance.name`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The instance name associated with the connection in an Oracle Real Application Clusters environment. [19] | `ORCL1`; `ORCL2`; `ORCL3` |
+| [`oracle.db.name`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database name associated with the connection. [20] | `ORCL1`; `FREE` |
+| [`oracle.db.pdb`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The pluggable database (PDB) name associated with the connection. [21] | `PDB1`; `FREEPDB` |
+| [`oracle.db.service`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The service name currently associated with the database connection. [22] | `order-processing-service`; `db_low.adb.oraclecloud.com`; `db_high.adb.oraclecloud.com` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [23] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [24] | `someval`; `55` |
+| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [25] | `10`; `30`; `1000` |
 
 **[1] `db.namespace`:** Use the value of `DB_UNIQUE_NAME` parameter. This defines the database's globally unique identifier and must remain unique across the enterprise.
 
@@ -142,30 +143,32 @@ For batch operations, if the individual operations would all have the same
 `db.stored_procedure.name` when executed as non-batch operations,
 then that stored procedure name SHOULD be used.
 
-**[17] `oracle.db.domain`:** This attribute SHOULD be set to the value of the `DB_DOMAIN` initialization parameter,
+**[17] `db.system.name`:** MUST be set to `"oracle.db"`.
+
+**[18] `oracle.db.domain`:** This attribute SHOULD be set to the value of the `DB_DOMAIN` initialization parameter,
 as exposed in `v$parameter`. `DB_DOMAIN` defines the domain portion of the global
 database name and SHOULD be configured when a database is, or may become, part of a
 distributed environment. Its value consists of one or more valid identifiers
 (alphanumeric ASCII characters) separated by periods.
 
-**[18] `oracle.db.instance.name`:** There can be multiple instances associated with a single database service. It indicates the
+**[19] `oracle.db.instance.name`:** There can be multiple instances associated with a single database service. It indicates the
 unique instance name to which the connection is currently bound. For non-RAC databases, this value
 defaults to the `oracle.db.name`.
 
-**[19] `oracle.db.name`:** This attribute SHOULD be set to the value of the parameter `DB_NAME` exposed in `v$parameter`.
+**[20] `oracle.db.name`:** This attribute SHOULD be set to the value of the parameter `DB_NAME` exposed in `v$parameter`.
 
-**[20] `oracle.db.pdb`:** This attribute SHOULD reflect the PDB that the session is currently connected to.
+**[21] `oracle.db.pdb`:** This attribute SHOULD reflect the PDB that the session is currently connected to.
 If instrumentation cannot reliably obtain the active PDB name for each operation
 without issuing an additional query (such as `SELECT SYS_CONTEXT`), it is
 RECOMMENDED to fall back to the PDB name specified at connection establishment.
 
-**[21] `oracle.db.service`:** The effective service name for a connection can change during its lifetime,
+**[22] `oracle.db.service`:** The effective service name for a connection can change during its lifetime,
 for example after executing SQL, `ALTER SESSION`. If an instrumentation cannot reliably
 obtain the current service name for each operation without issuing an additional
 query (such as `SELECT SYS_CONTEXT`), it is RECOMMENDED to fall back to the
 service name originally provided at connection establishment.
 
-**[22] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+**[23] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
 It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
@@ -175,7 +178,7 @@ It SHOULD NOT derive the value from the server selected for an operation.
 See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
 examples.
 
-**[23] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
+**[24] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
 
 `db.query.parameter.<key>` SHOULD match
@@ -199,7 +202,7 @@ Examples:
 - For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
   `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
 
-**[24] `db.response.returned_rows`:** The number of rows returned by the database operation as observed
+**[25] `db.response.returned_rows`:** The number of rows returned by the database operation as observed
 by the instrumentation at the time the span ends.
 
 The following attributes can be important for making sampling decisions
@@ -215,6 +218,56 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`oracle.db.service`](/docs/registry/attributes/oracledb.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
+
+---
+
+<a id="db-system-name-values"></a>
+
+`db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cassandra` | [Apache Cassandra](https://cassandra.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clickhouse` | [ClickHouse](https://clickhouse.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cockroachdb` | [CockroachDB](https://www.cockroachlabs.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `geode` | [Apache Geode](https://geode.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `h2database` | [H2 Database](https://h2database.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hbase` | [Apache HBase](https://hbase.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hive` | [Apache Hive](https://hive.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.db2` | [IBM Db2](https://www.ibm.com/products/db2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `instantdb` | [Instant](https://www.instantdb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mariadb` | [MariaDB](https://mariadb.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `memcached` | [Memcached](https://memcached.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `microsoft.sql_server` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mysql` | [MySQL](https://www.mysql.com/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `neo4j` | [Neo4j](https://neo4j.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `opensearch` | [OpenSearch](https://opensearch.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other_sql` | Some other SQL database. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `redis` | [Redis](https://redis.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `softwareag.adabas` | [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

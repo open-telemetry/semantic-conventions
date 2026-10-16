@@ -78,8 +78,7 @@ spans:
       note: SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
       - ref: db.system.name
-        requirement_level:
-          conditionally_required: Required on non base spans
+        requirement_level: required
         sampling_relevant: true
       - ref_group: db.client.connection
       - ref_group: db.operation
