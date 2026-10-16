@@ -2,7 +2,7 @@ file_format: definition/2
 
 span_refinements:
   - id: span.db.elasticsearch.client
-    ref: db.document.client
+    ref: db.client
     stability: development
     brief: >
       Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
@@ -12,6 +12,13 @@ span_refinements:
       **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
       with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
     attributes:
+      - unref: db.system.name
+      - unref: db.query.summary
+      - unref: db.stored_procedure.name
+      - unref: network.peer.address
+      - unref: network.peer.port
+      - unref: db.response.returned_rows
+      - unref: db.query.parameter
       - ref: http.request.method
         sampling_relevant: true
         requirement_level: required

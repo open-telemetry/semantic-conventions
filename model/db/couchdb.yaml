@@ -2,7 +2,7 @@ file_format: definition/2
 
 span_refinements:
   - id: span.db.couchdb.client
-    ref: db.document.client
+    ref: db.client
     stability: development
     brief: >
       Spans representing calls to CouchDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
@@ -11,6 +11,15 @@ span_refinements:
 
       **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
+      - unref: db.system.name
+      - unref: db.collection.name
+      - unref: db.query.text
+      - unref: db.query.summary
+      - unref: db.stored_procedure.name
+      - unref: network.peer.address
+      - unref: network.peer.port
+      - unref: db.response.returned_rows
+      - unref: db.query.parameter
       - ref: db.operation.name
         brief: >
           The HTTP method + the target REST route.

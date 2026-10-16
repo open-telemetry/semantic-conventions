@@ -2,7 +2,7 @@ file_format: definition/2
 
 span_refinements:
   - id: span.db.redis.client
-    ref: db.keyvalue.client
+    ref: db.client
     stability: development
     brief: >
       Spans representing calls to Redis adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
@@ -13,6 +13,11 @@ span_refinements:
       except that `db.namespace` SHOULD NOT be used in the span name since it is a numeric value that ends up
       looking confusing.
     attributes:
+      - unref: db.system.name
+      - unref: db.collection.name
+      - unref: db.query.summary
+      - unref: db.response.returned_rows
+      - unref: db.query.parameter
       - ref: db.namespace
         brief: >
           The [database index] associated with the connection, represented as a string.
