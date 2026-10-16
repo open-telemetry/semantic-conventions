@@ -28,7 +28,7 @@ The Semantic Conventions for *Microsoft SQL Server* extend and override the [Dat
 
 Spans representing calls to Microsoft SQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system.name` MUST be set to `"microsoft.sql_server"` and SHOULD be provided **at span creation time**.
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 
 **Span kind** SHOULD be `CLIENT`.
 
@@ -38,21 +38,24 @@ Spans representing calls to Microsoft SQL Server adhere to the general [Semantic
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available without an additional network call. | string | The database associated with the connection, qualified by the instance name. [1] | `instance1\|products`; `customers` |
-| [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If response has ended with warning or an error. | string | [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number represented as a string. [2] | `102`; `40020` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | int | Server port number. [5] | `80`; `8080`; `443` |
-| [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [6] | string | The name of a collection (table, container) within the database. [7] | `public.users`; `customers` |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [8] | `2`; `3`; `4` |
-| [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [9] | string | The name of the operation or command being executed. [10] | `EXECUTE`; `INSERT` |
-| [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [11] | string | Low cardinality summary of a database query. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
-| [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [13] | string | The database query being executed. [14] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
-| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [15] | string | The name of a stored procedure within the database. [16] | `GetCustomer` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [18] | `someval`; `55` |
-| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [19] | `10`; `30`; `1000` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `microsoft.sql_server` [(see more)](#db-system-name-values) |
+| [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available without an additional network call. | string | The database associated with the connection, qualified by the instance name. [2] | `instance1\|products`; `customers` |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If response has ended with warning or an error. | string | [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number represented as a string. [3] | `102`; `40020` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | int | Server port number. [6] | `80`; `8080`; `443` |
+| [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [7] | string | The name of a collection (table, container) within the database. [8] | `public.users`; `customers` |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [9] | `2`; `3`; `4` |
+| [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [10] | string | The name of the operation or command being executed. [11] | `EXECUTE`; `INSERT` |
+| [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | Low cardinality summary of a database query. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
+| [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [14] | string | The database query being executed. [15] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
+| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [16] | string | The name of a stored procedure within the database. [17] | `GetCustomer` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [18] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [19] | `someval`; `55` |
+| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [20] | `10`; `30`; `1000` |
 
-**[1] `db.namespace`:** When connected to a default instance, `db.namespace` SHOULD be set to the name of
+**[1] `db.system.name`:** MUST be set to `"microsoft.sql_server"`.
+
+**[2] `db.namespace`:** When connected to a default instance, `db.namespace` SHOULD be set to the name of
 the database. When connected to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
 `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}|{database_name}` pattern.
 
@@ -66,22 +69,22 @@ Instrumentation SHOULD document if `db.namespace` reflects the database provided
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2] `db.response.status_code`:** Microsoft SQL Server does not report SQLSTATE.
+**[3] `db.response.status_code`:** Microsoft SQL Server does not report SQLSTATE.
 Instrumentations SHOULD use [error severity](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-error-severities) returned along with the status code to determine the status of the span. Response codes with severity 11 or higher SHOULD be considered errors.
 
-**[3] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[4] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[4] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
+**[5] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[5] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
+**[6] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
-**[6] `db.collection.name`:** If the operation is executed via a higher-level API that does not support multiple collection names.
+**[7] `db.collection.name`:** If the operation is executed via a higher-level API that does not support multiple collection names.
 
-**[7] `db.collection.name`:** The collection name SHOULD NOT be extracted from `db.query.text`.
+**[8] `db.collection.name`:** The collection name SHOULD NOT be extracted from `db.query.text`.
 
-**[8] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+**[9] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
 or more database operations explicitly submitted as separate operations in a single
 client call, protocol message, or database command.
 
@@ -104,13 +107,13 @@ It SHOULD NOT be set for non-batch operations.
 A request to execute a batch operation with no operations SHOULD also be treated
 as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
-**[9] `db.operation.name`:** If the operation is executed via a higher-level API that does not support multiple operation names.
+**[10] `db.operation.name`:** If the operation is executed via a higher-level API that does not support multiple operation names.
 
-**[10] `db.operation.name`:** The operation name SHOULD NOT be extracted from `db.query.text`.
+**[11] `db.operation.name`:** The operation name SHOULD NOT be extracted from `db.query.text`.
 
-**[11] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
+**[12] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
-**[12] `db.query.summary`:** The query summary describes a class of database queries and is useful
+**[13] `db.query.summary`:** The query summary describes a class of database queries and is useful
 as a grouping key, especially when analyzing telemetry for database
 calls involving complex queries.
 
@@ -126,10 +129,10 @@ then that query summary SHOULD be used prepended by `BATCH `.
 Otherwise, `db.query.summary` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[13] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
+**[14] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
 
-**[14] `db.query.text`:**
+**[15] `db.query.text`:**
 
 > [!WARNING]
 > This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
@@ -138,16 +141,16 @@ For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.m
 For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[15] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
+**[16] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
 
-**[16] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
+**[17] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 For batch operations, if the individual operations would all have the same
 `db.stored_procedure.name` when executed as non-batch operations,
 then that stored procedure name SHOULD be used.
 
-**[17] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+**[18] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
 It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
@@ -157,7 +160,7 @@ It SHOULD NOT derive the value from the server selected for an operation.
 See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
 examples.
 
-**[18] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
+**[19] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
 
 `db.query.parameter.<key>` SHOULD match
@@ -181,7 +184,7 @@ Examples:
 - For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
   `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
 
-**[19] `db.response.returned_rows`:** The number of rows returned by the database operation as observed
+**[20] `db.response.returned_rows`:** The number of rows returned by the database operation as observed
 by the instrumentation at the time the span ends.
 
 The following attributes can be important for making sampling decisions
@@ -190,6 +193,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.namespace`](/docs/registry/attributes/db.md)
 * [`db.query.summary`](/docs/registry/attributes/db.md)
 * [`db.query.text`](/docs/registry/attributes/db.md)
+* [`db.system.name`](/docs/registry/attributes/db.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 

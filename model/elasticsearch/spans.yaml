@@ -6,19 +6,26 @@ span_refinements:
     stability: development
     brief: >
       Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
-    note: |
-      `db.system.name` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
-
+    name:
+      note: >
+        SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
+        with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
+    note: >
       **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
       with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
     attributes:
-      - unref: db.system.name
       - unref: db.query.summary
       - unref: db.stored_procedure.name
       - unref: network.peer.address
       - unref: network.peer.port
       - unref: db.response.returned_rows
       - unref: db.query.parameter
+      - ref: db.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"elasticsearch"`.
+        examples: ["elasticsearch"]
       - ref: http.request.method
         sampling_relevant: true
         requirement_level: required

@@ -27,7 +27,6 @@ The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and over
 
 Spans representing calls to MongoDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
 
-`db.system.name` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
 **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 
 **Span kind** SHOULD be `CLIENT`.
@@ -40,29 +39,32 @@ Spans representing calls to MongoDB adhere to the general [Semantic Conventions 
 | --- | --- | --- | --- | --- | --- |
 | [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The MongoDB collection being accessed within the database stated in `db.namespace`. [1] | `public.users`; `customers` |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed. | `findAndModify`; `getMore`; `insertMany`; `bulkWrite` |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [2] | `mongodb` [(see more)](#db-system-name-values) |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The MongoDB database name. | `customers`; `test.users` |
-| [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [2] | string | [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string. [3] | `36`; `11602` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | int | Server port number. [6] | `80`; `8080`; `443` |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [7] | `2`; `3`; `4` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | string | [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string. [4] | `36`; `11602` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [6] | int | Server port number. [7] | `80`; `8080`; `443` |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [8] | `2`; `3`; `4` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 For batch operations, if the individual operations would all have the same `db.collection.name` when executed as non-batch operations, then that collection name SHOULD be used.
 
-**[2] `db.response.status_code`:** If the operation failed and error code is available.
+**[2] `db.system.name`:** MUST be set to `"mongodb"`.
 
-**[3] `db.response.status_code`:** All MongoDB error codes SHOULD be considered errors.
+**[3] `db.response.status_code`:** If the operation failed and error code is available.
 
-**[4] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[4] `db.response.status_code`:** All MongoDB error codes SHOULD be considered errors.
+
+**[5] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[5] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
+**[6] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[6] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
+**[7] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
-**[7] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+**[8] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
 or more database operations explicitly submitted as separate operations in a single
 client call, protocol message, or database command.
 
@@ -85,7 +87,7 @@ It SHOULD NOT be set for non-batch operations.
 A request to execute a batch operation with no operations SHOULD also be treated
 as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
-**[8] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+**[9] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
 It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
@@ -101,6 +103,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.collection.name`](/docs/registry/attributes/db.md)
 * [`db.namespace`](/docs/registry/attributes/db.md)
 * [`db.operation.name`](/docs/registry/attributes/db.md)
+* [`db.system.name`](/docs/registry/attributes/db.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 
