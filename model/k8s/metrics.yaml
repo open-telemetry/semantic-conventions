@@ -376,7 +376,7 @@ groups:
       The numerator is the Pod memory working set, as reported by `k8s.pod.memory.working_set`. The current memory limit
       reflects the actual resources applied at the Pod level, as reported by
       [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
-      The value range is [0.0,1.0]. A value of 1.0 means the Pod is using 100% of its actual memory limit.
+      A value of 1.0 means the Pod is using 100% of its actual memory limit. Values above 1.0 can occur transiently, since memory usage can briefly exceed the limit.
       If the memory limit is not set, this metric SHOULD NOT be emitted for that Pod.
     instrument: gauge
     unit: "1"
@@ -1780,7 +1780,7 @@ groups:
       The numerator is the container memory working set, as reported by `container.memory.working_set`. The current memory limit
       reflects the actual resources applied to the container, as reported by
       [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
-      The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its actual memory limit.
+      A value of 1.0 means the container is using 100% of its actual memory limit. Values above 1.0 can occur transiently, since memory usage can briefly exceed the limit.
       If the memory limit is not set, this metric SHOULD NOT be emitted for that container.
     instrument: gauge
     unit: "1"
