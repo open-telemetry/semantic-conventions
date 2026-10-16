@@ -64,6 +64,10 @@ groups:
         requirement_level: opt_in
       - ref: user_agent.synthetic.type
         requirement_level: opt_in
+      - ref: http.request.body.content
+        requirement_level: opt_in
+      - ref: http.response.body.content
+        requirement_level: opt_in
 
   - id: span.http.server
     type: span
@@ -140,4 +144,8 @@ groups:
       - ref: http.response.body.size
         requirement_level: opt_in
       - ref: user_agent.synthetic.type
+        requirement_level: opt_in
+      - ref: http.request.body.content
+        requirement_level: opt_in
+      - ref: http.response.body.content
         requirement_level: opt_in

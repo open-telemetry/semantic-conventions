@@ -1,0 +1,8 @@
+change_type: enhancement
+component: k8s
+note: >
+  Add `k8s.statefulset.pod.available` metric, reporting the number of available
+  replica pods (ready for at least `minReadySeconds`) targeted by a
+  StatefulSet, aligning with the existing `.pod.available` metrics on
+  `k8s.deployment`, `k8s.replicaset`, and `k8s.replicationcontroller`.
+issues: [4028]

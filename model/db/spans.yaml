@@ -1,63 +1,7 @@
-groups:
-  - id: trace.db.common.full
-    type: attribute_group
-    brief: This group documents attributes that describe database call along with network information.
-    extends: attributes.db.client.with_query_and_collection
-    attributes:
-      - ref: network.peer.address
-        brief: Peer address of the database node where the operation was performed.
-        requirement_level:
-          recommended: If applicable for this database system.
-        note: >
-          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
-          Network peer address and port are useful when the application interacts with individual database nodes directly.
+file_format: definition/2
 
-          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
-      - ref: network.peer.port
-        requirement_level:
-          recommended: if and only if `network.peer.address` is set.
-      - ref: db.system.name
-        sampling_relevant: true
-        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
-        requirement_level: required
-      - ref: db.namespace
-        sampling_relevant: true
-        requirement_level:
-          conditionally_required: If available.
-      - ref: db.stored_procedure.name
-        requirement_level:
-          recommended: If operation applies to a specific stored procedure.
-      - ref: db.collection.name
-        sampling_relevant: true
-      - ref: db.operation.name
-        sampling_relevant: true
-      - ref: db.operation.batch.size
-      - ref: server.address
-        sampling_relevant: true
-      - ref: server.port
-        sampling_relevant: true
-      - ref: db.response.returned_rows
-        note: |
-          The number of rows returned by the database operation as observed
-          by the instrumentation at the time the span ends.
-      - ref: db.query.text
-        sampling_relevant: true
-        requirement_level:
-          recommended: >
-            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
-            sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
-
-            Parameterized query text SHOULD be collected by default
-            (the query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
-      - ref: db.query.summary
-        sampling_relevant: true
-      - ref: db.query.parameter
-        requirement_level: opt_in
-
-  - id: span.db.client
-    type: span
+spans:
+  - type: db.client
     stability: stable
     brief: This span describes database client call.
     note: |
@@ -83,9 +27,77 @@ groups:
       **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
       Semantic conventions for individual systems SHOULD specify which values of `db.response.status_code`
       classify as errors.
-    span_kind: client
-    extends: trace.db.common.full
+    kind: client
+    name:
+      note: SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
+      - ref: db.system.name
+        requirement_level: required
+        sampling_relevant: true
+      - ref_group: db.client.connection
+      - ref_group: db.operation
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: db.collection.name
+        sampling_relevant: true
+      - ref: db.query.summary
+        sampling_relevant: true
+        requirement_level:
+          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
+      - ref: db.query.text
+        sampling_relevant: true
+        requirement_level:
+          recommended: |
+            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
+            Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
+      - ref: db.namespace
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.stored_procedure.name
+        requirement_level:
+          recommended: If operation applies to a specific stored procedure.
+      - ref: db.operation.name
+        sampling_relevant: true
+      - ref: db.operation.name
+        requirement_level:
+          conditionally_required: If readily available and if there is a single operation name that describes the database call.
+        examples: ["findAndModify", "HMSET", "SELECT"]
+      - ref: db.response.status_code
+        requirement_level:
+          conditionally_required: If the operation failed and status code is available.
+      - ref: db.collection.name
+        requirement_level:
+          conditionally_required: If readily available and if a database call is performed on a single collection.
+        note: |
+          It is RECOMMENDED to capture the value as provided by the application
+          without attempting to do any case normalization.
+
+          The collection name SHOULD NOT be extracted from `db.query.text`,
+          when the database system supports query text with multiple collections
+          in non-batch operations.
+
+          For batch operations, if the individual operations would all have the same
+          `db.collection.name` when executed as non-batch operations,
+          then that collection name SHOULD be used.
+      - ref: db.response.status_code
+        brief: Database response status code.
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+        requirement_level:
+          recommended: If applicable for this database system.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+      - ref: db.query.parameter
+        requirement_level: opt_in
       # experimental attributes must be opt-in stable spans
       # TODO (@trask) make this recommended once it is stable
       - ref: db.response.returned_rows

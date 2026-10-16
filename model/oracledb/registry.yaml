@@ -4,6 +4,7 @@ groups:
     display_name: Oracle Database Attributes
     brief: >
       This section defines attributes for Oracle Database.
+
     attributes:
       - id: oracle.db.name
         type: string

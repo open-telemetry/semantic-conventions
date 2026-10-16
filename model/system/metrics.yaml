@@ -156,7 +156,7 @@ groups:
     unit: "By"
     attributes:
       - ref: system.paging.state
-      - ref: system.device
+      - ref: system.device.name
         brief: Unique identifier for the device responsible for managing paging operations.
         examples: ["/dev/dm-0"]
     entity_associations:
@@ -174,7 +174,7 @@ groups:
     unit: "1"
     attributes:
       - ref: system.paging.state
-      - ref: system.device
+      - ref: system.device.name
         brief: Unique identifier for the device responsible for managing paging operations.
         examples: ["/dev/dm-0"]
     entity_associations:
@@ -223,7 +223,7 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -239,7 +239,7 @@ groups:
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -262,7 +262,7 @@ groups:
         ["Disk\% Idle Time"](https://learn.microsoft.com/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
         performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
     attributes:
-      - ref: system.device
+      - ref: system.device.name
     entity_associations:
       - host
 
@@ -282,7 +282,7 @@ groups:
       - Linux: Fields 7 & 11 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
       - Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec" perf counter (similar for Writes)
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -298,7 +298,7 @@ groups:
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -314,7 +314,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
     entity_associations:
       - host
 
@@ -333,7 +333,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: Identifier for the device where the filesystem resides.
         examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.state
@@ -354,7 +354,7 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: Identifier for the device where the filesystem resides.
         examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.state
@@ -375,7 +375,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: Identifier for the device where the filesystem resides.
         examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.type
@@ -395,7 +395,7 @@ groups:
     instrument: updowncounter
     unit: "{lock}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: OS-specific identifier for the device where the file resides.
         examples: ["08:01"]
       - ref: file.lock.type
@@ -438,7 +438,7 @@ groups:
     instrument: counter
     unit: "{packet}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: network.io.direction
     entity_associations:
       - host

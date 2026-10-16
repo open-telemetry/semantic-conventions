@@ -6,10 +6,12 @@ attribute_groups:
     attributes:
       - ref: server.address
         brief: >
-          Name of the database host.
+          The database address specified in the client configuration.
       - ref: server.port
+        note: >
+          `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
         requirement_level:
-          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+          conditionally_required: If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
   - id: db.operation
     visibility: internal
     attributes:
@@ -84,7 +86,7 @@ spans:
     name:
       note: SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
-      - ref_group: db.server
+      - ref_group: db.client.connection
       - ref_group: db.operation
       - ref: server.address
         sampling_relevant: true
@@ -138,7 +140,7 @@ spans:
     name:
       note: SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
-      - ref_group: db.server
+      - ref_group: db.client.connection
       - ref_group: db.operation
       - ref: server.address
         sampling_relevant: true
@@ -182,7 +184,7 @@ spans:
     name:
       note: SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
-      - ref_group: db.server
+      - ref_group: db.client.connection
       - ref_group: db.operation
       - ref: db.query.text
         sampling_relevant: true
@@ -234,7 +236,7 @@ spans:
     name:
       note: SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
-      - ref_group: db.server
+      - ref_group: db.client.connection
       - ref_group: db.operation
       - ref_group: db.query
       - ref: server.address
@@ -246,7 +248,6 @@ spans:
       - ref: db.query.text
         sampling_relevant: true
       - ref: db.namespace
-        sampling_relevant: true
         brief: >
           The database associated with the connection,
           fully qualified within the server address and port.

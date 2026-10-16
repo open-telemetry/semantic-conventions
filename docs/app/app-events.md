@@ -200,4 +200,4 @@ Jank happens when the UI is rendered slowly enough for the user to experience so
 See the [app attributes](/docs/registry/attributes/app.md) registry for all
 application-related attributes that may appear on telemetry items.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

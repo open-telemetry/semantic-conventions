@@ -112,6 +112,25 @@ groups:
           consumers MAY use this attribute to optimize telemetry collection
           or improve user experience.
         examples: ["critical", "high", "medium", "low"]
+      - id: service.instance.cost_center.id
+        type: string
+        stability: development
+        brief: >
+          Identifier of the cost center associated with the service instance.
+        note: >
+          The cost center identifier enables tracking and attribution of service resource costs to
+          organizational units, billing accounts, or teams. It is typically a string identifier
+          such as a billing account ID, cost allocation code, or internal accounting ID.
+        examples: ["94002", "111111111111", "cc-eng-402", "acc-83921"]
+      - id: service.instance.cost_center.name
+        type: string
+        stability: development
+        brief: >
+          Name of the cost center associated with the service instance.
+        note: >
+          A human-readable name of the cost center, department, or organizational unit responsible
+          for the service instance costs.
+        examples: ["engineering-platform", "marketing-campaigns", "research-and-development"]
   - id: registry.service.peer
     type: attribute_group
     display_name: Service Attributes for Peer Services

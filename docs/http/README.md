@@ -44,4 +44,4 @@ Semantic conventions for HTTP are defined for the following signals:
 
 For help migrating from non-stable to stable conventions, see [the migration guide](../non-normative/http-migration.md).
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

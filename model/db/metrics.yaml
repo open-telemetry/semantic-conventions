@@ -4,35 +4,33 @@ attribute_groups:
   - id: db.client.with_query_and_collection
     visibility: internal
     attributes:
-      - ref_group: db.server
+      - ref_group: db.client.connection
       - ref: db.operation.name
         requirement_level:
           conditionally_required: >
             If readily available and if there is a single operation name that describes the
             database call.
-      - ref: db.collection.name
-        requirement_level:
-          conditionally_required: >
-            If readily available and if a database call is performed on a single collection.
-      - ref: db.query.text
-      - ref: db.query.summary
-        requirement_level:
-          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
       - ref: db.response.status_code
         requirement_level:
           conditionally_required: If the operation failed and status code is available.
+      - ref: db.query.summary
+        requirement_level:
+          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.query.text
+        requirement_level: opt_in
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation failed.
-        note: >
-          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
-          or the canonical name of exception that occurred.
-
-          When using canonical exception type name, instrumentation SHOULD do the best effort to
-          report the most relevant type. For example, if the original exception is wrapped into a
-          generic one, the original exception SHOULD be preferred.
-
-          Instrumentations SHOULD document how `error.type` is populated.
+        note: |
+            The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+            When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
+            Instrumentations SHOULD document how `error.type` is populated.
 
 metrics:
   - name: db.client.operation.duration
@@ -47,9 +45,31 @@ metrics:
     stability: stable
     attributes:
       - ref_group: db.client.with_query_and_collection
+      - ref: db.stored_procedure.name
+        requirement_level:
+          recommended: If operation applies to a specific stored procedure.
       - ref: db.system.name
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required
+      - ref: db.collection.name
+        requirement_level:
+          conditionally_required: If readily available and if a database call is performed on a single collection.
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this database system.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If and only if `network.peer.address` is set.
+
+      - ref: db.query.summary
+        requirement_level:
+          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
       - ref: db.stored_procedure.name
         requirement_level:
           recommended: If operation applies to a specific stored procedure.
@@ -70,6 +90,13 @@ metrics:
           conditionally_required: If available.
       - ref: db.query.text
         requirement_level: opt_in
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+        note: |
+            The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+            When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
+            Instrumentations SHOULD document how `error.type` is populated.
 
   - name: db.client.connection.count
     annotations:
@@ -80,10 +107,17 @@ metrics:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
+      - ref_group: db.client.connection
       - ref: db.client.connection.state
         requirement_level: required
       - ref: db.client.connection.pool.name
         requirement_level: required
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
 
   - name: db.client.connection.idle.max
     annotations:
@@ -94,8 +128,15 @@ metrics:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
+      - ref_group: db.client.connection
       - ref: db.client.connection.pool.name
         requirement_level: required
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
 
   - name: db.client.connection.idle.min
     annotations:
@@ -106,10 +147,17 @@ metrics:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
+      - ref_group: db.client.connection
       - ref: db.client.connection.pool.name
         requirement_level: required
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
 
-  - name: db.client.connection.max
+  - name: db.client.connection.limit
     annotations:
       code_generation:
         metric_value_type: int
@@ -118,8 +166,15 @@ metrics:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
+      - ref_group: db.client.connection
       - ref: db.client.connection.pool.name
         requirement_level: required
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
 
   - name: db.client.connection.pending_requests
     annotations:
@@ -130,8 +185,15 @@ metrics:
     instrument: updowncounter
     unit: "{request}"
     attributes:
+      - ref_group: db.client.connection
       - ref: db.client.connection.pool.name
         requirement_level: required
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
 
   - name: db.client.connection.timeouts
     annotations:
@@ -142,8 +204,15 @@ metrics:
     instrument: counter
     unit: "{timeout}"
     attributes:
+      - ref_group: db.client.connection
       - ref: db.client.connection.pool.name
         requirement_level: required
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
 
   - name: db.client.connection.create_time
     annotations:
@@ -154,8 +223,15 @@ metrics:
     instrument: histogram
     unit: "s"
     attributes:
+      - ref_group: db.client.connection
       - ref: db.client.connection.pool.name
         requirement_level: required
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
 
   - name: db.client.connection.wait_time
     annotations:
@@ -166,8 +242,15 @@ metrics:
     instrument: histogram
     unit: "s"
     attributes:
+      - ref_group: db.client.connection
       - ref: db.client.connection.pool.name
         requirement_level: required
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
 
   - name: db.client.connection.use_time
     annotations:
@@ -178,8 +261,15 @@ metrics:
     instrument: histogram
     unit: "s"
     attributes:
+      - ref_group: db.client.connection
       - ref: db.client.connection.pool.name
         requirement_level: required
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
 
   - name: db.client.response.returned_rows
     annotations:
@@ -191,6 +281,10 @@ metrics:
     stability: development
     attributes:
       - ref_group: db.client.with_query_and_collection
+      - ref: db.collection.name
+        requirement_level:
+          conditionally_required: If readily available and if a database call is performed on a single collection.
+
       - ref: db.system.name
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required

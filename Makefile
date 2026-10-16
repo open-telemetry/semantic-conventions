@@ -137,12 +137,16 @@ normalized-link-check:
 	fi
 
 .PHONY: markdown-link-check
-markdown-link-check: normalized-link-check
+markdown-link-check: normalized-link-check spec-link-redirect-check
 	.github/scripts/link-check.sh $(FILES)
 
 .PHONY: markdown-link-check-local-only
 markdown-link-check-local-only: normalized-link-check
 	.github/scripts/link-check.sh --local-links-only $(FILES)
+
+.PHONY: spec-link-redirect-check
+spec-link-redirect-check:
+	.github/scripts/link-check.sh --config .github/scripts/lychee-spec-links-config.toml $(FILES)
 
 # This target runs doctoc on all files that contain
 # a comment <!-- START doctoc -->.
@@ -304,9 +308,8 @@ LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.c
 # repository (see https://github.com/open-telemetry/opentelemetry-weaver-packages/tree/main/policies/check).
 # Only checks that are NOT provided upstream are kept locally under ./policies (see policies/README.md).
 #
-# TODO: pin commit or tag of opentelemetry-weaver-packages and add it to renovate
-# once weaver-packages is released.
-WEAVER_PACKAGES_REPO=https://github.com/open-telemetry/opentelemetry-weaver-packages.git
+# TODO: use tag and add it to renovate once weaver-packages is released.
+WEAVER_PACKAGES_REPO=https://github.com/open-telemetry/opentelemetry-weaver-packages.git@ce835bca2ef577c73cd0cff5da811e9d0b26527d
 .PHONY: check-policies
 check-policies:
 	$(DOCKER_RUN) --rm \
@@ -316,8 +319,10 @@ check-policies:
 		-v $(shell mktemp -d):/home/weaver/.weaver \
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+		--mount 'type=bind,source=$(PWD)/.weaver.toml,target=/home/weaver/.weaver.toml,readonly' \
 		${WEAVER_CONTAINER} registry check \
 		--v2 \
+		--config=/home/weaver/.weaver.toml \
 		--registry=/home/weaver/source \
 		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
 		--policy=/home/weaver/policies \
@@ -390,4 +395,3 @@ areas-table-check:
 
 .PHONY: generate-all
 generate-all: table-generation registry-generation areas-table-generation generate-gh-issue-templates
-

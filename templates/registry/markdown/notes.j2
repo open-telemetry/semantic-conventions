@@ -1,4 +1,25 @@
 {%- set ns = namespace(notes=[],index=0) -%}
+{#- A YAML `brief` can be a multi-line block scalar, and free text may contain a
+    literal `|`. Rendered as-is inside a single-row markdown table cell, either one
+    breaks the table (embedded newlines split the row across lines; an unescaped `|`
+    is read as a column separator). This macro makes such text safe to embed inline:
+    it escapes pipe characters, and, for multi-line text, trims each line, drops ones
+    left blank by the block scalar, and joins what remains with `<br>`. -#}
+{%- macro table_cell(text) -%}
+    {%- if text and '\n' in text -%}
+        {%- set cell_ns = namespace(first=True) -%}
+        {%- for line in text.split('\n') -%}
+            {%- set trimmed = line | trim | replace('|', '&#124;') -%}
+            {%- if trimmed -%}
+                {%- if not cell_ns.first -%}<br>{%- endif -%}
+                {{- trimmed -}}
+                {%- set cell_ns.first = False -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- else -%}
+        {{- text | replace('|', '&#124;') -}}
+    {%- endif -%}
+{%- endmacro -%}
 {%- macro add(note) %}{% if note.note %}{% set ns.notes = [ns.notes, [note]] | flatten %} [{{ ns.notes | length + ns.index }}]{% endif %}{% endmacro %}
 {%- macro add_with_limit(note) %}{% if note.note | length > 50 %}{% set ns.notes = [ns.notes, [note]] | flatten %} [{{ ns.notes | length + ns.index }}]{% elif note.note %} {{ note.note | trim }}{% endif %}{% endmacro %}
 {% macro render() %}{% if ns.notes | length > 0 %}

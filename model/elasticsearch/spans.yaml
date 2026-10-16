@@ -56,7 +56,6 @@ span_refinements:
           When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
         requirement_level: recommended
       - ref: db.operation.parameter
-        stability: development
         brief: >
           A dynamic value in the URL path.
         note: >

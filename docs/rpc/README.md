@@ -49,4 +49,4 @@ Technology specific semantic conventions are defined for the following RPC syste
 
 For help migrating from non-stable to stable conventions, see [the migration guide](../non-normative/rpc-migration.md).
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

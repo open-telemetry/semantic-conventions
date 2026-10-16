@@ -10,6 +10,7 @@ metrics:
     unit: "{request_unit}"
     stability: development
     attributes:
+      - ref_group: db.client.connection
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           recommended: If available
@@ -34,10 +35,12 @@ metrics:
           conditionally_required: If available.
       - ref: server.address
         brief: >
-          Name of the database host.
+          The database address specified in the client configuration.
       - ref: server.port
+        note: |
+          `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
         requirement_level:
-          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+          conditionally_required: If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
       - ref: db.response.status_code
         requirement_level:
           conditionally_required: If the operation failed and status code is available.
@@ -63,13 +66,5 @@ metrics:
     unit: "{instance}"
     stability: development
     attributes:
+      - ref_group: db.client.connection
       # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
-      # - ref: db.system.name
-      #   requirement_level:
-      #     conditionally_required: if available
-      - ref: server.address
-        brief: >
-          Name of the database host.
-      - ref: server.port
-        requirement_level:
-          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.

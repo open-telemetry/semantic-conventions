@@ -30,4 +30,4 @@ Semantic conventions for hardware are defined as following:
 * [Temperature Metrics](temperature.md): Semantic Conventions for *temperature* metrics.
 * [Voltage Metrics](voltage.md): Semantic Conventions for *voltage* metrics.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

@@ -34,6 +34,7 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
   - [Metric: `jvm.buffer.memory.used`](#metric-jvmbuffermemoryused)
   - [Metric: `jvm.buffer.memory.limit`](#metric-jvmbuffermemorylimit)
   - [Metric: `jvm.buffer.count`](#metric-jvmbuffercount)
+- [Release Candidate](#release-candidate)
   - [Metric: `jvm.file_descriptor.count`](#metric-jvmfile_descriptorcount)
   - [Metric: `jvm.file_descriptor.limit`](#metric-jvmfile_descriptorlimit)
 
@@ -64,11 +65,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -100,11 +103,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -136,11 +141,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -172,11 +179,13 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -201,7 +210,7 @@ This metric is [recommended][MetricRecommended].
 This metric is obtained by subscribing to
 [`GarbageCollectionNotificationInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GarbageCollectionNotificationInfo.html) events provided by [`GarbageCollectorMXBean`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/GarbageCollectorMXBean.html). The duration value is obtained from [`GcInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GcInfo.html#getDuration--)
 
-This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.60.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 0.01, 0.1, 1, 10 ]`.
+This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://opentelemetry.io/docs/specs/otel/metrics/api/#instrument-advisory-parameters) of `[ 0.01, 0.1, 1, 10 ]`.
 
 <!-- semconv metric.jvm.gc.duration -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -262,9 +271,11 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.thread.daemon`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | boolean | Whether the thread is daemon or not. | |
-| [`jvm.thread.state`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | State of the thread. | `runnable`; `blocked` |
+| [`jvm.thread.state`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | State of the thread. | `runnable`; `blocked` [(see more)](#jvm-thread-state-values) |
 
 ---
+
+<a id="jvm-thread-state-values"></a>
 
 `jvm.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -433,11 +444,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -569,10 +582,20 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
+## Release Candidate
+
+**Status**: [Release Candidate][DocumentStatus]
+
+**Description:** Release-candidate Java Virtual Machine (JVM) metrics captured under `jvm.`
+
 ### Metric: `jvm.file_descriptor.count`
 
 This metric is [Opt-In][MetricOptIn].
 This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCount()`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getOpenFileDescriptorCount()>).
+
+Instrumentations SHOULD emit this metric only when the value is finite and
+represents a meaningful operational limit. This metric SHOULD NOT be emitted for non-meaningful values.
+For example, a negative value or equal to `Long.MAX_VALUE` (`2^63-1`) SHOULD NOT be emitted.
 
 <!-- semconv metric.jvm.file_descriptor.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -581,7 +604,7 @@ This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCo
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `jvm.file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of open file descriptors as reported by the JVM. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `jvm.file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of open file descriptors as reported by the JVM. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -590,7 +613,11 @@ This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCo
 ### Metric: `jvm.file_descriptor.limit`
 
 This metric is [Opt-In][MetricOptIn].
-This metric is obtained from [`UnixOperatingSystemMXBean#getMaxFileDescriptorCount`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getMaxFileDescriptorCount()>).
+This metric is obtained from [`UnixOperatingSystemMXBean#getMaxFileDescriptorCount()`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getMaxFileDescriptorCount()>).
+
+Instrumentations SHOULD emit this metric only when the value is finite and
+represents a meaningful operational limit. This metric SHOULD NOT be emitted for non-meaningful values.
+For example, a negative value or equal to `Long.MAX_VALUE` (`2^63-1`) SHOULD NOT be emitted.
 
 <!-- semconv metric.jvm.file_descriptor.limit -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -599,12 +626,12 @@ This metric is obtained from [`UnixOperatingSystemMXBean#getMaxFileDescriptorCou
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `jvm.file_descriptor.limit` | UpDownCounter | `{file_descriptor}` | Measure of max open file descriptors as reported by the JVM. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `jvm.file_descriptor.limit` | UpDownCounter | `{file_descriptor}` | Measure of max open file descriptors as reported by the JVM. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
 [MetricOptIn]: /docs/general/metric-requirement-level.md#opt-in
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

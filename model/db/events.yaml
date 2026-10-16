@@ -1,5 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
 file_format: definition/2
-
 events:
   - name: db.client.operation.exception
     stability: development
@@ -15,10 +15,4 @@ events:
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding database client span.
     attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
+      - ref_group: exception
