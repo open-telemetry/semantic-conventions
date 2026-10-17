@@ -82,6 +82,8 @@ spans:
         sampling_relevant: true
       - ref_group: db.client.connection
       - ref_group: db.operation
+      - ref_group: db.network.peer
+      - ref_group: db.query
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
@@ -90,14 +92,8 @@ spans:
         sampling_relevant: true
       - ref: db.query.summary
         sampling_relevant: true
-        requirement_level:
-          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
       - ref: db.query.text
         sampling_relevant: true
-        requirement_level:
-          recommended: |
-            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
-            Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
       - ref: db.namespace
         sampling_relevant: true
         requirement_level:
@@ -107,7 +103,6 @@ spans:
           recommended: If operation applies to a specific stored procedure.
       - ref: db.operation.name
         sampling_relevant: true
-      - ref: db.operation.name
         requirement_level:
           conditionally_required: If readily available and if there is a single operation name that describes the database call.
         examples: ["findAndModify", "HMSET", "SELECT"]
@@ -130,20 +125,9 @@ spans:
           then that collection name SHOULD be used.
       - ref: db.response.status_code
         brief: Database response status code.
-      - ref: network.peer.address
-        brief: Peer address of the database node where the operation was performed.
-        note: >
-          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
-          Network peer address and port are useful when the application interacts with individual database nodes directly.
-
-          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
-        requirement_level:
-          recommended: If applicable for this database system.
       - ref: network.peer.port
         requirement_level:
           recommended: if and only if `network.peer.address` is set.
-      - ref: db.query.parameter
-        requirement_level: opt_in
       # experimental attributes must be opt-in stable spans
       # TODO (@trask) make this recommended once it is stable
       - ref: db.response.returned_rows

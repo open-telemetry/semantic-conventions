@@ -42,7 +42,6 @@ span_refinements:
         requirement_level: required
         examples: [ 'https://localhost:9200/index/_search?q=user.id:kimchy' ]
       - ref: db.query.text
-        sampling_relevant: true
         requirement_level:
           recommended: >
             Should be collected by default for search-type queries and only if there is sanitization that excludes
@@ -50,7 +49,6 @@ span_refinements:
         brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a JSON string.
         examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
       - ref: db.collection.name
-        sampling_relevant: true
         requirement_level: recommended
         brief: The index or data stream against which the query is executed.
         note: >
@@ -65,7 +63,6 @@ span_refinements:
       - ref: elasticsearch.node.name
         note: >
           When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
-        requirement_level: recommended
       - ref: db.operation.parameter
         brief: >
           A dynamic value in the URL path.

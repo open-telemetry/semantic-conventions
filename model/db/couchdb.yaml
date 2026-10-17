@@ -33,8 +33,6 @@ span_refinements:
         requirement_level:
           conditionally_required: If readily available.
       - ref: db.namespace
-        requirement_level:
-          conditionally_required: If available.
         note: ""  # overriding the base note
       - ref: db.response.status_code
         brief: >
