@@ -10,7 +10,7 @@ span_refinements:
       note: >
         SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
         with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
-    note: >
+    note: |
       **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
       with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
     attributes:

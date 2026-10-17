@@ -27,7 +27,8 @@ The Semantic Conventions for [Elasticsearch](https://www.elastic.co/) extend and
 
 Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
 
-**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name) with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
+with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
 
 **Span kind** SHOULD be `CLIENT`.
 
