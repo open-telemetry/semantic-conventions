@@ -1,7 +1,8 @@
-groups:
-  - id: attributes.db.client.connection
-    type: attribute_group
-    brief: 'Database client connection attributes'
+file_format: definition/2
+
+attribute_groups:
+  - id: db.client.connection
+    visibility: internal
     attributes:
       - ref: server.address
         brief: >
@@ -25,77 +26,18 @@ groups:
             If `server.address` is set and the client is configured with a single database server endpoint
             that uses a non-default port.
 
-  - id: attributes.db.client.minimal
-    type: attribute_group
-    brief: 'Database Client attributes'
-    extends: attributes.db.client.connection
+  - id: db.network.peer
+    visibility: internal
     attributes:
-      - ref: db.response.status_code
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
         requirement_level:
-          conditionally_required: If the operation failed and status code is available.
-      - ref: error.type
-        requirement_level:
-          conditionally_required: If and only if the operation failed.
+          recommended: If applicable for this database system.
         note: >
-          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
-          or the canonical name of exception that occurred.
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
 
-          When using canonical exception type name, instrumentation SHOULD do the best effort to
-          report the most relevant type. For example, if the original exception is wrapped into a
-          generic one, the original exception SHOULD be preferred.
-
-          Instrumentations SHOULD document how `error.type` is populated.
-
-  - id: attributes.azure.cosmosdb.minimal
-    type: attribute_group
-    brief: 'Azure Cosmos DB Client attributes'
-    stability: development
-    extends: attributes.db.client.minimal
-    attributes:
-      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
-      # - ref: db.system.name
-      #   requirement_level:
-      #     conditionally_required: if available
-      - ref: db.operation.name
-        requirement_level: required
-      - ref: db.collection.name
-        brief: Cosmos DB container name.
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
         requirement_level:
-          conditionally_required: If available.
-      - ref: db.namespace
-        requirement_level:
-          conditionally_required: If available.
-        note: ""  # overriding the base note
-      - ref: azure.cosmosdb.response.sub_status_code
-        requirement_level:
-          conditionally_required: when response was received and contained sub-code.
-      - ref: azure.cosmosdb.consistency.level
-        requirement_level:
-          conditionally_required: If available.
-
-  - id: attributes.db.client.with_query
-    extends: attributes.db.client.minimal
-    type: attribute_group
-    brief: This group defines the attributes describing database operations that
-      may have queries.
-    attributes:
-      - ref: db.query.text
-      - ref: db.query.summary
-        requirement_level:
-          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
-
-  - id: attributes.db.client.with_query_and_collection
-    extends: attributes.db.client.with_query
-    type: attribute_group
-    brief: This group defines the attributes describing database operations that
-      have operation name, collection name and query.
-    attributes:
-      - ref: db.operation.name
-        requirement_level:
-          conditionally_required: >
-            If readily available and if there is a single operation name that describes the
-            database call.
-      - ref: db.collection.name
-        requirement_level:
-          conditionally_required: >
-            If readily available and if a database call is performed on a single collection.
+          recommended: If and only if `network.peer.address` is set.

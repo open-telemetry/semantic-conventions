@@ -1,86 +1,82 @@
-groups:
-  - id: registry.cassandra
-    type: attribute_group
-    display_name: Cassandra Attributes
+file_format: definition/2
+
+attributes:
+  - key: cassandra.coordinator.dc
+    type: string
+    stability: development
     brief: >
-      This section defines attributes for Cassandra.
-    attributes:
-      - id: cassandra.coordinator.dc
-        type: string
-        stability: development
-        brief: >
-          The data center of the coordinating node for a query.
-        examples: "us-west-2"
-      - id: cassandra.coordinator.id
-        type: string
-        stability: development
-        brief: >
-          The ID of the coordinating node for a query.
-        examples: "be13faa2-8574-4d71-926d-27f16cf8a7af"
-      - id: cassandra.consistency.level
-        brief: >
-          The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
-        type:
-          members:
-            - id: all
-              value: "all"
-              brief: All
-              stability: development
-            - id: each_quorum
-              value: "each_quorum"
-              brief: Each Quorum
-              stability: development
-            - id: quorum
-              value: "quorum"
-              brief: Quorum
-              stability: development
-            - id: local_quorum
-              value: "local_quorum"
-              brief: Local Quorum
-              stability: development
-            - id: one
-              value: "one"
-              brief: One
-              stability: development
-            - id: two
-              value: "two"
-              brief: Two
-              stability: development
-            - id: three
-              value: "three"
-              brief: Three
-              stability: development
-            - id: local_one
-              value: "local_one"
-              brief: Local One
-              stability: development
-            - id: any
-              value: "any"
-              brief: Any
-              stability: development
-            - id: serial
-              value: "serial"
-              brief: Serial
-              stability: development
-            - id: local_serial
-              value: "local_serial"
-              brief: Local Serial
-              stability: development
-        stability: development
-      - id: cassandra.query.idempotent
-        type: boolean
-        stability: development
-        brief: >
-          Whether or not the query is idempotent.
-      - id: cassandra.page.size
-        type: int
-        stability: development
-        brief: >
-          The fetch size used for paging, i.e. how many rows will be returned at once.
-        examples: [5000]
-      - id: cassandra.speculative_execution.count
-        type: int
-        stability: development
-        brief: >
-          The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
-        examples: [0, 2]
+      The data center of the coordinating node for a query.
+    examples: "us-west-2"
+  - key: cassandra.coordinator.id
+    type: string
+    stability: development
+    brief: >
+      The ID of the coordinating node for a query.
+    examples: "be13faa2-8574-4d71-926d-27f16cf8a7af"
+  - key: cassandra.consistency.level
+    brief: >
+      The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
+    type:
+      members:
+        - id: all
+          value: "all"
+          brief: All
+          stability: development
+        - id: each_quorum
+          value: "each_quorum"
+          brief: Each Quorum
+          stability: development
+        - id: quorum
+          value: "quorum"
+          brief: Quorum
+          stability: development
+        - id: local_quorum
+          value: "local_quorum"
+          brief: Local Quorum
+          stability: development
+        - id: one
+          value: "one"
+          brief: One
+          stability: development
+        - id: two
+          value: "two"
+          brief: Two
+          stability: development
+        - id: three
+          value: "three"
+          brief: Three
+          stability: development
+        - id: local_one
+          value: "local_one"
+          brief: Local One
+          stability: development
+        - id: any
+          value: "any"
+          brief: Any
+          stability: development
+        - id: serial
+          value: "serial"
+          brief: Serial
+          stability: development
+        - id: local_serial
+          value: "local_serial"
+          brief: Local Serial
+          stability: development
+    stability: development
+  - key: cassandra.query.idempotent
+    type: boolean
+    stability: development
+    brief: >
+      Whether or not the query is idempotent.
+  - key: cassandra.page.size
+    type: int
+    stability: development
+    brief: >
+      The fetch size used for paging, i.e. how many rows will be returned at once.
+    examples: [5000]
+  - key: cassandra.speculative_execution.count
+    type: int
+    stability: development
+    brief: >
+      The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
+    examples: [0, 2]
