@@ -178,7 +178,7 @@ groups:
           Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-        examples: ['instance1\|products', 'customers']
+        examples: ['instance1|products', 'customers']
       - ref: db.response.status_code
         brief: >
           [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number
@@ -797,7 +797,7 @@ groups:
           `failover_information` : Generated key to determine if region failover enabled.
              Format Reg-{D (Disabled discovery)}-S(application region)|L(List of preferred regions)|N(None, user did not configure it).
              Default value is "NS".
-        examples: ['cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|']
+        examples: ['cosmos-netstandard-sdk/3.23.0|3.23.1|1|X64|Linux 5.4.0-1098-azure 104 18|.NET Core 3.1.32|S|']
       - ref: azure.cosmosdb.connection.mode
         requirement_level:
           conditionally_required: if not `gateway` (the default value is assumed to be `gateway`).
