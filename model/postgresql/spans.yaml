@@ -2,17 +2,26 @@ file_format: definition/2
 
 span_refinements:
   - id: span.db.postgresql.client
-    ref: db.sql.client
+    ref: db.client
     stability: stable
     brief: >
       Spans representing calls to a PostgreSQL database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    note: >
+      **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
+      - unref: network.peer.address
+      - unref: network.peer.port
+      - ref_group: db.client.sql.span
       - ref: db.system.name
         annotations:
           markdown:
             omit_enum_table: true
         note: MUST be set to `"postgresql"`.
         examples: ["postgresql"]
+      - ref: db.collection.name
+        sampling_relevant: false
+      - ref: db.operation.name
+        sampling_relevant: false
       - ref: db.namespace
         sampling_relevant: true
         brief: >

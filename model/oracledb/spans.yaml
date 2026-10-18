@@ -2,17 +2,26 @@ file_format: definition/2
 
 span_refinements:
   - id: span.db.oracledb.client
-    ref: db.sql.client
+    ref: db.client
     stability: release_candidate
     brief: >
       Spans representing calls to a Oracle SQL Database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    note: >
+      **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
+      - unref: network.peer.address
+      - unref: network.peer.port
+      - ref_group: db.client.sql.span
       - ref: db.system.name
         annotations:
           markdown:
             omit_enum_table: true
         note: MUST be set to `"oracle.db"`.
         examples: ["oracle.db"]
+      - ref: db.collection.name
+        sampling_relevant: false
+      - ref: db.operation.name
+        sampling_relevant: false
       - ref: db.namespace
         sampling_relevant: true
         brief: >
