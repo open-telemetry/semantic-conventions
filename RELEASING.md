@@ -15,7 +15,7 @@
 ## Making the release
 
 - Merging the prepare-release PR into `main` triggers the
-  [create release draft workflow](https://github.com/open-telemetry/semantic-conventions/actions/workflows/create-release.yml).
+  [create release draft workflow](.github/workflows/create-release.yml).
   It takes the version from the `otelbot/prepare-release-v{version}` branch and builds from the merge commit.
   It generates the resolved schema and attaches `resolved.yaml` and `manifest.yaml` to a draft release.
   - For manual runs, provide the release version and full commit SHA of the merged release PR.
