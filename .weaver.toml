@@ -13,5 +13,6 @@ signal_names = [
     "db.elasticsearch.client",
     "db.hbase.client",
     "db.mongodb.client",
-    "db.redis.client"
-    ]
+    "db.redis.client",
+    "db.sql.client"
+]

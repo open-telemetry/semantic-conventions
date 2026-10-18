@@ -4,7 +4,7 @@ attribute_groups:
   - id: db.client.sql.span
     visibility: public
     stability: stable
-    brief: Attributes useful for refinements of sql db client spans.
+    brief: Attributes useful for refinements of SQL db client spans.
     attributes:
       - ref_group: db.client.connection
       - ref_group: db.operation
