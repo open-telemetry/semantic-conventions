@@ -9,7 +9,7 @@
 
 **type:** `heroku.app`
 
-**Description:** A Heroku application.
+**Description:** A Heroku application. Reporting this entity is opt-in.
 
 **Attributes:**
 

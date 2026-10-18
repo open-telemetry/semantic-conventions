@@ -5,7 +5,7 @@ groups:
     name: heroku.app
     requirement_level: opt_in
     brief: >
-      A Heroku application.
+      A Heroku application. Reporting this entity is opt-in.
     attributes:
       - ref: heroku.release.creation_timestamp
         role: descriptive
