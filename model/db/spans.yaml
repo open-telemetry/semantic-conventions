@@ -222,7 +222,7 @@ groups:
           Instrumentation SHOULD document if `db.namespace` reflects the user provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-        examples: ["mydatabase.products", "mydatabase.customers"]
+        examples: ['mydatabase\|products', 'mydatabase\|customers']
       - ref: db.response.status_code
         brief: >
           [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
@@ -718,7 +718,7 @@ groups:
           class reports them with `getSQLState()` and `getErrorCode()` methods.
 
           Instrumentations SHOULD populate the `db.response.status_code` with the
-          the most specific code available to them.
+          most specific code available to them.
 
           Here's a non-exhaustive list of databases that report vendor-specific
           codes with granularity higher than SQLSTATE (or don't report SQLSTATE
@@ -741,7 +741,7 @@ groups:
 
           For example, generic DB instrumentation that detected an error and has
           SQLSTATE `"42000"` and vendor-specific `1071` should set
-          `db.response.status_code` to `"42000/1071"`."
+          `db.response.status_code` to `"42000/1071"`.
 
         examples: ["ORA-17027", "1052", "2201B"]
         requirement_level:
