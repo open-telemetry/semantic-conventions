@@ -75,13 +75,10 @@ span_refinements:
         requirement_level:
           recommended: If operation applies to a specific Lua script.
       - ref: network.peer.address
-        brief: Peer address of the database node where the operation was performed.
         requirement_level: recommended
         note: >
           If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
       - ref: network.peer.port
-        requirement_level:
-          recommended: if and only if `network.peer.address` is set.
       - ref: db.response.status_code
         brief: >
           The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix.

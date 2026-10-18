@@ -25,3 +25,19 @@ attribute_groups:
           conditionally_required: >
             If `server.address` is set and the client is configured with a single database server endpoint
             that uses a non-default port.
+
+  - id: db.network.peer
+    visibility: internal
+    attributes:
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this database system.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If and only if `network.peer.address` is set.

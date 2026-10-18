@@ -16,16 +16,10 @@ span_refinements:
             omit_enum_table: true
         note: MUST be set to `"cassandra"`.
         examples: ["cassandra"]
-      - ref_group: db.query
+      - ref_group: db.network.peer
       - ref: db.namespace
         brief: The keyspace associated with the session.
         examples: ["mykeyspace"]
-        requirement_level:
-          conditionally_required: If available.
-      - ref: db.query.text
-        sampling_relevant: true
-      - ref: db.query.summary
-        sampling_relevant: true
       - ref: cassandra.page.size
       - ref: cassandra.consistency.level
       - ref: db.collection.name
@@ -55,14 +49,5 @@ span_refinements:
         note: >
           All Cassandra protocol error codes SHOULD be considered errors.
         examples: ["102", "40020"]
-      - ref: db.collection.name
-        requirement_level:
-          conditionally_required: If readily available and if a database call is performed on a single collection.
-      - ref: db.operation.name
-        requirement_level:
-          conditionally_required: If readily available and if there is a single operation name that describes the database call.
       - ref: db.response.returned_rows
         requirement_level: recommended
-        note: |
-          The number of rows returned by the database operation as observed
-          by the instrumentation at the time the span ends.
