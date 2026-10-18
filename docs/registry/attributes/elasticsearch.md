@@ -5,6 +5,8 @@
 
 ## Elasticsearch Attributes
 
+This section defines attributes for Elasticsearch.
+
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

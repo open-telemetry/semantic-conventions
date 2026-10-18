@@ -3,11 +3,13 @@
 
 # DB
 
-- [DB Attributes](#db-attributes)
+- [General Database Attributes](#general-database-attributes)
 - [Deprecated Database Attributes](#deprecated-database-attributes)
 - [Deprecated Database Metrics](#deprecated-database-metrics)
 
-## DB Attributes
+## General Database Attributes
+
+This group defines the attributes used to describe telemetry in the context of databases.
 
 **Attributes:**
 

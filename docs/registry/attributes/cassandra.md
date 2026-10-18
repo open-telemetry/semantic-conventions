@@ -5,6 +5,8 @@
 
 ## Cassandra Attributes
 
+This section defines attributes for Cassandra.
+
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
