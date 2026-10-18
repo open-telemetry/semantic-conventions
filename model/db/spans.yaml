@@ -1,51 +1,5 @@
 file_format: definition/2
 
-attribute_groups:
-  - id: db.operation
-    visibility: internal
-    attributes:
-      - ref: db.operation.batch.size
-      - ref: db.response.status_code
-        brief: >
-          Database response code recorded as a string.
-        requirement_level:
-          conditionally_required: If response has ended with warning or an error.
-      - ref: db.operation.name
-        requirement_level:
-          recommended: If the operation is executed via a higher-level API
-            that does not support multiple operation names.
-        examples: ["SELECT", "INSERT", "UPDATE", "DELETE"]
-      - ref: error.type
-        requirement_level:
-          conditionally_required: If and only if the operation failed.
-        note: >
-          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
-          or the canonical name of exception that occurred.
-
-          When using canonical exception type name, instrumentation SHOULD do the best effort to
-          report the most relevant type. For example, if the original exception is wrapped into a
-          generic one, the original exception SHOULD be preferred.
-
-          Instrumentations SHOULD document how `error.type` is populated.
-  - id: db.query
-    visibility: internal
-    attributes:
-      - ref: db.query.text
-        requirement_level:
-          recommended: >
-            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
-            sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
-
-            Parameterized query text SHOULD be collected by default
-            (the query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
-      - ref: db.query.summary
-        requirement_level:
-          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
-      - ref: db.query.parameter
-        requirement_level: opt_in
-
 spans:
   - type: db.client
     stability: stable
@@ -177,6 +131,45 @@ span_refinements:
 
           Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
           Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
+      - ref: db.response.status_code
+        brief: >
+          Database response code recorded as a string.
+        note: |
+          SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
+          return code which is adopted by some database systems like PostgreSQL.
+          See [PostgreSQL error codes](https://www.postgresql.org/docs/current/errcodes-appendix.html)
+          for the details.
+
+          Other systems like MySQL, Oracle, or MS SQL Server define vendor-specific
+          error codes. Database SQL drivers usually provide access to both properties.
+          For example, in Java, the [`SQLException`](https://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html)
+          class reports them with `getSQLState()` and `getErrorCode()` methods.
+
+          Instrumentations SHOULD populate the `db.response.status_code` with the
+          the most specific code available to them.
+
+          Here's a non-exhaustive list of databases that report vendor-specific
+          codes with granularity higher than SQLSTATE (or don't report SQLSTATE
+          at all):
+
+          - [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
+          - [Maria DB error codes](https://mariadb.com/docs/server/reference/error-codes)
+          - [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
+          - [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
+          - [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
+          - [SQLite result codes](https://www.sqlite.org/rescode.html)
+
+          These systems SHOULD set the `db.response.status_code` to a
+          known vendor-specific error code. If only SQLSTATE is available,
+          it SHOULD be used.
+
+          When multiple error codes are available and specificity is unclear,
+          instrumentation SHOULD set the `db.response.status_code` to the
+          concatenated string of all codes with '/' used as a separator.
+
+          For example, generic DB instrumentation that detected an error and has
+          SQLSTATE `"42000"` and vendor-specific `1071` should set
+          `db.response.status_code` to `"42000/1071"`."
       - ref: db.namespace
         sampling_relevant: false
       - ref: db.operation.name

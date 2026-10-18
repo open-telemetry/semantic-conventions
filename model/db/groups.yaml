@@ -50,18 +50,7 @@ attribute_groups:
           Instrumentations SHOULD populate the `db.response.status_code` with the
           the most specific code available to them.
 
-          Here's a non-exhaustive list of databases that report vendor-specific
-          codes with granularity higher than SQLSTATE (or don't report SQLSTATE
-          at all):
-
-          - [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
-          - [Maria DB error codes](https://mariadb.com/docs/server/reference/error-codes)
-          - [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
-          - [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
-          - [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
-          - [SQLite result codes](https://www.sqlite.org/rescode.html)
-
-          These systems SHOULD set the `db.response.status_code` to a
+          Db systems SHOULD set the `db.response.status_code` to a
           known vendor-specific error code. If only SQLSTATE is available,
           it SHOULD be used.
 

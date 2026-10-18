@@ -48,7 +48,6 @@ span_refinements:
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         requirement_level:
           conditionally_required: if available
-        sampling_relevant: true
       - ref: azure.cosmosdb.request.body.size
       - ref: db.response.status_code
         brief: >
@@ -72,7 +71,6 @@ span_refinements:
         requirement_level:
           conditionally_required: when available
       - ref: db.namespace
-        sampling_relevant: true
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note

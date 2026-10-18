@@ -23,7 +23,6 @@ span_refinements:
       - ref: db.operation.name
         sampling_relevant: false
       - ref: db.namespace
-        sampling_relevant: true
         brief: >
           The unique identifier of the database associated with the connection.
         note: |

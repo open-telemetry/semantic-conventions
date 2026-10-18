@@ -23,7 +23,6 @@ span_refinements:
       - ref: db.operation.name
         sampling_relevant: false
       - ref: db.namespace
-        sampling_relevant: true
         brief: The database associated with the connection.
         note: |
           A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
