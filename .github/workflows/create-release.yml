@@ -20,7 +20,7 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     if: >-
-      (github.repository_owner == 'open-telemetry' || vars.ENABLE_RELEASE_DRAFTS == 'true') &&
+      github.repository_owner == 'open-telemetry' &&
       (github.event_name == 'workflow_dispatch' ||
        (github.event.pull_request.merged == true &&
         github.event.pull_request.head.repo.full_name == github.repository &&
