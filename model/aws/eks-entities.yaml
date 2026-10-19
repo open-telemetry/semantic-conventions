@@ -1,10 +1,11 @@
 groups:
-  - id: entity.aws.eks
+  - id: entity.aws.eks.cluster
     type: entity
     stability: development
-    name: aws.eks
+    name: aws.eks.cluster
     brief: >
-      Entities used by AWS Elastic Kubernetes Service (EKS).
+      An AWS Elastic Kubernetes Service (EKS) cluster.
     attributes:
       - ref: aws.eks.cluster.arn
-        requirement_level: recommended
+        role: identifying
+        requirement_level: required

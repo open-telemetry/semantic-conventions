@@ -1,0 +1,4 @@
+change_type: breaking
+component: aws
+note: Remove the `aws.eks` entity in favor of the `aws.eks.cluster` entity and define required identifying attributes for AWS entities for Weaver schema v2 migration.
+issues: [4169]
