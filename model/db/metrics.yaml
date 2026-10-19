@@ -1,10 +1,22 @@
-file_format: definition/2
-
-attribute_groups:
-  - id: db.client.with_query_and_collection
-    visibility: internal
+groups:
+  - id: attributes.metrics.db.client.connection.pool
+    type: attribute_group
+    brief: Detailed client connection
+    extends: db.client.connection
     attributes:
-      - ref_group: db.client.connection
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+  - id: attributes.db.client.with_query_and_collection
+    type: attribute_group
+    brief: "Database client connection pool metric attributes."
+    extends: db.client.connection
+    attributes:
       - ref: db.operation.name
         requirement_level:
           conditionally_required: >
@@ -36,21 +48,10 @@ attribute_groups:
             generic one, the original exception SHOULD be preferred.
 
             Instrumentations SHOULD document how `error.type` is populated.
-  - id: db.client.connection.detailed
-    visibility: internal
-    attributes:
-      - ref_group: db.client.connection
-      - ref: db.client.connection.pool.name
-        requirement_level: required
-      - ref: db.system.name
-        requirement_level:
-          conditionally_required: If available.
-      - ref: db.namespace
-        requirement_level:
-          conditionally_required: If available.
 
-metrics:
-  - name: db.client.operation.duration
+  - id: metric.db.client.operation.duration
+    type: metric
+    metric_name: db.client.operation.duration
     annotations:
       code_generation:
         metric_value_type: double
@@ -60,19 +61,32 @@ metrics:
     instrument: histogram
     unit: "s"
     stability: stable
+    extends: attributes.db.client.with_query_and_collection
     attributes:
-      - ref_group: db.client.with_query_and_collection
-      - ref_group: db.network.peer
       - ref: db.system.name
         requirement_level: required
       - ref: db.stored_procedure.name
         requirement_level:
           recommended: If operation applies to a specific stored procedure.
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this database system.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If and only if `network.peer.address` is set.
       - ref: db.collection.name
         requirement_level:
           conditionally_required: If readily available and if a database call is performed on a single collection.
 
-  - name: db.client.connection.count
+  - id: metric.db.client.connection.count
+    type: metric
+    metric_name: db.client.connection.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -80,12 +94,14 @@ metrics:
     brief: "The number of connections that are currently in state described by the `state` attribute."
     instrument: updowncounter
     unit: "{connection}"
+    extends: attributes.metrics.db.client.connection.pool
     attributes:
-      - ref_group: db.client.connection.detailed
       - ref: db.client.connection.state
         requirement_level: required
 
-  - name: db.client.connection.idle.max
+  - id: metric.db.client.connection.idle.max
+    type: metric
+    metric_name: db.client.connection.idle.max
     annotations:
       code_generation:
         metric_value_type: int
@@ -93,10 +109,11 @@ metrics:
     brief: "The maximum number of idle open connections allowed."
     instrument: updowncounter
     unit: "{connection}"
-    attributes:
-      - ref_group: db.client.connection.detailed
+    extends: attributes.metrics.db.client.connection.pool
 
-  - name: db.client.connection.idle.min
+  - id: metric.db.client.connection.idle.min
+    type: metric
+    metric_name: db.client.connection.idle.min
     annotations:
       code_generation:
         metric_value_type: int
@@ -104,10 +121,11 @@ metrics:
     brief: "The minimum number of idle open connections allowed."
     instrument: updowncounter
     unit: "{connection}"
-    attributes:
-      - ref_group: db.client.connection.detailed
+    extends: attributes.metrics.db.client.connection.pool
 
-  - name: db.client.connection.limit
+  - id: metric.db.client.connection.limit
+    type: metric
+    metric_name: db.client.connection.limit
     annotations:
       code_generation:
         metric_value_type: int
@@ -115,10 +133,11 @@ metrics:
     brief: "The maximum number of open connections allowed."
     instrument: updowncounter
     unit: "{connection}"
-    attributes:
-      - ref_group: db.client.connection.detailed
+    extends: attributes.metrics.db.client.connection.pool
 
-  - name: db.client.connection.pending_requests
+  - id: metric.db.client.connection.pending_requests
+    type: metric
+    metric_name: db.client.connection.pending_requests
     annotations:
       code_generation:
         metric_value_type: int
@@ -126,10 +145,11 @@ metrics:
     brief: "The number of current pending requests for an open connection."
     instrument: updowncounter
     unit: "{request}"
-    attributes:
-      - ref_group: db.client.connection.detailed
+    extends: attributes.metrics.db.client.connection.pool
 
-  - name: db.client.connection.timeouts
+  - id: metric.db.client.connection.timeouts
+    type: metric
+    metric_name: db.client.connection.timeouts
     annotations:
       code_generation:
         metric_value_type: int
@@ -137,10 +157,11 @@ metrics:
     brief: "The number of connection timeouts that have occurred trying to obtain a connection from the pool."
     instrument: counter
     unit: "{timeout}"
-    attributes:
-      - ref_group: db.client.connection.detailed
+    extends: attributes.metrics.db.client.connection.pool
 
-  - name: db.client.connection.create_time
+  - id: metric.db.client.connection.create_time
+    type: metric
+    metric_name: db.client.connection.create_time
     annotations:
       code_generation:
         metric_value_type: double
@@ -148,10 +169,11 @@ metrics:
     brief: "The time it took to create a new connection."
     instrument: histogram
     unit: "s"
-    attributes:
-      - ref_group: db.client.connection.detailed
+    extends: attributes.metrics.db.client.connection.pool
 
-  - name: db.client.connection.wait_time
+  - id: metric.db.client.connection.wait_time
+    type: metric
+    metric_name: db.client.connection.wait_time
     annotations:
       code_generation:
         metric_value_type: double
@@ -159,10 +181,11 @@ metrics:
     brief: "The time it took to obtain an open connection from the pool."
     instrument: histogram
     unit: "s"
-    attributes:
-      - ref_group: db.client.connection.detailed
+    extends: attributes.metrics.db.client.connection.pool
 
-  - name: db.client.connection.use_time
+  - id: metric.db.client.connection.use_time
+    type: metric
+    metric_name: db.client.connection.use_time
     annotations:
       code_generation:
         metric_value_type: double
@@ -170,10 +193,11 @@ metrics:
     brief: "The time between borrowing a connection and returning it to the pool."
     instrument: histogram
     unit: "s"
-    attributes:
-      - ref_group: db.client.connection.detailed
+    extends: attributes.metrics.db.client.connection.pool
 
-  - name: db.client.response.returned_rows
+  - id: metric.db.client.response.returned_rows
+    type: metric
+    metric_name: db.client.response.returned_rows
     annotations:
       code_generation:
         metric_value_type: int
@@ -181,13 +205,24 @@ metrics:
     instrument: histogram
     unit: "{row}"
     stability: development
+    extends: attributes.db.client.with_query_and_collection
     attributes:
-      - ref_group: db.client.with_query_and_collection
-      - ref_group: db.network.peer
       - ref: db.collection.name
         requirement_level:
           conditionally_required: If readily available and if a database call is performed on a single collection.
       - ref: db.system.name
         requirement_level: required
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this database system.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If and only if `network.peer.address` is set.
       - ref: db.query.text
         requirement_level: opt_in
