@@ -61,7 +61,6 @@ span_refinements:
         brief: >
           Cosmos DB row count in result set.
         note: >
-        examples: [10, 20]
         requirement_level:
           conditionally_required: if response was received and returned any rows
       - ref: azure.cosmosdb.response.sub_status_code
@@ -71,8 +70,6 @@ span_refinements:
         requirement_level:
           conditionally_required: when available
       - ref: db.namespace
-        requirement_level:
-          conditionally_required: If available.
         note: ""  # overriding the base note
       - ref: azure.resource_provider.namespace
         note: >
@@ -207,9 +204,6 @@ span_refinements:
           client method name in snake_case. Instrumentations SHOULD document
           additional values when introducing new operations.
         examples: ['create_item', 'query_items', 'read_item']
-      - ref: db.stored_procedure.name
-        requirement_level:
-          recommended: If operation applies to a specific stored procedure.
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
@@ -222,5 +216,3 @@ span_refinements:
       - ref: db.query.text  # TODO: this might not be the right attribute to use here - https://github.com/open-telemetry/semantic-conventions/issues/2213
         requirement_level: recommended
         sampling_relevant: false
-      - ref: db.query.parameter
-        requirement_level: opt_in

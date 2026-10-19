@@ -36,6 +36,7 @@ spans:
         sampling_relevant: true
       - ref_group: db.client.connection
       - ref_group: db.operation
+      - ref_group: db.response
       - ref_group: db.network.peer
       - ref_group: db.query
       - ref: server.address
@@ -50,45 +51,8 @@ spans:
         sampling_relevant: true
       - ref: db.namespace
         sampling_relevant: true
-        requirement_level:
-          conditionally_required: If available.
-      - ref: db.stored_procedure.name
-        requirement_level:
-          recommended: If operation applies to a specific stored procedure.
       - ref: db.operation.name
         sampling_relevant: true
-        requirement_level:
-          conditionally_required: If readily available and if there is a single operation name that describes the database call.
-        examples: ["findAndModify", "HMSET", "SELECT"]
-      - ref: db.response.status_code
-        requirement_level:
-          conditionally_required: If the operation failed and status code is available.
-      - ref: db.collection.name
-        requirement_level:
-          conditionally_required: If readily available and if a database call is performed on a single collection.
-        note: |
-          It is RECOMMENDED to capture the value as provided by the application
-          without attempting to do any case normalization.
-
-          The collection name SHOULD NOT be extracted from `db.query.text`,
-          when the database system supports query text with multiple collections
-          in non-batch operations.
-
-          For batch operations, if the individual operations would all have the same
-          `db.collection.name` when executed as non-batch operations,
-          then that collection name SHOULD be used.
-      - ref: db.response.status_code
-        brief: Database response status code.
-      - ref: network.peer.port
-        requirement_level:
-          recommended: if and only if `network.peer.address` is set.
-      # experimental attributes must be opt-in stable spans
-      # TODO (@trask) make this recommended once it is stable
-      - ref: db.response.returned_rows
-        requirement_level: opt_in
-        note: |
-          The number of rows returned by the database operation as observed
-          by the instrumentation at the time the span ends.
 
 span_refinements:
   - id: span.db.sql.client
@@ -132,8 +96,6 @@ span_refinements:
           Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
           Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
       - ref: db.response.status_code
-        brief: >
-          Database response code recorded as a string.
         note: |
           SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
           return code which is adopted by some database systems like PostgreSQL.

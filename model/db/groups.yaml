@@ -6,9 +6,6 @@ attribute_groups:
     stability: stable
     brief: Attributes useful for refinements of SQL db client spans.
     attributes:
-      - ref_group: db.client.connection
-      - ref_group: db.operation
-      - ref_group: db.query
       - ref: db.namespace
         brief: >
           The database associated with the connection,
@@ -65,9 +62,6 @@ attribute_groups:
         examples: ["ORA-17027", "1052", "2201B"]
         requirement_level:
           conditionally_required: If response has ended with warning or an error.
-      - ref: db.stored_procedure.name
-        requirement_level:
-          recommended: If operation applies to a specific stored procedure.
       - ref: db.operation.name
         requirement_level:
           recommended: If the operation is executed via a higher-level API
@@ -81,10 +75,3 @@ attribute_groups:
             that does not support multiple collection names.
         note: |
           The collection name SHOULD NOT be extracted from `db.query.text`.
-      - ref: db.response.returned_rows
-        note: |
-          The number of rows returned by the database operation as observed
-          by the instrumentation at the time the span ends.
-        # experimental attributes must be opt-in stable spans
-        # TODO (@trask) make this recommended once it is stable
-        requirement_level: opt_in
