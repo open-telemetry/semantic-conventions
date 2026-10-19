@@ -1,0 +1,4 @@
+change_type: bug_fix
+component: db
+note: Correct PostgreSQL namespace examples and handle pipe escaping in Markdown templates.
+issues: [4222]
