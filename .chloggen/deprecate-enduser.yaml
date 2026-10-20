@@ -1,4 +1,4 @@
 change_type: deprecation
 component: enduser
 note: Deprecate `enduser.id` and `enduser.pseudo.id` in favor of `open-telemetry/semantic-conventions-client-side`.
-issues: [TODO]
+issues: [4238]
