@@ -4,6 +4,15 @@ groups:
     type: attribute_group
     display_name: Function as a Service Attributes
     attributes:
+      - id: faas.id
+        type: string
+        stability: development
+        brief: >
+          The unique identifier of the function definition
+        note: |
+          In cases were the FaaS platform doesn't provide access to a unique id, the name should be used as a fallback.
+
+          For some cloud providers, the id can be extracted from the value used for the cloud.resource_id.
       - id: faas.name
         type: string
         stability: development
@@ -42,7 +51,7 @@ groups:
             [`K_REVISION` environment variable](https://cloud.google.com/run/docs/container-contract#services-env-vars).
           - **Azure Functions:** Not applicable. Do not set this attribute.
         examples: ['26', 'pinkfroid-00002']
-      - id: faas.instance
+      - id: faas.instance.id
         type: string
         stability: development
         brief: >
