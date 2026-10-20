@@ -28,7 +28,8 @@ This group defines the attributes for [Version Control Systems (VCS)](https://wi
 | <a id="vcs-ref-head-type" href="#vcs-ref-head-type">`vcs.ref.head.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [6] | `branch`; `tag` [(see more)](#vcs-ref-head-type-values) |
 | <a id="vcs-ref-type" href="#vcs-ref-type">`vcs.ref.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` [(see more)](#vcs-ref-type-values) |
 | <a id="vcs-repository-name" href="#vcs-repository-name">`vcs.repository.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [7] | `semantic-conventions`; `my-cool-repo` |
-| <a id="vcs-repository-url-full" href="#vcs-repository-url-full">`vcs.repository.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [8] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| <a id="vcs-repository-subdirectory-path" href="#vcs-repository-subdirectory-path">`vcs.repository.subdirectory.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The path of a directory within the repository, relative to the repository root. [8] | `packages/sdk-trace`; `services/checkout` |
+| <a id="vcs-repository-url-full" href="#vcs-repository-url-full">`vcs.repository.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [9] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
 | <a id="vcs-revision-delta-direction" href="#vcs-revision-delta-direction">`vcs.revision_delta.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of revision comparison. | `ahead`; `behind` [(see more)](#vcs-revision-delta-direction-values) |
 
 **[1] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
@@ -75,7 +76,16 @@ given time.
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[8] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+**[8] `vcs.repository.subdirectory.path`:** It is intended for repositories that contain multiple services,
+packages or components (for example, a monorepo), where
+`vcs.repository.url.full` alone only locates the top level of the
+repository. The path SHOULD use forward slashes (`/`) as separators
+and SHOULD NOT start or end with a separator.
+
+Combined with `vcs.repository.url.full` and `vcs.ref.head.revision`,
+it allows a backend to locate the directory at a specific revision.
+
+**[9] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
 ---
