@@ -4,6 +4,20 @@ groups:
     type: attribute_group
     display_name: Function as a Service Attributes
     attributes:
+      - id: faas.id
+        type: string
+        stability: development
+        brief: >
+          The unique identifier of the function definition
+        note: |
+          For some cloud providers, the ID can be extracted from the value used for the cloud.resource_id.
+          The following well-known definitions MUST be used if you set this attribute and they apply:
+
+          - **AWS Lambda:** The resource-id within the [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+          - **GCP:** The SERVICE_ID within the [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names).
+          - **Azure:** The function within the [Fully Qualified Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id).
+
+          In cases were the FaaS platform doesn't provide access to a unique ID, the name should be used as a fallback.
       - id: faas.name
         type: string
         stability: development
@@ -42,7 +56,7 @@ groups:
             [`K_REVISION` environment variable](https://cloud.google.com/run/docs/container-contract#services-env-vars).
           - **Azure Functions:** Not applicable. Do not set this attribute.
         examples: ['26', 'pinkfroid-00002']
-      - id: faas.instance
+      - id: faas.instance.id
         type: string
         stability: development
         brief: >

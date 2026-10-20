@@ -1,0 +1,18 @@
+groups:
+  - id: registry.faas.deprecated
+    type: attribute_group
+    display_name: Deprecated Function as a Service Attributes
+    brief: FaaS attributes
+    stability: development
+    attributes:
+      - id: faas.instance
+        type: string
+        deprecated:
+          reason: renamed
+          renamed_to: faas.instance.id
+        brief: >
+          The execution environment ID as a string, that will be potentially reused
+          for other invocations to the same function/function version.
+        note: >
+          - **AWS Lambda:** Use the (full) log stream name.
+        examples: ['2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de']
