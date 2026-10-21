@@ -20,5 +20,5 @@ issues: [4228]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  The faas.time, attribute has been renamed to faas.invocation.time.
-  The faas.invoation_id has been renamed to faas.invocation.id to complement the time attribute.
+  The faas.time attribute has been renamed to faas.invocation.time.
+  The faas.invocation_id attribute has been renamed to faas.invocation.id to complement the time attribute.
