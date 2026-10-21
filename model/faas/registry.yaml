@@ -17,7 +17,7 @@ groups:
           - **GCP:** Follows the format of "<PROJECT_ID>/<SERVICE_ID>", with values extracted from the Resource URI.
           - **Azure:** Follows the format of "<resource-group-name>/<function-app-name>/<function-name>", with values extracted from the Fully Qualified Resource ID.
 
-          In cases were the FaaS platform doesn't provide access to a unique ID, the name should be used as a fallback.
+          In cases where the FaaS platform doesn't provide access to a unique ID, the name should be used as a fallback.
       - id: faas.name
         type: string
         stability: development
