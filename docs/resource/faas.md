@@ -36,7 +36,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 - **AWS Lambda:** The resource-id within the [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 - **GCP:** The SERVICE_ID within the [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names).
-- **Azure:** The resource namespace (ie function app) and the function name from the [Fully Qualified Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) seperated by '/'.
+- **Azure:** Follows the format of "<resource-namespace>/<function-name>" with values from [Fully Qualified Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id).
 
 In cases were the FaaS platform doesn't provide access to a unique ID, the name should be used as a fallback.
 
