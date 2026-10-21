@@ -204,6 +204,6 @@
 /docs/runtime/nodejs-metrics.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approvers
 
 # FaaS semantic conventions
-/docs/faas/                       @open-telemetry/lambda-extension-approvers
-/docs/resource/faas.md            @open-telemetry/lambda-extension-approvers
-/model/faas/                      @open-telemetry/lambda-extension-approvers
+/docs/faas/                       @open-telemetry/specs-semconv-approvers @open-telemetry/lambda-extension-approvers
+/docs/resource/faas.md            @open-telemetry/specs-semconv-approvers @open-telemetry/lambda-extension-approvers
+/model/faas/                      @open-telemetry/specs-semconv-approvers @open-telemetry/lambda-extension-approvers
