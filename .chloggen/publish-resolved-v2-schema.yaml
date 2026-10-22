@@ -1,0 +1,4 @@
+change_type: enhancement
+component: schemas
+note: Publish the development v2 resolved schema and manifest as release artifacts.
+issues: [4221]
