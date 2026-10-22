@@ -104,5 +104,3 @@ Currently, the following namespaces exist:
 | | [vcs.repository](vcs.md#vcs-repository) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | Webengine | | |
 | | [webengine](webengine.md#webengine) | ![Development](https://img.shields.io/badge/-development-blue) |
-| zOS | | |
-| | [zos.software](zos.md#zos-software) | ![Development](https://img.shields.io/badge/-development-blue) |
