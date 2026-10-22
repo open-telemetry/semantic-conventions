@@ -43,7 +43,7 @@ span_refinements:
           Instrumentation SHOULD document if `db.namespace` reflects the user provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-        examples: ["mydatabase.products", "mydatabase.customers"]
+        examples: ["mydatabase|products", "mydatabase|customers"]
       - ref: db.response.status_code
         brief: >
           [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
