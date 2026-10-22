@@ -9,7 +9,7 @@ groups:
     instrument: histogram
     unit: "{request_unit}"
     stability: development
-    extends: azure.cosmmosdb.client.detailed
+    extends: azure.cosmosdb.client.detailed
     attributes:
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:

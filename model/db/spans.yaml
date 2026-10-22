@@ -36,9 +36,16 @@ spans:
         sampling_relevant: true
       - ref_group: db.client.connection
       - ref_group: db.operation
-      - ref_group: db.response
+      - ref_group: db.response.code_and_error
       - ref_group: db.network.peer
       - ref_group: db.query
+      - ref: db.response.returned_rows
+        note: |
+          The number of rows returned by the database operation as observed
+          by the instrumentation at the time the span ends.
+        # experimental attributes must be opt-in stable spans
+        # TODO (@trask) make this recommended once it is stable
+        requirement_level: opt_in
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
@@ -69,6 +76,9 @@ span_refinements:
       - unref: network.peer.port
       - ref_group: db.client.sql.span
       - ref: db.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: |
           The following database systems are known to use SQL as their primary
           query language:
@@ -95,43 +105,6 @@ span_refinements:
 
           Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
           Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
-      - ref: db.response.status_code
-        note: |
-          SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
-          return code which is adopted by some database systems like PostgreSQL.
-          See [PostgreSQL error codes](https://www.postgresql.org/docs/current/errcodes-appendix.html)
-          for the details.
-
-          Other systems like MySQL, Oracle, or MS SQL Server define vendor-specific
-          error codes. Database SQL drivers usually provide access to both properties.
-          For example, in Java, the [`SQLException`](https://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html)
-          class reports them with `getSQLState()` and `getErrorCode()` methods.
-
-          Instrumentations SHOULD populate the `db.response.status_code` with the
-          most specific code available to them.
-
-          Here's a non-exhaustive list of databases that report vendor-specific
-          codes with granularity higher than SQLSTATE (or don't report SQLSTATE
-          at all):
-
-          - [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
-          - [Maria DB error codes](https://mariadb.com/docs/server/reference/error-codes)
-          - [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
-          - [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
-          - [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
-          - [SQLite result codes](https://www.sqlite.org/rescode.html)
-
-          These systems SHOULD set the `db.response.status_code` to a
-          known vendor-specific error code. If only SQLSTATE is available,
-          it SHOULD be used.
-
-          When multiple error codes are available and specificity is unclear,
-          instrumentation SHOULD set the `db.response.status_code` to the
-          concatenated string of all codes with '/' used as a separator.
-
-          For example, generic DB instrumentation that detected an error and has
-          SQLSTATE `"42000"` and vendor-specific `1071` should set
-          `db.response.status_code` to `"42000/1071"`.
       - ref: db.namespace
         sampling_relevant: false
       - ref: db.operation.name

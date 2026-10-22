@@ -68,20 +68,13 @@ attribute_groups:
           For batch operations, if the individual operations would all have the same
           `db.collection.name` when executed as non-batch operations,
           then that collection name SHOULD be used.
-  - id: db.response
+  - id: db.response.code_and_error
     visibility: internal
     attributes:
       - ref: db.response.status_code
         brief: Database response status code.
         requirement_level:
           conditionally_required: If the operation failed and status code is available.
-      - ref: db.response.returned_rows
-        note: |
-          The number of rows returned by the database operation as observed
-          by the instrumentation at the time the span ends.
-        # experimental attributes must be opt-in stable spans
-        # TODO (@trask) make this recommended once it is stable
-        requirement_level: opt_in
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation failed.
@@ -111,4 +104,110 @@ attribute_groups:
         requirement_level:
           recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
       - ref: db.query.parameter
+        requirement_level: opt_in
+  - id: db.client.sql.span
+    visibility: internal
+    attributes:
+      - ref: db.namespace
+        brief: >
+          The database associated with the connection,
+          fully qualified within the server address and port.
+        requirement_level:
+          conditionally_required: If available without an additional network call.
+        note: |
+          If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
+          from the most general to the most specific namespace component,
+          using `|` as a separator between the components.
+          Any missing components (and their associated separators) SHOULD be omitted.
+
+          Semantic conventions for individual database systems SHOULD document what `db.namespace`
+          means in the context of that system.
+
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
+
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+      - ref: db.response.status_code
+        brief: >
+          Database response code recorded as a string.
+        note: |
+          SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
+          return code which is adopted by some database systems like PostgreSQL.
+          See [PostgreSQL error codes](https://www.postgresql.org/docs/current/errcodes-appendix.html)
+          for the details.
+
+          Other systems like MySQL, Oracle, or MS SQL Server define vendor-specific
+          error codes. Database SQL drivers usually provide access to both properties.
+          For example, in Java, the [`SQLException`](https://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html)
+          class reports them with `getSQLState()` and `getErrorCode()` methods.
+
+          Instrumentations SHOULD populate the `db.response.status_code` with the
+          most specific code available to them.
+
+          Here's a non-exhaustive list of databases that report vendor-specific
+          codes with granularity higher than SQLSTATE (or don't report SQLSTATE
+          at all):
+
+          - [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
+          - [Maria DB error codes](https://mariadb.com/docs/server/reference/error-codes)
+          - [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
+          - [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
+          - [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
+          - [SQLite result codes](https://www.sqlite.org/rescode.html)
+
+          These systems SHOULD set the `db.response.status_code` to a
+          known vendor-specific error code. If only SQLSTATE is available,
+          it SHOULD be used.
+
+          When multiple error codes are available and specificity is unclear,
+          instrumentation SHOULD set the `db.response.status_code` to the
+          concatenated string of all codes with '/' used as a separator.
+
+          For example, generic DB instrumentation that detected an error and has
+          SQLSTATE `"42000"` and vendor-specific `1071` should set
+          `db.response.status_code` to `"42000/1071"`.
+
+        examples: ["ORA-17027", "1052", "2201B"]
+        requirement_level:
+          conditionally_required: If response has ended with warning or an error.
+      - ref: db.operation.name
+        requirement_level:
+          recommended: If the operation is executed via a higher-level API
+            that does not support multiple operation names.
+        note: |
+          The operation name SHOULD NOT be extracted from `db.query.text`.
+        examples: ["EXECUTE", "INSERT"]
+      - ref: db.collection.name
+        requirement_level:
+          recommended: If the operation is executed via a higher-level API
+            that does not support multiple collection names.
+        note: |
+          The collection name SHOULD NOT be extracted from `db.query.text`.
+
+  # TODO: remove when metrics move to v2 and reference the groups directly
+  - id: attributes.db.client.with_query_and_collection
+    visibility: internal
+    attributes:
+      - ref_group: db.client.connection
+      - ref_group: db.response.code_and_error
+      - ref: db.operation.name
+        requirement_level:
+          conditionally_required: >
+            If readily available and if there is a single operation name that describes the
+            database call.
+      - ref: db.query.summary
+        requirement_level:
+          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
+      - ref: db.system.name
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.query.text
         requirement_level: opt_in

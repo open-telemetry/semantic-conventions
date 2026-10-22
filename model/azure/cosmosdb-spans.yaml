@@ -16,7 +16,7 @@ span_refinements:
       - unref: db.query.summary
       - unref: network.peer.address
       - unref: network.peer.port
-      - ref_group: azure.cosmmosdb.client.detailed
+      - ref_group: azure.cosmosdb.client.detailed
       - ref: db.system.name
         annotations:
           markdown:
@@ -53,7 +53,8 @@ span_refinements:
       - ref: db.response.returned_rows
         brief: >
           Cosmos DB row count in result set.
-        note: >
+        note: ""
+        examples: [10, 20]
         requirement_level:
           conditionally_required: if response was received and returned any rows
       - ref: azure.cosmosdb.operation.request_charge
@@ -66,7 +67,6 @@ span_refinements:
           Cosmos DB client.
         examples: ["Microsoft.DocumentDB"]
       - ref: db.operation.name
-        requirement_level: required
         note: |
           The `db.operation.name` has the following list of well-known values.
           If one of them applies, then the respective value MUST be used.

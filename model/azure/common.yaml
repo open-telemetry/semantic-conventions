@@ -1,10 +1,11 @@
 file_format: definition/2
 
 attribute_groups:
-  - id: azure.cosmmosdb.client.detailed
+  - id: azure.cosmosdb.client.detailed
     visibility: internal
     attributes:
       - ref_group: db.client.connection
+      - ref_group: db.response.code_and_error
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           conditionally_required: If available.
@@ -27,18 +28,3 @@ attribute_groups:
       - ref: azure.cosmosdb.consistency.level
         requirement_level:
           conditionally_required: If available.
-      - ref: db.response.status_code
-        requirement_level:
-          conditionally_required: If the operation failed and status code is available.
-      - ref: error.type
-        requirement_level:
-          conditionally_required: If and only if the operation failed.
-        note: >
-          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
-          or the canonical name of exception that occurred.
-
-          When using canonical exception type name, instrumentation SHOULD do the best effort to
-          report the most relevant type. For example, if the original exception is wrapped into a
-          generic one, the original exception SHOULD be preferred.
-
-          Instrumentations SHOULD document how `error.type` is populated.
