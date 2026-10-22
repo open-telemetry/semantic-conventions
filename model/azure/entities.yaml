@@ -7,5 +7,5 @@ groups:
       A compute instance of an Azure App Service plan, which runs one or more apps on that plan.
     attributes:
       - ref: azure.app_service_plan.instance.name
-        role: identifying
-        requirement_level: required
+        role: descriptive
+        requirement_level: recommended
