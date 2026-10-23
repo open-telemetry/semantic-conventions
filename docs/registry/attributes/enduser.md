@@ -3,19 +3,19 @@
 
 # Enduser
 
-- [End User Attributes](#end-user-attributes)
+- [End User Attributes (Moved)](#end-user-attributes-moved)
 - [Deprecated End User Attributes](#deprecated-end-user-attributes)
 
-## End User Attributes
+## End User Attributes (Moved)
 
-Describes the end user.
+End user attributes have moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
 
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` |
-| <a id="enduser-pseudo-id" href="#enduser-pseudo-id">`enduser.pseudo.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity. [2] | `QdH5CAWJgqVT4rOr0qtumf` |
+| <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` |
+| <a id="enduser-pseudo-id" href="#enduser-pseudo-id">`enduser.pseudo.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). | string | Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity. [2] | `QdH5CAWJgqVT4rOr0qtumf` |
 
 **[1] `enduser.id`:** Unique identifier of an end user in the system.
 
