@@ -1,4 +1,4 @@
 change_type: deprecation
 component: service
 note: "Deprecate `service.peer.name` and `service.peer.namespace` in favor of `server.service.name`/`.namespace` and `client.service.name`/`.namespace`."
-issues: [3472, 3351]
+issues: [3472]
