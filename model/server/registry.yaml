@@ -9,6 +9,18 @@ attributes:
       When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
       the server address behind any intermediaries, for example proxies, if it's available.
     examples: ['example.com', '10.1.2.80', '/tmp/my.sock']
+  - key: server.mac.address
+    stability: development
+    type: string
+    brief: 'Server Media Access Control (MAC) address.'
+    note: |
+      MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+      as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+
+      > [!WARNING]
+      >
+      > This attribute may contain sensitive (PII) information.
+    examples: ['00-00-5E-00-53-23']
   - key: server.port
     stability: stable
     type: int
