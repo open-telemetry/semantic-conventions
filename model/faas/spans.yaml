@@ -11,7 +11,7 @@ attribute_groups:
       - ref: faas.trigger
         requirement_level: required
       - ref: faas.coldstart
-      - ref: faas.invocation_id
+      - ref: faas.invocation.id
       - ref: cloud.resource_id
 
 spans:
@@ -62,7 +62,7 @@ spans:
       - ref: faas.trigger
         note: MUST be set to `timer`.
         examples: ['timer']
-      - ref: faas.time
+      - ref: faas.invocation.start_time
       - ref: faas.cron
 
   - type: faas.client
