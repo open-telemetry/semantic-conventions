@@ -23,9 +23,8 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation).
 This span describes an AWS SDK client call.
 
 **Span name** MUST be of the format `Service.Operation` as per the
-AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
-equivalent to concatenating `rpc.service` and `rpc.method` with `.` and
-consistent with the naming guidelines for RPC client spans.
+AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This matches
+`rpc.method` and the naming guidelines for RPC client spans.
 
 AWS SDK span attributes are based on the request or response parameters
 in AWS SDK API calls. The conventions have been collected over time based
@@ -40,30 +39,28 @@ interesting conventions are found.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | `Required` | string | The value `aws-api`. | `aws-api` [(see more)](#rpc-system-values) |
+| [`rpc.system.name`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The value `aws-api`. | `aws-api` [(see more)](#rpc-system-name-values) |
 | [`aws.extended_request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` |
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The fully-qualified name of the operation in the format `Service.Operation`. [2] | `DynamoDB.GetItem`; `S3.ListBuckets` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
+**[2] `rpc.method`:** The service and operation names MUST be those returned by the AWS SDK.
+
 ---
 
-<a id="rpc-system-values"></a>
+<a id="rpc-system-name-values"></a>
 
-`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`rpc.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
-| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
-| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jsonrpc` | JSON-RPC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `onc_rpc` | [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connectrpc` | [Connect RPC](https://connectrpc.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dubbo` | [Apache Dubbo](https://dubbo.apache.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `grpc` | [gRPC](https://grpc.io/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `jsonrpc` | [JSON-RPC](https://www.jsonrpc.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

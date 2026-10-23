@@ -7,32 +7,26 @@ groups:
         This span describes an AWS SDK client call.
     note: |
         **Span name** MUST be of the format `Service.Operation` as per the
-        AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
-        equivalent to concatenating `rpc.service` and `rpc.method` with `.` and
-        consistent with the naming guidelines for RPC client spans.
+        AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This matches
+        `rpc.method` and the naming guidelines for RPC client spans.
 
         AWS SDK span attributes are based on the request or response parameters
         in AWS SDK API calls. The conventions have been collected over time based
         on feedback from AWS users of tracing and will continue to increase as new
         interesting conventions are found.
     attributes:
-      - ref: rpc.system
+      - ref: rpc.system.name
         brief: "The value `aws-api`."
         requirement_level: required
         examples:
           - aws-api
-      - ref: rpc.service
-        brief: "The name of the service to which a request is made, as returned by the AWS SDK."
-        examples:
-          - DynamoDB
-          - S3
         note: ""
       - ref: rpc.method
-        brief: "The name of the operation corresponding to the request, as returned by the AWS SDK"
+        brief: "The fully-qualified name of the operation in the format `Service.Operation`."
         examples:
-          - GetItem
-          - PutItem
-        note: ""
+          - DynamoDB.GetItem
+          - S3.ListBuckets
+        note: "The service and operation names MUST be those returned by the AWS SDK."
       - ref: aws.request_id
         requirement_level: recommended
       - ref: aws.extended_request_id

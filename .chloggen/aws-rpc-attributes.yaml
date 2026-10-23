@@ -1,0 +1,10 @@
+change_type: breaking
+component: aws
+note: Replace deprecated RPC attributes in AWS SDK conventions.
+issues: [3176, 3223]
+subtext: |
+  Replace `rpc.system` with `rpc.system.name`, retaining the value `aws-api`.
+  Include the service name in `rpc.method`, for example `DynamoDB.GetItem`,
+  instead of recording it separately in `rpc.service`. Span names are unchanged.
+  DynamoDB and S3 spans inherit these changes. SNS and SQS conventions continue
+  to reference the common AWS SDK attributes.
