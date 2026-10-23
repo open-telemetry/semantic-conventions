@@ -53,11 +53,11 @@ weaker "SHOULD" requirement). Consumers that needs such guarantee can use
 For performance reasons (e.g. [AWS lambda], or [Azure functions]), FaaS providers allocate an execution environment for a single instance of a function that is used to serve multiple requests.
 Developers exploit this fact to solve the **cold start** issue, caching expensive resource computations between different function invocations.
 Furthermore, FaaS providers encourage this behavior, e.g. [Google functions].
-The `faas.instance` resource attribute MAY be set to help correlate function invocations that belong to the same execution environment.
-The span attribute `faas.invocation_id` differs from the [resource attribute][FaaS resource attributes] `faas.instance` in the following:
+The `faas.instance.id` resource attribute MAY be set to help correlate function invocations that belong to the same execution environment.
+The span attribute `faas.invocation_id` differs from the [resource attribute][FaaS resource attributes] `faas.instance.id` in the following:
 
 - `faas.invocation_id` refers to the ID of the current invocation of the function;
-- `faas.instance` refers to the execution environment ID of the function.
+- `faas.instance.id` refers to the execution environment ID of the function.
 
 [AWS lambda]: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
 [Azure functions]: https://learn.microsoft.com/azure/azure-functions/manage-connections#reuse-client-instances
@@ -377,9 +377,10 @@ This example shows the FaaS attributes for a (non-FaaS) process hosted on Google
 | Span           | `faas.trigger`          | n/a                    | `"http"`                                                              |
 | Span           | `faas.invocation_id`    | n/a                    | `"af9d5aa4-a685-4c5f-a22b-444f80b3cc28"`                              |
 | Span           | `faas.coldstart`        | n/a                    | `true`                                                                |
+| Resource       | `faas.id`               | n/a                    | `"my-lambda-function"`                                                |
 | Resource       | `faas.name`             | n/a                    | `"my-lambda-function"`                                                |
 | Resource       | `faas.version`          | n/a                    | `"semver:2.0.0"`                                                      |
-| Resource       | `faas.instance`         | n/a                    | `"my-lambda-function:instance-0001"`                                  |
+| Resource       | `faas.instance.id`      | n/a                    | `"my-lambda-function:instance-0001"`                                  |
 | Resource       | `cloud.resource_id`     | n/a                    | `"arn:aws:lambda:us-west-2:123456789012:function:my-lambda-function"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
