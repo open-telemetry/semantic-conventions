@@ -152,14 +152,15 @@ areas:
 
   - name: "Semantic Conventions: FaaS"
     owner:
-      - name: "specs-semconv-maintainers" # TODO: Missing team user for faas?
-        github: specs-semconv-maintainers
+      - name: "lambda-extension-approvers"
+        github: lambda-extension-approvers
     project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/faas.md"
     board: "N/A"
     labels:
       - area:faas
     status:
-      - inactive
+      - accepting_contributions
+      - active
 
   - name: "Semantic Conventions: JVM"
     owner:
