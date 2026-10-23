@@ -11,7 +11,13 @@
 | --- | --- | --- | --- | --- |
 | <a id="client-address" href="#client-address">`client.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | <a id="client-port" href="#client-port">`client.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Client port number. [2] | `65123` |
+| <a id="client-service-name" href="#client-service-name">`client.service.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical name of the service acting as the client in a connection-based network interaction. [3] | `shoppingcart` |
+| <a id="client-service-namespace" href="#client-service-namespace">`client.service.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical namespace of the service acting as the client in a connection-based network interaction. [4] | `Shop` |
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries, for example proxies, if it's available.
 
 **[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
+
+**[3] `client.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical client, if any, regardless of where the interaction is observed. When communicating through an intermediary, this identifies the client behind the intermediary, not necessarily the directly connected peer.
+
+**[4] `client.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical client, if any, regardless of where the interaction is observed. Together with `client.service.name`, this identifies the client service. An empty namespace is equivalent to an unspecified namespace.

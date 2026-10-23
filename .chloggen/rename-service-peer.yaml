@@ -1,0 +1,8 @@
+change_type: deprecation
+component: service
+note: "Deprecate `service.peer.name` and `service.peer.namespace` in favor of `server.service.name`/`.namespace` and `client.service.name`/`.namespace`."
+issues: [3472, 3351]
+subtext: |
+  The new attributes remain in development and identify the logical client and server services
+  independently of the observer. Use `server.service.*` on the client side and `client.service.*`
+  on the server side. Intermediaries can report both on the same signal.

@@ -17,3 +17,25 @@ attributes:
     note: >
       When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent
       the client port behind any intermediaries, for example proxies, if it's available.
+  - key: client.service.name
+    stability: development
+    type: string
+    brief: >
+      Logical name of the service acting as the client in a connection-based network interaction.
+    note: >
+      SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute
+      of the logical client, if any, regardless of where the interaction is observed.
+      When communicating through an intermediary, this identifies the client behind the intermediary,
+      not necessarily the directly connected peer.
+    examples: ['shoppingcart']
+  - key: client.service.namespace
+    stability: development
+    type: string
+    brief: >
+      Logical namespace of the service acting as the client in a connection-based network interaction.
+    note: >
+      SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute
+      of the logical client, if any, regardless of where the interaction is observed.
+      Together with `client.service.name`, this identifies the client service.
+      An empty namespace is equivalent to an unspecified namespace.
+    examples: ['Shop']
