@@ -42,7 +42,8 @@ updated to the stable RPC semantic conventions, they:
 This section summarizes the changes made to the RPC semantic conventions
 from
 [v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/README.md)
-to the stable conventions.
+to
+TODO (latest).
 
 ### RPC span attributes
 
@@ -74,7 +75,7 @@ to the stable conventions.
 References:
 
 - [RPC spans v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-spans.md)
-- [RPC spans](/docs/rpc/rpc-spans.md)
+- [RPC spans (TODO)](/docs/rpc/rpc-spans.md)
 
 ### `rpc.system.name` values
 
@@ -91,7 +92,7 @@ References:
 References:
 
 - [RPC spans v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-spans.md)
-- [RPC spans](/docs/rpc/rpc-spans.md)
+- [RPC spans (TODO)](/docs/rpc/rpc-spans.md)
 
 ### RPC server call duration metric
 
@@ -126,7 +127,7 @@ Metric changes:
 References:
 
 - [Metric `rpc.server.duration` v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-metrics.md#metric-rpcserverduration)
-- [Metric `rpc.server.call.duration`](/docs/rpc/rpc-metrics.md#metric-rpcservercallduration)
+- [Metric `rpc.server.call.duration` (TODO)](/docs/rpc/rpc-metrics.md#metric-rpcservercallduration)
 
 ### RPC client call duration metric
 
@@ -161,7 +162,7 @@ Metric changes:
 References:
 
 - [Metric `rpc.client.duration` v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-metrics.md#metric-rpcclientduration)
-- [Metric `rpc.client.call.duration`](/docs/rpc/rpc-metrics.md#metric-rpcclientcallduration)
+- [Metric `rpc.client.call.duration` (TODO)](/docs/rpc/rpc-metrics.md#metric-rpcclientcallduration)
 
 ### RPC exception events
 
