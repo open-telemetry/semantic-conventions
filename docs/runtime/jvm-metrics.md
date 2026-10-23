@@ -73,11 +73,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -109,11 +111,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -145,11 +149,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -181,11 +187,13 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -271,9 +279,11 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.thread.daemon`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | boolean | Whether the thread is daemon or not. | |
-| [`jvm.thread.state`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | State of the thread. | `runnable`; `blocked` |
+| [`jvm.thread.state`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | State of the thread. | `runnable`; `blocked` [(see more)](#jvm-thread-state-values) |
 
 ---
+
+<a id="jvm-thread-state-values"></a>
 
 `jvm.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -450,7 +460,7 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*`; `orders-vt-*` |
-| [`jvm.executor.thread.state`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | State of an executor thread. | `active`; `idle` |
+| [`jvm.executor.thread.state`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | State of an executor thread. | `active`; `idle` [(see more)](#jvm-executor-thread-state-values) |
 | [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
 | [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
 
@@ -459,6 +469,8 @@ This metric is [recommended][MetricRecommended].
 **[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
 
 ---
+
+<a id="jvm-executor-thread-state-values"></a>
 
 `jvm.executor.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -672,11 +684,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -59,10 +59,10 @@ TODO (latest).
 | `network.type`                                                 | [#2857](https://github.com/open-telemetry/semantic-conventions/pull/2857)                                                                            | Removed                                                                                                                           |
 | `rpc.grpc.status_code` &rarr; `rpc.status_code`       | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3921](https://github.com/open-telemetry/semantic-conventions/pull/3921)                                                                            | Changed from int to string (e.g., `0` &rarr; `"OK"`)                                                                              |
 | `rpc.connect_rpc.error_code` &rarr; `rpc.status_code` | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3921](https://github.com/open-telemetry/semantic-conventions/pull/3921)                                                                            |                                                                                                                                   |
-| `rpc.grpc.request.metadata.<key>`                              | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169)                                                                            | Replaced by `rpc.request.metadata.<key>`                                                                                          |
-| `rpc.grpc.response.metadata.<key>`                             | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169)                                                                            | Replaced by `rpc.response.metadata.<key>`                                                                                         |
-| `rpc.connect_rpc.request.metadata.<key>`                       | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169)                                                                            | Replaced by `rpc.request.metadata.<key>`                                                                                          |
-| `rpc.connect_rpc.response.metadata.<key>`                      | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169)                                                                            | Replaced by `rpc.response.metadata.<key>`                                                                                         |
+| `rpc.grpc.request.metadata.<key>`                              | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169), [#3924](https://github.com/open-telemetry/semantic-conventions/issues/3924) | Replaced by `rpc.request.header.<key>`                                                                                            |
+| `rpc.grpc.response.metadata.<key>`                             | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169), [#3924](https://github.com/open-telemetry/semantic-conventions/issues/3924) | Split into `rpc.response.header.<key>` (sent before the response payload) and `rpc.response.trailer.<key>` (sent after it) |
+| `rpc.connect_rpc.request.metadata.<key>`                       | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169), [#3924](https://github.com/open-telemetry/semantic-conventions/issues/3924) | Replaced by `rpc.request.header.<key>`                                                                                            |
+| `rpc.connect_rpc.response.metadata.<key>`                      | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169), [#3924](https://github.com/open-telemetry/semantic-conventions/issues/3924) | Split into `rpc.response.header.<key>` (sent before the response payload) and `rpc.response.trailer.<key>` (sent after it) |
 | `server.address`                                               | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203), [#3317](https://github.com/open-telemetry/semantic-conventions/pull/3317) | Now marked as sampling-relevant;<br>Now it’s taken from static configuration and can be any string identifying a group of server instances.  |
 | `server.port`                                                  | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203), [#3317](https://github.com/open-telemetry/semantic-conventions/pull/3317) | Now marked as sampling-relevant;<br>Now it’s taken from static configuration.  |
 | New: `error.type`                                              | [#2852](https://github.com/open-telemetry/semantic-conventions/pull/2852)                                                                            |                                                                                                                                   |
@@ -103,7 +103,10 @@ Metric changes:
 - **Description**: `Measures the duration of inbound RPC.` &rarr;
   `Measures the duration of inbound remote procedure calls (RPC).` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Histogram buckets**: boundaries updated to reflect change from milliseconds
-  to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
+  to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961)).
+  [General RPC boundaries](/docs/rpc/rpc-metrics.md#metric-rpcservercallduration)
+  cover 0.1 ms to 100 s, with a [gRPC-specific recommendation](/docs/rpc/grpc.md#metrics)
+  matching native gRPC latency boundaries ([#4185](https://github.com/open-telemetry/semantic-conventions/pull/4185)).
 - **Requirement level**: Made required ([#3284](https://github.com/open-telemetry/semantic-conventions/pull/3284))
 - **Attributes**: see table below
 
@@ -135,7 +138,10 @@ Metric changes:
 - **Description**: `Measures the duration of outbound RPC.` &rarr;
   `Measures the duration of outbound remote procedure calls (RPC).` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Histogram buckets**: boundaries updated to reflect change from milliseconds
-  to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
+  to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961)).
+  [General RPC boundaries](/docs/rpc/rpc-metrics.md#metric-rpcclientcallduration)
+  cover 0.1 ms to 100 s, with a [gRPC-specific recommendation](/docs/rpc/grpc.md#metrics)
+  matching native gRPC latency boundaries.
 - **Requirement level**: Made required ([#3284](https://github.com/open-telemetry/semantic-conventions/pull/3284))
 - **Attributes**: see table below
 

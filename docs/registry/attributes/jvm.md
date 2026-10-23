@@ -14,15 +14,15 @@ This document defines Java Virtual machine related attributes.
 | <a id="jvm-buffer-pool-name" href="#jvm-buffer-pool-name">`jvm.buffer.pool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the buffer pool. [1] | `mapped`; `direct` |
 | <a id="jvm-executor-name" href="#jvm-executor-name">`jvm.executor.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the executor. [2] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*`; `orders-vt-*` |
 | <a id="jvm-executor-owner-name" href="#jvm-executor-owner-name">`jvm.executor.owner.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the logical component that owns the executor. [3] | `tomcat`; `jetty`; `netty` |
-| <a id="jvm-executor-thread-state" href="#jvm-executor-thread-state">`jvm.executor.thread.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | State of an executor thread. | `active`; `idle` |
+| <a id="jvm-executor-thread-state" href="#jvm-executor-thread-state">`jvm.executor.thread.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | State of an executor thread. | `active`; `idle` [(see more)](#jvm-executor-thread-state-values) |
 | <a id="jvm-executor-type" href="#jvm-executor-type">`jvm.executor.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
 | <a id="jvm-gc-action" href="#jvm-gc-action">`jvm.gc.action`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector action. [4] | `end of minor GC`; `end of major GC` |
 | <a id="jvm-gc-cause" href="#jvm-gc-cause">`jvm.gc.cause`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the garbage collector cause. [5] | `System.gc()`; `Allocation Failure` |
 | <a id="jvm-gc-name" href="#jvm-gc-name">`jvm.gc.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector. [6] | `G1 Young Generation`; `G1 Old Generation` |
 | <a id="jvm-memory-pool-name" href="#jvm-memory-pool-name">`jvm.memory.pool.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the memory pool. [7] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| <a id="jvm-memory-type" href="#jvm-memory-type">`jvm.memory.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The type of memory. | `heap`; `non_heap` |
+| <a id="jvm-memory-type" href="#jvm-memory-type">`jvm.memory.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 | <a id="jvm-thread-daemon" href="#jvm-thread-daemon">`jvm.thread.daemon`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | Whether the thread is daemon or not. | |
-| <a id="jvm-thread-state" href="#jvm-thread-state">`jvm.thread.state`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | State of the thread. | `runnable`; `blocked` |
+| <a id="jvm-thread-state" href="#jvm-thread-state">`jvm.thread.state`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | State of the thread. | `runnable`; `blocked` [(see more)](#jvm-thread-state-values) |
 
 **[1] `jvm.buffer.pool.name`:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
@@ -40,6 +40,8 @@ This document defines Java Virtual machine related attributes.
 
 ---
 
+<a id="jvm-executor-thread-state-values"></a>
+
 `jvm.executor.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -49,6 +51,8 @@ This document defines Java Virtual machine related attributes.
 
 ---
 
+<a id="jvm-memory-type-values"></a>
+
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -57,6 +61,8 @@ This document defines Java Virtual machine related attributes.
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="jvm-thread-state-values"></a>
 
 `jvm.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

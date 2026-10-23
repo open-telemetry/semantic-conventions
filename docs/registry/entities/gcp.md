@@ -39,8 +39,8 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
-| Other | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` |
+| Other | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` [(see more)](#gcp-apphub-service-criticality-type-values) |
+| Other | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` [(see more)](#gcp-apphub-service-environment-type-values) |
 | Other | [`gcp.apphub.service.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the service as configured in AppHub. | `my-service` |
 
 **[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
@@ -48,6 +48,8 @@
 **[2] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
 ---
+
+<a id="gcp-apphub-service-criticality-type-values"></a>
 
 `gcp.apphub.service.criticality_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -59,6 +61,8 @@
 | `MISSION_CRITICAL` | Mission critical service. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="gcp-apphub-service-environment-type-values"></a>
 
 `gcp.apphub.service.environment_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -85,8 +89,8 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a workload indicates its importance to the business. [3] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
-| Other | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a workload is the stage of a software lifecycle. [4] | `PRODUCTION`; `STAGING`; `TEST` |
+| Other | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a workload indicates its importance to the business. [3] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` [(see more)](#gcp-apphub-workload-criticality-type-values) |
+| Other | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a workload is the stage of a software lifecycle. [4] | `PRODUCTION`; `STAGING`; `TEST` [(see more)](#gcp-apphub-workload-environment-type-values) |
 | Other | [`gcp.apphub.workload.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the workload as configured in AppHub. | `my-workload` |
 
 **[3] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
@@ -94,6 +98,8 @@
 **[4] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
 ---
+
+<a id="gcp-apphub-workload-criticality-type-values"></a>
 
 `gcp.apphub.workload.criticality_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -105,6 +111,8 @@
 | `MISSION_CRITICAL` | Mission critical service. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="gcp-apphub-workload-environment-type-values"></a>
 
 `gcp.apphub.workload.environment_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

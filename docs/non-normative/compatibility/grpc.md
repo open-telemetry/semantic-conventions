@@ -33,6 +33,10 @@ conventions hosted in this repository and the native gRPC conventions.
 See the [gRPC conventions](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md)
 and the [OpenTelemetry conventions](/docs/rpc/rpc-metrics.md) for details.
 
+The [OpenTelemetry gRPC bucket recommendations](/docs/rpc/grpc.md#metrics) for
+call-duration metrics match the latency boundaries used by
+[gRPC's existing OpenTelemetry metrics](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md#units).
+
 ### Metric mapping
 
 | gRPC metric                                              | OpenTelemetry metric       | Conversion comments                                           |
@@ -90,7 +94,7 @@ OpenTelemetry to gRPC, they should be preserved.
 - `network.peer.port`
 - `server.address`
 - `server.port`
-- `rpc.request.metadata.<key>` and `rpc.response.metadata.<key>`
+- `rpc.request.header.<key>`, `rpc.response.header.<key>` and `rpc.response.trailer.<key>`
 - `rpc.method_original`
 
 ### Events

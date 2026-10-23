@@ -42,9 +42,9 @@ Spans representing calls to a Cassandra database adhere to the general [Semantic
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The keyspace associated with the session. [3] | `mykeyspace` |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [6] | string | [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string. [7] | `102`; `40020` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [8] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [8] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [9] | int | Server port number. [10] | `80`; `8080`; `443` |
-| [`cassandra.consistency.level`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` |
+| [`cassandra.consistency.level`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` [(see more)](#cassandra-consistency-level-values) |
 | [`cassandra.coordinator.dc`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The data center of the coordinating node for a query. | `us-west-2` |
 | [`cassandra.coordinator.id`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` |
 | [`cassandra.page.size`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` |
@@ -146,7 +146,12 @@ system specific term if more applicable.
 **[14] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
 
-**[15] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
+**[15] `db.query.text`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
@@ -202,6 +207,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
+<a id="cassandra-consistency-level-values"></a>
+
 `cassandra.consistency.level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -219,6 +226,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `two` | Two | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
