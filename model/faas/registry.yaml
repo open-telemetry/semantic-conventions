@@ -141,7 +141,7 @@ groups:
         brief: >
           The invocation ID of the current function invocation.
         examples: 'af9d5aa4-a685-4c5f-a22b-444f80b3cc28'
-      - id: faas.invocation.time
+      - id: faas.invocation.start_time
         type: string
         stability: alpha
         brief: >

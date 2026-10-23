@@ -62,7 +62,7 @@ spans:
       - ref: faas.trigger
         note: MUST be set to `timer`.
         examples: ['timer']
-      - ref: faas.invocation.time
+      - ref: faas.invocation.start_time
       - ref: faas.cron
 
   - type: faas.client
