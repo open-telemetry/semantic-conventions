@@ -25,8 +25,6 @@ attributes:
     note: >
       SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute
       of the logical client, if any, regardless of where the interaction is observed.
-      When communicating through an intermediary, this identifies the client behind the intermediary,
-      not necessarily the directly connected peer.
     examples: ['shoppingcart']
   - key: client.service.namespace
     stability: development

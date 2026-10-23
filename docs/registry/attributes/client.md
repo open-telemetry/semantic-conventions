@@ -18,6 +18,6 @@
 
 **[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
 
-**[3] `client.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical client, if any, regardless of where the interaction is observed. When communicating through an intermediary, this identifies the client behind the intermediary, not necessarily the directly connected peer.
+**[3] `client.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical client, if any, regardless of where the interaction is observed.
 
 **[4] `client.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical client, if any, regardless of where the interaction is observed. Together with `client.service.name`, this identifies the client service. An empty namespace is equivalent to an unspecified namespace.
