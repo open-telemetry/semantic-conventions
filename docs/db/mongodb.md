@@ -170,21 +170,9 @@ application-provided document comment:
 }
 ```
 
-Servers supporting this mechanism MUST attempt to extract context only when
-`comment` is a BSON document, using the top-level string fields recognized by
-their supported propagators. Successful extraction requires compatible
-propagation formats on the client and server. When extracting W3C Trace Context,
-a server MUST ignore the trace context when
-[`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) is missing,
-invalid, or unsupported. An invalid
-[`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) MUST be
-ignored without affecting a valid `traceparent`. Failure to extract context
-MUST NOT cause the database operation to fail.
-Servers SHOULD leave `comment` unchanged after extraction. A server MAY
-instead remove the propagation document after successful extraction. In that
-case, it MUST restore `comment` to the value and BSON type of `originalComment`
-if that field is present (including when its value is `null`), or remove
-`comment` if it is absent.
+Servers that extract this context read the top-level string fields of a
+document-valued `comment` and need a propagator compatible with the one used
+for injection.
 
 MongoDB servers and compatible servers may expose or persist `comment` in logs,
 profiling data, or diagnostic interfaces. Instrumentations SHOULD document that
