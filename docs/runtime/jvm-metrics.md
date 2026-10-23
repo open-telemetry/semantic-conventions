@@ -616,7 +616,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `jvm.executor.task.completed` | Counter | `{task}` | The number of tasks completed by the executor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
-**[1]:** A task SHOULD be counted as completed when the executor has finished processing it, regardless of whether it returns normally, terminates with an exception, or is canceled. Cancellation during processing does not complete the task until processing ends. A task rejected or removed before processing begins SHOULD NOT be counted.
+**[1]:** A task SHOULD be counted as completed when the executor has finished processing it, regardless of whether it returns normally, terminates with an exception, or is canceled. Cancellation during processing does not complete the task until processing ends. A task that never begins processing on the executor SHOULD NOT be counted. A task initially rejected but subsequently resubmitted to and processed by the executor SHOULD be counted when processing ends.
 
 **Attributes:**
 
