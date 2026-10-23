@@ -1,0 +1,11 @@
+groups:
+  - id: entity.azure.app_service_plan.instance
+    type: entity
+    stability: development
+    name: azure.app_service_plan.instance
+    brief: >
+      A compute instance of an Azure App Service plan, which runs one or more apps on that plan.
+    attributes:
+      - ref: azure.app_service_plan.instance.name
+        role: descriptive
+        requirement_level: recommended
