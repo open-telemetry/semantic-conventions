@@ -1,8 +1,9 @@
-groups:
-  - id: entity.device
-    type: entity
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.26.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
+  - id: device
+    visibility: public
     stability: development
-    name: device
     brief: >
       The device on which the process represented by this resource is running.
     attributes:
