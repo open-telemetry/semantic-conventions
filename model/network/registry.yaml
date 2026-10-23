@@ -142,6 +142,29 @@ groups:
         type: string
         brief: Local address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
+      - id: network.local.prefix
+        stability: development
+        type: string
+        brief: "The IP prefix associated with the local IP address, in CIDR notation."
+        note: |
+          The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+          [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+          [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+          IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+          prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+          representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+          followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+          the address MUST be set to zero. The value MUST NOT contain a domain name,
+          UNIX domain socket name, or IPv6 zone identifier.
+
+          Instrumentation or Collector receivers that populate this attribute MUST
+          convert native representations, such as an address and subnet mask or an
+          address and prefix length, to equivalent CIDR notation before emitting it.
+
+          This attribute MAY be set whether or not `network.local.address` is set. If
+          `network.local.address` is also set to an IP address, it MUST use the same IP version
+          and be contained in this prefix.
+        examples: ['192.0.2.0/24', '2001:db8::/32']
       - id: network.local.port
         stability: stable
         type: int
@@ -152,6 +175,29 @@ groups:
         type: string
         brief: Peer address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
+      - id: network.peer.prefix
+        stability: development
+        type: string
+        brief: "The IP prefix associated with the peer IP address, in CIDR notation."
+        note: |
+          The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+          [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+          [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+          IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+          prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+          representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+          followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+          the address MUST be set to zero. The value MUST NOT contain a domain name,
+          UNIX domain socket name, or IPv6 zone identifier.
+
+          Instrumentation or Collector receivers that populate this attribute MUST
+          convert native representations, such as an address and subnet mask or an
+          address and prefix length, to equivalent CIDR notation before emitting it.
+
+          This attribute MAY be set whether or not `network.peer.address` is set. If
+          `network.peer.address` is also set to an IP address, it MUST use the same IP version
+          and be contained in this prefix.
+        examples: ['192.0.2.0/24', '2001:db8::/32']
       - id: network.peer.port
         stability: stable
         type: int

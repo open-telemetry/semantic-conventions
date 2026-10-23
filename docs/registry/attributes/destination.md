@@ -11,5 +11,24 @@
 | --- | --- | --- | --- | --- |
 | <a id="destination-address" href="#destination-address">`destination.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the receiver was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `destination.example.com`; `/tmp/my.sock` |
 | <a id="destination-port" href="#destination-port">`destination.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Destination port number | `3389`; `2888` |
+| <a id="destination-prefix" href="#destination-prefix">`destination.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the destination IP address, in CIDR notation. [2] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD capture the available address and SHOULD NOT try to resolve the address behind intermediaries such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
+
+**[2] `destination.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+[RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+[RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+the address MUST be set to zero. The value MUST NOT contain a domain name,
+UNIX domain socket name, or IPv6 zone identifier.
+
+Instrumentation or Collector receivers that populate this attribute MUST
+convert native representations, such as an address and subnet mask or an
+address and prefix length, to equivalent CIDR notation before emitting it.
+
+This attribute MAY be set whether or not `destination.address` is set. If
+`destination.address` is also set to an IP address, it MUST use the same IP version
+and be contained in this prefix.
