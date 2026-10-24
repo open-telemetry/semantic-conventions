@@ -72,10 +72,10 @@ TODO (latest).
 
 <!-- prettier-ignore-end -->
 
-For gRPC server spans, `server.address` and `server.port` come from the host
-and port components of the HTTP/2 `:authority` pseudo-header. If the address
-used by the client is unavailable, server instrumentations SHOULD NOT set
-these attributes.
+If the address used by the client is unavailable, server instrumentations
+SHOULD NOT set `server.address` or `server.port`. See
+[RPC system-specific changes](#rpc-system-specific-changes) for address and
+port sourcing details.
 
 References:
 
@@ -119,33 +119,6 @@ References:
 - [RPC spans v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-spans.md)
 - [RPC spans (TODO)](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/rpc-spans.md)
 
-### JSON-RPC
-
-JSON-RPC conventions remain in development. The system identifier `jsonrpc`
-is unchanged from v1.37.0, but the attribute names and error reporting have
-changed.
-
-<!-- prettier-ignore-start -->
-| Attribute change | PR | Comments |
-| ---------------- | --- | -------- |
-| `rpc.jsonrpc.version` &rarr; `jsonrpc.protocol.version` | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) | Still conditionally required if the version is not the default `1.0` |
-| `rpc.jsonrpc.request_id` &rarr; `jsonrpc.request.id` | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) | Still recommended. Previously, a `null` ID was recorded as an empty string. Instrumentations now SHOULD NOT capture the attribute when the ID is `null` or omitted. |
-| `rpc.jsonrpc.error_code` &rarr; `rpc.status_code` | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3921](https://github.com/open-telemetry/semantic-conventions/pull/3921) | Changed from int to string (e.g., `-32602` &rarr; `"-32602"`) |
-| `rpc.jsonrpc.error_message` | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3308](https://github.com/open-telemetry/semantic-conventions/pull/3308) | Replaced by the span status description |
-| `rpc.method` | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Changed from Required to Opt-In on JSON-RPC spans |
-<!-- prettier-ignore-end -->
-
-General-purpose JSON-RPC instrumentations SHOULD NOT set `rpc.method` by default
-because JSON-RPC allows arbitrary method names. They SHOULD provide a way to
-configure the list of recognized methods. When tracing instrumentation converts
-a method to `_OTHER`, it MUST also record the original value in
-`rpc.method_original`.
-
-References:
-
-- [JSON-RPC v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/json-rpc.md)
-- [JSON-RPC (TODO)](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/json-rpc.md)
-
 ### RPC server call duration metric
 
 Metric changes:
@@ -154,11 +127,11 @@ Metric changes:
 - **Unit**: `ms` &rarr; `s` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Description**: `Measures the duration of inbound RPC.` &rarr;
   `Measures the duration of an incoming Remote Procedure Call (RPC).` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961), [#3328](https://github.com/open-telemetry/semantic-conventions/pull/3328))
-- **Histogram buckets**: boundaries updated to reflect change from milliseconds
-  to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961)).
-  [General RPC boundaries](/docs/rpc/rpc-metrics.md#metric-rpcservercallduration)
-  cover 0.1 ms to 100 s, with a [gRPC-specific recommendation](/docs/rpc/grpc.md#metrics)
-  matching native gRPC latency boundaries ([#4185](https://github.com/open-telemetry/semantic-conventions/pull/4185)).
+- **Histogram buckets**: Explicit histogram bucket boundaries are now recommended,
+  in seconds, ranging from `0.0001` to `100`
+  ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961), [#4185](https://github.com/open-telemetry/semantic-conventions/pull/4185)).
+  See [general RPC boundaries](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/rpc-metrics.md#metric-rpcservercallduration).
+  [gRPC uses a different set](#grpc).
 - **Requirement level**: Remains recommended, as in v1.37.0. The intermediate
   change to required in [#3284](https://github.com/open-telemetry/semantic-conventions/pull/3284)
   was superseded by [#3810](https://github.com/open-telemetry/semantic-conventions/pull/3810).
@@ -191,11 +164,11 @@ Metric changes:
 - **Unit**: `ms` &rarr; `s` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Description**: `Measures the duration of outbound RPC.` &rarr;
   `Measures the duration of an outgoing Remote Procedure Call (RPC).` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961), [#3328](https://github.com/open-telemetry/semantic-conventions/pull/3328))
-- **Histogram buckets**: boundaries updated to reflect change from milliseconds
-  to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961)).
-  [General RPC boundaries](/docs/rpc/rpc-metrics.md#metric-rpcclientcallduration)
-  cover 0.1 ms to 100 s, with a [gRPC-specific recommendation](/docs/rpc/grpc.md#metrics)
-  matching native gRPC latency boundaries.
+- **Histogram buckets**: Explicit histogram bucket boundaries are now recommended,
+  in seconds, ranging from `0.0001` to `100`
+  ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961), [#4185](https://github.com/open-telemetry/semantic-conventions/pull/4185)).
+  See [general RPC boundaries](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/rpc-metrics.md#metric-rpcclientcallduration).
+  [gRPC uses a different set](#grpc).
 - **Requirement level**: Remains recommended, as in v1.37.0. The intermediate
   change to required in [#3284](https://github.com/open-telemetry/semantic-conventions/pull/3284)
   was superseded by [#3810](https://github.com/open-telemetry/semantic-conventions/pull/3810).
@@ -209,8 +182,8 @@ Metric changes:
 | `rpc.service`                         | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Removed, integrated into `rpc.method`                                                       |
 | `network.transport`                   | [#3350](https://github.com/open-telemetry/semantic-conventions/pull/3350) | Removed                                                                                     |
 | `network.type`                        | [#2857](https://github.com/open-telemetry/semantic-conventions/pull/2857) | Removed                                                                                     |
-| `server.address`                      | [#3197](https://github.com/open-telemetry/semantic-conventions/pull/3197), [#3257](https://github.com/open-telemetry/semantic-conventions/pull/3257) | Changed from Recommended to Conditionally Required if available in the common conventions and Dubbo. Required for gRPC. |
-| `server.port`                         | [#3197](https://github.com/open-telemetry/semantic-conventions/pull/3197) | Changed from Recommended to Conditionally Required if applicable and `server.address` is set. See framework-specific rules for target port availability. |
+| `server.address`                      | [#3197](https://github.com/open-telemetry/semantic-conventions/pull/3197), [#3257](https://github.com/open-telemetry/semantic-conventions/pull/3257) | Changed from Recommended to Conditionally Required if available. See [RPC system-specific changes](#rpc-system-specific-changes) for overrides. |
+| `server.port`                         | [#3197](https://github.com/open-telemetry/semantic-conventions/pull/3197) | Changed from Recommended to Conditionally Required if applicable and `server.address` is set. See [RPC system-specific changes](#rpc-system-specific-changes) for target port availability rules. |
 | New: `rpc.status_code`       | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3921](https://github.com/open-telemetry/semantic-conventions/pull/3921) |                                                                                             |
 | New: `error.type`                     | [#2852](https://github.com/open-telemetry/semantic-conventions/pull/2852) |                                                                                             |
 <!-- prettier-ignore-end -->
@@ -255,3 +228,83 @@ The following metrics have been deprecated with no replacement:
 | `rpc.client.request.size`      | [#3267](https://github.com/open-telemetry/semantic-conventions/pull/3267) |
 | `rpc.client.response.size`     | [#3267](https://github.com/open-telemetry/semantic-conventions/pull/3267) |
 <!-- prettier-ignore-end -->
+
+### RPC system-specific changes
+
+#### gRPC
+
+For client spans and call-duration metrics, `server.address` is Required.
+Instrumentations SHOULD populate `server.address` and `server.port` from the
+configuration used to create the gRPC channel, not actual network-level
+connection information. The address and port can be extracted from the target
+string or obtained through gRPC client APIs. If a suitable low-cardinality
+address cannot be extracted from the target string, instrumentations SHOULD
+record the entire target string as `server.address` and SHOULD NOT set
+`server.port`.
+
+For server spans, instrumentations SHOULD populate `server.address` and
+`server.port` from the host and port components of the HTTP/2 `:authority`
+pseudo-header the client used to reach the server. `server.port` is
+Conditionally Required if `server.address` is set and a port is present in
+`:authority`.
+
+Both client and server call-duration metrics SHOULD use the
+[gRPC-specific histogram boundaries](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/grpc.md#metrics),
+which match native gRPC OpenTelemetry metrics and override the general RPC
+recommendation. The boundaries include `0` and finer-grained values from
+`0.00001` to `100` seconds
+([#4185](https://github.com/open-telemetry/semantic-conventions/pull/4185)).
+
+References:
+
+- [gRPC v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/grpc.md)
+- [gRPC (TODO)](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/grpc.md)
+
+#### Apache Dubbo
+
+For client spans and call-duration metrics, `server.address` is
+Conditionally Required if available. Instrumentations SHOULD populate
+`server.address` and `server.port`, when applicable, from the configuration
+used to create the Dubbo client, not actual network-level connection information.
+
+For direct connections, instrumentations SHOULD parse the address and port
+from the configured provider target URL. `server.port` is Conditionally Required
+if `server.address` is set and a port is specified in that URL.
+
+For service discovery, instrumentations SHOULD record the service-discovery
+target as `server.address` and SHOULD NOT set `server.port`. The target
+includes the registry endpoint and logical service target, for example
+`zookeeper://127.0.0.1:2181/com.example.HelloService:1.0.0:testGroup`.
+The registry port is part of `server.address`, not `server.port`
+([#4120](https://github.com/open-telemetry/semantic-conventions/pull/4120)).
+
+References:
+
+- [Apache Dubbo (TODO)](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/dubbo.md)
+
+#### JSON-RPC
+
+JSON-RPC conventions remain in development. The system identifier `jsonrpc`
+is unchanged from v1.37.0, but the attribute names and error reporting have
+changed.
+
+<!-- prettier-ignore-start -->
+| Attribute change | PR | Comments |
+| ---------------- | --- | -------- |
+| `rpc.jsonrpc.version` &rarr; `jsonrpc.protocol.version` | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) | Still conditionally required if the version is not the default `1.0` |
+| `rpc.jsonrpc.request_id` &rarr; `jsonrpc.request.id` | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) | Still recommended. Previously, a `null` ID was recorded as an empty string. Instrumentations now SHOULD NOT capture the attribute when the ID is `null` or omitted. |
+| `rpc.jsonrpc.error_code` &rarr; `rpc.status_code` | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3921](https://github.com/open-telemetry/semantic-conventions/pull/3921) | Changed from int to string (e.g., `-32602` &rarr; `"-32602"`) |
+| `rpc.jsonrpc.error_message` | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3308](https://github.com/open-telemetry/semantic-conventions/pull/3308) | Replaced by the span status description |
+| `rpc.method` | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Changed from Required to Opt-In on JSON-RPC spans |
+<!-- prettier-ignore-end -->
+
+General-purpose JSON-RPC instrumentations SHOULD NOT set `rpc.method` by default
+because JSON-RPC allows arbitrary method names. They SHOULD provide a way to
+configure the list of recognized methods. When tracing instrumentation converts
+a method to `_OTHER`, it MUST also record the original value in
+`rpc.method_original`.
+
+References:
+
+- [JSON-RPC v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/json-rpc.md)
+- [JSON-RPC (TODO)](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/json-rpc.md)
