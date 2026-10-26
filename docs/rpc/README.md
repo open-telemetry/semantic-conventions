@@ -19,7 +19,7 @@ This document defines semantic conventions for remote procedure calls (RPC)
 >   limited to, attributes, metric and span names, span kind, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in their existing major version as a comma-separated list of category-specific values
->   (e.g., `http`, `database`, `messaging`). The list of values includes:
+>   (e.g., `http`, `database`, `rpc`). The list of values includes:
 >   * `rpc` - emit the stable RPC conventions, and stop emitting
 >     the experimental RPC conventions that the instrumentation emitted
 >     previously.
