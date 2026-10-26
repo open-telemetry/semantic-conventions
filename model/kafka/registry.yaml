@@ -13,7 +13,7 @@ groups:
           They differ from `messaging.message.id` in that they're not unique.
           If the key is `null`, the attribute MUST NOT be set.
         note: >
-          If the key type is not string, it's string representation has to be supplied for the attribute.
+          If the key type is not string, its string representation has to be supplied for the attribute.
           If the key has no unambiguous, canonical string form, don't include its value.
         examples: 'myKey'
       - id: kafka.offset
