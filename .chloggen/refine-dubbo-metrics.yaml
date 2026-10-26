@@ -1,0 +1,13 @@
+change_type: enhancement
+component: rpc
+note: >
+  Add Apache Dubbo-specific metric refinements for `rpc.server.call.duration`
+  and `rpc.client.call.duration`, and define Dubbo spans as refinements of the
+  generic RPC spans with shared attribute definitions. The `rpc.method`
+  requirement level differs between client (required) and server
+  (conditionally required), matching the corresponding Dubbo span conventions.
+issues: [4120]
+subtext: |
+  Require client `server.port` only when `server.address` is set and a port is
+  specified in the direct provider target URL, excluding registry discovery targets.
+  Dubbo spans now explicitly include `rpc.system.name`.

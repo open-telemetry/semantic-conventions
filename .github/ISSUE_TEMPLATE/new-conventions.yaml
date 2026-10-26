@@ -50,7 +50,6 @@ body:
         - area:dns
         - area:dotnet
         - area:elasticsearch
-        - area:enduser
         - area:error
         - area:exception
         - area:faas
@@ -102,7 +101,6 @@ body:
         - area:v8js
         - area:vcs
         - area:webengine
-        - area:zos
         # End semconv area list
   - type: textarea
     attributes:
