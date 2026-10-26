@@ -140,6 +140,7 @@ For batch operations, if the individual operations would all have the same `db.q
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 **[9] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+The value MAY use the client library's representation of a status code, including normalized or client-generated statuses. It need not reproduce a wire-protocol value.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 
 **[10] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application

@@ -84,6 +84,7 @@ Values that the RPC system exposes as binary data, or that are otherwise not val
 UTF-8 strings, SHOULD be base64-encoded when recorded.
 
 **[5] `rpc.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+The value MAY use the client library's representation of a status code, including normalized or client-generated statuses. It need not reproduce a wire-protocol value.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.status_code` means in the context of that system and which values are considered to represent errors.
 
 **[6] `rpc.system.name`:** The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.

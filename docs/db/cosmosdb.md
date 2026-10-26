@@ -434,6 +434,7 @@ system specific term if more applicable.
 **[3] `db.response.status_code`:** If the operation failed and status code is available.
 
 **[4] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+The value MAY use the client library's representation of a status code, including normalized or client-generated statuses. It need not reproduce a wire-protocol value.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 
 **[5] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
