@@ -15,7 +15,12 @@
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `client.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[2] `client.mac.address`:** This attribute MUST identify a MAC address associated with the logical client
+endpoint, including when that endpoint is behind intermediaries. If the client's
+MAC address is unknown, this attribute MUST NOT be set. The MAC address of a
+proxy, gateway, or next-hop router MUST NOT be used as a substitute.
+
+MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
