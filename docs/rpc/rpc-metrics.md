@@ -123,7 +123,7 @@ method actually executing the call on the server side, or the
 RPC client stub method on the client side.
 
 **[4] `rpc.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-The value MAY use the client library's representation of a status code, including normalized or client-generated statuses. It need not reproduce a wire-protocol value.
+The value MAY use the client library's representation of a status code, including normalized or client-generated statuses.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.status_code` means in the context of that system and which values are considered to represent errors.
 
 **[5] `server.address`:** `server.address` and `server.port` describe the address the client used to reach this server, as reported by the transport or RPC framework. Instrumentations SHOULD NOT use actual network-level connection information to populate these attributes. If the address used by the client is unavailable, instrumentations SHOULD NOT set these attributes.
@@ -229,7 +229,7 @@ method actually executing the call on the server side, or the
 RPC client stub method on the client side.
 
 **[4] `rpc.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-The value MAY use the client library's representation of a status code, including normalized or client-generated statuses. It need not reproduce a wire-protocol value.
+The value MAY use the client library's representation of a status code, including normalized or client-generated statuses.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.status_code` means in the context of that system and which values are considered to represent errors.
 
 **[5] `server.address`:** May contain a DNS name, an endpoint and path in the service registry, local socket name or an IP address.

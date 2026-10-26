@@ -1411,7 +1411,7 @@ These values will therefore be reused in the case of an application restart.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 **[4] `rpc.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-The value MAY use the client library's representation of a status code, including normalized or client-generated statuses. It need not reproduce a wire-protocol value.
+The value MAY use the client library's representation of a status code, including normalized or client-generated statuses.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.status_code` means in the context of that system and which values are considered to represent errors.
 
 **[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
