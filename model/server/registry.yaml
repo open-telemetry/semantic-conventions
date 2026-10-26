@@ -28,9 +28,9 @@ attributes:
       convert native representations, such as an address and subnet mask or an
       address and prefix length, to equivalent CIDR notation before emitting it.
 
-      This attribute MAY be set whether or not `server.address` is set. If
-      `server.address` is also set to an IP address, it MUST use the same IP version
-      and be contained in this prefix.
+      This attribute MUST NOT be set unless `server.address` is set to an IPv4 or
+      IPv6 address. The address MUST use the same IP version as this prefix and
+      be contained in it.
     examples: ['192.0.2.0/24', '2001:db8::/32']
   - key: server.port
     stability: stable

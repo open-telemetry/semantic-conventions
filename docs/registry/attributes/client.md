@@ -31,6 +31,6 @@ Instrumentation or Collector receivers that populate this attribute MUST
 convert native representations, such as an address and subnet mask or an
 address and prefix length, to equivalent CIDR notation before emitting it.
 
-This attribute MAY be set whether or not `client.address` is set. If
-`client.address` is also set to an IP address, it MUST use the same IP version
-and be contained in this prefix.
+This attribute MUST NOT be set unless `client.address` is set to an IPv4 or
+IPv6 address. The address MUST use the same IP version as this prefix and
+be contained in it.
