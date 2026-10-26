@@ -1,0 +1,7 @@
+change_type: enhancement
+component: source
+note: >
+  Add `source.as.number` and `source.as.organization` attributes for source
+  network endpoints.
+issues: [1663, 3740]
+subtext:
