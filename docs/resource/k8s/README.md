@@ -95,7 +95,7 @@ conflict.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.node.label.<key>`:** Examples:
 
@@ -143,7 +143,7 @@ a namespace, but not across namespaces.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.namespace.label.<key>`:** Examples:
 
@@ -199,7 +199,7 @@ at which the Pod was acknowledged by the Kubelet.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.pod.hostname`:** The K8s Pod spec has an optional hostname field, which can be used to specify a hostname.
 Refer to [K8s docs](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-hostname-and-subdomain-field)
@@ -295,7 +295,7 @@ to a running container.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.replicaset.label.<key>`:** Examples:
 
@@ -345,7 +345,7 @@ distributed among the nodes of a cluster.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.deployment.label.<key>`:** Examples:
 
@@ -394,7 +394,7 @@ about the ordering and uniqueness of these Pods.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.statefulset.label.<key>`:** Examples:
 
@@ -442,7 +442,7 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.daemonset.label.<key>`:** Examples:
 
@@ -491,7 +491,7 @@ successfully terminate.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.job.label.<key>`:** Examples:
 
@@ -539,7 +539,7 @@ A CronJob creates Jobs on a repeating schedule.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.cronjob.label.<key>`:** Examples:
 
@@ -675,7 +675,7 @@ provisioned by an administrator or dynamically provisioned using StorageClasses.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.persistentvolume.label.<key>`:** Examples:
 
@@ -740,7 +740,7 @@ to a Pod in that Pods consume node resources and PVCs consume PV resources.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[3] `k8s.persistentvolumeclaim.label.<key>`:** Examples:
 

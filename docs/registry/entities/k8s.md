@@ -86,7 +86,7 @@ conflict.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[4] `k8s.cronjob.label.<key>`:** Examples:
 
@@ -124,7 +124,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[7] `k8s.daemonset.label.<key>`:** Examples:
 
@@ -162,7 +162,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[10] `k8s.deployment.label.<key>`:** Examples:
 
@@ -224,7 +224,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[16] `k8s.job.label.<key>`:** Examples:
 
@@ -261,7 +261,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[19] `k8s.namespace.label.<key>`:** Examples:
 
@@ -299,7 +299,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[22] `k8s.node.label.<key>`:** Examples:
 
@@ -353,7 +353,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[25] `k8s.persistentvolume.label.<key>`:** Examples:
 
@@ -407,7 +407,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[29] `k8s.persistentvolumeclaim.label.<key>`:** Examples:
 
@@ -452,7 +452,7 @@ at which the Pod was acknowledged by the Kubelet.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[32] `k8s.pod.hostname`:** The K8s Pod spec has an optional hostname field, which can be used to specify a hostname.
 Refer to [K8s docs](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-hostname-and-subdomain-field)
@@ -509,7 +509,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[38] `k8s.replicaset.label.<key>`:** Examples:
 
@@ -651,7 +651,7 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[47] `k8s.statefulset.label.<key>`:** Examples:
 

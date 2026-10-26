@@ -64,7 +64,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.node.label
         type: template[string]
         stability: stable
@@ -114,7 +114,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.namespace.label
         type: template[string]
         stability: stable
@@ -203,7 +203,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.pod.label
         type: template[string]
         stability: stable
@@ -296,7 +296,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.replicaset.label
         type: template[string]
         stability: stable
@@ -372,7 +372,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.deployment.label
         type: template[string]
         stability: stable
@@ -424,7 +424,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.statefulset.label
         type: template[string]
         stability: stable
@@ -476,7 +476,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.daemonset.label
         type: template[string]
         stability: stable
@@ -572,7 +572,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.job.label
         type: template[string]
         stability: stable
@@ -624,7 +624,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.cronjob.label
         type: template[string]
         stability: stable
@@ -1119,7 +1119,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.persistentvolume.label
         type: template[string]
         stability: development
@@ -1223,7 +1223,7 @@ groups:
 
           This attribute aligns with the `creationTimestamp` field of the
           [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-          in ISO 8601 (RFC 3339 compatible) format.
+          in UTC RFC 3339 format.
       - id: k8s.persistentvolumeclaim.label
         type: template[string]
         stability: development

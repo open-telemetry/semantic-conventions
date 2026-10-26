@@ -151,7 +151,7 @@ conflict.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[5] `k8s.cronjob.label.<key>`:** Examples:
 
@@ -171,7 +171,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[8] `k8s.daemonset.label.<key>`:** Examples:
 
@@ -191,7 +191,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[11] `k8s.deployment.label.<key>`:** Examples:
 
@@ -219,7 +219,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[18] `k8s.job.label.<key>`:** Examples:
 
@@ -239,7 +239,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[21] `k8s.namespace.label.<key>`:** Examples:
 
@@ -275,7 +275,7 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[27] `k8s.node.label.<key>`:** Examples:
 
@@ -295,7 +295,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[30] `k8s.persistentvolume.label.<key>`:** Examples:
 
@@ -321,7 +321,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[35] `k8s.persistentvolumeclaim.label.<key>`:** Examples:
 
@@ -348,7 +348,7 @@ at which the Pod was acknowledged by the Kubelet.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[39] `k8s.pod.hostname`:** The K8s Pod spec has an optional hostname field, which can be used to specify a hostname.
 Refer to [K8s docs](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-hostname-and-subdomain-field)
@@ -387,7 +387,7 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[45] `k8s.replicaset.label.<key>`:** Examples:
 
@@ -468,7 +468,7 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 
 This attribute aligns with the `creationTimestamp` field of the
 [K8s ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#objectmeta-v1-meta),
-in ISO 8601 (RFC 3339 compatible) format.
+in UTC RFC 3339 format.
 
 **[58] `k8s.statefulset.label.<key>`:** Examples:
 
