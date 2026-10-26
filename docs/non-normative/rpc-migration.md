@@ -48,18 +48,31 @@ from
 to
 TODO (latest).
 
-### RPC span attributes
+### Common RPC attribute changes
+
+The following changes apply to RPC spans and call duration metrics:
 
 <!-- disable markdownlint requirement for tables to be aligned -->
 <!-- markdownlint-disable-file MD060 -->
 <!-- prettier-ignore-start -->
 | Change                                                         | PR                                                                                                                                                   | Comments                                                                                                                          |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `rpc.system` &rarr; `rpc.system.name`                          | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176), [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203) | See [below](#rpcsystemname-values) for changes to the values, also now marked as sampling-relevant                                |
-| `rpc.method`                                                   | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223), [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203) | Now the fully-qualified logical name of the method from the RPC interface perspective, also now marked as sampling-relevant. See [method and span name changes](#rpc-methods-and-span-names). |
+| `rpc.system` &rarr; `rpc.system.name`                          | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) | See [below](#rpcsystemname-values) for changes to the values |
+| `rpc.method`                                                   | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Now the fully-qualified logical name of the method from the RPC interface perspective. See [method and span name changes](#rpc-methods-and-span-names). |
 | `rpc.service`                                                  | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223)                                                                            | Deprecated, use fully-qualified `rpc.method` instead. |
 | `network.transport`                                            | [#3350](https://github.com/open-telemetry/semantic-conventions/pull/3350)                                                                            | Removed                                                                                                                           |
 | `network.type`                                                 | [#2857](https://github.com/open-telemetry/semantic-conventions/pull/2857)                                                                            | Removed                                                                                                                           |
+| New: `error.type`                                              | [#2852](https://github.com/open-telemetry/semantic-conventions/pull/2852)                                                                            |                                                                                                                                   |
+<!-- prettier-ignore-end -->
+
+### RPC span attributes
+
+In addition to the [common attribute changes](#common-rpc-attribute-changes):
+
+<!-- prettier-ignore-start -->
+| Change | PR | Comments |
+| --- | --- | --- |
+| `rpc.system.name`, `rpc.method` | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203) | Now marked as sampling-relevant |
 | `rpc.grpc.status_code` &rarr; `rpc.status_code`       | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3921](https://github.com/open-telemetry/semantic-conventions/pull/3921)                                                                            | Changed from int to string (e.g., `0` &rarr; `"OK"`)                                                                              |
 | `rpc.connect_rpc.error_code` &rarr; `rpc.status_code` | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3921](https://github.com/open-telemetry/semantic-conventions/pull/3921)                                                                            |                                                                                                                                   |
 | `rpc.grpc.request.metadata.<key>`                              | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169), [#3924](https://github.com/open-telemetry/semantic-conventions/issues/3924) | Replaced by `rpc.request.header.<key>`                                                                                            |
@@ -68,7 +81,6 @@ TODO (latest).
 | `rpc.connect_rpc.response.metadata.<key>`                      | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169), [#3924](https://github.com/open-telemetry/semantic-conventions/issues/3924) | Split into `rpc.response.header.<key>` (sent before the response payload) and `rpc.response.trailer.<key>` (sent after it) |
 | `server.address`                                               | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203), [#3317](https://github.com/open-telemetry/semantic-conventions/pull/3317), [#3257](https://github.com/open-telemetry/semantic-conventions/pull/3257), [#3919](https://github.com/open-telemetry/semantic-conventions/pull/3919) | Now sampling-relevant. Required &rarr; Conditionally Required if available on client spans; Required &rarr; Recommended when available on server spans. |
 | `server.port`                                                  | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203), [#3317](https://github.com/open-telemetry/semantic-conventions/pull/3317), [#3919](https://github.com/open-telemetry/semantic-conventions/pull/3919) | Now sampling-relevant. Still Conditionally Required, but the condition changed from the transport supporting ports to the port being applicable and `server.address` being set. |
-| New: `error.type`                                              | [#2852](https://github.com/open-telemetry/semantic-conventions/pull/2852)                                                                            |                                                                                                                                   |
 | New: `rpc.method_original`                                     | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223)                                                                            | The original name of the method used by the client. See [method and span name changes](#rpc-methods-and-span-names). |
 | `client.address`                                               | [#3488](https://github.com/open-telemetry/semantic-conventions/pull/3488)                                                                            | Removed                                                                                                                           |
 | `client.port`                                                  | [#3488](https://github.com/open-telemetry/semantic-conventions/pull/3488)                                                                            | Removed                                                                                                                           |
@@ -97,8 +109,7 @@ References:
 
 ### RPC methods and span names
 
-`rpc.method` now contains the fully-qualified logical method name rather than
-only the method name. On spans and metrics, methods that are unrecognized or
+On spans and metrics, methods that are unrecognized or
 cannot reliably be identified as predefined MUST be recorded as `_OTHER`.
 Instrumentations SHOULD support configuring recognized methods if valid
 methods could otherwise become `_OTHER`. See the
@@ -125,7 +136,6 @@ JSON-RPC overrides the common method guidance for spans, as described
 | `connect_rpc` &rarr; `connectrpc` | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) |                                                  |
 | `java_rmi`                        | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) | Removed, but can still be used as a custom value |
 | `dotnet_wcf`                      | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) | Removed, but can still be used as a custom value |
-| New: `jsonrpc`                    | [#2503](https://github.com/open-telemetry/semantic-conventions/pull/2503) | Added to the well-known values; JSON-RPC already used this identifier in v1.37.0. |
 <!-- prettier-ignore-end -->
 
 References:
@@ -157,19 +167,9 @@ Shared changes:
 
 Both metrics remain Recommended, as in v1.37.0.
 
-The following attribute changes apply to both client and server metrics:
-
-<!-- prettier-ignore-start -->
-| Attribute change                      | PR                                                                        | Comments                                                                                    |
-| ------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `rpc.system` &rarr; `rpc.system.name` | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) | See [above](#rpcsystemname-values) for changes to the values                                |
-| `rpc.method`                          | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Now the fully-qualified logical name of the method from the RPC interface perspective. See [method and span name changes](#rpc-methods-and-span-names). |
-| `rpc.service`                         | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Deprecated, use fully-qualified `rpc.method` instead. |
-| `network.transport`                   | [#3350](https://github.com/open-telemetry/semantic-conventions/pull/3350) | Removed                                                                                     |
-| `network.type`                        | [#2857](https://github.com/open-telemetry/semantic-conventions/pull/2857) | Removed                                                                                     |
-| New: `rpc.status_code`       | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3921](https://github.com/open-telemetry/semantic-conventions/pull/3921) |                                                                                             |
-| New: `error.type`                     | [#2852](https://github.com/open-telemetry/semantic-conventions/pull/2852) |                                                                                             |
-<!-- prettier-ignore-end -->
+In addition to the [common attribute changes](#common-rpc-attribute-changes),
+both metrics add `rpc.status_code`
+([#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920), [#3921](https://github.com/open-telemetry/semantic-conventions/pull/3921)).
 
 Address attributes were Recommended on both metrics in v1.37.0:
 
@@ -233,14 +233,10 @@ The following metrics have been deprecated with no replacement at this time:
 #### gRPC
 
 For client spans and `rpc.client.call.duration`, `server.address` is Required.
-Client `server.address` and `server.port` SHOULD come from the configured gRPC
-channel target and SHOULD NOT come from actual network connections.
-See [gRPC client conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/grpc.md#client)
-for parsing and fallback rules.
-
-On server spans, `server.address` and `server.port` SHOULD come from the host and
-port components of HTTP/2 `:authority`. `server.port` is Conditionally Required
-if `server.address` is set and `:authority` includes a port.
+Client address attributes SHOULD come from the
+[configured channel target](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/grpc.md#client),
+not the network connection. Server span address attributes SHOULD come from
+[HTTP/2 `:authority`](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/grpc.md#server).
 
 Both duration metrics SHOULD use the
 [gRPC-specific bucket boundaries](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/grpc.md#metrics)
@@ -255,19 +251,13 @@ References:
 
 #### Apache Dubbo
 
-For client spans and `rpc.client.call.duration`, `server.address` is
-Conditionally Required if available. Client address attributes SHOULD come from
-the configured Dubbo target and SHOULD NOT come from actual network connections:
-
-- For direct connections, `server.address` and `server.port` SHOULD be parsed
-  from the provider target URL. `server.port` is Conditionally Required if
-  `server.address` is set and the URL specifies a port.
-- For service discovery, `server.address` SHOULD contain the service-discovery
-  target and `server.port` SHOULD NOT be set. The registry port is part of the
-  target and SHOULD NOT be recorded as `server.port`.
+Client address attributes SHOULD come from the configured Dubbo target, not the
+network connection. For service discovery, `server.address` SHOULD contain the
+discovery target and `server.port` SHOULD NOT be set, since the registry port is
+not the RPC server port.
 
 See [Dubbo client conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/dubbo.md#client)
-for target formats and examples
+for target parsing and port requirements
 ([#4120](https://github.com/open-telemetry/semantic-conventions/pull/4120)).
 
 References:
@@ -290,16 +280,9 @@ changed.
 | `rpc.method` | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Changed from Required to Opt-In on JSON-RPC spans |
 <!-- prettier-ignore-end -->
 
-JSON-RPC supports sending and receiving arbitrary method names without prior
-registration or definition. General-purpose JSON-RPC tracing instrumentations
-therefore SHOULD NOT set `rpc.method` by default and SHOULD provide a way to
-configure the list of recognized RPC methods. When tracing instrumentation converts
-RPC method to `_OTHER`, it MUST also set `rpc.method_original` span attribute
-to the original value.
-
-For JSON-RPC metrics, `rpc.method` is Conditionally Required if available,
-following the
-[general RPC metric conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/rpc-metrics.md).
+JSON-RPC allows arbitrary method names, so general-purpose tracing
+instrumentations SHOULD NOT set `rpc.method` by default and SHOULD provide
+a way to configure recognized methods.
 
 References:
 
