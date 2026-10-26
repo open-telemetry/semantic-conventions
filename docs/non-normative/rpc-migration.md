@@ -13,12 +13,14 @@ affected by them, existing RPC instrumentations published by
 OpenTelemetry are required to implement a migration plan that will assist users in
 transitioning to the stable RPC semantic conventions.
 
-Specifically, when existing RPC instrumentations published by OpenTelemetry are
+The following recommendations summarize the migration guidance in
+[Semantic conventions for RPC](../rpc/README.md).
+When existing RPC instrumentations published by OpenTelemetry are
 updated to the stable RPC semantic conventions, they:
 
 - SHOULD NOT change the version of the RPC conventions that they emit by
   default in their existing major version. Conventions include (but are not
-  limited to) attributes, metric and span names, and unit of measure.
+  limited to) attributes, metric and span names, span kind, and unit of measure.
 - SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
   in their existing major version as a comma-separated list of category-specific
   values. The list of values includes:
@@ -30,7 +32,7 @@ updated to the stable RPC semantic conventions, they:
   - The default behavior (in the absence of one of these values) is to continue
     emitting whatever version of the old experimental RPC conventions the
     instrumentation was emitting previously.
-  - `rpc/dup` has higher precedence than `rpc` in case both values are present.
+  - `rpc/dup` takes precedence over `rpc` if both values are present.
 - SHOULD maintain (security patching at a minimum) their existing major version
   for at least six months after it starts emitting both sets of conventions.
 - MAY drop the environment variable in their next major version and emit only
