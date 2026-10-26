@@ -662,7 +662,7 @@ provisioned by an administrator or dynamically provisioned using StorageClasses.
 | Description | [`k8s.persistentvolume.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the PersistentVolume, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `kubernetes.io/aws-ebs`; `` |
 | Description | [`k8s.persistentvolume.creation_time`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The creation timestamp of the PersistentVolume. [2] | `2025-12-04T08:41:03Z` |
 | Description | [`k8s.persistentvolume.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the PersistentVolume, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `ssd`; `` |
-| Description | [`k8s.persistentvolume.reclaim_policy`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The reclaim policy of the PersistentVolume. [4] | `Delete`; `Retain`; `Recycle` |
+| Description | [`k8s.persistentvolume.reclaim_policy`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The reclaim policy of the PersistentVolume. [4] | `Delete`; `Retain`; `Recycle` [(see more)](#k8s-persistentvolume-reclaim-policy-values) |
 
 **[1] `k8s.persistentvolume.annotation.<key>`:** Examples:
 
@@ -688,6 +688,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
 
 ---
+
+<a id="k8s-persistentvolume-reclaim-policy-values"></a>
 
 `k8s.persistentvolume.reclaim_policy` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

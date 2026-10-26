@@ -14,7 +14,7 @@ This document defines the shared attributes used to report an error.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -43,6 +43,8 @@ it's RECOMMENDED to:
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -178,7 +178,7 @@ groups:
           Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-        examples: ['instance1\|products', 'customers']
+        examples: ['instance1|products', 'customers']
       - ref: db.response.status_code
         brief: >
           [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number
@@ -222,7 +222,7 @@ groups:
           Instrumentation SHOULD document if `db.namespace` reflects the user provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-        examples: ["mydatabase.products", "mydatabase.customers"]
+        examples: ['mydatabase|products', 'mydatabase|customers']
       - ref: db.response.status_code
         brief: >
           [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
@@ -718,7 +718,7 @@ groups:
           class reports them with `getSQLState()` and `getErrorCode()` methods.
 
           Instrumentations SHOULD populate the `db.response.status_code` with the
-          the most specific code available to them.
+          most specific code available to them.
 
           Here's a non-exhaustive list of databases that report vendor-specific
           codes with granularity higher than SQLSTATE (or don't report SQLSTATE
@@ -741,7 +741,7 @@ groups:
 
           For example, generic DB instrumentation that detected an error and has
           SQLSTATE `"42000"` and vendor-specific `1071` should set
-          `db.response.status_code` to `"42000/1071"`."
+          `db.response.status_code` to `"42000/1071"`.
 
         examples: ["ORA-17027", "1052", "2201B"]
         requirement_level:
@@ -797,7 +797,7 @@ groups:
           `failover_information` : Generated key to determine if region failover enabled.
              Format Reg-{D (Disabled discovery)}-S(application region)|L(List of preferred regions)|N(None, user did not configure it).
              Default value is "NS".
-        examples: ['cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|']
+        examples: ['cosmos-netstandard-sdk/3.23.0|3.23.1|1|X64|Linux 5.4.0-1098-azure 104 18|.NET Core 3.1.32|S|']
       - ref: azure.cosmosdb.connection.mode
         requirement_level:
           conditionally_required: if not `gateway` (the default value is assumed to be `gateway`).
@@ -854,7 +854,7 @@ groups:
           Bulk operations:
 
           - `execute_bulk` SHOULD be used on spans reported for methods like
-            [`executeBulkOperations`](https://javadoc.io/doc/com.azure/azure-cosmos/latest/com/azure/cosmos/CosmosAsyncContainer.html#executeBulkOperations(reactor.core.publisher.Flux)),
+            [`executeBulkOperations`](https://javadoc.io/doc/com.azure/azure-cosmos/latest/com/azure/cosmos/CosmosAsyncContainer.html),
             which represents a bulk execution of multiple operations.
           - `bulk_{operation name}` (`bulk_create_item`, `bulk_upsert_item`, etc) SHOULD be used on spans describing individual operations (when they are reported)
             within the bulk. This pattern SHOULD be used when instrumentation creates span per each operation, but operations are buffered and then performed in bulk.

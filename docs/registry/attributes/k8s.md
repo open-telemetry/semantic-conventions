@@ -16,12 +16,12 @@ Kubernetes resource attributes.
 | --- | --- | --- | --- | --- |
 | <a id="k8s-cluster-name" href="#k8s-cluster-name">`k8s.cluster.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the cluster. | `opentelemetry-cluster` |
 | <a id="k8s-cluster-uid" href="#k8s-cluster-uid">`k8s.cluster.uid`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
-| <a id="k8s-container-ephemeral-storage-fs-type" href="#k8s-container-ephemeral-storage-fs-type">`k8s.container.ephemeral_storage.fs_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of file system component for ephemeral storage. [2] | `rootfs`; `logs` |
+| <a id="k8s-container-ephemeral-storage-fs-type" href="#k8s-container-ephemeral-storage-fs-type">`k8s.container.ephemeral_storage.fs_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of file system component for ephemeral storage. [2] | `rootfs`; `logs` [(see more)](#k8s-container-ephemeral-storage-fs-type-values) |
 | <a id="k8s-container-name" href="#k8s-container-name">`k8s.container.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
 | <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | |
 | <a id="k8s-container-status-last-terminated-reason" href="#k8s-container-status-last-terminated-reason">`k8s.container.status.last_terminated_reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Last terminated reason of the Container. | `Evicted`; `Error` |
-| <a id="k8s-container-status-reason" href="#k8s-container-status-reason">`k8s.container.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstateterminated-v1-core) | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` |
-| <a id="k8s-container-status-state" href="#k8s-container-status-state">`k8s.container.status.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstate-v1-core) | `terminated`; `running`; `waiting` |
+| <a id="k8s-container-status-reason" href="#k8s-container-status-reason">`k8s.container.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstateterminated-v1-core) | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` [(see more)](#k8s-container-status-reason-values) |
+| <a id="k8s-container-status-state" href="#k8s-container-status-state">`k8s.container.status.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstate-v1-core) | `terminated`; `running`; `waiting` [(see more)](#k8s-container-status-state-values) |
 | <a id="k8s-cronjob-annotation" href="#k8s-cronjob-annotation">`k8s.cronjob.annotation.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [3] | `4`; `` |
 | <a id="k8s-cronjob-creation-time" href="#k8s-cronjob-creation-time">`k8s.cronjob.creation_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The creation timestamp of the CronJob. [4] | `2025-12-04T08:41:03Z` |
 | <a id="k8s-cronjob-label" href="#k8s-cronjob-label">`k8s.cronjob.label.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [5] | `weekly`; `` |
@@ -53,10 +53,10 @@ Kubernetes resource attributes.
 | <a id="k8s-namespace-creation-time" href="#k8s-namespace-creation-time">`k8s.namespace.creation_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The creation timestamp of the Namespace. [20] | `2025-12-04T08:41:03Z` |
 | <a id="k8s-namespace-label" href="#k8s-namespace-label">`k8s.namespace.label.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [21] | `default`; `` |
 | <a id="k8s-namespace-name" href="#k8s-namespace-name">`k8s.namespace.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the namespace that the pod is running in. | `default` |
-| <a id="k8s-namespace-phase" href="#k8s-namespace-phase">`k8s.namespace.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase of the K8s namespace. [22] | `active`; `terminating` |
+| <a id="k8s-namespace-phase" href="#k8s-namespace-phase">`k8s.namespace.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase of the K8s namespace. [22] | `active`; `terminating` [(see more)](#k8s-namespace-phase-values) |
 | <a id="k8s-node-annotation" href="#k8s-node-annotation">`k8s.node.annotation.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [23] | `0`; `` |
-| <a id="k8s-node-condition-status" href="#k8s-node-condition-status">`k8s.node.condition.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the condition, one of True, False, Unknown. [24] | `true`; `false`; `unknown` |
-| <a id="k8s-node-condition-type" href="#k8s-node-condition-type">`k8s.node.condition.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The condition type of a K8s Node. [25] | `Ready`; `DiskPressure` |
+| <a id="k8s-node-condition-status" href="#k8s-node-condition-status">`k8s.node.condition.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the condition, one of True, False, Unknown. [24] | `true`; `false`; `unknown` [(see more)](#k8s-node-condition-status-values) |
+| <a id="k8s-node-condition-type" href="#k8s-node-condition-type">`k8s.node.condition.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The condition type of a K8s Node. [25] | `Ready`; `DiskPressure` [(see more)](#k8s-node-condition-type-values) |
 | <a id="k8s-node-creation-time" href="#k8s-node-creation-time">`k8s.node.creation_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The creation timestamp of the Node. [26] | `2025-12-04T08:41:03Z` |
 | <a id="k8s-node-label" href="#k8s-node-label">`k8s.node.label.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [27] | `arm64`; `` |
 | <a id="k8s-node-name" href="#k8s-node-name">`k8s.node.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the Node. | `node-1` |
@@ -66,14 +66,14 @@ Kubernetes resource attributes.
 | <a id="k8s-persistentvolume-creation-time" href="#k8s-persistentvolume-creation-time">`k8s.persistentvolume.creation_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The creation timestamp of the PersistentVolume. [29] | `2025-12-04T08:41:03Z` |
 | <a id="k8s-persistentvolume-label" href="#k8s-persistentvolume-label">`k8s.persistentvolume.label.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The label placed on the PersistentVolume, the `<key>` being the label name, the value being the label value, even if the value is empty. [30] | `ssd`; `` |
 | <a id="k8s-persistentvolume-name" href="#k8s-persistentvolume-name">`k8s.persistentvolume.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the PersistentVolume. | `pv-data-01` |
-| <a id="k8s-persistentvolume-reclaim-policy" href="#k8s-persistentvolume-reclaim-policy">`k8s.persistentvolume.reclaim_policy`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reclaim policy of the PersistentVolume. [31] | `Delete`; `Retain`; `Recycle` |
-| <a id="k8s-persistentvolume-status-phase" href="#k8s-persistentvolume-status-phase">`k8s.persistentvolume.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase of the PersistentVolume. [32] | `Pending`; `Available`; `Bound`; `Released`; `Failed` |
+| <a id="k8s-persistentvolume-reclaim-policy" href="#k8s-persistentvolume-reclaim-policy">`k8s.persistentvolume.reclaim_policy`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reclaim policy of the PersistentVolume. [31] | `Delete`; `Retain`; `Recycle` [(see more)](#k8s-persistentvolume-reclaim-policy-values) |
+| <a id="k8s-persistentvolume-status-phase" href="#k8s-persistentvolume-status-phase">`k8s.persistentvolume.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase of the PersistentVolume. [32] | `Pending`; `Available`; `Bound`; `Released`; `Failed` [(see more)](#k8s-persistentvolume-status-phase-values) |
 | <a id="k8s-persistentvolume-uid" href="#k8s-persistentvolume-uid">`k8s.persistentvolume.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the PersistentVolume. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-persistentvolumeclaim-annotation" href="#k8s-persistentvolumeclaim-annotation">`k8s.persistentvolumeclaim.annotation.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The annotation placed on the PersistentVolumeClaim, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [33] | `kubernetes.io/aws-ebs`; `` |
 | <a id="k8s-persistentvolumeclaim-creation-time" href="#k8s-persistentvolumeclaim-creation-time">`k8s.persistentvolumeclaim.creation_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The creation timestamp of the PersistentVolumeClaim. [34] | `2025-12-04T08:41:03Z` |
 | <a id="k8s-persistentvolumeclaim-label" href="#k8s-persistentvolumeclaim-label">`k8s.persistentvolumeclaim.label.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The label placed on the PersistentVolumeClaim, the `<key>` being the label name, the value being the label value, even if the value is empty. [35] | `my-app`; `` |
 | <a id="k8s-persistentvolumeclaim-name" href="#k8s-persistentvolumeclaim-name">`k8s.persistentvolumeclaim.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
-| <a id="k8s-persistentvolumeclaim-status-phase" href="#k8s-persistentvolumeclaim-status-phase">`k8s.persistentvolumeclaim.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase of the PersistentVolumeClaim. [36] | `Pending`; `Bound`; `Lost` |
+| <a id="k8s-persistentvolumeclaim-status-phase" href="#k8s-persistentvolumeclaim-status-phase">`k8s.persistentvolumeclaim.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase of the PersistentVolumeClaim. [36] | `Pending`; `Bound`; `Lost` [(see more)](#k8s-persistentvolumeclaim-status-phase-values) |
 | <a id="k8s-persistentvolumeclaim-uid" href="#k8s-persistentvolumeclaim-uid">`k8s.persistentvolumeclaim.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the PersistentVolumeClaim. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-pod-annotation" href="#k8s-pod-annotation">`k8s.pod.annotation.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [37] | `true`; `x64`; `` |
 | <a id="k8s-pod-creation-time" href="#k8s-pod-creation-time">`k8s.pod.creation_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The creation timestamp of the Pod. [38] | `2025-12-04T08:41:03Z` |
@@ -82,8 +82,8 @@ Kubernetes resource attributes.
 | <a id="k8s-pod-label" href="#k8s-pod-label">`k8s.pod.label.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [41] | `my-app`; `x64`; `` |
 | <a id="k8s-pod-name" href="#k8s-pod-name">`k8s.pod.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the Pod. | `opentelemetry-pod-autoconf` |
 | <a id="k8s-pod-start-time" href="#k8s-pod-start-time">`k8s.pod.start_time`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The start timestamp of the Pod. [42] | `2025-12-04T08:41:03Z` |
-| <a id="k8s-pod-status-phase" href="#k8s-pod-status-phase">`k8s.pod.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Pending`; `Running` |
-| <a id="k8s-pod-status-reason" href="#k8s-pod-status-reason">`k8s.pod.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Evicted`; `NodeAffinity` |
+| <a id="k8s-pod-status-phase" href="#k8s-pod-status-phase">`k8s.pod.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Pending`; `Running` [(see more)](#k8s-pod-status-phase-values) |
+| <a id="k8s-pod-status-reason" href="#k8s-pod-status-reason">`k8s.pod.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Evicted`; `NodeAffinity` [(see more)](#k8s-pod-status-reason-values) |
 | <a id="k8s-pod-uid" href="#k8s-pod-uid">`k8s.pod.uid`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-replicaset-annotation" href="#k8s-replicaset-annotation">`k8s.replicaset.annotation.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [43] | `0`; `` |
 | <a id="k8s-replicaset-creation-time" href="#k8s-replicaset-creation-time">`k8s.replicaset.creation_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The creation timestamp of the ReplicaSet. [44] | `2025-12-04T08:41:03Z` |
@@ -96,15 +96,15 @@ Kubernetes resource attributes.
 | <a id="k8s-resourcequota-resource-name" href="#k8s-resourcequota-resource-name">`k8s.resourcequota.resource_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the K8s resource a resource quota defines. [46] | `count/replicationcontrollers` |
 | <a id="k8s-resourcequota-uid" href="#k8s-resourcequota-uid">`k8s.resourcequota.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-service-annotation" href="#k8s-service-annotation">`k8s.service.annotation.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The annotation placed on the Service, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [47] | `true`; `` |
-| <a id="k8s-service-endpoint-address-type" href="#k8s-service-endpoint-address-type">`k8s.service.endpoint.address_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The address type of the service endpoint. [48] | `IPv4`; `IPv6` |
-| <a id="k8s-service-endpoint-condition" href="#k8s-service-endpoint-condition">`k8s.service.endpoint.condition`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The condition of the service endpoint. [49] | `ready`; `serving`; `terminating` |
+| <a id="k8s-service-endpoint-address-type" href="#k8s-service-endpoint-address-type">`k8s.service.endpoint.address_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The address type of the service endpoint. [48] | `IPv4`; `IPv6` [(see more)](#k8s-service-endpoint-address-type-values) |
+| <a id="k8s-service-endpoint-condition" href="#k8s-service-endpoint-condition">`k8s.service.endpoint.condition`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The condition of the service endpoint. [49] | `ready`; `serving`; `terminating` [(see more)](#k8s-service-endpoint-condition-values) |
 | <a id="k8s-service-endpoint-zone" href="#k8s-service-endpoint-zone">`k8s.service.endpoint.zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The zone of the service endpoint. [50] | `us-east-1a`; `us-west-2b`; `zone-a`; `` |
 | <a id="k8s-service-label" href="#k8s-service-label">`k8s.service.label.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The label placed on the Service, the `<key>` being the label name, the value being the label value, even if the value is empty. [51] | `my-service`; `` |
 | <a id="k8s-service-name" href="#k8s-service-name">`k8s.service.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Service. | `my-service` |
 | <a id="k8s-service-publish-not-ready-addresses" href="#k8s-service-publish-not-ready-addresses">`k8s.service.publish_not_ready_addresses`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | Whether the Service publishes not-ready endpoints. [52] | `true`; `false` |
 | <a id="k8s-service-selector" href="#k8s-service-selector">`k8s.service.selector.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The selector key-value pair placed on the Service, the `<key>` being the selector key, the value being the selector value. [53] | `my-app`; `v1` |
 | <a id="k8s-service-traffic-distribution" href="#k8s-service-traffic-distribution">`k8s.service.traffic_distribution`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The traffic distribution policy for the Service. [54] | `PreferSameZone`; `PreferSameNode` |
-| <a id="k8s-service-type" href="#k8s-service-type">`k8s.service.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the Kubernetes Service. [55] | `ClusterIP`; `NodePort`; `LoadBalancer` |
+| <a id="k8s-service-type" href="#k8s-service-type">`k8s.service.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the Kubernetes Service. [55] | `ClusterIP`; `NodePort`; `LoadBalancer` [(see more)](#k8s-service-type-values) |
 | <a id="k8s-service-uid" href="#k8s-service-uid">`k8s.service.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the Service. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [56] | `1`; `` |
 | <a id="k8s-statefulset-creation-time" href="#k8s-statefulset-creation-time">`k8s.statefulset.creation_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The creation timestamp of the StatefulSet. [57] | `2025-12-04T08:41:03Z` |
@@ -113,7 +113,7 @@ Kubernetes resource attributes.
 | <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-storageclass-name" href="#k8s-storageclass-name">`k8s.storageclass.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 | <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the K8s volume. | `volume0` |
-| <a id="k8s-volume-type" href="#k8s-volume-type">`k8s.volume.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` |
+| <a id="k8s-volume-type" href="#k8s-volume-type">`k8s.volume.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
 
 **[1] `k8s.cluster.uid`:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
@@ -479,6 +479,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 ---
 
+<a id="k8s-container-ephemeral-storage-fs-type-values"></a>
+
 `k8s.container.ephemeral_storage.fs_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -487,6 +489,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 | `rootfs` | For the container's writable layer usage. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="k8s-container-status-reason-values"></a>
 
 `k8s.container.status.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -504,6 +508,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 ---
 
+<a id="k8s-container-status-state-values"></a>
+
 `k8s.container.status.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -514,6 +520,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 ---
 
+<a id="k8s-namespace-phase-values"></a>
+
 `k8s.namespace.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -522,6 +530,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 | `terminating` | Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="k8s-node-condition-status-values"></a>
 
 `k8s.node.condition.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -532,6 +542,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 | `unknown` | condition_unknown | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="k8s-node-condition-type-values"></a>
 
 `k8s.node.condition.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -545,6 +557,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 ---
 
+<a id="k8s-persistentvolume-reclaim-policy-values"></a>
+
 `k8s.persistentvolume.reclaim_policy` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -554,6 +568,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 | `Retain` | The volume will be retained when released from its claim. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="k8s-persistentvolume-status-phase-values"></a>
 
 `k8s.persistentvolume.status.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -567,6 +583,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 ---
 
+<a id="k8s-persistentvolumeclaim-status-phase-values"></a>
+
 `k8s.persistentvolumeclaim.status.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -576,6 +594,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 | `Pending` | The claim has not yet been bound to a volume. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="k8s-pod-status-phase-values"></a>
 
 `k8s.pod.status.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -589,6 +609,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 ---
 
+<a id="k8s-pod-status-reason-values"></a>
+
 `k8s.pod.status.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -601,6 +623,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 ---
 
+<a id="k8s-service-endpoint-address-type-values"></a>
+
 `k8s.service.endpoint.address_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -610,6 +634,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 | `IPv6` | IPv6 address type | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="k8s-service-endpoint-condition-values"></a>
 
 `k8s.service.endpoint.condition` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -621,6 +647,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 ---
 
+<a id="k8s-service-type-values"></a>
+
 `k8s.service.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -631,6 +659,8 @@ in ISO 8601 (RFC 3339 compatible) format.
 | `NodePort` | NodePort service type | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="k8s-volume-type-values"></a>
 
 `k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -10,6 +10,7 @@ linkTitle: MongoDB
 
 - [Spans](#spans)
   - [Example](#example)
+- [Context propagation](#context-propagation)
 - [Metrics](#metrics)
 
 <!-- END doctoc -->
@@ -42,10 +43,10 @@ Spans representing calls to MongoDB adhere to the general [Semantic Conventions 
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed. | `findAndModify`; `getMore`; `insertMany`; `bulkWrite` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The MongoDB database name. | `customers`; `test.users` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [2] | string | [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string. [3] | `36`; `11602` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [(see more)](#error-type-values) |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | int | Server port number. [6] | `80`; `8080`; `443` |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [7] | `2`; `3`; `4` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database address specified in the client configuration. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 For batch operations, if the individual operations would all have the same `db.collection.name` when executed as non-batch operations, then that collection name SHOULD be used.
@@ -58,9 +59,9 @@ For batch operations, if the individual operations would all have the same `db.c
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[5] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[5] `server.port`:** If `server.address` is set and the client is configured with a single database server endpoint that uses a non-default port.
 
-**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[6] `server.port`:** `server.port` SHOULD reflect the database port specified in the client configuration. It SHOULD NOT be derived from the server selected for an operation.
 
 **[7] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
 or more database operations explicitly submitted as separate operations in a single
@@ -85,7 +86,15 @@ It SHOULD NOT be set for non-batch operations.
 A request to execute a batch operation with no operations SHOULD also be treated
 as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
-**[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[8] `server.address`:** Instrumentation SHOULD set `server.address` to the database address specified in the client configuration.
+It SHOULD NOT derive the value from the server selected for an operation.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+See [Database server address](/docs/db/database-spans.md#database-server-address) for guidance and
+examples.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -97,6 +106,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.port`](/docs/registry/attributes/server.md)
 
 ---
+
+<a id="error-type-values"></a>
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -120,6 +131,76 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `db.namespace`         | `"shopDb"`                 |
 | `db.query.text`        | not set                    |
 | `db.operation.name`    | `"findAndModify"`          |
+
+## Context propagation
+
+**Status**: [Development][DocumentStatus]
+
+Instrumentations MAY propagate context to MongoDB servers and compatible
+servers through the [`comment` command field](https://www.mongodb.com/docs/manual/reference/command/find/).
+This context propagation mechanism SHOULD NOT be enabled by default, but
+instrumentation MAY allow users to opt into it.
+
+Before injecting context, instrumentation MUST determine that the target server
+accepts a BSON document as the value of `comment`. MongoDB 4.4 and later accept
+all BSON types for `comment`, while earlier versions accept only strings.
+Compatible servers may expose support through different versions or
+capabilities. If document-valued `comment` support is unknown or unavailable,
+instrumentation MUST skip context injection for the operation.
+
+When this mechanism is enabled and the target server supports document-valued
+`comment`, instrumentation MUST use the selected propagator to inject string
+key-value pairs into the top-level fields of a BSON document in `comment`,
+unless doing so would exceed an applicable size limit.
+
+The instrumentation SHOULD allow users to pass a propagator to overwrite the
+global propagator. If no propagator is provided by the user, instrumentation
+SHOULD use the global propagator. The override applies only to this
+instrumentation.
+
+The optional `originalComment` field is reserved for the application-provided
+comment, which can be any BSON type. When the application has set `comment`,
+instrumentation MUST preserve its value and BSON type unchanged in
+`originalComment`, including an explicitly set BSON `null`. When the application
+has not set `comment`, instrumentation MUST omit `originalComment`.
+Instrumentation MUST prevent propagators from setting `originalComment`.
+
+For example, with a W3C Trace Context propagator and an
+application-provided document comment:
+
+```json
+{
+  "comment": {
+    "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
+    "tracestate": "congo=t61rcWkgMzE",
+    "originalComment": {
+      "job": "monthly rollup"
+    }
+  }
+}
+```
+
+Servers that extract this context read the top-level string fields of a
+document-valued `comment` and need a propagator compatible with the one used
+for injection.
+
+MongoDB servers and compatible servers may expose or persist `comment` in logs,
+profiling data, or diagnostic interfaces. Instrumentations SHOULD document that
+every field injected into `comment` may be visible to users with access to those
+outputs, and that wrapping an application-provided comment may change the
+structure exposed in those outputs.
+
+The propagation document counts toward applicable BSON document and wire
+message size limits. Instrumentations SHOULD keep it compact and MUST NOT
+assume that the entire size limit is available for `comment`.
+
+If context injection would cause an otherwise valid command to exceed an
+applicable size limit, instrumentation MUST skip injection and send the
+original command unchanged. This includes preserving the value and BSON type
+of any application-provided `comment`, including explicit BSON `null`, or
+leaving `comment` absent if it was not provided. Instrumentation MUST NOT
+truncate an application-provided comment or fail the operation because
+context injection would exceed a size limit.
 
 ## Metrics
 

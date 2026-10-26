@@ -32,9 +32,11 @@ They may be used in any Profiles record they apply to.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`profile.frame.type`](/docs/registry/attributes/profile.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Describes the interpreter or compiler of a single frame. | `cpython` |
+| [`profile.frame.type`](/docs/registry/attributes/profile.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Describes the interpreter or compiler of a single frame. | `cpython` [(see more)](#profile-frame-type-values) |
 
 ---
+
+<a id="profile-frame-type-values"></a>
 
 `profile.frame.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -42,6 +44,7 @@ They may be used in any Profiles record they apply to.
 | --- | --- | --- |
 | `beam` | [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cpython` | [Python](https://wikipedia.org/wiki/Python_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cuda` | [CUDA](https://wikipedia.org/wiki/CUDA) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `dotnet` | [.NET](https://wikipedia.org/wiki/.NET) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `go` | [Go](https://wikipedia.org/wiki/Go_(programming_language)), | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jvm` | [JVM](https://wikipedia.org/wiki/Java_virtual_machine) | ![Development](https://img.shields.io/badge/-development-blue) |

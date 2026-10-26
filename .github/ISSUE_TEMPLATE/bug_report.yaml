@@ -47,7 +47,6 @@ body:
         - area:dns
         - area:dotnet
         - area:elasticsearch
-        - area:enduser
         - area:error
         - area:exception
         - area:faas
@@ -74,7 +73,6 @@ body:
         - area:oci
         - area:onc-rpc
         - area:openshift
-        - area:opentracing
         - area:oracle-cloud
         - area:oracledb
         - area:os
@@ -100,7 +98,6 @@ body:
         - area:v8js
         - area:vcs
         - area:webengine
-        - area:zos
         # End semconv area list
   - type: textarea
     attributes:
