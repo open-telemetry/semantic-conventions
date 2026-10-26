@@ -1,7 +1,7 @@
 change_type: enhancement
 component: network
 note: >
-  Add `*.mac.address` attributes for local, peer, client, server, source, and
-  destination network endpoints.
+  Add `network.local.mac.address` and `network.peer.mac.address` attributes
+  for local and peer network endpoints.
 issues: [2416]
 subtext:
