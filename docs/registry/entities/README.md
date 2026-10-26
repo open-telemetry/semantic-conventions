@@ -26,7 +26,7 @@ Currently, the following namespaces exist:
 | | [aws.eks](aws.md#aws-eks) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.log](aws.md#aws-log) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Azure | | |
-| | [azure.app_service_plan.instance](azure.md#azure-app-service-plan-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [azure.app_service.instance](azure.md#azure-app-service-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Browser | | |
 | | [browser](browser.md#browser) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [browser.document](browser.md#browser-document) | ![Development](https://img.shields.io/badge/-development-blue) |

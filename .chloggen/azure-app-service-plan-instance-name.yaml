@@ -1,7 +1,0 @@
-change_type: enhancement
-
-component: azure
-
-note: Add `azure.app_service_plan.instance.name` for the App Service plan instance that Azure Monitor reports in the `Instance` metric dimension.
-
-issues: [4159]
