@@ -1,10 +1,4 @@
 change_type: deprecation
 component: messaging
-note: Rename `messaging.system` to `messaging.system.name` and align cloud-provider system values.
+note: Rename `messaging.system` to `messaging.system.name` and align cloud-provider values with their attribute namespaces.
 issues: [4250]
-subtext: |
-  The old attribute is deprecated.
-  When using `messaging.system.name`, replace `aws_sqs` with `aws.sqs`,
-  `eventgrid` with `azure.eventgrid`, `eventhubs` with `azure.eventhubs`,
-  `servicebus` with `azure.servicebus`, and `gcp_pubsub` with `gcp.pubsub`.
-  All other system values are unchanged.
