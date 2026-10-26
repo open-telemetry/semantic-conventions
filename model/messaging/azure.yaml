@@ -7,9 +7,9 @@ span_refinements:
     stability: development
     brief: Describes a message being created for sending to Azure Service Bus.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"servicebus"`.
-        examples: ['servicebus']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.servicebus"`.
+        examples: ['azure.servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
       - ref: messaging.message.conversation_id
@@ -25,9 +25,9 @@ span_refinements:
     stability: development
     brief: Describes a producer sending one or more messages to Azure Service Bus.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"servicebus"`.
-        examples: ['servicebus']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.servicebus"`.
+        examples: ['azure.servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
       - ref: messaging.message.conversation_id
@@ -46,9 +46,9 @@ span_refinements:
     stability: development
     brief: Describes a producer sending one or more messages to Azure Service Bus.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"servicebus"`.
-        examples: ['servicebus']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.servicebus"`.
+        examples: ['azure.servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
       - ref: messaging.message.conversation_id
@@ -67,9 +67,9 @@ span_refinements:
     stability: development
     brief: Describes a consumer receiving one or more messages from Azure Service Bus.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"servicebus"`.
-        examples: ['servicebus']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.servicebus"`.
+        examples: ['azure.servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
       - ref: messaging.destination.subscription.name
@@ -99,9 +99,9 @@ span_refinements:
     stability: development
     brief: Describes a consumer processing one or more messages from Azure Service Bus (push-based).
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"servicebus"`.
-        examples: ['servicebus']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.servicebus"`.
+        examples: ['azure.servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
       - ref: messaging.destination.subscription.name
@@ -126,9 +126,9 @@ span_refinements:
     stability: development
     brief: Describes settling (complete/abandon/defer/dead-letter) one or more Azure Service Bus messages.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"servicebus"`.
-        examples: ['servicebus']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.servicebus"`.
+        examples: ['azure.servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
       - ref: messaging.destination.subscription.name
@@ -159,9 +159,9 @@ span_refinements:
     stability: development
     brief: Describes a message being created for sending to Azure Event Hubs.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"eventhubs"`.
-        examples: ['eventhubs']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.eventhubs"`.
+        examples: ['azure.eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
       - ref: messaging.destination.name
@@ -179,9 +179,9 @@ span_refinements:
     stability: development
     brief: Describes a producer sending one or more messages to Azure Event Hubs.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"eventhubs"`.
-        examples: ['eventhubs']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.eventhubs"`.
+        examples: ['azure.eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
       - ref: messaging.destination.name
@@ -199,9 +199,9 @@ span_refinements:
     stability: development
     brief: Describes a producer sending one or more messages to Azure Event Hubs.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"eventhubs"`.
-        examples: ['eventhubs']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.eventhubs"`.
+        examples: ['azure.eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
       - ref: messaging.destination.name
@@ -219,9 +219,9 @@ span_refinements:
     stability: development
     brief: Describes a consumer receiving one or more messages from Azure Event Hubs (pull-based).
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"eventhubs"`.
-        examples: ['eventhubs']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.eventhubs"`.
+        examples: ['azure.eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
       - ref: messaging.destination.name
@@ -245,9 +245,9 @@ span_refinements:
     stability: development
     brief: Describes a consumer processing one or more messages from Azure Event Hubs (push-based).
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"eventhubs"`.
-        examples: ['eventhubs']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.eventhubs"`.
+        examples: ['azure.eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
       - ref: messaging.destination.name
@@ -271,9 +271,9 @@ span_refinements:
     stability: development
     brief: Describes checkpointing (settling) processed messages in Azure Event Hubs.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"eventhubs"`.
-        examples: ['eventhubs']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.eventhubs"`.
+        examples: ['azure.eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
       - ref: messaging.destination.name
@@ -312,9 +312,9 @@ spans:
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
-      - ref: messaging.system
-        note: MUST be set to `"servicebus"`.
-        examples: ['servicebus']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.servicebus"`.
+        examples: ['azure.servicebus']
         sampling_relevant: true
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
@@ -361,9 +361,9 @@ spans:
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
-      - ref: messaging.system
-        note: MUST be set to `"eventhubs"`.
-        examples: ['eventhubs']
+      - ref: messaging.system.name
+        note: MUST be set to `"azure.eventhubs"`.
+        examples: ['azure.eventhubs']
         sampling_relevant: true
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
