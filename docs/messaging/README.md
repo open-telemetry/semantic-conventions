@@ -53,4 +53,10 @@ Technology specific semantic conventions are defined for the following messaging
 * [Azure Service Bus](azure-messaging.md#azure-service-bus): Semantic Conventions for *Azure Service Bus*.
 * [Azure Event Hubs](azure-messaging.md#azure-event-hubs): Semantic Conventions for *Azure Event Hubs*.
 
+System-specific attributes use the `kafka.*`, `rabbitmq.*`, `rocketmq.*`,
+`gcp.pubsub.*`, `azure.servicebus.*`, and `azure.eventhubs.*` namespaces.
+For example, `messaging.kafka.offset` is deprecated in favor of `kafka.offset`.
+Shared attributes such as `messaging.destination.name` and the values of
+`messaging.system` are unchanged.
+
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

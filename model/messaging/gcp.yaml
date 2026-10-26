@@ -13,7 +13,7 @@ span_refinements:
         examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
       - ref: messaging.destination.name
         examples: ['MyTopic']
-      - ref: messaging.gcp_pubsub.message.ordering_key
+      - ref: gcp.pubsub.message.ordering_key
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
       - ref: messaging.operation.name
@@ -32,7 +32,7 @@ span_refinements:
         examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
       - ref: messaging.destination.name
         examples: ['MyTopic']
-      - ref: messaging.gcp_pubsub.message.ordering_key
+      - ref: gcp.pubsub.message.ordering_key
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
       - ref: messaging.operation.name
@@ -51,7 +51,7 @@ span_refinements:
         examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
       - ref: messaging.destination.name
         examples: ['MyTopic']
-      - ref: messaging.gcp_pubsub.message.ordering_key
+      - ref: gcp.pubsub.message.ordering_key
         requirement_level:
           conditionally_required: If the message type has an ordering key set.
       - ref: messaging.operation.name
@@ -76,8 +76,8 @@ span_refinements:
         requirement_level:
           conditionally_required: If applicable.
         sampling_relevant: true
-      - ref: messaging.gcp_pubsub.message.delivery_attempt
-      - ref: messaging.gcp_pubsub.message.ack_id
+      - ref: gcp.pubsub.message.delivery_attempt
+      - ref: gcp.pubsub.message.ack_id
       - ref: messaging.operation.name
         note: SHOULD be set to `receive`.
         examples: ['receive']
@@ -100,8 +100,8 @@ span_refinements:
         requirement_level:
           conditionally_required: If applicable.
         sampling_relevant: true
-      - ref: messaging.gcp_pubsub.message.delivery_attempt
-      - ref: messaging.gcp_pubsub.message.ack_id
+      - ref: gcp.pubsub.message.delivery_attempt
+      - ref: gcp.pubsub.message.ack_id
       - ref: messaging.operation.name
         note: |
           SHOULD be set to `subscribe`, representing the time from after the
@@ -126,9 +126,9 @@ span_refinements:
         requirement_level:
           conditionally_required: If applicable.
         sampling_relevant: true
-      - ref: messaging.gcp_pubsub.message.delivery_attempt
-      - ref: messaging.gcp_pubsub.message.ack_deadline
-      - ref: messaging.gcp_pubsub.message.ack_id
+      - ref: gcp.pubsub.message.delivery_attempt
+      - ref: gcp.pubsub.message.ack_deadline
+      - ref: gcp.pubsub.message.ack_id
       - ref: messaging.operation.name
         note: |
           Has the following well-known values for Google Cloud Pub/Sub settlement.
