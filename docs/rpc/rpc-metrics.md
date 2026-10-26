@@ -30,11 +30,11 @@ conventions, such as [gRPC](grpc.md#metrics).
 > (or prior):
 >
 > * SHOULD NOT change the version of the RPC conventions that they emit by
->   default in their existing major version. Conventions include (but are not
->   limited to) attributes, metric and span names, and unit of measure.
+>   default in their existing major version. Conventions include, but are not
+>   limited to, attributes, metric and span names, span kind, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in their existing major version as a comma-separated list of category-specific values
->   (e.g., http, databases, rpc). The list of values includes:
+>   (e.g., `http`, `database`, `messaging`). The list of values includes:
 >   * `rpc` - emit the stable RPC conventions, and stop emitting
 >     the experimental RPC conventions that the instrumentation emitted
 >     previously.
@@ -43,11 +43,14 @@ conventions, such as [gRPC](grpc.md#metrics).
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental RPC conventions
 >     the instrumentation was emitting previously.
->   * Note: `rpc/dup` has higher precedence than `rpc` in case both values are present
+>   * `rpc/dup` takes precedence over `rpc` if both values are present.
 > * SHOULD maintain (security patching at a minimum) their existing major version
 >   for at least six months after it starts emitting both sets of conventions.
 > * MAY drop the environment variable in their next major version and emit only
 >   the stable RPC conventions.
+>
+> `OTEL_SEMCONV_STABILITY_OPT_IN` is only intended to be used when migrating
+> from experimental semantic conventions to their initial stable version.
 
 *Note: RPC server and client metrics are split to allow correlation across client/server boundaries, e.g. Lining up an RPC method latency to determine if the server is responsible for latency the client is seeing.*
 
