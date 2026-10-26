@@ -5,8 +5,7 @@ linkTitle: RPC migration
 # RPC semantic convention stability migration guide
 
 RPC spans and call duration metrics, including the gRPC and Apache Dubbo conventions,
-are stable. Connect RPC, JSON-RPC, header and trailer attributes, and exception events
-remain in development.
+are stable. Connect RPC, JSON-RPC, and exception events remain in development.
 
 Due to the significant number of modifications and the extensive user base
 affected by them, existing RPC instrumentations published by

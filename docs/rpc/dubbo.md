@@ -53,8 +53,8 @@ for the details on which values classify as errors.
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [6] | int | Server port number. [7] | `20880`; `50051` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [8] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Dubbo request attachments. [9] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Dubbo response attachments. [10] | `["attribute_value"]` |
+| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | Dubbo request attachments. [9] | `["1.2.3.4", "1.2.3.5"]` |
+| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | Dubbo response attachments. [10] | `["attribute_value"]` |
 
 **[1] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
 
@@ -274,8 +274,8 @@ for the details on which values classify as errors.
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [6] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when available. | string | A string identifying a group of RPC server instances request is sent to. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Dubbo request attachments. [8] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Dubbo response attachments. [9] | `["attribute_value"]` |
+| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | Dubbo request attachments. [8] | `["1.2.3.4", "1.2.3.5"]` |
+| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | Dubbo response attachments. [9] | `["attribute_value"]` |
 
 **[1] `rpc.status_code`:** For Dubbo2, the following status codes SHOULD be considered errors:
 

@@ -50,9 +50,9 @@ document for details on how to record span status.
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if available. | int | Server port number. [6] | `80`; `8080`; `443` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [7] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [request headers](https://connectrpc.com/docs/protocol/). [8] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload. [9] | `["attribute_value"]` |
-| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload. [10] | `["attribute_value"]` |
+| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | Connect RPC [request headers](https://connectrpc.com/docs/protocol/). [8] | `["1.2.3.4", "1.2.3.5"]` |
+| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload. [9] | `["attribute_value"]` |
+| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload. [10] | `["attribute_value"]` |
 
 **[1] `rpc.system.name`:** MUST be set to `connectrpc`.
 
@@ -233,9 +233,9 @@ document for details on how to record span status.
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [6] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when available. | string | A string identifying a group of RPC server instances request is sent to. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [request headers](https://connectrpc.com/docs/protocol/). [8] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload. [9] | `["attribute_value"]` |
-| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload. [10] | `["attribute_value"]` |
+| [`rpc.request.header.<key>`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | Connect RPC [request headers](https://connectrpc.com/docs/protocol/). [8] | `["1.2.3.4", "1.2.3.5"]` |
+| [`rpc.response.header.<key>`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | Connect RPC [response headers](https://connectrpc.com/docs/protocol/), sent before the response payload. [9] | `["attribute_value"]` |
+| [`rpc.response.trailer.<key>`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | Connect RPC [response trailers](https://connectrpc.com/docs/protocol/), sent after the response payload. [10] | `["attribute_value"]` |
 
 **[1] `rpc.system.name`:** MUST be set to `connectrpc`.
 
