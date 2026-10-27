@@ -35,8 +35,8 @@ See also:
 The following well-known definitions MUST be used if you set this attribute and they apply:
 
 - **AWS Lambda:** The resource-id within the [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
-- **GCP:** Follows the format of "<PROJECT_ID>/<SERVICE_ID>", with values extracted from the Resource URI.
-- **Azure:** Follows the format of "<resource-group-name>/<function-app-name>/<function-name>", with values extracted from the Fully Qualified Resource ID.
+- **GCP:** Follows the format of `<PROJECT_ID>/<SERVICE_ID>`, with values extracted from the Resource URI.
+- **Azure:** Follows the format of `<resource-group-name>/<function-app-name>/<function-name>`, with values extracted from the Fully Qualified Resource ID.
 
 In cases where the FaaS platform doesn't provide access to a unique ID, the name should be used as a fallback.
 
