@@ -13,8 +13,6 @@ groups:
         role: descriptive
       - ref: faas.version
         role: identifying
-      - ref: faas.max_memory
-        role: descriptive
   - id: entity.faas.instance
     type: entity
     stability: development
@@ -25,4 +23,6 @@ groups:
       - ref: faas.instance.id
         role: identifying
       - ref: cloud.resource_id
+        role: descriptive
+      - ref: faas.max_memory
         role: descriptive
