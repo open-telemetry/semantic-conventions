@@ -680,4 +680,3 @@ to a Pod in that Pods consume node resources and PVCs consume PV resources.
 The following guidelines apply to Kubernetes conventions:
 
 - [Service attributes](../../non-normative/k8s-attributes.md#service-attributes)
-- [General naming guidance](../../general/naming.md#general-naming-considerations)
