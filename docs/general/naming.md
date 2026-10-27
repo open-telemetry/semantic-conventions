@@ -76,9 +76,10 @@ Names SHOULD follow these rules:
   words by underscores (i.e. use snake_case). For example
   `http.response.status_code` denotes the status code in the HTTP namespace.
 
-  Known exceptions include
-  [K8s API names](../non-normative/naming-known-exceptions.md) where a single
-  word is used for consistency with the instrumented API.
+  When a technology or domain has an established single-word spelling
+  (in its APIs, SDKs, or CLI), use it instead of splitting words with underscores.
+  For example, use `servicebus` instead of `service_bus`, `pubsub` instead of `pub_sub`,
+  or [K8s API names](../non-normative/naming-known-exceptions.md) such as `replicaset`.
 
   Use underscore only when using dot (namespacing) does not make sense or changes
   the semantic meaning of the name. For example, use `rate_limiting`
