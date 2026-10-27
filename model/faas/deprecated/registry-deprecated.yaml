@@ -4,6 +4,14 @@ groups:
     type: attribute_group
     display_name: Deprecated Function as a Service Attributes
     attributes:
+      - id: faas.coldstart
+        type: boolean
+        deprecated:
+          reason: renamed
+          renamed_to: faas.invocation.cold_start
+        brief: >
+          A boolean that is true if the serverless function is executed for the
+          first time (aka cold-start).
       - id: faas.invocation_id
         type: string
         deprecated:
