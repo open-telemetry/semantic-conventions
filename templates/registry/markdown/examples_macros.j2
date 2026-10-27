@@ -23,7 +23,9 @@
 {% macro format(item) %}{% if item.examples or item.type == "enum" or item.type is mapping %}{{formatText(item) | trim | replace('|', '\\|') }}{{ enum_values_link(item) }} {% endif %}{% endmacro %}
 
 {#- Links readers from the (possibly truncated) example values shown here directly to the full list of well-known values rendered separately below. Omitted when that table is suppressed as fallback-only, since the anchor it would point to does not exist. -#}
-{% macro enum_values_link(item) %}{% if item.type == "enum" and enums.is_fallback_only(item, item.members) == "False" %}{%- set anchor_id = item.id | kebab_case %} [(see more)](#{{ anchor_id }}-values){% elif item.type is mapping and enums.is_fallback_only(item, item.type.members) == "False" %}{%- set anchor_id = (item.name if item.name is defined else item.id) | kebab_case %} [(see more)](#{{ anchor_id }}-values){% endif %}{% endmacro %}
+{% macro enum_values_link(item) %}
+{%- set omit_table = item.annotations is defined and item.annotations.markdown is defined and item.annotations.markdown.omit_enum_table -%}
+{% if not omit_table %}{% if item.type == "enum" and (enums.is_fallback_only(item, item.members) == "False" or item.annotations is defined) %}{%- set anchor_id = item.id | kebab_case %} [(see more)](#{{ anchor_id }}-values){% elif item.type is mapping and enums.is_fallback_only(item, item.type.members) == "False" %}{%- set anchor_id = (item.name if item.name is defined else item.id) | kebab_case %} [(see more)](#{{ anchor_id }}-values){% endif %}{% endif %}{% endmacro %}
 
 {% macro formatText(item) %}{%- if item.examples %}
 {%- if "[]" in item.type and "template" not in item.type %}
