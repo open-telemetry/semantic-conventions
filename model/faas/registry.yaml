@@ -149,13 +149,13 @@ groups:
           SHOULD be equal to the `cloud.region` resource attribute of the
           invoked function.
         examples: 'eu-central-1'
-      - id: faas.invocation_id
+      - id: faas.invocation.id
         type: string
         stability: development
         brief: >
           The invocation ID of the current function invocation.
         examples: 'af9d5aa4-a685-4c5f-a22b-444f80b3cc28'
-      - id: faas.time
+      - id: faas.invocation.start_time
         type: string
         stability: development
         brief: >

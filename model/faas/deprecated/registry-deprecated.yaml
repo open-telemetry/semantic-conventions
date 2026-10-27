@@ -16,3 +16,24 @@ groups:
         note: >
           - **AWS Lambda:** Use the (full) log stream name.
         examples: ['2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de']
+      - id: faas.invocation_id
+        type: string
+        deprecated:
+          reason: renamed
+          renamed_to: faas.invocation.id
+        brief: >
+          The invocation ID of the current function invocation.
+        examples: 'af9d5aa4-a685-4c5f-a22b-444f80b3cc28'
+        annotations:
+          code_generation:
+            exclude: true
+      - id: faas.time
+        type: string
+        deprecated:
+          reason: renamed
+          renamed_to: faas.invocation.start_time
+        brief: >
+          A string containing the function invocation time in the
+          [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
+          format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
+        examples: "2020-01-23T13:47:06Z"
