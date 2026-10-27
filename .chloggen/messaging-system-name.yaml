@@ -1,4 +1,4 @@
 change_type: deprecation
 component: messaging
-note: Rename `messaging.system` to `messaging.system.name` and align cloud-provider values with their attribute namespaces.
+note: Rename `messaging.system` to `messaging.system.name` and use provider-qualified cloud messaging system values.
 issues: [4250]
