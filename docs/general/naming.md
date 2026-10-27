@@ -84,9 +84,8 @@ Names SHOULD follow these rules:
   precedence over separating words with underscores.
 
   For project, product, and protocol names, first look for that concatenated
-  form in the domain hosting the official website. A domain that merely
-  redirects to a different site is not evidence for concatenation. For
-  example, `jsonrpc.org` supports `jsonrpc` rather than `json_rpc`, and
+  form in the domain hosting the official website. For example, `jsonrpc.org`
+  supports `jsonrpc` rather than `json_rpc`, and
   `cloudfoundry.org` supports `cloudfoundry` rather than `cloud_foundry`.
 
   If the domain does not provide evidence, look for established concatenated
