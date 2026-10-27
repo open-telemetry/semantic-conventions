@@ -1,9 +1,8 @@
 groups:
   - id: registry.faas.deprecated
+    brief: Deprecated FaaS attributes
     type: attribute_group
     display_name: Deprecated Function as a Service Attributes
-    brief: FaaS attributes
-    stability: development
     attributes:
       - id: faas.instance
         type: string

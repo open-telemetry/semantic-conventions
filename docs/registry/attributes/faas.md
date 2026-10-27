@@ -120,7 +120,7 @@ definition of function name MUST be used for this attribute
 
 ## Deprecated Function as a Service Attributes
 
-FaaS attributes
+Deprecated FaaS attributes
 
 **Attributes:**
 
