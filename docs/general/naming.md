@@ -105,7 +105,7 @@ Names SHOULD follow these rules:
   Established technical terminology can also justify concatenation, such as
   [`filesystem`](https://man7.org/linux/man-pages/man5/filesystems.5.html)
   and [`mountpoint`](https://man7.org/linux/man-pages/man1/mountpoint.1.html)
-  in Unix. Where no established concatenated form exists, use underscores.
+  in UNIX. Where no established concatenated form exists, use underscores.
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
