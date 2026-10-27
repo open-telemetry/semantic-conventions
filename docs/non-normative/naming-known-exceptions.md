@@ -1,12 +1,19 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Naming known exceptions
+linkTitle: Kubernetes naming examples
 --->
 
-# Kubernetes naming exceptions
+# Kubernetes naming examples
 
 Kubernetes users are accustomed to the single-word resource names used in the Kubernetes API (e.g., `replicaset`, `statefulset`, `daemonset`, `replicationcontroller`, `resourcequota`). Using these same names in telemetry data makes it easier for users to map the data to familiar Kubernetes concepts and commands (e.g., `kubectl get replicaset`).
 
-When naming entities, attributes, or metrics related to Kubernetes objects, prioritize using the exact single-word form from the official Kubernetes API object names (i.e., borrow the existing single-word term from the API when there is a 1:1 mapping). The official list of API object names can be found in the [Kubernetes API reference documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/). For new terms or fields, follow the [general naming considerations](../general/naming.md).
+These resource names are examples of established concatenated forms under the
+[general naming considerations](../general/naming.md#general-naming-considerations),
+not a separate Kubernetes-specific exception. When naming entities, attributes,
+or metrics that map 1:1 to Kubernetes resources, use the same concatenated forms.
+The official list of API object names can be found in the
+[Kubernetes API reference documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/).
+For new terms or fields, follow the general naming considerations. CamelCase or
+PascalCase in an individual API field does not, by itself, justify concatenation.
 
 ## Naming Recommendations
 

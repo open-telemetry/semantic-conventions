@@ -76,24 +76,35 @@ Names SHOULD follow these rules:
   the words by underscores (i.e. use snake_case). For example,
   `http.response.status_code` denotes the status code in the HTTP namespace.
 
-  The underscore before a `db` suffix in database product names SHOULD be omitted,
-  as in `aws.dynamodb`.
+  An established concatenated form in the relevant ecosystem SHOULD take
+  precedence over separating words with underscores.
 
-  For top-level namespaces, see
-  [Choosing a system name](#choosing-a-system-name).
+  For project, product, and protocol names, first look for that concatenated
+  form in the official domain name. For example, `jsonrpc.org` supports
+  `jsonrpc` rather than `json_rpc`, and `cloudfoundry.org` supports
+  `cloudfoundry` rather than `cloud_foundry`.
 
-  Known exceptions include
-  [K8s API names](../non-normative/naming-known-exceptions.md) where a single
-  word is used for consistency with the instrumented API.
+  If the domain does not provide evidence, look for established concatenated
+  forms in official CLI commands or public API resource and service names.
+  For example:
+
+  - `secretsmanager`, matching the AWS CLI command
+    [`aws secretsmanager`](https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/).
+  - `replicaset` and `resourcequota`, matching
+    [Kubernetes resource names](../non-normative/naming-known-exceptions.md)
+    used in commands such as `kubectl get replicaset`.
+
+  CamelCase or PascalCase in an individual API field or SDK symbol is not,
+  by itself, evidence for concatenation.
+
+  Established technical terminology can also justify concatenation, such as
+  [`filesystem`](https://man7.org/linux/man-pages/man5/filesystems.5.html)
+  and [`mountpoint`](https://man7.org/linux/man-pages/man1/mountpoint.1.html)
+  in Unix. Where no established concatenated form exists, use underscores.
 
   Use underscore only when using dot (namespacing) does not make sense or changes
   the semantic meaning of the name. For example, use `rate_limiting`
   instead of `rate.limiting`.
-
-- Be idiomatic. When a project, technology, or domain has an established lowercase
-  spelling, prefer it, adapted to the supported character set. For example,
-  use `postgresql` instead of `postgre_sql`, `mongodb` instead of `mongo_db`, and
-  `jsonrpc` instead of `json_rpc`.
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
@@ -407,10 +418,6 @@ When adding new a system to the semantic conventions, follow these principles in
 
 1. The system name SHOULD adhere to the general attribute naming guidelines outlined in this document,
    as it will be used as a namespace in [system-specific attribute names](#system-specific-attributes).
-
-   For top-level namespaces derived from a project's or company's own domain
-   name, underscores SHOULD NOT be inserted between words. For example, use
-   `cloudfoundry`, matching `cloudfoundry.org`, rather than `cloud_foundry`.
 
 2. The system name SHOULD unambiguously identify this specific product or project.
 
