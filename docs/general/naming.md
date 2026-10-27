@@ -98,7 +98,7 @@ Names SHOULD follow these rules:
     [Kubernetes resource names](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/)
     used in commands such as `kubectl get replicaset`.
 
-  Language-specific spelling, such as individual API field or SDK 
+  Language-specific spelling, such as individual API field or SDK
   symbol, is not, by itself, evidence for concatenation.
 
   Established technical terminology can also justify concatenation, such as
