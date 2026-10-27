@@ -153,9 +153,9 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -247,9 +247,9 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -348,9 +348,9 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -450,9 +450,9 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |

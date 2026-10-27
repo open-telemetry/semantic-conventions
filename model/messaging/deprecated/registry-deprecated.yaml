@@ -15,9 +15,9 @@ groups:
           When migrating to `messaging.system.name`, update the following values:
 
           - `aws_sqs` to `aws.sqs`
-          - `eventgrid` to `azure.event_grid`
-          - `eventhubs` to `azure.event_hubs`
-          - `servicebus` to `azure.service_bus`
+          - `eventgrid` to `azure.eventgrid`
+          - `eventhubs` to `azure.eventhubs`
+          - `servicebus` to `azure.servicebus`
           - `gcp_pubsub` to `gcp.pubsub`
 
           All other values are unchanged.

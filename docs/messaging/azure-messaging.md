@@ -86,7 +86,7 @@ span (`messaging.send.producer`) instead and omit the "Create" span. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Service Bus operation name. [1] | `create` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.service_bus` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.servicebus` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `MessageLockLost`; `MessagingEntityNotFound`; `ServiceBusy` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The message destination name [5] | `MyQueue`; `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` |
@@ -101,7 +101,7 @@ span (`messaging.send.producer`) instead and omit the "Create" span. See
 
 **[1] `messaging.operation.name`:** SHOULD be set to `create`.
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.service_bus"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.servicebus"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -187,9 +187,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -225,7 +225,7 @@ injected into the message(s) as the creation context. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Service Bus operation name. [1] | `send`; `schedule` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.service_bus` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.servicebus` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `MessageLockLost`; `MessagingEntityNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyQueue`; `MyTopic` |
@@ -247,7 +247,7 @@ injected into the message(s) as the creation context. See
 - `send`
 - `schedule`
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.service_bus"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.servicebus"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -341,9 +341,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -380,7 +380,7 @@ creation context that was injected into the message. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Service Bus operation name. [1] | `send`; `schedule` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.service_bus` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.servicebus` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `MessageLockLost`; `MessagingEntityNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyQueue`; `MyTopic` |
@@ -402,7 +402,7 @@ creation context that was injected into the message. See
 - `send`
 - `schedule`
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.service_bus"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.servicebus"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -496,9 +496,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -533,7 +533,7 @@ call methods of messaging SDKs to receive messages. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Service Bus operation name. [1] | `receive`; `peek`; `receive_deferred` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.service_bus` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.servicebus` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `MessageLockLost`; `MessagingEntityNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyQueue`; `MyTopic` |
@@ -559,7 +559,7 @@ call methods of messaging SDKs to receive messages. See
 - `peek`
 - `receive_deferred`
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.service_bus"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.servicebus"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -656,9 +656,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -697,7 +697,7 @@ message creation context is used as the parent, see
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Service Bus operation name. [1] | `process` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.service_bus` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.servicebus` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `MessageLockLost`; `MessagingEntityNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyQueue`; `MyTopic` |
@@ -717,7 +717,7 @@ message creation context is used as the parent, see
 
 **[1] `messaging.operation.name`:** SHOULD be set to `process`.
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.service_bus"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.servicebus"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -810,9 +810,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -847,7 +847,7 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Service Bus operation name. [1] | `complete`; `abandon`; `dead_letter` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.service_bus` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.servicebus` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `MessageLockLost`; `MessagingEntityNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyQueue`; `MyTopic` |
@@ -872,7 +872,7 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 - `dead_letter`
 - `delete`
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.service_bus"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.servicebus"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -976,9 +976,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1013,7 +1013,7 @@ lock renewal - that do not map to a create, send, receive, process, or settle sp
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Service Bus operation name. [1] | `accept_session`; `renew_message_lock`; `create_transaction` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.service_bus` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.servicebus` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `MessageLockLost`; `MessagingEntityNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyQueue`; `MyTopic` |
@@ -1036,7 +1036,7 @@ lock renewal - that do not map to a create, send, receive, process, or settle sp
 - scheduling operations: `cancel_scheduled`
 - transaction operations: `create_transaction`, `commit_transaction`, `rollback_transaction`
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.service_bus"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.servicebus"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -1122,9 +1122,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1165,7 +1165,7 @@ span (`messaging.send.producer`) instead and omit the "Create" span. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Event Hubs operation name. [1] | `create` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.event_hubs` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.eventhubs` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `ConsumerDisconnected`; `ResourceNotFound`; `ServiceBusy` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The message destination name [5] | `MyTopic` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
@@ -1180,7 +1180,7 @@ span (`messaging.send.producer`) instead and omit the "Create" span. See
 
 **[1] `messaging.operation.name`:** SHOULD be set to `create`.
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.event_hubs"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.eventhubs"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -1266,9 +1266,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1304,7 +1304,7 @@ injected into the message(s) as the creation context. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Event Hubs operation name. [1] | `send` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.event_hubs` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.eventhubs` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `ConsumerDisconnected`; `ResourceNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
@@ -1323,7 +1323,7 @@ injected into the message(s) as the creation context. See
 
 **[1] `messaging.operation.name`:** SHOULD be set to `send`.
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.event_hubs"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.eventhubs"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -1417,9 +1417,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1456,7 +1456,7 @@ creation context that was injected into the message. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Event Hubs operation name. [1] | `send` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.event_hubs` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.eventhubs` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `ConsumerDisconnected`; `ResourceNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
@@ -1475,7 +1475,7 @@ creation context that was injected into the message. See
 
 **[1] `messaging.operation.name`:** SHOULD be set to `send`.
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.event_hubs"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.eventhubs"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -1569,9 +1569,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1606,7 +1606,7 @@ call methods of messaging SDKs to receive messages. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Event Hubs operation name. [1] | `receive` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.event_hubs` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.eventhubs` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `ConsumerDisconnected`; `ResourceNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
@@ -1627,7 +1627,7 @@ call methods of messaging SDKs to receive messages. See
 
 **[1] `messaging.operation.name`:** SHOULD be set to `receive`.
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.event_hubs"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.eventhubs"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -1722,9 +1722,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1763,7 +1763,7 @@ message creation context is used as the parent, see
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Event Hubs operation name. [1] | `process` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.event_hubs` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.eventhubs` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `ConsumerDisconnected`; `ResourceNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
@@ -1782,7 +1782,7 @@ message creation context is used as the parent, see
 
 **[1] `messaging.operation.name`:** SHOULD be set to `process`.
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.event_hubs"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.eventhubs"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -1873,9 +1873,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1910,7 +1910,7 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Event Hubs operation name. [1] | `checkpoint` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.event_hubs` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.eventhubs` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `ConsumerDisconnected`; `ResourceNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
@@ -1928,7 +1928,7 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 
 **[1] `messaging.operation.name`:** SHOULD be set to `checkpoint`.
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.event_hubs"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.eventhubs"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -2017,9 +2017,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -2054,7 +2054,7 @@ do not map to a create, send, receive, process, or settle span.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Azure Event Hubs operation name. [1] | `get_partition_properties`; `get_event_hub_properties` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.event_hubs` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `azure.eventhubs` [(see more)](#messaging-system-name-values) |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `ConsumerDisconnected`; `ResourceNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
@@ -2074,7 +2074,7 @@ do not map to a create, send, receive, process, or settle span.
 - `get_partition_properties`
 - `get_event_hub_properties`
 
-**[2] `messaging.system.name`:** MUST be set to `"azure.event_hubs"`.
+**[2] `messaging.system.name`:** MUST be set to `"azure.eventhubs"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -2160,9 +2160,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_grid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.event_hubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.service_bus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |

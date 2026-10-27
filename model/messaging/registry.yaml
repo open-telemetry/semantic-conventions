@@ -176,16 +176,16 @@ groups:
               value: 'aws.sqs'
               brief: 'Amazon Simple Queue Service (SQS)'
               stability: development
-            - id: azure.event_grid
-              value: 'azure.event_grid'
+            - id: azure.eventgrid
+              value: 'azure.eventgrid'
               brief: 'Azure Event Grid'
               stability: development
-            - id: azure.event_hubs
-              value: 'azure.event_hubs'
+            - id: azure.eventhubs
+              value: 'azure.eventhubs'
               brief: 'Azure Event Hubs'
               stability: development
-            - id: azure.service_bus
-              value: 'azure.service_bus'
+            - id: azure.servicebus
+              value: 'azure.servicebus'
               brief: 'Azure Service Bus'
               stability: development
             - id: gcp.pubsub
