@@ -403,6 +403,10 @@ When adding new a system to the semantic conventions, follow these principles in
 1. The system name SHOULD adhere to the general attribute naming guidelines outlined in this document,
    as it will be used as a namespace in [system-specific attribute names](#system-specific-attributes).
 
+   For top-level namespaces derived from a project's or company's own domain
+   name, underscores SHOULD NOT be inserted between words. For example, use
+   `cloudfoundry`, matching `cloudfoundry.org`, rather than `cloud_foundry`.
+
 2. The system name SHOULD unambiguously identify this specific product or project.
 
    For example, use `gcp.pubsub` or `oracle.db`. Avoid generic names like `pubsub`,
