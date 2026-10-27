@@ -90,6 +90,11 @@ Names SHOULD follow these rules:
   the semantic meaning of the name. For example, use `rate_limiting`
   instead of `rate.limiting`.
 
+- Be idiomatic. When a project, technology, or domain has an established lowercase
+  spelling, prefer it, adapted to the supported character set. For example,
+  use `postgresql` instead of `postgre_sql`, `mongodb` instead of `mongo_db`, and
+  `jsonrpc` instead of `json_rpc`.
+
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
   - When introducing a name describing a certain property of the object,
