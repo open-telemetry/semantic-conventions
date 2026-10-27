@@ -91,7 +91,7 @@ Names SHOULD follow these rules:
   - `secretsmanager`, matching the AWS CLI command
     [`aws secretsmanager`](https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/).
   - `replicaset` and `resourcequota`, matching
-    [Kubernetes resource names](../non-normative/naming-known-exceptions.md)
+    [Kubernetes resource names](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/)
     used in commands such as `kubectl get replicaset`.
 
   CamelCase or PascalCase in an individual API field or SDK symbol is not,
