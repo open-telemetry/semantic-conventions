@@ -34,7 +34,7 @@ use cases.
 
 > [!IMPORTANT]
 > Existing FaaS instrumentations that are using
-> [v1.44.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/faas/aws-lambda.md)
+> [v1.44.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.44.0/docs/faas/aws-lambda.md)
 > (or prior):
 >
 > * SHOULD NOT change the version of the FaaS conventions that they emit by
