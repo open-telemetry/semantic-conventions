@@ -72,6 +72,10 @@ Names SHOULD follow these rules:
   `*{object}.{property}` pattern. Avoid using underscore (`*{object}_{property}`)
   if this object could have other properties.
 
+- Use underscore only when using dot (namespacing) does not make sense or changes
+  the semantic meaning of the name. For example, use `rate_limiting`
+  instead of `rate.limiting`.
+
 - For each multi-word component of a dot-delimited name, separate
   the words by underscores (i.e. use snake_case). For example,
   `http.response.status_code` denotes the status code in the HTTP namespace.
@@ -102,10 +106,6 @@ Names SHOULD follow these rules:
   [`filesystem`](https://man7.org/linux/man-pages/man5/filesystems.5.html)
   and [`mountpoint`](https://man7.org/linux/man-pages/man1/mountpoint.1.html)
   in Unix. Where no established concatenated form exists, use underscores.
-
-  Use underscore only when using dot (namespacing) does not make sense or changes
-  the semantic meaning of the name. For example, use `rate_limiting`
-  instead of `rate.limiting`.
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
