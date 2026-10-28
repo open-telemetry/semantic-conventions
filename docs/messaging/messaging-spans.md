@@ -374,7 +374,7 @@ The attributes used by these spans are organized into the following namespaces:
 - `messaging.batch`: Contains attributes that describe batch operations.
 - `messaging.consumer`: Contains attributes that describe the application instance that consumes a message. See [Consumer](#consumer) for more details.
 
-Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace.
+Messaging system-specific attributes MUST be defined in the corresponding system namespace, such as `kafka` or `azure.servicebus`.
 
 ### Create span
 
@@ -1314,7 +1314,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 ### Recording per-message attributes on batch operations
 
 All messaging operations (`send`, `receive`, `process`, or others not covered by this specification) can describe both single and/or batch of messages.
-Attributes in the `messaging.message` or `messaging.{system}.message` namespace apply to individual messages and typically vary between messages within the same batch.
+Attributes in the `messaging.message` or `{system}.message` namespace apply to individual messages and typically vary between messages within the same batch.
 
 Some messaging systems such as Kafka or Azure Event Grid allow sending a batch of messages to different topics in a single operation, resulting in
 different `messaging.destination.name` or other destination attributes within a single messaging operation.
