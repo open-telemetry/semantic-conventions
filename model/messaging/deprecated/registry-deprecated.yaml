@@ -5,6 +5,76 @@ groups:
     display_name: Deprecated Messaging Attributes
     brief: "Describes deprecated messaging attributes."
     attributes:
+      - id: messaging.system
+        brief: 'Deprecated, use `messaging.system.name` instead.'
+        note: |
+          The actual messaging system may differ from the one known by the client.
+          For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system`
+          is set to `kafka` based on the instrumentation's best knowledge.
+
+          When migrating to `messaging.system.name`, update the following values:
+
+          - `aws_sqs` to `aws.sqs`
+          - `eventgrid` to `azure.eventgrid`
+          - `eventhubs` to `azure.eventhubs`
+          - `servicebus` to `azure.servicebus`
+          - `gcp_pubsub` to `gcp.pubsub`
+
+          All other values are unchanged.
+        deprecated:
+          reason: renamed
+          renamed_to: messaging.system.name
+        type:
+          members:
+            - id: activemq
+              value: 'activemq'
+              brief: 'Apache ActiveMQ'
+              stability: development
+            - id: aws.sns
+              value: 'aws.sns'
+              brief: 'Amazon Simple Notification Service (SNS)'
+              stability: development
+            - id: aws_sqs
+              value: 'aws_sqs'
+              brief: 'Amazon Simple Queue Service (SQS)'
+              stability: development
+            - id: eventgrid
+              value: 'eventgrid'
+              brief: 'Azure Event Grid'
+              stability: development
+            - id: eventhubs
+              value: 'eventhubs'
+              brief: 'Azure Event Hubs'
+              stability: development
+            - id: servicebus
+              value: 'servicebus'
+              brief: 'Azure Service Bus'
+              stability: development
+            - id: gcp_pubsub
+              value: 'gcp_pubsub'
+              brief: 'Google Cloud Pub/Sub'
+              stability: development
+            - id: jms
+              value: 'jms'
+              brief: 'Java Message Service'
+              stability: development
+            - id: kafka
+              value: 'kafka'
+              brief: 'Apache Kafka'
+              stability: development
+            - id: rabbitmq
+              value: 'rabbitmq'
+              brief: 'RabbitMQ'
+              stability: development
+            - id: rocketmq
+              value: 'rocketmq'
+              brief: 'Apache RocketMQ'
+              stability: development
+            - id: pulsar
+              value: 'pulsar'
+              brief: 'Apache Pulsar'
+              stability: development
+        stability: development
       - id: messaging.kafka.destination.partition
         type: int
         brief: >

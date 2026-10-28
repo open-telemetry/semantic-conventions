@@ -6,9 +6,9 @@ span_refinements:
     stability: development
     brief: Describes a message being created for publishing to Google Cloud Pub/Sub.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"gcp_pubsub"`.
-        examples: ['gcp_pubsub']
+      - ref: messaging.system.name
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
       - ref: error.type
         examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
       - ref: messaging.destination.name
@@ -25,9 +25,9 @@ span_refinements:
     stability: development
     brief: Describes a producer publishing one or more messages to Google Cloud Pub/Sub.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"gcp_pubsub"`.
-        examples: ['gcp_pubsub']
+      - ref: messaging.system.name
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
       - ref: error.type
         examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
       - ref: messaging.destination.name
@@ -44,9 +44,9 @@ span_refinements:
     stability: development
     brief: Describes a producer publishing one or more messages to Google Cloud Pub/Sub.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"gcp_pubsub"`.
-        examples: ['gcp_pubsub']
+      - ref: messaging.system.name
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
       - ref: error.type
         examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
       - ref: messaging.destination.name
@@ -63,9 +63,9 @@ span_refinements:
     stability: development
     brief: Describes a consumer receiving one or more messages from Google Cloud Pub/Sub (pull-based).
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"gcp_pubsub"`.
-        examples: ['gcp_pubsub']
+      - ref: messaging.system.name
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
       - ref: error.type
         examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
       - ref: messaging.destination.name
@@ -87,9 +87,9 @@ span_refinements:
     stability: development
     brief: Describes a consumer processing one or more messages from Google Cloud Pub/Sub (push-based).
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"gcp_pubsub"`.
-        examples: ['gcp_pubsub']
+      - ref: messaging.system.name
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
       - ref: error.type
         examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
       - ref: messaging.destination.name
@@ -113,9 +113,9 @@ span_refinements:
     stability: development
     brief: Describes settling (ack/nack/modack) one or more Google Cloud Pub/Sub messages.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"gcp_pubsub"`.
-        examples: ['gcp_pubsub']
+      - ref: messaging.system.name
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
       - ref: error.type
         examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
       - ref: messaging.destination.name

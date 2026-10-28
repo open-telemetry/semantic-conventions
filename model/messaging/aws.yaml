@@ -14,9 +14,9 @@ span_refinements:
     stability: development
     brief: Describes a producer sending one or more messages to Amazon SQS.
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"aws_sqs"`.
-        examples: ['aws_sqs']
+      - ref: messaging.system.name
+        note: MUST be set to `"aws.sqs"`.
+        examples: ['aws.sqs']
       - ref: error.type
         examples: ['AWS.SimpleQueueService.NonExistentQueue', 'OverLimit', 'RequestThrottled']
       - ref: messaging.destination.name
@@ -28,9 +28,9 @@ span_refinements:
     stability: development
     brief: Describes a consumer receiving one or more messages from Amazon SQS (pull-based).
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"aws_sqs"`.
-        examples: ['aws_sqs']
+      - ref: messaging.system.name
+        note: MUST be set to `"aws.sqs"`.
+        examples: ['aws.sqs']
       - ref: error.type
         examples: ['AWS.SimpleQueueService.NonExistentQueue', 'OverLimit', 'RequestThrottled']
       - ref: messaging.destination.name
@@ -42,9 +42,9 @@ span_refinements:
     stability: development
     brief: Describes a consumer processing one or more messages from Amazon SQS (push-based).
     attributes:
-      - ref: messaging.system
-        note: MUST be set to `"aws_sqs"`.
-        examples: ['aws_sqs']
+      - ref: messaging.system.name
+        note: MUST be set to `"aws.sqs"`.
+        examples: ['aws.sqs']
       - ref: error.type
         examples: ['AWS.SimpleQueueService.NonExistentQueue', 'OverLimit', 'RequestThrottled']
       - ref: messaging.destination.name
@@ -57,7 +57,7 @@ span_refinements:
     stability: development
     brief: Describes a producer publishing one or more messages to Amazon SNS.
     attributes:
-      - ref: messaging.system
+      - ref: messaging.system.name
         note: MUST be set to `"aws.sns"`.
         examples: ['aws.sns']
       - ref: error.type

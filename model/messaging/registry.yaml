@@ -156,11 +156,11 @@ groups:
         brief: >
           The system-specific name of the messaging operation.
         examples: [ "ack", "nack", "send" ]
-      - id: messaging.system
+      - id: messaging.system.name
         brief: The messaging system as identified by the client instrumentation.
         note: >
           The actual messaging system may differ from the one known by the client.
-          For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system`
+          For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system.name`
           is set to `kafka` based on the instrumentation's best knowledge.
         type:
           members:
@@ -172,24 +172,24 @@ groups:
               value: 'aws.sns'
               brief: 'Amazon Simple Notification Service (SNS)'
               stability: development
-            - id: aws_sqs
-              value: 'aws_sqs'
+            - id: aws.sqs
+              value: 'aws.sqs'
               brief: 'Amazon Simple Queue Service (SQS)'
               stability: development
-            - id: eventgrid
-              value: 'eventgrid'
+            - id: azure.eventgrid
+              value: 'azure.eventgrid'
               brief: 'Azure Event Grid'
               stability: development
-            - id: eventhubs
-              value: 'eventhubs'
+            - id: azure.eventhubs
+              value: 'azure.eventhubs'
               brief: 'Azure Event Hubs'
               stability: development
-            - id: servicebus
-              value: 'servicebus'
+            - id: azure.servicebus
+              value: 'azure.servicebus'
               brief: 'Azure Service Bus'
               stability: development
-            - id: gcp_pubsub
-              value: 'gcp_pubsub'
+            - id: gcp.pubsub
+              value: 'gcp.pubsub'
               brief: 'Google Cloud Pub/Sub'
               stability: development
             - id: jms

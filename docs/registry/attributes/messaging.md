@@ -29,7 +29,7 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | <a id="messaging-message-id" href="#messaging-message-id">`messaging.message.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | <a id="messaging-operation-name" href="#messaging-operation-name">`messaging.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` |
 | <a id="messaging-operation-type" href="#messaging-operation-type">`messaging.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` [(see more)](#messaging-operation-type-values) |
-| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws.sns`; `aws_sqs` [(see more)](#messaging-system-values) |
+| <a id="messaging-system-name" href="#messaging-system-name">`messaging.system.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws.sns`; `aws.sqs` [(see more)](#messaging-system-name-values) |
 
 **[1] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -50,7 +50,7 @@ size should be used.
 
 **[8] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[9] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
+**[9] `messaging.system.name`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system.name` is set to `kafka` based on the instrumentation's best knowledge.
 
 ---
 
@@ -68,24 +68,24 @@ size should be used.
 
 ---
 
-<a id="messaging-system-values"></a>
+<a id="messaging-system-name-values"></a>
 
-`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`messaging.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Messaging Attributes
 
@@ -127,10 +127,25 @@ Describes deprecated messaging attributes.
 | <a id="messaging-servicebus-disposition-status" href="#messaging-servicebus-disposition-status">`messaging.servicebus.disposition_status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.servicebus.disposition_status`. | string | Deprecated, use `azure.servicebus.disposition_status` instead. | `complete`; `abandon`; `dead_letter` [(see more)](#messaging-servicebus-disposition-status-values) |
 | <a id="messaging-servicebus-message-delivery-count" href="#messaging-servicebus-message-delivery-count">`messaging.servicebus.message.delivery_count`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.servicebus.message.delivery_count`. | int | Deprecated, use `azure.servicebus.message.delivery_count` instead. | `2` |
 | <a id="messaging-servicebus-message-enqueued-time" href="#messaging-servicebus-message-enqueued-time">`messaging.servicebus.message.enqueued_time`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.servicebus.message.enqueued_time`. | int | Deprecated, use `azure.servicebus.message.enqueued_time` instead. | `1701393730` |
+| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.system.name`. | string | Deprecated, use `messaging.system.name` instead. [12] | `activemq`; `aws.sns`; `aws_sqs` [(see more)](#messaging-system-values) |
 
 **[10] `messaging.kafka.cluster.id`:** The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
 
 **[11] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+
+**[12] `messaging.system`:** The actual messaging system may differ from the one known by the client.
+For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system`
+is set to `kafka` based on the instrumentation's best knowledge.
+
+When migrating to `messaging.system.name`, update the following values:
+
+- `aws_sqs` to `aws.sqs`
+- `eventgrid` to `azure.eventgrid`
+- `eventhubs` to `azure.eventhubs`
+- `servicebus` to `azure.servicebus`
+- `gcp_pubsub` to `gcp.pubsub`
+
+All other values are unchanged.
 
 ---
 
@@ -168,3 +183,24 @@ Describes deprecated messaging attributes.
 | `complete` | Message is completed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `dead_letter` | Message is sent to dead letter queue | ![Development](https://img.shields.io/badge/-development-blue) |
 | `defer` | Message is deferred | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+<a id="messaging-system-values"></a>
+
+`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
+| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
+| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |

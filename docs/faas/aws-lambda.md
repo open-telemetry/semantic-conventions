@@ -213,7 +213,7 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation) f
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
 - [`messaging.operation.type`](/docs/messaging/messaging-spans.md) MUST be set to `process`.
-- [`messaging.system`](/docs/messaging/messaging-spans.md) MUST be set to `aws_sqs`.
+- [`messaging.system.name`](/docs/messaging/messaging-spans.md) MUST be set to `aws.sqs`.
 
 ### SQS message
 
@@ -226,7 +226,7 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation) f
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
 - [`messaging.operation.type`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `process`.
-- [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `aws_sqs`.
+- [`messaging.system.name`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `aws.sqs`.
 
 Other attributes defined for [messaging spans](/docs/messaging/messaging-spans.md#messaging-spans) SHOULD be set based on the available information in the SQS message
 event.
@@ -305,7 +305,7 @@ Function F:                      | Span ProcBatch |
 | Links | | | | Span Prod1 | Span Prod2 |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
-| `messaging.system` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` |
+| `messaging.system.name` | `aws.sqs` | `aws.sqs` | `aws.sqs` | `aws.sqs` | `aws.sqs` |
 | `messaging.destination.name` | `Q` | `Q` | `Q` | `Q` | `Q` |
 | `messaging.operation.name` | `send` | `send` | `process` | `process` | `process` |
 | `messaging.operation.type` | `publish` | `publish` | `process` | `process` | `process` |
