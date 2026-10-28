@@ -175,7 +175,7 @@ attribute_groups:
 span_refinements:
   - id: span.rpc.grpc.call.client
     ref: rpc.call.client
-    stability: release_candidate
+    stability: stable
     annotations:
       compatibility:
         # The existing gRPC span is now a refinement of the shared RPC span.
@@ -199,7 +199,7 @@ span_refinements:
 
   - id: span.rpc.grpc.call.server
     ref: rpc.call.server
-    stability: release_candidate
+    stability: stable
     annotations:
       compatibility:
         # The existing gRPC span is now a refinement of the shared RPC span.

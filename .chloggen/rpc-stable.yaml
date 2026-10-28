@@ -1,0 +1,4 @@
+change_type: enhancement
+component: rpc
+note: Mark RPC spans and call duration metrics as stable, including the gRPC and Apache Dubbo conventions.
+issues: [3477]
