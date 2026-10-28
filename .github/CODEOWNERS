@@ -150,6 +150,9 @@
 # Messaging semantic conventions
 /docs/messaging/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
 /model/messaging/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
+/model/kafka/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
+/model/rabbitmq/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
+/model/rocketmq/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
 
 # Feature flag semantic conventions
 /docs/feature-flags/               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers

@@ -9,16 +9,11 @@ groups:
     instrument: histogram
     unit: "{request_unit}"
     stability: development
-    extends: attributes.azure.cosmosdb.minimal
+    extends: azure.cosmosdb.client.detailed
     attributes:
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           recommended: If available
-      - ref: db.collection.name
-        brief: >
-          Cosmos DB container name.
-        note: >
-          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
   - id: metric.azure.cosmosdb.client.active_instance.count
     type: metric
@@ -30,5 +25,5 @@ groups:
     instrument: updowncounter
     unit: "{instance}"
     stability: development
-    extends: attributes.db.client.connection
-    # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
+    extends: db.client.connection
+      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible

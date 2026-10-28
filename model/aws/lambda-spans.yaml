@@ -22,7 +22,7 @@ span_refinements:
         requirement_level: recommended
       - ref: aws.lambda.resource_mapping.id
         requirement_level: recommended
-      - ref: faas.invocation_id
+      - ref: faas.invocation.id
         brief: The value of the AWS Request ID, which is always available through an accessor on the Lambda `Context`
       - ref: cloud.account.id
         note: "In some languages, this is available as an accessor on the Lambda `Context`. Otherwise, it can be parsed from the ARN as the fifth item when splitting on `:`"
