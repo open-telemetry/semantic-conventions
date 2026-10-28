@@ -40,6 +40,9 @@ spans:
     attributes:
       - ref_group: faas.attributes.server
       - ref: faas.trigger
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `datasource`.
         examples: ['datasource']
       - ref: faas.document.collection
@@ -60,6 +63,9 @@ spans:
     attributes:
       - ref_group: faas.attributes.server
       - ref: faas.trigger
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `timer`.
         examples: ['timer']
       - ref: faas.invocation.start_time

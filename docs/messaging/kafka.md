@@ -79,12 +79,12 @@ span (`messaging.send.producer`) instead and omit the "Create" span. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `create` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [2] | `UNKNOWN_TOPIC_OR_PARTITION`; `KAFKA_STORAGE_ERROR`; `NOT_ENOUGH_REPLICAS` |
 | [`kafka.message.tombstone`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | boolean | A boolean that is true if the message is a tombstone. | |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The message destination name [5] | `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [8] | `create` [(see more)](#messaging-operation-type-values) |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [8] | `create` |
 | [`kafka.message.key`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [9] | `myKey` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` |
@@ -159,41 +159,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 
----
-
-<a id="messaging-operation-type-values"></a>
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-<a id="messaging-system-name-values"></a>
-
-`messaging.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
@@ -222,13 +187,13 @@ injected into the message(s) as the creation context. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `send`; `publish` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [2] | `UNKNOWN_TOPIC_OR_PARTITION`; `KAFKA_STORAGE_ERROR`; `NOT_ENOUGH_REPLICAS` |
 | [`kafka.message.tombstone`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | boolean | A boolean that is true if the message is a tombstone. | |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` [(see more)](#messaging-operation-type-values) |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` |
 | [`kafka.cluster.id`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Kafka cluster ID, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API. [11] | `MkU3OEVBNTcwNTJENDM2Qk` |
 | [`kafka.message.key`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [12] | `myKey` |
 | [`kafka.offset`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | int | The offset of a record in the corresponding Kafka partition. | `42` |
@@ -317,41 +282,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.system.name`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
-
----
-
-<a id="messaging-operation-type-values"></a>
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-<a id="messaging-system-name-values"></a>
-
-`messaging.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -382,13 +312,13 @@ creation context that was injected into the message. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `send`; `publish` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [2] | `UNKNOWN_TOPIC_OR_PARTITION`; `KAFKA_STORAGE_ERROR`; `NOT_ENOUGH_REPLICAS` |
 | [`kafka.message.tombstone`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | boolean | A boolean that is true if the message is a tombstone. | |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` [(see more)](#messaging-operation-type-values) |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` |
 | [`kafka.cluster.id`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Kafka cluster ID, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API. [11] | `MkU3OEVBNTcwNTJENDM2Qk` |
 | [`kafka.message.key`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [12] | `myKey` |
 | [`kafka.offset`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | int | The offset of a record in the corresponding Kafka partition. | `42` |
@@ -478,41 +408,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 
----
-
-<a id="messaging-operation-type-values"></a>
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-<a id="messaging-system-name-values"></a>
-
-`messaging.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
@@ -541,14 +436,14 @@ call methods of messaging SDKs to receive messages. See
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `receive`; `poll` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [2] | `UNKNOWN_TOPIC_OR_PARTITION`; `KAFKA_STORAGE_ERROR`; `NOT_ENOUGH_REPLICAS` |
 | [`kafka.message.tombstone`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | boolean | A boolean that is true if the message is a tombstone. | |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | Kafka [consumer group ID](https://docs.confluent.io/platform/current/clients/consumer.html). | `my-group`; `indexer` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `receive` [(see more)](#messaging-operation-type-values) |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `receive` |
 | [`kafka.cluster.id`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Kafka cluster ID, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API. [11] | `MkU3OEVBNTcwNTJENDM2Qk` |
 | [`kafka.message.key`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [12] | `myKey` |
 | [`kafka.offset`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | int | The offset of a record in the corresponding Kafka partition. | `42` |
@@ -639,41 +534,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 
----
-
-<a id="messaging-operation-type-values"></a>
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-<a id="messaging-system-name-values"></a>
-
-`messaging.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
@@ -706,14 +566,14 @@ message creation context is used as the parent, see
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `process`; `consume` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [2] | `UNKNOWN_TOPIC_OR_PARTITION`; `KAFKA_STORAGE_ERROR`; `NOT_ENOUGH_REPLICAS` |
 | [`kafka.message.tombstone`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | boolean | A boolean that is true if the message is a tombstone. | |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | Kafka [consumer group ID](https://docs.confluent.io/platform/current/clients/consumer.html). | `my-group`; `indexer` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `process` [(see more)](#messaging-operation-type-values) |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `process` |
 | [`kafka.cluster.id`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Kafka cluster ID, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API. [11] | `MkU3OEVBNTcwNTJENDM2Qk` |
 | [`kafka.message.key`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [12] | `myKey` |
 | [`kafka.offset`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | int | The offset of a record in the corresponding Kafka partition. | `42` |
@@ -798,41 +658,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 
----
-
-<a id="messaging-operation-type-values"></a>
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-<a id="messaging-system-name-values"></a>
-
-`messaging.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
@@ -860,13 +685,13 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `ack`; `nack`; `settle` |
-| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` [(see more)](#messaging-system-name-values) |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `kafka` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [2] | `UNKNOWN_TOPIC_OR_PARTITION`; `KAFKA_STORAGE_ERROR`; `NOT_ENOUGH_REPLICAS` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | int | The number of messages sent, received, or processed in the scope of the batching operation. [4] | `0`; `1`; `2` |
 | [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | Kafka [consumer group ID](https://docs.confluent.io/platform/current/clients/consumer.html). | `my-group`; `indexer` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [5] | string | The message destination name [6] | `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [9] | `settle` [(see more)](#messaging-operation-type-values) |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [9] | `settle` |
 | [`kafka.cluster.id`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Kafka cluster ID, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API. [10] | `MkU3OEVBNTcwNTJENDM2Qk` |
 | [`kafka.offset`](/docs/registry/attributes/kafka.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | int | The offset of a record in the corresponding Kafka partition. | `42` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
@@ -943,41 +768,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.system.name`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
-
----
-
-<a id="messaging-operation-type-values"></a>
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-<a id="messaging-system-name-values"></a>
-
-`messaging.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

@@ -105,6 +105,9 @@ spans:
         sampling_relevant: true
         examples: ['create']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `create`.
         examples: ['create']
@@ -146,6 +149,9 @@ spans:
         sampling_relevant: true
         examples: ['send', 'publish']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `send`.
         examples: ['send']
@@ -190,6 +196,9 @@ spans:
         sampling_relevant: true
         examples: ['send', 'publish']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `send`.
         examples: ['send']
@@ -231,6 +240,9 @@ spans:
         sampling_relevant: true
         examples: ['receive', 'poll']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `receive`.
         examples: ['receive']
@@ -272,6 +284,9 @@ spans:
         sampling_relevant: true
         examples: ['process', 'consume']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `process`.
         examples: ['process']
@@ -310,6 +325,9 @@ spans:
         sampling_relevant: true
         examples: ['ack', 'nack', 'settle']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `settle`.
         examples: ['settle']

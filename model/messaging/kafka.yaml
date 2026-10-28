@@ -22,6 +22,9 @@ span_refinements:
     brief: Describes a message being created for sending to Apache Kafka.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
@@ -41,6 +44,9 @@ span_refinements:
     brief: Describes a producer sending one or more messages to Apache Kafka.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
@@ -57,6 +63,9 @@ span_refinements:
     brief: Describes a producer sending one or more messages to Apache Kafka.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
@@ -73,6 +82,9 @@ span_refinements:
     brief: Describes a consumer receiving one or more messages from Apache Kafka (pull-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
@@ -95,6 +107,9 @@ span_refinements:
     brief: Describes a consumer committing offsets (settling) one or more messages from Apache Kafka.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
@@ -119,6 +134,9 @@ span_refinements:
     brief: Describes a consumer processing one or more messages from Apache Kafka (push-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type

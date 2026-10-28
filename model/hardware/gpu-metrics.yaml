@@ -90,6 +90,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.gpu
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `gpu`."
         examples: ["gpu"]
       - ref: error.type
@@ -104,6 +107,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.gpu
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `gpu`."
         examples: ["gpu"]
       - ref: hw.state

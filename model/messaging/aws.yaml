@@ -15,6 +15,9 @@ span_refinements:
     brief: Describes a producer sending one or more messages to Amazon SQS.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"aws.sqs"`.
         examples: ['aws.sqs']
       - ref: error.type
@@ -29,6 +32,9 @@ span_refinements:
     brief: Describes a consumer receiving one or more messages from Amazon SQS (pull-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"aws.sqs"`.
         examples: ['aws.sqs']
       - ref: error.type
@@ -43,6 +49,9 @@ span_refinements:
     brief: Describes a consumer processing one or more messages from Amazon SQS (push-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"aws.sqs"`.
         examples: ['aws.sqs']
       - ref: error.type
@@ -58,6 +67,9 @@ span_refinements:
     brief: Describes a producer publishing one or more messages to Amazon SNS.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"aws.sns"`.
         examples: ['aws.sns']
       - ref: error.type
