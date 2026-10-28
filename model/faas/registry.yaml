@@ -160,8 +160,8 @@ groups:
         type: boolean
         stability: development
         brief: >
-          A boolean that is true if the serverless function is executed for the
-          first time (aka cold-start).
+          Captures if the serverless function is executed for the first time
+          in the instance hence the invocation experiences a cold-start.
       - id: faas.document.collection
         type: string
         stability: development

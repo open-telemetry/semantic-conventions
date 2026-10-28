@@ -10,8 +10,8 @@ groups:
           reason: renamed
           renamed_to: faas.invocation.cold_start
         brief: >
-          A boolean that is true if the serverless function is executed for the
-          first time (aka cold-start).
+          Captures if the serverless function is executed for the first time
+          in the instance hence the invocation experiences a cold-start.
       - id: faas.invocation_id
         type: string
         deprecated:
