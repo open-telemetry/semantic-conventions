@@ -78,10 +78,10 @@ span_refinements:
         requirement_level:
           conditionally_required: If messages are received from the subscription.
         sampling_relevant: true
-      - ref: messaging.servicebus.message.delivery_count
+      - ref: azure.servicebus.message.delivery_count
         requirement_level:
           conditionally_required: If delivery count is available and is bigger than 0.
-      - ref: messaging.servicebus.message.enqueued_time
+      - ref: azure.servicebus.message.enqueued_time
       - ref: messaging.message.conversation_id
         brief: *servicebus_conversation_id_brief
       - ref: messaging.operation.name
@@ -110,10 +110,10 @@ span_refinements:
         requirement_level:
           conditionally_required: If messages are received from the subscription.
         sampling_relevant: true
-      - ref: messaging.servicebus.message.delivery_count
+      - ref: azure.servicebus.message.delivery_count
         requirement_level:
           conditionally_required: If delivery count is available and is bigger than 0.
-      - ref: messaging.servicebus.message.enqueued_time
+      - ref: azure.servicebus.message.enqueued_time
       - ref: messaging.message.conversation_id
         brief: *servicebus_conversation_id_brief
       - ref: messaging.operation.name
@@ -137,7 +137,7 @@ span_refinements:
         requirement_level:
           conditionally_required: If messages are received from the subscription.
         sampling_relevant: true
-      - ref: messaging.servicebus.disposition_status
+      - ref: azure.servicebus.disposition_status
         requirement_level:
           conditionally_required: If the message is settled with a specific disposition status.
       - ref: messaging.message.conversation_id
@@ -234,7 +234,7 @@ span_refinements:
       - ref: messaging.destination.partition.id
         requirement_level:
           conditionally_required: If available.
-      - ref: messaging.eventhubs.message.enqueued_time
+      - ref: azure.eventhubs.message.enqueued_time
       - ref: messaging.operation.name
         brief: Azure Event Hubs operation name.
         examples: ['receive']
@@ -260,7 +260,7 @@ span_refinements:
       - ref: messaging.destination.partition.id
         requirement_level:
           conditionally_required: If available.
-      - ref: messaging.eventhubs.message.enqueued_time
+      - ref: azure.eventhubs.message.enqueued_time
       - ref: messaging.operation.name
         brief: Azure Event Hubs operation name.
         examples: ['process']

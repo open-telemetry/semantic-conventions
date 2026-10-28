@@ -5,7 +5,7 @@ attribute_groups:
   - id: messaging.rabbitmq.attributes.destination
     visibility: internal
     attributes:
-      - ref: messaging.rabbitmq.destination.routing_key
+      - ref: rabbitmq.destination.routing_key
         requirement_level:
           conditionally_required: If not empty.
       - ref: messaging.destination.temporary
@@ -57,7 +57,7 @@ span_refinements:
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
       - ref_group: messaging.rabbitmq.attributes.destination
-      - ref: messaging.rabbitmq.message.delivery_tag
+      - ref: rabbitmq.message.delivery_tag
         requirement_level:
           conditionally_required: When available.
       - ref: messaging.message.conversation_id
@@ -89,7 +89,7 @@ span_refinements:
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
       - ref_group: messaging.rabbitmq.attributes.destination
-      - ref: messaging.rabbitmq.message.delivery_tag
+      - ref: rabbitmq.message.delivery_tag
         requirement_level:
           conditionally_required: When available.
       - ref: messaging.message.conversation_id
@@ -109,7 +109,7 @@ span_refinements:
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
-      - ref: messaging.rabbitmq.message.delivery_tag
+      - ref: rabbitmq.message.delivery_tag
         requirement_level:
           conditionally_required: When available.
       - ref: messaging.message.conversation_id

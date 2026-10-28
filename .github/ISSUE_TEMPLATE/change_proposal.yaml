@@ -56,6 +56,7 @@ body:
         - area:jsonrpc
         - area:jvm
         - area:k8s
+        - area:kafka
         - area:log
         - area:mainframe
         - area:messaging
@@ -72,6 +73,8 @@ body:
         - area:pprof
         - area:process
         - area:profile
+        - area:rabbitmq
+        - area:rocketmq
         - area:rpc
         - area:security-rule
         - area:server

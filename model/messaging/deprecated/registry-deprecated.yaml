@@ -146,11 +146,11 @@ groups:
         type: int
         stability: development
         brief: >
-          Deprecated, use `messaging.kafka.offset` instead.
+          Deprecated, use `kafka.offset` instead.
         examples: 42
         deprecated:
           reason: renamed
-          renamed_to: messaging.kafka.offset
+          renamed_to: kafka.offset
       - id: messaging.destination_publish.anonymous
         type: boolean
         stability: development
@@ -166,3 +166,226 @@ groups:
           reason: obsoleted
           note: "Removed. No replacement at this time."
         examples: ['MyQueue', 'MyTopic']
+      - id: messaging.kafka.message.key
+        type: string
+        stability: development
+        brief: 'Deprecated, use `kafka.message.key` instead.'
+        note: >
+          If the key type is not string, it's string representation has to be supplied for the attribute.
+          If the key has no unambiguous, canonical string form, don't include its value.
+        examples: 'myKey'
+        deprecated:
+          reason: renamed
+          renamed_to: kafka.message.key
+      - id: messaging.kafka.offset
+        type: int
+        stability: development
+        brief: 'Deprecated, use `kafka.offset` instead.'
+        examples: 42
+        deprecated:
+          reason: renamed
+          renamed_to: kafka.offset
+      - id: messaging.kafka.message.tombstone
+        type: boolean
+        stability: development
+        brief: 'Deprecated, use `kafka.message.tombstone` instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: kafka.message.tombstone
+      - id: messaging.kafka.cluster.id
+        type: string
+        stability: development
+        brief: 'Deprecated, use `kafka.cluster.id` instead.'
+        note: >
+          The cluster ID is a unique identifier reported by the Kafka broker. It identifies
+          the cluster independently of the individual brokers the client is configured to
+          connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
+        examples: ['MkU3OEVBNTcwNTJENDM2Qk']
+        deprecated:
+          reason: renamed
+          renamed_to: kafka.cluster.id
+      - id: messaging.rabbitmq.destination.routing_key
+        type: string
+        stability: development
+        brief: 'Deprecated, use `rabbitmq.destination.routing_key` instead.'
+        examples: 'myKey'
+        deprecated:
+          reason: renamed
+          renamed_to: rabbitmq.destination.routing_key
+      - id: messaging.rabbitmq.message.delivery_tag
+        type: int
+        stability: development
+        brief: 'Deprecated, use `rabbitmq.message.delivery_tag` instead.'
+        examples: 123
+        deprecated:
+          reason: renamed
+          renamed_to: rabbitmq.message.delivery_tag
+      - id: messaging.rocketmq.consumption_model
+        type:
+          members:
+            - id: clustering
+              value: 'clustering'
+              brief: 'Clustering consumption model'
+              stability: development
+            - id: broadcasting
+              value: 'broadcasting'
+              brief: 'Broadcasting consumption model'
+              stability: development
+        stability: development
+        brief: 'Deprecated, use `rocketmq.consumption_model` instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: rocketmq.consumption_model
+      - id: messaging.rocketmq.message.delay_time_level
+        type: int
+        stability: development
+        brief: 'Deprecated, use `rocketmq.message.delay_time_level` instead.'
+        examples: 3
+        deprecated:
+          reason: renamed
+          renamed_to: rocketmq.message.delay_time_level
+      - id: messaging.rocketmq.message.delivery_timestamp
+        type: int
+        stability: development
+        brief: 'Deprecated, use `rocketmq.message.delivery_timestamp` instead.'
+        examples: 1665987217045
+        deprecated:
+          reason: renamed
+          renamed_to: rocketmq.message.delivery_timestamp
+      - id: messaging.rocketmq.message.group
+        type: string
+        stability: development
+        brief: 'Deprecated, use `rocketmq.message.group` instead.'
+        examples: 'myMessageGroup'
+        deprecated:
+          reason: renamed
+          renamed_to: rocketmq.message.group
+      - id: messaging.rocketmq.message.keys
+        type: string[]
+        stability: development
+        brief: 'Deprecated, use `rocketmq.message.keys` instead.'
+        examples:
+          - [keyA, keyB]
+        deprecated:
+          reason: renamed
+          renamed_to: rocketmq.message.keys
+      - id: messaging.rocketmq.message.tag
+        type: string
+        stability: development
+        brief: 'Deprecated, use `rocketmq.message.tag` instead.'
+        examples: tagA
+        deprecated:
+          reason: renamed
+          renamed_to: rocketmq.message.tag
+      - id: messaging.rocketmq.message.type
+        type:
+          members:
+            - id: normal
+              value: 'normal'
+              brief: "Normal message"
+              stability: development
+            - id: fifo
+              value: 'fifo'
+              brief: 'FIFO message'
+              stability: development
+            - id: delay
+              value: 'delay'
+              brief: 'Delay message'
+              stability: development
+            - id: transaction
+              value: 'transaction'
+              brief: 'Transaction message'
+              stability: development
+        stability: development
+        brief: 'Deprecated, use `rocketmq.message.type` instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: rocketmq.message.type
+      - id: messaging.rocketmq.namespace
+        type: string
+        stability: development
+        brief: 'Deprecated, use `rocketmq.namespace` instead.'
+        examples: 'myNamespace'
+        deprecated:
+          reason: renamed
+          renamed_to: rocketmq.namespace
+      - id: messaging.gcp_pubsub.message.ordering_key
+        type: string
+        stability: development
+        brief: 'Deprecated, use `gcp.pubsub.message.ordering_key` instead.'
+        examples: 'ordering_key'
+        deprecated:
+          reason: renamed
+          renamed_to: gcp.pubsub.message.ordering_key
+      - id: messaging.gcp_pubsub.message.ack_id
+        type: string
+        stability: development
+        brief: 'Deprecated, use `gcp.pubsub.message.ack_id` instead.'
+        examples: 'ack_id'
+        deprecated:
+          reason: renamed
+          renamed_to: gcp.pubsub.message.ack_id
+      - id: messaging.gcp_pubsub.message.ack_deadline
+        type: int
+        stability: development
+        brief: 'Deprecated, use `gcp.pubsub.message.ack_deadline` instead.'
+        examples: 10
+        deprecated:
+          reason: renamed
+          renamed_to: gcp.pubsub.message.ack_deadline
+      - id: messaging.gcp_pubsub.message.delivery_attempt
+        type: int
+        stability: development
+        brief: 'Deprecated, use `gcp.pubsub.message.delivery_attempt` instead.'
+        examples: 2
+        deprecated:
+          reason: renamed
+          renamed_to: gcp.pubsub.message.delivery_attempt
+      - id: messaging.servicebus.message.delivery_count
+        type: int
+        stability: development
+        brief: 'Deprecated, use `azure.servicebus.message.delivery_count` instead.'
+        examples: 2
+        deprecated:
+          reason: renamed
+          renamed_to: azure.servicebus.message.delivery_count
+      - id: messaging.servicebus.message.enqueued_time
+        type: int
+        stability: development
+        brief: 'Deprecated, use `azure.servicebus.message.enqueued_time` instead.'
+        examples: 1701393730
+        deprecated:
+          reason: renamed
+          renamed_to: azure.servicebus.message.enqueued_time
+      - id: messaging.servicebus.disposition_status
+        brief: 'Deprecated, use `azure.servicebus.disposition_status` instead.'
+        type:
+          members:
+            - id: complete
+              value: 'complete'
+              brief: 'Message is completed'
+              stability: development
+            - id: abandon
+              value: 'abandon'
+              brief: 'Message is abandoned'
+              stability: development
+            - id: dead_letter
+              value: 'dead_letter'
+              brief: 'Message is sent to dead letter queue'
+              stability: development
+            - id: defer
+              value: 'defer'
+              brief: 'Message is deferred'
+              stability: development
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: azure.servicebus.disposition_status
+      - id: messaging.eventhubs.message.enqueued_time
+        type: int
+        stability: development
+        brief: 'Deprecated, use `azure.eventhubs.message.enqueued_time` instead.'
+        examples: 1701393730
+        deprecated:
+          reason: renamed
+          renamed_to: azure.eventhubs.message.enqueued_time

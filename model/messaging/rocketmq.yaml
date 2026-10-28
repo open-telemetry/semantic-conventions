@@ -5,14 +5,14 @@ attribute_groups:
   - id: messaging.rocketmq.attributes.common
     visibility: internal
     attributes:
-      - ref: messaging.rocketmq.namespace
+      - ref: rocketmq.namespace
         requirement_level: required
-      - ref: messaging.rocketmq.message.group
+      - ref: rocketmq.message.group
         requirement_level:
           conditionally_required: If the message type is FIFO.
-      - ref: messaging.rocketmq.message.type
-      - ref: messaging.rocketmq.message.tag
-      - ref: messaging.rocketmq.message.keys
+      - ref: rocketmq.message.type
+      - ref: rocketmq.message.tag
+      - ref: rocketmq.message.keys
 
 span_refinements:
   - id: span.messaging.rocketmq.send.producer
@@ -28,10 +28,10 @@ span_refinements:
       - ref: messaging.destination.name
         examples: ['MyTopic']
       - ref_group: messaging.rocketmq.attributes.common
-      - ref: messaging.rocketmq.message.delivery_timestamp
+      - ref: rocketmq.message.delivery_timestamp
         requirement_level:
           conditionally_required: If the message type is delay and delay time level is not specified.
-      - ref: messaging.rocketmq.message.delay_time_level
+      - ref: rocketmq.message.delay_time_level
         requirement_level:
           conditionally_required: If the message type is delay and delivery timestamp is not specified.
 
@@ -53,7 +53,7 @@ span_refinements:
         note: ""
         requirement_level: required
         sampling_relevant: true
-      - ref: messaging.rocketmq.consumption_model
+      - ref: rocketmq.consumption_model
 
   - id: span.messaging.rocketmq.process.consumer
     ref: messaging.process.consumer
@@ -73,4 +73,4 @@ span_refinements:
         note: ""
         requirement_level: required
         sampling_relevant: true
-      - ref: messaging.rocketmq.consumption_model
+      - ref: rocketmq.consumption_model
