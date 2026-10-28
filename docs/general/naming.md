@@ -25,6 +25,7 @@ aliases: [attribute-naming]
   - [Naming rules for counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
     - [Do not pluralize UpDownCounter names](#do-not-pluralize-updowncounter-names)
+    - [Do not use `.count` for Counters](#do-not-use-count-for-counters)
     - [Do not use `total`](#do-not-use-total)
   - [Instrument naming](#instrument-naming)
   - [Client and server metrics](#client-and-server-metrics)
@@ -296,6 +297,20 @@ For example if we have a namespace `system.process` which contains all metrics r
 to the processes then to represent the count of the processes we can have a metric named
 `system.process.count` instead of `system.processes`. Similarly, `cicd.pipeline.run.active` is preferred
 over the `cicd.pipeline.active_runs`.
+
+#### Do not use `.count` for Counters
+
+Counter names SHOULD NOT have a `.count` suffix. For example, use
+`system.disk.operations` instead of `system.disk.operation.count` to count disk
+operations. This follows the [pluralization](#pluralization) guidance for
+countable quantities.
+
+This restriction does not apply to UpDownCounters. For example,
+`system.process.count` represents the number of processes that currently exist,
+which can increase or decrease.
+
+Existing stable metric names are not renamed to follow this guidance, in
+accordance with the [stability guarantees](https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability).
 
 #### Do not use `total`
 

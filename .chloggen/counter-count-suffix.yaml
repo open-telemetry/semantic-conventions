@@ -1,0 +1,5 @@
+change_type: enhancement
+component: general
+note: Document that Counter names should not have a `.count` suffix.
+issues: [1979]
+subtext: Existing stable metric names are unchanged.
