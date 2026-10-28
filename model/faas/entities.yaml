@@ -24,5 +24,3 @@ groups:
         role: identifying
       - ref: faas.max_memory
         role: descriptive
-      - ref: cloud.resource_id
-        role: descriptive
