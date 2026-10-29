@@ -470,6 +470,9 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-end -->
 
+The `k8s.volume.name` and `k8s.volume.type` attributes were renamed to
+`k8s.pod.volume.name` and `k8s.pod.volume.type` respectively.
+
 ### K8s Pod CPU metrics
 
 The K8s Pod CPU utilization metrics implemented by the Collector and specifically the
