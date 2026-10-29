@@ -1,0 +1,10 @@
+change_type: deprecation
+component: k8s
+note: "Rename `k8s.hpa.scaletargetref.*` attributes to `k8s.hpa.scale_target_ref.*`."
+issues: [1755]
+subtext: |
+  `scaleTargetRef` is a Kubernetes API field rather than a resource name.
+  Rename `k8s.hpa.scaletargetref.kind`, `k8s.hpa.scaletargetref.name`, and
+  `k8s.hpa.scaletargetref.api_version` to `k8s.hpa.scale_target_ref.kind`,
+  `k8s.hpa.scale_target_ref.name`, and `k8s.hpa.scale_target_ref.api_version`.
+  The old attributes are deprecated.

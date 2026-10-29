@@ -12,3 +12,27 @@ groups:
         deprecated:
           reason: renamed
           renamed_to: k8s.pod.label
+      - id: k8s.hpa.scaletargetref.kind
+        type: string
+        examples: ["Deployment", "StatefulSet"]
+        brief: "Deprecated, use `k8s.hpa.scale_target_ref.kind` instead."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.hpa.scale_target_ref.kind
+      - id: k8s.hpa.scaletargetref.name
+        type: string
+        examples: ["my-deployment", "my-statefulset"]
+        brief: "Deprecated, use `k8s.hpa.scale_target_ref.name` instead."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.hpa.scale_target_ref.name
+      - id: k8s.hpa.scaletargetref.api_version
+        type: string
+        examples: ["apps/v1", "autoscaling/v2"]
+        brief: "Deprecated, use `k8s.hpa.scale_target_ref.api_version` instead."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.hpa.scale_target_ref.api_version
