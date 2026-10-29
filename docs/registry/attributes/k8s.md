@@ -76,6 +76,8 @@ Kubernetes resource attributes.
 | <a id="k8s-pod-status-phase" href="#k8s-pod-status-phase">`k8s.pod.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Pending`; `Running` [(see more)](#k8s-pod-status-phase-values) |
 | <a id="k8s-pod-status-reason" href="#k8s-pod-status-reason">`k8s.pod.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Evicted`; `NodeAffinity` [(see more)](#k8s-pod-status-reason-values) |
 | <a id="k8s-pod-uid" href="#k8s-pod-uid">`k8s.pod.uid`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| <a id="k8s-pod-volume-name" href="#k8s-pod-volume-name">`k8s.pod.volume.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the K8s Pod volume. | `volume0` |
+| <a id="k8s-pod-volume-type" href="#k8s-pod-volume-type">`k8s.pod.volume.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the K8s Pod volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
 | <a id="k8s-replicaset-annotation" href="#k8s-replicaset-annotation">`k8s.replicaset.annotation.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [34] | `0`; `` |
 | <a id="k8s-replicaset-label" href="#k8s-replicaset-label">`k8s.replicaset.label.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [35] | `guestbook`; `` |
 | <a id="k8s-replicaset-name" href="#k8s-replicaset-name">`k8s.replicaset.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the ReplicaSet. | `opentelemetry` |
@@ -101,8 +103,6 @@ Kubernetes resource attributes.
 | <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the StatefulSet. | `opentelemetry` |
 | <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-storageclass-name" href="#k8s-storageclass-name">`k8s.storageclass.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
-| <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the K8s volume. | `volume0` |
-| <a id="k8s-volume-type" href="#k8s-volume-type">`k8s.volume.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
 
 **[1] `k8s.cluster.uid`:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
@@ -544,6 +544,21 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 
 ---
 
+<a id="k8s-pod-volume-type-values"></a>
+
+`k8s.pod.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
 <a id="k8s-service-endpoint-address-type-values"></a>
 
 `k8s.service.endpoint.address_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -579,21 +594,6 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 | `LoadBalancer` | LoadBalancer service type | ![Development](https://img.shields.io/badge/-development-blue) |
 | `NodePort` | NodePort service type | ![Development](https://img.shields.io/badge/-development-blue) |
 
----
-
-<a id="k8s-volume-type-values"></a>
-
-`k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-
 ## Deprecated Kubernetes Attributes
 
 Describes deprecated K8s attributes.
@@ -603,3 +603,20 @@ Describes deprecated K8s attributes.
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.label`. | string | Deprecated, use `k8s.pod.label` instead. | `my-app` |
+| <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.volume.name`. | string | Deprecated, use `k8s.pod.volume.name` instead. | `volume0` |
+| <a id="k8s-volume-type" href="#k8s-volume-type">`k8s.volume.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.volume.type`. | string | Deprecated, use `k8s.pod.volume.type` instead. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+
+---
+
+<a id="k8s-volume-type-values"></a>
+
+`k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `configMap` | config_map | ![Development](https://img.shields.io/badge/-development-blue) |
+| `downwardAPI` | downward_api | ![Development](https://img.shields.io/badge/-development-blue) |
+| `emptyDir` | empty_dir | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | local | ![Development](https://img.shields.io/badge/-development-blue) |
+| `persistentVolumeClaim` | persistent_volume_claim | ![Development](https://img.shields.io/badge/-development-blue) |
+| `secret` | secret | ![Development](https://img.shields.io/badge/-development-blue) |

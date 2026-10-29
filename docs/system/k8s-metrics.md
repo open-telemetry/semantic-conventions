@@ -882,14 +882,14 @@ Kubelet's stats API.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
 
 ---
 
-<a id="k8s-volume-type-values"></a>
+<a id="k8s-pod-volume-type-values"></a>
 
-`k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`k8s.pod.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -926,14 +926,14 @@ Kubelet's stats API.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
 
 ---
 
-<a id="k8s-volume-type-values"></a>
+<a id="k8s-pod-volume-type-values"></a>
 
-`k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`k8s.pod.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -972,14 +972,14 @@ Kubelet's stats API.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
 
 ---
 
-<a id="k8s-volume-type-values"></a>
+<a id="k8s-pod-volume-type-values"></a>
 
-`k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`k8s.pod.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -1016,14 +1016,14 @@ Kubelet's stats API.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
 
 ---
 
-<a id="k8s-volume-type-values"></a>
+<a id="k8s-pod-volume-type-values"></a>
 
-`k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`k8s.pod.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -1062,14 +1062,14 @@ This may not be equal to `inodes - free` because filesystem may share inodes wit
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
 
 ---
 
-<a id="k8s-volume-type-values"></a>
+<a id="k8s-pod-volume-type-values"></a>
 
-`k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`k8s.pod.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -1106,14 +1106,14 @@ Kubelet's stats API.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
 
 ---
 
-<a id="k8s-volume-type-values"></a>
+<a id="k8s-pod-volume-type-values"></a>
 
-`k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`k8s.pod.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |

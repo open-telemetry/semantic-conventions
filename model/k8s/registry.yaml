@@ -541,16 +541,16 @@ groups:
           - An annotation `data` with empty string value SHOULD be recorded as
             the `k8s.cronjob.annotation.data` attribute with value `""`.
         examples: [ '4', '' ]
-      - id: k8s.volume.name
+      - id: k8s.pod.volume.name
         type: string
         stability: development
         brief: >
-          The name of the K8s volume.
+          The name of the K8s Pod volume.
         examples: [ 'volume0' ]
-      - id: k8s.volume.type
+      - id: k8s.pod.volume.type
         stability: development
         brief: >
-          The type of the K8s volume.
+          The type of the K8s Pod volume.
         examples: [ "emptyDir", "persistentVolumeClaim" ]
         type:
           members:

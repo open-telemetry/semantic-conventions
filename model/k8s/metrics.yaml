@@ -539,9 +539,9 @@ groups:
       of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
     attributes:
-      - ref: k8s.volume.name
+      - ref: k8s.pod.volume.name
         requirement_level: required
-      - ref: k8s.volume.type
+      - ref: k8s.pod.volume.type
         requirement_level: recommended
   - id: metric.k8s.pod.volume.capacity
     type: metric
@@ -561,9 +561,9 @@ groups:
       of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
     attributes:
-      - ref: k8s.volume.name
+      - ref: k8s.pod.volume.name
         requirement_level: required
-      - ref: k8s.volume.type
+      - ref: k8s.pod.volume.type
         requirement_level: recommended
   - id: metric.k8s.pod.volume.usage
     type: metric
@@ -585,9 +585,9 @@ groups:
       of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
     attributes:
-      - ref: k8s.volume.name
+      - ref: k8s.pod.volume.name
         requirement_level: required
-      - ref: k8s.volume.type
+      - ref: k8s.pod.volume.type
         requirement_level: recommended
   - id: metric.k8s.pod.volume.inode.count
     type: metric
@@ -607,9 +607,9 @@ groups:
       of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
     attributes:
-      - ref: k8s.volume.name
+      - ref: k8s.pod.volume.name
         requirement_level: required
-      - ref: k8s.volume.type
+      - ref: k8s.pod.volume.type
         requirement_level: recommended
   - id: metric.k8s.pod.volume.inode.used
     type: metric
@@ -631,9 +631,9 @@ groups:
 
       This may not be equal to `inodes - free` because filesystem may share inodes with other filesystems.
     attributes:
-      - ref: k8s.volume.name
+      - ref: k8s.pod.volume.name
         requirement_level: required
-      - ref: k8s.volume.type
+      - ref: k8s.pod.volume.type
         requirement_level: recommended
   - id: metric.k8s.pod.volume.inode.free
     type: metric
@@ -653,9 +653,9 @@ groups:
       of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the
       Kubelet's stats API.
     attributes:
-      - ref: k8s.volume.name
+      - ref: k8s.pod.volume.name
         requirement_level: required
-      - ref: k8s.volume.type
+      - ref: k8s.pod.volume.type
         requirement_level: recommended
 
   # k8s.container.* metrics
