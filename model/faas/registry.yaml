@@ -42,7 +42,7 @@ groups:
             [`K_REVISION` environment variable](https://cloud.google.com/run/docs/container-contract#services-env-vars).
           - **Azure Functions:** Not applicable. Do not set this attribute.
         examples: ['26', 'pinkfroid-00002']
-      - id: faas.instance
+      - id: faas.instance.id
         type: string
         stability: development
         brief: >
