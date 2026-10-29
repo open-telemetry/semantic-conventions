@@ -536,7 +536,7 @@ A HorizontalPodAutoscaler (HPA for short) automatically updates a workload resou
 | Description | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [1] | `apps/v1`; `autoscaling/v2` |
 | Description | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The kind of the target resource to scale for the HorizontalPodAutoscaler. [2] | `Deployment`; `StatefulSet` |
 | Description | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [3] | `my-deployment`; `my-statefulset` |
-| Description | [`k8s.hpa.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the HorizontalPodAutoscaler, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [4] | `4`; `` |
+| Description | [`k8s.hpa.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the HorizontalPodAutoscaler, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [4] | `{"apiVersion":"autoscaling/v2","kind":"HorizontalPodAutoscaler"}`; `` |
 | Description | [`k8s.hpa.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the HorizontalPodAutoscaler, the `<key>` being the label name, the value being the label value, even if the value is empty. [5] | `checkout`; `` |
 
 **[1] `k8s.hpa.scaletargetref.api_version`:** This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
@@ -547,8 +547,8 @@ A HorizontalPodAutoscaler (HPA for short) automatically updates a workload resou
 
 **[4] `k8s.hpa.annotation.<key>`:** Examples:
 
-- An annotation `replicas` with value `4` SHOULD be recorded as
-  the `k8s.hpa.annotation.replicas` attribute with value `"4"`.
+- An annotation `kubectl.kubernetes.io/last-applied-configuration` with value `{"apiVersion":"autoscaling/v2","kind":"HorizontalPodAutoscaler"}` SHOULD be recorded as
+  the `k8s.hpa.annotation.kubectl.kubernetes.io/last-applied-configuration` attribute with the same value.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.hpa.annotation.data` attribute with value `""`.
 

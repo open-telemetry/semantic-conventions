@@ -488,15 +488,15 @@ groups:
         note: |
           Examples:
 
-          - An annotation `replicas` with value `4` SHOULD be recorded as
-            the `k8s.hpa.annotation.replicas` attribute with value `"4"`.
+          - An annotation `kubectl.kubernetes.io/last-applied-configuration` with value `{"apiVersion":"autoscaling/v2","kind":"HorizontalPodAutoscaler"}` SHOULD be recorded as
+            the `k8s.hpa.annotation.kubectl.kubernetes.io/last-applied-configuration` attribute with the same value.
           - An annotation `data` with empty string value SHOULD be recorded as
             the `k8s.hpa.annotation.data` attribute with value `""`.
 
           > [!WARNING]
           >
           > Annotation values are user-defined and may contain sensitive (PII) data.
-        examples: ['4', '']
+        examples: ['{"apiVersion":"autoscaling/v2","kind":"HorizontalPodAutoscaler"}', '']
       - id: k8s.job.uid
         type: string
         stability: stable

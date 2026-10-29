@@ -34,7 +34,7 @@ Kubernetes resource attributes.
 | <a id="k8s-deployment-label" href="#k8s-deployment-label">`k8s.deployment.label.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty. [8] | `guestbook`; `` |
 | <a id="k8s-deployment-name" href="#k8s-deployment-name">`k8s.deployment.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the Deployment. | `opentelemetry` |
 | <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| <a id="k8s-hpa-annotation" href="#k8s-hpa-annotation">`k8s.hpa.annotation.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The annotation placed on the HorizontalPodAutoscaler, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [9] | `4`; `` |
+| <a id="k8s-hpa-annotation" href="#k8s-hpa-annotation">`k8s.hpa.annotation.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The annotation placed on the HorizontalPodAutoscaler, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [9] | `{"apiVersion":"autoscaling/v2","kind":"HorizontalPodAutoscaler"}`; `` |
 | <a id="k8s-hpa-label" href="#k8s-hpa-label">`k8s.hpa.label.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The label placed on the HorizontalPodAutoscaler, the `<key>` being the label name, the value being the label value, even if the value is empty. [10] | `checkout`; `` |
 | <a id="k8s-hpa-metric-type" href="#k8s-hpa-metric-type">`k8s.hpa.metric.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of metric source for the horizontal pod autoscaler. [11] | `Resource`; `ContainerResource` |
 | <a id="k8s-hpa-name" href="#k8s-hpa-name">`k8s.hpa.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the horizontal pod autoscaler. | `opentelemetry` |
@@ -175,8 +175,8 @@ conflict.
 
 **[9] `k8s.hpa.annotation.<key>`:** Examples:
 
-- An annotation `replicas` with value `4` SHOULD be recorded as
-  the `k8s.hpa.annotation.replicas` attribute with value `"4"`.
+- An annotation `kubectl.kubernetes.io/last-applied-configuration` with value `{"apiVersion":"autoscaling/v2","kind":"HorizontalPodAutoscaler"}` SHOULD be recorded as
+  the `k8s.hpa.annotation.kubectl.kubernetes.io/last-applied-configuration` attribute with the same value.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.hpa.annotation.data` attribute with value `""`.
 
