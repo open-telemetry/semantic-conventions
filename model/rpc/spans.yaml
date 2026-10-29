@@ -47,7 +47,7 @@ groups:
 
   - id: span.rpc.call.client
     type: span
-    stability: release_candidate
+    stability: stable
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
       RPC client spans SHOULD cover the entire client-side lifecycle of an RPC,
@@ -81,7 +81,7 @@ groups:
 
   - id: span.rpc.call.server
     type: span
-    stability: release_candidate
+    stability: stable
     extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).

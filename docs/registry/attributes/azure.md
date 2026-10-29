@@ -6,6 +6,8 @@
 - [General Azure Attributes](#general-azure-attributes)
 - [Azure Client Library Attributes](#azure-client-library-attributes)
 - [Azure Cosmos DB Attributes](#azure-cosmos-db-attributes)
+- [Azure Event Hubs Attributes](#azure-event-hubs-attributes)
+- [Azure Service Bus Attributes](#azure-service-bus-attributes)
 - [Deprecated Azure Attributes](#deprecated-azure-attributes)
 
 ## General Azure Attributes
@@ -71,6 +73,41 @@ This section defines attributes for Azure Cosmos DB.
 | `Eventual` | Eventual | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Session` | Session | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Strong` | Strong | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Azure Event Hubs Attributes
+
+This group describes attributes specific to Azure Event Hubs.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="azure-eventhubs-message-enqueued-time" href="#azure-eventhubs-message-enqueued-time">`azure.eventhubs.message.enqueued_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
+
+## Azure Service Bus Attributes
+
+This group describes attributes specific to Azure Service Bus.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="azure-servicebus-disposition-status" href="#azure-servicebus-disposition-status">`azure.servicebus.disposition_status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` [(see more)](#azure-servicebus-disposition-status-values) |
+| <a id="azure-servicebus-message-delivery-count" href="#azure-servicebus-message-delivery-count">`azure.servicebus.message.delivery_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Number of deliveries that have been attempted for this message. | `2` |
+| <a id="azure-servicebus-message-enqueued-time" href="#azure-servicebus-message-enqueued-time">`azure.servicebus.message.enqueued_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
+
+---
+
+<a id="azure-servicebus-disposition-status-values"></a>
+
+`azure.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `abandon` | Message is abandoned | ![Development](https://img.shields.io/badge/-development-blue) |
+| `complete` | Message is completed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dead_letter` | Message is sent to dead letter queue | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defer` | Message is deferred | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Azure Attributes
 

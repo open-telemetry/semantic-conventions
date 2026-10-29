@@ -58,6 +58,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.power_supply
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `power_supply`."
         examples: ["power_supply"]
       - ref: hw.state
