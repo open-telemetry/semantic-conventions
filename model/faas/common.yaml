@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     brief: "Describes FaaS attributes."
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.intiator
       - ref: faas.invoked_name
         requirement_level: required
       - ref: faas.invoked_provider

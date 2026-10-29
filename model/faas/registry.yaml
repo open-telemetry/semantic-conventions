@@ -79,6 +79,12 @@ groups:
             - id: pubsub
               value: 'pubsub'
               brief: 'A function is set to be executed when messages are sent to a messaging system'
+              deprecated:
+                reason: renamed
+                renamed_to: messaging
+            - id: messaging
+              value: 'messaging'
+              brief: 'A function is set to be executed when messages are sent to a messaging system'
               stability: development
             - id: timer
               value: 'timer'
@@ -149,6 +155,32 @@ groups:
           [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
           format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
         examples: "2020-01-23T13:47:06Z"
+      - id: faas.invocation.intiator
+        stability: development
+        brief: >
+          What intiated this function invocation.
+        type:
+          members:
+            - id: datasource
+              value: 'datasource'
+              brief: 'A response to some data source operation such as a database or filesystem read/write'
+              stability: development
+            - id: http
+              value: 'http'
+              brief: 'To provide an answer to an inbound HTTP request'
+              stability: development
+            - id: messaging
+              value: 'messaging'
+              brief: 'A function is set to be executed when messages are sent to a messaging system'
+              stability: development
+            - id: timer
+              value: 'timer'
+              brief: 'A function is scheduled to be executed regularly'
+              stability: development
+            - id: other
+              value: 'other'
+              brief: 'If none of the others apply'
+              stability: development
       - id: faas.cron
         type: string
         stability: development

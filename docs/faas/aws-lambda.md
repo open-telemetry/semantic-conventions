@@ -58,7 +58,7 @@ unless stated otherwise.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [(see more)](#faas-trigger-values) |
+| [`faas.invocation.intiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What intiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-intiator-values) |
 | [`aws.lambda.invoked_arn`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` |
 | [`aws.lambda.resource_mapping.id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping. | `587ad24b-03b9-4413-8202-bbd56b36e5b7` |
 | [`cloud.account.id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The cloud account ID the resource is assigned to. [2] | `111111111111`; `opentelemetry`; `22222222-2222-2222-2222-222222222222` |
@@ -90,16 +90,16 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 ---
 
-<a id="faas-trigger-values"></a>
+<a id="faas-invocation-intiator-values"></a>
 
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.intiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
+| `messaging` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -180,7 +180,7 @@ The Lambda span name and the [`http.route` span attribute](/docs/http/http-spans
 be set to the [resource property][] from the proxy request event, which corresponds to the user configured HTTP
 route instead of the function name.
 
-[`faas.trigger`][faas] MUST be set to `http`. [HTTP attributes](/docs/http/http-spans.md) SHOULD be set based on the
+[`faas.invocation.intiator`][faas] MUST be set to `http`. [HTTP attributes](/docs/http/http-spans.md) SHOULD be set based on the
 available information in the Lambda event initiated by the proxy request. `http.scheme` is available as the
 `x-forwarded-proto` header in the Lambda event. Refer to the [input event format][] for more details.
 
@@ -211,7 +211,7 @@ parsed from the value of the attribute using the [AWS X-Ray Propagator](https://
 added as a link to the span. This means the span may have as many links as messages in the batch.
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 
-- [`faas.trigger`][faas] MUST be set to `pubsub`.
+- [`faas.invocation.intiator`][faas] MUST be set to `messaging`.
 - [`messaging.operation.type`](/docs/messaging/messaging-spans.md) MUST be set to `process`.
 - [`messaging.system`](/docs/messaging/messaging-spans.md) MUST be set to `aws_sqs`.
 
@@ -224,7 +224,7 @@ parsed from the value of the attribute using the [AWS X-Ray Propagator](https://
 added as a link to the span.
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 
-- [`faas.trigger`][faas] MUST be set to `pubsub`.
+- [`faas.invocation.intiator`][faas] MUST be set to `messaging`.
 - [`messaging.operation.type`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `process`.
 - [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `aws_sqs`.
 
@@ -263,7 +263,7 @@ Function F:    | Span Function |
 | SpanKind | `CLIENT` | `SERVER` |
 | Status | `Ok` | `Ok` |
 | `faas.invocation.id` | | `79104EXAMPLEB723` |
-| `faas.trigger` | | `http` |
+| `faas.invocation.intiator` | | `http` |
 | `cloud.account.id` | | `12345678912` |
 | `server.address` | `foo.execute-api.us-east-1.amazonaws.com` | |
 | `server.port` | `413` | |
