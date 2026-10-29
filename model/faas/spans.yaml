@@ -8,7 +8,7 @@ attribute_groups:
   - id: faas.attributes.server
     visibility: internal
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
         requirement_level: required
       - ref: faas.coldstart
       - ref: faas.invocation.id
@@ -39,7 +39,7 @@ spans:
       note: *faas_span_name
     attributes:
       - ref_group: faas.attributes.server
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
         note: MUST be set to `datasource`.
         examples: ['datasource']
       - ref: faas.document.collection
@@ -59,7 +59,7 @@ spans:
       note: *faas_span_name
     attributes:
       - ref_group: faas.attributes.server
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
         note: MUST be set to `timer`.
         examples: ['timer']
       - ref: faas.invocation.start_time

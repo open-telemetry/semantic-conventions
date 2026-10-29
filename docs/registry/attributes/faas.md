@@ -22,6 +22,7 @@ FaaS attributes
 | <a id="faas-document-time" href="#faas-document-time">`faas.document.time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 | <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [1] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
 | <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
+| <a id="faas-invocation-initiator" href="#faas-invocation-initiator">`faas.invocation.initiator`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 | <a id="faas-invocation-start-time" href="#faas-invocation-start-time">`faas.invocation.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 | <a id="faas-invoked-name" href="#faas-invoked-name">`faas.invoked_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the invoked function. [2] | `my-function` |
 | <a id="faas-invoked-provider" href="#faas-invoked-provider">`faas.invoked_provider`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud provider of the invoked function. [3] | `alibaba_cloud`; `aws`; `azure` [(see more)](#faas-invoked-provider-values) |
@@ -79,6 +80,20 @@ definition of function name MUST be used for this attribute
 | `delete` | When an object is deleted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `edit` | When an object is modified. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `insert` | When a new object is created. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+<a id="faas-invocation-initiator-values"></a>
+
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
+| `messaging` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
