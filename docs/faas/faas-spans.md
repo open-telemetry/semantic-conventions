@@ -86,7 +86,7 @@ This span represents the server (incoming) side of a FaaS invocation.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.invocation.intiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What intiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-intiator-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
 | [`faas.coldstart`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
 | [`faas.invocation.id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
@@ -111,9 +111,9 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 ---
 
-<a id="faas-invocation-intiator-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.invocation.intiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -222,14 +222,14 @@ This span represents the server side of a FaaS invocation triggered in response 
 | --- | --- | --- | --- | --- | --- |
 | [`faas.document.collection`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` |
 | [`faas.document.operation`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` [(see more)](#faas-document-operation-values) |
-| [`faas.invocation.intiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What intiated this function invocation. [1] | `datasource` [(see more)](#faas-invocation-intiator-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What initiated this function invocation. [1] | `datasource` [(see more)](#faas-invocation-initiator-values) |
 | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [2] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
 | [`faas.coldstart`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
 | [`faas.document.name`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` |
 | [`faas.document.time`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 | [`faas.invocation.id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 
-**[1] `faas.invocation.intiator`:** MUST be set to `datasource`.
+**[1] `faas.invocation.initiator`:** MUST be set to `datasource`.
 
 **[2] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -263,9 +263,9 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 ---
 
-<a id="faas-invocation-intiator-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.invocation.intiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -312,14 +312,14 @@ This span represents the server side of a FaaS invocation triggered by a timer.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.invocation.intiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What intiated this function invocation. [1] | `timer` [(see more)](#faas-invocation-intiator-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What initiated this function invocation. [1] | `timer` [(see more)](#faas-invocation-initiator-values) |
 | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [2] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
 | [`faas.coldstart`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
 | [`faas.cron`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` |
 | [`faas.invocation.id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 | [`faas.invocation.start_time`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 
-**[1] `faas.invocation.intiator`:** MUST be set to `timer`.
+**[1] `faas.invocation.initiator`:** MUST be set to `timer`.
 
 **[2] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -341,9 +341,9 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 ---
 
-<a id="faas-invocation-intiator-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.invocation.intiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -367,19 +367,19 @@ In this case, it is responsibility of the framework or instrumentation library t
 
 This example shows the FaaS attributes for a (non-FaaS) process hosted on Google Cloud Platform (Span A with kind `CLIENT`), which invokes a Lambda function called "my-lambda-function" in Amazon Web Services (Span B with kind `SERVER`).
 
-| Attribute Kind | Attribute               | Span A (Client, GCP)   | Span B (Server, AWS Lambda)                                           |
-| -------------- | ----------------------- | ---------------------- | --------------------------------------------------------------------- |
-| Resource       | `cloud.provider`        | `"gcp"`                | `"aws"`                                                               |
-| Resource       | `cloud.region`          | `"europe-west3"`       | `"eu-central-1"`                                                      |
-| Span           | `faas.invoked_name`     | `"my-lambda-function"` | n/a                                                                   |
-| Span           | `faas.invoked_provider` | `"aws"`                | n/a                                                                   |
-| Span           | `faas.invoked_region`   | `"eu-central-1"`       | n/a                                                                   |
-| Span           | `faas.invocation.intiator`          | n/a                    | `"http"`                                                              |
-| Span           | `faas.invocation.id`    | n/a                    | `"af9d5aa4-a685-4c5f-a22b-444f80b3cc28"`                              |
-| Span           | `faas.coldstart`        | n/a                    | `true`                                                                |
-| Resource       | `faas.name`             | n/a                    | `"my-lambda-function"`                                                |
-| Resource       | `faas.version`          | n/a                    | `"semver:2.0.0"`                                                      |
-| Resource       | `faas.instance`         | n/a                    | `"my-lambda-function:instance-0001"`                                  |
-| Resource       | `cloud.resource_id`     | n/a                    | `"arn:aws:lambda:us-west-2:123456789012:function:my-lambda-function"` |
+| Attribute Kind | Attribute                  | Span A (Client, GCP)   | Span B (Server, AWS Lambda)                                           |
+| -------------- | -------------------------- | ---------------------- | --------------------------------------------------------------------- |
+| Resource       | `cloud.provider`           | `"gcp"`                | `"aws"`                                                               |
+| Resource       | `cloud.region`             | `"europe-west3"`       | `"eu-central-1"`                                                      |
+| Span           | `faas.invoked_name`        | `"my-lambda-function"` | n/a                                                                   |
+| Span           | `faas.invoked_provider`    | `"aws"`                | n/a                                                                   |
+| Span           | `faas.invoked_region`      | `"eu-central-1"`       | n/a                                                                   |
+| Span           | `faas.invocation.intiator` | n/a                    | `"http"`                                                              |
+| Span           | `faas.invocation.id`       | n/a                    | `"af9d5aa4-a685-4c5f-a22b-444f80b3cc28"`                              |
+| Span           | `faas.coldstart`           | n/a                    | `true`                                                                |
+| Resource       | `faas.name`                | n/a                    | `"my-lambda-function"`                                                |
+| Resource       | `faas.version`             | n/a                    | `"semver:2.0.0"`                                                      |
+| Resource       | `faas.instance`            | n/a                    | `"my-lambda-function:instance-0001"`                                  |
+| Resource       | `cloud.resource_id`        | n/a                    | `"arn:aws:lambda:us-west-2:123456789012:function:my-lambda-function"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

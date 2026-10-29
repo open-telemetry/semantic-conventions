@@ -79,9 +79,8 @@ groups:
             - id: pubsub
               value: 'pubsub'
               brief: 'A function is set to be executed when messages are sent to a messaging system'
-              deprecated:
-                reason: renamed
-                renamed_to: messaging
+              note: For new developments use messaging instead.
+              stability: development
             - id: messaging
               value: 'messaging'
               brief: 'A function is set to be executed when messages are sent to a messaging system'
@@ -155,10 +154,10 @@ groups:
           [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
           format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
         examples: "2020-01-23T13:47:06Z"
-      - id: faas.invocation.intiator
+      - id: faas.invocation.initiator
         stability: development
         brief: >
-          What intiated this function invocation.
+          What initiated this function invocation.
         type:
           members:
             - id: datasource
