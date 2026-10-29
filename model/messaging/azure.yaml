@@ -8,6 +8,9 @@ span_refinements:
     brief: Describes a message being created for sending to Azure Service Bus.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.servicebus"`.
         examples: ['azure.servicebus']
       - ref: error.type
@@ -26,6 +29,9 @@ span_refinements:
     brief: Describes a producer sending one or more messages to Azure Service Bus.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.servicebus"`.
         examples: ['azure.servicebus']
       - ref: error.type
@@ -47,6 +53,9 @@ span_refinements:
     brief: Describes a producer sending one or more messages to Azure Service Bus.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.servicebus"`.
         examples: ['azure.servicebus']
       - ref: error.type
@@ -68,6 +77,9 @@ span_refinements:
     brief: Describes a consumer receiving one or more messages from Azure Service Bus.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.servicebus"`.
         examples: ['azure.servicebus']
       - ref: error.type
@@ -100,6 +112,9 @@ span_refinements:
     brief: Describes a consumer processing one or more messages from Azure Service Bus (push-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.servicebus"`.
         examples: ['azure.servicebus']
       - ref: error.type
@@ -127,6 +142,9 @@ span_refinements:
     brief: Describes settling (complete/abandon/defer/dead-letter) one or more Azure Service Bus messages.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.servicebus"`.
         examples: ['azure.servicebus']
       - ref: error.type
@@ -160,6 +178,9 @@ span_refinements:
     brief: Describes a message being created for sending to Azure Event Hubs.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.eventhubs"`.
         examples: ['azure.eventhubs']
       - ref: error.type
@@ -180,6 +201,9 @@ span_refinements:
     brief: Describes a producer sending one or more messages to Azure Event Hubs.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.eventhubs"`.
         examples: ['azure.eventhubs']
       - ref: error.type
@@ -200,6 +224,9 @@ span_refinements:
     brief: Describes a producer sending one or more messages to Azure Event Hubs.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.eventhubs"`.
         examples: ['azure.eventhubs']
       - ref: error.type
@@ -220,6 +247,9 @@ span_refinements:
     brief: Describes a consumer receiving one or more messages from Azure Event Hubs (pull-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.eventhubs"`.
         examples: ['azure.eventhubs']
       - ref: error.type
@@ -246,6 +276,9 @@ span_refinements:
     brief: Describes a consumer processing one or more messages from Azure Event Hubs (push-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.eventhubs"`.
         examples: ['azure.eventhubs']
       - ref: error.type
@@ -272,6 +305,9 @@ span_refinements:
     brief: Describes checkpointing (settling) processed messages in Azure Event Hubs.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.eventhubs"`.
         examples: ['azure.eventhubs']
       - ref: error.type
@@ -313,6 +349,9 @@ spans:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.servicebus"`.
         examples: ['azure.servicebus']
         sampling_relevant: true
@@ -362,6 +401,9 @@ spans:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"azure.eventhubs"`.
         examples: ['azure.eventhubs']
         sampling_relevant: true

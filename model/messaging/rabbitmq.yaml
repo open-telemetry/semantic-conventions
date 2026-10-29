@@ -23,6 +23,9 @@ span_refinements:
     brief: Describes a producer publishing one or more messages to RabbitMQ.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
@@ -52,6 +55,9 @@ span_refinements:
     brief: Describes a consumer receiving one or more messages from RabbitMQ (pull-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
@@ -84,6 +90,9 @@ span_refinements:
     brief: Describes a consumer processing one or more messages from RabbitMQ (push-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
@@ -105,6 +114,9 @@ span_refinements:
     brief: Describes a consumer settling (ack/nack/reject) one or more messages on RabbitMQ.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type

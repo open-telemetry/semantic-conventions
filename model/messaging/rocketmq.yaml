@@ -21,6 +21,9 @@ span_refinements:
     brief: Describes a producer sending one or more messages to Apache RocketMQ.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rocketmq"`.
         examples: ['rocketmq']
       - ref: error.type
@@ -41,6 +44,9 @@ span_refinements:
     brief: Describes a consumer receiving one or more messages from Apache RocketMQ (pull-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rocketmq"`.
         examples: ['rocketmq']
       - ref: error.type
@@ -61,6 +67,9 @@ span_refinements:
     brief: Describes a consumer processing one or more messages from Apache RocketMQ (push-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rocketmq"`.
         examples: ['rocketmq']
       - ref: error.type

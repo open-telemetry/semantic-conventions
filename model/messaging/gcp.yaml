@@ -7,6 +7,9 @@ span_refinements:
     brief: Describes a message being created for publishing to Google Cloud Pub/Sub.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"gcp.pubsub"`.
         examples: ['gcp.pubsub']
       - ref: error.type
@@ -26,6 +29,9 @@ span_refinements:
     brief: Describes a producer publishing one or more messages to Google Cloud Pub/Sub.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"gcp.pubsub"`.
         examples: ['gcp.pubsub']
       - ref: error.type
@@ -45,6 +51,9 @@ span_refinements:
     brief: Describes a producer publishing one or more messages to Google Cloud Pub/Sub.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"gcp.pubsub"`.
         examples: ['gcp.pubsub']
       - ref: error.type
@@ -64,6 +73,9 @@ span_refinements:
     brief: Describes a consumer receiving one or more messages from Google Cloud Pub/Sub (pull-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"gcp.pubsub"`.
         examples: ['gcp.pubsub']
       - ref: error.type
@@ -88,6 +100,9 @@ span_refinements:
     brief: Describes a consumer processing one or more messages from Google Cloud Pub/Sub (push-based).
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"gcp.pubsub"`.
         examples: ['gcp.pubsub']
       - ref: error.type
@@ -114,6 +129,9 @@ span_refinements:
     brief: Describes settling (ack/nack/modack) one or more Google Cloud Pub/Sub messages.
     attributes:
       - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"gcp.pubsub"`.
         examples: ['gcp.pubsub']
       - ref: error.type

@@ -35,6 +35,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.tape_drive
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `tape_drive`."
         examples: ["tape_drive"]
   - id: metric.hw.tape_drive.status
@@ -42,6 +45,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.tape_drive
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `tape_drive`."
         examples: ["tape_drive"]
       - ref: hw.state

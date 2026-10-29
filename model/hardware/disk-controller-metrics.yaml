@@ -18,6 +18,9 @@ metric_refinements:
       - ref: hw.vendor
         requirement_level: recommended
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `disk_controller`."
         examples: ["disk_controller"]
       - ref: hw.state
