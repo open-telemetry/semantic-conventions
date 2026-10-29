@@ -139,7 +139,7 @@ method actually executing the call on the server side, or the
 RPC client stub method on the client side.
 
 **[4] `rpc.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-The value MAY use a standardized string representation of the numeric status code, if one exists, instead of the numeric code. The value MAY be a synthetic status provided by the client library rather than returned by the remote service.
+The value MAY use a standardized string representation of a numeric status code, if one exists, instead of the numeric code. The value MAY be a synthetic status provided by the client library rather than returned by the remote service.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.status_code` means in the context of that system and which values are considered to represent errors.
 
 **[5] `server.address`:** May contain a DNS name, an endpoint and path in the service registry, local socket name or an IP address.
@@ -305,7 +305,7 @@ method actually executing the call on the server side, or the
 RPC client stub method on the client side.
 
 **[4] `rpc.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-The value MAY use a standardized string representation of the numeric status code, if one exists, instead of the numeric code. The value MAY be a synthetic status provided by the client library rather than returned by the remote service.
+The value MAY use a standardized string representation of a numeric status code, if one exists, instead of the numeric code. The value MAY be a synthetic status provided by the client library rather than returned by the remote service.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.status_code` means in the context of that system and which values are considered to represent errors.
 
 **[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.

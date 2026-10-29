@@ -133,7 +133,7 @@ system specific term if more applicable.
 **[7] `db.response.status_code`:** If the operation failed and status code is available.
 
 **[8] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-The value MAY use a standardized string representation of the numeric status code, if one exists, instead of the numeric code. The value MAY be a synthetic status provided by the client library rather than returned by the remote service.
+The value MAY use a standardized string representation of a numeric status code, if one exists, instead of the numeric code. The value MAY be a synthetic status provided by the client library rather than returned by the remote service.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 
 **[9] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
@@ -344,7 +344,7 @@ system specific term if more applicable.
 **[7] `db.response.status_code`:** If the operation failed and status code is available.
 
 **[8] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-The value MAY use a standardized string representation of the numeric status code, if one exists, instead of the numeric code. The value MAY be a synthetic status provided by the client library rather than returned by the remote service.
+The value MAY use a standardized string representation of a numeric status code, if one exists, instead of the numeric code. The value MAY be a synthetic status provided by the client library rather than returned by the remote service.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 
 **[9] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
