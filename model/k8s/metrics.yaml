@@ -564,6 +564,17 @@ groups:
         requirement_level: required
       - ref: k8s.pod.volume.type
         requirement_level: recommended
+      - ref: k8s.persistentvolumeclaim.name
+        requirement_level:
+          conditionally_required: If the volume is backed by a PersistentVolumeClaim.
+      - ref: k8s.persistentvolume.name
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+      - ref: k8s.persistentvolume.type
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
   - id: metric.k8s.pod.volume.capacity
     type: metric
     metric_name: k8s.pod.volume.capacity
@@ -586,6 +597,17 @@ groups:
         requirement_level: required
       - ref: k8s.pod.volume.type
         requirement_level: recommended
+      - ref: k8s.persistentvolumeclaim.name
+        requirement_level:
+          conditionally_required: If the volume is backed by a PersistentVolumeClaim.
+      - ref: k8s.persistentvolume.name
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+      - ref: k8s.persistentvolume.type
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
   - id: metric.k8s.pod.volume.usage
     type: metric
     metric_name: k8s.pod.volume.usage
@@ -610,6 +632,17 @@ groups:
         requirement_level: required
       - ref: k8s.pod.volume.type
         requirement_level: recommended
+      - ref: k8s.persistentvolumeclaim.name
+        requirement_level:
+          conditionally_required: If the volume is backed by a PersistentVolumeClaim.
+      - ref: k8s.persistentvolume.name
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+      - ref: k8s.persistentvolume.type
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
   - id: metric.k8s.pod.volume.inode.count
     type: metric
     metric_name: k8s.pod.volume.inode.count
@@ -632,6 +665,17 @@ groups:
         requirement_level: required
       - ref: k8s.pod.volume.type
         requirement_level: recommended
+      - ref: k8s.persistentvolumeclaim.name
+        requirement_level:
+          conditionally_required: If the volume is backed by a PersistentVolumeClaim.
+      - ref: k8s.persistentvolume.name
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+      - ref: k8s.persistentvolume.type
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
   - id: metric.k8s.pod.volume.inode.used
     type: metric
     metric_name: k8s.pod.volume.inode.used
@@ -656,6 +700,17 @@ groups:
         requirement_level: required
       - ref: k8s.pod.volume.type
         requirement_level: recommended
+      - ref: k8s.persistentvolumeclaim.name
+        requirement_level:
+          conditionally_required: If the volume is backed by a PersistentVolumeClaim.
+      - ref: k8s.persistentvolume.name
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+      - ref: k8s.persistentvolume.type
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
   - id: metric.k8s.pod.volume.inode.free
     type: metric
     metric_name: k8s.pod.volume.inode.free
@@ -678,6 +733,17 @@ groups:
         requirement_level: required
       - ref: k8s.pod.volume.type
         requirement_level: recommended
+      - ref: k8s.persistentvolumeclaim.name
+        requirement_level:
+          conditionally_required: If the volume is backed by a PersistentVolumeClaim.
+      - ref: k8s.persistentvolume.name
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+      - ref: k8s.persistentvolume.type
+        requirement_level:
+          conditionally_required: >
+            If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
 
   # k8s.container.* metrics
   - id: metric.k8s.container.status.state
