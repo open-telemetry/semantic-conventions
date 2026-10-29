@@ -551,6 +551,9 @@ groups:
         stability: development
         brief: >
           The type of the K8s volume.
+        note: |
+          This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
+          has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
         examples: [ "emptyDir", "persistentVolumeClaim" ]
         type:
           members:
@@ -1045,6 +1048,43 @@ groups:
             - id: retain
               value: 'Retain'
               brief: 'The volume will be retained when released from its claim.'
+              stability: development
+      - id: k8s.persistentvolume.type
+        stability: development
+        brief: >
+          The type (volume source) of the PersistentVolume.
+        note: |
+          This attribute aligns with the volume source field set in the
+          [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+
+          The set of possible values is not limited to those listed here.
+          When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
+        examples: ['csi', 'local']
+        type:
+          members:
+            - id: csi
+              value: 'csi'
+              brief: "A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume"
+              stability: development
+            - id: local
+              value: 'local'
+              brief: "A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              stability: development
+            - id: host_path
+              value: 'hostPath'
+              brief: "A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume"
+              stability: development
+            - id: nfs
+              value: 'nfs'
+              brief: "An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume"
+              stability: development
+            - id: iscsi
+              value: 'iscsi'
+              brief: "An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume"
+              stability: development
+            - id: fc
+              value: 'fc'
+              brief: "A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume"
               stability: development
       - id: k8s.persistentvolume.status.phase
         stability: development
