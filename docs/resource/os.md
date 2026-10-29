@@ -13,6 +13,8 @@ In case of virtualized environments, this is the operating system as it is obser
 
 **Description:** The operating system (OS) on which the process represented by this resource is running.
 
+In case of virtualized environments, this is the operating system as it is observed by the process, i.e., the virtualized guest rather than the underlying host.
+
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |

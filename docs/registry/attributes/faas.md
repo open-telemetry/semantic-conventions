@@ -32,12 +32,12 @@ FaaS attributes
 | <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [(see more)](#faas-trigger-values) |
 | <a id="faas-version" href="#faas-version">`faas.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The immutable version of the function being executed. [8] | `26`; `pinkfroid-00002` |
 
-**[1] `faas.id`:** For some cloud providers, the ID can be extracted from the value used for the cloud.resource_id.
-The following well-known definitions MUST be used if you set this attribute and they apply:
+**[1] `faas.id`:** The following well-known definitions MUST be used if you set this attribute and they apply:
 
-- **AWS Lambda:** The resource-id within the [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
-- **GCP:** Follows the format of `<PROJECT_ID>/<SERVICE_ID>`, with values extracted from the Resource URI.
-- **Azure:** Follows the format of `<resource-group-name>/<function-app-name>/<function-name>`, with values extracted from the Fully Qualified Resource ID.
+- **AWS Lambda:** Constructed using the `{{AWS_LAMBDA_FUNCTION_NAME }}-{{AWS_LAMBDA_FUNCTION_VERSION}}` template
+  with values coming [environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime).
+- **GCP:** The value of [`K_REVISION` environment variable](https://docs.cloud.google.com/run/docs/container-contract#env-vars).
+- **KNative:** The value of [`K_REVISION` environment variable](https://github.com/knative/specs/blob/main/specs/serving/runtime-contract.md#process).
 
 In cases where the FaaS platform doesn't provide access to a unique ID, the name should be used as a fallback.
 
@@ -61,22 +61,22 @@ For some cloud providers, the above definition is ambiguous. The following
 definition of function name MUST be used for this attribute
 (and consequently the span name) for the listed cloud providers/products:
 
+- **AWS Lambda:** The value of [`AWS_LAMBDA_FUNCTION_NAME ` environment variable](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime).
 - **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
   followed by a forward slash followed by the function name (this form
   can also be seen in the resource JSON for the function).
   This means that a span attribute MUST be used, as an Azure function
   app can host multiple functions that would usually share
   a TracerProvider (see also the `cloud.resource_id` attribute).
+- **GCP:** The value of [`K_CONFIGURATION` environment variable](https://docs.cloud.google.com/run/docs/container-contract#env-vars).
+- **KNative:** The value of [`K_CONFIGURATION` environment variable](https://github.com/knative/specs/blob/main/specs/serving/runtime-contract.md#process).
 
 **[8] `faas.version`:** Depending on the cloud provider and platform, use:
 
-- **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
+- **AWS Lambda:** The value of [`AWS_LAMBDA_FUNCTION_VERSION` environment variable](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime)
   (an integer represented as a decimal string).
-- **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
-  (i.e., the function name plus the revision suffix).
-- **Google Cloud Functions:** The value of the
-  [`K_REVISION` environment variable](https://cloud.google.com/run/docs/container-contract#services-env-vars).
-- **Azure Functions:** Not applicable. Do not set this attribute.
+- **GCP:** The value of [`K_REVISION` environment variable](https://docs.cloud.google.com/run/docs/container-contract#env-vars) without the configuration prefix.
+- **KNative:** The value of [`K_REVISION` environment variable](https://github.com/knative/specs/blob/main/specs/serving/runtime-contract.md#process) without the configuration prefix.
 
 ---
 

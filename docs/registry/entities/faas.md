@@ -11,6 +11,9 @@
 
 **Description:** A serverless function definition.
 
+This entity is only applicable when a resource detector is capable of knowing the function without performing expensive operations ie API request to discover the information.
+An example of where this entity is not supported is Azure Functions as on that platform, the environment is shared by 1 or more functions. As such on this platform an entity should be reported for the app.
+
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
@@ -19,24 +22,21 @@
 | Identity | [`faas.version`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The immutable version of the function being executed. [2] | `26`; `pinkfroid-00002` |
 | Description | [`faas.name`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the single function that this runtime instance executes. [3] | `my-function`; `myazurefunctionapp/some-function-name` |
 
-**[1] `faas.id`:** For some cloud providers, the ID can be extracted from the value used for the cloud.resource_id.
-The following well-known definitions MUST be used if you set this attribute and they apply:
+**[1] `faas.id`:** The following well-known definitions MUST be used if you set this attribute and they apply:
 
-- **AWS Lambda:** The resource-id within the [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
-- **GCP:** Follows the format of `<PROJECT_ID>/<SERVICE_ID>`, with values extracted from the Resource URI.
-- **Azure:** Follows the format of `<resource-group-name>/<function-app-name>/<function-name>`, with values extracted from the Fully Qualified Resource ID.
+- **AWS Lambda:** Constructed using the `{{AWS_LAMBDA_FUNCTION_NAME }}-{{AWS_LAMBDA_FUNCTION_VERSION}}` template
+  with values coming [environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime).
+- **GCP:** The value of [`K_REVISION` environment variable](https://docs.cloud.google.com/run/docs/container-contract#env-vars).
+- **KNative:** The value of [`K_REVISION` environment variable](https://github.com/knative/specs/blob/main/specs/serving/runtime-contract.md#process).
 
 In cases where the FaaS platform doesn't provide access to a unique ID, the name should be used as a fallback.
 
 **[2] `faas.version`:** Depending on the cloud provider and platform, use:
 
-- **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
+- **AWS Lambda:** The value of [`AWS_LAMBDA_FUNCTION_VERSION` environment variable](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime)
   (an integer represented as a decimal string).
-- **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
-  (i.e., the function name plus the revision suffix).
-- **Google Cloud Functions:** The value of the
-  [`K_REVISION` environment variable](https://cloud.google.com/run/docs/container-contract#services-env-vars).
-- **Azure Functions:** Not applicable. Do not set this attribute.
+- **GCP:** The value of [`K_REVISION` environment variable](https://docs.cloud.google.com/run/docs/container-contract#env-vars) without the configuration prefix.
+- **KNative:** The value of [`K_REVISION` environment variable](https://github.com/knative/specs/blob/main/specs/serving/runtime-contract.md#process) without the configuration prefix.
 
 **[3] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
 platform and is usually different from the name of the callback
@@ -48,12 +48,9 @@ For some cloud providers, the above definition is ambiguous. The following
 definition of function name MUST be used for this attribute
 (and consequently the span name) for the listed cloud providers/products:
 
-- **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
-  followed by a forward slash followed by the function name (this form
-  can also be seen in the resource JSON for the function).
-  This means that a span attribute MUST be used, as an Azure function
-  app can host multiple functions that would usually share
-  a TracerProvider (see also the `cloud.resource_id` attribute).
+- **AWS Lambda:** The value of [`AWS_LAMBDA_FUNCTION_NAME ` environment variable](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime).
+- **GCP:** The value of [`K_CONFIGURATION` environment variable](https://docs.cloud.google.com/run/docs/container-contract#env-vars).
+- **KNative:** The value of [`K_CONFIGURATION` environment variable](https://github.com/knative/specs/blob/main/specs/serving/runtime-contract.md#process).
 
 ## Faas Instance
 
