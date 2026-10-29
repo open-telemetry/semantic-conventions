@@ -1,0 +1,4 @@
+change_type: breaking
+component: k8s
+note: Rename `k8s.volume.name` and `k8s.volume.type` attributes to `k8s.pod.volume.name` and `k8s.pod.volume.type`.
+issues: [4156]
