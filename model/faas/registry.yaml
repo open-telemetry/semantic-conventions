@@ -79,11 +79,6 @@ groups:
             - id: pubsub
               value: 'pubsub'
               brief: 'A function is set to be executed when messages are sent to a messaging system'
-              note: For new developments use messaging instead.
-              stability: development
-            - id: messaging
-              value: 'messaging'
-              brief: 'A function is set to be executed when messages are sent to a messaging system'
               stability: development
             - id: timer
               value: 'timer'

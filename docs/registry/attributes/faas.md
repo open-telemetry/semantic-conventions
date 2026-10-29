@@ -119,12 +119,9 @@ definition of function name MUST be used for this attribute
 | --- | --- | --- |
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `messaging` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[8]:** For new developments use messaging instead.
 
 ## Deprecated Function as a Service Attributes
 
