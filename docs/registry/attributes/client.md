@@ -10,14 +10,20 @@
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="client-address" href="#client-address">`client.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| <a id="client-port" href="#client-port">`client.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Client port number. [2] | `65123` |
-| <a id="client-service-name" href="#client-service-name">`client.service.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical name of the service acting as the client in a connection-based network interaction. [3] | `shoppingcart` |
-| <a id="client-service-namespace" href="#client-service-namespace">`client.service.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical namespace of the service acting as the client in a connection-based network interaction. [4] | `Shop` |
+| <a id="client-as-number" href="#client-as-number">`client.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the client IP address. [2] | `64496`; `15169` |
+| <a id="client-as-organization" href="#client-as-organization">`client.as.organization`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the client IP address. [3] | `Example Networks Inc.`; `Google LLC` |
+| <a id="client-port" href="#client-port">`client.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Client port number. [4] | `65123` |
+| <a id="client-service-name" href="#client-service-name">`client.service.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical name of the service acting as the client in a connection-based network interaction. [5] | `shoppingcart` |
+| <a id="client-service-namespace" href="#client-service-namespace">`client.service.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical namespace of the service acting as the client in a connection-based network interaction. [6] | `Shop` |
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
+**[2] `client.as.number`:** This attribute SHOULD only be set when the client address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
 
-**[3] `client.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service whether the telemetry is recorded by the client, the server, or another observer.
+**[3] `client.as.organization`:** This attribute SHOULD only be set when `client.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[4] `client.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `client.service.name`, this identifies the client service. An empty namespace is equivalent to an unspecified namespace.
+**[4] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
+
+**[5] `client.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service whether the telemetry is recorded by the client, the server, or another observer.
+
+**[6] `client.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `client.service.name`, this identifies the client service. An empty namespace is equivalent to an unspecified namespace.
