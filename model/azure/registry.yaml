@@ -109,3 +109,55 @@ groups:
         stability: development
         brief: Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
         examples: ["Eventual", "ConsistentPrefix", "BoundedStaleness", "Strong", "Session"]
+  - id: registry.azure.servicebus
+    type: attribute_group
+    display_name: Azure Service Bus Attributes
+    brief: >
+      This group describes attributes specific to Azure Service Bus.
+    attributes:
+      - id: azure.servicebus.message.delivery_count
+        type: int
+        stability: development
+        brief: >
+          Number of deliveries that have been attempted for this message.
+        examples: 2
+      - id: azure.servicebus.message.enqueued_time
+        type: int
+        stability: development
+        brief: >
+          The UTC epoch seconds at which the message has been accepted and stored in the entity.
+        examples: 1701393730
+      - id: azure.servicebus.disposition_status
+        brief: >
+          Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
+        type:
+          members:
+            - id: complete
+              value: 'complete'
+              brief: 'Message is completed'
+              stability: development
+            - id: abandon
+              value: 'abandon'
+              brief: 'Message is abandoned'
+              stability: development
+            - id: dead_letter
+              value: 'dead_letter'
+              brief: 'Message is sent to dead letter queue'
+              stability: development
+            - id: defer
+              value: 'defer'
+              brief: 'Message is deferred'
+              stability: development
+        stability: development
+  - id: registry.azure.eventhubs
+    type: attribute_group
+    display_name: Azure Event Hubs Attributes
+    brief: >
+      This group describes attributes specific to Azure Event Hubs.
+    attributes:
+      - id: azure.eventhubs.message.enqueued_time
+        type: int
+        stability: development
+        brief: >
+          The UTC epoch seconds at which the message has been accepted and stored in the entity.
+        examples: 1701393730
