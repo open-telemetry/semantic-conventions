@@ -14,6 +14,10 @@ attribute_groups:
       relationship is unknown - for example, packet-level telemetry and peer-to-peer protocols.
     attributes:
       - ref: destination.address
+      - ref: destination.as.number
+        requirement_level: opt_in
+      - ref: destination.as.organization
+        requirement_level: opt_in
       - ref: destination.mac.address
         requirement_level: opt_in
       - ref: destination.port
