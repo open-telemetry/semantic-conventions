@@ -11,6 +11,8 @@
 
 **Description:** A logical unit of an application or system that performs a specific function.
 
+A service is a logical component used in a system, product or application. Examples include a microservice, a database, a Kubernetes deployment.
+
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
@@ -52,6 +54,8 @@ The process executable name is the name of the process executable, the same valu
 **type:** `service.instance`
 
 **Description:** A unique instance of a logical service.
+
+A `service.instance` uniquely identifies an instance of a logical service. For example, a container that is part of a Kubernetes deployment that offers a service.
 
 **Attributes:**
 
@@ -99,6 +103,8 @@ port.
 **type:** `service.namespace`
 
 **Description:** Groups related services that compose a system or application under a common namespace.
+
+A `service.namespace` can be used to logically organize and group related services under a common namespace.
 
 **Attributes:**
 

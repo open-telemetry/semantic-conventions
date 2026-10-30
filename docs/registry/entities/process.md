@@ -42,6 +42,8 @@
 
 **Description:** The executable of a process.
 
+Represents the executable file associated with a process. A single executable may be run my multiple process instances.
+
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |

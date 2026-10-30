@@ -4,11 +4,43 @@ groups:
     stability: development
     name: faas
     brief: >
-      A serverless instance.
+      A serverless function definition.
+    note: >
+      This entity is only applicable when a resource detector is capable of knowing the function
+      without performing expensive operations ie API request to discover the information.
+
+      An example of where this entity is not supported is Azure Functions as on that platform,
+      the environment is shared by 1 or more functions. As such on this platform an entity should be reported for the app.
     attributes:
-      - ref: faas.name
+      - ref: faas.id
+        role: identifying
         requirement_level: required
+      - ref: faas.name
+        role: descriptive
+        note: |
+          This is the name of the function as configured/deployed on the FaaS
+          platform and is usually different from the name of the callback
+          function (which may be stored in the
+          [`code.namespace`/`code.function.name`](/docs/general/attributes.md#source-code-attributes)
+          span attributes).
+
+          For some cloud providers, the above definition is ambiguous. The following
+          definition of function name MUST be used for this attribute
+          (and consequently the span name) for the listed cloud providers/products:
+
+          - **AWS Lambda:** The value of [`AWS_LAMBDA_FUNCTION_NAME ` environment variable](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime).
+          - **GCP:** The value of [`K_CONFIGURATION` environment variable](https://docs.cloud.google.com/run/docs/container-contract#env-vars).
+          - **KNative:** The value of [`K_CONFIGURATION` environment variable](https://github.com/knative/specs/blob/main/specs/serving/runtime-contract.md#process).
       - ref: faas.version
-      - ref: faas.instance
+        role: identifying
+  - id: entity.faas.instance
+    type: entity
+    stability: development
+    name: faas.instance
+    brief: >
+      A serverless function instance.
+    attributes:
+      - ref: faas.instance.id
+        role: identifying
       - ref: faas.max_memory
-      - ref: cloud.resource_id
+        role: descriptive
