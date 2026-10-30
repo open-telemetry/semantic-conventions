@@ -9,6 +9,212 @@
 
 <!-- next version -->
 
+## v1.45.0
+
+### 🛑 Breaking changes 🛑
+
+- `android`: Remove the `android` entity in favor of the `android` attribute group. Usage on resources stays the same. ([#4168](https://github.com/open-telemetry/semantic-conventions/issues/4168))
+- `aws`: Remove the `aws.ecs` entity in favor of `aws.ecs.task`, `aws.ecs.cluster`, and `aws.ecs.container` entities identified by their required ARNs. ([#4170](https://github.com/open-telemetry/semantic-conventions/issues/4170))
+- `aws`: Remove the AWS log entity while retaining its attributes for resource metadata. ([#4171](https://github.com/open-telemetry/semantic-conventions/issues/4171))
+- `cloudfoundry`: Split `cloudfoundry.system` into `cloudfoundry.system` and `cloudfoundry.system.instance`, and define required identifying attributes for Cloud Foundry entities for Weaver schema v2 migration. ([#4191](https://github.com/open-telemetry/semantic-conventions/issues/4191))
+- `db`: Rename `db.client.connection.max` to `db.client.connection.limit` ([#4073](https://github.com/open-telemetry/semantic-conventions/issues/4073))
+- `faas`: This renames the faas attributes describing the invocation to be faas.invocation.* ([#4228](https://github.com/open-telemetry/semantic-conventions/issues/4228))
+  The faas.time attribute has been renamed to faas.invocation.start_time.
+  The faas.invocation_id attribute has been renamed to faas.invocation.id to complement the time attribute.
+  
+- `gcp`: Remove the `gcp.gce` and `gcp.cloud_run` entities in favor of `gcp.gce.instance` and `gcp.cloud_run.job.task`, and define required identifying attributes for GCP entities. ([#4173](https://github.com/open-telemetry/semantic-conventions/issues/4173))
+- `rpc`: Replace `rpc.request.metadata.<key>` and `rpc.response.metadata.<key>` with `rpc.request.header.<key>`, `rpc.response.header.<key>`, and `rpc.response.trailer.<key>`. ([#3924](https://github.com/open-telemetry/semantic-conventions/issues/3924), [#4072](https://github.com/open-telemetry/semantic-conventions/issues/4072))
+  gRPC and Connect RPC send response metadata both before and after the response payload and
+  expose the two separately on their APIs. `rpc.response.metadata.<key>` did not record which
+  of the two a value came from, so this change splits it into `rpc.response.header.<key>` for
+  metadata sent before the response payload and `rpc.response.trailer.<key>` for metadata sent
+  after it. Dubbo Triple has the same split: instrumentations record Triple response headers as
+  `rpc.response.header.<key>` and Dubbo response attachments, which Triple sends as trailers, as
+  `rpc.response.trailer.<key>`.
+  
+  No RPC system sends metadata after the request payload, so there is no `rpc.request.trailer`
+  attribute and the request side is a plain rename.
+  
+  The already-deprecated `rpc.grpc.*` and `rpc.connect_rpc.*` metadata attributes now point at
+  the new attributes directly instead of at the deprecated `rpc.request.metadata.<key>` and
+  `rpc.response.metadata.<key>`.
+  
+- `rpc`: Rename `rpc.response.status_code` to `rpc.status_code`. ([#3870](https://github.com/open-telemetry/semantic-conventions/issues/3870))
+- `system`: Rename `system.device` attribute to `system.device.name` ([#1474](https://github.com/open-telemetry/semantic-conventions/issues/1474))
+  This namespaces `system.device` to `system.device.name` to clarify the property being described.
+  The old `system.device` has been deprecated.
+  
+- `system`: `system.memory.state` now only defines the `used` and `available` states. ([#2538](https://github.com/open-telemetry/semantic-conventions/issues/2538))
+  The new `available` state corresponds to `MemAvailable` on Linux, so that `used` + `available`
+  equals `system.memory.limit`. The `free`, `buffers` and `cached` states are deprecated.
+  
+- `zos`: Remove z/OS entities and deprecate z/OS attributes in favor of `open-telemetry/semantic-conventions-mainframe`. ([#4174](https://github.com/open-telemetry/semantic-conventions/issues/4174), [#3808](https://github.com/open-telemetry/semantic-conventions/issues/3808))
+
+### 🚩 Deprecations 🚩
+
+- `azure`: Move the `azure.resource.log` event to schema v2 and deprecate section describing its body fields. ([#4085](https://github.com/open-telemetry/semantic-conventions/issues/4085))
+- `enduser`: Deprecate `enduser.id` and `enduser.pseudo.id` in favor of `open-telemetry/semantic-conventions-client-side`. ([#4238](https://github.com/open-telemetry/semantic-conventions/issues/4238))
+- `messaging`: Rename `messaging.system` to `messaging.system.name` and align cloud-provider values with their attribute namespaces. ([#4250](https://github.com/open-telemetry/semantic-conventions/issues/4250))
+- `messaging`: Move system-specific messaging attributes into system-specific namespaces. ([#4004](https://github.com/open-telemetry/semantic-conventions/issues/4004))
+  Rename `messaging.kafka.*`, `messaging.rabbitmq.*`, and `messaging.rocketmq.*`
+  to `kafka.*`, `rabbitmq.*`, and `rocketmq.*`, respectively.
+  Rename `messaging.gcp_pubsub.*` to `gcp.pubsub.*`,
+  `messaging.servicebus.*` to `azure.servicebus.*`, and
+  `messaging.eventhubs.*` to `azure.eventhubs.*`.
+  The old attributes are deprecated.
+  
+- `opentracing`: Deprecate OpenTracing compatibility document and `opentracing.ref_type` attribute. ([#4049](https://github.com/open-telemetry/semantic-conventions/issues/4049))
+- `service`: Deprecate `service.peer.name` and `service.peer.namespace` in favor of `server.service.name`/`.namespace` and `client.service.name`/`.namespace`. ([#3472](https://github.com/open-telemetry/semantic-conventions/issues/3472))
+
+### 💡 Enhancements 💡
+
+- `aws`: Define AWS Lambda, S3, and DynamoDB spans as refinements of the FaaS server and AWS SDK client spans. ([#3808](https://github.com/open-telemetry/semantic-conventions/issues/3808))
+  The AWS Lambda span now lists the attributes it inherits from the FaaS server span, including
+  the required `faas.trigger`.
+  
+- `client`: Add `client.service.name` and `client.service.namespace` attributes at development stability. ([#3472](https://github.com/open-telemetry/semantic-conventions/issues/3472))
+- `client`: Add `client.as.number` and `client.as.organization` attributes for client network endpoints.
+ ([#1663](https://github.com/open-telemetry/semantic-conventions/issues/1663), [#3740](https://github.com/open-telemetry/semantic-conventions/issues/3740))
+- `container`: Define identifying attributes for container entities for Weaver schema v2 migration. ([#4164](https://github.com/open-telemetry/semantic-conventions/issues/4164))
+- `cpu`: Clarify that `cpu.logical_number` is not the same as the number of cores. ([#2934](https://github.com/open-telemetry/semantic-conventions/issues/2934))
+  `cpu.logical_number` attribute is not the same as the number of cores on a system, for example,
+  a CPU with hyper-threading may have 8 cores and 16 logical CPUs. The cpu.logical_number
+  attribute brief has been updated to include this information.
+  
+- `db`: Add trace context propagation for MongoDB through the comment command field ([#3926](https://github.com/open-telemetry/semantic-conventions/issues/3926))
+- `db`: Add application context propagation to Oracle DB via piggybacking ([#3863](https://github.com/open-telemetry/semantic-conventions/issues/3863))
+  Also recommends driver-provided APIs for updating `V$SESSION.ACTION`
+  instead of issuing SQL or PL/SQL directly.
+  
+- `db`: Db spans have been switched to v2 syntax including spans now becoming refinements & adding db.system.name attribute. ([#3808](https://github.com/open-telemetry/semantic-conventions/issues/3808))
+  `azure.cosmosdb.client`, `db.cassandra.client`, `db.couchdb.client`, `db.elasticsearch.client`, `db.hbase.client`,
+  `db.mariadb.client`, `db.mongodb.client`, `db.mysql.client`, `db.oracledb.client`, `db.postgresql.client`, `db.redis.client`,
+  `db.sql_server.client`, `db.sql.client` span defintiions have been switched to a refinement of the `db.client` span.
+  
+- `db`: Clarify that database client `server.address` identifies the configured database target, including multiple servers and service discovery.
+ ([#4041](https://github.com/open-telemetry/semantic-conventions/issues/4041))
+- `db`: Add `db.system.name`, `db.namespace`, `server.address`, and `server.port` attributes to database client connection pool metrics.
+ ([#4097](https://github.com/open-telemetry/semantic-conventions/issues/4097))
+- `deployment`: Define identifying attributes for deployment entities for Weaver schema v2 migration. ([#4167](https://github.com/open-telemetry/semantic-conventions/issues/4167))
+- `destination`: Clarify that `destination.address` and `destination.port` describe the receiver of a network exchange and are recorded as the address available at the point of instrumentation. Instrumentation captures that address and does not try to resolve the address behind intermediaries such as proxies. They apply when there is no clear or known client/server role (for example low-level flow/packet telemetry or peer-to-peer protocols); use `client.*` / `server.*` for logical, de-proxied identity when the roles are known.
+ ([#3947](https://github.com/open-telemetry/semantic-conventions/issues/3947), [#1721](https://github.com/open-telemetry/semantic-conventions/issues/1721))
+- `destination`: Add `destination.as.number` and `destination.as.organization` attributes for destination network endpoints.
+ ([#1663](https://github.com/open-telemetry/semantic-conventions/issues/1663), [#3740](https://github.com/open-telemetry/semantic-conventions/issues/3740))
+- `docs`: Link the "Example Values" column directly to the full list of well-known values for enum-typed attributes. ([#1085](https://github.com/open-telemetry/semantic-conventions/issues/1085))
+- `docs`: Stop rendering the redundant "well-known values" table on per-signal usage pages for enums whose only member is the generic fallback value, such as `error.type`. ([#2141](https://github.com/open-telemetry/semantic-conventions/issues/2141))
+  The attribute registry page still shows this table.
+  
+- `general`: Support unbounded attributes with `annotations.value.unbounded_size: true`, add `*_ref` attribute conventions, and enforce both via Rego policies. ([#1428](https://github.com/open-telemetry/semantic-conventions/issues/1428), [#3773](https://github.com/open-telemetry/semantic-conventions/issues/3773), [#4102](https://github.com/open-telemetry/semantic-conventions/issues/4102))
+- `host`: Define identifying attributes for host entities for Weaver schema v2 migration. ([#4165](https://github.com/open-telemetry/semantic-conventions/issues/4165))
+- `host`: Define an explicit priority order for host.id sources, list the currently recognized cloud environments, and specify behavior around machine-id lookup and the user-configured fallback properties.
+ ([#3897](https://github.com/open-telemetry/semantic-conventions/issues/3897))
+- `host`: Define attribute roles for the `host` entity, make `host.id` identifying. ([#4086](https://github.com/open-telemetry/semantic-conventions/issues/4086))
+- `http`: Add opt-in `http.request.body.content` and `http.response.body.content` attributes to capture HTTP request and response bodies ([#857](https://github.com/open-telemetry/semantic-conventions/issues/857))
+  These attributes may contain sensitive information.
+  
+- `jvm`: Promote `jvm.file_descriptor.count` and `jvm.file_descriptor.limit` metrics to `release_candidate` ([#4019](https://github.com/open-telemetry/semantic-conventions/issues/4019))
+  The following metrics are being promoted to release_candidate:
+    - jvm.file_descriptor.count
+    - jvm.file_descriptor.limit
+  These metrics are only available on Unix-like operating systems and are obtained
+  from the `UnixOperatingSystemMXBean` JVM management interface.
+  
+- `jvm`: Define development semantic conventions for JVM executor metrics, including executor identities fixed for the lifetime of each registration, completed-task and rejected-submission counting semantics, and user-configured names for unnamed executors. ([#3956](https://github.com/open-telemetry/semantic-conventions/issues/3956))
+- `k8s`: Add Pod level CPU limit and request metrics. ([#4064](https://github.com/open-telemetry/semantic-conventions/issues/4064))
+  Introduces `k8s.pod.cpu.limit.desired`, `k8s.pod.cpu.limit.current`,
+  `k8s.pod.cpu.limit.utilization`, `k8s.pod.cpu.request.desired`,
+  `k8s.pod.cpu.request.current` and `k8s.pod.cpu.request.utilization`,
+  aligning the `k8s.pod` namespace with the equivalent `k8s.container` metrics
+  and with the K8s Pod level resources feature.
+  
+- `k8s`: Promote `container.uptime`, `k8s.pod.uptime` and `k8s.node.uptime` metrics to `release_candidate` ([#3945](https://github.com/open-telemetry/semantic-conventions/issues/3945))
+  The following metrics are being promoted to release_candidate:
+    - container.uptime
+    - k8s.pod.uptime
+    - k8s.node.uptime
+  Notes referencing the Kubelet stats summary API fields (`ContainerStats.StartTime`,
+  `PodStats.StartTime`, `NodeStats.StartTime`) have been added to each metric.
+  
+- `k8s`: Promote container.cpu.usage, k8s.pod.cpu.usage and k8s.node.cpu.usage metrics to release candidate ([#4145](https://github.com/open-telemetry/semantic-conventions/issues/4145))
+- `k8s`: Add Pod and container memory limit and request utilization metrics. ([#4133](https://github.com/open-telemetry/semantic-conventions/issues/4133))
+  Introduces `k8s.pod.memory.limit.utilization`, `k8s.pod.memory.request.utilization`,
+  `k8s.container.memory.limit.utilization` and `k8s.container.memory.request.utilization`,
+  aligning memory with the equivalent CPU utilization metrics. The utilization metrics use
+  the memory working set as the numerator.
+  
+- `k8s`: Add Pod level memory limit and request metrics. ([#4133](https://github.com/open-telemetry/semantic-conventions/issues/4133))
+  Introduces `k8s.pod.memory.limit.desired`, `k8s.pod.memory.limit.current`,
+  `k8s.pod.memory.request.desired` and `k8s.pod.memory.request.current`,
+  aligning Pod level memory with the equivalent Pod level CPU metrics.
+  
+- `k8s`: Promote `k8s.pod.filesystem.*`, `k8s.node.filesystem.*`, and `container.filesystem.*` metrics to `release_candidate`. Container filesystem metrics (`container.filesystem.available`, `container.filesystem.capacity`, `container.filesystem.usage`) also gain documentation notes mapping them to their cadvisor equivalents (`container_fs_limit_bytes`, `container_fs_usage_bytes`), enabling use cases where metrics are retrieved directly from cadvisor rather than through the Kubelet stats summary API.
+ ([#4053](https://github.com/open-telemetry/semantic-conventions/issues/4053))
+- `k8s`: Clarify the Linux working set calculation for Pod, Node, and container memory working set metrics and document the related kubelet eviction behavior. ([#4133](https://github.com/open-telemetry/semantic-conventions/issues/4133))
+- `k8s`: Promote `k8s.pod.network.io`, `k8s.pod.network.errors`, `k8s.node.network.io`, and `k8s.node.network.errors` metrics to `release_candidate` ([#3946](https://github.com/open-telemetry/semantic-conventions/issues/3946))
+- `k8s`: Promote paging fault metrics (`k8s.node.paging.faults`, `k8s.pod.paging.faults`, `container.paging.faults`) to RC ([#4036](https://github.com/open-telemetry/semantic-conventions/issues/4036))
+- `k8s`: Add `k8s.statefulset.pod.available` metric, reporting the number of available replica pods (ready for at least `minReadySeconds`) targeted by a StatefulSet, aligning with the existing `.pod.available` metrics on `k8s.deployment`, `k8s.replicaset`, and `k8s.replicationcontroller`.
+ ([#4028](https://github.com/open-telemetry/semantic-conventions/issues/4028))
+- `k8s`: Add `k8s.node.pid.usage` and `k8s.node.pid.limit` metrics to track Kubernetes node PID limit and usage. ([#3864](https://github.com/open-telemetry/semantic-conventions/issues/3864))
+- `log`: Remove `docs/general/logs.md` and attribute groups covered there (`log.record`, `attributes.log`, and `attributes.log.file`) in favor of attributes defined in the registry.
+ ([#4083](https://github.com/open-telemetry/semantic-conventions/issues/4083))
+- `network`: Remove the network connection and carrier attributes section from `docs/general/attributes.md`. The `network.carrier.*` and `network.connection.*` attributes remain available in the [attribute registry](/docs/registry/attributes/network.md).
+ ([#4048](https://github.com/open-telemetry/semantic-conventions/issues/4048))
+- `network`: Add guidance for choosing between `client.*` / `server.*`, `source.*` / `destination.*`, and `network.local.*` / `network.peer.*` in a dedicated Network document (`docs/network/choosing-network-attributes.md`).
+ ([#3947](https://github.com/open-telemetry/semantic-conventions/issues/3947), [#1721](https://github.com/open-telemetry/semantic-conventions/issues/1721))
+- `network`: Add public `network.peer` and `network.local` attribute groups, replacing the internal `network-core` group.
+ ([#4084](https://github.com/open-telemetry/semantic-conventions/issues/4084))
+- `network`: Add `network.local.as.number`, `network.local.as.organization`, `network.peer.as.number`, and `network.peer.as.organization` attributes for local and peer network endpoints.
+ ([#1663](https://github.com/open-telemetry/semantic-conventions/issues/1663), [#3740](https://github.com/open-telemetry/semantic-conventions/issues/3740))
+- `os`: Define identifying attributes for os entities for Weaver schema v2 migration. ([#4165](https://github.com/open-telemetry/semantic-conventions/issues/4165))
+- `otel`: Mark `error.type` as conditionally required on `otel.sdk.processor.{span,log}.processed` and `otel.sdk.exporter.{span,log,metric_data_point}.exported`, matching `otel.sdk.exporter.operation.duration`.
+ ([#3954](https://github.com/open-telemetry/semantic-conventions/issues/3954))
+- `otel`: Define `otel.scope.name` as required and identifying and keep `otel.scope.version` recommended and descriptive for Weaver schema v2 migration. ([#4193](https://github.com/open-telemetry/semantic-conventions/issues/4193))
+- `otel`: Clarify that `otel.sdk.log.created` counts log records at intake on an enabled `Logger`, before per-record filtering.
+ ([#3506](https://github.com/open-telemetry/semantic-conventions/issues/3506))
+- `profile`: Extend the list of known frame types with a value for CUDA ([#4079](https://github.com/open-telemetry/semantic-conventions/issues/4079))
+- `rpc`: Update RPC call-duration histogram bucket recommendations and align gRPC boundaries with gRPC's existing OpenTelemetry metrics. ([#316](https://github.com/open-telemetry/semantic-conventions/issues/316))
+  General RPC uses 13 boundaries from 0.0001 to 100 seconds; gRPC uses the 41 latency boundaries defined in gRPC A66, including zero.
+- `rpc`: Mark `rpc.request.header.<key>`, `rpc.response.header.<key>`, and `rpc.response.trailer.<key>` as release candidate. ([#4276](https://github.com/open-telemetry/semantic-conventions/issues/4276))
+- `rpc`: Clarify that RPC instrumentations may use additional context or provide configuration options to customize which status or error codes are considered errors.
+ ([#3704](https://github.com/open-telemetry/semantic-conventions/issues/3704))
+- `rpc`: Clarify how to populate `server.address` and `server.port` on RPC server spans. Change requirement level of `server.address` to `opt_in` on `rpc.server.call.duration` metric and to `recommended` on server spans.
+ ([#3784](https://github.com/open-telemetry/semantic-conventions/issues/3784))
+- `rpc`: Add Apache Dubbo-specific metric refinements for `rpc.server.call.duration` and `rpc.client.call.duration`, and define Dubbo spans as refinements of the generic RPC spans with shared attribute definitions. The `rpc.method` requirement level differs between client (required) and server (conditionally required), matching the corresponding Dubbo span conventions.
+ ([#4120](https://github.com/open-telemetry/semantic-conventions/issues/4120))
+  Require client `server.port` only when `server.address` is set and a port is
+  specified in the direct provider target URL, excluding registry discovery targets.
+  Dubbo spans now explicitly include `rpc.system.name`.
+  
+- `rpc`: Add gRPC-specific metric refinements for `rpc.server.call.duration` and `rpc.client.call.duration`, rendered on the gRPC page. The `rpc.method` requirement level differs between client (required) and server (conditionally required), matching the corresponding gRPC span conventions. Convert gRPC spans to refinements and share gRPC attribute definitions across spans and metrics.
+ ([#3868](https://github.com/open-telemetry/semantic-conventions/issues/3868))
+- `rpc`: Mark RPC spans and call duration metrics as stable, including the gRPC and Apache Dubbo conventions. ([#3477](https://github.com/open-telemetry/semantic-conventions/issues/3477))
+- `rpc`: Define Connect RPC and JSON-RPC spans as refinements of the generic RPC client and server spans. ([#3808](https://github.com/open-telemetry/semantic-conventions/issues/3808))
+  JSON-RPC spans now list the opt-in `rpc.request.header.<key>`, `rpc.response.header.<key>`, and
+  `rpc.response.trailer.<key>` attributes inherited from the generic RPC spans.
+  
+- `server`: Add `server.service.name` and `server.service.namespace` attributes at development stability. ([#3472](https://github.com/open-telemetry/semantic-conventions/issues/3472))
+- `server`: Add `server.as.number` and `server.as.organization` attributes for server network endpoints.
+ ([#1663](https://github.com/open-telemetry/semantic-conventions/issues/1663), [#3740](https://github.com/open-telemetry/semantic-conventions/issues/3740))
+- `service`: Add `service.instance.cost_center.id` and `service.instance.cost_center.name` attributes to the service registry. ([#3754](https://github.com/open-telemetry/semantic-conventions/issues/3754))
+- `source`: Clarify that `source.address` and `source.port` describe the sender of a network exchange and are recorded as the address available at the point of instrumentation. Instrumentation captures that address and does not try to resolve the address behind intermediaries such as proxies. They apply when there is no clear or known client/server role (for example low-level flow/packet telemetry or peer-to-peer protocols); use `client.*` / `server.*` for logical, de-proxied identity when the roles are known.
+ ([#3947](https://github.com/open-telemetry/semantic-conventions/issues/3947), [#1721](https://github.com/open-telemetry/semantic-conventions/issues/1721))
+- `source`: Add `source.as.number` and `source.as.organization` attributes for source network endpoints.
+ ([#1663](https://github.com/open-telemetry/semantic-conventions/issues/1663), [#3740](https://github.com/open-telemetry/semantic-conventions/issues/3740))
+- `system`: Promote attributes used by hostmetrics system metrics to RC ([#1804](https://github.com/open-telemetry/semantic-conventions/issues/1804))
+- `v8js`: Add members for the current V8 heap space set to `v8js.heap.space.name` and note that `map_space` is only reported by Node.js <= 19, since V8 merged the map space into the old space. ([#4057](https://github.com/open-telemetry/semantic-conventions/issues/4057))
+- `webengine`: Define `webengine.name` as identifying and keep `webengine.version` recommended and descriptive for Weaver schema v2 migration. ([#4194](https://github.com/open-telemetry/semantic-conventions/issues/4194))
+
+### 🧰 Bug fixes 🧰
+
+- `db`: Correct PostgreSQL namespace examples and handle pipe escaping in Markdown templates. ([#4222](https://github.com/open-telemetry/semantic-conventions/issues/4222))
+- `docs`: Fix broken Markdown tables when an attribute, metric, or enum-member brief spans multiple lines in YAML. ([#3073](https://github.com/open-telemetry/semantic-conventions/issues/3073))
+- `k8s`: Fix description of `k8s.container.cpu.request.utilization` to allow values above 1.0. ([#4126](https://github.com/open-telemetry/semantic-conventions/issues/4126))
+  The previous description incorrectly stated the value range is [0.0,1.0].
+  Since a CPU request is a scheduling reservation and not a hard cap, values
+  above 1.0 are possible and indicate the container is using more CPU than requested.
+  
+- `url`: Restore `AWSAccessKeyId` and `Signature` to the default list of sensitive query parameter keys. ([#3989](https://github.com/open-telemetry/semantic-conventions/issues/3989))
+
 ## v1.44.0
 
 ### 🛑 Breaking changes 🛑

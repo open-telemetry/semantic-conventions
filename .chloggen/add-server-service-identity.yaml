@@ -1,4 +1,0 @@
-change_type: enhancement
-component: server
-note: "Add `server.service.name` and `server.service.namespace` attributes at development stability."
-issues: [3472]

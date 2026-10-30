@@ -1,9 +1,0 @@
-change_type: enhancement
-component: jvm
-note: >-
-  Define development semantic conventions for JVM executor metrics, including
-  executor identities fixed for the lifetime of each registration, completed-task
-  and rejected-submission counting semantics, and user-configured names for
-  unnamed executors.
-issues: [3956]
-subtext:

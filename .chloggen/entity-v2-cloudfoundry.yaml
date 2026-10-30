@@ -1,4 +1,0 @@
-change_type: breaking
-component: cloudfoundry
-note: Split `cloudfoundry.system` into `cloudfoundry.system` and `cloudfoundry.system.instance`, and define required identifying attributes for Cloud Foundry entities for Weaver schema v2 migration.
-issues: [4191]

@@ -1,4 +1,0 @@
-change_type: enhancement
-component: otel
-note: Define `otel.scope.name` as required and identifying and keep `otel.scope.version` recommended and descriptive for Weaver schema v2 migration.
-issues: [4193]
