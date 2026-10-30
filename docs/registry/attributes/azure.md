@@ -18,7 +18,22 @@ This section defines generic attributes for Azure services.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
+| <a id="azure-app-service-instance-name" href="#azure-app-service-instance-name">`azure.app_service.instance.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the App Service [instance](https://learn.microsoft.com/azure/app-service/overview-hosting-plans) running the app. [1] | `ln0xsdlwk0002TS`; `wn0xsdwk00010C`; `0--13377339-6ebe-4309-b59c-eac2c54213f0` |
 | <a id="azure-resource-group-name" href="#azure-resource-group-name">`azure.resource_group.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Azure [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal) the resource belongs to. | `my-resource-group`; `rg-myapp-prod` |
+
+**[1] `azure.app_service.instance.name`:** Applies to Azure apps hosted on App Service plans, including, but not limited to,
+App Service web apps and some Azure Functions. Detectors SHOULD set it following the same
+logic as Azure from the host-specific environment variables used for metric instance
+names. Azure sets this in `COMPUTERNAME` on Windows plans and dedicated Linux plans, and
+in `WEBSITE_POD_NAME` on Flex and Linux Consumption. Apps on the same plan that run on
+the same instance report the same value.
+
+This is reported in the `Instance` dimension of
+[Azure Monitor metrics](https://learn.microsoft.com/azure/app-service/monitor-app-service-reference#metric-dimensions).
+
+This is one of two values Azure describes as an app's instance. It is not to be confused
+with the `WEBSITE_INSTANCE_ID` used for web apps' `service.instance.id` or Azure
+Functions' `faas.instance`.
 
 ## Azure Client Library Attributes
 
@@ -42,12 +57,12 @@ This section defines attributes for Azure Cosmos DB.
 | --- | --- | --- | --- | --- |
 | <a id="azure-cosmosdb-connection-mode" href="#azure-cosmosdb-connection-mode">`azure.cosmosdb.connection.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Cosmos client connection mode. | `gateway`; `direct` [(see more)](#azure-cosmosdb-connection-mode-values) |
 | <a id="azure-cosmosdb-consistency-level" href="#azure-cosmosdb-consistency-level">`azure.cosmosdb.consistency.level`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` [(see more)](#azure-cosmosdb-consistency-level-values) |
-| <a id="azure-cosmosdb-operation-contacted-regions" href="#azure-cosmosdb-operation-contacted-regions">`azure.cosmosdb.operation.contacted_regions`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [1] | `["North Central US", "Australia East", "Australia Southeast"]` |
+| <a id="azure-cosmosdb-operation-contacted-regions" href="#azure-cosmosdb-operation-contacted-regions">`azure.cosmosdb.operation.contacted_regions`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [2] | `["North Central US", "Australia East", "Australia Southeast"]` |
 | <a id="azure-cosmosdb-operation-request-charge" href="#azure-cosmosdb-operation-request-charge">`azure.cosmosdb.operation.request_charge`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The number of request units consumed by the operation. | `46.18`; `1.0` |
 | <a id="azure-cosmosdb-request-body-size" href="#azure-cosmosdb-request-body-size">`azure.cosmosdb.request.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Request payload size in bytes. | |
 | <a id="azure-cosmosdb-response-sub-status-code" href="#azure-cosmosdb-response-sub-status-code">`azure.cosmosdb.response.sub_status_code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Cosmos DB sub status code. | `1000`; `1002` |
 
-**[1] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
+**[2] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
 
 ---
 
