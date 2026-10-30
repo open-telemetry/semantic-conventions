@@ -351,3 +351,33 @@ groups:
           The region of a **regional** Instance Group Manager (e.g., `us-central1`).
           Set this **only** when the IGM is regional.
         examples: ['us-central1', 'europe-west1']
+  - id: registry.gcp.pubsub
+    type: attribute_group
+    display_name: GCP Pub/Sub Attributes
+    brief: >
+      This group describes attributes specific to GCP Pub/Sub.
+    attributes:
+      - id: gcp.pubsub.message.ordering_key
+        type: string
+        stability: development
+        brief: >
+          The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
+        examples: 'ordering_key'
+      - id: gcp.pubsub.message.ack_id
+        type: string
+        stability: development
+        brief: >
+          The ack ID for a given message.
+        examples: 'ack_id'
+      - id: gcp.pubsub.message.ack_deadline
+        type: int
+        stability: development
+        brief: >
+          The ack deadline in seconds set for the modify ack deadline request.
+        examples: 10
+      - id: gcp.pubsub.message.delivery_attempt
+        type: int
+        stability: development
+        brief: >
+          The delivery attempt for a given message.
+        examples: 2

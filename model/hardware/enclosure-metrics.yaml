@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.27.0/schemas/semconv.schema.v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
 file_format: definition/2
 metric_refinements:
   - id: metric.hw.enclosure.status
@@ -16,6 +16,9 @@ metric_refinements:
       - ref: hw.vendor
         requirement_level: recommended
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `enclosure`."
         examples: ["enclosure"]
       - ref: hw.state

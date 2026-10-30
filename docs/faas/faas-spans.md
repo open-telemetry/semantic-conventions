@@ -30,6 +30,31 @@ See also the [additional instructions for instrumenting AWS Lambda](aws-lambda.m
 
 <!-- END doctoc -->
 
+> [!IMPORTANT]
+> Existing FaaS instrumentations that are using
+> [v1.44.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.44.0/docs/faas/faas-spans.md)
+> (or prior):
+>
+> * SHOULD NOT change the version of the FaaS conventions that they emit by
+>   default in their existing major version. Conventions include (but are not
+>   limited to) attributes, metric and span names, and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   in their existing major version as a comma-separated list of category-specific values
+>   (e.g., `http`, `database`, `faas`). The list of values includes:
+>   * `faas` - emit the stable FaaS conventions, and stop emitting
+>     the experimental FaaS conventions that the instrumentation emitted
+>     previously.
+>   * `faas/dup` - emit both the experimental and stable FaaS conventions,
+>     allowing for a phased rollout of the stable semantic conventions.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental FaaS conventions
+>     the instrumentation was emitting previously.
+>   * Note: `faas/dup` has higher precedence than `faas` in case both values are present
+> * SHOULD maintain (security patching at a minimum) their existing major version
+>   for at least six months after it starts emitting both sets of conventions.
+> * MAY drop the environment variable in their next major version and emit only
+>   the stable FaaS conventions.
+
 ## General attributes
 
 Span `name` should be set to the function name being executed. Depending on the value of the `faas.trigger` attribute, additional attributes MUST be set. For example, an `http` trigger SHOULD follow the [HTTP Server semantic conventions](/docs/http/http-spans.md#http-server-span). For more information, refer to the [Function Trigger Type](#function-trigger-type) section.
@@ -54,9 +79,9 @@ For performance reasons (e.g. [AWS lambda], or [Azure functions]), FaaS provider
 Developers exploit this fact to solve the **cold start** issue, caching expensive resource computations between different function invocations.
 Furthermore, FaaS providers encourage this behavior, e.g. [Google functions].
 The `faas.instance` resource attribute MAY be set to help correlate function invocations that belong to the same execution environment.
-The span attribute `faas.invocation_id` differs from the [resource attribute][FaaS resource attributes] `faas.instance` in the following:
+The span attribute `faas.invocation.id` differs from the [resource attribute][FaaS resource attributes] `faas.instance` in the following:
 
-- `faas.invocation_id` refers to the ID of the current invocation of the function;
+- `faas.invocation.id` refers to the ID of the current invocation of the function;
 - `faas.instance` refers to the execution environment ID of the function.
 
 [AWS lambda]: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
@@ -89,7 +114,7 @@ This span represents the server (incoming) side of a FaaS invocation.
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [(see more)](#faas-trigger-values) |
 | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
 | [`faas.coldstart`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
-| [`faas.invocation_id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
+| [`faas.invocation.id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 
 **[1] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -222,12 +247,12 @@ This span represents the server side of a FaaS invocation triggered in response 
 | --- | --- | --- | --- | --- | --- |
 | [`faas.document.collection`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` |
 | [`faas.document.operation`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` [(see more)](#faas-document-operation-values) |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the trigger which caused this function invocation. [1] | `datasource` [(see more)](#faas-trigger-values) |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the trigger which caused this function invocation. [1] | `datasource` |
 | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [2] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
 | [`faas.coldstart`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
 | [`faas.document.name`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` |
 | [`faas.document.time`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
-| [`faas.invocation_id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
+| [`faas.invocation.id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 
 **[1] `faas.trigger`:** MUST be set to `datasource`.
 
@@ -260,20 +285,6 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `delete` | When an object is deleted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `edit` | When an object is modified. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `insert` | When a new object is created. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-<a id="faas-trigger-values"></a>
-
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
-| `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -312,12 +323,12 @@ This span represents the server side of a FaaS invocation triggered by a timer.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the trigger which caused this function invocation. [1] | `timer` [(see more)](#faas-trigger-values) |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the trigger which caused this function invocation. [1] | `timer` |
 | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [2] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
 | [`faas.coldstart`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
 | [`faas.cron`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` |
-| [`faas.invocation_id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
-| [`faas.time`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
+| [`faas.invocation.id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
+| [`faas.invocation.start_time`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 
 **[1] `faas.trigger`:** MUST be set to `timer`.
 
@@ -338,20 +349,6 @@ The following well-known definitions MUST be used if you set this attribute and 
   `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
-
----
-
-<a id="faas-trigger-values"></a>
-
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
-| `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -375,7 +372,7 @@ This example shows the FaaS attributes for a (non-FaaS) process hosted on Google
 | Span           | `faas.invoked_provider` | `"aws"`                | n/a                                                                   |
 | Span           | `faas.invoked_region`   | `"eu-central-1"`       | n/a                                                                   |
 | Span           | `faas.trigger`          | n/a                    | `"http"`                                                              |
-| Span           | `faas.invocation_id`    | n/a                    | `"af9d5aa4-a685-4c5f-a22b-444f80b3cc28"`                              |
+| Span           | `faas.invocation.id`    | n/a                    | `"af9d5aa4-a685-4c5f-a22b-444f80b3cc28"`                              |
 | Span           | `faas.coldstart`        | n/a                    | `true`                                                                |
 | Resource       | `faas.name`             | n/a                    | `"my-lambda-function"`                                                |
 | Resource       | `faas.version`          | n/a                    | `"semver:2.0.0"`                                                      |

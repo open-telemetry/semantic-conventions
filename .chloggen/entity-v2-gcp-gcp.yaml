@@ -1,0 +1,4 @@
+change_type: breaking
+component: gcp
+note: Remove the `gcp.gce` and `gcp.cloud_run` entities in favor of `gcp.gce.instance` and `gcp.cloud_run.job.task`, and define required identifying attributes for GCP entities.
+issues: [4173]

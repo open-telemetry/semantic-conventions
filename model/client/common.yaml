@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.27.0/schemas/semconv.schema.v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
 file_format: definition/2
 attribute_groups:
   - id: client
@@ -22,3 +22,7 @@ attribute_groups:
       - ref: client.as.organization
         requirement_level: opt_in
       - ref: client.port
+      - ref: client.service.name
+        requirement_level: opt_in
+      - ref: client.service.namespace
+        requirement_level: opt_in
