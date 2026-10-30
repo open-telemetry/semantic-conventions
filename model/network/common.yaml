@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.27.0/schemas/semconv.schema.v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
 file_format: definition/2
 attribute_groups:
   - id: network.peer
@@ -20,6 +20,10 @@ attribute_groups:
     attributes:
       - ref: network.peer.address
         note: This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
+      - ref: network.peer.as.number
+        requirement_level: opt_in
+      - ref: network.peer.as.organization
+        requirement_level: opt_in
       - ref: network.peer.prefix
         requirement_level: opt_in
       - ref: network.peer.port
@@ -43,6 +47,10 @@ attribute_groups:
     attributes:
       - ref: network.local.address
         note: This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
+      - ref: network.local.as.number
+        requirement_level: opt_in
+      - ref: network.local.as.organization
+        requirement_level: opt_in
       - ref: network.local.prefix
         requirement_level: opt_in
       - ref: network.local.port

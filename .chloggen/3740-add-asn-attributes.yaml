@@ -1,0 +1,8 @@
+change_type: enhancement
+component: network
+note: >
+  Add `network.local.as.number`, `network.local.as.organization`,
+  `network.peer.as.number`, and `network.peer.as.organization` attributes
+  for local and peer network endpoints.
+issues: [1663, 3740]
+subtext:

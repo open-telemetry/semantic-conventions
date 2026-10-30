@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.27.0/schemas/semconv.schema.v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
 file_format: definition/2
 attribute_groups:
   - id: server
@@ -36,6 +36,14 @@ attribute_groups:
 
           For a UNIX domain socket, `server.address` is the remote endpoint address on the client side and the local
           endpoint address on the server side.
+      - ref: server.as.number
+        requirement_level: opt_in
+      - ref: server.as.organization
+        requirement_level: opt_in
       - ref: server.prefix
         requirement_level: opt_in
       - ref: server.port
+      - ref: server.service.name
+        requirement_level: opt_in
+      - ref: server.service.namespace
+        requirement_level: opt_in

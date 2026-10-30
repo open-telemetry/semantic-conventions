@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.27.0/schemas/semconv.schema.v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
 file_format: definition/2
 attributes:
   - key: source.address
@@ -37,6 +37,24 @@ attributes:
       `source.address` is also set to an IP address, it MUST use the same IP version
       and be contained in this prefix.
     examples: ['192.0.2.0/24', '2001:db8::/32']
+  - key: source.as.number
+    type: int
+    stability: development
+    brief: "The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the source IP address."
+    note: >
+      This attribute SHOULD only be set when the source address is an IP address and the
+      ASN is available from routing, enrichment, or lookup data. The value SHOULD be
+      represented as an integer without the `AS` prefix.
+    examples: [64496, 15169]
+  - key: source.as.organization
+    type: string
+    stability: development
+    brief: "The name of the organization associated with the autonomous system of the source IP address."
+    note: >
+      This attribute SHOULD only be set when `source.as.number` is set and the organization
+      name is available. The value SHOULD be the organization name as provided by the lookup
+      or enrichment source, not the AS name or short code.
+    examples: ["Example Networks Inc.", "Google LLC"]
   - key: source.port
     type: int
     stability: development

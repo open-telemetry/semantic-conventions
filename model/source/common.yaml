@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.27.0/schemas/semconv.schema.v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
 file_format: definition/2
 attribute_groups:
   - id: source
@@ -14,6 +14,10 @@ attribute_groups:
       relationship is unknown - for example, packet-level telemetry and peer-to-peer protocols.
     attributes:
       - ref: source.address
+      - ref: source.as.number
+        requirement_level: opt_in
+      - ref: source.as.organization
+        requirement_level: opt_in
       - ref: source.prefix
         requirement_level: opt_in
       - ref: source.port

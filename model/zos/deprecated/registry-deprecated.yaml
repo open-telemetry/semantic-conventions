@@ -1,0 +1,36 @@
+groups:
+  - id: registry.zos
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Mainframe semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-mainframe).
+    type: attribute_group
+    display_name: z/OS Attributes (Moved)
+    brief: >
+      z/OS attributes have moved to the
+      [OpenTelemetry Mainframe semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-mainframe).
+    attributes:
+      - id: zos.smf.id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Mainframe semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-mainframe).
+        annotations:
+          dependency_resolution:
+            exclude: true
+        type: string
+        stability: development
+        brief: "The System Management Facility (SMF) identifier that uniquely identifies a z/OS system within a sysplex or mainframe environment and is used for system and performance analysis."
+        examples: ["SYS1"]
+      - id: zos.sysplex.name
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Mainframe semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-mainframe).
+        annotations:
+          dependency_resolution:
+            exclude: true
+        type: string
+        stability: development
+        brief: "The name of the sysplex to which the z/OS system belongs."
+        examples: ["SYSPLEX1"]

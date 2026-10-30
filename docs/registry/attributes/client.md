@@ -10,14 +10,22 @@
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="client-address" href="#client-address">`client.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| <a id="client-port" href="#client-port">`client.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Client port number. [2] | `65123` |
-| <a id="client-prefix" href="#client-prefix">`client.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the client IP address, in CIDR notation. [3] | `192.0.2.0/24`; `2001:db8::/32` |
+| <a id="client-as-number" href="#client-as-number">`client.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the client IP address. [2] | `64496`; `15169` |
+| <a id="client-as-organization" href="#client-as-organization">`client.as.organization`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the client IP address. [3] | `Example Networks Inc.`; `Google LLC` |
+| <a id="client-port" href="#client-port">`client.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Client port number. [4] | `65123` |
+| <a id="client-prefix" href="#client-prefix">`client.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the client IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
+| <a id="client-service-name" href="#client-service-name">`client.service.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical name of the service acting as the client in a connection-based network interaction. [6] | `shoppingcart` |
+| <a id="client-service-namespace" href="#client-service-namespace">`client.service.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical namespace of the service acting as the client in a connection-based network interaction. [7] | `Shop` |
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
+**[2] `client.as.number`:** This attribute SHOULD only be set when the client address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
 
-**[3] `client.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[3] `client.as.organization`:** This attribute SHOULD only be set when `client.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+
+**[4] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
+
+**[5] `client.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -34,3 +42,7 @@ address and prefix length, to equivalent CIDR notation before emitting it.
 This attribute MUST NOT be set unless `client.address` is set to an IPv4 or
 IPv6 address. The address MUST use the same IP version as this prefix and
 be contained in it.
+
+**[6] `client.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service whether the telemetry is recorded by the client, the server, or another observer.
+
+**[7] `client.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `client.service.name`, this identifies the client service. An empty namespace is equivalent to an unspecified namespace.

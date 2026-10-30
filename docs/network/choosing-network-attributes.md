@@ -369,7 +369,11 @@ Use them for interactions with a clear initiator and acceptor. This covers commo
 | --- | --- | --- | --- | --- | --- |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [2] | `80`; `8080`; `443` |
-| [`server.prefix`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the server IP address, in CIDR notation. [3] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`server.as.number`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the server IP address. [3] | `64496`; `15169` |
+| [`server.as.organization`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the server IP address. [4] | `Example Networks Inc.`; `Google LLC` |
+| [`server.prefix`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the server IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`server.service.name`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical name of the service acting as the server in a connection-based network interaction. [6] | `payments` |
+| [`server.service.namespace`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical namespace of the service acting as the server in a connection-based network interaction. [7] | `Shop` |
 
 **[1] `server.address`:** On the client side, `server.address` is the remote service name; on the server side, it is the local service name as seen externally by clients. These normally match - for example, for the URL `https://example.com/foo` it is `"example.com"` on both sides. When a client reaches the server through an intermediary such as a proxy, `server.address` SHOULD represent the server behind the intermediary, if available.
 
@@ -381,7 +385,11 @@ For a UNIX domain socket, `server.address` is the remote endpoint address on the
 
 **[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3] `server.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[3] `server.as.number`:** This attribute SHOULD only be set when the server address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+
+**[4] `server.as.organization`:** This attribute SHOULD only be set when `server.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+
+**[5] `server.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -398,6 +406,10 @@ address and prefix length, to equivalent CIDR notation before emitting it.
 This attribute MUST NOT be set unless `server.address` is set to an IPv4 or
 IPv6 address. The address MUST use the same IP version as this prefix and
 be contained in it.
+
+**[6] `server.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical server, if any. This identifies the server service whether the telemetry is recorded by the client, the server, or another observer.
+
+**[7] `server.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical server, if any. This identifies the server service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `server.service.name`, this identifies the server service. An empty namespace is equivalent to an unspecified namespace.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -422,13 +434,21 @@ Use them for interactions with a clear initiator and acceptor. This covers commo
 | --- | --- | --- | --- | --- | --- |
 | [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Client port number. [2] | `65123` |
-| [`client.prefix`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the client IP address, in CIDR notation. [3] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`client.as.number`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the client IP address. [3] | `64496`; `15169` |
+| [`client.as.organization`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the client IP address. [4] | `Example Networks Inc.`; `Google LLC` |
+| [`client.prefix`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the client IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`client.service.name`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical name of the service acting as the client in a connection-based network interaction. [6] | `shoppingcart` |
+| [`client.service.namespace`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical namespace of the service acting as the client in a connection-based network interaction. [7] | `Shop` |
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries, for example proxies, if it's available.
 
 **[2] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
 
-**[3] `client.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[3] `client.as.number`:** This attribute SHOULD only be set when the client address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+
+**[4] `client.as.organization`:** This attribute SHOULD only be set when `client.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+
+**[5] `client.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -445,6 +465,10 @@ address and prefix length, to equivalent CIDR notation before emitting it.
 This attribute MUST NOT be set unless `client.address` is set to an IPv4 or
 IPv6 address. The address MUST use the same IP version as this prefix and
 be contained in it.
+
+**[6] `client.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service whether the telemetry is recorded by the client, the server, or another observer.
+
+**[7] `client.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `client.service.name`, this identifies the client service. An empty namespace is equivalent to an unspecified namespace.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -469,11 +493,17 @@ Use them when there is no client/server relationship between the two sides, or w
 | --- | --- | --- | --- | --- | --- |
 | [`source.address`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Source address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the sender was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `source.example.com`; `/tmp/my.sock` |
 | [`source.port`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Source port number | `3389`; `2888` |
-| [`source.prefix`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the source IP address, in CIDR notation. [2] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`source.as.number`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the source IP address. [2] | `64496`; `15169` |
+| [`source.as.organization`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the source IP address. [3] | `Example Networks Inc.`; `Google LLC` |
+| [`source.prefix`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the source IP address, in CIDR notation. [4] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `source.address`:** `source.address` SHOULD be the sender address as observed at the point of instrumentation, for example the source of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD capture the available address and SHOULD NOT try to resolve the address behind intermediaries such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
 
-**[2] `source.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[2] `source.as.number`:** This attribute SHOULD only be set when the source address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+
+**[3] `source.as.organization`:** This attribute SHOULD only be set when `source.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+
+**[4] `source.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -514,11 +544,17 @@ Use them when there is no client/server relationship between the two sides, or w
 | --- | --- | --- | --- | --- | --- |
 | [`destination.address`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Destination address as observed at the point of instrumentation - typically an IP address, or a UNIX domain socket name; a domain name only when the receiver was addressed by name (for example a peer-to-peer node dialed by hostname), never obtained via reverse DNS lookup. [1] | `10.1.2.80`; `destination.example.com`; `/tmp/my.sock` |
 | [`destination.port`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Destination port number | `3389`; `2888` |
-| [`destination.prefix`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the destination IP address, in CIDR notation. [2] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`destination.as.number`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the destination IP address. [2] | `64496`; `15169` |
+| [`destination.as.organization`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the destination IP address. [3] | `Example Networks Inc.`; `Google LLC` |
+| [`destination.prefix`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the destination IP address, in CIDR notation. [4] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD capture the available address and SHOULD NOT try to resolve the address behind intermediaries such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
 
-**[2] `destination.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[2] `destination.as.number`:** This attribute SHOULD only be set when the destination address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+
+**[3] `destination.as.organization`:** This attribute SHOULD only be set when `destination.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+
+**[4] `destination.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -568,11 +604,17 @@ When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.
 | --- | --- | --- | --- | --- | --- |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. [1] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Peer port number of the network connection. | `65123` |
-| [`network.peer.prefix`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the peer IP address, in CIDR notation. [2] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`network.peer.as.number`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address. [2] | `64496`; `15169` |
+| [`network.peer.as.organization`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the peer IP address. [3] | `Example Networks Inc.`; `Google LLC` |
+| [`network.peer.prefix`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the peer IP address, in CIDR notation. [4] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `network.peer.address`:** This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
 
-**[2] `network.peer.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[2] `network.peer.as.number`:** This attribute SHOULD only be set when the peer address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+
+**[3] `network.peer.as.organization`:** This attribute SHOULD only be set when `network.peer.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+
+**[4] `network.peer.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -622,11 +664,17 @@ When binding using `bind(2)` ([Linux or other POSIX systems](https://man7.org/li
 | --- | --- | --- | --- | --- | --- |
 | [`network.local.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Local address of the network connection - IP address or UNIX domain socket name. [1] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.local.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Local port number of the network connection. | `65123` |
-| [`network.local.prefix`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the local IP address, in CIDR notation. [2] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`network.local.as.number`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the local IP address. [2] | `64496`; `15169` |
+| [`network.local.as.organization`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the local IP address. [3] | `Example Networks Inc.`; `Google LLC` |
+| [`network.local.prefix`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the local IP address, in CIDR notation. [4] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `network.local.address`:** This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
 
-**[2] `network.local.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[2] `network.local.as.number`:** This attribute SHOULD only be set when the local address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+
+**[3] `network.local.as.organization`:** This attribute SHOULD only be set when `network.local.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+
+**[4] `network.local.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal

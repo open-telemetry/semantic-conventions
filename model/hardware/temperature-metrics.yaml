@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.27.0/schemas/semconv.schema.v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
 file_format: definition/2
 metrics:
   - name: hw.temperature
@@ -44,6 +44,9 @@ metric_refinements:
       - ref: hw.sensor_location
         requirement_level: recommended
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `temperature`."
         examples: ["temperature"]
       - ref: hw.state

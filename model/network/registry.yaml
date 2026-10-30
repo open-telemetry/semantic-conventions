@@ -165,6 +165,24 @@ groups:
           `network.local.address` is also set to an IP address, it MUST use the same IP version
           and be contained in this prefix.
         examples: ['192.0.2.0/24', '2001:db8::/32']
+      - id: network.local.as.number
+        stability: development
+        type: int
+        brief: "The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the local IP address."
+        note: >
+          This attribute SHOULD only be set when the local address is an IP address and
+          the ASN is available from routing, enrichment, or lookup data. The value SHOULD
+          be represented as an integer without the `AS` prefix.
+        examples: [64496, 15169]
+      - id: network.local.as.organization
+        stability: development
+        type: string
+        brief: "The name of the organization associated with the autonomous system of the local IP address."
+        note: >
+          This attribute SHOULD only be set when `network.local.as.number` is set and the
+          organization name is available. The value SHOULD be the organization name as
+          provided by the lookup or enrichment source, not the AS name or short code.
+        examples: ["Example Networks Inc.", "Google LLC"]
       - id: network.local.port
         stability: stable
         type: int
@@ -198,6 +216,24 @@ groups:
           `network.peer.address` is also set to an IP address, it MUST use the same IP version
           and be contained in this prefix.
         examples: ['192.0.2.0/24', '2001:db8::/32']
+      - id: network.peer.as.number
+        stability: development
+        type: int
+        brief: "The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address."
+        note: >
+          This attribute SHOULD only be set when the peer address is an IP address and
+          the ASN is available from routing, enrichment, or lookup data. The value SHOULD
+          be represented as an integer without the `AS` prefix.
+        examples: [64496, 15169]
+      - id: network.peer.as.organization
+        stability: development
+        type: string
+        brief: "The name of the organization associated with the autonomous system of the peer IP address."
+        note: >
+          This attribute SHOULD only be set when `network.peer.as.number` is set and the
+          organization name is available. The value SHOULD be the organization name as
+          provided by the lookup or enrichment source, not the AS name or short code.
+        examples: ["Example Networks Inc.", "Google LLC"]
       - id: network.peer.port
         stability: stable
         type: int
@@ -291,38 +327,38 @@ groups:
           members:
             - id: closed
               value: 'closed'
-              stability: development
+              stability: release_candidate
             - id: close_wait
               value: 'close_wait'
-              stability: development
+              stability: release_candidate
             - id: closing
               value: 'closing'
-              stability: development
+              stability: release_candidate
             - id: established
               value: 'established'
-              stability: development
+              stability: release_candidate
             - id: fin_wait_1
               value: 'fin_wait_1'
-              stability: development
+              stability: release_candidate
             - id: fin_wait_2
               value: 'fin_wait_2'
-              stability: development
+              stability: release_candidate
             - id: last_ack
               value: 'last_ack'
-              stability: development
+              stability: release_candidate
             - id: listen
               value: 'listen'
-              stability: development
+              stability: release_candidate
             - id: syn_received
               value: 'syn_received'
-              stability: development
+              stability: release_candidate
             - id: syn_sent
               value: 'syn_sent'
-              stability: development
+              stability: release_candidate
             - id: time_wait
               value: 'time_wait'
-              stability: development
-        stability: development
+              stability: release_candidate
+        stability: release_candidate
         brief: "The state of network connection"
         note: "Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)"
         examples: [ "close_wait" ]
