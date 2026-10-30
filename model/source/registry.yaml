@@ -14,6 +14,18 @@ attributes:
       capture the available address and SHOULD NOT try to resolve the address behind intermediaries
       such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
     examples: ['10.1.2.80', 'source.example.com', '/tmp/my.sock']
+  - key: source.mac.address
+    type: string
+    stability: development
+    brief: 'Source Media Access Control (MAC) address.'
+    note: |
+      MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+      as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+
+      > [!WARNING]
+      >
+      > This attribute may contain sensitive (PII) information.
+    examples: ['00-00-5E-00-53-23']
   - key: source.as.number
     type: int
     stability: development

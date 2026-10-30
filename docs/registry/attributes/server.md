@@ -12,9 +12,10 @@
 | <a id="server-address" href="#server-address">`server.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | <a id="server-as-number" href="#server-as-number">`server.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the server IP address. [2] | `64496`; `15169` |
 | <a id="server-as-organization" href="#server-as-organization">`server.as.organization`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the server IP address. [3] | `Example Networks Inc.`; `Google LLC` |
-| <a id="server-port" href="#server-port">`server.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Server port number. [4] | `80`; `8080`; `443` |
-| <a id="server-service-name" href="#server-service-name">`server.service.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical name of the service acting as the server in a connection-based network interaction. [5] | `payments` |
-| <a id="server-service-namespace" href="#server-service-namespace">`server.service.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical namespace of the service acting as the server in a connection-based network interaction. [6] | `Shop` |
+| <a id="server-mac-address" href="#server-mac-address">`server.mac.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Server Media Access Control (MAC) address. [4] | `00-00-5E-00-53-23` |
+| <a id="server-port" href="#server-port">`server.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Server port number. [5] | `80`; `8080`; `443` |
+| <a id="server-service-name" href="#server-service-name">`server.service.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical name of the service acting as the server in a connection-based network interaction. [6] | `payments` |
+| <a id="server-service-namespace" href="#server-service-namespace">`server.service.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical namespace of the service acting as the server in a connection-based network interaction. [7] | `Shop` |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -22,8 +23,20 @@
 
 **[3] `server.as.organization`:** This attribute SHOULD only be set when `server.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[4] `server.mac.address`:** This attribute MUST identify a MAC address associated with the logical server
+endpoint, including when that endpoint is behind intermediaries. If the server's
+MAC address is unknown, this attribute MUST NOT be set. The MAC address of a
+proxy, gateway, or next-hop router MUST NOT be used as a substitute.
 
-**[5] `server.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical server, if any. This identifies the server service whether the telemetry is recorded by the client, the server, or another observer.
+MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
-**[6] `server.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical server, if any. This identifies the server service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `server.service.name`, this identifies the server service. An empty namespace is equivalent to an unspecified namespace.
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information.
+
+**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[6] `server.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical server, if any. This identifies the server service whether the telemetry is recorded by the client, the server, or another observer.
+
+**[7] `server.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical server, if any. This identifies the server service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `server.service.name`, this identifies the server service. An empty namespace is equivalent to an unspecified namespace.

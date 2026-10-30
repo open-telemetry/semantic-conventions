@@ -18,4 +18,6 @@ attribute_groups:
         requirement_level: opt_in
       - ref: destination.as.organization
         requirement_level: opt_in
+      - ref: destination.mac.address
+        requirement_level: opt_in
       - ref: destination.port

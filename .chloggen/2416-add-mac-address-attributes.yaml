@@ -1,0 +1,7 @@
+change_type: enhancement
+component: network
+note: >
+  Add `network.local.mac.address` and `network.peer.mac.address` attributes
+  for local and peer network endpoints.
+issues: [2416]
+subtext:
