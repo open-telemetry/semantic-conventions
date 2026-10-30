@@ -39,6 +39,7 @@ Currently, the following namespaces exist:
 | | [cloudfoundry.process](cloudfoundry.md#cloudfoundry-process) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [cloudfoundry.space](cloudfoundry.md#cloudfoundry-space) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [cloudfoundry.system](cloudfoundry.md#cloudfoundry-system) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [cloudfoundry.system.instance](cloudfoundry.md#cloudfoundry-system-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Container | | |
 | | [container](container.md#container) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [container.image](container.md#container-image) | ![Development](https://img.shields.io/badge/-development-blue) |
