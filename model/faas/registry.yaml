@@ -156,12 +156,12 @@ groups:
           A string containing the schedule period as
           [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
         examples: "0/5 * * * ? *"
-      - id: faas.coldstart
+      - id: faas.invocation.cold_start
         type: boolean
         stability: development
         brief: >
-          A boolean that is true if the serverless function is executed for the
-          first time (aka cold-start).
+          Captures if the serverless function is executed for the first time
+          in the instance hence the invocation experiences a cold-start.
       - id: faas.document.collection
         type: string
         stability: development

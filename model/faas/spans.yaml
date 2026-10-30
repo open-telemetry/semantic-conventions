@@ -10,7 +10,7 @@ attribute_groups:
     attributes:
       - ref: faas.trigger
         requirement_level: required
-      - ref: faas.coldstart
+      - ref: faas.invocation.cold_start
       - ref: faas.invocation.id
       - ref: cloud.resource_id
 
