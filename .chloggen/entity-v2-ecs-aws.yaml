@@ -1,0 +1,4 @@
+change_type: breaking
+component: aws
+note: Remove the `aws.ecs` entity in favor of `aws.ecs.task`, `aws.ecs.cluster`, and `aws.ecs.container` entities identified by their required ARNs.
+issues: [4170]
