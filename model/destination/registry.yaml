@@ -43,6 +43,18 @@ attributes:
       `destination.address` is also set to an IP address, it MUST use the same IP version
       and be contained in this prefix.
     examples: ['192.0.2.0/24', '2001:db8::/32']
+  - key: destination.mac.address
+    type: string
+    stability: development
+    brief: 'Destination Media Access Control (MAC) address.'
+    note: |
+      MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+      as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+
+      > [!WARNING]
+      >
+      > This attribute may contain sensitive (PII) information.
+    examples: ['00-00-5E-00-53-23']
   - key: destination.as.number
     type: int
     stability: development

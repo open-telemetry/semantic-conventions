@@ -38,6 +38,23 @@ attributes:
       IPv6 address. The address MUST use the same IP version as this prefix and
       be contained in it.
     examples: ['192.0.2.0/24', '2001:db8::/32']
+  - key: client.mac.address
+    stability: development
+    type: string
+    brief: 'Client Media Access Control (MAC) address.'
+    note: |
+      This attribute MUST identify a MAC address associated with the logical client
+      endpoint, including when that endpoint is behind intermediaries. If the client's
+      MAC address is unknown, this attribute MUST NOT be set. The MAC address of a
+      proxy, gateway, or next-hop router MUST NOT be used as a substitute.
+
+      MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+      as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+
+      > [!WARNING]
+      >
+      > This attribute may contain sensitive (PII) information.
+    examples: ['00-00-5E-00-53-23']
   - key: client.as.number
     stability: development
     type: int
