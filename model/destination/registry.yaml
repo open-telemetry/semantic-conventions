@@ -19,6 +19,12 @@ attributes:
     stability: development
     brief: "The IP prefix associated with the destination IP address, in CIDR notation."
     note: |
+      > [!WARNING]
+      >
+      > This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+      > or `/128` IPv6 prefix preserves the complete endpoint IP address.
+      > Using CIDR notation does not guarantee that the data is anonymous.
+
       The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
       [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
       [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.

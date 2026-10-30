@@ -44,7 +44,15 @@ These attributes may be used for any network related operation.
 
 **[3] `network.local.as.organization`:** This attribute SHOULD only be set when `network.local.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[4] `network.local.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[4] `network.local.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -66,7 +74,15 @@ and be contained in this prefix.
 
 **[6] `network.peer.as.organization`:** This attribute SHOULD only be set when `network.peer.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[7] `network.peer.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[7] `network.peer.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal

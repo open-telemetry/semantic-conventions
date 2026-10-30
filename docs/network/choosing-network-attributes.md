@@ -389,7 +389,15 @@ For a UNIX domain socket, `server.address` is the remote endpoint address on the
 
 **[4] `server.as.organization`:** This attribute SHOULD only be set when `server.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[5] `server.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[5] `server.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -448,7 +456,15 @@ Use them for interactions with a clear initiator and acceptor. This covers commo
 
 **[4] `client.as.organization`:** This attribute SHOULD only be set when `client.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[5] `client.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[5] `client.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -503,7 +519,15 @@ Use them when there is no client/server relationship between the two sides, or w
 
 **[3] `source.as.organization`:** This attribute SHOULD only be set when `source.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[4] `source.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[4] `source.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -554,7 +578,15 @@ Use them when there is no client/server relationship between the two sides, or w
 
 **[3] `destination.as.organization`:** This attribute SHOULD only be set when `destination.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[4] `destination.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[4] `destination.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -614,7 +646,15 @@ When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.
 
 **[3] `network.peer.as.organization`:** This attribute SHOULD only be set when `network.peer.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[4] `network.peer.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[4] `network.peer.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
@@ -674,7 +714,15 @@ When binding using `bind(2)` ([Linux or other POSIX systems](https://man7.org/li
 
 **[3] `network.local.as.organization`:** This attribute SHOULD only be set when `network.local.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[4] `network.local.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[4] `network.local.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal

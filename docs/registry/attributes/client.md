@@ -25,7 +25,15 @@
 
 **[4] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
 
-**[5] `client.prefix`:** The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+**[5] `client.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
 [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
 [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
 IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
