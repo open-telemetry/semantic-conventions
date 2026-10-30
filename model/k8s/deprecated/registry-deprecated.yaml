@@ -12,3 +12,38 @@ groups:
         deprecated:
           reason: renamed
           renamed_to: k8s.pod.label
+      - id: k8s.volume.name
+        type: string
+        examples: [ 'volume0' ]
+        brief: "Deprecated, use `k8s.pod.volume.name` instead."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.pod.volume.name
+      - id: k8s.volume.type
+        brief: "Deprecated, use `k8s.pod.volume.type` instead."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.pod.volume.type
+        examples: [ "emptyDir", "persistentVolumeClaim" ]
+        type:
+          members:
+            - id: persistent_volume_claim
+              value: 'persistentVolumeClaim'
+              stability: development
+            - id: config_map
+              value: 'configMap'
+              stability: development
+            - id: downward_api
+              value: 'downwardAPI'
+              stability: development
+            - id: empty_dir
+              value: 'emptyDir'
+              stability: development
+            - id: secret
+              value: 'secret'
+              stability: development
+            - id: local
+              value: 'local'
+              stability: development
