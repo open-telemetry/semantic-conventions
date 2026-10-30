@@ -1,7 +1,7 @@
 [[policy.finding_filters]]
 exclude = ["compatibility_entity_missing"]
 signal_type = "entity"
-signal_names = ["android", "gcp.cloud_run", "gcp.gce", "zos.software"]
+signal_names = ["android", "aws.ecs", "gcp.cloud_run", "gcp.gce", "zos.software"]
 
 [[policy.finding_filters]]
 exclude = ["compatibility_span_missing"]
