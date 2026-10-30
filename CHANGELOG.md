@@ -114,8 +114,8 @@
   
 - `jvm`: Promote `jvm.file_descriptor.count` and `jvm.file_descriptor.limit` metrics to `release_candidate` ([#4019](https://github.com/open-telemetry/semantic-conventions/issues/4019))
   The following metrics are being promoted to release_candidate:
-    - jvm.file_descriptor.count
-    - jvm.file_descriptor.limit
+  - jvm.file_descriptor.count
+  - jvm.file_descriptor.limit
   These metrics are only available on Unix-like operating systems and are obtained
   from the `UnixOperatingSystemMXBean` JVM management interface.
   
@@ -129,9 +129,9 @@
   
 - `k8s`: Promote `container.uptime`, `k8s.pod.uptime` and `k8s.node.uptime` metrics to `release_candidate` ([#3945](https://github.com/open-telemetry/semantic-conventions/issues/3945))
   The following metrics are being promoted to release_candidate:
-    - container.uptime
-    - k8s.pod.uptime
-    - k8s.node.uptime
+  - container.uptime
+  - k8s.pod.uptime
+  - k8s.node.uptime
   Notes referencing the Kubelet stats summary API fields (`ContainerStats.StartTime`,
   `PodStats.StartTime`, `NodeStats.StartTime`) have been added to each metric.
   
