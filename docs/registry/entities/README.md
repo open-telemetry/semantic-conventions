@@ -26,7 +26,6 @@ Currently, the following namespaces exist:
 | | [aws.ecs.container](aws.md#aws-ecs-container) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.ecs.task](aws.md#aws-ecs-task) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.eks](aws.md#aws-eks) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [aws.log](aws.md#aws-log) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Browser | | |
 | | [browser](browser.md#browser) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [browser.document](browser.md#browser-document) | ![Development](https://img.shields.io/badge/-development-blue) |
