@@ -883,7 +883,40 @@ Kubelet's stats API.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type of the K8s volume. [5] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+
+**[1] `k8s.persistentvolume.name`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[2] `k8s.persistentvolume.type`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
+[K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+
+The set of possible values is not limited to those listed here.
+When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
+
+**[4] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
+
+**[5] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
+has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+
+---
+
+<a id="k8s-persistentvolume-type-values"></a>
+
+`k8s.persistentvolume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -927,7 +960,40 @@ Kubelet's stats API.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type of the K8s volume. [5] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+
+**[1] `k8s.persistentvolume.name`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[2] `k8s.persistentvolume.type`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
+[K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+
+The set of possible values is not limited to those listed here.
+When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
+
+**[4] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
+
+**[5] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
+has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+
+---
+
+<a id="k8s-persistentvolume-type-values"></a>
+
+`k8s.persistentvolume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -973,7 +1039,40 @@ Kubelet's stats API.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type of the K8s volume. [5] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+
+**[1] `k8s.persistentvolume.name`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[2] `k8s.persistentvolume.type`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
+[K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+
+The set of possible values is not limited to those listed here.
+When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
+
+**[4] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
+
+**[5] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
+has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+
+---
+
+<a id="k8s-persistentvolume-type-values"></a>
+
+`k8s.persistentvolume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -1017,7 +1116,40 @@ Kubelet's stats API.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type of the K8s volume. [5] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+
+**[1] `k8s.persistentvolume.name`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[2] `k8s.persistentvolume.type`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
+[K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+
+The set of possible values is not limited to those listed here.
+When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
+
+**[4] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
+
+**[5] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
+has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+
+---
+
+<a id="k8s-persistentvolume-type-values"></a>
+
+`k8s.persistentvolume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -1063,7 +1195,40 @@ This may not be equal to `inodes - free` because filesystem may share inodes wit
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type of the K8s volume. [5] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+
+**[1] `k8s.persistentvolume.name`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[2] `k8s.persistentvolume.type`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
+[K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+
+The set of possible values is not limited to those listed here.
+When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
+
+**[4] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
+
+**[5] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
+has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+
+---
+
+<a id="k8s-persistentvolume-type-values"></a>
+
+`k8s.persistentvolume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -1107,7 +1272,40 @@ Kubelet's stats API.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s volume. | `volume0` |
-| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type of the K8s volume. [5] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-volume-type-values) |
+
+**[1] `k8s.persistentvolume.name`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[2] `k8s.persistentvolume.type`:** If the volume is backed by a PersistentVolumeClaim and the bound PersistentVolume information is available (e.g. via K8s API enrichment).
+
+**[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
+[K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+
+The set of possible values is not limited to those listed here.
+When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
+
+**[4] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
+
+**[5] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
+has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+
+---
+
+<a id="k8s-persistentvolume-type-values"></a>
+
+`k8s.persistentvolume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
