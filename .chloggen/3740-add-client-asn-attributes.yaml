@@ -1,7 +1,0 @@
-change_type: enhancement
-component: client
-note: >
-  Add `client.as.number` and `client.as.organization` attributes for client
-  network endpoints.
-issues: [1663, 3740]
-subtext:

@@ -1,4 +1,0 @@
-change_type: enhancement
-component: rpc
-note: Mark `rpc.request.header.<key>`, `rpc.response.header.<key>`, and `rpc.response.trailer.<key>` as release candidate.
-issues: [4276]
