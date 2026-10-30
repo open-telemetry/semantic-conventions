@@ -1,0 +1,7 @@
+change_type: enhancement
+component: destination
+note: >
+  Add the `destination.prefix` attribute in CIDR notation for destination network
+  endpoints, with normalization by instrumentation or Collector receivers.
+issues: [3731]
+subtext:

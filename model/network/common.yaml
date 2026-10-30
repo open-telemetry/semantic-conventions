@@ -26,6 +26,8 @@ attribute_groups:
         requirement_level: opt_in
       - ref: network.peer.mac.address
         requirement_level: opt_in
+      - ref: network.peer.prefix
+        requirement_level: opt_in
       - ref: network.peer.port
 
   - id: network.local
@@ -52,5 +54,7 @@ attribute_groups:
       - ref: network.local.as.organization
         requirement_level: opt_in
       - ref: network.local.mac.address
+        requirement_level: opt_in
+      - ref: network.local.prefix
         requirement_level: opt_in
       - ref: network.local.port

@@ -14,6 +14,7 @@
 | <a id="destination-as-organization" href="#destination-as-organization">`destination.as.organization`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the destination IP address. [3] | `Example Networks Inc.`; `Google LLC` |
 | <a id="destination-mac-address" href="#destination-mac-address">`destination.mac.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination Media Access Control (MAC) address. [4] | `00-00-5E-00-53-23` |
 | <a id="destination-port" href="#destination-port">`destination.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Destination port number | `3389`; `2888` |
+| <a id="destination-prefix" href="#destination-prefix">`destination.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the destination IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD capture the available address and SHOULD NOT try to resolve the address behind intermediaries such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
 
@@ -27,3 +28,29 @@ as hyphen-separated octets in uppercase hexadecimal form from most to least sign
 > [!WARNING]
 >
 > This attribute may contain sensitive (PII) information.
+
+**[5] `destination.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+[RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+[RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+the address MUST be set to zero. The value MUST NOT contain a domain name,
+UNIX domain socket name, or IPv6 zone identifier.
+
+Instrumentation or Collector receivers that populate this attribute MUST
+convert native representations, such as an address and subnet mask or an
+address and prefix length, to equivalent CIDR notation before emitting it.
+
+This attribute MAY be set whether or not `destination.address` is set. If
+`destination.address` is also set to an IP address, it MUST use the same IP version
+and be contained in this prefix.

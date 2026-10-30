@@ -372,8 +372,9 @@ Use them for interactions with a clear initiator and acceptor. This covers commo
 | [`server.as.number`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the server IP address. [3] | `64496`; `15169` |
 | [`server.as.organization`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the server IP address. [4] | `Example Networks Inc.`; `Google LLC` |
 | [`server.mac.address`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Server Media Access Control (MAC) address. [5] | `00-00-5E-00-53-23` |
-| [`server.service.name`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical name of the service acting as the server in a connection-based network interaction. [6] | `payments` |
-| [`server.service.namespace`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical namespace of the service acting as the server in a connection-based network interaction. [7] | `Shop` |
+| [`server.prefix`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the server IP address, in CIDR notation. [6] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`server.service.name`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical name of the service acting as the server in a connection-based network interaction. [7] | `payments` |
+| [`server.service.namespace`](/docs/registry/attributes/server.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical namespace of the service acting as the server in a connection-based network interaction. [8] | `Shop` |
 
 **[1] `server.address`:** On the client side, `server.address` is the remote service name; on the server side, it is the local service name as seen externally by clients. These normally match - for example, for the URL `https://example.com/foo` it is `"example.com"` on both sides. When a client reaches the server through an intermediary such as a proxy, `server.address` SHOULD represent the server behind the intermediary, if available.
 
@@ -401,9 +402,35 @@ as hyphen-separated octets in uppercase hexadecimal form from most to least sign
 >
 > This attribute may contain sensitive (PII) information.
 
-**[6] `server.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical server, if any. This identifies the server service whether the telemetry is recorded by the client, the server, or another observer.
+**[6] `server.prefix`:**
 
-**[7] `server.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical server, if any. This identifies the server service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `server.service.name`, this identifies the server service. An empty namespace is equivalent to an unspecified namespace.
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+[RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+[RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+the address MUST be set to zero. The value MUST NOT contain a domain name,
+UNIX domain socket name, or IPv6 zone identifier.
+
+Instrumentation or Collector receivers that populate this attribute MUST
+convert native representations, such as an address and subnet mask or an
+address and prefix length, to equivalent CIDR notation before emitting it.
+
+This attribute MUST NOT be set unless `server.address` is set to an IPv4 or
+IPv6 address. The address MUST use the same IP version as this prefix and
+be contained in it.
+
+**[7] `server.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical server, if any. This identifies the server service whether the telemetry is recorded by the client, the server, or another observer.
+
+**[8] `server.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical server, if any. This identifies the server service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `server.service.name`, this identifies the server service. An empty namespace is equivalent to an unspecified namespace.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -431,8 +458,9 @@ Use them for interactions with a clear initiator and acceptor. This covers commo
 | [`client.as.number`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the client IP address. [3] | `64496`; `15169` |
 | [`client.as.organization`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the client IP address. [4] | `Example Networks Inc.`; `Google LLC` |
 | [`client.mac.address`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Client Media Access Control (MAC) address. [5] | `00-00-5E-00-53-23` |
-| [`client.service.name`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical name of the service acting as the client in a connection-based network interaction. [6] | `shoppingcart` |
-| [`client.service.namespace`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical namespace of the service acting as the client in a connection-based network interaction. [7] | `Shop` |
+| [`client.prefix`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the client IP address, in CIDR notation. [6] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`client.service.name`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical name of the service acting as the client in a connection-based network interaction. [7] | `shoppingcart` |
+| [`client.service.namespace`](/docs/registry/attributes/client.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Logical namespace of the service acting as the client in a connection-based network interaction. [8] | `Shop` |
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries, for example proxies, if it's available.
 
@@ -454,9 +482,35 @@ as hyphen-separated octets in uppercase hexadecimal form from most to least sign
 >
 > This attribute may contain sensitive (PII) information.
 
-**[6] `client.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service whether the telemetry is recorded by the client, the server, or another observer.
+**[6] `client.prefix`:**
 
-**[7] `client.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `client.service.name`, this identifies the client service. An empty namespace is equivalent to an unspecified namespace.
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+[RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+[RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+the address MUST be set to zero. The value MUST NOT contain a domain name,
+UNIX domain socket name, or IPv6 zone identifier.
+
+Instrumentation or Collector receivers that populate this attribute MUST
+convert native representations, such as an address and subnet mask or an
+address and prefix length, to equivalent CIDR notation before emitting it.
+
+This attribute MUST NOT be set unless `client.address` is set to an IPv4 or
+IPv6 address. The address MUST use the same IP version as this prefix and
+be contained in it.
+
+**[7] `client.service.name`:** SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service whether the telemetry is recorded by the client, the server, or another observer.
+
+**[8] `client.service.namespace`:** SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the logical client, if any. This identifies the client service's namespace whether the telemetry is recorded by the client, the server, or another observer. Together with `client.service.name`, this identifies the client service. An empty namespace is equivalent to an unspecified namespace.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -484,6 +538,7 @@ Use them when there is no client/server relationship between the two sides, or w
 | [`source.as.number`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the source IP address. [2] | `64496`; `15169` |
 | [`source.as.organization`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the source IP address. [3] | `Example Networks Inc.`; `Google LLC` |
 | [`source.mac.address`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Source Media Access Control (MAC) address. [4] | `00-00-5E-00-53-23` |
+| [`source.prefix`](/docs/registry/attributes/source.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the source IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `source.address`:** `source.address` SHOULD be the sender address as observed at the point of instrumentation, for example the source of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD capture the available address and SHOULD NOT try to resolve the address behind intermediaries such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
 
@@ -497,6 +552,32 @@ as hyphen-separated octets in uppercase hexadecimal form from most to least sign
 > [!WARNING]
 >
 > This attribute may contain sensitive (PII) information.
+
+**[5] `source.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+[RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+[RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+the address MUST be set to zero. The value MUST NOT contain a domain name,
+UNIX domain socket name, or IPv6 zone identifier.
+
+Instrumentation or Collector receivers that populate this attribute MUST
+convert native representations, such as an address and subnet mask or an
+address and prefix length, to equivalent CIDR notation before emitting it.
+
+This attribute MAY be set whether or not `source.address` is set. If
+`source.address` is also set to an IP address, it MUST use the same IP version
+and be contained in this prefix.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -524,6 +605,7 @@ Use them when there is no client/server relationship between the two sides, or w
 | [`destination.as.number`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the destination IP address. [2] | `64496`; `15169` |
 | [`destination.as.organization`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the destination IP address. [3] | `Example Networks Inc.`; `Google LLC` |
 | [`destination.mac.address`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Destination Media Access Control (MAC) address. [4] | `00-00-5E-00-53-23` |
+| [`destination.prefix`](/docs/registry/attributes/destination.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the destination IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `destination.address`:** `destination.address` SHOULD be the receiver address as observed at the point of instrumentation, for example the destination of the packet, flow, or exchange seen on the wire or socket. Instrumentation SHOULD capture the available address and SHOULD NOT try to resolve the address behind intermediaries such as proxies or load balancers, or perform a reverse DNS lookup to obtain a domain name.
 
@@ -537,6 +619,32 @@ as hyphen-separated octets in uppercase hexadecimal form from most to least sign
 > [!WARNING]
 >
 > This attribute may contain sensitive (PII) information.
+
+**[5] `destination.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+[RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+[RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+the address MUST be set to zero. The value MUST NOT contain a domain name,
+UNIX domain socket name, or IPv6 zone identifier.
+
+Instrumentation or Collector receivers that populate this attribute MUST
+convert native representations, such as an address and subnet mask or an
+address and prefix length, to equivalent CIDR notation before emitting it.
+
+This attribute MAY be set whether or not `destination.address` is set. If
+`destination.address` is also set to an IP address, it MUST use the same IP version
+and be contained in this prefix.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -573,6 +681,7 @@ When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.
 | [`network.peer.as.number`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address. [2] | `64496`; `15169` |
 | [`network.peer.as.organization`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the peer IP address. [3] | `Example Networks Inc.`; `Google LLC` |
 | [`network.peer.mac.address`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Peer Media Access Control (MAC) address of the network connection. [4] | `00-00-5E-00-53-23` |
+| [`network.peer.prefix`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the peer IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `network.peer.address`:** This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
 
@@ -586,6 +695,32 @@ as hyphen-separated octets in uppercase hexadecimal form from most to least sign
 > [!WARNING]
 >
 > This attribute may contain sensitive (PII) information.
+
+**[5] `network.peer.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+[RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+[RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+the address MUST be set to zero. The value MUST NOT contain a domain name,
+UNIX domain socket name, or IPv6 zone identifier.
+
+Instrumentation or Collector receivers that populate this attribute MUST
+convert native representations, such as an address and subnet mask or an
+address and prefix length, to equivalent CIDR notation before emitting it.
+
+This attribute MAY be set whether or not `network.peer.address` is set. If
+`network.peer.address` is also set to an IP address, it MUST use the same IP version
+and be contained in this prefix.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -622,6 +757,7 @@ When binding using `bind(2)` ([Linux or other POSIX systems](https://man7.org/li
 | [`network.local.as.number`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the local IP address. [2] | `64496`; `15169` |
 | [`network.local.as.organization`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the local IP address. [3] | `Example Networks Inc.`; `Google LLC` |
 | [`network.local.mac.address`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Local Media Access Control (MAC) address of the network connection. [4] | `00-00-5E-00-53-23` |
+| [`network.local.prefix`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the local IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `network.local.address`:** This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
 
@@ -635,6 +771,32 @@ as hyphen-separated octets in uppercase hexadecimal form from most to least sign
 > [!WARNING]
 >
 > This attribute may contain sensitive (PII) information.
+
+**[5] `network.local.prefix`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+> or `/128` IPv6 prefix preserves the complete endpoint IP address.
+> Using CIDR notation does not guarantee that the data is anonymous.
+
+The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+[RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+[RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+the address MUST be set to zero. The value MUST NOT contain a domain name,
+UNIX domain socket name, or IPv6 zone identifier.
+
+Instrumentation or Collector receivers that populate this attribute MUST
+convert native representations, such as an address and subnet mask or an
+address and prefix length, to equivalent CIDR notation before emitting it.
+
+This attribute MAY be set whether or not `network.local.address` is set. If
+`network.local.address` is also set to an IP address, it MUST use the same IP version
+and be contained in this prefix.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
