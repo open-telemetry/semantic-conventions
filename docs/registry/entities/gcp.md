@@ -15,9 +15,9 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`gcp.apphub.application.container`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` |
 | Identity | [`gcp.apphub.application.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the application as configured in AppHub. | `my-application` |
-| Description | [`gcp.apphub.application.container`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` |
-| Description | [`gcp.apphub.application.location`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The GCP zone or region where the application is defined. | `us-central1` |
+| Identity | [`gcp.apphub.application.location`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The GCP zone or region where the application is defined. | `us-central1` |
 
 ## GCP Apphub Service
 

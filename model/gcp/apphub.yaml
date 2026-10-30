@@ -8,10 +8,10 @@ groups:
       See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
     attributes:
       - ref: gcp.apphub.application.container
-        role: descriptive
+        role: identifying
         requirement_level: required
       - ref: gcp.apphub.application.location
-        role: descriptive
+        role: identifying
         requirement_level: required
       - ref: gcp.apphub.application.id
         role: identifying
