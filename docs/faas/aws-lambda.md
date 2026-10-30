@@ -32,6 +32,31 @@ use cases.
 
 <!-- END doctoc -->
 
+> [!IMPORTANT]
+> Existing FaaS instrumentations that are using
+> [v1.44.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.44.0/docs/faas/aws-lambda.md)
+> (or prior):
+>
+> * SHOULD NOT change the version of the FaaS conventions that they emit by
+>   default in their existing major version. Conventions include (but are not
+>   limited to) attributes, metric and span names, and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   in their existing major version as a comma-separated list of category-specific values
+>   (e.g., `http`, `database`, `faas`). The list of values includes:
+>   * `faas` - emit the stable FaaS conventions, and stop emitting
+>     the experimental FaaS conventions that the instrumentation emitted
+>     previously.
+>   * `faas/dup` - emit both the experimental and stable FaaS conventions,
+>     allowing for a phased rollout of the stable semantic conventions.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental FaaS conventions
+>     the instrumentation was emitting previously.
+>   * Note: `faas/dup` has higher precedence than `faas` in case both values are present
+> * SHOULD maintain (security patching at a minimum) their existing major version
+>   for at least six months after it starts emitting both sets of conventions.
+> * MAY drop the environment variable in their next major version and emit only
+>   the stable FaaS conventions.
+
 ## All triggers
 
 For all events, a span with kind `SERVER` SHOULD be created corresponding to the function invocation unless stated otherwise below.
@@ -64,7 +89,7 @@ unless stated otherwise.
 | [`cloud.account.id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The cloud account ID the resource is assigned to. [2] | `111111111111`; `opentelemetry`; `22222222-2222-2222-2222-222222222222` |
 | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [3] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
 | [`faas.coldstart`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
-| [`faas.invocation_id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The value of the AWS Request ID, which is always available through an accessor on the Lambda `Context` | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
+| [`faas.invocation.id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The value of the AWS Request ID, which is always available through an accessor on the Lambda `Context` | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 
 **[1] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
 
@@ -213,7 +238,7 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation) f
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
 - [`messaging.operation.type`](/docs/messaging/messaging-spans.md) MUST be set to `process`.
-- [`messaging.system`](/docs/messaging/messaging-spans.md) MUST be set to `aws_sqs`.
+- [`messaging.system.name`](/docs/messaging/messaging-spans.md) MUST be set to `aws.sqs`.
 
 ### SQS message
 
@@ -226,7 +251,7 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation) f
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
 - [`messaging.operation.type`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `process`.
-- [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `aws_sqs`.
+- [`messaging.system.name`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `aws.sqs`.
 
 Other attributes defined for [messaging spans](/docs/messaging/messaging-spans.md#messaging-spans) SHOULD be set based on the available information in the SQS message
 event.
@@ -262,7 +287,7 @@ Function F:    | Span Function |
 | Parent | | Span Client |
 | SpanKind | `CLIENT` | `SERVER` |
 | Status | `Ok` | `Ok` |
-| `faas.invocation_id` | | `79104EXAMPLEB723` |
+| `faas.invocation.id` | | `79104EXAMPLEB723` |
 | `faas.trigger` | | `http` |
 | `cloud.account.id` | | `12345678912` |
 | `server.address` | `foo.execute-api.us-east-1.amazonaws.com` | |
@@ -305,7 +330,7 @@ Function F:                      | Span ProcBatch |
 | Links | | | | Span Prod1 | Span Prod2 |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
-| `messaging.system` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` |
+| `messaging.system.name` | `aws.sqs` | `aws.sqs` | `aws.sqs` | `aws.sqs` | `aws.sqs` |
 | `messaging.destination.name` | `Q` | `Q` | `Q` | `Q` | `Q` |
 | `messaging.operation.name` | `send` | `send` | `process` | `process` | `process` |
 | `messaging.operation.type` | `publish` | `publish` | `process` | `process` | `process` |

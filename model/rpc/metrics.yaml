@@ -36,7 +36,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: release_candidate
+    stability: stable
     brief: Measures the duration of an incoming Remote Procedure Call (RPC).
     instrument: histogram
     unit: "s"
@@ -53,7 +53,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: release_candidate
+    stability: stable
     brief: Measures the duration of an outgoing Remote Procedure Call (RPC).
     instrument: histogram
     unit: "s"

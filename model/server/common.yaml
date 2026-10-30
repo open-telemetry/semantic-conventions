@@ -39,3 +39,7 @@ attribute_groups:
       - ref: server.mac.address
         requirement_level: opt_in
       - ref: server.port
+      - ref: server.service.name
+        requirement_level: opt_in
+      - ref: server.service.namespace
+        requirement_level: opt_in
