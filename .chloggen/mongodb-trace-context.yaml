@@ -1,0 +1,5 @@
+change_type: enhancement
+component: db
+note: Add trace context propagation for MongoDB through the comment command field
+issues: [3926]
+subtext:

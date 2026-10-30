@@ -2,3 +2,17 @@
 exclude = ["compatibility_entity_missing"]
 signal_type = "entity"
 signal_names = ["android", "gcp.cloud_run", "gcp.gce", "zos.software"]
+
+[[policy.finding_filters]]
+exclude = ["compatibility_span_missing"]
+signal_type = "span"
+signal_names = [
+    "azure.cosmosdb.client",
+    "db.cassandra.client",
+    "db.couchdb.client",
+    "db.elasticsearch.client",
+    "db.hbase.client",
+    "db.mongodb.client",
+    "db.redis.client",
+    "db.sql.client"
+]
