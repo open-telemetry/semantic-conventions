@@ -325,7 +325,7 @@ using (OracleConnection connection = new OracleConnection(connectString))
 }
 ```
 
-For detailed configuration of native in-database observability capabilities, trace management, and OTLP collector endpoint setups, refer to the official [Oracle Database OpenTelemetry Observability Architecture](https://docs.oracle.com/en/database/oracle/oracle-database/26/tgsql/observabilitly-open-telemetry.html) and the administrative [DBMS_OBSERVABILITY Package Reference](https://docs.oracle.com/en/database/oracle/oracle-database/26/arpls/dbms_observability.html).
+For detailed configuration of native in-database observability capabilities, trace management, and OTLP collector endpoint setups, refer to the official [Oracle Database OpenTelemetry Observability Architecture](https://docs.oracle.com/en/database/oracle/oracle-database/26/tgsql/observabilitly-open-telemetry.html) and the administrative [DBMS_OBSERVABILITY Package Reference](https://docs.oracle.com/en/database/oracle/oracle-database/26/arpls/DBMS_OBSERVABILITY.html).
 
 ### V$SESSION.ACTION
 
