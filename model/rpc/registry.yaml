@@ -21,7 +21,7 @@ groups:
         examples: ["OK", "DEADLINE_EXCEEDED", "-32602"]
       - id: rpc.request.header
         type: template[string[]]
-        stability: stable
+        stability: release_candidate
         brief: >
           RPC request headers or metadata, `<key>` being the normalized header name (lowercase),
           the value being the header values.
@@ -41,7 +41,7 @@ groups:
         examples: [["1.2.3.4", "1.2.3.5"]]
       - id: rpc.response.header
         type: template[string[]]
-        stability: stable
+        stability: release_candidate
         brief: >
           RPC response headers or metadata sent before the response payload, `<key>` being the
           normalized header name (lowercase), the value being the header values.
@@ -61,7 +61,7 @@ groups:
         examples: [["attribute_value"]]
       - id: rpc.response.trailer
         type: template[string[]]
-        stability: stable
+        stability: release_candidate
         brief: >
           RPC response trailers or metadata sent after the response payload, `<key>` being the
           normalized trailer name (lowercase), the value being the trailer values.
