@@ -102,5 +102,6 @@ Currently, the following namespaces exist:
 | VCS | | |
 | | [vcs.ref](vcs.md#vcs-ref) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [vcs.repository](vcs.md#vcs-repository) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| | [vcs.repository.subdirectory](vcs.md#vcs-repository-subdirectory) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Webengine | | |
 | | [webengine](webengine.md#webengine) | ![Development](https://img.shields.io/badge/-development-blue) |
