@@ -72,22 +72,39 @@ Names SHOULD follow these rules:
   `*{object}.{property}` pattern. Avoid using underscore (`*{object}_{property}`)
   if this object could have other properties.
 
-- For each multi-word dot-delimited component of the name separate the
-  words by underscores (i.e. use snake_case). For example
-  `http.response.status_code` denotes the status code in the HTTP namespace.
-
-  Known exceptions include
-  [K8s API names](../non-normative/naming-known-exceptions.md) where a single
-  word is used for consistency with the instrumented API.
-
-  Use underscore only when using dot (namespacing) does not make sense or changes
+- Use underscore only when using dot (namespacing) does not make sense or changes
   the semantic meaning of the name. For example, use `rate_limiting`
   instead of `rate.limiting`.
 
-- Be idiomatic. When a project, technology, or domain has an established lowercase
-  spelling, prefer it, adapted to the supported character set. For example,
-  use `postgresql` instead of `postgre_sql`, `mongodb` instead of `mongo_db`, and
-  `jsonrpc` instead of `json_rpc`.
+- For each multi-word component of a dot-delimited name, separate
+  the words by underscores (i.e. use snake_case). For example,
+  `http.response.status_code` denotes the status code in the HTTP namespace.
+
+  An established concatenated form in the relevant ecosystem SHOULD take
+  precedence over separating words with underscores.
+
+  For project, product, and protocol names, first look for that concatenated
+  form in the domain hosting the official website. For example, `jsonrpc.org`
+  supports `jsonrpc` rather than `json_rpc`, and
+  `cloudfoundry.org` supports `cloudfoundry` rather than `cloud_foundry`.
+
+  If the domain does not provide evidence, look for established concatenated
+  forms in official CLI commands or public API resource and service names.
+  For example:
+
+  - `secretsmanager`, matching the AWS CLI command
+    [`aws secretsmanager`](https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/).
+  - `replicaset` and `resourcequota`, matching
+    [Kubernetes resource names](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/)
+    used in commands such as `kubectl get replicaset`.
+
+  Language-specific spelling, such as individual API field or SDK
+  symbol, is not, by itself, evidence for concatenation.
+
+  Established technical terminology can also justify concatenation, such as
+  [`filesystem`](https://man7.org/linux/man-pages/man5/filesystems.5.html)
+  and [`mountpoint`](https://man7.org/linux/man-pages/man1/mountpoint.1.html)
+  in UNIX. Where no established concatenated form exists, use underscores.
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
