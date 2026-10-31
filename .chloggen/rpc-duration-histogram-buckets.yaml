@@ -6,4 +6,5 @@ issues: []
 subtext: |
   Adds intermediate boundaries using `1, 2.5, 5` subdivisions for both RPC client
   and server call duration histograms through 10 seconds, followed by boundaries
-  at 30 and 60 seconds. System-specific recommendations remain unchanged.
+  at 30 and 60 seconds. Dubbo follows the general RPC bucket recommendations;
+  gRPC bucket recommendations remain unchanged.
