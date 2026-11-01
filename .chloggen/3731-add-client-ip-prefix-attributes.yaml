@@ -1,0 +1,7 @@
+change_type: enhancement
+component: client
+note: >
+  Add the `client.prefix` attribute in CIDR notation for client network endpoints,
+  with normalization by instrumentation or Collector receivers.
+issues: [3731]
+subtext:

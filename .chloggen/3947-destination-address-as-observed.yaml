@@ -1,0 +1,10 @@
+change_type: enhancement
+component: destination
+note: >
+  Clarify that `destination.address` and `destination.port` describe the receiver of a network
+  exchange and are recorded as the address available at the point of instrumentation. Instrumentation
+  captures that address and does not try to resolve the address behind intermediaries such as
+  proxies. They apply when there is no clear or known client/server role (for example low-level
+  flow/packet telemetry or peer-to-peer protocols); use `client.*` / `server.*` for logical,
+  de-proxied identity when the roles are known.
+issues: [3947, 1721]

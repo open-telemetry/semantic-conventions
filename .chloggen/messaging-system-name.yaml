@@ -1,0 +1,4 @@
+change_type: deprecation
+component: messaging
+note: Rename `messaging.system` to `messaging.system.name` and align cloud-provider values with their attribute namespaces.
+issues: [4250]

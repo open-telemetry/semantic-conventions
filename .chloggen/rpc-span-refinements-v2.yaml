@@ -1,0 +1,7 @@
+change_type: enhancement
+component: rpc
+note: Define Connect RPC and JSON-RPC spans as refinements of the generic RPC client and server spans.
+issues: [3808]
+subtext: |
+  JSON-RPC spans now list the opt-in `rpc.request.header.<key>`, `rpc.response.header.<key>`, and
+  `rpc.response.trailer.<key>` attributes inherited from the generic RPC spans.

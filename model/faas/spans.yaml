@@ -11,7 +11,7 @@ attribute_groups:
       - ref: faas.trigger
         requirement_level: required
       - ref: faas.coldstart
-      - ref: faas.invocation_id
+      - ref: faas.invocation.id
       - ref: cloud.resource_id
 
 spans:
@@ -40,6 +40,9 @@ spans:
     attributes:
       - ref_group: faas.attributes.server
       - ref: faas.trigger
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `datasource`.
         examples: ['datasource']
       - ref: faas.document.collection
@@ -60,9 +63,12 @@ spans:
     attributes:
       - ref_group: faas.attributes.server
       - ref: faas.trigger
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `timer`.
         examples: ['timer']
-      - ref: faas.time
+      - ref: faas.invocation.start_time
       - ref: faas.cron
 
   - type: faas.client

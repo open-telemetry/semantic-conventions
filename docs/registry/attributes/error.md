@@ -44,6 +44,8 @@ it's RECOMMENDED to:
 
 ---
 
+<a id="error-type-values"></a>
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |

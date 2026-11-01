@@ -30,7 +30,7 @@ The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and ov
 >   metric and span names, span kind and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version as a comma-separated list of category-specific values
->   (e.g., http, databases, messaging). The list of values includes:
+>   (e.g., http, database, messaging). The list of values includes:
 >   * `messaging` - emit the new, stable messaging conventions,
 >     and stop emitting the old experimental messaging conventions
 >     that the instrumentation emitted previously.
@@ -73,14 +73,14 @@ injected into the message(s) as the creation context. See
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning`; `logs`; `amq.default` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `send`; `publish` |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.anonymous`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). | |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` |
 | [`messaging.destination.temporary`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [9] | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. | |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` |
-| [`messaging.rabbitmq.destination.routing_key`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If not empty. | string | RabbitMQ message routing key. | `myKey` |
+| [`rabbitmq.destination.routing_key`](/docs/registry/attributes/rabbitmq.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If not empty. | string | RabbitMQ message routing key. | `myKey` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property. | `MyConversationId` |
@@ -98,7 +98,7 @@ SHOULD be set to `{exchange}:{routing key}` when both values are present and non
 When only one is available, only that value SHOULD be used, e.g. `{exchange}` or `{routing key}`.
 Otherwise, it SHOULD be set to `amq.default` when the default exchange is used and no routing key is provided.
 
-**[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
+**[2] `messaging.system.name`:** MUST be set to `"rabbitmq"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -162,48 +162,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.destination.template`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
-* [`messaging.system`](/docs/registry/attributes/messaging.md)
+* [`messaging.system.name`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
-
----
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -234,15 +195,15 @@ call methods of messaging SDKs to receive messages. See
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning:my_queue`; `direct_logs:warning`; `logs` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `receive`; `poll` |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.anonymous`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). | |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` |
 | [`messaging.destination.temporary`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [9] | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. | |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `receive` |
-| [`messaging.rabbitmq.destination.routing_key`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If not empty. | string | RabbitMQ message routing key. | `myKey` |
-| [`messaging.rabbitmq.message.delivery_tag`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When available. | int | RabbitMQ message delivery tag | `123` |
+| [`rabbitmq.destination.routing_key`](/docs/registry/attributes/rabbitmq.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If not empty. | string | RabbitMQ message routing key. | `myKey` |
+| [`rabbitmq.message.delivery_tag`](/docs/registry/attributes/rabbitmq.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When available. | int | RabbitMQ message delivery tag | `123` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property. | `MyConversationId` |
@@ -261,7 +222,7 @@ If any has an empty value (e.g. the default exchange is used) it SHOULD be omitt
 When `{routing key}` and `{queue}` are equal, only one of them SHOULD be used,
 e.g. `{exchange}:{routing key}`.
 
-**[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
+**[2] `messaging.system.name`:** MUST be set to `"rabbitmq"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -325,48 +286,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.destination.template`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
-* [`messaging.system`](/docs/registry/attributes/messaging.md)
+* [`messaging.system.name`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
-
----
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -401,15 +323,15 @@ message creation context is used as the parent, see
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning:my_queue`; `direct_logs:warning`; `logs` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `process`; `consume` |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.anonymous`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). | |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | string | Low cardinality representation of the messaging destination name [8] | `/customers/{customerId}` |
 | [`messaging.destination.temporary`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [9] | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. | |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `process` |
-| [`messaging.rabbitmq.destination.routing_key`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If not empty. | string | RabbitMQ message routing key. | `myKey` |
-| [`messaging.rabbitmq.message.delivery_tag`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When available. | int | RabbitMQ message delivery tag | `123` |
+| [`rabbitmq.destination.routing_key`](/docs/registry/attributes/rabbitmq.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If not empty. | string | RabbitMQ message routing key. | `myKey` |
+| [`rabbitmq.message.delivery_tag`](/docs/registry/attributes/rabbitmq.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When available. | int | RabbitMQ message delivery tag | `123` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property. | `MyConversationId` |
@@ -426,7 +348,7 @@ If any has an empty value (e.g. the default exchange is used) it SHOULD be omitt
 When `{routing key}` and `{queue}` are equal, only one of them SHOULD be used,
 e.g. `{exchange}:{routing key}`.
 
-**[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
+**[2] `messaging.system.name`:** MUST be set to `"rabbitmq"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -486,48 +408,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.destination.template`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
-* [`messaging.system`](/docs/registry/attributes/messaging.md)
+* [`messaging.system.name`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
-
----
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -557,12 +440,12 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 | --- | --- | --- | --- | --- | --- |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning:my_queue`; `direct_logs:warning`; `logs` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `ack`; `nack`; `settle` |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
+| [`messaging.system.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [8] | `settle` |
-| [`messaging.rabbitmq.message.delivery_tag`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When available. | int | RabbitMQ message delivery tag | `123` |
+| [`rabbitmq.message.delivery_tag`](/docs/registry/attributes/rabbitmq.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When available. | int | RabbitMQ message delivery tag | `123` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property. | `MyConversationId` |
@@ -579,7 +462,7 @@ If any has an empty value (e.g. the default exchange is used) it SHOULD be omitt
 When `{routing key}` and `{queue}` are equal, only one of them SHOULD be used,
 e.g. `{exchange}:{routing key}`.
 
-**[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
+**[2] `messaging.system.name`:** MUST be set to `"rabbitmq"`.
 
 **[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -633,48 +516,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.destination.template`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
-* [`messaging.system`](/docs/registry/attributes/messaging.md)
+* [`messaging.system.name`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
-
----
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

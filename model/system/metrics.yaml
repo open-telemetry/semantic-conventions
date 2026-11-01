@@ -106,7 +106,9 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Reports memory in use by state."
+    brief: "Reports memory by state."
+    note: |
+      The sum of the `used` and `available` state values SHOULD be equal to `system.memory.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
@@ -135,7 +137,9 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Percentage of memory bytes in use.
+    brief: Fraction of memory bytes by state.
+    note: |
+      The sum of the `used` and `available` state values SHOULD be equal to 1.
     instrument: gauge
     unit: "1"
     attributes:
@@ -156,7 +160,7 @@ groups:
     unit: "By"
     attributes:
       - ref: system.paging.state
-      - ref: system.device
+      - ref: system.device.name
         brief: Unique identifier for the device responsible for managing paging operations.
         examples: ["/dev/dm-0"]
     entity_associations:
@@ -174,7 +178,7 @@ groups:
     unit: "1"
     attributes:
       - ref: system.paging.state
-      - ref: system.device
+      - ref: system.device.name
         brief: Unique identifier for the device responsible for managing paging operations.
         examples: ["/dev/dm-0"]
     entity_associations:
@@ -223,7 +227,7 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -239,7 +243,7 @@ groups:
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -262,7 +266,7 @@ groups:
         ["Disk\% Idle Time"](https://learn.microsoft.com/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
         performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
     attributes:
-      - ref: system.device
+      - ref: system.device.name
     entity_associations:
       - host
 
@@ -282,7 +286,7 @@ groups:
       - Linux: Fields 7 & 11 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
       - Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec" perf counter (similar for Writes)
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -298,7 +302,7 @@ groups:
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -314,7 +318,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
     entity_associations:
       - host
 
@@ -333,7 +337,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: Identifier for the device where the filesystem resides.
         examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.state
@@ -354,7 +358,7 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: Identifier for the device where the filesystem resides.
         examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.state
@@ -375,7 +379,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: Identifier for the device where the filesystem resides.
         examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.type
@@ -395,7 +399,7 @@ groups:
     instrument: updowncounter
     unit: "{lock}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: OS-specific identifier for the device where the file resides.
         examples: ["08:01"]
       - ref: file.lock.type
@@ -438,7 +442,7 @@ groups:
     instrument: counter
     unit: "{packet}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: network.io.direction
     entity_associations:
       - host
@@ -556,7 +560,7 @@ groups:
     stability: development
     brief: "An estimate of how much memory is available for starting new applications, without causing swapping."
     note: |
-      This is an alternative to `system.memory.usage` metric with `state=free`.
+      This is equivalent to the `system.memory.usage` metric with `state=available`.
       Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
       This is supposed to be more accurate than just "free" memory.
       For reference, see the calculations [here](https://superuser.com/a/980821).

@@ -1,12 +1,14 @@
 groups:
-  - id: entity.gcp.cloud_run
+  - id: entity.gcp.cloud_run.job.task
     type: entity
     stability: development
-    name: gcp.cloud_run
+    name: gcp.cloud_run.job.task
     brief: >
-      Resource used by Google Cloud Run.
+      A task within a Google Cloud Run job execution.
     attributes:
       - ref: gcp.cloud_run.job.execution
-        requirement_level: recommended
+        role: identifying
+        requirement_level: required
       - ref: gcp.cloud_run.job.task_index
-        requirement_level: recommended
+        role: identifying
+        requirement_level: required

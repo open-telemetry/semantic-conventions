@@ -1,0 +1,6 @@
+change_type: enhancement
+component: client
+note: >
+  Add the `client.mac.address` attribute for client network endpoints.
+issues: [2416]
+subtext:

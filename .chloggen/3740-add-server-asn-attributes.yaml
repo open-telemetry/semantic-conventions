@@ -1,0 +1,7 @@
+change_type: enhancement
+component: server
+note: >
+  Add `server.as.number` and `server.as.organization` attributes for server
+  network endpoints.
+issues: [1663, 3740]
+subtext:

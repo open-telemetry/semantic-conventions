@@ -161,3 +161,25 @@ groups:
     instrument: gauge
     unit: "1"
     stability: stable
+
+  - id: metric.jvm.file_descriptor.count
+    type: metric
+    metric_name: jvm.file_descriptor.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: release_candidate
+    brief: "Number of open file descriptors as reported by the JVM."
+    instrument: updowncounter
+    unit: "{file_descriptor}"
+
+  - id: metric.jvm.file_descriptor.limit
+    type: metric
+    metric_name: jvm.file_descriptor.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: release_candidate
+    brief: "Measure of max open file descriptors as reported by the JVM."
+    instrument: updowncounter
+    unit: "{file_descriptor}"

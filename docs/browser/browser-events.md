@@ -28,12 +28,14 @@ This event describes the website performance metrics introduced by Google, See [
 | --- | --- | --- | --- | --- | --- |
 | [`browser.web_vital.delta`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes). | `0.2` |
 | [`browser.web_vital.id`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A unique ID representing this particular metric instance. | `v3-1677874579383-6381583661209` |
-| [`browser.web_vital.name`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the web vital. | `cls` |
+| [`browser.web_vital.name`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the web vital. | `cls` [(see more)](#browser-web-vital-name-values) |
 | [`browser.web_vital.value`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | Value of the web vital. | `1.0` |
-| [`browser.web_vital.navigation_type`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of navigation, as reported by the [Navigation Timing API](https://developer.mozilla.org/docs/Web/API/PerformanceNavigationTiming/type), with additional values reported by the web-vitals library. | `navigate` |
-| [`browser.web_vital.rating`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The rating of the web vital value against the "good", "needs improvement", and "poor" thresholds defined for the metric. | `good` |
+| [`browser.web_vital.navigation_type`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of navigation, as reported by the [Navigation Timing API](https://developer.mozilla.org/docs/Web/API/PerformanceNavigationTiming/type), with additional values reported by the web-vitals library. | `navigate` [(see more)](#browser-web-vital-navigation-type-values) |
+| [`browser.web_vital.rating`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The rating of the web vital value against the "good", "needs improvement", and "poor" thresholds defined for the metric. | `good` [(see more)](#browser-web-vital-rating-values) |
 
 ---
+
+<a id="browser-web-vital-name-values"></a>
 
 `browser.web_vital.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -47,6 +49,8 @@ This event describes the website performance metrics introduced by Google, See [
 
 ---
 
+<a id="browser-web-vital-navigation-type-values"></a>
+
 `browser.web_vital.navigation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -59,6 +63,8 @@ This event describes the website performance metrics introduced by Google, See [
 | `restore` | Navigation restoring a page that was previously discarded by the browser. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="browser-web-vital-rating-values"></a>
 
 `browser.web_vital.rating` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

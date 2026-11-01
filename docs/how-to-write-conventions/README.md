@@ -119,8 +119,19 @@ When defining a new attribute:
 
 - Define new attributes with `development` stability.
 - Provide realistic examples
-- Avoid defining attributes with potentially unbounded values, such as strings longer than
-  1 KB or arrays with more than 1,000 elements. Such values should be recorded in the log or event body instead. <!-- This may change, check out https://github.com/open-telemetry/semantic-conventions/issues/1651 to monitor the progress -->
+- Attributes should generally have bounded values (for example, strings under 1 KB or small arrays).
+  When captured data is unbounded by nature (such as queries, payloads, or raw records):
+  - Mark the attribute in the registry with:
+
+    ```yaml
+    annotations:
+      value:
+        unbounded_size: true
+    ```
+
+    This annotation renders a warning advising applications to configure SDK attribute limits and instrumentations to enforce safety size limits.
+  - Unbounded attributes MUST NOT be `required` on any signal or attribute group.
+  - Consider defining a corresponding reference attribute (see [attributes referencing external content](/docs/general/naming.md#attributes-referencing-external-content)).
 
 Consider the scope of the attribute and how it may evolve in the future:
 
@@ -166,8 +177,13 @@ all known CPU modes. Metrics like `system.cpu.time` depend on having all modes
 defined. Authors should document all known values upfront, though new values
 may be added later to support new operating systems or CPU architectures.
 
-**Open enums** like `error.type` allow conventions and instrumentations to define
-their own applicable values.
+**Open enums** like `error.type`, `cloud.provider`, and `cloud.platform`
+allow conventions and instrumentations to define their own applicable values
+without adding them to semantic conventions first. Values used by only one
+implementation can be documented with that implementation. When proposing a
+well-known value here, look for another independent implementation that uses
+the same value and link to both in the proposal. This helps reviewers assess
+whether the value is useful beyond one implementation.
 
 **System identifier enums** specify a system, project, provider, product, or protocol.
 For example, `db.system.name` contains database names like `mongodb` or `mysql`.
@@ -304,9 +320,14 @@ Define which additional properties this span needs to be useful:
   domain-specific error code, include that as a separate attribute as well.
   Document which error codes constitute an error.
 
-- Include `server.address` and `server.port` on client spans.
+- Include `server.address` and `server.port` on client spans. They represent the logical server
+  name and port; semantic conventions that refer to these attributes SHOULD specify what they mean
+  in their context.
 
 - Include applicable `network.*` attributes on spans that describe network calls.
+  See [Choosing network address and port attributes](/docs/network/choosing-network-attributes.md)
+  for help picking among `client.*` / `server.*`, `source.*` / `destination.*`, and
+  `network.local.*` / `network.peer.*`.
 
 - Include some form of operation name to describe the action being performed.
 

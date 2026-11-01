@@ -46,7 +46,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 >   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version as a comma-separated list of category-specific values
->   (e.g., http, databases, messaging). The list of values includes:
+>   (e.g., http, database, messaging). The list of values includes:
 >   * `http` - emit the new, stable HTTP and networking conventions,
 >     and stop emitting the old experimental HTTP and networking conventions
 >     that the instrumentation emitted previously.
@@ -151,7 +151,7 @@ There are two ways HTTP client spans can be implemented in an instrumentation:
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`http.request.method`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` |
+| [`http.request.method`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` [(see more)](#http-request-method-values) |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | int | Server port number. [3] | `80`; `8080`; `443` |
 | [`url.full`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [4] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` |
@@ -171,11 +171,11 @@ There are two ways HTTP client spans can be implemented in an instrumentation:
 | [`http.response.body.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
 | [`http.response.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [14] | `["application/json"]`; `["abc", "def"]` |
 | [`http.response.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [15] | `tcp`; `udp` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [15] | `tcp`; `udp` [(see more)](#network-transport-values) |
 | [`url.scheme`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` |
 | [`url.template`](/docs/registry/attributes/url.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [16] | `/users/{id}`; `/users/:id`; `/users?id={id}` |
 | [`user_agent.original`](/docs/registry/attributes/user-agent.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` |
-| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [17] | `bot`; `test` |
+| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [17] | `bot`; `test` [(see more)](#user-agent-synthetic-type-values) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
@@ -282,7 +282,12 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[10] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[11] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+**[11] `http.request.body.content`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
 boundary so that the recorded value remains valid text.
 
@@ -322,7 +327,12 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[13] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+**[13] `http.response.body.content`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
 boundary so that the recorded value remains valid text.
 
@@ -380,13 +390,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
+<a id="http-request-method-values"></a>
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -406,6 +410,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
+<a id="network-transport-values"></a>
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -417,6 +423,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="user-agent-synthetic-type-values"></a>
 
 `user_agent.synthetic.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -525,7 +533,7 @@ This span represents an inbound HTTP request.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`http.request.method`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` |
+| [`http.request.method`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` [(see more)](#http-request-method-values) |
 | [`url.path`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [2] | `/search` |
 | [`url.scheme`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [3] | `http`; `https` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If request has ended with an error. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
@@ -552,8 +560,8 @@ This span represents an inbound HTTP request.
 | [`http.response.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
 | [`network.local.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.local.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | int | Local socket port. Useful in case of a multi-port host. | `65123` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [19] | `tcp`; `udp` |
-| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [20] | `bot`; `test` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [19] | `tcp`; `udp` [(see more)](#network-transport-values) |
+| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [20] | `bot`; `test` [(see more)](#user-agent-synthetic-type-values) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
@@ -655,9 +663,14 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[13] `server.address`:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
-**[14] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+**[14] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries, for example proxies, if it's available.
 
-**[15] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+**[15] `http.request.body.content`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
 boundary so that the recorded value remains valid text.
 
@@ -697,7 +710,12 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[17] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+**[17] `http.response.body.content`:**
+
+> [!WARNING]
+> This attribute may contain large values. Applications should configure the OpenTelemetry SDK [attribute value limits](https://opentelemetry.io/docs/specs/otel/common/#attribute-limits). Instrumentations SHOULD additionally enforce an implementation-specific size limit before constructing or recording the value to avoid unbounded memory consumption.
+
+Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
 boundary so that the recorded value remains valid text.
 
@@ -758,13 +776,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
+<a id="http-request-method-values"></a>
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -784,6 +796,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
+<a id="network-transport-values"></a>
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -795,6 +809,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="user-agent-synthetic-type-values"></a>
 
 `user_agent.synthetic.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

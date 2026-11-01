@@ -14,10 +14,10 @@ This document defines attributes for software deployments.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="deployment-environment-name" href="#deployment-environment-name">`deployment.environment.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
+| <a id="deployment-environment-name" href="#deployment-environment-name">`deployment.environment.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` [(see more)](#deployment-environment-name-values) |
 | <a id="deployment-id" href="#deployment-id">`deployment.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ID of the deployment. | `1208` |
 | <a id="deployment-name" href="#deployment-name">`deployment.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the deployment. | `deploy my app`; `deploy-frontend` |
-| <a id="deployment-status" href="#deployment-status">`deployment.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the deployment. | `failed`; `succeeded` |
+| <a id="deployment-status" href="#deployment-status">`deployment.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the deployment. | `failed`; `succeeded` [(see more)](#deployment-status-values) |
 
 **[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
@@ -29,6 +29,8 @@ considered to be identifying the same service:
 
 ---
 
+<a id="deployment-environment-name-values"></a>
+
 `deployment.environment.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -39,6 +41,8 @@ considered to be identifying the same service:
 | `test` | Testing environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
+
+<a id="deployment-status-values"></a>
 
 `deployment.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

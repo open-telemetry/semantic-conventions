@@ -69,13 +69,15 @@ This metric is [recommended][MetricRecommended].
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Design capacity in Watts-hours or Ampere-hours | `9.3Ah`; `50Wh` |
 | [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` |
-| [`hw.limit_type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Represents battery charge level thresholds relevant to device operation and health. Each `limit_type` denotes a specific charge limit such as the minimum or maximum optimal charge, the shutdown threshold, or energy-saving thresholds. These values are typically provided by the hardware or firmware to guide safe and efficient battery usage. | `critical`; `throttled`; `degraded` |
+| [`hw.limit_type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Represents battery charge level thresholds relevant to device operation and health. Each `limit_type` denotes a specific charge limit such as the minimum or maximum optimal charge, the shutdown threshold, or energy-saving thresholds. These values are typically provided by the hardware or firmware to guide safe and efficient battery usage. | `critical`; `throttled`; `degraded` [(see more)](#hw-limit-type-values) |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` |
 
 ---
+
+<a id="hw-limit-type-values"></a>
 
 `hw.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -113,8 +115,8 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` |
-| [`hw.battery.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the battery is charging or discharging | string | The current state of the battery [1] | `charging`; `discharging` |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` [(see more)](#hw-state-values) |
+| [`hw.battery.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the battery is charging or discharging | string | The current state of the battery [1] | `charging`; `discharging` [(see more)](#hw-battery-state-values) |
 | [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Design capacity in Watts-hours or Ampere-hours | `9.3Ah`; `50Wh` |
 | [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` |
@@ -126,6 +128,8 @@ This metric is [recommended][MetricRecommended].
 
 ---
 
+<a id="hw-battery-state-values"></a>
+
 `hw.battery.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -134,6 +138,8 @@ This metric is [recommended][MetricRecommended].
 | `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="hw-state-values"></a>
 
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -169,7 +175,7 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component [1] | `ok`; `degraded`; `failed`; `charging`; `discharging` |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component [1] | `ok`; `degraded`; `failed`; `charging`; `discharging` [(see more)](#hw-state-values) |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [2] | `battery` |
 | [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Design capacity in Watts-hours or Ampere-hours | `9.3Ah`; `50Wh` |
 | [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` |
@@ -190,6 +196,8 @@ This metric is [recommended][MetricRecommended].
 
 ---
 
+<a id="hw-state-values"></a>
+
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -199,27 +207,6 @@ This metric is [recommended][MetricRecommended].
 | `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | OK | ![Development](https://img.shields.io/badge/-development-blue) |
 | `predicted_failure` | Predicted Failure | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
-| `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |
-| `enclosure` | Enclosure | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fan` | Fan | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gpu` | GPU | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logical_disk` | Logical disk | ![Development](https://img.shields.io/badge/-development-blue) |
-| `memory` | Memory | ![Development](https://img.shields.io/badge/-development-blue) |
-| `network` | Network | ![Development](https://img.shields.io/badge/-development-blue) |
-| `physical_disk` | Physical disk | ![Development](https://img.shields.io/badge/-development-blue) |
-| `power_supply` | Power supply | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tape_drive` | Tape drive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `temperature` | Temperature | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voltage` | Voltage | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

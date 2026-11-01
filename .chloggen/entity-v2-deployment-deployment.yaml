@@ -1,0 +1,4 @@
+change_type: enhancement
+component: deployment
+note: Define identifying attributes for deployment entities for Weaver schema v2 migration.
+issues: [4167]

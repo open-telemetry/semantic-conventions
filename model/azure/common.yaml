@@ -1,0 +1,30 @@
+file_format: definition/2
+
+attribute_groups:
+  - id: azure.cosmosdb.client.detailed
+    visibility: internal
+    attributes:
+      - ref_group: db.client.connection
+      - ref_group: db.response.code_and_error
+      - ref: azure.cosmosdb.operation.contacted_regions
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.collection.name
+        brief: >
+          Cosmos DB container name.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.operation.name
+        requirement_level: required
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+        note: ""  # overriding the base note
+      - ref: azure.cosmosdb.response.sub_status_code
+        requirement_level:
+          conditionally_required: when response was received and contained sub-code.
+      - ref: azure.cosmosdb.consistency.level
+        requirement_level:
+          conditionally_required: If available.

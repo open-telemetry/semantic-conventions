@@ -106,9 +106,6 @@ Projects like
 [Prometheus Node Exporter](https://github.com/prometheus/node_exporter/blob/b959d48df950d5c446660eca3354c26eb997ca44/docs/node-mixin/lib/prom-mixin.libsonnet#L85-L87)
 come with their own formula for calculating System's utilization.
 
-The standardization of `k8s.*.cpu.usage` is an exception since it is collected
-directly from the Kubelet's Stats API and is K8s specific.
-
 ## References
 
 1. [System CPU Utilization gist](https://gist.github.com/braydonk/b2381da98dc3c4fd5ac064045d556634)

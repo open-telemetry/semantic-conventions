@@ -1,0 +1,11 @@
+change_type: deprecation
+component: messaging
+note: Move system-specific messaging attributes into system-specific namespaces.
+issues: [4004]
+subtext: |
+  Rename `messaging.kafka.*`, `messaging.rabbitmq.*`, and `messaging.rocketmq.*`
+  to `kafka.*`, `rabbitmq.*`, and `rocketmq.*`, respectively.
+  Rename `messaging.gcp_pubsub.*` to `gcp.pubsub.*`,
+  `messaging.servicebus.*` to `azure.servicebus.*`, and
+  `messaging.eventhubs.*` to `azure.eventhubs.*`.
+  The old attributes are deprecated.

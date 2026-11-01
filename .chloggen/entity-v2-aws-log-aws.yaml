@@ -1,0 +1,4 @@
+change_type: breaking
+component: aws
+note: Remove the AWS log entity while retaining its attributes for resource metadata.
+issues: [4171]

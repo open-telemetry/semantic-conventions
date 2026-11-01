@@ -46,8 +46,8 @@ When not to define events:
   timestamp - use span attributes instead.
 - For unstructured diagnostic messages that are not intended to be queried as
   named events - emit regular log records instead. These records are not modeled
-  as events, but can still follow
-  [Semantic conventions for logs](/docs/general/logs.md).
+  as events, but can reuse applicable
+  [Semantic conventions attributes](/docs/registry/attributes/README.md).
 
 Events often complement span definitions. Events can be emitted inside or
 outside an active trace context.

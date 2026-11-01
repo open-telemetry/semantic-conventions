@@ -28,12 +28,21 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
   - [Metric: `jvm.cpu.count`](#metric-jvmcpucount)
   - [Metric: `jvm.cpu.recent_utilization`](#metric-jvmcpurecent_utilization)
 - [Development](#development)
+  - [JVM executors](#jvm-executors)
+    - [Metric: `jvm.executor.thread.count`](#metric-jvmexecutorthreadcount)
+    - [Metric: `jvm.executor.thread.core`](#metric-jvmexecutorthreadcore)
+    - [Metric: `jvm.executor.thread.limit`](#metric-jvmexecutorthreadlimit)
+    - [Metric: `jvm.executor.queue.size`](#metric-jvmexecutorqueuesize)
+    - [Metric: `jvm.executor.queue.capacity`](#metric-jvmexecutorqueuecapacity)
+    - [Metric: `jvm.executor.task.completed`](#metric-jvmexecutortaskcompleted)
+    - [Metric: `jvm.executor.task.rejected`](#metric-jvmexecutortaskrejected)
   - [Metric: `jvm.memory.init`](#metric-jvmmemoryinit)
   - [Metric: `jvm.system.cpu.utilization`](#metric-jvmsystemcpuutilization)
   - [Metric: `jvm.system.cpu.load_1m`](#metric-jvmsystemcpuload_1m)
   - [Metric: `jvm.buffer.memory.used`](#metric-jvmbuffermemoryused)
   - [Metric: `jvm.buffer.memory.limit`](#metric-jvmbuffermemorylimit)
   - [Metric: `jvm.buffer.count`](#metric-jvmbuffercount)
+- [Release Candidate](#release-candidate)
   - [Metric: `jvm.file_descriptor.count`](#metric-jvmfile_descriptorcount)
   - [Metric: `jvm.file_descriptor.limit`](#metric-jvmfile_descriptorlimit)
 
@@ -64,11 +73,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -100,11 +111,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -136,11 +149,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -172,11 +187,13 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -262,9 +279,11 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.thread.daemon`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | boolean | Whether the thread is daemon or not. | |
-| [`jvm.thread.state`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | State of the thread. | `runnable`; `blocked` |
+| [`jvm.thread.state`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | State of the thread. | `runnable`; `blocked` [(see more)](#jvm-thread-state-values) |
 
 ---
+
+<a id="jvm-thread-state-values"></a>
 
 `jvm.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -414,6 +433,238 @@ Note that the JVM does not provide a definition of what "recent" means.
 
 **Description:** In-development Java Virtual Machine (JVM) metrics captured under `jvm.`
 
+### JVM executors
+
+**Status**: [Development][DocumentStatus]
+
+**Description:** JVM metrics describing individual executors under the `jvm.executor.*` namespace.
+
+Instrumentations SHOULD emit each metric only when the executor implementation exposes the
+corresponding value, and SHOULD NOT emit an estimated or substituted value in its place.
+
+#### Metric: `jvm.executor.thread.count`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.jvm.executor.thread.count -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.executor.thread.count` | UpDownCounter | `{thread}` | The number of executor threads that are currently in the state described by the `jvm.executor.thread.state` attribute. | ![Development](https://img.shields.io/badge/-development-blue) | |
+
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- |
+| [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*`; `orders-vt-*` |
+| [`jvm.executor.thread.state`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | State of an executor thread. | `active`; `idle` [(see more)](#jvm-executor-thread-state-values) |
+| [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
+
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique when an executor-specific name is available. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If no executor-specific name or metadata is available, instrumentation MAY use `unknown`. The `unknown` value does not identify an executor, and metrics from multiple executors using this value MAY be aggregated. Users requiring per-executor metric series SHOULD configure a distinct name through the executor's `ThreadFactory`. Instrumentations SHOULD document how the name is derived and how users can configure it. Once metric series registration for an executor has started, `jvm.executor.name` and `jvm.executor.owner.name` MUST remain stable for the lifetime of that registration. Instrumentations SHOULD determine these attributes before the first worker is registered. Instrumentations MUST NOT re-register cumulative metrics under a new attribute set or replay prior cumulative values under new attributes.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
+
+---
+
+<a id="jvm-executor-thread-state-values"></a>
+
+`jvm.executor.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `active` | The thread is currently executing a task. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | The thread currently exists but is not executing a task. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+#### Metric: `jvm.executor.thread.core`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.jvm.executor.thread.core -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.executor.thread.core` | UpDownCounter | `{thread}` | The number of core threads configured for the executor. | ![Development](https://img.shields.io/badge/-development-blue) | |
+
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- |
+| [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*`; `orders-vt-*` |
+| [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
+
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique when an executor-specific name is available. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If no executor-specific name or metadata is available, instrumentation MAY use `unknown`. The `unknown` value does not identify an executor, and metrics from multiple executors using this value MAY be aggregated. Users requiring per-executor metric series SHOULD configure a distinct name through the executor's `ThreadFactory`. Instrumentations SHOULD document how the name is derived and how users can configure it. Once metric series registration for an executor has started, `jvm.executor.name` and `jvm.executor.owner.name` MUST remain stable for the lifetime of that registration. Instrumentations SHOULD determine these attributes before the first worker is registered. Instrumentations MUST NOT re-register cumulative metrics under a new attribute set or replay prior cumulative values under new attributes.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+#### Metric: `jvm.executor.thread.limit`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.jvm.executor.thread.limit -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.executor.thread.limit` | UpDownCounter | `{thread}` | The maximum number of threads allowed for the executor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+
+**[1]:** Instrumentations SHOULD emit this metric only when the maximum thread count is finite and represents a meaningful operational limit. This metric SHOULD NOT be emitted for unbounded or effectively unbounded executors. For example, an executor with a maximum thread count of `Integer.MAX_VALUE` is effectively unbounded.
+
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- |
+| [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*`; `orders-vt-*` |
+| [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
+
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique when an executor-specific name is available. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If no executor-specific name or metadata is available, instrumentation MAY use `unknown`. The `unknown` value does not identify an executor, and metrics from multiple executors using this value MAY be aggregated. Users requiring per-executor metric series SHOULD configure a distinct name through the executor's `ThreadFactory`. Instrumentations SHOULD document how the name is derived and how users can configure it. Once metric series registration for an executor has started, `jvm.executor.name` and `jvm.executor.owner.name` MUST remain stable for the lifetime of that registration. Instrumentations SHOULD determine these attributes before the first worker is registered. Instrumentations MUST NOT re-register cumulative metrics under a new attribute set or replay prior cumulative values under new attributes.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+#### Metric: `jvm.executor.queue.size`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.jvm.executor.queue.size -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.executor.queue.size` | UpDownCounter | `{task}` | The number of tasks currently queued for execution. | ![Development](https://img.shields.io/badge/-development-blue) | |
+
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- |
+| [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*`; `orders-vt-*` |
+| [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
+
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique when an executor-specific name is available. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If no executor-specific name or metadata is available, instrumentation MAY use `unknown`. The `unknown` value does not identify an executor, and metrics from multiple executors using this value MAY be aggregated. Users requiring per-executor metric series SHOULD configure a distinct name through the executor's `ThreadFactory`. Instrumentations SHOULD document how the name is derived and how users can configure it. Once metric series registration for an executor has started, `jvm.executor.name` and `jvm.executor.owner.name` MUST remain stable for the lifetime of that registration. Instrumentations SHOULD determine these attributes before the first worker is registered. Instrumentations MUST NOT re-register cumulative metrics under a new attribute set or replay prior cumulative values under new attributes.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+#### Metric: `jvm.executor.queue.capacity`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.jvm.executor.queue.capacity -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.executor.queue.capacity` | UpDownCounter | `{task}` | The maximum number of tasks the executor queue can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+
+**[1]:** Instrumentations SHOULD emit this metric only when the queue has a finite capacity that represents a meaningful operational limit. This metric SHOULD NOT be emitted for unbounded or effectively unbounded queues.
+
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- |
+| [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*`; `orders-vt-*` |
+| [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
+
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique when an executor-specific name is available. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If no executor-specific name or metadata is available, instrumentation MAY use `unknown`. The `unknown` value does not identify an executor, and metrics from multiple executors using this value MAY be aggregated. Users requiring per-executor metric series SHOULD configure a distinct name through the executor's `ThreadFactory`. Instrumentations SHOULD document how the name is derived and how users can configure it. Once metric series registration for an executor has started, `jvm.executor.name` and `jvm.executor.owner.name` MUST remain stable for the lifetime of that registration. Instrumentations SHOULD determine these attributes before the first worker is registered. Instrumentations MUST NOT re-register cumulative metrics under a new attribute set or replay prior cumulative values under new attributes.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+#### Metric: `jvm.executor.task.completed`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.jvm.executor.task.completed -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.executor.task.completed` | Counter | `{task}` | The number of tasks completed by the executor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+
+**[1]:** A task SHOULD be counted as completed when the executor has finished processing it, regardless of whether it returns normally, terminates with an exception, or is canceled. Cancellation during processing does not complete the task until processing ends. A task that never begins processing on the executor SHOULD NOT be counted. A task initially rejected but subsequently resubmitted to and processed by the executor SHOULD be counted when processing ends.
+
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- |
+| [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*`; `orders-vt-*` |
+| [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
+
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique when an executor-specific name is available. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If no executor-specific name or metadata is available, instrumentation MAY use `unknown`. The `unknown` value does not identify an executor, and metrics from multiple executors using this value MAY be aggregated. Users requiring per-executor metric series SHOULD configure a distinct name through the executor's `ThreadFactory`. Instrumentations SHOULD document how the name is derived and how users can configure it. Once metric series registration for an executor has started, `jvm.executor.name` and `jvm.executor.owner.name` MUST remain stable for the lifetime of that registration. Instrumentations SHOULD determine these attributes before the first worker is registered. Instrumentations MUST NOT re-register cumulative metrics under a new attribute set or replay prior cumulative values under new attributes.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+#### Metric: `jvm.executor.task.rejected`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.jvm.executor.task.rejected -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.executor.task.rejected` | Counter | `{task}` | The number of task submissions rejected by the executor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+
+**[1]:** A task submission SHOULD be counted as rejected when the executor invokes its rejection handler, regardless of whether the handler subsequently executes the task in the caller (for example, `CallerRunsPolicy`) or discards or replaces a queued task (for example, `DiscardOldestPolicy`). This metric counts rejected submissions, not tasks ultimately discarded from the queue.
+
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- |
+| [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*`; `orders-vt-*` |
+| [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
+
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique when an executor-specific name is available. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If no executor-specific name or metadata is available, instrumentation MAY use `unknown`. The `unknown` value does not identify an executor, and metrics from multiple executors using this value MAY be aggregated. Users requiring per-executor metric series SHOULD configure a distinct name through the executor's `ThreadFactory`. Instrumentations SHOULD document how the name is derived and how users can configure it. Once metric series registration for an executor has started, `jvm.executor.name` and `jvm.executor.owner.name` MUST remain stable for the lifetime of that registration. Instrumentations SHOULD determine these attributes before the first worker is registered. Instrumentations MUST NOT re-register cumulative metrics under a new attribute set or replay prior cumulative values under new attributes.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
 ### Metric: `jvm.memory.init`
 
 This metric is [recommended][MetricRecommended].
@@ -433,11 +684,13 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` [(see more)](#jvm-memory-type-values) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
 ---
+
+<a id="jvm-memory-type-values"></a>
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -569,10 +822,20 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
+## Release Candidate
+
+**Status**: [Release Candidate][DocumentStatus]
+
+**Description:** Release-candidate Java Virtual Machine (JVM) metrics captured under `jvm.`
+
 ### Metric: `jvm.file_descriptor.count`
 
 This metric is [Opt-In][MetricOptIn].
 This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCount()`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getOpenFileDescriptorCount()>).
+
+Instrumentations SHOULD emit this metric only when the value is finite and
+represents a meaningful operational limit. This metric SHOULD NOT be emitted for non-meaningful values.
+For example, a negative value or equal to `Long.MAX_VALUE` (`2^63-1`) SHOULD NOT be emitted.
 
 <!-- semconv metric.jvm.file_descriptor.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -581,7 +844,7 @@ This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCo
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `jvm.file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of open file descriptors as reported by the JVM. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `jvm.file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of open file descriptors as reported by the JVM. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -590,7 +853,11 @@ This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCo
 ### Metric: `jvm.file_descriptor.limit`
 
 This metric is [Opt-In][MetricOptIn].
-This metric is obtained from [`UnixOperatingSystemMXBean#getMaxFileDescriptorCount`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getMaxFileDescriptorCount()>).
+This metric is obtained from [`UnixOperatingSystemMXBean#getMaxFileDescriptorCount()`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getMaxFileDescriptorCount()>).
+
+Instrumentations SHOULD emit this metric only when the value is finite and
+represents a meaningful operational limit. This metric SHOULD NOT be emitted for non-meaningful values.
+For example, a negative value or equal to `Long.MAX_VALUE` (`2^63-1`) SHOULD NOT be emitted.
 
 <!-- semconv metric.jvm.file_descriptor.limit -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -599,7 +866,7 @@ This metric is obtained from [`UnixOperatingSystemMXBean#getMaxFileDescriptorCou
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `jvm.file_descriptor.limit` | UpDownCounter | `{file_descriptor}` | Measure of max open file descriptors as reported by the JVM. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `jvm.file_descriptor.limit` | UpDownCounter | `{file_descriptor}` | Measure of max open file descriptors as reported by the JVM. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

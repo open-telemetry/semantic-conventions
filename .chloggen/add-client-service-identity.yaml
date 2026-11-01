@@ -1,0 +1,4 @@
+change_type: enhancement
+component: client
+note: "Add `client.service.name` and `client.service.namespace` attributes at development stability."
+issues: [3472]

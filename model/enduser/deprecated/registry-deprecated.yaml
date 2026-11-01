@@ -1,4 +1,50 @@
 groups:
+  - id: registry.enduser
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    type: attribute_group
+    display_name: End User Attributes (Moved)
+    brief: >
+      End user attributes have moved to the
+      [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    attributes:
+      - id: enduser.id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
+        type: string
+        brief: "Unique identifier of an end user in the system. It maybe a username, email address, or other identifier."
+        note: |
+          Unique identifier of an end user in the system.
+
+          > [!Warning]
+          > This field contains sensitive (PII) information.
+        examples: [ 'username' ]
+        stability: development
+      - id: enduser.pseudo.id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
+        type: string
+        stability: development
+        brief: >
+          Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity.
+        note: |
+          Pseudonymous identifier of an end user.
+
+          > [!Warning]
+          > This field contains sensitive (linkable PII) information.
+        examples: ['QdH5CAWJgqVT4rOr0qtumf']
   - id: registry.enduser.deprecated
     type: attribute_group
     display_name: Deprecated End User Attributes

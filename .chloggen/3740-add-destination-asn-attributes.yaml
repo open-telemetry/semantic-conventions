@@ -1,0 +1,7 @@
+change_type: enhancement
+component: destination
+note: >
+  Add `destination.as.number` and `destination.as.organization` attributes
+  for destination network endpoints.
+issues: [1663, 3740]
+subtext:
