@@ -28,6 +28,9 @@ groups:
       - ref: k8s.node.annotation
         role: descriptive
         requirement_level: opt_in
+      - ref: k8s.node.creation_time
+        role: descriptive
+        requirement_level: opt_in
 
   - id: entity.k8s.node.system_container
     type: entity
@@ -52,6 +55,9 @@ groups:
         role: descriptive
         requirement_level: opt_in
       - ref: k8s.namespace.annotation
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.namespace.creation_time
         role: descriptive
         requirement_level: opt_in
 
@@ -79,6 +85,9 @@ groups:
         role: descriptive
         requirement_level: opt_in
       - ref: k8s.pod.start_time
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.pod.creation_time
         role: descriptive
         requirement_level: opt_in
 
@@ -113,6 +122,9 @@ groups:
       - ref: k8s.replicaset.annotation
         role: descriptive
         requirement_level: opt_in
+      - ref: k8s.replicaset.creation_time
+        role: descriptive
+        requirement_level: opt_in
 
   - id: entity.k8s.deployment
     type: entity
@@ -129,6 +141,9 @@ groups:
         role: descriptive
         requirement_level: opt_in
       - ref: k8s.deployment.annotation
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.deployment.creation_time
         role: descriptive
         requirement_level: opt_in
 
@@ -149,6 +164,9 @@ groups:
       - ref: k8s.statefulset.annotation
         role: descriptive
         requirement_level: opt_in
+      - ref: k8s.statefulset.creation_time
+        role: descriptive
+        requirement_level: opt_in
 
   - id: entity.k8s.daemonset
     type: entity
@@ -165,6 +183,9 @@ groups:
         role: descriptive
         requirement_level: opt_in
       - ref: k8s.daemonset.annotation
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.daemonset.creation_time
         role: descriptive
         requirement_level: opt_in
 
@@ -185,6 +206,9 @@ groups:
       - ref: k8s.job.annotation
         role: descriptive
         requirement_level: opt_in
+      - ref: k8s.job.creation_time
+        role: descriptive
+        requirement_level: opt_in
 
   - id: entity.k8s.cronjob
     type: entity
@@ -201,6 +225,9 @@ groups:
         role: descriptive
         requirement_level: opt_in
       - ref: k8s.cronjob.annotation
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.cronjob.creation_time
         role: descriptive
         requirement_level: opt_in
 
@@ -302,6 +329,9 @@ groups:
       - ref: k8s.persistentvolume.annotation
         role: descriptive
         requirement_level: opt_in
+      - ref: k8s.persistentvolume.creation_time
+        role: descriptive
+        requirement_level: opt_in
 
   - id: entity.k8s.persistentvolumeclaim
     type: entity
@@ -322,5 +352,8 @@ groups:
         role: descriptive
         requirement_level: opt_in
       - ref: k8s.persistentvolumeclaim.annotation
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.persistentvolumeclaim.creation_time
         role: descriptive
         requirement_level: opt_in
