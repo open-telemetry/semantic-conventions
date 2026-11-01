@@ -75,6 +75,10 @@
 - `client`: Add `client.service.name` and `client.service.namespace` attributes at development stability. ([#3472](https://github.com/open-telemetry/semantic-conventions/issues/3472))
 - `client`: Add `client.as.number` and `client.as.organization` attributes for client network endpoints.
  ([#1663](https://github.com/open-telemetry/semantic-conventions/issues/1663), [#3740](https://github.com/open-telemetry/semantic-conventions/issues/3740))
+- `client`: Add the `client.mac.address` attribute for client network endpoints.
+ ([#2416](https://github.com/open-telemetry/semantic-conventions/issues/2416))
+- `client`: Add the `client.prefix` attribute in CIDR notation for client network endpoints, with normalization by instrumentation or Collector receivers.
+ ([#3731](https://github.com/open-telemetry/semantic-conventions/issues/3731))
 - `container`: Define identifying attributes for container entities for Weaver schema v2 migration. ([#4164](https://github.com/open-telemetry/semantic-conventions/issues/4164))
 - `cpu`: Clarify that `cpu.logical_number` is not the same as the number of cores. ([#2934](https://github.com/open-telemetry/semantic-conventions/issues/2934))
   `cpu.logical_number` attribute is not the same as the number of cores on a system, for example,
@@ -100,6 +104,10 @@
  ([#3947](https://github.com/open-telemetry/semantic-conventions/issues/3947), [#1721](https://github.com/open-telemetry/semantic-conventions/issues/1721))
 - `destination`: Add `destination.as.number` and `destination.as.organization` attributes for destination network endpoints.
  ([#1663](https://github.com/open-telemetry/semantic-conventions/issues/1663), [#3740](https://github.com/open-telemetry/semantic-conventions/issues/3740))
+- `destination`: Add the `destination.mac.address` attribute for destination network endpoints.
+ ([#2416](https://github.com/open-telemetry/semantic-conventions/issues/2416))
+- `destination`: Add the `destination.prefix` attribute in CIDR notation for destination network endpoints, with normalization by instrumentation or Collector receivers.
+ ([#3731](https://github.com/open-telemetry/semantic-conventions/issues/3731))
 - `docs`: Link the "Example Values" column directly to the full list of well-known values for enum-typed attributes. ([#1085](https://github.com/open-telemetry/semantic-conventions/issues/1085))
 - `docs`: Stop rendering the redundant "well-known values" table on per-signal usage pages for enums whose only member is the generic fallback value, such as `error.type`. ([#2141](https://github.com/open-telemetry/semantic-conventions/issues/2141))
   The attribute registry page still shows this table.
@@ -165,6 +173,10 @@
  ([#4084](https://github.com/open-telemetry/semantic-conventions/issues/4084))
 - `network`: Add `network.local.as.number`, `network.local.as.organization`, `network.peer.as.number`, and `network.peer.as.organization` attributes for local and peer network endpoints.
  ([#1663](https://github.com/open-telemetry/semantic-conventions/issues/1663), [#3740](https://github.com/open-telemetry/semantic-conventions/issues/3740))
+- `network`: Add `network.local.mac.address` and `network.peer.mac.address` attributes for local and peer network endpoints.
+ ([#2416](https://github.com/open-telemetry/semantic-conventions/issues/2416))
+- `network`: Add `network.local.prefix` and `network.peer.prefix` attributes in CIDR notation for local and peer network endpoints, with normalization by instrumentation or Collector receivers.
+ ([#3731](https://github.com/open-telemetry/semantic-conventions/issues/3731))
 - `os`: Define identifying attributes for os entities for Weaver schema v2 migration. ([#4165](https://github.com/open-telemetry/semantic-conventions/issues/4165))
 - `otel`: Mark `error.type` as conditionally required on `otel.sdk.processor.{span,log}.processed` and `otel.sdk.exporter.{span,log,metric_data_point}.exported`, matching `otel.sdk.exporter.operation.duration`.
  ([#3954](https://github.com/open-telemetry/semantic-conventions/issues/3954))
@@ -173,7 +185,8 @@
  ([#3506](https://github.com/open-telemetry/semantic-conventions/issues/3506))
 - `profile`: Extend the list of known frame types with a value for CUDA ([#4079](https://github.com/open-telemetry/semantic-conventions/issues/4079))
 - `rpc`: Update RPC call-duration histogram bucket recommendations and align gRPC boundaries with gRPC's existing OpenTelemetry metrics. ([#316](https://github.com/open-telemetry/semantic-conventions/issues/316))
-  General RPC uses 13 boundaries from 0.0001 to 100 seconds; gRPC uses the 41 latency boundaries defined in gRPC A66, including zero.
+  General RPC (including Dubbo) uses 18 boundaries from 0.0001 to 60 seconds with `1, 2.5, 5` subdivisions through 10 seconds;
+  gRPC uses the 41 latency boundaries defined in gRPC A66, including zero.
 - `rpc`: Mark `rpc.request.header.<key>`, `rpc.response.header.<key>`, and `rpc.response.trailer.<key>` as release candidate. ([#4276](https://github.com/open-telemetry/semantic-conventions/issues/4276))
 - `rpc`: Clarify that RPC instrumentations may use additional context or provide configuration options to customize which status or error codes are considered errors.
  ([#3704](https://github.com/open-telemetry/semantic-conventions/issues/3704))
@@ -195,11 +208,19 @@
 - `server`: Add `server.service.name` and `server.service.namespace` attributes at development stability. ([#3472](https://github.com/open-telemetry/semantic-conventions/issues/3472))
 - `server`: Add `server.as.number` and `server.as.organization` attributes for server network endpoints.
  ([#1663](https://github.com/open-telemetry/semantic-conventions/issues/1663), [#3740](https://github.com/open-telemetry/semantic-conventions/issues/3740))
+- `server`: Add the `server.mac.address` attribute for server network endpoints.
+ ([#2416](https://github.com/open-telemetry/semantic-conventions/issues/2416))
+- `server`: Add the `server.prefix` attribute in CIDR notation for server network endpoints, with normalization by instrumentation or Collector receivers.
+ ([#3731](https://github.com/open-telemetry/semantic-conventions/issues/3731))
 - `service`: Add `service.instance.cost_center.id` and `service.instance.cost_center.name` attributes to the service registry. ([#3754](https://github.com/open-telemetry/semantic-conventions/issues/3754))
 - `source`: Clarify that `source.address` and `source.port` describe the sender of a network exchange and are recorded as the address available at the point of instrumentation. Instrumentation captures that address and does not try to resolve the address behind intermediaries such as proxies. They apply when there is no clear or known client/server role (for example low-level flow/packet telemetry or peer-to-peer protocols); use `client.*` / `server.*` for logical, de-proxied identity when the roles are known.
  ([#3947](https://github.com/open-telemetry/semantic-conventions/issues/3947), [#1721](https://github.com/open-telemetry/semantic-conventions/issues/1721))
 - `source`: Add `source.as.number` and `source.as.organization` attributes for source network endpoints.
  ([#1663](https://github.com/open-telemetry/semantic-conventions/issues/1663), [#3740](https://github.com/open-telemetry/semantic-conventions/issues/3740))
+- `source`: Add the `source.mac.address` attribute for source network endpoints.
+ ([#2416](https://github.com/open-telemetry/semantic-conventions/issues/2416))
+- `source`: Add the `source.prefix` attribute in CIDR notation for source network endpoints, with normalization by instrumentation or Collector receivers.
+ ([#3731](https://github.com/open-telemetry/semantic-conventions/issues/3731))
 - `system`: Promote attributes used by hostmetrics system metrics to RC ([#1804](https://github.com/open-telemetry/semantic-conventions/issues/1804))
 - `v8js`: Add members for the current V8 heap space set to `v8js.heap.space.name` and note that `map_space` is only reported by Node.js <= 19, since V8 merged the map space into the old space. ([#4057](https://github.com/open-telemetry/semantic-conventions/issues/4057))
 - `webengine`: Define `webengine.name` as identifying and keep `webengine.version` recommended and descriptive for Weaver schema v2 migration. ([#4194](https://github.com/open-telemetry/semantic-conventions/issues/4194))
