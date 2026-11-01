@@ -28,11 +28,13 @@ aliases: [attribute-naming]
     - [Do not use `total`](#do-not-use-total)
   - [Instrument naming](#instrument-naming)
   - [Client and server metrics](#client-and-server-metrics)
+- [Span types](#span-types)
 - [System-specific naming](#system-specific-naming)
   - [System (project/product/provider) name attribute](#system-projectproductprovider-name-attribute)
   - [Choosing a system name](#choosing-a-system-name)
   - [System-specific attributes](#system-specific-attributes)
   - [System-specific metrics](#system-specific-metrics)
+  - [System-specific span types](#system-specific-span-types)
   - [Known exceptions](#known-exceptions)
 
 <!-- END doctoc -->
@@ -42,7 +44,7 @@ aliases: [attribute-naming]
 ## General naming considerations
 
 _This section applies to attribute names (also
-known as the "attribute keys"), as well as Metric and Event names. For brevity
+known as the "attribute keys"), metric and event names, and span types. For brevity,
 within this section when we use the term "name" without an adjective it is
 implied to mean all of these._
 
@@ -138,9 +140,11 @@ to multiple products or concepts.
 ## Name reuse prohibition
 
 Two attributes, two metrics, or two events MUST NOT share the same name.
-Different entities (attribute and metric, metric and event) MAY share the same name.
+Two span definitions MUST NOT share the same span type.
+Different kinds of definitions (attribute and metric, metric and event, span and metric)
+MAY share the same identifier.
 
-Attributes, metrics, and events SHOULD NOT be removed from semantic
+Attributes, metrics, events, and spans SHOULD NOT be removed from semantic
 conventions regardless of their maturity level. When the convention is renamed or
 no longer recommended, it SHOULD be deprecated.
 
@@ -395,6 +399,32 @@ Examples:
 - `kestrel.connection.duration` - here, `kestrel` is the name of the web server,
   so no additional indication is necessary.
 
+## Span types
+
+**Status**: [Development][DocumentStatus]
+
+A span type groups spans that follow the same semantic convention definition.
+
+Span types SHOULD follow the `{area}.[{kind}.]{operation}` pattern:
+
+- `area` identifies the domain, such as `http`, `db`, or `messaging`, or the
+  [system name](#system-specific-span-types) for system-specific operations,
+  such as `azure.servicebus`.
+- `kind` matches the kind in the span definition in lowercase: `client`, `server`,
+  `producer`, or `consumer`. For `INTERNAL` spans, omit this segment and use `{area}.{operation}`.
+- `operation` is the suffix identifying the instrumented operation within the domain.
+
+Examples include `http.client.request`, `db.client.operation`,
+`messaging.producer.send`, and `cicd.pipeline.task` for an internal span representing
+task execution in a CI/CD pipeline.
+
+A span type and the names of metric instruments describing the same operation
+SHOULD share a prefix where applicable, such as `http.client.request` and
+`http.client.request.duration`.
+
+System-specific refinements of a span retain its type. For example, a PostgreSQL
+refinement of `db.client.operation` uses that type rather than defining a new one.
+
 ## System-specific naming
 
 **Status**: [Development][DocumentStatus]
@@ -414,10 +444,11 @@ For example, database conventions include the `db.system.name` attribute.
 
 ### Choosing a system name
 
-When adding new a system to the semantic conventions, follow these principles in descending order of priority:
+When adding a new system to the semantic conventions, follow these principles in descending order of priority:
 
 1. The system name SHOULD adhere to the general attribute naming guidelines outlined in this document,
-   as it will be used as a namespace in [system-specific attribute names](#system-specific-attributes).
+   as it will be used as a namespace in [system-specific attribute names](#system-specific-attributes),
+   [metric instrument names](#system-specific-metrics), and [span types](#system-specific-span-types).
 
 2. The system name SHOULD unambiguously identify this specific product or project.
 
@@ -473,6 +504,24 @@ attribute MUST match system specific metric namespace.
 
 For example, both the `azure.cosmosdb.client.operation.request_charge` metric and the `db.system.name=azure.cosmosdb`
 attribute use the same system name (`azure.cosmosdb`).
+
+### System-specific span types
+
+When a span describes a system-specific operation, its type SHOULD use the system
+name as `area` in the [span type naming pattern](#span-types):
+`{system_name}.[{kind}.]{operation}`.
+
+For example, `azure.servicebus.client.operation` and
+`azure.eventhubs.client.operation` describe client operations specific to those systems.
+
+For system-specific span types, the value of the
+[`*.system.name`](#system-projectproductprovider-name-attribute) (or similar)
+attribute MUST match the system namespace in the span type.
+For example, `azure.servicebus.client.operation` uses
+`messaging.system.name=azure.servicebus`.
+
+Refinements of a shared span definition retain its type. For example, Service Bus
+producer send spans use `messaging.producer.send` with `messaging.system.name=azure.servicebus`.
 
 ### Known exceptions
 
