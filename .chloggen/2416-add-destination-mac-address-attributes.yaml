@@ -1,0 +1,6 @@
+change_type: enhancement
+component: destination
+note: >
+  Add the `destination.mac.address` attribute for destination network endpoints.
+issues: [2416]
+subtext:

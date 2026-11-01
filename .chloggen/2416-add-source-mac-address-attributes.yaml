@@ -1,0 +1,6 @@
+change_type: enhancement
+component: source
+note: >
+  Add the `source.mac.address` attribute for source network endpoints.
+issues: [2416]
+subtext:
