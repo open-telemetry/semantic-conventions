@@ -15,7 +15,7 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Description | [`azure.app_service.instance.name`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the App Service [instance](https://learn.microsoft.com/azure/app-service/overview-hosting-plans) running the app. [1] | `ln0xsdlwk0002TS`; `wn0xsdwk00010C`; `0--13377339-6ebe-4309-b59c-eac2c54213f0` |
+| Identity | [`azure.app_service.instance.name`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the App Service [instance](https://learn.microsoft.com/azure/app-service/overview-hosting-plans) running the app. [1] | `ln0xsdlwk0002TS`; `wn0xsdwk00010C`; `0--13377339-6ebe-4309-b59c-eac2c54213f0` |
 
 **[1] `azure.app_service.instance.name`:** Applies to Azure apps hosted on App Service plans, including, but not limited to,
 App Service web apps and some Azure Functions. Detectors SHOULD set it following the same
