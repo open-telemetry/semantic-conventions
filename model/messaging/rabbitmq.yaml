@@ -5,7 +5,7 @@ attribute_groups:
   - id: messaging.rabbitmq.attributes.destination
     visibility: internal
     attributes:
-      - ref: messaging.rabbitmq.destination.routing_key
+      - ref: rabbitmq.destination.routing_key
         requirement_level:
           conditionally_required: If not empty.
       - ref: messaging.destination.temporary
@@ -22,7 +22,10 @@ span_refinements:
     stability: development
     brief: Describes a producer publishing one or more messages to RabbitMQ.
     attributes:
-      - ref: messaging.system
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
@@ -51,13 +54,16 @@ span_refinements:
     stability: development
     brief: Describes a consumer receiving one or more messages from RabbitMQ (pull-based).
     attributes:
-      - ref: messaging.system
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
       - ref_group: messaging.rabbitmq.attributes.destination
-      - ref: messaging.rabbitmq.message.delivery_tag
+      - ref: rabbitmq.message.delivery_tag
         requirement_level:
           conditionally_required: When available.
       - ref: messaging.message.conversation_id
@@ -83,13 +89,16 @@ span_refinements:
     stability: development
     brief: Describes a consumer processing one or more messages from RabbitMQ (push-based).
     attributes:
-      - ref: messaging.system
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
       - ref_group: messaging.rabbitmq.attributes.destination
-      - ref: messaging.rabbitmq.message.delivery_tag
+      - ref: rabbitmq.message.delivery_tag
         requirement_level:
           conditionally_required: When available.
       - ref: messaging.message.conversation_id
@@ -104,12 +113,15 @@ span_refinements:
     stability: development
     brief: Describes a consumer settling (ack/nack/reject) one or more messages on RabbitMQ.
     attributes:
-      - ref: messaging.system
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
-      - ref: messaging.rabbitmq.message.delivery_tag
+      - ref: rabbitmq.message.delivery_tag
         requirement_level:
           conditionally_required: When available.
       - ref: messaging.message.conversation_id

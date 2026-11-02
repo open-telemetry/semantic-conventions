@@ -31,6 +31,7 @@ where `<domain>` is one of the following:
 
 - `code`
 - `db`
+- `faas`
 - `gen_ai`
 - `http`
 - `k8s`

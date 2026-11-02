@@ -6,6 +6,9 @@ attribute_groups:
     visibility: internal
     attributes:
       - ref: rpc.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `dubbo`."
         examples: ["dubbo"]
 

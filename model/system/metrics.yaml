@@ -106,7 +106,9 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Reports memory in use by state."
+    brief: "Reports memory by state."
+    note: |
+      The sum of the `used` and `available` state values SHOULD be equal to `system.memory.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
@@ -135,7 +137,9 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Percentage of memory bytes in use.
+    brief: Fraction of memory bytes by state.
+    note: |
+      The sum of the `used` and `available` state values SHOULD be equal to 1.
     instrument: gauge
     unit: "1"
     attributes:
@@ -556,7 +560,7 @@ groups:
     stability: development
     brief: "An estimate of how much memory is available for starting new applications, without causing swapping."
     note: |
-      This is an alternative to `system.memory.usage` metric with `state=free`.
+      This is equivalent to the `system.memory.usage` metric with `state=available`.
       Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
       This is supposed to be more accurate than just "free" memory.
       For reference, see the calculations [here](https://superuser.com/a/980821).

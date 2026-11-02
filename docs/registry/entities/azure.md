@@ -9,7 +9,7 @@
 
 **type:** `azure.app_service.instance`
 
-**Description:** A compute instance of an Azure App Service plan, which runs one or more apps on that plan.
+**Description:** A compute instance of an Azure App Service, which runs a service plan containing one or more apps.
 
 **Attributes:**
 
