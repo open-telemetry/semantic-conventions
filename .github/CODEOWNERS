@@ -96,7 +96,6 @@
 /model/k8s/                                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 /docs/non-normative/k8s-attributes.md           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 /docs/non-normative/k8s-migration.md            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
-/docs/non-normative/naming-known-exceptions.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 
 # Container semantic conventions
 /docs/resource/container.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
@@ -150,6 +149,9 @@
 # Messaging semantic conventions
 /docs/messaging/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
 /model/messaging/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
+/model/kafka/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
+/model/rabbitmq/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
+/model/rocketmq/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
 
 # Feature flag semantic conventions
 /docs/feature-flags/               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
@@ -202,3 +204,8 @@
 /model/v8js                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approvers
 /docs/runtime/v8js-metrics.md     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approvers
 /docs/runtime/nodejs-metrics.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approvers
+
+# FaaS semantic conventions
+/docs/faas/                       @open-telemetry/specs-semconv-approvers @open-telemetry/lambda-extension-approvers
+/docs/resource/faas.md            @open-telemetry/specs-semconv-approvers @open-telemetry/lambda-extension-approvers
+/model/faas/                      @open-telemetry/specs-semconv-approvers @open-telemetry/lambda-extension-approvers

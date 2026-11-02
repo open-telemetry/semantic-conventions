@@ -22,7 +22,7 @@ filters:
       - /(<|\()https?:\/\/.*?(>|\))/ # Raw URLs
       - /`.*?`/ # Raw code in backticks
       - /attributes-registry, \(e.g. http, cloud, db\)/ # Example of Component names in changelog files
-      - /\(e.g., http, databases/ # Example of domains names in migration notes
+      - /\(e.g., http, database/ # Example of domains names in migration notes
       - /\"id\":/ # IDs in JSON files
       - /\n\s*(-\s)?(\S+):/ # YAML keys, with optional list marker
       - /\n\s*(-\s)?(id|value|examples|metric_name|ref|component):\s(\[.+\]|.+)/ # Values for YAML keys in allowed list are not checked
