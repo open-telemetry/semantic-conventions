@@ -36,9 +36,9 @@ Kubernetes resource attributes.
 | <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-hpa-metric-type" href="#k8s-hpa-metric-type">`k8s.hpa.metric.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of metric source for the horizontal pod autoscaler. [9] | `Resource`; `ContainerResource` |
 | <a id="k8s-hpa-name" href="#k8s-hpa-name">`k8s.hpa.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the horizontal pod autoscaler. | `opentelemetry` |
-| <a id="k8s-hpa-scaletargetref-api-version" href="#k8s-hpa-scaletargetref-api-version">`k8s.hpa.scaletargetref.api_version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [10] | `apps/v1`; `autoscaling/v2` |
-| <a id="k8s-hpa-scaletargetref-kind" href="#k8s-hpa-scaletargetref-kind">`k8s.hpa.scaletargetref.kind`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The kind of the target resource to scale for the HorizontalPodAutoscaler. [11] | `Deployment`; `StatefulSet` |
-| <a id="k8s-hpa-scaletargetref-name" href="#k8s-hpa-scaletargetref-name">`k8s.hpa.scaletargetref.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [12] | `my-deployment`; `my-statefulset` |
+| <a id="k8s-hpa-scale-target-ref-api-version" href="#k8s-hpa-scale-target-ref-api-version">`k8s.hpa.scale_target_ref.api_version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [10] | `apps/v1`; `autoscaling/v2` |
+| <a id="k8s-hpa-scale-target-ref-kind" href="#k8s-hpa-scale-target-ref-kind">`k8s.hpa.scale_target_ref.kind`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The kind of the target resource to scale for the HorizontalPodAutoscaler. [11] | `Deployment`; `StatefulSet` |
+| <a id="k8s-hpa-scale-target-ref-name" href="#k8s-hpa-scale-target-ref-name">`k8s.hpa.scale_target_ref.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [12] | `my-deployment`; `my-statefulset` |
 | <a id="k8s-hpa-uid" href="#k8s-hpa-uid">`k8s.hpa.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-hugepage-size" href="#k8s-hugepage-size">`k8s.hugepage.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The size (identifier) of the K8s huge page. | `2Mi` |
 | <a id="k8s-job-annotation" href="#k8s-job-annotation">`k8s.job.annotation.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [13] | `1`; `` |
@@ -173,11 +173,11 @@ conflict.
 
 **[9] `k8s.hpa.metric.type`:** This attribute reflects the `type` field of spec.metrics[] in the HPA.
 
-**[10] `k8s.hpa.scaletargetref.api_version`:** This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
+**[10] `k8s.hpa.scale_target_ref.api_version`:** This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
 
-**[11] `k8s.hpa.scaletargetref.kind`:** This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
+**[11] `k8s.hpa.scale_target_ref.kind`:** This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
 
-**[12] `k8s.hpa.scaletargetref.name`:** This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
+**[12] `k8s.hpa.scale_target_ref.name`:** This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
 
 **[13] `k8s.job.annotation.<key>`:** Examples:
 
@@ -602,4 +602,7 @@ Describes deprecated K8s attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
+| <a id="k8s-hpa-scaletargetref-api-version" href="#k8s-hpa-scaletargetref-api-version">`k8s.hpa.scaletargetref.api_version`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.hpa.scale_target_ref.api_version`. | string | Deprecated, use `k8s.hpa.scale_target_ref.api_version` instead. | `apps/v1`; `autoscaling/v2` |
+| <a id="k8s-hpa-scaletargetref-kind" href="#k8s-hpa-scaletargetref-kind">`k8s.hpa.scaletargetref.kind`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.hpa.scale_target_ref.kind`. | string | Deprecated, use `k8s.hpa.scale_target_ref.kind` instead. | `Deployment`; `StatefulSet` |
+| <a id="k8s-hpa-scaletargetref-name" href="#k8s-hpa-scaletargetref-name">`k8s.hpa.scaletargetref.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.hpa.scale_target_ref.name`. | string | Deprecated, use `k8s.hpa.scale_target_ref.name` instead. | `my-deployment`; `my-statefulset` |
 | <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.label`. | string | Deprecated, use `k8s.pod.label` instead. | `my-app` |
