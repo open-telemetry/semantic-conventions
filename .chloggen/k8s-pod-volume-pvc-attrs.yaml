@@ -22,3 +22,5 @@ issues: [4156]
 subtext: |
   `k8s.volume.type` is now opt-in and always describes the volume source declared in the Pod spec.
   The type of the backing PersistentVolume is reported with `k8s.persistentvolume.type`.
+  The `local` member is removed from `k8s.volume.type` since local volumes are configured through a PersistentVolume, not a Pod volume source.
+  `k8s.persistentvolume.name` and `k8s.persistentvolume.type` are opt-in as they require K8s API enrichment.
