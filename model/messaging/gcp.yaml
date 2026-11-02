@@ -1,8 +1,8 @@
 file_format: definition/2
 
 span_refinements:
-  - id: span.messaging.gcp_pubsub.create.producer
-    ref: messaging.create.producer
+  - id: gcp.pubsub.producer.create
+    ref: messaging.producer.create
     stability: development
     brief: Describes a message being created for publishing to Google Cloud Pub/Sub.
     attributes:
@@ -23,8 +23,8 @@ span_refinements:
         note: SHOULD be set to `create`.
         examples: ['create']
 
-  - id: span.messaging.gcp_pubsub.send.producer
-    ref: messaging.send.producer
+  - id: gcp.pubsub.producer.send
+    ref: messaging.producer.send
     stability: development
     brief: Describes a producer publishing one or more messages to Google Cloud Pub/Sub.
     attributes:
@@ -45,8 +45,8 @@ span_refinements:
         note: SHOULD be set to `send`.
         examples: ['send']
 
-  - id: span.messaging.gcp_pubsub.send.client
-    ref: messaging.send.client
+  - id: gcp.pubsub.client.send
+    ref: messaging.client.send
     stability: development
     brief: Describes a producer publishing one or more messages to Google Cloud Pub/Sub.
     attributes:
@@ -67,8 +67,8 @@ span_refinements:
         note: SHOULD be set to `send`.
         examples: ['send']
 
-  - id: span.messaging.gcp_pubsub.receive.client
-    ref: messaging.receive.client
+  - id: gcp.pubsub.client.receive
+    ref: messaging.client.receive
     stability: development
     brief: Describes a consumer receiving one or more messages from Google Cloud Pub/Sub (pull-based).
     attributes:
@@ -94,8 +94,8 @@ span_refinements:
         note: SHOULD be set to `receive`.
         examples: ['receive']
 
-  - id: span.messaging.gcp_pubsub.process.consumer
-    ref: messaging.process.consumer
+  - id: gcp.pubsub.consumer.process
+    ref: messaging.consumer.process
     stability: development
     brief: Describes a consumer processing one or more messages from Google Cloud Pub/Sub (push-based).
     attributes:
@@ -123,8 +123,8 @@ span_refinements:
           message was received to when it is acknowledged, negatively acknowledged, or expired.
         examples: ['subscribe']
 
-  - id: span.messaging.gcp_pubsub.settle.client
-    ref: messaging.settle.client
+  - id: gcp.pubsub.client.settle
+    ref: messaging.client.settle
     stability: development
     brief: Describes settling (ack/nack/modack) one or more Google Cloud Pub/Sub messages.
     attributes:

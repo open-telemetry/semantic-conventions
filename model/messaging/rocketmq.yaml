@@ -15,8 +15,8 @@ attribute_groups:
       - ref: rocketmq.message.keys
 
 span_refinements:
-  - id: span.messaging.rocketmq.send.producer
-    ref: messaging.send.producer
+  - id: rocketmq.producer.send
+    ref: messaging.producer.send
     stability: development
     brief: Describes a producer sending one or more messages to Apache RocketMQ.
     attributes:
@@ -38,8 +38,8 @@ span_refinements:
         requirement_level:
           conditionally_required: If the message type is delay and delivery timestamp is not specified.
 
-  - id: span.messaging.rocketmq.receive.client
-    ref: messaging.receive.client
+  - id: rocketmq.client.receive
+    ref: messaging.client.receive
     stability: development
     brief: Describes a consumer receiving one or more messages from Apache RocketMQ (pull-based).
     attributes:
@@ -61,8 +61,8 @@ span_refinements:
         sampling_relevant: true
       - ref: rocketmq.consumption_model
 
-  - id: span.messaging.rocketmq.process.consumer
-    ref: messaging.process.consumer
+  - id: rocketmq.consumer.process
+    ref: messaging.consumer.process
     stability: development
     brief: Describes a consumer processing one or more messages from Apache RocketMQ (push-based).
     attributes:

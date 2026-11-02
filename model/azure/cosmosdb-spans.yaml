@@ -1,8 +1,8 @@
 file_format: definition/2
 
 span_refinements:
-  - id: span.azure.cosmosdb.client
-    ref: db.client
+  - id: azure.cosmosdb.client.operation
+    ref: db.client.operation
     stability: development
     brief: >
       Cosmos DB instrumentations include call-level spans that represent logical database

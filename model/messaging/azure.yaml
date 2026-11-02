@@ -2,8 +2,8 @@ file_format: definition/2
 
 span_refinements:
   # Azure Service Bus
-  - id: span.messaging.servicebus.create.producer
-    ref: messaging.create.producer
+  - id: azure.servicebus.producer.create
+    ref: messaging.producer.create
     stability: development
     brief: Describes a message being created for sending to Azure Service Bus.
     attributes:
@@ -23,8 +23,8 @@ span_refinements:
         note: SHOULD be set to `create`.
         examples: ['create']
 
-  - id: span.messaging.servicebus.send.producer
-    ref: messaging.send.producer
+  - id: azure.servicebus.producer.send
+    ref: messaging.producer.send
     stability: development
     brief: Describes a producer sending one or more messages to Azure Service Bus.
     attributes:
@@ -47,8 +47,8 @@ span_refinements:
           - `schedule`
         examples: ['send', 'schedule']
 
-  - id: span.messaging.servicebus.send.client
-    ref: messaging.send.client
+  - id: azure.servicebus.client.send
+    ref: messaging.client.send
     stability: development
     brief: Describes a producer sending one or more messages to Azure Service Bus.
     attributes:
@@ -71,8 +71,8 @@ span_refinements:
           - `schedule`
         examples: ['send', 'schedule']
 
-  - id: span.messaging.servicebus.receive.client
-    ref: messaging.receive.client
+  - id: azure.servicebus.client.receive
+    ref: messaging.client.receive
     stability: development
     brief: Describes a consumer receiving one or more messages from Azure Service Bus.
     attributes:
@@ -106,8 +106,8 @@ span_refinements:
           - `receive_deferred`
         examples: ['receive', 'peek', 'receive_deferred']
 
-  - id: span.messaging.servicebus.process.consumer
-    ref: messaging.process.consumer
+  - id: azure.servicebus.consumer.process
+    ref: messaging.consumer.process
     stability: development
     brief: Describes a consumer processing one or more messages from Azure Service Bus (push-based).
     attributes:
@@ -136,8 +136,8 @@ span_refinements:
         note: SHOULD be set to `process`.
         examples: ['process']
 
-  - id: span.messaging.servicebus.settle.client
-    ref: messaging.settle.client
+  - id: azure.servicebus.client.settle
+    ref: messaging.client.settle
     stability: development
     brief: Describes settling (complete/abandon/defer/dead-letter) one or more Azure Service Bus messages.
     attributes:
@@ -172,8 +172,8 @@ span_refinements:
           - `delete`
         examples: ['complete', 'abandon', 'dead_letter']
 
-  - id: span.messaging.eventhubs.create.producer
-    ref: messaging.create.producer
+  - id: azure.eventhubs.producer.create
+    ref: messaging.producer.create
     stability: development
     brief: Describes a message being created for sending to Azure Event Hubs.
     attributes:
@@ -195,8 +195,8 @@ span_refinements:
         examples: ['create']
         note: SHOULD be set to `create`.
 
-  - id: span.messaging.eventhubs.send.producer
-    ref: messaging.send.producer
+  - id: azure.eventhubs.producer.send
+    ref: messaging.producer.send
     stability: development
     brief: Describes a producer sending one or more messages to Azure Event Hubs.
     attributes:
@@ -218,8 +218,8 @@ span_refinements:
         examples: ['send']
         note: SHOULD be set to `send`.
 
-  - id: span.messaging.eventhubs.send.client
-    ref: messaging.send.client
+  - id: azure.eventhubs.client.send
+    ref: messaging.client.send
     stability: development
     brief: Describes a producer sending one or more messages to Azure Event Hubs.
     attributes:
@@ -241,8 +241,8 @@ span_refinements:
         examples: ['send']
         note: SHOULD be set to `send`.
 
-  - id: span.messaging.eventhubs.receive.client
-    ref: messaging.receive.client
+  - id: azure.eventhubs.client.receive
+    ref: messaging.client.receive
     stability: development
     brief: Describes a consumer receiving one or more messages from Azure Event Hubs (pull-based).
     attributes:
@@ -270,8 +270,8 @@ span_refinements:
         examples: ['receive']
         note: SHOULD be set to `receive`.
 
-  - id: span.messaging.eventhubs.process.consumer
-    ref: messaging.process.consumer
+  - id: azure.eventhubs.consumer.process
+    ref: messaging.consumer.process
     stability: development
     brief: Describes a consumer processing one or more messages from Azure Event Hubs (push-based).
     attributes:
@@ -299,8 +299,8 @@ span_refinements:
         examples: ['process']
         note: SHOULD be set to `process`.
 
-  - id: span.messaging.eventhubs.settle.client
-    ref: messaging.settle.client
+  - id: azure.eventhubs.client.settle
+    ref: messaging.client.settle
     stability: development
     brief: Describes checkpointing (settling) processed messages in Azure Event Hubs.
     attributes:
@@ -331,7 +331,7 @@ span_refinements:
 
 # Azure operations that do not map to a generic messaging operation type.
 spans:
-  - type: messaging.servicebus.generic.client
+  - type: azure.servicebus.client.operation
     kind: client
     requirement_level: recommended
     stability: development
@@ -383,7 +383,7 @@ spans:
       - ref: server.port
         sampling_relevant: true
 
-  - type: messaging.eventhubs.generic.client
+  - type: azure.eventhubs.client.operation
     kind: client
     requirement_level: recommended
     stability: development
