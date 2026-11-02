@@ -615,7 +615,6 @@ has the value `persistentVolumeClaim`. The type of the backing PersistentVolume 
 | `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
