@@ -2,6 +2,13 @@
 file_format: definition/2
 attribute_groups:
   - id: session-id
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     visibility: public
     stability: development
     brief: >

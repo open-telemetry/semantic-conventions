@@ -1,5 +1,12 @@
 groups:
   - id: registry.app
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: attribute_group
     display_name: Application Attributes
     brief: >
@@ -7,6 +14,13 @@ groups:
     stability: development
     attributes:
       - id: app.crash.id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: >
@@ -19,6 +33,13 @@ groups:
         examples:
           - 083d3d2d-9a0e-47f8-be3d-bc3c5538ba38
       - id: app.installation.id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: >
@@ -44,6 +65,13 @@ groups:
         examples:
           - 2ab2916d-a51f-4ac8-80ee-45ac31a28092
       - id: app.jank.frame_count
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: int
         stability: development
         brief: A number of frame renders that experienced jank.
@@ -51,27 +79,62 @@ groups:
           Depending on platform limitations, the value provided MAY be approximation.
         examples: [ 9, 42 ]
       - id: app.jank.threshold
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         stability: development
         type: double
         brief: The minimum rendering threshold for this jank, in seconds.
         examples: [ 0.016, 0.700, 1.024 ]
       - id: app.jank.period
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         stability: development
         type: double
         brief: The time period, in seconds, for which this jank is being reported.
         examples: [ 1.0, 5.0, 10.24 ]
       - id: app.screen.coordinate.x
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: int
         brief: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
         stability: development
         examples: [ 0, 131 ]
       - id: app.screen.coordinate.y
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: int
         brief: >
           The y (vertical) component of a screen coordinate, in screen pixels.
         stability: development
         examples: [ 12, 99 ]
       - id: app.screen.id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: >
@@ -89,6 +152,13 @@ groups:
           - MyApp.ProfileView
           - MyApp.ProfileViewController
       - id: app.screen.name
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: The name of an application screen.
@@ -99,6 +169,13 @@ groups:
           coexist on the same display simultaneously (e.g., split view on tablets).
         examples: ["MainActivity", "ProductDetailFragment", "ProfileView", "ProfileViewController"]
       - id: app.widget.id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: >
@@ -111,6 +188,13 @@ groups:
           - f9bc787d-ff05-48ad-90e1-fca1d46130b3
           - submit_order_1829
       - id: app.widget.name
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: The name of an application widget.
@@ -119,6 +203,13 @@ groups:
           GUI element.
         examples: [ "submit", "attack", "Clear Cart" ]
       - id: app.build_id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: 'Unique identifier for a particular build or compilation of the application.'
