@@ -81,7 +81,7 @@ attribute_groups:
         requirement_level: opt_in
 
 spans:
-  - type: messaging.create.producer
+  - type: messaging.producer.create
     kind: producer
     requirement_level: recommended
     stability: development
@@ -93,9 +93,9 @@ spans:
     note: |
       "Create" spans always refer to a single message and are used to provide a unique
       creation context for messages in batch sending scenarios. A "Create" span is only
-      used together with a client "Send" span (`messaging.send.client`) that links to it;
+      used together with a client "Send" span (`messaging.client.send`) that links to it;
       when the "Send" span itself serves as the creation context, use the producer "Send"
-      span (`messaging.send.producer`) instead and omit the "Create" span. See
+      span (`messaging.producer.send`) instead and omit the "Create" span. See
       [Producer spans](/docs/messaging/messaging-spans.md#producer-spans) for details.
     attributes:
       - ref_group: messaging.attributes.common
@@ -125,7 +125,7 @@ spans:
         sampling_relevant: true
       - ref_group: messaging.attributes.message_size
 
-  - type: messaging.send.producer
+  - type: messaging.producer.send
     kind: producer
     requirement_level: recommended
     stability: development
@@ -171,7 +171,7 @@ spans:
       - ref_group: messaging.attributes.message_size
       - ref: messaging.client.id
 
-  - type: messaging.send.client
+  - type: messaging.client.send
     kind: client
     requirement_level: recommended
     stability: development
@@ -218,7 +218,7 @@ spans:
       - ref_group: messaging.attributes.message_size
       - ref: messaging.client.id
 
-  - type: messaging.receive.client
+  - type: messaging.client.receive
     kind: client
     requirement_level: recommended
     stability: development
@@ -259,7 +259,7 @@ spans:
         sampling_relevant: true
 
 
-  - type: messaging.process.consumer
+  - type: messaging.consumer.process
     kind: consumer
     requirement_level: recommended
     stability: development
@@ -304,7 +304,7 @@ spans:
       - ref: server.port
         sampling_relevant: true
 
-  - type: messaging.settle.client
+  - type: messaging.client.settle
     kind: client
     requirement_level: recommended
     stability: development

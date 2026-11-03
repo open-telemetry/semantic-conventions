@@ -1,8 +1,8 @@
 file_format: definition/2
 
 span_refinements:
-  - id: span.db.mongodb.client
-    ref: db.client
+  - id: mongodb.client.operation
+    ref: db.client.operation
     stability: development
     brief: >
       Spans representing calls to MongoDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).

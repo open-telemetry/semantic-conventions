@@ -1,8 +1,8 @@
 file_format: definition/2
 
 span_refinements:
-  - id: span.db.mariadb.client
-    ref: db.client
+  - id: mariadb.client.operation
+    ref: db.client.operation
     stability: stable
     brief: >
       Spans representing calls to MariaDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/README.md).

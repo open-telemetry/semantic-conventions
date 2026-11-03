@@ -65,7 +65,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: |
             .github/scripts/triage/package-lock.json
-          node-version: '24'
+          node-version: '26'
 
       - name: Install script dependencies
         working-directory: .github/scripts/triage
