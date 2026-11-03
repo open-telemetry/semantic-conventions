@@ -1,8 +1,8 @@
 file_format: definition/2
 
 span_refinements:
-  - id: span.db.sql_server.client
-    ref: db.client
+  - id: microsoft.sql_server.client.operation
+    ref: db.client.operation
     stability: stable
     brief: >
       Spans representing calls to Microsoft SQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).

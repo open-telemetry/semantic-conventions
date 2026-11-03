@@ -105,7 +105,7 @@ This document defines attributes for AWS Elastic Kubernetes Service (EKS).
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="aws-eks-cluster-arn" href="#aws-eks-cluster-arn">`aws.eks.cluster.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` |
+| <a id="aws-eks-cluster-arn" href="#aws-eks-cluster-arn">`aws.eks.cluster.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an EKS cluster. | `arn:aws:eks:us-west-2:123456789123:cluster/my-cluster` |
 
 ## Amazon Kinesis Attributes
 

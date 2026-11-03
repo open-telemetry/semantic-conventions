@@ -3,7 +3,7 @@ file_format: definition/2
 attribute_groups:
   # Attributes shared by all spans reported by the FaaS instance itself: the generic
   # incoming span and the trigger-specific ones. Kept as a group rather than modeling
-  # the trigger-specific spans as refinements of `faas.server`, because individual FaaS
+  # the trigger-specific spans as refinements of `faas.server.invocation`, because individual FaaS
   # systems refine each of those spans on their own.
   - id: faas.attributes.server
     visibility: internal
@@ -15,7 +15,7 @@ attribute_groups:
       - ref: cloud.resource_id
 
 spans:
-  - type: faas.server
+  - type: faas.server.invocation
     kind: server
     requirement_level: recommended
     stability: development
@@ -28,7 +28,7 @@ spans:
     attributes:
       - ref_group: faas.attributes.server
 
-  - type: faas.datasource.server
+  - type: faas.server.datasource
     kind: server
     requirement_level: recommended
     stability: development
@@ -52,7 +52,7 @@ spans:
       - ref: faas.document.time
       - ref: faas.document.name
 
-  - type: faas.timer.server
+  - type: faas.server.timer
     kind: server
     requirement_level: recommended
     stability: development
@@ -71,7 +71,7 @@ spans:
       - ref: faas.invocation.start_time
       - ref: faas.cron
 
-  - type: faas.client
+  - type: faas.client.invocation
     kind: client
     requirement_level: recommended
     stability: development

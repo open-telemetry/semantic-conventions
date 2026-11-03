@@ -1,8 +1,8 @@
 file_format: definition/2
 
 span_refinements:
-  - id: span.db.elasticsearch.client
-    ref: db.client
+  - id: elasticsearch.client.operation
+    ref: db.client.operation
     stability: development
     brief: >
       Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).

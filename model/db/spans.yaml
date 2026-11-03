@@ -1,7 +1,7 @@
 file_format: definition/2
 
 spans:
-  - type: db.client
+  - type: db.client.operation
     stability: stable
     brief: This span describes database client call.
     note: |
@@ -62,8 +62,8 @@ spans:
         sampling_relevant: true
 
 span_refinements:
-  - id: span.db.sql.client
-    ref: db.client
+  - id: db.client.sql.operation
+    ref: db.client.operation
     stability: stable
     brief: >
       The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](/docs/db/database-spans.md) apply to SQL databases.

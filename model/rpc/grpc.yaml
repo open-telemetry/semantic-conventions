@@ -176,8 +176,8 @@ attribute_groups:
           base64-encoded when recorded.
 
 span_refinements:
-  - id: span.rpc.grpc.call.client
-    ref: rpc.call.client
+  - id: grpc.client.call
+    ref: rpc.client.call
     stability: stable
     annotations:
       compatibility:
@@ -200,8 +200,8 @@ span_refinements:
       - ref_group: rpc.grpc.attributes.client
       - ref_group: rpc.grpc.attributes.span
 
-  - id: span.rpc.grpc.call.server
-    ref: rpc.call.server
+  - id: grpc.server.call
+    ref: rpc.server.call
     stability: stable
     annotations:
       compatibility:

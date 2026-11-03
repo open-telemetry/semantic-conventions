@@ -9,8 +9,8 @@ attribute_groups:
       - ref: aws.request_id
 
 span_refinements:
-  - id: span.messaging.aws.sqs.send.producer
-    ref: messaging.send.producer
+  - id: aws.sqs.producer.send
+    ref: messaging.producer.send
     stability: development
     brief: Describes a producer sending one or more messages to Amazon SQS.
     attributes:
@@ -26,8 +26,8 @@ span_refinements:
         examples: ['MyQueue']
       - ref_group: messaging.aws.sqs.attributes.common
 
-  - id: span.messaging.aws.sqs.receive.client
-    ref: messaging.receive.client
+  - id: aws.sqs.client.receive
+    ref: messaging.client.receive
     stability: development
     brief: Describes a consumer receiving one or more messages from Amazon SQS (pull-based).
     attributes:
@@ -43,8 +43,8 @@ span_refinements:
         examples: ['MyQueue']
       - ref_group: messaging.aws.sqs.attributes.common
 
-  - id: span.messaging.aws.sqs.process.consumer
-    ref: messaging.process.consumer
+  - id: aws.sqs.consumer.process
+    ref: messaging.consumer.process
     stability: development
     brief: Describes a consumer processing one or more messages from Amazon SQS (push-based).
     attributes:
@@ -61,8 +61,8 @@ span_refinements:
       - ref_group: messaging.aws.sqs.attributes.common
 
   # Amazon SNS
-  - id: span.messaging.aws.sns.send.producer
-    ref: messaging.send.producer
+  - id: aws.sns.producer.send
+    ref: messaging.producer.send
     stability: development
     brief: Describes a producer publishing one or more messages to Amazon SNS.
     attributes:

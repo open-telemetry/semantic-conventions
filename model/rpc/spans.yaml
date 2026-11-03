@@ -45,7 +45,7 @@ groups:
         requirement_level:
           conditionally_required: if applicable and if `server.address` is set.
 
-  - id: span.rpc.call.client
+  - id: span.rpc.client.call
     type: span
     stability: stable
     brief: This span represents an outgoing Remote Procedure Call (RPC).
@@ -79,7 +79,7 @@ groups:
       - ref: rpc.response.trailer
         requirement_level: opt_in
 
-  - id: span.rpc.call.server
+  - id: span.rpc.server.call
     type: span
     stability: stable
     extends: attributes.rpc.server.server
