@@ -1,3 +1,22 @@
+# TODO: these metrics are used as namespaces by the corresponding `*.limit` metrics.
+[[policy.finding_filters]]
+exclude = ["naming_convention_metric_namespace_collision"]
+signal_type = "metric"
+signal_names = ["hw.battery.charge", "hw.cpu.speed", "hw.fan.speed", "hw.temperature", "hw.voltage"]
+
+# TODO: https://github.com/open-telemetry/semantic-conventions/issues/1514
+# TODO: https://github.com/open-telemetry/semantic-conventions/issues/1616
+[[policy.finding_filters]]
+exclude = ["stability_metric_lower_stability_attribute"]
+signal_type = "metric"
+signal_names = ["dotnet.process.cpu.time", "kestrel.connection.duration", "kestrel.tls_handshake.duration"]
+
+# TODO: https://github.com/open-telemetry/semantic-conventions/issues/1519
+[[policy.finding_filters]]
+exclude = ["stability_entity_lower_stability_attribute"]
+signal_type = "entity"
+signal_names = ["service"]
+
 [[policy.finding_filters]]
 exclude = ["compatibility_entity_missing"]
 signal_type = "entity"

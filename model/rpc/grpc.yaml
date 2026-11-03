@@ -179,11 +179,6 @@ span_refinements:
   - id: grpc.client.call
     ref: rpc.client.call
     stability: stable
-    annotations:
-      compatibility:
-        # The existing gRPC span is now a refinement of the shared RPC span.
-        policy_exceptions:
-          - span_missing
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
       `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
@@ -203,11 +198,6 @@ span_refinements:
   - id: grpc.server.call
     ref: rpc.server.call
     stability: stable
-    annotations:
-      compatibility:
-        # The existing gRPC span is now a refinement of the shared RPC span.
-        policy_exceptions:
-          - span_missing
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
       `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
