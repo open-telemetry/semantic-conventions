@@ -53,10 +53,10 @@ jobs:
           ref: ${{ env.RELEASE_COMMIT }}
           persist-credentials: false
 
-      - name: Generate development schema
+      - name: Generate development publication schema
         run: |
-          make generate-schema-dev VERSION="$RELEASE_VERSION" \
-            DEV_SCHEMA_OUTPUT="$PWD/internal/tools/bin/schema-dev/release" \
+          make generate-publication-schema-dev VERSION="$RELEASE_VERSION" \
+            DEV_PUBLICATION_SCHEMA_OUTPUT="$PWD/internal/tools/bin/publication-schema-dev/release" \
             RESOLVED_REGISTRY_URI="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/download/v${RELEASE_VERSION}/resolved.yaml"
 
       - name: Create draft with schema assets
@@ -64,8 +64,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "v$RELEASE_VERSION" \
-            internal/tools/bin/schema-dev/release/resolved.yaml \
-            internal/tools/bin/schema-dev/release/manifest.yaml \
+            internal/tools/bin/publication-schema-dev/release/resolved.yaml \
+            internal/tools/bin/publication-schema-dev/release/manifest.yaml \
             --repo "$GITHUB_REPOSITORY" \
             --target "$RELEASE_COMMIT" \
             --title "v$RELEASE_VERSION" \
