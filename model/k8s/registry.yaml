@@ -577,6 +577,16 @@ groups:
               value: 'secret'
               brief: "A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
               stability: development
+            - id: local
+              value: 'local'
+              brief: "A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              stability: development
+              deprecated:
+                reason: uncategorized
+                note: >
+                  Removed, no replacement at this time.
+                  `local` is a PersistentVolume source, not a Pod volume source.
+                  Use `k8s.persistentvolume.type` with the value `local` instead.
       - id: k8s.namespace.phase
         stability: development
         brief: >
