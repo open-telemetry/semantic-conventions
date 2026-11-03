@@ -22,7 +22,7 @@ exclude = ["compatibility_entity_missing"]
 signal_type = "entity"
 signal_names = ["aws.eks", "browser", "cloud", "device", "faas", "heroku"]
 
-# Span types renamed to {area}.{kind}.{name} in #4241.
+# Span types renamed after v1.45.0 in #4289. Remove once the next release is the baseline.
 [[policy.finding_filters]]
 exclude = ["compatibility_span_missing"]
 signal_type = "span"
