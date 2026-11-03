@@ -44,7 +44,7 @@ aliases: [attribute-naming]
 ## General naming considerations
 
 _This section applies to attribute names (also
-known as the "attribute keys"), metric and event names, and span types. For brevity,
+known as the "attribute keys"), metric names, event names, and span types. For brevity,
 within this section when we use the term "name" without an adjective it is
 implied to mean all of these._
 
@@ -142,8 +142,7 @@ to multiple products or concepts.
 Two attributes, two metrics, or two events MUST NOT share the same name.
 Two span definitions MUST NOT share the same span type; span refinements are not
 separate span definitions.
-Different kinds of definitions (attribute and metric, metric and event, span and metric)
-MAY share the same identifier.
+Definitions of different kinds MAY share the same identifier.
 
 Attributes, metrics, events, and spans SHOULD NOT be removed from semantic
 conventions regardless of their maturity level. When the convention is renamed or
