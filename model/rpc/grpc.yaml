@@ -5,6 +5,9 @@ attribute_groups:
     visibility: internal
     attributes:
       - ref: rpc.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `grpc`."
         examples: ["grpc"]
       - ref: error.type
@@ -173,9 +176,9 @@ attribute_groups:
           base64-encoded when recorded.
 
 span_refinements:
-  - id: span.rpc.grpc.call.client
-    ref: rpc.call.client
-    stability: release_candidate
+  - id: grpc.client.call
+    ref: rpc.client.call
+    stability: stable
     annotations:
       compatibility:
         # The existing gRPC span is now a refinement of the shared RPC span.
@@ -197,9 +200,9 @@ span_refinements:
       - ref_group: rpc.grpc.attributes.client
       - ref_group: rpc.grpc.attributes.span
 
-  - id: span.rpc.grpc.call.server
-    ref: rpc.call.server
-    stability: release_candidate
+  - id: grpc.server.call
+    ref: rpc.server.call
+    stability: stable
     annotations:
       compatibility:
         # The existing gRPC span is now a refinement of the shared RPC span.

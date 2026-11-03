@@ -20,7 +20,7 @@ database metrics and logs.
 >   limited to) attributes, metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in their existing major version as a comma-separated list of category-specific values
->   (e.g., http, databases, messaging). The list of values includes:
+>   (e.g., http, database, messaging). The list of values includes:
 >   * `database` - emit the stable database conventions, and stop emitting
 >     the experimental database conventions that the instrumentation emitted
 >     previously.
