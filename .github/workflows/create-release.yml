@@ -59,6 +59,15 @@ jobs:
             DEV_PUBLICATION_SCHEMA_OUTPUT="$PWD/internal/tools/bin/publication-schema-dev/release" \
             RESOLVED_REGISTRY_URI="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/download/v${RELEASE_VERSION}/resolved.yaml"
 
+      - name: Check manifest matches the one published on opentelemetry.io
+        run: |
+          committed="schemas/semconv-dev/${RELEASE_VERSION}-dev"
+          if [[ -f "$committed" ]]; then
+            diff -u "$committed" internal/tools/bin/publication-schema-dev/release/manifest.yaml
+          else
+            echo "::warning::$committed not found in the release commit"
+          fi
+
       - name: Create draft with schema assets
         env:
           GH_TOKEN: ${{ github.token }}

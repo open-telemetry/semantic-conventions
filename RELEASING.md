@@ -26,7 +26,11 @@
   - Publish release
 
 New release is then auto-discovered by [opentelemetry.io](https://github.com/open-telemetry/opentelemetry.io) pipelines which (via bot-generated PR)
-eventually results in new version of schema file being published.
+eventually results in new version of schema files being published:
+
+- `schemas/{version}` at `https://opentelemetry.io/schemas/{version}`
+- `schemas/semconv-dev/{version}-dev` (development publication manifest) at
+  `https://opentelemetry.io/schemas/semconv-dev/{version}-dev`. It points to `resolved.yaml` in the GitHub release.
 
 ## After the release
 
