@@ -322,6 +322,18 @@ groups:
         brief: >
           The revision for the task definition used to create the ECS task.
         examples: ["8", "26"]
+  - id: registry.aws.eks
+    type: attribute_group
+    display_name: Amazon EKS Attributes
+    brief: >
+      This document defines attributes for AWS Elastic Kubernetes Service (EKS).
+    attributes:
+      - id: aws.eks.cluster.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of an EKS cluster.
+        examples: ["arn:aws:eks:us-west-2:123456789123:cluster/my-cluster"]
   - id: registry.aws.log
     type: attribute_group
     display_name: Amazon Logs Attributes

@@ -1,4 +1,4 @@
 change_type: breaking
 component: aws
-note: Remove the `aws.eks` entity and deprecate `aws.eks.cluster.arn` in favor of `cloud.resource_id` and Kubernetes cluster attributes.
+note: Remove the `aws.eks` entity. Use the `k8s.cluster` entity for EKS clusters; `aws.eks.cluster.arn` remains available as an attribute.
 issues: [4284]
