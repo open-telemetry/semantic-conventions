@@ -1,4 +1,62 @@
 [[policy.finding_filters]]
 exclude = ["compatibility_entity_missing"]
 signal_type = "entity"
-signal_names = ["android", "device", "zos.software"]
+signal_names = ["android", "aws.ecs", "aws.log", "cloud", "device", "faas", "gcp.cloud_run", "gcp.gce", "heroku", "zos.software"]
+
+[[policy.finding_filters]]
+exclude = ["compatibility_span_missing"]
+signal_type = "span"
+signal_names = [
+    "azure.cosmosdb.client",
+    "db.cassandra.client",
+    "db.couchdb.client",
+    "db.elasticsearch.client",
+    "db.hbase.client",
+    "db.mongodb.client",
+    "db.redis.client",
+    "db.sql.client"
+]
+
+# Span types renamed to {area}.{kind}.{name} in #4241.
+[[policy.finding_filters]]
+exclude = ["compatibility_span_missing"]
+signal_type = "span"
+signal_names = [
+    "aws.client",
+    "aws.lambda.server",
+    "cicd.pipeline.run.server",
+    "cicd.pipeline.task.internal",
+    "cli.client",
+    "cli.internal",
+    "db.client",
+    "dotnet.dns.lookup.internal",
+    "dotnet.http.connection_setup.internal",
+    "dotnet.http.request.wait_for_connection.internal",
+    "dotnet.socket.connect.internal",
+    "dotnet.tls.handshake.internal",
+    "faas.client",
+    "faas.datasource.server",
+    "faas.server",
+    "faas.timer.server",
+    "graphql.server",
+    "http.client",
+    "http.server",
+    "messaging.create.producer",
+    "messaging.eventhubs.generic.client",
+    "messaging.process.consumer",
+    "messaging.receive.client",
+    "messaging.send.client",
+    "messaging.send.producer",
+    "messaging.servicebus.generic.client",
+    "messaging.settle.client",
+    "rpc.call.client",
+    "rpc.call.server",
+    "rpc.connect_rpc.call.client",
+    "rpc.connect_rpc.call.server",
+    "rpc.dubbo.call.client",
+    "rpc.dubbo.call.server",
+    "rpc.grpc.call.client",
+    "rpc.grpc.call.server",
+    "rpc.jsonrpc.call.client",
+    "rpc.jsonrpc.call.server"
+]

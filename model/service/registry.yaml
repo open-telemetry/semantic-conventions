@@ -131,23 +131,3 @@ groups:
           A human-readable name of the cost center, department, or organizational unit responsible
           for the service instance costs.
         examples: ["engineering-platform", "marketing-campaigns", "research-and-development"]
-  - id: registry.service.peer
-    type: attribute_group
-    display_name: Service Attributes for Peer Services
-    brief: >
-      How to describe the service on the other side of a request.
-    attributes:
-      - id: service.peer.name
-        type: string
-        stability: development
-        brief: >
-          Logical name of the service on the other side of the connection.
-          SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the remote service if any.
-        examples: ["shoppingcart"]
-      - id: service.peer.namespace
-        type: string
-        stability: development
-        brief: >
-          Logical namespace of the service on the other side of the connection.
-          SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.
-        examples: ["Shop"]

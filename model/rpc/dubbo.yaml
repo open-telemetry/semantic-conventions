@@ -6,6 +6,9 @@ attribute_groups:
     visibility: internal
     attributes:
       - ref: rpc.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `dubbo`."
         examples: ["dubbo"]
 
@@ -213,8 +216,8 @@ attribute_groups:
           - Dubbo2: None (the protocol does not support response trailers).
 
 span_refinements:
-  - id: span.rpc.dubbo.call.client
-    ref: rpc.call.client
+  - id: dubbo.client.call
+    ref: rpc.client.call
     annotations:
       compatibility:
         policy_exceptions: [span_missing]
@@ -233,8 +236,8 @@ span_refinements:
       - ref_group: rpc.dubbo.attributes.span
       - unref: rpc.response.header
 
-  - id: span.rpc.dubbo.call.server
-    ref: rpc.call.server
+  - id: dubbo.server.call
+    ref: rpc.server.call
     annotations:
       compatibility:
         policy_exceptions: [span_missing]
