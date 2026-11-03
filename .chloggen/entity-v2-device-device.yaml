@@ -1,4 +1,4 @@
 change_type: breaking
 component: device
-note: Remove the `device` entity in favor of the `device` attribute group. Usage on resources stays the same.
+note: Remove the `device` entity. The `device.*` resource attributes remain defined in the registry.
 issues: [4166]
