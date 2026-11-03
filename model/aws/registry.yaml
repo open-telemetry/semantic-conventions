@@ -333,7 +333,7 @@ groups:
         stability: development
         brief: >
           The ARN of an EKS cluster.
-        examples: ["arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster"]
+        examples: ["arn:aws:eks:us-west-2:123456789123:cluster/my-cluster"]
   - id: registry.aws.log
     type: attribute_group
     display_name: Amazon Logs Attributes
