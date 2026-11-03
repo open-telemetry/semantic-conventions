@@ -529,8 +529,10 @@ producer send spans use `messaging.producer.send` with `messaging.system.name=az
   pattern](/docs/system/system-metrics.md#systemmemoryos---os-specific-system-memory-metrics)
   of `system.{os}` and `process.{os}`. <!-- TODO: document why-->
 
-- [RPC](/docs/rpc/README.md) and [messaging](/docs/messaging/README.md) semantic
-  conventions don't follow the system-specific naming guidance yet, and will be
-  updated one-by-one.
+- Some span types and metric names describing the same operation don't share a
+  prefix yet, for example `messaging.producer.send` and
+  `messaging.client.operation.duration`. See
+  [#4291](https://github.com/open-telemetry/semantic-conventions/issues/4291) and
+  [#4292](https://github.com/open-telemetry/semantic-conventions/issues/4292).
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
