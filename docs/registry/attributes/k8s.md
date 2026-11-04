@@ -340,8 +340,8 @@ This attribute aligns with the `startTime` field of the
 [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core),
 in ISO 8601 (RFC 3339 compatible) format.
 
-**[37] `k8s.pod.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[37] `k8s.pod.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 **[38] `k8s.replicaset.annotation.<key>`:** Examples:
 

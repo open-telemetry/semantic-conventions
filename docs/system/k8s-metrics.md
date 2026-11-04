@@ -917,8 +917,8 @@ Kubelet's stats API.
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
-**[2] `k8s.pod.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[2] `k8s.pod.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 **[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
@@ -989,8 +989,8 @@ Kubelet's stats API.
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
-**[2] `k8s.pod.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[2] `k8s.pod.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 **[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
@@ -1063,8 +1063,8 @@ Kubelet's stats API.
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
-**[2] `k8s.pod.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[2] `k8s.pod.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 **[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
@@ -1135,8 +1135,8 @@ Kubelet's stats API.
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
-**[2] `k8s.pod.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[2] `k8s.pod.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 **[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
@@ -1209,8 +1209,8 @@ This may not be equal to `inodes - free` because filesystem may share inodes wit
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
-**[2] `k8s.pod.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[2] `k8s.pod.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 **[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
@@ -1281,8 +1281,8 @@ Kubelet's stats API.
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
-**[2] `k8s.pod.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[2] `k8s.pod.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 **[3] `k8s.persistentvolume.type`:** This attribute aligns with the volume source field set in the
 [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
