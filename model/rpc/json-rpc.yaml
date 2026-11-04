@@ -6,12 +6,15 @@ attribute_groups:
     visibility: internal
     attributes:
       - ref: rpc.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: 'MUST be set to `jsonrpc`.'
         examples: ['jsonrpc']
 
 span_refinements:
-  - id: span.rpc.jsonrpc.call.client
-    ref: rpc.call.client
+  - id: jsonrpc.client.call
+    ref: rpc.client.call
     annotations:
       compatibility:
         policy_exceptions: [span_missing]
@@ -65,8 +68,8 @@ span_refinements:
             address from it SHOULD set this attribute.
         note: ""
 
-  - id: span.rpc.jsonrpc.call.server
-    ref: rpc.call.server
+  - id: jsonrpc.server.call
+    ref: rpc.server.call
     annotations:
       compatibility:
         policy_exceptions: [span_missing]

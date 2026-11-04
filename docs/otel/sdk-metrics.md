@@ -1303,7 +1303,7 @@ covering the wall-clock duration from the start of the first attempt through the
 | [`http.response.status_code`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | int | The HTTP status code of the last HTTP request performed in scope of this export call. | `200` |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [3] | `otlp_grpc_span_exporter`; `com.example.MySpanExporter` [(see more)](#otel-component-type-values) |
-| [`rpc.status_code`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` when applicable | string | The gRPC status code of the last gRPC request performed in scope of this export call. [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`rpc.status_code`](/docs/registry/attributes/rpc.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | string | The gRPC status code of the last gRPC request performed in scope of this export call. [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | int | Server port number. [6] | `80`; `8080`; `443` |
 
@@ -1351,6 +1351,7 @@ These values will therefore be reused in the case of an application restart.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 **[4] `rpc.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+The value MAY use a standardized string representation of a numeric status code, if one exists, instead of the numeric code. The value MAY be a synthetic status provided by the client library rather than returned by the remote service.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.status_code` means in the context of that system and which values are considered to represent errors.
 
 **[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.

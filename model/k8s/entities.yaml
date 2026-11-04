@@ -227,13 +227,13 @@ groups:
         role: identifying
       - ref: k8s.hpa.name
         role: descriptive
-      - ref: k8s.hpa.scaletargetref.kind
+      - ref: k8s.hpa.scale_target_ref.kind
         role: descriptive
         requirement_level: recommended
-      - ref: k8s.hpa.scaletargetref.name
+      - ref: k8s.hpa.scale_target_ref.name
         role: descriptive
         requirement_level: recommended
-      - ref: k8s.hpa.scaletargetref.api_version
+      - ref: k8s.hpa.scale_target_ref.api_version
         role: descriptive
         requirement_level: recommended
 

@@ -50,6 +50,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.cpu
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `cpu`."
         examples: ["cpu"]
   - id: metric.hw.cpu.status
@@ -57,6 +60,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.cpu
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `cpu`."
         examples: ["cpu"]
       - ref: hw.state

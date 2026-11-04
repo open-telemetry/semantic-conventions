@@ -79,6 +79,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.battery
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `battery`."
         examples: ["battery"]
       - ref: hw.state

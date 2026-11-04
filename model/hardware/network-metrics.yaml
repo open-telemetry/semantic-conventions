@@ -93,6 +93,9 @@ metric_refinements:
         requirement_level: recommended
       - ref_group: metric_attributes.hw.network
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `network`."
         examples: ["network"]
   - id: metric.hw.network.status
@@ -100,6 +103,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.network
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `network`."
         examples: ["network"]
       - ref: hw.state

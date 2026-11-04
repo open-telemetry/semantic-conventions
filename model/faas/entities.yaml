@@ -40,7 +40,8 @@ groups:
     brief: >
       A serverless function instance.
     attributes:
-      - ref: faas.instance.id
+      - ref: faas.instance
         role: identifying
+        requirement_level: required
       - ref: faas.max_memory
         role: descriptive
