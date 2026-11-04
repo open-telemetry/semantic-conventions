@@ -1,5 +1,12 @@
 groups:
   - id: event.device.app.lifecycle
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     stability: development
     type: event
     name: device.app.lifecycle

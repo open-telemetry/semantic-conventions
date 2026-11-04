@@ -1,11 +1,25 @@
 groups:
   - id: registry.device
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: attribute_group
     display_name: Device Attributes
     brief: >
       Describes device attributes.
     attributes:
       - id: device.id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: >
@@ -31,6 +45,13 @@ groups:
           - '123456789012345'
           - 01:23:45:67:89:AB
       - id: device.manufacturer
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: >
@@ -40,6 +61,13 @@ groups:
           iOS apps SHOULD hardcode the value `Apple`.
         examples: ['Apple', 'Samsung']
       - id: device.model.identifier
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: >
@@ -50,6 +78,13 @@ groups:
           of the device.
         examples: ['iPhone3,4', 'SM-G920F']
       - id: device.model.name
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: >
