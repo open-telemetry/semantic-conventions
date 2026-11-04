@@ -23,5 +23,4 @@ subtext: |
   We now have both a faas entity for describing the definition of the faas,
   as well as faas.instance entity for describing the instance running the definition.
 
-  To Identify these entities we have renamed the faas.instance attribute to faas.instance.id &
-  introduced a new faas.id attribute which falls back to the name.
+  To Identify the returned faas entity we have introduced a new faas.id attribute which falls back to the name.

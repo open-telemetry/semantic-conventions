@@ -21,7 +21,7 @@ FaaS attributes
 | <a id="faas-document-operation" href="#faas-document-operation">`faas.document.operation`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` [(see more)](#faas-document-operation-values) |
 | <a id="faas-document-time" href="#faas-document-time">`faas.document.time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 | <a id="faas-id" href="#faas-id">`faas.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of the function definition [1] | |
-| <a id="faas-instance-id" href="#faas-instance-id">`faas.instance.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [2] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
+| <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [2] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
 | <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 | <a id="faas-invocation-start-time" href="#faas-invocation-start-time">`faas.invocation.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 | <a id="faas-invoked-name" href="#faas-invoked-name">`faas.invoked_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the invoked function. [3] | `my-function` |
@@ -41,7 +41,7 @@ FaaS attributes
 
 In cases where the FaaS platform doesn't provide access to a unique ID, the name should be used as a fallback.
 
-**[2] `faas.instance.id`:** - **AWS Lambda:** Use the (full) log stream name.
+**[2] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
 
 **[3] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
@@ -126,8 +126,5 @@ Deprecated FaaS attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.instance.id`. | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [9] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
 | <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.invocation.id`. | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 | <a id="faas-time" href="#faas-time">`faas.time`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.invocation.start_time`. | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
-
-**[9] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.

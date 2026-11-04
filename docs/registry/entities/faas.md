@@ -64,7 +64,7 @@ definition of function name MUST be used for this attribute
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`faas.instance`](/docs/registry/attributes/faas.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.instance.id`. | `Required` | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [4] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
+| Identity | [`faas.instance`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [4] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
 | Description | [`faas.max_memory`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` |
 
 **[4] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.

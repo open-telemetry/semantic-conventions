@@ -56,7 +56,7 @@ groups:
           - **GCP:** The value of [`K_REVISION` environment variable](https://docs.cloud.google.com/run/docs/container-contract#env-vars) without the configuration prefix.
           - **KNative:** The value of [`K_REVISION` environment variable](https://github.com/knative/specs/blob/main/specs/serving/runtime-contract.md#process) without the configuration prefix.
         examples: ['26', 'pinkfroid-00002']
-      - id: faas.instance.id
+      - id: faas.instance
         type: string
         stability: development
         brief: >
