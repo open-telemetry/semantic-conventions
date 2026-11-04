@@ -405,8 +405,8 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.statefulset.label.injected` attribute with value `""`.
 
-**[49] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[49] `k8s.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 ---
 

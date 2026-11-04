@@ -552,8 +552,8 @@ groups:
         brief: >
           The type of the K8s volume.
         note: |
-          This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-          has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+          The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+          PersistentVolume is recorded in `k8s.persistentvolume.type`.
         examples: [ "emptyDir", "persistentVolumeClaim" ]
         type:
           members:
@@ -584,7 +584,6 @@ groups:
               deprecated:
                 reason: uncategorized
                 note: >
-                  Removed, no replacement at this time.
                   `local` is a PersistentVolume source, not a Pod volume source.
                   Use `k8s.persistentvolume.type` with the value `local` instead.
       - id: k8s.namespace.phase

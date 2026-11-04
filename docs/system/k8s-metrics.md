@@ -896,8 +896,8 @@ Kubelet's stats API.
 The set of possible values is not limited to those listed here.
 When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
 
-**[3] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[3] `k8s.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 ---
 
@@ -968,8 +968,8 @@ Kubelet's stats API.
 The set of possible values is not limited to those listed here.
 When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
 
-**[3] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[3] `k8s.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 ---
 
@@ -1042,8 +1042,8 @@ Kubelet's stats API.
 The set of possible values is not limited to those listed here.
 When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
 
-**[3] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[3] `k8s.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 ---
 
@@ -1114,8 +1114,8 @@ Kubelet's stats API.
 The set of possible values is not limited to those listed here.
 When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
 
-**[3] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[3] `k8s.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 ---
 
@@ -1188,8 +1188,8 @@ This may not be equal to `inodes - free` because filesystem may share inodes wit
 The set of possible values is not limited to those listed here.
 When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
 
-**[3] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[3] `k8s.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 ---
 
@@ -1260,8 +1260,8 @@ Kubelet's stats API.
 The set of possible values is not limited to those listed here.
 When another volume source is used, the exact field name as reported by the Kubernetes API SHOULD be used.
 
-**[3] `k8s.volume.type`:** This is the volume source declared in the Pod spec. For example, a volume backed by a PersistentVolumeClaim
-has the value `persistentVolumeClaim`. The type of the backing PersistentVolume is recorded in `k8s.persistentvolume.type`.
+**[3] `k8s.volume.type`:** The volume source declared in the Pod spec, e.g. `persistentVolumeClaim`. The type of the backing
+PersistentVolume is recorded in `k8s.persistentvolume.type`.
 
 ---
 
