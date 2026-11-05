@@ -20,8 +20,27 @@ groups:
       code_generation:
         metric_value_type: double
     brief: "Duration of database client operations."
-    note: >
+    note: |
       Batch operations SHOULD be recorded as a single operation.
+
+      For `db.response.status_code`, this metric MUST use the same value and
+      inclusion condition as the applicable [database client span convention](/docs/db/database-spans.md),
+      including database-system-specific overrides.
+      This requirement applies regardless of whether a span is recorded.
+
+      Without a database-system-specific override, `db.response.status_code`
+      is conditionally required if the operation failed and a status code is available.
+      No additional network calls are required to retrieve otherwise unavailable status codes.
+
+      For example:
+
+      - An [Elasticsearch](/docs/db/elasticsearch.md) response with HTTP status `200`
+        includes `db.response.status_code="200"` on both the span and this metric.
+      - A [SQL](/docs/db/sql.md) response with SQLSTATE warning `01000`
+        includes `db.response.status_code="01000"` on both signals when no more specific code is available.
+        Neither signal includes `error.type` if the operation did not fail.
+      - A successful database operation without a database-system-specific override
+        omits `db.response.status_code` by default on both signals.
     instrument: histogram
     unit: "s"
     stability: stable
@@ -29,6 +48,9 @@ groups:
     attributes:
       - ref: db.system.name
         requirement_level: required
+      - ref: db.response.status_code
+        requirement_level:
+          conditionally_required: If required by the applicable database client span convention.
       - ref: db.stored_procedure.name
         requirement_level:
           recommended: If operation applies to a specific stored procedure.

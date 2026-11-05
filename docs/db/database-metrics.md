@@ -75,6 +75,25 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 **[1]:** Batch operations SHOULD be recorded as a single operation.
 
+For `db.response.status_code`, this metric MUST use the same value and
+inclusion condition as the applicable [database client span convention](/docs/db/database-spans.md),
+including database-system-specific overrides.
+This requirement applies regardless of whether a span is recorded.
+
+Without a database-system-specific override, `db.response.status_code`
+is conditionally required if the operation failed and a status code is available.
+No additional network calls are required to retrieve otherwise unavailable status codes.
+
+For example:
+
+- An [Elasticsearch](/docs/db/elasticsearch.md) response with HTTP status `200`
+  includes `db.response.status_code="200"` on both the span and this metric.
+- A [SQL](/docs/db/sql.md) response with SQLSTATE warning `01000`
+  includes `db.response.status_code="01000"` on both signals when no more specific code is available.
+  Neither signal includes `error.type` if the operation did not fail.
+- A successful database operation without a database-system-specific override
+  omits `db.response.status_code` by default on both signals.
+
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
@@ -130,7 +149,7 @@ then that operation name SHOULD be used prepended by `BATCH `.
 Otherwise, `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[7] `db.response.status_code`:** If the operation failed and status code is available.
+**[7] `db.response.status_code`:** If required by the applicable database client span convention.
 
 **[8] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 The value MAY use a standardized string representation of a numeric status code, if one exists, instead of the numeric code. The value MAY be a synthetic status provided by the client library rather than returned by the remote service.
