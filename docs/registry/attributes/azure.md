@@ -31,10 +31,6 @@ the same instance report the same value.
 This is reported in the `Instance` dimension of
 [Azure Monitor metrics](https://learn.microsoft.com/azure/app-service/monitor-app-service-reference#metric-dimensions).
 
-This is one of two values Azure describes as an app's instance. It is not to be confused
-with the `WEBSITE_INSTANCE_ID` used for web apps' `service.instance.id` or Azure
-Functions' `faas.instance`.
-
 ## Azure Client Library Attributes
 
 This section defines generic attributes used by Azure Client Libraries.
