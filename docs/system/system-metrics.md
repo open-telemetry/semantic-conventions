@@ -1257,7 +1257,7 @@ an `{os}` prefix to split this metric across OSes.
 **[1]:** This is equivalent to the `system.memory.usage` metric with `state=available`.
 Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
 This is supposed to be more accurate than just "free" memory.
-For reference, see the calculations [here](https://superuser.com/a/980821).
+For reference, see the calculations [here](https://superuser.com/a/980821?link-check=no&last-validated=2026-11-04).
 See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
 
 <!-- prettier-ignore-end -->
