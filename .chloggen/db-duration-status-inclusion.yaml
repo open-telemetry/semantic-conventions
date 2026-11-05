@@ -1,7 +1,7 @@
 change_type: breaking
 component: db
 note: Align db.response.status_code on db.client.operation.duration with the applicable database client span convention.
-issues: []
+issues: [4310]
 subtext: |
   The value and inclusion condition follow database-system-specific span overrides even when no span is recorded.
   This can change existing metric series, including successful Elasticsearch responses and SQL warnings.
