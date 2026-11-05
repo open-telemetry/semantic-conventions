@@ -15,6 +15,7 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
     - [Defining attributes](#defining-attributes)
     - [Defining enum attribute members](#defining-enum-attribute-members)
     - [Defining spans](#defining-spans)
+      - [Span type](#span-type)
       - [What operation does this span represent](#what-operation-does-this-span-represent)
       - [Naming pattern](#naming-pattern)
       - [Status](#status)
@@ -245,9 +246,24 @@ When not to define spans:
 > `http.client.request.exception` event are recorded alongside the corresponding
 > HTTP client span.
 
-A span definition should describe the [operation it represents](#what-operation-does-this-span-represent),
+A span definition, identified by its type, should describe the
+[operation it represents](#what-operation-does-this-span-represent),
 the [naming pattern](#naming-pattern), considerations for setting span [status](#status),
 the [span kind](#kind), and the list of applicable [attributes](#attributes).
+
+##### Span type
+
+Choose a span type following the [span type conventions](/docs/general/naming.md#span-types).
+
+Use one type for spans that follow the same definition, even when their names
+differ. Define the span name format following the [naming pattern guidance](#naming-pattern).
+
+Define a new span type for a distinct operation. Use a span refinement when
+specializing an existing operation for a system or library. Refinements inherit
+the span type through their `ref`; their IDs do not define new span types.
+
+See Weaver's [v2 syntax for spans and refinements](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.v2.md#spans-definition)
+for YAML authoring details.
 
 ##### What operation does this span represent
 

@@ -2,8 +2,8 @@
 file_format: definition/2
 
 span_refinements:
-  - id: span.aws.s3.client
-    ref: aws.client
+  - id: aws.s3.client.call
+    ref: aws.client.call
     stability: development
     brief: >
       Semantic Conventions for AWS S3 client spans extend the general

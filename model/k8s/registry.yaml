@@ -431,7 +431,7 @@ groups:
         brief: >
           The name of the horizontal pod autoscaler.
         examples: ['opentelemetry']
-      - id: k8s.hpa.scaletargetref.kind
+      - id: k8s.hpa.scale_target_ref.kind
         type: string
         stability: development
         brief: >
@@ -439,7 +439,7 @@ groups:
         note: |
           This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
         examples: ["Deployment", "StatefulSet"]
-      - id: k8s.hpa.scaletargetref.name
+      - id: k8s.hpa.scale_target_ref.name
         type: string
         stability: development
         brief: >
@@ -447,7 +447,7 @@ groups:
         note: |
           This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
         examples: ["my-deployment", "my-statefulset"]
-      - id: k8s.hpa.scaletargetref.api_version
+      - id: k8s.hpa.scale_target_ref.api_version
         type: string
         stability: development
         brief: >
