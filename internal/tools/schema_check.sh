@@ -67,6 +67,9 @@ done
 
 # Now check the content of all schema files in the ../schemas directory.
 for file in $schemas_dir/*; do
+  # Subfolders (e.g. semconv-dev) hold v2 publication manifests, checked below.
+  [ -f "$file" ] || continue
+
   # Filename is the version number.
   ver=$(basename $file)
 
@@ -88,6 +91,29 @@ for file in $schemas_dir/*; do
       -u $(id -u):$(id -g) \
       -v $schemas_dir:/schemas \
   		docker.io/otel/build-tool-schemas:$BUILD_TOOL_SCHEMAS_VERSION --file /schemas/$ver --version=$ver
+
+  echo "OK"
+done
+
+for file in $schemas_dir/semconv-dev/*; do
+  [ -f "$file" ] || continue
+  ver=$(basename $file)
+  echo -n "Checking publication manifest $file... "
+
+  if ! grep -qx "file_format: manifest/2.0" $file; then
+    echo "FAILED: file_format manifest/2.0 is not found in $file"
+    exit 1
+  fi
+
+  if ! grep -qx "schema_url: https://opentelemetry.io/schemas/semconv-dev/$ver" $file; then
+    echo "FAILED: schema_url does not match https://opentelemetry.io/schemas/semconv-dev/$ver in $file"
+    exit 2
+  fi
+
+  if ! grep -q "^resolved_registry_uri: https://" $file; then
+    echo "FAILED: resolved_registry_uri is not found in $file"
+    exit 2
+  fi
 
   echo "OK"
 done
