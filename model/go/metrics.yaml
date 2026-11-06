@@ -170,3 +170,18 @@ groups:
       - ref: go.cpu.detailed_state
         requirement_level: opt_in
     stability: development
+
+  - id: metric.go.mutex.wait.duration
+    type: metric
+    metric_name: go.mutex.wait.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Approximate cumulative time goroutines have spent blocked on a `sync.Mutex`, `sync.RWMutex`, or runtime-internal lock."
+    note: >
+      Computed from `/sync/mutex/wait/total:seconds`.
+      This metric is useful for identifying global changes in lock contention.
+      Collect a mutex or block profile using the `runtime/pprof` package for more detailed contention data.
+    instrument: counter
+    unit: "s"
+    stability: development
