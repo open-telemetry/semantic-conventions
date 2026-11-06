@@ -26,3 +26,18 @@ groups:
         requirement_level: required
       - ref: vcs.ref.type
         role: descriptive
+
+  - id: entity.vcs.repository.subdirectory
+    type: entity
+    stability: development
+    name: vcs.repository.subdirectory
+    brief: >
+        A directory within a repository in the Version Control System, such as the
+        location of a service, package or component in a monorepo.
+    note: |
+        A subdirectory belongs to a repository. Its path is relative to the root of the repository, so it is
+        only meaningful when reported together with the `vcs.repository` entity.
+    attributes:
+      - ref: vcs.repository.subdirectory.path
+        role: identifying
+        requirement_level: required
