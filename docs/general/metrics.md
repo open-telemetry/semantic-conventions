@@ -13,6 +13,7 @@ aliases: [metrics-general]
   - [Units](#units)
   - [Instrument units](#instrument-units)
   - [Instrument types](#instrument-types)
+  - [Duration histogram bucket boundaries](#duration-histogram-bucket-boundaries)
   - [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
 <!-- END doctoc -->
@@ -124,6 +125,33 @@ like `Counter` or `UpDownCounter`. However, compliant implementations MAY use th
 like `Asynchronous Counter` or `Asynchronous UpDownCounter`.
 Whether implementations choose the synchronous type or the asynchronous equivalent is considered to be an
 implementation detail. Both choices are compliant with this specification.
+
+### Duration histogram bucket boundaries
+
+**Status**: [Development][DocumentStatus]
+
+For new duration histograms, recommended
+[`ExplicitBucketBoundaries` advisory parameters](https://opentelemetry.io/docs/specs/otel/metrics/api/#instrument-advisory-parameters)
+SHOULD use a decimal-friendly approximation of an exponential progression.
+Use `1, 2.5, 5` subdivisions across powers of ten up to 10 seconds, then
+`1, 2, 5` subdivisions for minutes and hours. Include `0.5` at each unit
+transition. For example, in seconds:
+
+```text
+[
+  0.001, 0.0025, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5,
+  1, 2.5, 5, 10, 30, 60, 120, 300, 600, 1800, 3600, 7200
+]
+```
+
+Each step is a factor of 2, 2.5, or 3, giving approximately exponential spacing.
+Choose a range that covers the durations users need to distinguish.
+More boundaries improve resolution but increase resource costs for each
+attribute combination.
+
+Metric-specific recommendations MAY use different boundaries to meet resolution,
+threshold, or compatibility needs. Comparable client and server durations
+SHOULD use consistent boundaries unless their expected distributions differ.
 
 ### Consistent UpDownCounter timeseries
 
