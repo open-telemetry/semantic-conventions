@@ -4,9 +4,6 @@ file_format: definition/2
 span_refinements:
   - id: aws.lambda.server.invocation
     ref: faas.server.invocation
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
     stability: development
     brief: >
       This span represents AWS Lambda invocation.

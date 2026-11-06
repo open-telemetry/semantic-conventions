@@ -218,9 +218,6 @@ attribute_groups:
 span_refinements:
   - id: dubbo.client.call
     ref: rpc.client.call
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
@@ -238,9 +235,6 @@ span_refinements:
 
   - id: dubbo.server.call
     ref: rpc.server.call
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
