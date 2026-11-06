@@ -25,6 +25,8 @@ Currently, the following namespaces exist:
 | | [aws.ecs.cluster](aws.md#aws-ecs-cluster) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.ecs.container](aws.md#aws-ecs-container) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.ecs.task](aws.md#aws-ecs-task) | ![Development](https://img.shields.io/badge/-development-blue) |
+| Azure | | |
+| | [azure.app_service.instance](azure.md#azure-app-service-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Browser | | |
 | | [browser.document](browser.md#browser-document) | ![Development](https://img.shields.io/badge/-development-blue) |
 | CI/CD | | |
