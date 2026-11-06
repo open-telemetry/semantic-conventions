@@ -374,6 +374,7 @@ This example shows the FaaS attributes for a (non-FaaS) process hosted on Google
 | Span           | `faas.trigger`          | n/a                    | `"http"`                                                              |
 | Span           | `faas.invocation.id`    | n/a                    | `"af9d5aa4-a685-4c5f-a22b-444f80b3cc28"`                              |
 | Span           | `faas.coldstart`        | n/a                    | `true`                                                                |
+| Resource       | `faas.id`               | n/a                    | `"my-lambda-function"`                                                |
 | Resource       | `faas.name`             | n/a                    | `"my-lambda-function"`                                                |
 | Resource       | `faas.version`          | n/a                    | `"semver:2.0.0"`                                                      |
 | Resource       | `faas.instance`         | n/a                    | `"my-lambda-function:instance-0001"`                                  |
