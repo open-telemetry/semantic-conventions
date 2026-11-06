@@ -1,0 +1,13 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Recommend asynchronous `UpDownCounter` instruments for `otel.sdk.processor.span.queue.size`,
+  `otel.sdk.processor.span.queue.capacity`, `otel.sdk.processor.log.queue.size`, and
+  `otel.sdk.processor.log.queue.capacity`, and normalize `otel.sdk.processor.log.queue.capacity`
+  description casing to match `otel.sdk.processor.log.queue.size`.
+
+issues: [3954]
+
+subtext:
