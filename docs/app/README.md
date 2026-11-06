@@ -6,6 +6,10 @@ linkTitle: App
 
 **Status**: [Development][DocumentStatus]
 
+> [!NOTE]
+> These app conventions have moved to the
+> [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+
 Semantic conventions for Apps are defined for the following signals:
 
 * [App Events](app-events.md)
