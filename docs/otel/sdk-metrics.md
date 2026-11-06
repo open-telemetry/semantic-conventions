@@ -137,6 +137,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.span.queue.size` | UpDownCounter | `{span}` | The number of spans in the queue of a given instance of an SDK span processor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+Implementations SHOULD record this metric using an asynchronous `UpDownCounter` rather than a synchronous
+`UpDownCounter` to avoid contention on the enqueue and dequeue hot paths.
 
 **Attributes:**
 
@@ -205,6 +207,10 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.span.queue.capacity` | UpDownCounter | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+Implementations SHOULD record this metric using an asynchronous `UpDownCounter` rather than recording a single
+measurement at initialization on a synchronous `UpDownCounter`, so that the capacity is still reported when the
+`MeterProvider` is configured after processor construction and the metric does not stop emitting data points after
+the first collection cycle when `DELTA` aggregation temporality is used.
 
 **Attributes:**
 
@@ -583,6 +589,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.log.queue.size` | UpDownCounter | `{log_record}` | The number of log records in the queue of a given instance of an SDK log processor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+Implementations SHOULD record this metric using an asynchronous `UpDownCounter` rather than a synchronous
+`UpDownCounter` to avoid contention on the enqueue and dequeue hot paths.
 
 **Attributes:**
 
@@ -648,9 +656,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK log processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
-**[1]:** Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+**[1]:** Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+Implementations SHOULD record this metric using an asynchronous `UpDownCounter` rather than recording a single
+measurement at initialization on a synchronous `UpDownCounter`, so that the capacity is still reported when the
+`MeterProvider` is configured after processor construction and the metric does not stop emitting data points after
+the first collection cycle when `DELTA` aggregation temporality is used.
 
 **Attributes:**
 

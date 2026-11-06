@@ -40,6 +40,8 @@ groups:
     brief: "The number of spans in the queue of a given instance of an SDK span processor."
     note: |
       Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+      Implementations SHOULD record this metric using an asynchronous `UpDownCounter` rather than a synchronous
+      `UpDownCounter` to avoid contention on the enqueue and dequeue hot paths.
     instrument: updowncounter
     unit: "{span}"
     attributes:
@@ -56,6 +58,10 @@ groups:
     brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold."
     note: |
       Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+      Implementations SHOULD record this metric using an asynchronous `UpDownCounter` rather than recording a single
+      measurement at initialization on a synchronous `UpDownCounter`, so that the capacity is still reported when the
+      `MeterProvider` is configured after processor construction and the metric does not stop emitting data points after
+      the first collection cycle when `DELTA` aggregation temporality is used.
     instrument: updowncounter
     unit: "{span}"
     attributes:
@@ -173,6 +179,8 @@ groups:
     brief: "The number of log records in the queue of a given instance of an SDK log processor."
     note: |
       Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+      Implementations SHOULD record this metric using an asynchronous `UpDownCounter` rather than a synchronous
+      `UpDownCounter` to avoid contention on the enqueue and dequeue hot paths.
     instrument: updowncounter
     unit: "{log_record}"
     attributes:
@@ -186,9 +194,13 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold."
+    brief: "The maximum number of log records the queue of a given instance of an SDK log processor can hold."
     note: |
-      Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+      Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+      Implementations SHOULD record this metric using an asynchronous `UpDownCounter` rather than recording a single
+      measurement at initialization on a synchronous `UpDownCounter`, so that the capacity is still reported when the
+      `MeterProvider` is configured after processor construction and the metric does not stop emitting data points after
+      the first collection cycle when `DELTA` aggregation temporality is used.
     instrument: updowncounter
     unit: "{log_record}"
     attributes:
