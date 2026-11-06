@@ -1,0 +1,13 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Clarify that `otel.sdk.processor.span.processed` and `otel.sdk.processor.log.processed` exclude
+  records filtered out or skipped as part of normal selection criteria (including non-sampled
+  `RECORD_ONLY` spans in Simple and Batching Span Processors, both during normal operation and
+  after shutdown) and require `queue_full` drops to be counted when the drop occurs.
+
+issues: [3954]
+
+subtext:

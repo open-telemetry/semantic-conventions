@@ -273,7 +273,13 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.span.processed` | Counter | `{span}` | The number of spans for which the processing has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
-SDK Batching Span Processors MUST use `queue_full` as the value of `error.type` for spans dropped due to a full queue.
+Spans that a processor filters out or skips as part of its normal selection criteria (rather than due to a
+processing or lifecycle failure) MUST NOT be counted by this metric (neither as a success nor with `error.type`
+set), whether during normal operation or after shutdown. In particular, for the SDK Simple and Batching Span
+Processors, non-sampled spans (such as spans with `otel.span.sampling_result` set to `RECORD_ONLY`) are not
+exported and MUST NOT be counted either during normal operation or after shutdown.
+SDK Batching Span Processors MUST use `queue_full` as the value of `error.type` for spans dropped due to a full queue,
+and MUST count each dropped span at the point it is dropped rather than deferring the count to a subsequent batch export.
 If a processor reports a span dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
 Whether and when a processor drops such spans is governed by the SDK specification, not by this metric.
 For the SDK Simple and Batching Span Processors, a span MUST be counted as successfully processed at the point the processor
@@ -719,7 +725,12 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.log.processed` | Counter | `{log_record}` | The number of log records for which the processing has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
-SDK Batching Log Record Processors MUST use `queue_full` as the value of `error.type` for log records dropped due to a full queue.
+Log records that a processor filters out or skips as part of its normal selection criteria (for example, records
+excluded by a filtering processor's policy, rather than dropped due to a processing or lifecycle failure) MUST
+NOT be counted by this metric (neither as a success nor with `error.type` set), whether during normal operation
+or after shutdown.
+SDK Batching Log Record Processors MUST use `queue_full` as the value of `error.type` for log records dropped due to a full queue,
+and MUST count each dropped log record at the point it is dropped rather than deferring the count to a subsequent batch export.
 If a processor reports a log record dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
 Whether and when a processor drops such log records is governed by the SDK specification, not by this metric.
 For the SDK Simple and Batching Log Record Processors, a log record MUST be counted as successfully processed at the point the
