@@ -376,7 +376,7 @@ This example shows the FaaS attributes for a (non-FaaS) process hosted on Google
 | Span           | `faas.coldstart`        | n/a                    | `true`                                                                |
 | Resource       | `faas.name`             | n/a                    | `"my-lambda-function"`                                                |
 | Resource       | `faas.version`          | n/a                    | `"semver:2.0.0"`                                                      |
-| Resource       | `faas.instance.id`      | n/a                    | `"my-lambda-function:instance-0001"`                                  |
+| Resource       | `faas.instance.id`      | n/a                    | `"2026/11/07/[$LATEST]a1b2c3d4e5f678901234567890abcdef"`              |
 | Resource       | `cloud.resource_id`     | n/a                    | `"arn:aws:lambda:us-west-2:123456789012:function:my-lambda-function"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
