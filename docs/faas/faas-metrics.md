@@ -36,6 +36,8 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
 > [v1.44.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.44.0/docs/faas/faas-metrics.md)
 > (or prior):
 >
+> * SHOULD NOT implement newer conventions until the metric definition reaches a
+>   stability of alpha or higher.
 > * SHOULD NOT change the version of the FaaS conventions that they emit by
 >   default in their existing major version. Conventions include (but are not
 >   limited to) attributes, metric and span names, and unit of measure.
@@ -83,13 +85,13 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-trigger-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 
 ---
 
-<a id="faas-trigger-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -122,13 +124,13 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-trigger-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 
 ---
 
-<a id="faas-trigger-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -159,13 +161,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-trigger-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 
 ---
 
-<a id="faas-trigger-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -196,13 +198,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-trigger-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 
 ---
 
-<a id="faas-trigger-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -233,13 +235,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-trigger-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 
 ---
 
-<a id="faas-trigger-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -270,13 +272,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-trigger-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 
 ---
 
-<a id="faas-trigger-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -307,13 +309,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-trigger-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 
 ---
 
-<a id="faas-trigger-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -346,13 +348,13 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-trigger-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 
 ---
 
-<a id="faas-trigger-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -383,13 +385,13 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-trigger-values) |
+| [`faas.invocation.initiator`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What initiated this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-invocation-initiator-values) |
 
 ---
 
-<a id="faas-trigger-values"></a>
+<a id="faas-invocation-initiator-values"></a>
 
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invocation.initiator` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |

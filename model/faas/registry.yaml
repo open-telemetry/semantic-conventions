@@ -62,38 +62,6 @@ groups:
           On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE`
           provides this information (which must be multiplied by 1,048,576).
         examples: 134217728
-      - id: faas.trigger
-        stability: development
-        brief: >
-          Type of the trigger which caused this function invocation.
-        type:
-          members:
-            - id: datasource
-              value: 'datasource'
-              brief: 'A response to some data source operation such as a database or filesystem read/write'
-              stability: development
-            - id: http
-              value: 'http'
-              brief: 'To provide an answer to an inbound HTTP request'
-              stability: development
-            - id: pubsub
-              value: 'pubsub'
-              brief: 'A function is set to be executed when messages are sent to a messaging system'
-              deprecated:
-                reason: renamed
-                renamed_to: messaging
-            - id: messaging
-              value: 'messaging'
-              brief: 'A function is set to be executed when messages are sent to a messaging system'
-              stability: development
-            - id: timer
-              value: 'timer'
-              brief: 'A function is scheduled to be executed regularly'
-              stability: development
-            - id: other
-              value: 'other'
-              brief: 'If none of the others apply'
-              stability: development
       - id: faas.invoked_name
         type: string
         stability: development
@@ -169,6 +137,12 @@ groups:
               value: 'http'
               brief: 'To provide an answer to an inbound HTTP request'
               stability: development
+            - id: pubsub
+              value: 'pubsub'
+              brief: 'A function is set to be executed when messages are sent to a messaging system'
+              deprecated:
+                reason: renamed
+                renamed_to: messaging
             - id: messaging
               value: 'messaging'
               brief: 'A function is set to be executed when messages are sent to a messaging system'

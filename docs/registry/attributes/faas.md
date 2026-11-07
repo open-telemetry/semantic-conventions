@@ -29,7 +29,6 @@ FaaS attributes
 | <a id="faas-invoked-region" href="#faas-invoked-region">`faas.invoked_region`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud region of the invoked function. [4] | `eu-central-1` |
 | <a id="faas-max-memory" href="#faas-max-memory">`faas.max_memory`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` |
 | <a id="faas-name" href="#faas-name">`faas.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the single function that this runtime instance executes. [6] | `my-function`; `myazurefunctionapp/some-function-name` |
-| <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `messaging` [(see more)](#faas-trigger-values) |
 | <a id="faas-version" href="#faas-version">`faas.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The immutable version of the function being executed. [7] | `26`; `pinkfroid-00002` |
 
 **[1] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
@@ -109,20 +108,6 @@ definition of function name MUST be used for this attribute
 | `gcp` | Google Cloud Platform | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 
----
-
-<a id="faas-trigger-values"></a>
-
-`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
-| `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `messaging` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
-| `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-
 ## Deprecated Function as a Service Attributes
 
 Deprecated FaaS attributes
@@ -133,3 +118,18 @@ Deprecated FaaS attributes
 | --- | --- | --- | --- | --- |
 | <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.invocation.id`. | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 | <a id="faas-time" href="#faas-time">`faas.time`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.invocation.start_time`. | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
+| <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.invocation.initiator`. | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [(see more)](#faas-trigger-values) |
+
+---
+
+<a id="faas-trigger-values"></a>
+
+`faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
