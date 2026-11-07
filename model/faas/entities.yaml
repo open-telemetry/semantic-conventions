@@ -11,7 +11,7 @@ groups:
         requirement_level: required
       - ref: faas.version
         role: descriptive
-      - ref: faas.instance
+      - ref: faas.instance.id
         role: identifying
         requirement_level: required
       - ref: faas.max_memory
