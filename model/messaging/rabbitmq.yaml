@@ -30,9 +30,9 @@ span_refinements:
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
-      - ref: messaging.rabbitmq.cluster.name
+      - ref: rabbitmq.cluster.name
         requirement_level: recommended
-      - ref: messaging.rabbitmq.vhost.name
+      - ref: rabbitmq.vhost.name
         requirement_level: recommended
       - ref_group: messaging.rabbitmq.attributes.destination
       - ref: messaging.message.conversation_id
@@ -66,9 +66,9 @@ span_refinements:
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
-      - ref: messaging.rabbitmq.cluster.name
+      - ref: rabbitmq.cluster.name
         requirement_level: recommended
-      - ref: messaging.rabbitmq.vhost.name
+      - ref: rabbitmq.vhost.name
         requirement_level: recommended
       - ref_group: messaging.rabbitmq.attributes.destination
       - ref: rabbitmq.message.delivery_tag
@@ -105,9 +105,9 @@ span_refinements:
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
-      - ref: messaging.rabbitmq.cluster.name
+      - ref: rabbitmq.cluster.name
         requirement_level: recommended
-      - ref: messaging.rabbitmq.vhost.name
+      - ref: rabbitmq.vhost.name
         requirement_level: recommended
       - ref_group: messaging.rabbitmq.attributes.destination
       - ref: rabbitmq.message.delivery_tag
@@ -133,9 +133,9 @@ span_refinements:
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
-      - ref: messaging.rabbitmq.cluster.name
+      - ref: rabbitmq.cluster.name
         requirement_level: recommended
-      - ref: messaging.rabbitmq.vhost.name
+      - ref: rabbitmq.vhost.name
         requirement_level: recommended
       - ref: rabbitmq.message.delivery_tag
         requirement_level:
