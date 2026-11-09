@@ -648,9 +648,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK log processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
-**[1]:** Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+**[1]:** Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
 
 **Attributes:**
 

@@ -186,9 +186,9 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold."
+    brief: "The maximum number of log records the queue of a given instance of an SDK log processor can hold."
     note: |
-      Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+      Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
     instrument: updowncounter
     unit: "{log_record}"
     attributes:
