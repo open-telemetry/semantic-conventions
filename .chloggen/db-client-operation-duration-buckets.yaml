@@ -1,0 +1,7 @@
+change_type: enhancement
+component: db
+note: Add intermediate recommended histogram bucket boundaries for `db.client.operation.duration`.
+issues: [316]
+subtext: |
+  Adds 0.0025, 0.025, 0.25, and 2.5 second boundaries while preserving the
+  existing boundaries and the 0.001 to 10 second range.
