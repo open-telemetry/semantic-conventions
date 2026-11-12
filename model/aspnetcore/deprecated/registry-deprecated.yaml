@@ -1,0 +1,16 @@
+groups:
+  - id: registry.aspnetcore.deprecated
+    type: attribute_group
+    display_name: Deprecated ASP.NET Core Attributes
+    brief: Describes deprecated ASP.NET Core attributes.
+    attributes:
+      - id: aspnetcore.sign_in.is_persistent
+        type: boolean
+        stability: development
+        brief: Deprecated, use `aspnetcore.authentication.is_persistent` instead.
+        deprecated:
+          reason: renamed
+          renamed_to: aspnetcore.authentication.is_persistent
+        annotations:
+          code_generation:
+            exclude: true

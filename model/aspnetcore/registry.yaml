@@ -116,6 +116,10 @@ groups:
         stability: development
         brief: The identifier that names a particular authentication handler.
         examples: ["Cookies", "Bearer", "Identity.Application"]
+      - id: aspnetcore.authentication.is_persistent
+        type: boolean
+        stability: development
+        brief: A flag indicating whether the sign in is persistent.
       - id: aspnetcore.user.is_authenticated
         type: boolean
         stability: stable
@@ -166,9 +170,9 @@ groups:
               value: 'update'
               brief: "Identity user updated."
               stability: development
-            - id: user_name
-              value: 'user_name'
-              brief: "Identity username updated."
+            - id: set_user_name
+              value: 'set_user_name'
+              brief: "Identity username set."
               stability: development
             - id: add_password
               value: 'add_password'
@@ -178,8 +182,8 @@ groups:
               value: 'change_password'
               brief: "Identity user password changed."
               stability: development
-            - id: security_stamp
-              value: 'security_stamp'
+            - id: update_security_stamp
+              value: 'update_security_stamp'
               brief: "Identity user security stamp updated."
               stability: development
             - id: reset_password
@@ -254,9 +258,9 @@ groups:
               value: 'set_lockout_end_date'
               brief: "Identity user lockout end date set."
               stability: development
-            - id: access_failed
-              value: 'access_failed'
-              brief: "Identity user access failure recorded."
+            - id: increment_access_failed
+              value: 'increment_access_failed'
+              brief: "Identity user access failure count incremented."
               stability: development
             - id: reset_access_failed_count
               value: 'reset_access_failed_count'
@@ -282,21 +286,61 @@ groups:
               value: 'redeem_two_factor_recovery_code'
               brief: "Identity user two-factor recovery code redeemed."
               stability: development
-            - id: set_passkey
-              value: 'set_passkey'
-              brief: "Identity user passkey set."
+            - id: add_or_update_passkey
+              value: 'add_or_update_passkey'
+              brief: "Identity user passkey added or updated."
               stability: development
             - id: remove_passkey
               value: 'remove_passkey'
               brief: "Identity user passkey removed."
               stability: development
+            - id: user_name
+              value: 'user_name'
+              brief: "Deprecated, use `set_user_name` instead."
+              stability: development
+              deprecated:
+                reason: renamed
+                renamed_to: "set_user_name"
+              annotations:
+                code_generation:
+                  exclude: true
+            - id: security_stamp
+              value: 'security_stamp'
+              brief: "Deprecated, use `update_security_stamp` instead."
+              stability: development
+              deprecated:
+                reason: renamed
+                renamed_to: "update_security_stamp"
+              annotations:
+                code_generation:
+                  exclude: true
+            - id: access_failed
+              value: 'access_failed'
+              brief: "Deprecated, use `increment_access_failed` instead."
+              stability: development
+              deprecated:
+                reason: renamed
+                renamed_to: "increment_access_failed"
+              annotations:
+                code_generation:
+                  exclude: true
+            - id: set_passkey
+              value: 'set_passkey'
+              brief: "Deprecated, use `add_or_update_passkey` instead."
+              stability: development
+              deprecated:
+                reason: renamed
+                renamed_to: "add_or_update_passkey"
+              annotations:
+                code_generation:
+                  exclude: true
             - id: other
               value: '_OTHER'
               brief: "Any update type that the instrumentation has no prior knowledge of."
               stability: development
         stability: development
         brief: The user update type.
-        examples: ["update", "user_name", "reset_password"]
+        examples: ["update", "set_user_name", "reset_password"]
       - id: aspnetcore.identity.password_check_result
         type:
           members:
@@ -352,7 +396,7 @@ groups:
               stability: development
         stability: development
         brief: What the token will be used for.
-        examples: ["success", "failure"]
+        examples: ["reset_password", "email_confirmation"]
       - id: aspnetcore.identity.token_verified
         type:
           members:
@@ -397,10 +441,6 @@ groups:
         stability: development
         brief: The authentication type.
         examples: ["password", "two_factor"]
-      - id: aspnetcore.sign_in.is_persistent
-        type: boolean
-        stability: development
-        brief: A flag indicating whether the sign in is persistent.
       - id: aspnetcore.identity.sign_in.result
         type:
           members:
@@ -426,4 +466,4 @@ groups:
               stability: development
         stability: development
         brief: Whether the sign in result was success or failure.
-        examples: ["password", "two_factor"]
+        examples: ["success", "failure"]
