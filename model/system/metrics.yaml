@@ -699,3 +699,101 @@ groups:
       - ref: system.memory.linux.slab.state
     entity_associations:
       - host
+  - id: metric.system.cpu.linux.pressure.some_time
+    type: metric
+    metric_name: system.cpu.linux.pressure.some_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which at least some runnable tasks were delayed due to a lack of CPU."
+    note: |
+      Read from the `total` field of the `some` line in `/proc/pressure/cpu`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+
+      The kernel also reports a `full` line for CPU, but it is undefined at the system level and always zero, so no `full` metric is defined for CPU.
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
+  - id: metric.system.io.linux.pressure.some_time
+    type: metric
+    metric_name: system.io.linux.pressure.some_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which at least some non-idle tasks were stalled waiting for IO."
+    note: |
+      Read from the `total` field of the `some` line in `/proc/pressure/io`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
+  - id: metric.system.io.linux.pressure.full_time
+    type: metric
+    metric_name: system.io.linux.pressure.full_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which all non-idle tasks were stalled simultaneously waiting for IO."
+    note: |
+      Read from the `total` field of the `full` line in `/proc/pressure/io`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+
+      The `full` time is a subset of the time reported by `system.io.linux.pressure.some_time`.
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
+  - id: metric.system.irq.linux.pressure.full_time
+    type: metric
+    metric_name: system.irq.linux.pressure.full_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which all non-idle tasks were stalled due to IRQ or softirq handling."
+    note: |
+      Read from the `total` field of the `full` line in `/proc/pressure/irq`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+
+      IRQ pressure only reports a `full` line. `/proc/pressure/irq` is only available on kernels built with `CONFIG_IRQ_TIME_ACCOUNTING` (Linux 6.1 or later).
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
+  - id: metric.system.memory.linux.pressure.some_time
+    type: metric
+    metric_name: system.memory.linux.pressure.some_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which at least some non-idle tasks were stalled due to a lack of memory."
+    note: |
+      Read from the `total` field of the `some` line in `/proc/pressure/memory`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
+  - id: metric.system.memory.linux.pressure.full_time
+    type: metric
+    metric_name: system.memory.linux.pressure.full_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which all non-idle tasks were stalled simultaneously due to a lack of memory."
+    note: |
+      Read from the `total` field of the `full` line in `/proc/pressure/memory`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+
+      The `full` time is a subset of the time reported by `system.memory.linux.pressure.some_time`.
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
