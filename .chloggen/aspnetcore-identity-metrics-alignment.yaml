@@ -1,7 +1,7 @@
 change_type: breaking
 component: aspnetcore
 note: Align ASP.NET Core Identity metrics attributes with the names shipped in ASP.NET Core 10.0.
-issues: [2509]
+issues: [4329]
 subtext: |
   Rename `aspnetcore.sign_in.is_persistent` to `aspnetcore.authentication.is_persistent`.
   Rename the `user_name`, `security_stamp`, `access_failed` and `set_passkey` values of
