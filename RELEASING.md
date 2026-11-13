@@ -14,20 +14,27 @@
 
 ## Making the release
 
-- Create a [new release](https://github.com/open-telemetry/semantic-conventions/releases/new):
-  - Set title and tag to `v{version}`
-  - Set target to the commit of the merged release PR
+- Merging the prepare-release PR into `main` triggers the
+  [create release draft workflow](.github/workflows/create-release.yml).
+  It takes the version from the `otelbot/prepare-release-v{version}` branch and builds from the merge commit.
+  It generates the resolved schema and attaches `resolved.yaml` and `manifest.yaml` to a draft release.
+  - For manual runs, provide the release version and full commit SHA of the merged release PR.
+- After the workflow succeeds, edit the draft in [releases](https://github.com/open-telemetry/semantic-conventions/releases):
   - Copy changelog to the release notes
-    - First click the generate release notes button and keep only the bottom sections under "New Contributors"
-  - Verify that the release looks like expected
+    - Keep only the bottom sections under "New Contributors" from the generated release notes
+  - Verify the release target, notes, and both schema assets
   - Publish release
 
 New release is then auto-discovered by [opentelemetry.io](https://github.com/open-telemetry/opentelemetry.io) pipelines which (via bot-generated PR)
-eventually results in new version of schema file being published.
+eventually results in new version of schema files being published:
+
+- `schemas/{version}` at `https://opentelemetry.io/schemas/{version}`
+- `schemas/semconv-dev/{version}-dev` (development publication manifest) at
+  `https://opentelemetry.io/schemas/semconv-dev/{version}-dev`. It points to `resolved.yaml` in the GitHub release.
 
 ## After the release
 
 - Publishing a release triggers the [post-release workflow](https://github.com/open-telemetry/semantic-conventions/actions/workflows/post-release.yml),
   which opens a pull request against main bumping the development `schema_url` in
-  `model/manifest.yaml` to the `{major}.{minor+1}.0-unreleased` version.
+  `model/manifest.yaml` to the `semconv-unreleased/{major}.{minor+1}.0-unreleased` version.
   Review and merge that pull request.

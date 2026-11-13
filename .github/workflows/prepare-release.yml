@@ -41,6 +41,18 @@ jobs:
           make generate-schema-next NEXT_SEMCONV_VERSION=$version
           git add "schemas/$version"
 
+      - name: Add development publication manifest
+        env:
+          INPUTS_VERSION: ${{ inputs.version }}
+        run: |
+          version=${INPUTS_VERSION}
+          make generate-publication-schema-dev VERSION="$version" \
+            RESOLVED_REGISTRY_URI="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/download/v${version}/resolved.yaml"
+          # Served by opentelemetry.io at https://opentelemetry.io/schemas/semconv-dev/{version}-dev
+          mkdir -p schemas/semconv-dev
+          cp "internal/tools/bin/publication-schema-dev/${version}-dev/manifest.yaml" "schemas/semconv-dev/${version}-dev"
+          git add "schemas/semconv-dev/${version}-dev"
+
       - name: Update change log
         env:
           INPUTS_VERSION: ${{ inputs.version }}
