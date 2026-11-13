@@ -11,6 +11,3 @@ groups:
         deprecated:
           reason: renamed
           renamed_to: aspnetcore.authentication.is_persistent
-        annotations:
-          code_generation:
-            exclude: true
