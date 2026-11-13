@@ -66,3 +66,26 @@ the `.git` extension.
 **[4] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
+
+## VCS Repository Subdirectory
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `vcs.repository.subdirectory`
+
+**Description:** A directory within a repository in the Version Control System, such as the location of a service, package or component in a monorepo.
+
+**Attributes:**
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`vcs.repository.subdirectory.path`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The path of a directory within the repository, relative to the repository root. [5] | `packages/sdk-trace`; `services/checkout` |
+
+**[5] `vcs.repository.subdirectory.path`:** It is intended for repositories that contain multiple services,
+packages or components (for example, a monorepo), where
+`vcs.repository.url.full` alone only locates the top level of the
+repository. The path SHOULD use forward slashes (`/`) as separators
+and SHOULD NOT start or end with a separator.
+
+Combined with `vcs.repository.url.full` and `vcs.ref.head.revision`,
+it allows a backend to locate the directory at a specific revision.
