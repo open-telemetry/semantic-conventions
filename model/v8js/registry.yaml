@@ -106,10 +106,20 @@ groups:
               value: 'TCPServerWrap'
               brief: 'Active TCP Servers.'
               stability: development
-            - id: tcpwrap
-              value: 'TCPWrap'
+            - id: tcpsocketwrap
+              value: 'TCPSocketWrap'
               brief: 'Active TCP connections.'
               stability: development
+            - id: tcpwrap
+              value: 'TCPWrap'
+              brief: 'Deprecated. Use `TCPSocketWrap` instead.'
+              stability: development
+              note: >
+                `process.getActiveResourcesInfo()` has never returned this value:
+                for active TCP connections it reports `TCPSocketWrap`.
+              deprecated:
+                reason: renamed
+                renamed_to: 'tcpsocketwrap'
             - id: timeout
               value: 'Timeout'
               brief: 'Active `setTimeout` or `setInterval` timers.'
