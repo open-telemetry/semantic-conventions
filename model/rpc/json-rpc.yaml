@@ -6,15 +6,15 @@ attribute_groups:
     visibility: internal
     attributes:
       - ref: rpc.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: 'MUST be set to `jsonrpc`.'
         examples: ['jsonrpc']
 
 span_refinements:
-  - id: span.rpc.jsonrpc.call.client
-    ref: rpc.call.client
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
+  - id: jsonrpc.client.call
+    ref: rpc.client.call
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
@@ -65,11 +65,8 @@ span_refinements:
             address from it SHOULD set this attribute.
         note: ""
 
-  - id: span.rpc.jsonrpc.call.server
-    ref: rpc.call.server
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
+  - id: jsonrpc.server.call
+    ref: rpc.server.call
     stability: development
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |

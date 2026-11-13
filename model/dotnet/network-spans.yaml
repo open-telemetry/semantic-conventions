@@ -1,5 +1,5 @@
 groups:
-  - id: span.dotnet.http.request.wait_for_connection.internal
+  - id: span.dotnet.http.request.wait_for_connection
     type: span
     stability: development
     span_kind: internal
@@ -28,7 +28,7 @@ groups:
         note: ""
         examples: ["version_negotiation_error", "System.OperationCanceledException"]
 
-  - id: span.dotnet.http.connection_setup.internal
+  - id: span.dotnet.http.connection_setup
     type: span
     stability: development
     span_kind: internal
@@ -65,7 +65,7 @@ groups:
         examples: ["name_resolution_error", "System.OperationCanceledException"]
       - ref: url.scheme
 
-  - id: span.dotnet.socket.connect.internal
+  - id: span.dotnet.socket.connect
     type: span
     stability: development
     span_kind: internal
@@ -123,7 +123,7 @@ groups:
           [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
         examples: ["connection_refused", "address_not_available"]
 
-  - id: span.dotnet.dns.lookup.internal
+  - id: span.dotnet.dns.lookup
     type: span
     stability: development
     span_kind: internal
@@ -169,7 +169,7 @@ groups:
           See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror) for more details.
         examples: ["host_not_found", "try_again" ]
 
-  - id: span.dotnet.tls.handshake.internal
+  - id: span.dotnet.tls.handshake
     type: span
     span_kind: internal
     stability: development

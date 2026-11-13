@@ -6,10 +6,6 @@ metrics:
     annotations:
       code_generation:
         metric_value_type: double
-      naming_conventions:
-        # TODO hw.voltage is used as a namespace by hw.voltage.limit
-        policy_exceptions:
-          - metric_namespace_collision
     stability: development
     brief: "Voltage measured by the sensor."
     instrument: gauge
@@ -58,6 +54,9 @@ metric_refinements:
       - ref: hw.sensor_location
         requirement_level: recommended
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `voltage`."
         examples: ["voltage"]
       - ref: hw.state

@@ -1,4 +1,58 @@
+# TODO: these metrics are used as namespaces by the corresponding `*.limit` metrics.
+[[policy.finding_filters]]
+exclude = ["naming_convention_metric_namespace_collision"]
+signal_type = "metric"
+signal_names = ["hw.battery.charge", "hw.cpu.speed", "hw.fan.speed", "hw.temperature", "hw.voltage"]
+
+# TODO: https://github.com/open-telemetry/semantic-conventions/issues/1514
+# TODO: https://github.com/open-telemetry/semantic-conventions/issues/1616
+[[policy.finding_filters]]
+exclude = ["stability_metric_lower_stability_attribute"]
+signal_type = "metric"
+signal_names = ["dotnet.process.cpu.time", "kestrel.connection.duration", "kestrel.tls_handshake.duration"]
+
+# TODO: https://github.com/open-telemetry/semantic-conventions/issues/1519
+[[policy.finding_filters]]
+exclude = ["stability_entity_lower_stability_attribute"]
+signal_type = "entity"
+signal_names = ["service"]
+
 [[policy.finding_filters]]
 exclude = ["compatibility_entity_missing"]
 signal_type = "entity"
-signal_names = ["android"]
+signal_names = ["aws.eks", "browser", "cloud", "device", "faas", "heroku"]
+
+# Span types renamed after v1.45.0 in #4289. Remove once the next release is the baseline.
+[[policy.finding_filters]]
+exclude = ["compatibility_span_missing"]
+signal_type = "span"
+signal_names = [
+    "aws.client",
+    "cicd.pipeline.run.server",
+    "cicd.pipeline.task.internal",
+    "cli.client",
+    "cli.internal",
+    "db.client",
+    "dotnet.dns.lookup.internal",
+    "dotnet.http.connection_setup.internal",
+    "dotnet.http.request.wait_for_connection.internal",
+    "dotnet.socket.connect.internal",
+    "dotnet.tls.handshake.internal",
+    "faas.client",
+    "faas.datasource.server",
+    "faas.server",
+    "faas.timer.server",
+    "graphql.server",
+    "http.client",
+    "http.server",
+    "messaging.create.producer",
+    "messaging.eventhubs.generic.client",
+    "messaging.process.consumer",
+    "messaging.receive.client",
+    "messaging.send.client",
+    "messaging.send.producer",
+    "messaging.servicebus.generic.client",
+    "messaging.settle.client",
+    "rpc.call.client",
+    "rpc.call.server"
+]

@@ -60,6 +60,9 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   - [Metric: `system.process.limit`](#metric-systemprocesslimit)
 - [`system.memory.{os}.` - OS Specific System Memory Metrics](#systemmemoryos---os-specific-system-memory-metrics)
   - [Metric: `system.memory.linux.available`](#metric-systemmemorylinuxavailable)
+  - [Metric: `system.memory.linux.buffers`](#metric-systemmemorylinuxbuffers)
+  - [Metric: `system.memory.linux.cached`](#metric-systemmemorylinuxcached)
+  - [Metric: `system.memory.linux.free`](#metric-systemmemorylinuxfree)
   - [Metric: `system.memory.linux.hugepages.limit`](#metric-systemmemorylinuxhugepageslimit)
   - [Metric: `system.memory.linux.hugepages.page_size`](#metric-systemmemorylinuxhugepagespage_size)
   - [Metric: `system.memory.linux.hugepages.reserved`](#metric-systemmemorylinuxhugepagesreserved)
@@ -164,7 +167,7 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The mode of the CPU [1] | `user`; `system` [(see more)](#cpu-mode-values) |
-| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The identifier of a logical execution target (CPU) as seen by the operating system, in the range [0..n-1]. [2] | `1` |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | int | The identifier of a logical execution target (CPU) as seen by the operating system, in the range [0..n-1]. [2] | `1` |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
@@ -207,7 +210,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The identifier of a logical execution target (CPU) as seen by the operating system, in the range [0..n-1]. [1] | `1` |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | int | The identifier of a logical execution target (CPU) as seen by the operating system, in the range [0..n-1]. [1] | `1` |
 
 **[1] `cpu.logical_number`:** On systems with simultaneous multithreading (SMT) enabled — such as Intel Hyper-Threading or AMD SMT — this value will usually differ from the physical core number, because each core presents multiple logical CPUs for the system to use.
 
@@ -233,7 +236,7 @@ This metric is [opt-in][MetricOptIn].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The mode of the CPU [1] | `user`; `system` [(see more)](#cpu-mode-values) |
-| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The identifier of a logical execution target (CPU) as seen by the operating system, in the range [0..n-1]. [2] | `1` |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | int | The identifier of a logical execution target (CPU) as seen by the operating system, in the range [0..n-1]. [2] | `1` |
 
 **[1] `cpu.mode`:** Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
@@ -275,13 +278,15 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.usage` | UpDownCounter | `By` | Reports memory in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.usage` | UpDownCounter | `By` | Reports memory by state. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+
+**[1]:** The sum of the `used` and `available` state values SHOULD be equal to `system.memory.limit`.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `free`; `cached` [(see more)](#system-memory-state-values) |
+| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
 
 ---
 
@@ -291,12 +296,12 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Actual used virtual memory in bytes. [2] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
+**[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemAvailable" from /proc/meminfo.
+
+**[2]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -330,13 +335,15 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.utilization` | Gauge | `1` | Percentage of memory bytes in use. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.utilization` | Gauge | `1` | Fraction of memory bytes by state. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+
+**[1]:** The sum of the `used` and `available` state values SHOULD be equal to 1.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `free`; `cached` [(see more)](#system-memory-state-values) |
+| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
 
 ---
 
@@ -346,12 +353,12 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Actual used virtual memory in bytes. [2] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
+**[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemAvailable" from /proc/meminfo.
+
+**[2]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -378,8 +385,8 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` |
-| [`system.paging.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory paging state | `free` [(see more)](#system-paging-state-values) |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` |
+| [`system.paging.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The memory paging state | `free` [(see more)](#system-paging-state-values) |
 
 ---
 
@@ -389,8 +396,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | free | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `used` | used | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -413,8 +420,8 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` |
-| [`system.paging.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory paging state | `free` [(see more)](#system-paging-state-values) |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` |
+| [`system.paging.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The memory paging state | `free` [(see more)](#system-paging-state-values) |
 
 ---
 
@@ -424,8 +431,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | free | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `used` | used | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -482,7 +489,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.paging.direction`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The paging access direction | `in` [(see more)](#system-paging-direction-values) |
+| [`system.paging.direction`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging access direction | `in` [(see more)](#system-paging-direction-values) |
 | [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` [(see more)](#system-paging-fault-type-values) |
 
 ---
@@ -493,8 +500,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `in` | in | ![Development](https://img.shields.io/badge/-development-blue) |
-| `out` | out | ![Development](https://img.shields.io/badge/-development-blue) |
+| `in` | in | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `out` | out | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -533,7 +540,7 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [(see more)](#disk-io-direction-values) |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
 
 ---
 
@@ -568,7 +575,7 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [(see more)](#disk-io-direction-values) |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
 
 ---
 
@@ -609,7 +616,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -638,7 +645,7 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [(see more)](#disk-io-direction-values) |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
 
 ---
 
@@ -673,7 +680,7 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [(see more)](#disk-io-direction-values) |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
 
 ---
 
@@ -707,7 +714,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -737,11 +744,11 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
-| [`system.filesystem.mode`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mode | `rw, ro` |
-| [`system.filesystem.mountpoint`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
-| [`system.filesystem.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem state | `used` [(see more)](#system-filesystem-state-values) |
-| [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` [(see more)](#system-filesystem-type-values) |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
+| [`system.filesystem.mode`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem mode | `rw, ro` |
+| [`system.filesystem.mountpoint`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
+| [`system.filesystem.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem state | `used` [(see more)](#system-filesystem-state-values) |
+| [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem type | `ext4` [(see more)](#system-filesystem-type-values) |
 
 ---
 
@@ -751,9 +758,9 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | free | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `reserved` | reserved | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `used` | used | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -763,12 +770,12 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exfat | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `ext4` | ext4 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fat32` | fat32 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hfsplus` | hfsplus | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `ntfs` | ntfs | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `refs` | refs | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -791,11 +798,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
-| [`system.filesystem.mode`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mode | `rw, ro` |
-| [`system.filesystem.mountpoint`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
-| [`system.filesystem.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem state | `used` [(see more)](#system-filesystem-state-values) |
-| [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` [(see more)](#system-filesystem-type-values) |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
+| [`system.filesystem.mode`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem mode | `rw, ro` |
+| [`system.filesystem.mountpoint`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
+| [`system.filesystem.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem state | `used` [(see more)](#system-filesystem-state-values) |
+| [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem type | `ext4` [(see more)](#system-filesystem-type-values) |
 
 ---
 
@@ -805,9 +812,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | free | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `reserved` | reserved | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `used` | used | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -817,12 +824,12 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exfat | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `ext4` | ext4 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fat32` | fat32 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hfsplus` | hfsplus | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `ntfs` | ntfs | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `refs` | refs | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -845,10 +852,10 @@ This metric is [opt-in][MetricOptIn].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
-| [`system.filesystem.mode`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mode | `rw, ro` |
-| [`system.filesystem.mountpoint`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
-| [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` [(see more)](#system-filesystem-type-values) |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
+| [`system.filesystem.mode`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem mode | `rw, ro` |
+| [`system.filesystem.mountpoint`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
+| [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The filesystem type | `ext4` [(see more)](#system-filesystem-type-values) |
 
 ---
 
@@ -858,12 +865,12 @@ This metric is [opt-in][MetricOptIn].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exfat | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `ext4` | ext4 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fat32` | fat32 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hfsplus` | hfsplus | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `ntfs` | ntfs | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `refs` | refs | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -887,7 +894,7 @@ This metric is [opt-in][MetricOptIn].
 | [`file.lock.mechanism`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
 | [`file.lock.mode`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
 | [`file.lock.type`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` [(see more)](#file-lock-type-values) |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | OS-specific identifier for the device where the file resides. | `08:01` |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | OS-specific identifier for the device where the file resides. | `08:01` |
 
 ---
 
@@ -967,7 +974,7 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [(see more)](#network-io-direction-values) |
-| [`system.device.name`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
+| [`system.device.name`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The OS level identifier for a device, such as disk, partition or network interface. | `/dev/sda`; `eth0`; `\network-drive` |
 
 ---
 
@@ -1077,7 +1084,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.connection.state`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The state of network connection [1] | `close_wait` [(see more)](#network-connection-state-values) |
+| [`network.connection.state`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The state of network connection [1] | `close_wait` [(see more)](#network-connection-state-values) |
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` [(see more)](#network-transport-values) |
 
@@ -1097,17 +1104,17 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `close_wait` | close_wait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closed` | closed | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closing` | closing | ![Development](https://img.shields.io/badge/-development-blue) |
-| `established` | established | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_1` | fin_wait_1 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_2` | fin_wait_2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `last_ack` | last_ack | ![Development](https://img.shields.io/badge/-development-blue) |
-| `listen` | listen | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_received` | syn_received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_sent` | syn_sent | ![Development](https://img.shields.io/badge/-development-blue) |
-| `time_wait` | time_wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `close_wait` | close_wait | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `closed` | closed | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `closing` | closing | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `established` | established | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fin_wait_1` | fin_wait_1 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fin_wait_2` | fin_wait_2 | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `last_ack` | last_ack | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `listen` | listen | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `syn_received` | syn_received | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `syn_sent` | syn_sent | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `time_wait` | time_wait | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -1250,16 +1257,78 @@ an `{os}` prefix to split this metric across OSes.
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `system.memory.linux.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-**[1]:** This is an alternative to `system.memory.usage` metric with `state=free`.
+**[1]:** This is equivalent to the `system.memory.usage` metric with `state=available`.
 Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
 This is supposed to be more accurate than just "free" memory.
-For reference, see the calculations [here](https://superuser.com/a/980821).
+For reference, see the calculations [here](https://superuser.com/a/980821?link-check=no&last-validated=2026-11-04).
 See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 <!-- markdownlint-restore-->
+
+### Metric: `system.memory.linux.buffers`
+
+This metric is [opt-in][MetricOptIn].
+
+<!-- semconv metric.system.memory.linux.buffers -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `system.memory.linux.buffers` | UpDownCounter | `By` | Memory used by kernel buffers. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+
+**[1]:** Equivalent of `buffers` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+`Buffers` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+### Metric: `system.memory.linux.cached`
+
+This metric is [opt-in][MetricOptIn].
+
+<!-- semconv metric.system.memory.linux.cached -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `system.memory.linux.cached` | UpDownCounter | `By` | Memory used by the page cache. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+
+**[1]:** Corresponds to `Cached` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+Note that the `cache` column of the [`free` command](https://man7.org/linux/man-pages/man1/free.1.html)
+also includes reclaimable slab memory (`SReclaimable`), which is reported by `system.memory.linux.slab.usage`.
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+### Metric: `system.memory.linux.free`
+
+This metric is [opt-in][MetricOptIn].
+
+<!-- semconv metric.system.memory.linux.free -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `system.memory.linux.free` | UpDownCounter | `By` | Physical memory left completely unused by the system, excluding memory used by buffers and the page cache. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+
+**[1]:** Equivalent of `free` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+`MemFree` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+This value does not reflect the memory available for starting new applications, see `system.memory.linux.available` instead.
+
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
 
 ### Metric: `system.memory.linux.hugepages.limit`
 
@@ -1344,7 +1413,7 @@ Including them in `usage` would break the convention that `usage` states sum to 
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.linux.hugepages.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux HugePages memory state | `free`; `used` [(see more)](#system-memory-linux-hugepages-state-values) |
+| [`system.memory.linux.hugepages.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The Linux HugePages memory state | `free`; `used` [(see more)](#system-memory-linux-hugepages-state-values) |
 
 ---
 
@@ -1354,8 +1423,8 @@ Including them in `usage` would break the convention that `usage` states sum to 
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | free | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `used` | used | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1376,7 +1445,7 @@ Including them in `usage` would break the convention that `usage` states sum to 
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.linux.hugepages.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux HugePages memory state | `free`; `used` [(see more)](#system-memory-linux-hugepages-state-values) |
+| [`system.memory.linux.hugepages.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The Linux HugePages memory state | `free`; `used` [(see more)](#system-memory-linux-hugepages-state-values) |
 
 ---
 
@@ -1386,8 +1455,8 @@ Including them in `usage` would break the convention that `usage` states sum to 
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | free | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `used` | used | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1434,7 +1503,7 @@ See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.linux.slab.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` [(see more)](#system-memory-linux-slab-state-values) |
+| [`system.memory.linux.slab.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` [(see more)](#system-memory-linux-slab-state-values) |
 
 ---
 
@@ -1444,8 +1513,8 @@ See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `reclaimable` | reclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unreclaimable` | unreclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reclaimable` | reclaimable | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `unreclaimable` | unreclaimable | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

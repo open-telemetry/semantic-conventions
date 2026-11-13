@@ -106,7 +106,9 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Reports memory in use by state."
+    brief: "Reports memory by state."
+    note: |
+      The sum of the `used` and `available` state values SHOULD be equal to `system.memory.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
@@ -135,7 +137,9 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Percentage of memory bytes in use.
+    brief: Fraction of memory bytes by state.
+    note: |
+      The sum of the `used` and `available` state values SHOULD be equal to 1.
     instrument: gauge
     unit: "1"
     attributes:
@@ -556,11 +560,64 @@ groups:
     stability: development
     brief: "An estimate of how much memory is available for starting new applications, without causing swapping."
     note: |
-      This is an alternative to `system.memory.usage` metric with `state=free`.
+      This is equivalent to the `system.memory.usage` metric with `state=available`.
       Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
       This is supposed to be more accurate than just "free" memory.
-      For reference, see the calculations [here](https://superuser.com/a/980821).
+      For reference, see the calculations [here](https://superuser.com/a/980821?link-check=no&last-validated=2026-11-04).
       See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.free
+    type: metric
+    metric_name: system.memory.linux.free
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Physical memory left completely unused by the system, excluding memory used by buffers and the page cache."
+    note: |
+      Equivalent of `free` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `MemFree` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+      This value does not reflect the memory available for starting new applications, see `system.memory.linux.available` instead.
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.buffers
+    type: metric
+    metric_name: system.memory.linux.buffers
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory used by kernel buffers."
+    note: |
+      Equivalent of `buffers` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `Buffers` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.cached
+    type: metric
+    metric_name: system.memory.linux.cached
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory used by the page cache."
+    note: |
+      Corresponds to `Cached` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+      Note that the `cache` column of the [`free` command](https://man7.org/linux/man-pages/man1/free.1.html)
+      also includes reclaimable slab memory (`SReclaimable`), which is reported by `system.memory.linux.slab.usage`.
     instrument: updowncounter
     unit: "By"
     attributes: []

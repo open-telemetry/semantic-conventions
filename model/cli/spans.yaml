@@ -18,7 +18,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if process.exit.code is not 0
 
-  - id: span.cli.internal
+  - id: span.cli.execute
     type: span
     span_kind: internal
     stability: development
@@ -33,7 +33,7 @@ groups:
       An Error is defined as when the `{process.exit.code}` attribute is not 0.
     extends: attributes.cli.common
 
-  - id: span.cli.client
+  - id: span.cli.client.execute
     type: span
     span_kind: client
     stability: development

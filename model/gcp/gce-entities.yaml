@@ -1,14 +1,16 @@
 groups:
-  - id: entity.gcp.gce
+  - id: entity.gcp.gce.instance
     type: entity
     stability: development
-    name: gcp.gce
+    name: gcp.gce.instance
     brief: >
-      Resources used by Google Compute Engine (GCE).
+      A Google Compute Engine (GCE) instance.
     attributes:
       - ref: gcp.gce.instance.name
-        requirement_level: recommended
+        role: identifying
+        requirement_level: required
       - ref: gcp.gce.instance.hostname
+        role: descriptive
         requirement_level: recommended
       - ref: gcp.gce.instance.labels
         stability: development

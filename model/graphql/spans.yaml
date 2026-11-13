@@ -1,5 +1,5 @@
 groups:
-  - id: span.graphql.server
+  - id: span.graphql.server.operation
     type: span
     stability: development
     span_kind: server
