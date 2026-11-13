@@ -20,7 +20,7 @@ Currently, the following namespaces exist:
 | Namespace | Entity | Stability |
 | --------- | ------ | --------- |
 | App | | |
-| | [app](app.md#app) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [app](app.md#app) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). |
 | AWS | | |
 | | [aws.ecs.cluster](aws.md#aws-ecs-cluster) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.ecs.container](aws.md#aws-ecs-container) | ![Development](https://img.shields.io/badge/-development-blue) |
