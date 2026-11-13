@@ -44,8 +44,8 @@ groups:
               value: 'free'
               stability: development
               deprecated:
-                reason: obsoleted
-                note: "Removed, report memory usage with the `used` and `available` states instead."
+                reason: uncategorized
+                note: "Removed, report memory usage with the `used` and `available` states instead, or the Linux-specific `system.memory.linux.free` metric."
             - id: shared
               value: 'shared'
               stability: development
@@ -56,14 +56,14 @@ groups:
               value: 'buffers'
               stability: development
               deprecated:
-                reason: obsoleted
-                note: "Removed, report memory usage with the `used` and `available` states instead."
+                reason: uncategorized
+                note: "Removed, report memory usage with the `used` and `available` states instead, or the Linux-specific `system.memory.linux.buffers` metric."
             - id: cached
               value: 'cached'
               stability: development
               deprecated:
-                reason: obsoleted
-                note: "Removed, report memory usage with the `used` and `available` states instead."
+                reason: uncategorized
+                note: "Removed, report memory usage with the `used` and `available` states instead, or the Linux-specific `system.memory.linux.cached` metric."
         stability: development
         brief: "The memory state"
         examples: ["used", "available"]

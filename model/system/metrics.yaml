@@ -571,6 +571,59 @@ groups:
     entity_associations:
       - host
 
+  - id: metric.system.memory.linux.free
+    type: metric
+    metric_name: system.memory.linux.free
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Physical memory left completely unused by the system, excluding memory used by buffers and the page cache."
+    note: |
+      Equivalent of `free` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `MemFree` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+      This value does not reflect the memory available for starting new applications, see `system.memory.linux.available` instead.
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.buffers
+    type: metric
+    metric_name: system.memory.linux.buffers
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory used by kernel buffers."
+    note: |
+      Equivalent of `buffers` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `Buffers` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.cached
+    type: metric
+    metric_name: system.memory.linux.cached
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory used by the page cache."
+    note: |
+      Corresponds to `Cached` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+      Note that the `cache` column of the [`free` command](https://man7.org/linux/man-pages/man1/free.1.html)
+      also includes reclaimable slab memory (`SReclaimable`), which is reported by `system.memory.linux.slab.usage`.
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
   - id: metric.system.memory.linux.shared
     type: metric
     metric_name: system.memory.linux.shared
