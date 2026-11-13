@@ -519,6 +519,27 @@ groups:
 
       Capacity and available are reported for the backing filesystem, which may be shared
       with other workloads; therefore, usage may not equal `capacity - available`.
+  - id: metric.k8s.pod.filesystem.inode.used
+    type: metric
+    metric_name: k8s.pod.filesystem.inode.used
+    stability: development
+    brief: "The inodes used by the Pod's ephemeral storage."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [FsStats.InodesUsed](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+
+      The total and free inodes of the backing filesystem are not reported per Pod
+      because they are the same as the node's root filesystem; see `k8s.node.filesystem.inode.count`
+      and `k8s.node.filesystem.inode.free`.
 
   # k8s.pod.volume.* metrics
   - id: metric.k8s.pod.volume.available
