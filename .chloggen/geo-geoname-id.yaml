@@ -1,0 +1,4 @@
+change_type: enhancement
+component: geo
+note: Add `geo.geoname.id` to identify geographic features using GeoNames identifiers.
+issues: [4304]
