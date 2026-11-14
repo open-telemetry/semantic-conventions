@@ -235,12 +235,12 @@ New attributes, metrics, events, spans, and entities in these namespaces MUST
 be defined in the owning registry, not in this repository. Existing deprecated
 definitions are kept here to point users to the new owner.
 
-| Namespace  | Owning registry |
-| ---------- | --------------- |
+| Namespace | Owning registry |
+| --- | --- |
 | `gen_ai.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
-| `mcp.*`    | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
+| `mcp.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
 | `openai.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
-| `focus.*`  | [FinOps FOCUS semantic conventions](https://github.com/FinOps-Open-Cost-and-Usage-Spec/focus-otel-semconv) |
+| `focus.*` | [FinOps FOCUS semantic conventions](https://github.com/FinOps-Open-Cost-and-Usage-Spec/focus-otel-semconv) |
 
 This rule is enforced for this repository by the `namespace_ownership` policy
 in [`policies/`](../../policies/README.md).
