@@ -37,9 +37,10 @@ CloudEvent-specific instrumentations SHOULD:
 
 - instrument the transport protocol when the transport protocol (i.e http, rabbitmq)
 is not already instrumented, following
-the [Semantic Conventions for Messaging Spans](../messaging/messaging-spans.md).
-- extend/enrich the transport protocol spans with the attributes listed below
-to capture the details of the event.
+the [Semantic Conventions for Messaging Spans](../messaging/messaging-spans.md) or
+[Semantic Conventions for Http Spans](../http/http-spans.md).
+- extend/enrich the transport spans with the attributes listed below to capture
+the details of the event.
 
 The [CloudEvents Distributed Tracing Extension](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/extensions/distributed-tracing.md)
 defines a transport agnostic manner to propagate trace context.
