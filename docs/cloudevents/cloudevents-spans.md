@@ -38,7 +38,7 @@ CloudEvent-specific instrumentations SHOULD:
 - instrument the transport protocol when the transport protocol (i.e http, rabbitmq)
 is not already instrumented, following
 the [Semantic Conventions for Messaging Spans](../messaging/messaging-spans.md) or
-[Semantic Conventions for Http Spans](../http/http-spans.md).
+[Semantic Conventions for HTTP Spans](../http/http-spans.md).
 - extend/enrich the transport spans with the attributes listed below to capture
 the details of the event.
 
