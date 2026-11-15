@@ -466,6 +466,11 @@ or filtering in aggregate.
 See the [general metrics guidelines](/docs/general/metrics.md#general-guidelines).
 
 - Attributes on a metric should have low cardinality.
+- Reuse existing attributes from the [registry](/docs/registry/attributes/README.md)
+  with the same name and value semantics used on spans and other signals.
+- Don't use attributes that identify individual entities or have unbounded values,
+  such as user, session or request IDs, full URLs, raw paths, or free-form messages.
+  Capture those on spans or events instead.
 - Specify a [requirement level](/docs/general/attribute-requirement-level.md) for
   each attribute. Attributes that may have high cardinality, including values an
   attacker can control (for example, values derived from request headers),
