@@ -310,9 +310,6 @@ pluralized (see [Do not pluralize UpDownCounter names](#do-not-pluralize-updownc
 For example, `system.process.count` represents the number of processes that
 currently exist, which can increase or decrease.
 
-Existing stable metric names are not renamed to follow this guidance, in
-accordance with the [stability guarantees](https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability).
-
 #### Do not use `total`
 
 UpDownCounters SHOULD NOT use `_total` because then they will look like
