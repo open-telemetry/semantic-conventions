@@ -428,8 +428,8 @@ Pick the instrument based on how the value behaves and how it will be aggregated
 - **Counter** - for monotonically increasing values, such as the number of bytes
   sent or the total CPU time.
 - **UpDownCounter** - for additive values that can increase and decrease, such as the
-  number of active requests or the memory in use, where summing values across
-  instances is meaningful.
+  number of active requests, the number of items in a queue, or the memory in use,
+  where summing values across instances is meaningful.
 - **Gauge** - for non-additive values sampled at a point in time, such as a temperature
   or a utilization ratio, where summing values across instances is not meaningful.
 
