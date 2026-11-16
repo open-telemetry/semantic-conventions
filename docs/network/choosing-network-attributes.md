@@ -680,8 +680,9 @@ When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Peer port number of the network connection. | `65123` |
 | [`network.peer.as.number`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address. [2] | `64496`; `15169` |
 | [`network.peer.as.organization`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the peer IP address. [3] | `Example Networks Inc.`; `Google LLC` |
-| [`network.peer.mac.address`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Peer Media Access Control (MAC) address of the network connection. [4] | `00-00-5E-00-53-23` |
-| [`network.peer.prefix`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the peer IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`network.peer.hostname`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The hostname associated with the peer endpoint of the network connection. [4] | `peer.example.com`; `peer` |
+| [`network.peer.mac.address`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Peer Media Access Control (MAC) address of the network connection. [5] | `00-00-5E-00-53-23` |
+| [`network.peer.prefix`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the peer IP address, in CIDR notation. [6] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `network.peer.address`:** This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
 
@@ -689,14 +690,30 @@ When connecting using `connect(2)` ([Linux or other POSIX systems](https://man7.
 
 **[3] `network.peer.as.organization`:** This attribute SHOULD only be set when `network.peer.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[4] `network.peer.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[4] `network.peer.hostname`:** The value MAY be a fully qualified domain name or a short hostname, as described in
+[RFC 9499](https://www.rfc-editor.org/rfc/rfc9499.html#section-2).
+It MAY be obtained from reverse DNS, configuration, or other endpoint metadata.
+Populating this attribute does not require an additional DNS lookup.
+
+This attribute MAY be set whether or not `network.peer.address` is set. When
+`network.peer.address` is set, both attributes MUST describe the same peer endpoint.
+This attribute MUST NOT replace `network.peer.address` or describe a different
+endpoint behind an intermediary. If the hostname is unknown, this attribute MUST NOT be set.
+
+A hostname does not, by itself, authenticate the endpoint.
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information.
+
+**[5] `network.peer.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
 >
 > This attribute may contain sensitive (PII) information.
 
-**[5] `network.peer.prefix`:**
+**[6] `network.peer.prefix`:**
 
 > [!WARNING]
 >
@@ -756,8 +773,9 @@ When binding using `bind(2)` ([Linux or other POSIX systems](https://man7.org/li
 | [`network.local.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Local port number of the network connection. | `65123` |
 | [`network.local.as.number`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the local IP address. [2] | `64496`; `15169` |
 | [`network.local.as.organization`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the organization associated with the autonomous system of the local IP address. [3] | `Example Networks Inc.`; `Google LLC` |
-| [`network.local.mac.address`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Local Media Access Control (MAC) address of the network connection. [4] | `00-00-5E-00-53-23` |
-| [`network.local.prefix`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the local IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
+| [`network.local.hostname`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The hostname associated with the local endpoint of the network connection. [4] | `host.example.com`; `host` |
+| [`network.local.mac.address`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Local Media Access Control (MAC) address of the network connection. [5] | `00-00-5E-00-53-23` |
+| [`network.local.prefix`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The IP prefix associated with the local IP address, in CIDR notation. [6] | `192.0.2.0/24`; `2001:db8::/32` |
 
 **[1] `network.local.address`:** This SHOULD be an IP address, UNIX domain socket name, or other address specific to the network type.
 
@@ -765,14 +783,30 @@ When binding using `bind(2)` ([Linux or other POSIX systems](https://man7.org/li
 
 **[3] `network.local.as.organization`:** This attribute SHOULD only be set when `network.local.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[4] `network.local.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[4] `network.local.hostname`:** The value MAY be a fully qualified domain name or a short hostname, as described in
+[RFC 9499](https://www.rfc-editor.org/rfc/rfc9499.html#section-2).
+It MAY be obtained from reverse DNS, configuration, or other endpoint metadata.
+Populating this attribute does not require an additional DNS lookup.
+
+This attribute MAY be set whether or not `network.local.address` is set. When
+`network.local.address` is set, both attributes MUST describe the same local endpoint.
+This attribute MUST NOT replace `network.local.address` or describe a different
+endpoint behind an intermediary. If the hostname is unknown, this attribute MUST NOT be set.
+
+A hostname does not, by itself, authenticate the endpoint.
+
+> [!WARNING]
+>
+> This attribute may contain sensitive (PII) information.
+
+**[5] `network.local.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
 >
 > This attribute may contain sensitive (PII) information.
 
-**[5] `network.local.prefix`:**
+**[6] `network.local.prefix`:**
 
 > [!WARNING]
 >
