@@ -10,7 +10,7 @@ change_type: breaking
 component: faas
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Renames `faas.instance` to `faas.instance.id` to avoid conflict with the faas.instance entity.
+note: Renames `faas.instance` to `faas.instance.id` to enable  `faas.instance.*` to be the be a namespace.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
