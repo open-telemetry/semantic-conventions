@@ -14,7 +14,7 @@ test_fails_on_attribute_in_owned_namespace if {
 
 test_fails_on_attribute_equal_to_owned_namespace if {
     count(deny) == 1 with input as {"registry": {"attributes": [
-        {"key": "focus", "type": "string", "brief": "Focus."},
+        {"key": "openai", "type": "string", "brief": "OpenAI."},
     ]}}
 }
 
@@ -23,7 +23,7 @@ test_fails_on_each_signal_type if {
         "metrics": [{"name": "mcp.client.operation.duration", "brief": "Duration."}],
         "spans": [{"type": "gen_ai.client.inference", "brief": "Inference."}],
         "events": [{"name": "gen_ai.client.inference.operation.details", "brief": "Details."}],
-        "entities": [{"type": "focus.workload", "brief": "Workload."}],
+        "entities": [{"type": "gen_ai.agent", "brief": "Agent."}],
     }}
 }
 
@@ -67,6 +67,6 @@ test_passes_on_similar_prefix_outside_namespace if {
             {"key": "mcpx.id", "type": "string", "brief": "Not mcp."},
             {"key": "aws.bedrock.guardrail.id", "type": "string", "brief": "Not owned."},
         ],
-        "metrics": [{"name": "focused.metric", "brief": "Not focus."}],
+        "metrics": [{"name": "endusers.metric", "brief": "Not enduser."}],
     }}
 }
