@@ -156,13 +156,14 @@ Follow [defining spans](/docs/how-to-write-conventions/README.md#defining-spans)
 Follow [defining metrics](/docs/how-to-write-conventions/README.md#defining-metrics)
 and [metrics general guidelines](/docs/general/metrics.md).
 
-- Check the instrument choice (additive values use `UpDownCounter`, gauges only
-  for non-additive values), that aggregation over all attributes is meaningful,
+- Check the instrument choice (`Counter` for monotonic totals, `UpDownCounter`
+  for additive values that can decrease, gauges only for non-additive values),
+  that aggregation over all attributes is meaningful,
   and whether an existing metric split by an attribute already covers the new one.
 - `unit` should follow [UCUM](https://ucum.org/ucum): `1` for utilization, `s`
   for durations, non-prefixed units (`By` not `MiBy`), `{request}`-style
   annotations for counts; don't repeat the unit in the metric name.
-- Histogram bucket boundaries should follow
+- Duration histogram bucket boundaries should follow
   [duration histogram bucket boundaries](/docs/general/metrics.md#duration-histogram-bucket-boundaries).
 - Metric attributes must be low-cardinality unless `opt_in`; flag unbounded
   values (IDs, URLs, user input) as non-`opt_in` attributes.

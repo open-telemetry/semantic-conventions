@@ -18,8 +18,9 @@ the content is correct for this PR.
   `general`, or `all`; don't flag those.
 - `change_type` matches the change; see
   [choosing a change type](/CONTRIBUTING.md#choosing-a-change-type).
-- `note` must match the final diff: attribute, metric, and signal names exist in
-  the changed YAML with the same spelling, and claims such as opt-in, deprecated,
+- `note` must match the final diff: attribute, metric, and signal names match
+  the model definitions with the same spelling (or the previous names when
+  describing a removal or rename), and claims such as opt-in, deprecated,
   renamed, or a stability level match the model.
 - `note` is one short, specific sentence that names the affected attributes or
   signals in backticks, when applicable; rationale belongs in the PR description.

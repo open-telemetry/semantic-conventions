@@ -376,10 +376,10 @@ Follow the [metrics general guidelines](/docs/general/metrics.md) and
 - Check whether an existing metric already records the same measurement and can
   be split by an attribute (such as an operation name, a state, or `error.type`)
   before defining a new one.
-- Choose the instrument based on how values aggregate: use an `UpDownCounter`
-  when the sum across attribute values or instances is meaningful (for example,
-  usage, limits, or the number of items in a state), a `Counter` for monotonically
-  increasing totals, a gauge only for values that are not additive, and a
+- Choose the instrument based on how values change and aggregate: use a
+  `Counter` for monotonically increasing totals, an `UpDownCounter` for additive
+  values that can also decrease (for example, usage, limits, or the number of
+  items in a state), a gauge only for values that are not additive, and a
   histogram for distributions such as operation durations.
   See [status metrics](status-metrics.md) for an example.
 - Aggregations over all attributes of a metric should be meaningful. For
