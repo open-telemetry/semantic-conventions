@@ -302,6 +302,9 @@ groups:
       - ref: k8s.persistentvolume.reclaim_policy
         role: descriptive
         requirement_level: opt_in
+      - ref: k8s.persistentvolume.type
+        role: descriptive
+        requirement_level: opt_in
       - ref: k8s.persistentvolume.label
         role: descriptive
         requirement_level: opt_in
