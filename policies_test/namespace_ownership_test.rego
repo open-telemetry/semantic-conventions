@@ -70,3 +70,13 @@ test_passes_on_similar_prefix_outside_namespace if {
         "metrics": [{"name": "endusers.metric", "brief": "Not enduser."}],
     }}
 }
+
+test_fails_on_focus_namespace if {
+    findings := deny with input as {"registry": {
+        "attributes": [{"key": "focus.workload.id", "type": "string", "brief": "Workload."}],
+        "metrics": [{"name": "focused.metric", "brief": "Not focus."}],
+    }}
+    count(findings) == 1
+    some f in findings
+    f.context.owner == "https://github.com/FinOps-Open-Cost-and-Usage-Spec/focus-otel-semconv"
+}
