@@ -15,6 +15,9 @@ owned_namespaces := {
     "gen_ai": "https://github.com/open-telemetry/semantic-conventions-genai",
     "mcp": "https://github.com/open-telemetry/semantic-conventions-genai",
     "openai": "https://github.com/open-telemetry/semantic-conventions-genai",
+    "a2a": "https://github.com/open-telemetry/semantic-conventions-genai",
+    "zos": "https://github.com/open-telemetry/semantic-conventions-mainframe",
+    "enduser": "https://github.com/open-telemetry/semantic-conventions-client-side",
     "focus": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/focus-otel-semconv",
 }
 

@@ -240,6 +240,9 @@ definitions are kept here to point users to the new owner.
 | `gen_ai.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
 | `mcp.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
 | `openai.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
+| `a2a.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
+| `zos.*` | [OpenTelemetry Mainframe semantic conventions](https://github.com/open-telemetry/semantic-conventions-mainframe) |
+| `enduser.*` | [OpenTelemetry Client-Side semantic conventions](https://github.com/open-telemetry/semantic-conventions-client-side) |
 | `focus.*` | [FinOps FOCUS semantic conventions](https://github.com/FinOps-Open-Cost-and-Usage-Spec/focus-otel-semconv) |
 
 This rule is enforced for this repository by the `namespace_ownership` policy

@@ -27,6 +27,25 @@ test_fails_on_each_signal_type if {
     }}
 }
 
+test_fails_on_each_federated_owner if {
+    findings := deny with input as {"registry": {
+        "attributes": [
+            {"key": "zos.sysplex.name", "type": "string", "brief": "Sysplex."},
+            {"key": "enduser.id", "type": "string", "brief": "End user."},
+            {"key": "a2a.task.id", "type": "string", "brief": "Task."},
+        ],
+        "spans": [{"type": "a2a.client", "brief": "Client."}],
+        "entities": [{"type": "zos.software", "brief": "Software."}],
+    }}
+    count(findings) == 5
+    owners := {f.context.owner | some f in findings}
+    owners == {
+        "https://github.com/open-telemetry/semantic-conventions-mainframe",
+        "https://github.com/open-telemetry/semantic-conventions-client-side",
+        "https://github.com/open-telemetry/semantic-conventions-genai",
+    }
+}
+
 test_passes_on_deprecated_definitions if {
     count(deny) == 0 with input as {"registry": {
         "attributes": [
