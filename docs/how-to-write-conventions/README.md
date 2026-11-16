@@ -364,11 +364,33 @@ Define which additional properties this span needs to be useful:
     Only absolutely essential (and always available) attributes can be `required`.
     Attributes that may include sensitive information, are expensive to obtain,
     or are verbose, should be `opt-in`.
-  - Update the brief and note to tailor the attribute definition to that operation.
+  - Update the brief and note to tailor the attribute definition to that operation
+    when its meaning or usage differs from the registry definition. Don't repeat
+    the registry `brief`, `note`, or `examples` unchanged.
 
 #### Defining metrics
 
-TBD
+Follow the [metrics general guidelines](/docs/general/metrics.md) and
+[metric naming](/docs/general/naming.md#metrics).
+
+- Check whether an existing metric already records the same measurement and can
+  be split by an attribute (such as an operation name, a state, or `error.type`)
+  before defining a new one.
+- Choose the instrument based on how values aggregate: use an `UpDownCounter`
+  when the sum across attribute values or instances is meaningful (for example,
+  usage, limits, or the number of items in a state), a `Counter` for monotonically
+  increasing totals, a gauge only for values that are not additive, and a
+  histogram for distributions such as operation durations.
+  See [status metrics](status-metrics.md) for an example.
+- Aggregations over all attributes of a metric should be meaningful. For
+  `Counter` and `UpDownCounter` metrics, attribute values should partition the
+  total; don't report a total series alongside series for its subsets.
+- Define precisely what the metric measures: for durations, when the measurement
+  starts and ends; for counts, which event increments the value and how failures,
+  cancellations, and retries are treated.
+- Reference only low-cardinality attributes, unless they are `opt_in`.
+- Follow [instrument units](/docs/general/metrics.md#instrument-units) and
+  [duration histogram bucket boundaries](/docs/general/metrics.md#duration-histogram-bucket-boundaries).
 
 #### Defining entities
 

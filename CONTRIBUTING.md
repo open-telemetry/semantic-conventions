@@ -26,6 +26,7 @@ requirements and recommendations.
     - [When to add a changelog entry](#when-to-add-a-changelog-entry)
       - [Examples](#examples)
     - [Adding a changelog entry](#adding-a-changelog-entry)
+    - [Choosing a change type](#choosing-a-change-type)
   - [5. Getting your PR merged](#5-getting-your-pr-merged)
 - [Reviewer guidelines](#reviewer-guidelines)
 - [Automation](#automation)
@@ -57,7 +58,16 @@ key, but non-obvious, aspects:
 - In the PR description, include links to the relevant instrumentation and any applicable prototypes. Non-trivial changes to semantic conventions should be prototyped in the corresponding instrumentation(s).
 - All attributes, metrics, etc. are formally defined in YAML files under
   the `model/` directory.
-- All descriptions, normative language are defined in the `docs/` directory.
+- Descriptions and normative language that apply to a specific attribute,
+  metric, span, event, or entity belong in its YAML definition (`brief`, `note`).
+  The `docs/` directory renders these definitions and holds guidance that
+  doesn't belong to a single definition, such as area-wide or cross-signal rules.
+- Keep each PR focused on the change described in its title and description.
+  Unrelated changes, such as a stability change, a breaking change, or edits to
+  another area, should go to a separate PR.
+- Refactoring, migration guide, tooling, and `[chore]` PRs should not change
+  convention semantics, stability, or generated documentation beyond what the
+  change requires.
 - All changes to existing attributes, metrics, etc. MUST be allowed as
   per our [stability guarantees][stability guarantees] and
   defined in a schema file.
@@ -306,7 +316,8 @@ During the release process, all `./.chloggen/*.yaml` files are transcribed into
 
 1. Create an entry file using `make chlog-new`. The command generates a new file,
    with its name based on the current branch (e.g. `./.chloggen/my-feature-xyz.yaml`)
-2. Fill in all the fields in the generated file
+2. Fill in all the fields in the generated file. The `note` should be one short
+   sentence naming the affected attributes or signals, when applicable.
 3. The value for the `component` field MUST match a folder name in the
    [model](https://github.com/open-telemetry/semantic-conventions/tree/main/model) directory
    (e.g. `browser`, `http`)
@@ -314,6 +325,19 @@ During the release process, all `./.chloggen/*.yaml` files are transcribed into
 5. Commit and push the file
 
 Alternately, copy `./.chloggen/TEMPLATE.yaml`, or just create your file from scratch.
+
+#### Choosing a change type
+
+- `breaking`: a change that can break existing consumers or instrumentations,
+  such as renaming an attribute, metric, or enum member, changing its type or
+  meaning, changing a metric's instrument or unit, or changing a requirement
+  level so that data is no longer emitted by default. This applies to unstable
+  conventions as well.
+- `deprecation`: deprecating existing conventions.
+- `new_component`: conventions for a new area (a new folder under `model/`).
+- `enhancement`: new attributes, signals, or enum members in an existing area,
+  and other backward-compatible improvements.
+- `bug_fix`: correcting a definition that does not match its intended meaning.
 
 ### 5. Getting your PR merged
 
