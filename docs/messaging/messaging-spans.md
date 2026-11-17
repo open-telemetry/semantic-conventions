@@ -241,14 +241,11 @@ Record port information for messaging server endpoints as follows:
 * If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
   in `server.address` and `server.port` SHOULD NOT be set.
 
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
 Examples:
 
 | Client configuration | `server.address` | `server.port` |
 | --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
+| Single server: `mq.example.com:5673` | `mq.example.com` | `5673` |
 | Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
 | Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
 | Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
@@ -545,8 +542,6 @@ examples.
 **[9] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
 
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
 When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
 domain socket, `server.port` SHOULD NOT be set.
 
@@ -693,8 +688,6 @@ examples.
 
 **[12] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
 
 When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
 domain socket, `server.port` SHOULD NOT be set.
@@ -844,8 +837,6 @@ examples.
 **[12] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
 
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
 When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
 domain socket, `server.port` SHOULD NOT be set.
 
@@ -993,8 +984,6 @@ examples.
 **[12] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
 
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
 When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
 domain socket, `server.port` SHOULD NOT be set.
 
@@ -1140,8 +1129,6 @@ examples.
 **[11] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
 
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
 When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
 domain socket, `server.port` SHOULD NOT be set.
 
@@ -1285,8 +1272,6 @@ examples.
 
 **[12] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
 
 When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
 domain socket, `server.port` SHOULD NOT be set.
