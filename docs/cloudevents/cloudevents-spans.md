@@ -39,9 +39,9 @@ CloudEvent-specific instrumentations SHOULD:
 is not already instrumented, following
 the [Semantic Conventions for Messaging Spans](../messaging/messaging-spans.md) or
 [Semantic Conventions for HTTP Spans](../http/http-spans.md).
-- extend/enrich the transport span by either
-  - adding the attributes listed below to the span directly (when working with a single message)
-  - adding links to the producer/client span with the link containing the attributes below (when on a consumer/span & working with batches)
+- extend/enrich the transport span by
+  - adding the attributes listed below directly to the span when all events in the payload share the same event field value
+  - adding links to the producer/client span with the link containing the attributes which were not added via previous item/step
 
 The [CloudEvents Distributed Tracing Extension](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/extensions/distributed-tracing.md)
 defines a transport agnostic manner to propagate the trace context.
