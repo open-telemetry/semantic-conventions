@@ -1,0 +1,6 @@
+change_type: enhancement
+component: otel
+note: >
+  Recommend asynchronous `UpDownCounter` for `otel.sdk.processor.{span,log}.queue.size` and `queue.capacity`.
+issues: [3954]
+subtext:

@@ -137,6 +137,7 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.span.queue.size` | UpDownCounter | `{span}` | The number of spans in the queue of a given instance of an SDK span processor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+Implementations SHOULD use an asynchronous `UpDownCounter` so the current queue size is observed at collection time regardless of temporality or `MeterProvider` configuration timing.
 
 **Attributes:**
 
@@ -205,6 +206,7 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.span.queue.capacity` | UpDownCounter | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+Implementations SHOULD use an asynchronous `UpDownCounter` so the capacity is reported on every collection regardless of temporality or `MeterProvider` configuration timing.
 
 **Attributes:**
 
@@ -585,6 +587,7 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.log.queue.size` | UpDownCounter | `{log_record}` | The number of log records in the queue of a given instance of an SDK log processor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+Implementations SHOULD use an asynchronous `UpDownCounter` so the current queue size is observed at collection time regardless of temporality or `MeterProvider` configuration timing.
 
 **Attributes:**
 
@@ -653,6 +656,7 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK log processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+Implementations SHOULD use an asynchronous `UpDownCounter` so the capacity is reported on every collection regardless of temporality or `MeterProvider` configuration timing.
 
 **Attributes:**
 
