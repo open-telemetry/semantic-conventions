@@ -79,7 +79,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if applicable. | string | The name of the destination subscription from which a message is consumed. [6] | `subscription-a` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if available. | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` [(see more)](#messaging-operation-type-values) |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The messaging server address specified in the client configuration. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [10] | `80`; `8080`; `443` |
 
@@ -124,9 +124,30 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[8] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
+**[9] `server.address`:** Instrumentation SHOULD set `server.address` to a stable, low-cardinality value derived from
+the messaging client configuration. It SHOULD NOT derive the value from the broker selected
+for an operation. The value SHOULD remain unchanged when the client discovers or selects
+different brokers.
 
-**[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+The value can identify a single messaging server, a group of messaging server instances,
+or a service-discovery target.
+
+Semantic conventions for individual messaging systems SHOULD document how to represent
+configured endpoints, endpoint lists, and service-discovery targets.
+
+When the configured address is an IP address, instrumentation SHOULD NOT perform a reverse
+DNS lookup.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+**[10] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration,
+when applicable. It SHOULD NOT be derived from the broker selected for an operation.
+
+When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
+domain socket, `server.port` SHOULD NOT be set. Ports belonging to service-discovery endpoints
+SHOULD remain part of `server.address`.
 
 ---
 
@@ -193,7 +214,7 @@ This metric is [recommended][MetricRecommended].
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The message destination name [4] | `MyQueue`; `MyTopic` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if available. | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The messaging server address specified in the client configuration. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [7] | `80`; `8080`; `443` |
 
@@ -232,9 +253,30 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[5] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[6] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
+**[6] `server.address`:** Instrumentation SHOULD set `server.address` to a stable, low-cardinality value derived from
+the messaging client configuration. It SHOULD NOT derive the value from the broker selected
+for an operation. The value SHOULD remain unchanged when the client discovers or selects
+different brokers.
 
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+The value can identify a single messaging server, a group of messaging server instances,
+or a service-discovery target.
+
+Semantic conventions for individual messaging systems SHOULD document how to represent
+configured endpoints, endpoint lists, and service-discovery targets.
+
+When the configured address is an IP address, instrumentation SHOULD NOT perform a reverse
+DNS lookup.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+**[7] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration,
+when applicable. It SHOULD NOT be derived from the broker selected for an operation.
+
+When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
+domain socket, `server.port` SHOULD NOT be set. Ports belonging to service-discovery endpoints
+SHOULD remain part of `server.address`.
 
 ---
 
@@ -290,7 +332,7 @@ The metric SHOULD be reported once per message delivery. For example, if receivi
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The message destination name [5] | `MyQueue`; `MyTopic` |
 | [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if applicable. | string | The name of the destination subscription from which a message is consumed. [6] | `subscription-a` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if available. | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The messaging server address specified in the client configuration. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [9] | `80`; `8080`; `443` |
 
@@ -333,9 +375,30 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[7] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
+**[8] `server.address`:** Instrumentation SHOULD set `server.address` to a stable, low-cardinality value derived from
+the messaging client configuration. It SHOULD NOT derive the value from the broker selected
+for an operation. The value SHOULD remain unchanged when the client discovers or selects
+different brokers.
 
-**[9] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+The value can identify a single messaging server, a group of messaging server instances,
+or a service-discovery target.
+
+Semantic conventions for individual messaging systems SHOULD document how to represent
+configured endpoints, endpoint lists, and service-discovery targets.
+
+When the configured address is an IP address, instrumentation SHOULD NOT perform a reverse
+DNS lookup.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+**[9] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration,
+when applicable. It SHOULD NOT be derived from the broker selected for an operation.
+
+When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
+domain socket, `server.port` SHOULD NOT be set. Ports belonging to service-discovery endpoints
+SHOULD remain part of `server.address`.
 
 ---
 
@@ -392,7 +455,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The message destination name [5] | `MyQueue`; `MyTopic` |
 | [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if applicable. | string | The name of the destination subscription from which a message is consumed. [6] | `subscription-a` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if available. | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The messaging server address specified in the client configuration. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [9] | `80`; `8080`; `443` |
 
@@ -435,9 +498,30 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[7] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
+**[8] `server.address`:** Instrumentation SHOULD set `server.address` to a stable, low-cardinality value derived from
+the messaging client configuration. It SHOULD NOT derive the value from the broker selected
+for an operation. The value SHOULD remain unchanged when the client discovers or selects
+different brokers.
 
-**[9] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+The value can identify a single messaging server, a group of messaging server instances,
+or a service-discovery target.
+
+Semantic conventions for individual messaging systems SHOULD document how to represent
+configured endpoints, endpoint lists, and service-discovery targets.
+
+When the configured address is an IP address, instrumentation SHOULD NOT perform a reverse
+DNS lookup.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+**[9] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration,
+when applicable. It SHOULD NOT be derived from the broker selected for an operation.
+
+When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
+domain socket, `server.port` SHOULD NOT be set. Ports belonging to service-discovery endpoints
+SHOULD remain part of `server.address`.
 
 ---
 

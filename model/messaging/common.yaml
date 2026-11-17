@@ -1,19 +1,49 @@
-groups:
-  - id: attributes.messaging.common.minimal
-    type: attribute_group
-    brief: "Common cross-signal messaging attributes."
-    stability: development
+file_format: definition/2
+
+attribute_groups:
+  - id: messaging.attributes.server
+    visibility: internal
     attributes:
+      - ref: server.address
+        brief: The messaging server address specified in the client configuration.
+        note: |
+          Instrumentation SHOULD set `server.address` to a stable, low-cardinality value derived from
+          the messaging client configuration. It SHOULD NOT derive the value from the broker selected
+          for an operation. The value SHOULD remain unchanged when the client discovers or selects
+          different brokers.
+
+          The value can identify a single messaging server, a group of messaging server instances,
+          or a service-discovery target.
+
+          Semantic conventions for individual messaging systems SHOULD document how to represent
+          configured endpoints, endpoint lists, and service-discovery targets.
+
+          When the configured address is an IP address, instrumentation SHOULD NOT perform a reverse
+          DNS lookup.
+
+          > [!WARNING]
+          >
+          > `server.address` MUST NOT contain credentials or other sensitive information.
+      - ref: server.port
+        note: |
+          `server.port` SHOULD reflect the messaging server port specified in the client configuration,
+          when applicable. It SHOULD NOT be derived from the broker selected for an operation.
+
+          When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
+          domain socket, `server.port` SHOULD NOT be set. Ports belonging to service-discovery endpoints
+          SHOULD remain part of `server.address`.
+
+  - id: attributes.messaging.common.minimal
+    visibility: internal
+    attributes:
+      - ref_group: messaging.attributes.server
       # TODO: Not adding `messaging.system.name` to the minimal because of https://github.com/open-telemetry/weaver/issues/479
       - ref: error.type
         examples: ["amqp:decode-error", "KAFKA_STORAGE_ERROR", "channel-error"]
         requirement_level:
           conditionally_required: If and only if the messaging operation has failed.
       - ref: server.address
-        note: >
-          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
         requirement_level:
           conditionally_required: If available.
-      - ref: server.port
       - ref: messaging.operation.name
         requirement_level: required

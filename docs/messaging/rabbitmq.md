@@ -87,7 +87,7 @@ injected into the message(s) as the creation context. See
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the messaging intermediary node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The messaging server address specified in the client configuration. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [14] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [15] | `2738` |
@@ -144,9 +144,30 @@ it's RECOMMENDED to:
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
+**[12] `server.address`:** Instrumentation SHOULD set `server.address` to a stable, low-cardinality value derived from
+the messaging client configuration. It SHOULD NOT derive the value from the broker selected
+for an operation. The value SHOULD remain unchanged when the client discovers or selects
+different brokers.
 
-**[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+The value can identify a single messaging server, a group of messaging server instances,
+or a service-discovery target.
+
+Semantic conventions for individual messaging systems SHOULD document how to represent
+configured endpoints, endpoint lists, and service-discovery targets.
+
+When the configured address is an IP address, instrumentation SHOULD NOT perform a reverse
+DNS lookup.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+**[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration,
+when applicable. It SHOULD NOT be derived from the broker selected for an operation.
+
+When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
+domain socket, `server.port` SHOULD NOT be set. Ports belonging to service-discovery endpoints
+SHOULD remain part of `server.address`.
 
 **[14] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
@@ -210,7 +231,7 @@ call methods of messaging SDKs to receive messages. See
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the messaging intermediary node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The messaging server address specified in the client configuration. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [14] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [15] | `2738` |
@@ -268,9 +289,30 @@ it's RECOMMENDED to:
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
+**[12] `server.address`:** Instrumentation SHOULD set `server.address` to a stable, low-cardinality value derived from
+the messaging client configuration. It SHOULD NOT derive the value from the broker selected
+for an operation. The value SHOULD remain unchanged when the client discovers or selects
+different brokers.
 
-**[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+The value can identify a single messaging server, a group of messaging server instances,
+or a service-discovery target.
+
+Semantic conventions for individual messaging systems SHOULD document how to represent
+configured endpoints, endpoint lists, and service-discovery targets.
+
+When the configured address is an IP address, instrumentation SHOULD NOT perform a reverse
+DNS lookup.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+**[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration,
+when applicable. It SHOULD NOT be derived from the broker selected for an operation.
+
+When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
+domain socket, `server.port` SHOULD NOT be set. Ports belonging to service-discovery endpoints
+SHOULD remain part of `server.address`.
 
 **[14] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
@@ -336,7 +378,7 @@ message creation context is used as the parent, see
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property. | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The messaging server address specified in the client configuration. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [12] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [13] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [14] | `2738` |
@@ -390,9 +432,30 @@ it's RECOMMENDED to:
 
 **[10] `messaging.operation.type`:** SHOULD be set to `process`.
 
-**[11] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
+**[11] `server.address`:** Instrumentation SHOULD set `server.address` to a stable, low-cardinality value derived from
+the messaging client configuration. It SHOULD NOT derive the value from the broker selected
+for an operation. The value SHOULD remain unchanged when the client discovers or selects
+different brokers.
 
-**[12] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+The value can identify a single messaging server, a group of messaging server instances,
+or a service-discovery target.
+
+Semantic conventions for individual messaging systems SHOULD document how to represent
+configured endpoints, endpoint lists, and service-discovery targets.
+
+When the configured address is an IP address, instrumentation SHOULD NOT perform a reverse
+DNS lookup.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+**[12] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration,
+when applicable. It SHOULD NOT be derived from the broker selected for an operation.
+
+When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
+domain socket, `server.port` SHOULD NOT be set. Ports belonging to service-discovery endpoints
+SHOULD remain part of `server.address`.
 
 **[13] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
@@ -452,7 +515,7 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the messaging intermediary node where the operation was performed. [9] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The messaging server address specified in the client configuration. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [11] | `80`; `8080`; `443` |
 
 **[1] `messaging.destination.name`:** The RabbitMQ destination is defined by an *exchange*, a *routing key*, and a *queue*.
@@ -504,9 +567,30 @@ it's RECOMMENDED to:
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[10] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
+**[10] `server.address`:** Instrumentation SHOULD set `server.address` to a stable, low-cardinality value derived from
+the messaging client configuration. It SHOULD NOT derive the value from the broker selected
+for an operation. The value SHOULD remain unchanged when the client discovers or selects
+different brokers.
 
-**[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+The value can identify a single messaging server, a group of messaging server instances,
+or a service-discovery target.
+
+Semantic conventions for individual messaging systems SHOULD document how to represent
+configured endpoints, endpoint lists, and service-discovery targets.
+
+When the configured address is an IP address, instrumentation SHOULD NOT perform a reverse
+DNS lookup.
+
+> [!WARNING]
+>
+> `server.address` MUST NOT contain credentials or other sensitive information.
+
+**[11] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration,
+when applicable. It SHOULD NOT be derived from the broker selected for an operation.
+
+When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
+domain socket, `server.port` SHOULD NOT be set. Ports belonging to service-discovery endpoints
+SHOULD remain part of `server.address`.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
