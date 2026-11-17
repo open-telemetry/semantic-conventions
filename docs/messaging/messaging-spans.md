@@ -215,8 +215,6 @@ Instrumentation SHOULD record the server contacted for an operation in `network.
 How instrumentation records `server.address` and `server.port` depends on whether the messaging client is
 configured with messaging server endpoints or uses service discovery.
 
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
-
 #### Messaging server endpoints
 
 When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
@@ -227,8 +225,6 @@ A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each en
 hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
 square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
 perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
 
 Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
 endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
