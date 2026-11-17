@@ -1,0 +1,4 @@
+change_type: enhancement
+component: general
+note: Extend shared duration histogram bucket guidance to day-scale durations.
+issues: [316]
