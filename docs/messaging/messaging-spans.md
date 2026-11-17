@@ -209,6 +209,12 @@ address behind the intermediary, if available.
 Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
 configuration.
 
+Instrumentation SHOULD record the server contacted for an operation in `network.peer.address` and
+`network.peer.port` when available.
+
+How instrumentation records `server.address` and `server.port` depends on whether the messaging client is
+configured with messaging server endpoints or uses service discovery.
+
 Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
 
 #### Messaging server endpoints
