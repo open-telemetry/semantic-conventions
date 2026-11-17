@@ -20,7 +20,6 @@ body:
         - area:aspnetcore
         - area:aws
         - area:azure
-        - area:browser
         - area:cassandra
         - area:cicd
         - area:client

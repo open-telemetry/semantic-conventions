@@ -26,7 +26,7 @@ Currently, the following namespaces exist:
 | | [aws.ecs.container](aws.md#aws-ecs-container) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.ecs.task](aws.md#aws-ecs-task) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Browser | | |
-| | [browser.document](browser.md#browser-document) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [browser.document](browser.md#browser-document) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). |
 | CI/CD | | |
 | | [cicd.pipeline](cicd.md#cicd-pipeline) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | | [cicd.pipeline.run](cicd.md#cicd-pipeline-run) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |

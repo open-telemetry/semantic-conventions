@@ -1,0 +1,7 @@
+change_type: deprecation
+component: browser
+note: Deprecate the browser conventions in core in favor of `open-telemetry/semantic-conventions-client-side`.
+issues: [4337]
+subtext: |
+  The definitions remain available in core but are excluded from dependency resolution.
+  Use the active definitions in https://github.com/open-telemetry/semantic-conventions-client-side.
