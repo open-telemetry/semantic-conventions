@@ -1,4 +1,6 @@
 change_type: enhancement
 component: messaging
-note: Clarify messaging server.address and server.port for configured endpoints and service discovery.
+note: >-
+  Clarify messaging server.address and server.port for configured endpoints and service discovery,
+  including endpoint-list normalization, default ports, and span-name fallbacks.
 issues: [3408]
