@@ -141,74 +141,14 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 **[8] `messaging.operation.type`:** SHOULD be set to `create`.
 
 **[9] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[10] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -334,74 +274,14 @@ Network peer address and port are important when the application interacts with 
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[12] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -528,74 +408,14 @@ Network peer address and port are important when the application interacts with 
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[12] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -726,74 +546,14 @@ Network peer address and port are important when the application interacts with 
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[13] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[14] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -919,74 +679,14 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 **[11] `messaging.operation.type`:** SHOULD be set to `process`.
 
 **[12] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -1117,74 +817,14 @@ Network peer address and port are important when the application interacts with 
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[13] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[14] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -1318,74 +958,14 @@ Network peer address and port are important when the application interacts with 
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[12] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -1507,74 +1087,14 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 **[8] `messaging.operation.type`:** SHOULD be set to `create`.
 
 **[9] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[10] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -1697,74 +1217,14 @@ Network peer address and port are important when the application interacts with 
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[12] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -1888,74 +1348,14 @@ Network peer address and port are important when the application interacts with 
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[12] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -2079,74 +1479,14 @@ Network peer address and port are important when the application interacts with 
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[12] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -2269,74 +1609,14 @@ the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 **[10] `messaging.operation.type`:** SHOULD be set to `process`.
 
 **[11] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[12] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -2458,74 +1738,14 @@ Network peer address and port are important when the application interacts with 
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[12] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
@@ -2643,74 +1863,14 @@ Network peer address and port are important when the application interacts with 
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[12] `server.address`:** Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
-It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
-when the client discovers or selects different messaging servers.
-
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
-
-Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
-configuration.
-
-Semantic conventions for individual messaging systems SHOULD document how to populate this attribute.
+It SHOULD NOT derive the value from the server selected for an operation.
 
 > [!WARNING]
 >
 > `server.address` MUST NOT contain credentials or other sensitive information.
 
-When the client is configured with one or more messaging server endpoints, `server.address` SHOULD identify
-those endpoints. This includes bootstrap, seed, and contact-point lists, even if the client later discovers
-additional topology from them.
-
-A single endpoint SHOULD be a hostname, IP address, or UNIX socket path. Each endpoint in a list SHOULD be a
-hostname or IP address, optionally followed by a port. IPv6 addresses that include a port MUST be enclosed in
-square brackets. Multiple endpoints SHOULD be separated by commas without spaces. Instrumentation SHOULD NOT
-perform reverse DNS lookups for IP addresses.
-
-When the address is an IP address, instrumentation SHOULD set `server.address` to the provided IP address.
-
-Instrumentation SHOULD preserve endpoint order when it is significant, and otherwise SHOULD sort the
-endpoints lexicographically. Instrumentation MAY remove duplicate endpoints, but only when the duplicates
-carry no semantic meaning.
-
-After applying endpoint ordering and any permitted deduplication, instrumentation SHOULD include at most
-the first five endpoints from the resulting list in `server.address`.
-
-`<endpoint>[,<endpoint>...]/<logical-target>` MAY be used when all endpoints share a logical target that is
-an unambiguous single path segment.
-
-Record port information for messaging server endpoints as follows:
-
-- If the client is configured with a single endpoint, the port SHOULD be omitted from `server.address`
-  and SHOULD be recorded in `server.port`, if available.
-- If the client is configured with multiple endpoints, each configured endpoint's port SHOULD be included
-  in `server.address` and `server.port` SHOULD NOT be set.
-
-Configured ports SHOULD be recorded even when they are the default for the messaging system.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Single server using the default AMQP port: `mq.example.com:5672` | `mq.example.com` | `5672` |
-| Single server on a non-default port: `mq.example.com:5673` | `mq.example.com` | `5673` |
-| Kafka bootstrap servers: `kafka-a.example.com:9092,kafka-b.example.com:9092` | `kafka-a.example.com:9092,kafka-b.example.com:9092` | Not set |
-| Multiple servers using a shared port: `mq-a.example.com,mq-b.example.com` with port `5672` | `mq-a.example.com:5672,mq-b.example.com:5672` | Not set |
-| Multiple servers using different ports: `mq-a.example.com:5672,mq-b.example.com:5673` | `mq-a.example.com:5672,mq-b.example.com:5673` | Not set |
-| UNIX socket: `/tmp/mq.sock` | `/tmp/mq.sock` | Not set |
-
-For service discovery, `server.address` SHOULD contain the canonical, low-cardinality value from the client
-configuration. Depending on the client, this value identifies either a logical service or the discovery
-service used to obtain messaging server endpoints. Ports for configured discovery service endpoints SHOULD
-remain part of `server.address`. `server.port` SHOULD NOT be set.
-
-Query and fragment components SHOULD be omitted unless they are part of the service identity.
-
-Examples:
-
-| Client configuration | `server.address` | `server.port` |
-| --- | --- | --- |
-| Service discovery through ZooKeeper: `zookeeper://registry.example.com:2181/messaging` | `zookeeper://registry.example.com:2181/messaging` | Not set |
+See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+examples.
 
 **[13] `server.port`:** `server.port` SHOULD reflect the messaging server port specified in the client configuration.
 It SHOULD NOT be derived from the server selected for an operation.
