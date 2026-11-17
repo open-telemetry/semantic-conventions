@@ -33,7 +33,7 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`telemetry.sdk.language`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` |
+| Identity | [`telemetry.sdk.language`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` [(see more)](#telemetry-sdk-language-values) |
 | Identity | [`telemetry.sdk.name`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` |
 | Description | [`telemetry.sdk.version`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The version string of the telemetry SDK. | `1.2.3` |
 
@@ -46,20 +46,22 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 ---
 
+<a id="telemetry-sdk-language-values"></a>
+
 `telemetry.sdk.language` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `cpp` | cpp | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `dotnet` | dotnet | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `erlang` | erlang | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `go` | go | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `java` | java | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `kotlin` | kotlin | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `nodejs` | nodejs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `php` | php | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `python` | python | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ruby` | ruby | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `rust` | rust | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `swift` | swift | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `webjs` | webjs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `cpp` | [C++](https://opentelemetry.io/docs/languages/cpp/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `dotnet` | [.NET](https://opentelemetry.io/docs/languages/dotnet/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `erlang` | [Erlang/Elixir](https://opentelemetry.io/docs/languages/erlang/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `go` | [Go](https://opentelemetry.io/docs/languages/go/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `java` | [Java](https://opentelemetry.io/docs/languages/java/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kotlin` | [Kotlin](https://opentelemetry.io/docs/languages/kotlin/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `nodejs` | [Node.js](https://opentelemetry.io/docs/languages/js/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `php` | [PHP](https://opentelemetry.io/docs/languages/php/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `python` | [Python](https://opentelemetry.io/docs/languages/python/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ruby` | [Ruby](https://opentelemetry.io/docs/languages/ruby/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `rust` | [Rust](https://opentelemetry.io/docs/languages/rust/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `swift` | [Swift](https://opentelemetry.io/docs/languages/swift/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `webjs` | [Browser](https://opentelemetry.io/docs/languages/js/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

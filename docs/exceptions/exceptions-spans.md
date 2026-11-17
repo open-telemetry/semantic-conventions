@@ -91,13 +91,13 @@ to adopt them if they see fit.
 | Erlang     | the return value of [`erl_error:format`][erlang-stacktrace]        |
 | Go         | the return value of [runtime.Stack][go-stacktrace]                 |
 | Java       | the contents of [Throwable.printStackTrace()][java-stacktrace]     |
-| Javascript | the return value of [error.stack][js-stacktrace] as returned by V8 |
+| JavaScript | the return value of [error.stack][js-stacktrace] as returned by V8 |
 | Python     | the return value of [traceback.format_exc()][python-stacktrace]    |
 | Ruby       | the return value of [Exception.full_message][ruby-full-message]    |
 
 Backends can use the language specified methodology for generating a stacktrace
 combined with platform information from the
-[telemetry sdk resource][telemetry-sdk-resource] in order to extract more fine
+[telemetry SDK resource][telemetry-sdk-resource] in order to extract more fine
 grained information from a stacktrace, if necessary.
 
 [gcp-error-reporting]: https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.events/report
@@ -110,4 +110,4 @@ grained information from a stacktrace, if necessary.
 [telemetry-sdk-resource]: ../resource/README.md#telemetry-sdk
 [erlang-stacktrace]: https://www.erlang.org/doc/apps/stdlib/erl_error.html#format_exception/3
 [elixir-stacktrace]: https://hexdocs.pm/elixir/1.14.3/Exception.html#format/3
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

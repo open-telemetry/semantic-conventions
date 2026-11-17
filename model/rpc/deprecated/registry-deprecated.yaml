@@ -39,42 +39,74 @@ groups:
         deprecated:
           reason: obsoleted
           note: Deprecated, no replacement at this time.
+      - id: rpc.request.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.request.header` instead.
+        examples: [["1.2.3.4", "1.2.3.5"]]
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.request.header
+      - id: rpc.response.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.response.header` and `rpc.response.trailer`.
+        examples: [["attribute_value"]]
+        deprecated:
+          reason: uncategorized
+          note: >
+            Split to `rpc.response.header` for metadata sent before the response payload
+            and `rpc.response.trailer` for metadata sent after it.
       - id: rpc.connect_rpc.request.metadata
         type: template[string[]]
         stability: development
         brief: >
-          Deprecated, use `rpc.request.metadata` instead.
+          Deprecated, use `rpc.request.header` instead.
         deprecated:
           reason: renamed
-          renamed_to: rpc.request.metadata
+          renamed_to: rpc.request.header
         examples: [["1.2.3.4", "1.2.3.5"]]
       - id: rpc.connect_rpc.response.metadata
         type: template[string[]]
         stability: development
         brief: >
-          Deprecated, use `rpc.response.metadata` instead.
+          Deprecated, use `rpc.response.header` and `rpc.response.trailer`.
         examples: [["attribute_value"]]
         deprecated:
-          reason: renamed
-          renamed_to: rpc.response.metadata
+          reason: uncategorized
+          note: >
+            Split to `rpc.response.header` for metadata sent before the response payload
+            and `rpc.response.trailer` for metadata sent after it.
       - id: rpc.grpc.request.metadata
         type: template[string[]]
         stability: development
         brief: >
-          Deprecated, use `rpc.request.metadata` instead.
+          Deprecated, use `rpc.request.header` instead.
         examples: [["1.2.3.4", "1.2.3.5"]]
         deprecated:
           reason: renamed
-          renamed_to: rpc.request.metadata
+          renamed_to: rpc.request.header
       - id: rpc.grpc.response.metadata
         type: template[string[]]
         stability: development
         brief: >
-          Deprecated, use `rpc.response.metadata` instead.
+          Deprecated, use `rpc.response.header` and `rpc.response.trailer`.
         examples: [["attribute_value"]]
         deprecated:
+          reason: uncategorized
+          note: >
+            Split to `rpc.response.header` for metadata sent before the response payload
+            and `rpc.response.trailer` for metadata sent after it.
+      - id: rpc.response.status_code
+        type: string
+        stability: release_candidate
+        brief: "Deprecated, use `rpc.status_code` instead."
+        examples: ["OK", "DEADLINE_EXCEEDED", "-32602"]
+        deprecated:
           reason: renamed
-          renamed_to: rpc.response.metadata
+          renamed_to: rpc.status_code
       - id: rpc.grpc.status_code
         type:
           members:
@@ -147,10 +179,10 @@ groups:
               stability: development
               value: 16
         stability: development
-        brief: "Deprecated, use string representation on the `rpc.response.status_code` attribute instead."
+        brief: "Deprecated, use string representation on the `rpc.status_code` attribute instead."
         deprecated:
           reason: uncategorized
-          note: "Use string representation of the gRPC status code on the `rpc.response.status_code` attribute."
+          note: "Use string representation of the gRPC status code on the `rpc.status_code` attribute."
       - id: rpc.connect_rpc.error_code
         type:
           members:
@@ -203,18 +235,18 @@ groups:
               value: unauthenticated
               stability: development
         stability: development
-        brief: "Deprecated, use `rpc.response.status_code` attribute instead."
+        brief: "Deprecated, use `rpc.status_code` attribute instead."
         deprecated:
           reason: renamed
-          renamed_to: rpc.response.status_code
+          renamed_to: rpc.status_code
       - id: rpc.jsonrpc.error_code
         type: int
         stability: development
-        brief: "Deprecated, use string representation on the `rpc.response.status_code` attribute instead."
+        brief: "Deprecated, use string representation on the `rpc.status_code` attribute instead."
         examples: [-32700, 100]
         deprecated:
           reason: uncategorized
-          note: "Use string representation of the error code on the `rpc.response.status_code` attribute."
+          note: "Use string representation of the error code on the `rpc.status_code` attribute."
       - id: rpc.jsonrpc.error_message
         type: string
         stability: development

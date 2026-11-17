@@ -20,7 +20,7 @@ database metrics and logs.
 >   limited to) attributes, metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in their existing major version as a comma-separated list of category-specific values
->   (e.g., http, databases, messaging). The list of values includes:
+>   (e.g., http, database, messaging). The list of values includes:
 >   * `database` - emit the stable database conventions, and stop emitting
 >     the experimental database conventions that the instrumentation emitted
 >     previously.
@@ -55,4 +55,4 @@ Technology specific semantic conventions are defined for the following databases
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

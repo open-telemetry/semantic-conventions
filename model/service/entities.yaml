@@ -2,11 +2,6 @@ groups:
   - id: entity.service
     type: entity
     name: service
-    annotations:
-      stability:
-        # TODO https://github.com/open-telemetry/semantic-conventions/issues/1519
-        policy_exceptions:
-          - entity_lower_stability_attribute
     brief: >
       A logical unit of an application or system that performs a specific function.
     note: >
@@ -37,6 +32,12 @@ groups:
       - ref: service.instance.id
         role: identifying
         requirement_level: required
+      - ref: service.instance.cost_center.id
+        requirement_level: opt_in
+        role: descriptive
+      - ref: service.instance.cost_center.name
+        requirement_level: opt_in
+        role: descriptive
   - id: entity.service.namespace
     type: entity
     name: service.namespace

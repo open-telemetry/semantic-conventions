@@ -15,6 +15,7 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
     - [Defining attributes](#defining-attributes)
     - [Defining enum attribute members](#defining-enum-attribute-members)
     - [Defining spans](#defining-spans)
+      - [Span type](#span-type)
       - [What operation does this span represent](#what-operation-does-this-span-represent)
       - [Naming pattern](#naming-pattern)
       - [Status](#status)
@@ -59,7 +60,7 @@ It is strongly recommended to prototype proposed conventions in one or more inst
 
 - provide actionable guidance to instrumentation authors on when and how to collect attributes and record telemetry,
 
-- evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end-user experience.
+- evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end user experience.
 
 #### Defining attributes
 
@@ -110,7 +111,7 @@ When defining a new attribute:
     This is useful for capturing user-defined key-value pairs, such as HTTP headers.
   - Represent complex values as a set of flat attributes whenever possible.
     - Complex or structured attributes (not listed in the
-      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/common/README.md#attribute))
+      [set of standard attributes](https://opentelemetry.io/docs/specs/otel/common/#attribute))
       could be referenced on events and spans (![Development](https://img.shields.io/badge/-development-blue)) only.
 
       Semantic convention authors should assume that backends do not index individual properties of complex attributes,
@@ -119,8 +120,19 @@ When defining a new attribute:
 
 - Define new attributes with `development` stability.
 - Provide realistic examples
-- Avoid defining attributes with potentially unbounded values, such as strings longer than
-  1 KB or arrays with more than 1,000 elements. Such values should be recorded in the log or event body instead. <!-- This may change, check out https://github.com/open-telemetry/semantic-conventions/issues/1651 to monitor the progress -->
+- Attributes should generally have bounded values (for example, strings under 1 KB or small arrays).
+  When captured data is unbounded by nature (such as queries, payloads, or raw records):
+  - Mark the attribute in the registry with:
+
+    ```yaml
+    annotations:
+      value:
+        unbounded_size: true
+    ```
+
+    This annotation renders a warning advising applications to configure SDK attribute limits and instrumentations to enforce safety size limits.
+  - Unbounded attributes MUST NOT be `required` on any signal or attribute group.
+  - Consider defining a corresponding reference attribute (see [attributes referencing external content](/docs/general/naming.md#attributes-referencing-external-content)).
 
 Consider the scope of the attribute and how it may evolve in the future:
 
@@ -144,7 +156,7 @@ Consider the scope of the attribute and how it may evolve in the future:
 > Start with experimental conventions, document how they apply to a diverse range
 > of providers, systems, or libraries, and prototype instrumentations.
 >
-> The end-user experience should serve as the primary guiding principle:
+> The end user experience should serve as the primary guiding principle:
 >
 > - If the attribute is expected to be used in general-purpose metrics for the area,
 >   consider introducing a common attribute.
@@ -166,8 +178,13 @@ all known CPU modes. Metrics like `system.cpu.time` depend on having all modes
 defined. Authors should document all known values upfront, though new values
 may be added later to support new operating systems or CPU architectures.
 
-**Open enums** like `error.type` allow conventions and instrumentations to define
-their own applicable values.
+**Open enums** like `error.type`, `cloud.provider`, and `cloud.platform`
+allow conventions and instrumentations to define their own applicable values
+without adding them to semantic conventions first. Values used by only one
+implementation can be documented with that implementation. When proposing a
+well-known value here, look for another independent implementation that uses
+the same value and link to both in the proposal. This helps reviewers assess
+whether the value is useful beyond one implementation.
 
 **System identifier enums** specify a system, project, provider, product, or protocol.
 For example, `db.system.name` contains database names like `mongodb` or `mysql`.
@@ -229,9 +246,24 @@ When not to define spans:
 > `http.client.request.exception` event are recorded alongside the corresponding
 > HTTP client span.
 
-A span definition should describe the [operation it represents](#what-operation-does-this-span-represent),
+A span definition, identified by its type, should describe the
+[operation it represents](#what-operation-does-this-span-represent),
 the [naming pattern](#naming-pattern), considerations for setting span [status](#status),
 the [span kind](#kind), and the list of applicable [attributes](#attributes).
+
+##### Span type
+
+Choose a span type following the [span type conventions](/docs/general/naming.md#span-types).
+
+Use one type for spans that follow the same definition, even when their names
+differ. Define the span name format following the [naming pattern guidance](#naming-pattern).
+
+Define a new span type for a distinct operation. Use a span refinement when
+specializing an existing operation for a system or library. Refinements inherit
+the span type through their `ref`; their IDs do not define new span types.
+
+See Weaver's [v2 syntax for spans and refinements](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.v2.md#spans-definition)
+for YAML authoring details.
 
 ##### What operation does this span represent
 
@@ -248,7 +280,7 @@ Define the scope and boundaries of the operation:
 ##### Naming pattern
 
 - Span names must have low cardinality and should provide a reasonable grouping
-  for that operation. See [Span name guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/trace/api.md#span)
+  for that operation. See [Span name guidelines](https://opentelemetry.io/docs/specs/otel/trace/api/#span)
   for details.
 
 - Span names usually follow the `{action} {target}` pattern. For example, `send orders_queue`.
@@ -280,7 +312,7 @@ to leverage additional context to provide a more accurate status.
 
 ##### Kind
 
-All span definitions MUST include a specific [span kind](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/trace/api.md#spankind). One span definition can
+All span definitions MUST include a specific [span kind](https://opentelemetry.io/docs/specs/otel/trace/api/#spankind). One span definition can
 only mention one span kind.
 
 ##### Attributes
@@ -304,9 +336,14 @@ Define which additional properties this span needs to be useful:
   domain-specific error code, include that as a separate attribute as well.
   Document which error codes constitute an error.
 
-- Include `server.address` and `server.port` on client spans.
+- Include `server.address` and `server.port` on client spans. They represent the logical server
+  name and port; semantic conventions that refer to these attributes SHOULD specify what they mean
+  in their context.
 
 - Include applicable `network.*` attributes on spans that describe network calls.
+  See [Choosing network address and port attributes](/docs/network/choosing-network-attributes.md)
+  for help picking among `client.*` / `server.*`, `source.*` / `destination.*`, and
+  `network.local.*` / `network.peer.*`.
 
 - Include some form of operation name to describe the action being performed.
 
@@ -354,4 +391,4 @@ TODO:
 
 TODO
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

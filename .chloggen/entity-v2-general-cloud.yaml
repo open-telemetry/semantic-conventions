@@ -1,0 +1,4 @@
+change_type: breaking
+component: cloud
+note: Remove the `cloud` entity in favor of the `cloud.resource` entity and define required identifying attributes for cloud entities for Weaver schema v2 migration.
+issues: [4169]

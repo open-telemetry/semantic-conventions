@@ -16,24 +16,23 @@ target in the [Makefile](../Makefile)). The following packages are delegated:
 
 Only checks that are **not** available upstream are kept here:
 
-- `brief.rego` — requires a non-empty `brief` on every attribute and signal.
+- `brief.rego` - requires a non-empty `brief` on every attribute and signal.
   This is a semantic-conventions editorial requirement rather than a general
   registry rule.
+- `reference_attributes.rego` - requires attributes ending with `_ref` to have type `string` and to have a counterpart attribute without `_ref`.
+- `unbounded_attributes.rego` - requires attributes marked with `unbounded_size: true` to never have requirement level `required`.
 
 ## Exceptions
 
-Per-signal exceptions to the shared checks are declared in the model via
-`annotations.<package>.policy_exceptions`, where the exception key is the
-finding id with the package prefix dropped. For example:
+Per-signal exceptions are declared as finding filters in
+[`.weaver.toml`](../.weaver.toml) rather than as model annotations, so they
+don't end up in the resolved schema. For example:
 
-```yaml
-annotations:
-  naming_conventions:
-    policy_exceptions:
-      - metric_namespace_collision
-  stability:
-    policy_exceptions:
-      - metric_lower_stability_attribute
+```toml
+[[policy.finding_filters]]
+exclude = ["naming_convention_metric_namespace_collision"]
+signal_type = "metric"
+signal_names = ["hw.temperature"]
 ```
 
 ## Tests

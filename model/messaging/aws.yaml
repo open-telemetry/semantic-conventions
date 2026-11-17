@@ -1,0 +1,80 @@
+file_format: definition/2
+
+attribute_groups:
+  # Amazon SQS attributes shared by all SQS spans.
+  - id: messaging.aws.sqs.attributes.common
+    visibility: internal
+    attributes:
+      - ref: aws.sqs.queue.url
+      - ref: aws.request_id
+
+span_refinements:
+  - id: aws.sqs.producer.send
+    ref: messaging.producer.send
+    stability: development
+    brief: Describes a producer sending one or more messages to Amazon SQS.
+    attributes:
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"aws.sqs"`.
+        examples: ['aws.sqs']
+      - ref: error.type
+        examples: ['AWS.SimpleQueueService.NonExistentQueue', 'OverLimit', 'RequestThrottled']
+      - ref: messaging.destination.name
+        examples: ['MyQueue']
+      - ref_group: messaging.aws.sqs.attributes.common
+
+  - id: aws.sqs.client.receive
+    ref: messaging.client.receive
+    stability: development
+    brief: Describes a consumer receiving one or more messages from Amazon SQS (pull-based).
+    attributes:
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"aws.sqs"`.
+        examples: ['aws.sqs']
+      - ref: error.type
+        examples: ['AWS.SimpleQueueService.NonExistentQueue', 'OverLimit', 'RequestThrottled']
+      - ref: messaging.destination.name
+        examples: ['MyQueue']
+      - ref_group: messaging.aws.sqs.attributes.common
+
+  - id: aws.sqs.consumer.process
+    ref: messaging.consumer.process
+    stability: development
+    brief: Describes a consumer processing one or more messages from Amazon SQS (push-based).
+    attributes:
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"aws.sqs"`.
+        examples: ['aws.sqs']
+      - ref: error.type
+        examples: ['AWS.SimpleQueueService.NonExistentQueue', 'OverLimit', 'RequestThrottled']
+      - ref: messaging.destination.name
+        examples: ['MyQueue']
+      - ref_group: messaging.aws.sqs.attributes.common
+
+  # Amazon SNS
+  - id: aws.sns.producer.send
+    ref: messaging.producer.send
+    stability: development
+    brief: Describes a producer publishing one or more messages to Amazon SNS.
+    attributes:
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"aws.sns"`.
+        examples: ['aws.sns']
+      - ref: error.type
+        examples: ['AuthorizationError', 'EndpointDisabled', 'Throttled']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: aws.sns.topic.arn
+      - ref: aws.request_id

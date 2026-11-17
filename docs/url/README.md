@@ -6,7 +6,7 @@ linkTitle: URL
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions for url.
+This document defines semantic conventions for URL.
 
 * [Attributes](../registry/attributes/url.md)
 
@@ -18,4 +18,4 @@ Instrumentations that are aware of specific sensitive query string parameters MU
 
 _Note: Applications and telemetry consumers should scrub sensitive information from URL attributes on collected telemetry. In systems unable to identify sensitive information, certain attribute values may be redacted entirely._
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

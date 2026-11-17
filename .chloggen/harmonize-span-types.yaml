@@ -1,0 +1,4 @@
+change_type: breaking
+component: spans
+note: Harmonize span types to use `{area}.{kind}.{name}`, omitting kind for internal spans. Update span refinement IDs accordingly.
+issues: [4241]

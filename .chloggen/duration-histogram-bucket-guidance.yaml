@@ -1,0 +1,9 @@
+change_type: enhancement
+component: general
+note: Add shared guidance for duration histogram bucket recommendations.
+issues: [316]
+subtext: |
+  Recommends a decimal-friendly approximation of an exponential progression
+  for new duration histogram recommendations, using `1, 2.5, 5` subdivisions up to
+  10 seconds and `1, 2, 5` subdivisions aligned with minutes and hours for
+  longer durations.

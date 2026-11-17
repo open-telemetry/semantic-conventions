@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.26.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
+  - id: android
+    visibility: public
+    stability: development
+    brief: >
+      The Android platform on which the Android application is running.
+    attributes:
+      - ref: android.os.api_level

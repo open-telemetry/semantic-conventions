@@ -56,3 +56,104 @@ groups:
           This value is intended to be taken from the Navigator API
           `navigator.language`.
         examples: ["en", "en-US", "fr", "fr-FR"]
+      - id: browser.web_vital.name
+        type:
+          members:
+            - id: cls
+              value: 'cls'
+              brief: Cumulative Layout Shift. See [cls](https://web.dev/articles/cls).
+              stability: development
+            - id: lcp
+              value: 'lcp'
+              brief: Largest Contentful Paint. See [lcp](https://web.dev/articles/lcp).
+              stability: development
+            - id: fcp
+              value: 'fcp'
+              brief: First Contentful Paint. See [fcp](https://web.dev/articles/fcp).
+              stability: development
+            - id: inp
+              value: 'inp'
+              brief: Interaction to Next Paint. See [inp](https://web.dev/articles/inp).
+              stability: development
+            - id: ttfb
+              value: 'ttfb'
+              brief: Time to First Byte. See [ttfb](https://web.dev/articles/ttfb).
+              stability: development
+            - id: fid
+              value: 'fid'
+              brief: First Input Delay. See [fid](https://web.dev/articles/fid).
+              stability: development
+              deprecated:
+                reason: obsoleted
+                note: Replaced by Interaction to Next Paint (`inp`), which became a Core Web Vital in March 2024. See [inp](https://web.dev/articles/inp).
+        stability: development
+        brief: Name of the web vital.
+        examples: ["cls"]
+      - id: browser.web_vital.value
+        type: double
+        stability: development
+        brief: Value of the web vital.
+        examples: [1.0]
+      - id: browser.web_vital.delta
+        type: double
+        stability: development
+        brief: The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes).
+        examples: [0.2]
+      - id: browser.web_vital.id
+        type: string
+        stability: development
+        brief: A unique ID representing this particular metric instance.
+        examples: ["v3-1677874579383-6381583661209"]
+      - id: browser.web_vital.rating
+        type:
+          members:
+            - id: good
+              value: 'good'
+              brief: The metric value is within the "good" threshold.
+              stability: development
+            - id: needs_improvement
+              value: 'needs-improvement'
+              brief: The metric value is within the "needs improvement" threshold.
+              stability: development
+            - id: poor
+              value: 'poor'
+              brief: The metric value is within the "poor" threshold.
+              stability: development
+        stability: development
+        brief: >
+          The rating of the web vital value against the "good", "needs improvement",
+          and "poor" thresholds defined for the metric.
+        examples: ["good"]
+      - id: browser.web_vital.navigation_type
+        type:
+          members:
+            - id: navigate
+              value: 'navigate'
+              brief: Navigation started by clicking a link, entering a URL, form submission, or a script operation.
+              stability: development
+            - id: reload
+              value: 'reload'
+              brief: Navigation through a reload operation or a `Location.reload()` call.
+              stability: development
+            - id: back_forward
+              value: 'back-forward'
+              brief: Navigation through the browser's history traversal (e.g. back/forward buttons).
+              stability: development
+            - id: back_forward_cache
+              value: 'back-forward-cache'
+              brief: Navigation restoring a page from the back/forward cache (bfcache).
+              stability: development
+            - id: prerender
+              value: 'prerender'
+              brief: Navigation to a page that was prerendered.
+              stability: development
+            - id: restore
+              value: 'restore'
+              brief: Navigation restoring a page that was previously discarded by the browser.
+              stability: development
+        stability: development
+        brief: >
+          The type of navigation, as reported by the
+          [Navigation Timing API](https://developer.mozilla.org/docs/Web/API/PerformanceNavigationTiming/type),
+          with additional values reported by the web-vitals library.
+        examples: ["navigate"]

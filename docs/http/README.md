@@ -7,7 +7,7 @@ linkTitle: HTTP
 **Status**: [Mixed][DocumentStatus]
 
 This document defines semantic conventions for HTTP spans, metrics and logs.
-They can be used for http and https schemes
+They can be used for HTTP and HTTPS schemes
 and various HTTP versions like 1.1, 2 and SPDY.
 
 > [!IMPORTANT]
@@ -22,7 +22,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 >   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version as a comma-separated list of category-specific values
->   (e.g., http, databases, messaging). The list of values includes:
+>   (e.g., http, database, messaging). The list of values includes:
 >   * `http` - emit the new, stable HTTP and networking conventions,
 >     and stop emitting the old experimental HTTP and networking conventions
 >     that the instrumentation emitted previously.
@@ -44,4 +44,4 @@ Semantic conventions for HTTP are defined for the following signals:
 
 For help migrating from non-stable to stable conventions, see [the migration guide](../non-normative/http-migration.md).
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

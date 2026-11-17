@@ -39,7 +39,6 @@ body:
         - area:dns
         - area:dotnet
         - area:elasticsearch
-        - area:enduser
         - area:error
         - area:exception
         - area:faas
@@ -57,6 +56,7 @@ body:
         - area:jsonrpc
         - area:jvm
         - area:k8s
+        - area:kafka
         - area:log
         - area:mainframe
         - area:messaging
@@ -66,7 +66,6 @@ body:
         - area:oci
         - area:onc-rpc
         - area:openshift
-        - area:opentracing
         - area:oracle-cloud
         - area:oracledb
         - area:os
@@ -74,6 +73,8 @@ body:
         - area:pprof
         - area:process
         - area:profile
+        - area:rabbitmq
+        - area:rocketmq
         - area:rpc
         - area:security-rule
         - area:server
@@ -92,7 +93,6 @@ body:
         - area:v8js
         - area:vcs
         - area:webengine
-        - area:zos
         # End semconv area list
   - type: textarea
     attributes:

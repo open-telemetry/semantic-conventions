@@ -10,12 +10,12 @@ data (events, metrics, spans, etc.).
 In modern, distributed, application architectures:
 
 - A `service.namespace` is an entire system of components designed for
-  end-users or other applications to leverage.
+  end users or other applications to leverage.
 - A `service` is one of the logical, distinct components that make up the
   application, e.g. running as a bundle of the instances that run the same
   container image for load balancing.
 - A `service.instance` is a distinct instance of a service component, e.g. a
-  specific kubernetes container that is part of a kubernetes deployment which
+  specific Kubernetes container that is part of a Kubernetes deployment which
   offers a service.
 
 For example, suppose we have a Blog site that consists of a database
@@ -63,7 +63,7 @@ between them. Additionally, there's a single database instance.
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`service.name`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Logical name of the service. [1] | `shoppingcart` |
-| Description | [`service.criticality`](/docs/registry/attributes/service.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Recommended` | string | The operational criticality of the service. [2] | `critical`; `high`; `medium`; `low` |
+| Description | [`service.criticality`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The operational criticality of the service. [2] | `critical`; `high`; `medium`; `low` [(see more)](#service-criticality-values) |
 | Description | [`service.version`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
 
 **[1] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with the process executable name, e.g. `unknown_service:bash`. If the process executable name is not available, the value MUST be set to `unknown_service`.
@@ -73,14 +73,16 @@ The process executable name is the name of the process executable, the same valu
 
 ---
 
+<a id="service-criticality-values"></a>
+
 `service.criticality` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `critical` | Service is business-critical; downtime directly impacts revenue, user experience, or core functionality. [3] | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) |
-| `high` | Service is important but has degradation tolerance or fallback mechanisms. [4] | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) |
-| `low` | Service is non-essential to core operations; used for background tasks or internal tools. [5] | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) |
-| `medium` | Service provides supplementary functionality; degradation has limited user impact. [6] | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) |
+| `critical` | Service is business-critical; downtime directly impacts revenue, user experience, or core functionality. [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `high` | Service is important but has degradation tolerance or fallback mechanisms. [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `low` | Service is non-essential to core operations; used for background tasks or internal tools. [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `medium` | Service provides supplementary functionality; degradation has limited user impact. [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[3]:** Examples include payment processing, authentication, and primary user-facing APIs.
 
@@ -111,6 +113,8 @@ The process executable name is the name of the process executable, the same valu
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` |
+| Description | [`service.instance.cost_center.id`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Identifier of the cost center associated with the service instance. [2] | `94002`; `111111111111`; `cc-eng-402`; `acc-83921` |
+| Description | [`service.instance.cost_center.name`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Name of the cost center associated with the service instance. [3] | `engineering-platform`; `marketing-campaigns`; `research-and-development` |
 
 **[1] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
@@ -138,6 +142,10 @@ likely be wrong, as the Collector might not know from which container within tha
 However, Collectors can set the `service.instance.id` if they can unambiguously determine the service instance
 for that telemetry. This is typically the case for scraping receivers, as they know the target address and
 port.
+
+**[2] `service.instance.cost_center.id`:** The cost center identifier enables tracking and attribution of service resource costs to organizational units, billing accounts, or teams. It is typically a string identifier such as a billing account ID, cost allocation code, or internal accounting ID.
+
+**[3] `service.instance.cost_center.name`:** A human-readable name of the cost center, department, or organizational unit responsible for the service instance costs.
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->

@@ -1,0 +1,157 @@
+file_format: definition/2
+
+span_refinements:
+  - id: gcp.pubsub.producer.create
+    ref: messaging.producer.create
+    stability: development
+    brief: Describes a message being created for publishing to Google Cloud Pub/Sub.
+    attributes:
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
+      - ref: error.type
+        examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: gcp.pubsub.message.ordering_key
+        requirement_level:
+          conditionally_required: If the message type has an ordering key set.
+      - ref: messaging.operation.name
+        note: SHOULD be set to `create`.
+        examples: ['create']
+
+  - id: gcp.pubsub.producer.send
+    ref: messaging.producer.send
+    stability: development
+    brief: Describes a producer publishing one or more messages to Google Cloud Pub/Sub.
+    attributes:
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
+      - ref: error.type
+        examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: gcp.pubsub.message.ordering_key
+        requirement_level:
+          conditionally_required: If the message type has an ordering key set.
+      - ref: messaging.operation.name
+        note: SHOULD be set to `send`.
+        examples: ['send']
+
+  - id: gcp.pubsub.client.send
+    ref: messaging.client.send
+    stability: development
+    brief: Describes a producer publishing one or more messages to Google Cloud Pub/Sub.
+    attributes:
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
+      - ref: error.type
+        examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: gcp.pubsub.message.ordering_key
+        requirement_level:
+          conditionally_required: If the message type has an ordering key set.
+      - ref: messaging.operation.name
+        note: SHOULD be set to `send`.
+        examples: ['send']
+
+  - id: gcp.pubsub.client.receive
+    ref: messaging.client.receive
+    stability: development
+    brief: Describes a consumer receiving one or more messages from Google Cloud Pub/Sub (pull-based).
+    attributes:
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
+      - ref: error.type
+        examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.destination.subscription.name
+        brief: "Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview)."
+        note: ""
+        requirement_level:
+          conditionally_required: If applicable.
+        sampling_relevant: true
+      - ref: gcp.pubsub.message.delivery_attempt
+      - ref: gcp.pubsub.message.ack_id
+      - ref: messaging.operation.name
+        note: SHOULD be set to `receive`.
+        examples: ['receive']
+
+  - id: gcp.pubsub.consumer.process
+    ref: messaging.consumer.process
+    stability: development
+    brief: Describes a consumer processing one or more messages from Google Cloud Pub/Sub (push-based).
+    attributes:
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
+      - ref: error.type
+        examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.destination.subscription.name
+        brief: "Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview)."
+        note: ""
+        requirement_level:
+          conditionally_required: If applicable.
+        sampling_relevant: true
+      - ref: gcp.pubsub.message.delivery_attempt
+      - ref: gcp.pubsub.message.ack_id
+      - ref: messaging.operation.name
+        note: |
+          SHOULD be set to `subscribe`, representing the time from after the
+          message was received to when it is acknowledged, negatively acknowledged, or expired.
+        examples: ['subscribe']
+
+  - id: gcp.pubsub.client.settle
+    ref: messaging.client.settle
+    stability: development
+    brief: Describes settling (ack/nack/modack) one or more Google Cloud Pub/Sub messages.
+    attributes:
+      - ref: messaging.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
+        note: MUST be set to `"gcp.pubsub"`.
+        examples: ['gcp.pubsub']
+      - ref: error.type
+        examples: ['NOT_FOUND', 'RESOURCE_EXHAUSTED', 'UNAVAILABLE']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
+      - ref: messaging.destination.subscription.name
+        brief: "Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview)."
+        note: ""
+        requirement_level:
+          conditionally_required: If applicable.
+        sampling_relevant: true
+      - ref: gcp.pubsub.message.delivery_attempt
+      - ref: gcp.pubsub.message.ack_deadline
+      - ref: gcp.pubsub.message.ack_id
+      - ref: messaging.operation.name
+        note: |
+          Has the following well-known values for Google Cloud Pub/Sub settlement.
+          If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+          - `ack` and `nack` for acknowledging or negatively acknowledging a message
+          - `modack` for extending the lease for a single message or batch of messages
+        examples: ['ack', 'nack', 'modack']

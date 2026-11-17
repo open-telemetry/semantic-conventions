@@ -41,4 +41,4 @@ This requirement level is recommended for signals that are expensive to retrieve
 usually pose a security or privacy risk, or are not essential for most applications.
 These should therefore only be enabled deliberately by a user making an informed decision.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

@@ -17,19 +17,19 @@ updated to the stable K8s semantic conventions, they:
 
 - SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN` in
   their existing major version, which accepts:
-  - `k8s` - emit the stable k8s conventions, and stop emitting
-    the old k8s conventions that the instrumentation emitted previously.
-  - `k8s/dup` - emit both the old and the stable k8s conventions,
+  - `k8s` - emit the stable K8s conventions, and stop emitting
+    the old K8s conventions that the instrumentation emitted previously.
+  - `k8s/dup` - emit both the old and the stable K8s conventions,
     allowing for a phased rollout of the stable semantic conventions.
   - The default behavior (in the absence of one of these values) is to continue
-    emitting whatever version of the old k8s conventions the
+    emitting whatever version of the old K8s conventions the
     instrumentation was emitting previously.
 - Need to maintain (security patching at a minimum) their existing major version
   for at least six months after it starts emitting both sets of conventions.
 - May drop the environment variable in their next major version and emit only
-  the stable k8s conventions.
+  the stable K8s conventions.
 
-Specifically for the Opentelemetry Collector:
+Specifically for the OpenTelemetry Collector:
 
 The transition will happen through two different feature gates.
 One for enabling the new schema called `semconv.k8s.enableStable`,
@@ -64,11 +64,15 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
   - [K8s Filesystem metrics](#k8s-filesystem-metrics)
   - [K8s Pod Volume metrics](#k8s-pod-volume-metrics)
+  - [K8s Pod CPU metrics](#k8s-pod-cpu-metrics)
+  - [K8s Pod memory limit and request metrics](#k8s-pod-memory-limit-and-request-metrics)
   - [K8s Pod Memory metrics](#k8s-pod-memory-metrics)
   - [Container memory metrics](#container-memory-metrics)
   - [K8s Node memory metrics](#k8s-node-memory-metrics)
   - [Container Runtime](#container-runtime)
   - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
+  - [K8s labels and annotations](#k8s-labels-and-annotations)
+  - [K8s Pod/Node and Container Memory Usage](#k8s-podnode-and-container-memory-usage)
 
 <!-- END doctoc -->
 
@@ -240,12 +244,14 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
-| ------------------------------------------------------ | --- |
-| `k8s.job.active_pods`                  (type: `gauge`) | `k8s.job.pod.active` (type: `updowncounter`) |
-| `k8s.job.failed_pods`                  (type: `gauge`) | `k8s.job.pod.failed` (type: `updowncounter`) |
-| `k8s.job.desired_successful_pods`      (type: `gauge`) | `k8s.job.pod.desired_successful`  (type: `updowncounter`) |
-| `k8s.job.max_parallel_pods`            (type: `gauge`) | `k8s.job.pod.max_parallel`   (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                      |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `k8s.job.active_pods`             (type: `gauge`)                                  | `k8s.job.pod.active` (type: `updowncounter`)             |
+| `k8s.job.failed_pods`             (type: `gauge`)                                  | `k8s.job.pod.failed` (type: `updowncounter`)             |
+| `k8s.job.desired_successful_pods` (type: `gauge`)                                  | `k8s.job.pod.desired_successful` (type: `updowncounter`) |
+| `k8s.job.max_parallel_pods`       (type: `gauge`)                                  | `k8s.job.pod.max_parallel` (type: `updowncounter`)       |
+
+<!-- prettier-ignore-end -->
 
 ### K8s Cronjob metrics
 
@@ -258,9 +264,9 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
-| ------------------------------------------------ | ---- |
-| `k8s.cronjob.active_jobs`                  (type: `gauge`) | `k8s.cronjob.job.active` (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                              |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `k8s.cronjob.active_jobs` (type: `gauge`)                                          | `k8s.cronjob.job.active` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -313,6 +319,8 @@ The changes are the following:
 | ---------------------------------------------------------------------------------- | -------------------------------------- |
 | `k8s.replication_controller.{name,uid}`                                            | `k8s.replicationcontroller.{name,uid}` |
 
+<!-- prettier-ignore-end -->
+
 ### K8s Container metrics
 
 The K8s Container metrics implemented by the Collector and specifically the
@@ -326,6 +334,7 @@ available)
 - [#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558) (CPU and memory resize: desired/current split)
 - [#3559](https://github.com/open-telemetry/semantic-conventions/pull/3559) (CPU metrics)
 - [#3646](https://github.com/open-telemetry/semantic-conventions/pull/3646) (Memory metrics)
+- [#4133](https://github.com/open-telemetry/semantic-conventions/issues/4133) (Memory utilization metrics)
 
 The changes in their metrics are the following:
 
@@ -345,10 +354,20 @@ The changes in their metrics are the following:
 | `k8s.container.ready` (type: `gauge`) | `k8s.container.ready` (type: `updowncounter`) |
 | `k8s.container.cpu_limit_utilization` (type: `gauge`) | `k8s.container.cpu.limit.utilization` (type: `gauge`) |
 | `k8s.container.cpu_request_utilization` (type: `gauge`) | `k8s.container.cpu.request.utilization` (type: `gauge`) |
+| `k8s.container.memory_limit_utilization` (type: `gauge`) | `k8s.container.memory.limit.utilization` (type: `gauge`) |
+| `k8s.container.memory_request_utilization` (type: `gauge`) | `k8s.container.memory.request.utilization` (type: `gauge`) |
 
 <!-- prettier-ignore-end -->
 
 **Note:** For CPU and memory limit and request, SemConv splits each into `desired` (from spec) and `current` (from container status) to support [K8s container resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
+
+**Note:** The Collector's [kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kubeletstatsreceiver/documentation.md)
+receiver computes the container memory utilization ratios from memory usage, which includes reclaimable page
+cache and can make a container appear close to its limit when it is not under memory pressure (see
+[opentelemetry-collector-contrib#40444](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/40444)).
+SemConv instead uses the container memory working set (`container.memory.working_set`) as the numerator. On Linux,
+the working set excludes `inactive_file` from memory usage, and the kubelet uses the working set when ranking Pods for
+eviction under memory pressure (see `k8s.pod.memory.working_set`).
 
 ### K8s ResourceQuota metrics
 
@@ -451,6 +470,72 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-end -->
 
+### K8s Pod CPU metrics
+
+The K8s Pod CPU utilization metrics implemented by the Collector and specifically the
+[kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kubeletstatsreceiver/documentation.md)
+receiver were introduced as semantic conventions in:
+
+- [#4064](https://github.com/open-telemetry/semantic-conventions/issues/4064) (Pod level CPU limit and request metrics)
+- [opentelemetry-collector-contrib#42485](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/42485)
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New (SemConv) |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `k8s.pod.cpu_limit_utilization` (type: `gauge`) | `k8s.pod.cpu.limit.utilization` (type: `gauge`) |
+| `k8s.pod.cpu_request_utilization` (type: `gauge`) | `k8s.pod.cpu.request.utilization` (type: `gauge`) |
+
+<!-- prettier-ignore-end -->
+
+**Note:** The Collector computes these ratios against the sum of the Pod's container limits/requests and
+does not emit the metric if any container is missing one. SemConv instead defines the denominator as the
+Pod level value, as reported by
+[PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+
+**Note:** SemConv additionally defines `k8s.pod.cpu.limit.desired`, `k8s.pod.cpu.limit.current`,
+`k8s.pod.cpu.request.desired` and `k8s.pod.cpu.request.current`, which have no Collector equivalent today.
+As for containers, limit and request are split into `desired` (from `spec.resources`) and `current` (from
+`status.resources`) to support
+[Pod level resources](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/)
+and [Pod level resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
+
+### K8s Pod memory limit and request metrics
+
+The K8s Pod memory utilization metrics implemented by the Collector and specifically the
+[kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kubeletstatsreceiver/documentation.md)
+receiver were introduced as semantic conventions in:
+
+- [#4133](https://github.com/open-telemetry/semantic-conventions/issues/4133) (Pod level memory limit and request metrics)
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New (SemConv) |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `k8s.pod.memory_limit_utilization` (type: `gauge`) | `k8s.pod.memory.limit.utilization` (type: `gauge`) |
+| `k8s.pod.memory_request_utilization` (type: `gauge`) | `k8s.pod.memory.request.utilization` (type: `gauge`) |
+
+<!-- prettier-ignore-end -->
+
+**Note:** The Collector computes these ratios from the Pod's memory usage against the sum of the Pod's
+container limits/requests, and does not emit the metric if any container is missing one. SemConv instead
+uses the Pod memory working set (`k8s.pod.memory.working_set`) as the numerator, since the working set excludes
+`inactive_file` from memory usage and is used by the kubelet when ranking Pods for eviction under memory pressure (see
+[opentelemetry-collector-contrib#40444](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/40444)),
+and defines the denominator as the Pod level value, as reported by
+[PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+
+**Note:** SemConv additionally defines `k8s.pod.memory.limit.desired`, `k8s.pod.memory.limit.current`,
+`k8s.pod.memory.request.desired` and `k8s.pod.memory.request.current`, which have no Collector equivalent today.
+As for containers, limit and request are split into `desired` (from `spec.resources`) and `current` (from
+`status.resources`) to support
+[Pod level resources](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/)
+and [Pod level resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
+
 ### K8s Pod Memory metrics
 
 The K8s Pod memory metrics implemented by the Collector and specifically the
@@ -498,10 +583,10 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                         |
-| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `k8s.node.memory.page_faults`                                                      | `k8s.node.paging.faults` with attribute `system.paging.type` set to `minor` |
-| `k8s.node.memory.major_page_faults`                                                | `k8s.node.paging.faults` with attribute `system.paging.type` set to `major` |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                               |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `k8s.node.memory.page_faults`                                                      | `k8s.node.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
+| `k8s.node.memory.major_page_faults`                                                | `k8s.node.paging.faults` with attribute `system.paging.fault.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
@@ -535,5 +620,56 @@ The changes in their metrics are the following:
 | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `k8s.pod.status_reason`    metric [1,6]                                            | `k8s.pod.status.reason` metric [0,1] with attribute `k8s.pod.status.reason` for the different reasons |
 | `k8s.pod.phase`       metric [1, 5]                                                | `k8s.pod.status.phase` metric [0,1] with attribute `k8s.pod.phase` for the different phases           |
+
+<!-- prettier-ignore-end -->
+
+### K8s labels and annotations
+
+The K8s label and annotation attributes implemented by the Collector and specifically the
+[k8sattributes](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/k8sattributesprocessor/README.md)
+processor were introduced as semantic conventions in
+[#625](https://github.com/open-telemetry/semantic-conventions/pull/625) (Pod),
+[#2130](https://github.com/open-telemetry/semantic-conventions/pull/2130) (Node) and
+[#2166](https://github.com/open-telemetry/semantic-conventions/pull/2166) (Namespace).
+
+Unlike the receivers described above, the k8sattributes processor gates this transition behind
+its own feature gates, `processor.k8sattributes.EmitV1K8sConventions` and
+`processor.k8sattributes.DontEmitV0K8sConventions`, rather than the
+`OTEL_SEMCONV_STABILITY_OPT_IN` environment variable. See the processor's
+[Semantic Conventions Compatibility](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/k8sattributesprocessor/README.md#semantic-conventions-compatibility)
+documentation for details.
+
+The changes in these attributes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                              |
+| ---------------------------------------------------------------------------------- | -------------------------------- |
+| `k8s.pod.labels.<key>`                                                             | `k8s.pod.label.<key>`            |
+| `k8s.pod.annotations.<key>`                                                        | `k8s.pod.annotation.<key>`       |
+| `k8s.node.labels.<key>`                                                            | `k8s.node.label.<key>`           |
+| `k8s.node.annotations.<key>`                                                       | `k8s.node.annotation.<key>`      |
+| `k8s.namespace.labels.<key>`                                                       | `k8s.namespace.label.<key>`      |
+| `k8s.namespace.annotations.<key>`                                                  | `k8s.namespace.annotation.<key>` |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod/Node and Container Memory Usage
+
+The memory usage metrics implemented by the Collector and specifically the
+[kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.150.0/receiver/kubeletstatsreceiver/documentation.md)
+receiver changed their instrument types in
+[#3889](https://github.com/open-telemetry/semantic-conventions/pull/3889) in alignment with the rest
+of the project.
+
+The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                      |
+| ---------------------------------------------------------------------------------- | ---------------------------------------- |
+| `k8s.pod.memory.usage`   gauge                                                     | `k8s.pod.memory.usage`   updowncounter   |
+| `k8s.node.memory.usage`  gauge                                                     | `k8s.node.memory.usage`  updowncounter   |
+| `container.memory.usage` counter                                                   | `container.memory.usage` updowncounter   |
 
 <!-- prettier-ignore-end -->

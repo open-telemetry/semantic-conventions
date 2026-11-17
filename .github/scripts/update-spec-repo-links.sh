@@ -25,9 +25,9 @@ fix_file() {
   " "$1"
 }
 
-important_files=("docs" "model" "README.md")
-
-# TODO - limit to markdown/yaml files?
-find "${important_files[@]}" -type f -not -path '*/.*' -not -path '*.png' -print0 | while read -d $'\0' file; do
+# Update every tracked markdown and YAML file so that new spec references cannot
+# be missed. CHANGELOG.md is excluded because it intentionally links to the spec
+# version that was current at the time of each release.
+git ls-files -z -- '*.md' '*.yaml' '*.yml' ':(exclude)CHANGELOG.md' | while read -d $'\0' file; do
   fix_file "$file"
 done

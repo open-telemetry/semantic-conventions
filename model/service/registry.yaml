@@ -81,29 +81,29 @@ groups:
                 Service is business-critical; downtime directly impacts revenue, user experience, or core functionality.
               note: >
                 Examples include payment processing, authentication, and primary user-facing APIs.
-              stability: alpha
+              stability: stable
             - id: high
               value: 'high'
               brief: >
                 Service is important but has degradation tolerance or fallback mechanisms.
               note: >
                 Examples include shopping cart, search, and recommendation engines.
-              stability: alpha
+              stability: stable
             - id: medium
               value: 'medium'
               brief: >
                 Service provides supplementary functionality; degradation has limited user impact.
               note: >
                 Examples include analytics, reporting, and non-essential integrations.
-              stability: alpha
+              stability: stable
             - id: low
               value: 'low'
               brief: >
                 Service is non-essential to core operations; used for background tasks or internal tools.
               note: >
                 Examples include batch processors, cleanup jobs, and internal dashboards.
-              stability: alpha
-        stability: alpha
+              stability: stable
+        stability: stable
         brief: >
           The operational criticality of the service.
         note: >
@@ -112,23 +112,22 @@ groups:
           consumers MAY use this attribute to optimize telemetry collection
           or improve user experience.
         examples: ["critical", "high", "medium", "low"]
-  - id: registry.service.peer
-    type: attribute_group
-    display_name: Service Attributes for Peer Services
-    brief: >
-      How to describe the service on the other side of a request.
-    attributes:
-      - id: service.peer.name
+      - id: service.instance.cost_center.id
         type: string
         stability: development
         brief: >
-          Logical name of the service on the other side of the connection.
-          SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the remote service if any.
-        examples: ["shoppingcart"]
-      - id: service.peer.namespace
+          Identifier of the cost center associated with the service instance.
+        note: >
+          The cost center identifier enables tracking and attribution of service resource costs to
+          organizational units, billing accounts, or teams. It is typically a string identifier
+          such as a billing account ID, cost allocation code, or internal accounting ID.
+        examples: ["94002", "111111111111", "cc-eng-402", "acc-83921"]
+      - id: service.instance.cost_center.name
         type: string
         stability: development
         brief: >
-          Logical namespace of the service on the other side of the connection.
-          SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.
-        examples: ["Shop"]
+          Name of the cost center associated with the service instance.
+        note: >
+          A human-readable name of the cost center, department, or organizational unit responsible
+          for the service instance costs.
+        examples: ["engineering-platform", "marketing-campaigns", "research-and-development"]

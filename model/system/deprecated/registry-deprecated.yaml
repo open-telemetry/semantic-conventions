@@ -144,3 +144,11 @@ groups:
           renamed_to: process.state
         brief: "Deprecated, use `process.state` instead."
         examples: [ "running" ]
+      - id: system.device
+        type: string
+        stability: development
+        brief: "Deprecated, use `system.device.name` instead."
+        deprecated:
+          reason: renamed
+          renamed_to: system.device.name
+        examples: ["(identifier)"]

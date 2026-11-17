@@ -1,8 +1,25 @@
-groups:
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
   - id: source
-    type: attribute_group
+    visibility: public
+    stability: development
     brief: >
-      General source attributes.
+      `source.*` attributes describe the sender of a network exchange or packet. They capture the
+      address available at the point of instrumentation and do not try to resolve the address
+      behind intermediaries such as proxies.
+
+
+      Use them when there is no client/server relationship between the two sides, or when that
+      relationship is unknown - for example, packet-level telemetry and peer-to-peer protocols.
     attributes:
       - ref: source.address
+      - ref: source.as.number
+        requirement_level: opt_in
+      - ref: source.as.organization
+        requirement_level: opt_in
+      - ref: source.mac.address
+        requirement_level: opt_in
+      - ref: source.prefix
+        requirement_level: opt_in
       - ref: source.port

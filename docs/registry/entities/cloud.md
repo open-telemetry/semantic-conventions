@@ -3,38 +3,26 @@
 
 # Cloud
 
-## Cloud
+## Cloud Resource
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `cloud`
+**type:** `cloud.resource`
 
-**Description:** A cloud environment (e.g. GCP, Azure, AWS)
-
-> [!warning]
-> This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
+**Description:** A resource in a cloud environment (e.g. GCP, Azure, AWS).
 
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`cloud.account.id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The cloud account ID the resource is assigned to. [1] | `111111111111`; `opentelemetry`; `22222222-2222-2222-2222-222222222222` |
-| Other | [`cloud.availability_zone`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [2] | `us-east-1c` |
-| Other | [`cloud.platform`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The cloud platform in use. [3] | `akamai_cloud.compute`; `alibaba_cloud_ecs`; `alibaba_cloud_fc` |
-| Other | [`cloud.provider`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the cloud provider. | `akamai_cloud`; `alibaba_cloud`; `aws` |
-| Other | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed. [4] | `us-central1`; `us-east-1` |
-| Other | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [5] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
+| Identity | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
+| Description | [`cloud.account.id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The cloud account ID the resource is assigned to. [2] | `111111111111`; `opentelemetry`; `22222222-2222-2222-2222-222222222222` |
+| Description | [`cloud.availability_zone`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [3] | `us-east-1c` |
+| Description | [`cloud.platform`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The cloud platform in use. [4] | `akamai_cloud.compute`; `alibaba_cloud_ecs`; `alibaba_cloud_fc` [(see more)](#cloud-platform-values) |
+| Description | [`cloud.provider`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the cloud provider. | `akamai_cloud`; `alibaba_cloud`; `aws` [(see more)](#cloud-provider-values) |
+| Description | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed. [5] | `us-central1`; `us-east-1` |
 
-**[1] `cloud.account.id`:** For Azure, this is the subscription ID.
-
-**[2] `cloud.availability_zone`:** Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
-
-**[3] `cloud.platform`:** The prefix of the service SHOULD match the one specified in `cloud.provider`.
-
-**[4] `cloud.region`:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
-
-**[5] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
+**[1] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 
 The exact value to use for `cloud.resource_id` depends on the cloud provider.
@@ -52,7 +40,17 @@ The following well-known definitions MUST be used if you set this attribute and 
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
 
+**[2] `cloud.account.id`:** For Azure, this is the subscription ID.
+
+**[3] `cloud.availability_zone`:** Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
+
+**[4] `cloud.platform`:** The prefix of the service SHOULD match the one specified in `cloud.provider`.
+
+**[5] `cloud.region`:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+
 ---
+
+<a id="cloud-platform-values"></a>
 
 `cloud.platform` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -88,12 +86,15 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `ibm_cloud_openshift` | Red Hat OpenShift on IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud_compute` | Compute on Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud_oke` | Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `scaleway_cloud_compute` | Compute on Scaleway Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `vultr.cloud_compute` | Vultr Cloud Compute | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
+
+<a id="cloud-provider-values"></a>
 
 `cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -108,5 +109,6 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `hetzner` | Hetzner | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm_cloud` | IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud` | Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `scaleway_cloud` | Scaleway Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `vultr` | Vultr | ![Development](https://img.shields.io/badge/-development-blue) |

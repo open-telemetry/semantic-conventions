@@ -86,7 +86,7 @@ groups:
         brief: 'Deprecated, use `db.namespace` instead.'
         deprecated:
           reason: uncategorized
-          renamed_to: Use `db.namespace` instead.
+          note: Replaced by `db.namespace` (string).
         examples: [0, 1, 15]
       - id: db.name
         type: string

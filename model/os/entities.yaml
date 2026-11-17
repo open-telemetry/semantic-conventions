@@ -10,11 +10,16 @@ groups:
       the process, i.e., the virtualized guest rather than the underlying host.
     attributes:
       - ref: os.type
+        role: descriptive
         requirement_level: required
       - ref: os.description
+        role: descriptive
       - ref: os.name
+        role: identifying
       - ref: os.version
+        role: descriptive
       - ref: os.build_id
+        role: identifying
         note: >
           `build_id` values SHOULD be obtained from the following sources:
 
@@ -25,6 +30,6 @@ groups:
 
           | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | - |
 
-          | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
+          | macOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 
           | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease` |

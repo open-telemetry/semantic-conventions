@@ -104,22 +104,22 @@ groups:
             - id: batching_span_processor
               value: "batching_span_processor"
               brief: >
-                The builtin SDK batching span processor
+                The built-in SDK batching span processor
               stability: development
             - id: simple_span_processor
               value: "simple_span_processor"
               brief: >
-                The builtin SDK simple span processor
+                The built-in SDK simple span processor
               stability: development
             - id: batching_log_processor
               value: "batching_log_processor"
               brief: >
-                The builtin SDK batching log record processor
+                The built-in SDK batching log record processor
               stability: development
             - id: simple_log_processor
               value: "simple_log_processor"
               brief: >
-                The builtin SDK simple log record processor
+                The built-in SDK simple log record processor
               stability: development
             - id: otlp_grpc_span_exporter
               value: "otlp_grpc_span_exporter"
@@ -159,7 +159,7 @@ groups:
             - id: periodic_metric_reader
               value: "periodic_metric_reader"
               brief: >
-                The builtin SDK periodically exporting metric reader
+                The built-in SDK periodically exporting metric reader
               stability: development
             - id: otlp_grpc_metric_exporter
               value: "otlp_grpc_metric_exporter"

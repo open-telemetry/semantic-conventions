@@ -1,5 +1,4 @@
 groups:
-  # HOST METRICS
   - id: metric.hw.host.ambient_temperature
     type: metric
     metric_name: hw.host.ambient_temperature

@@ -106,7 +106,9 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Reports memory in use by state."
+    brief: "Reports memory by state."
+    note: |
+      The sum of the `used` and `available` state values SHOULD be equal to `system.memory.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
@@ -135,7 +137,9 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Percentage of memory bytes in use.
+    brief: Fraction of memory bytes by state.
+    note: |
+      The sum of the `used` and `available` state values SHOULD be equal to 1.
     instrument: gauge
     unit: "1"
     attributes:
@@ -151,12 +155,12 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Unix swap or windows pagefile usage."
+    brief: "UNIX swap or windows pagefile usage."
     instrument: updowncounter
     unit: "By"
     attributes:
       - ref: system.paging.state
-      - ref: system.device
+      - ref: system.device.name
         brief: Unique identifier for the device responsible for managing paging operations.
         examples: ["/dev/dm-0"]
     entity_associations:
@@ -169,12 +173,12 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Swap (unix) or pagefile (windows) utilization.
+    brief: Swap (UNIX) or pagefile (windows) utilization.
     instrument: gauge
     unit: "1"
     attributes:
       - ref: system.paging.state
-      - ref: system.device
+      - ref: system.device.name
         brief: Unique identifier for the device responsible for managing paging operations.
         examples: ["/dev/dm-0"]
     entity_associations:
@@ -223,7 +227,7 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -239,7 +243,7 @@ groups:
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -262,7 +266,7 @@ groups:
         ["Disk\% Idle Time"](https://learn.microsoft.com/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
         performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
     attributes:
-      - ref: system.device
+      - ref: system.device.name
     entity_associations:
       - host
 
@@ -282,7 +286,7 @@ groups:
       - Linux: Fields 7 & 11 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
       - Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec" perf counter (similar for Writes)
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -298,7 +302,7 @@ groups:
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: disk.io.direction
     entity_associations:
       - host
@@ -314,7 +318,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
     entity_associations:
       - host
 
@@ -333,7 +337,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: Identifier for the device where the filesystem resides.
         examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.state
@@ -354,7 +358,7 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: Identifier for the device where the filesystem resides.
         examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.state
@@ -375,7 +379,7 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: Identifier for the device where the filesystem resides.
         examples: ["/dev/sda", "\\network-drive"]
       - ref: system.filesystem.type
@@ -395,7 +399,7 @@ groups:
     instrument: updowncounter
     unit: "{lock}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
         brief: OS-specific identifier for the device where the file resides.
         examples: ["08:01"]
       - ref: file.lock.type
@@ -438,7 +442,7 @@ groups:
     instrument: counter
     unit: "{packet}"
     attributes:
-      - ref: system.device
+      - ref: system.device.name
       - ref: network.io.direction
     entity_associations:
       - host
@@ -528,6 +532,24 @@ groups:
     entity_associations:
       - host
 
+  - id: metric.system.process.limit
+    type: metric
+    metric_name: system.process.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The maximum number of concurrent processes/tasks allowed by the operating system."
+    instrument: updowncounter
+    unit: "{thread}"
+    attributes: []
+    entity_associations:
+      - host
+    note: |
+      On Linux, this corresponds to `/proc/sys/kernel/pid_max` or `/proc/sys/kernel/threads-max`.
+      A per-user process limit may also be retrieved via `getrlimit(RLIMIT_NPROC)`.
+      On BSD-like systems, this corresponds to `sysctl kern.maxproc`. This metric is unsupported on Windows systems.
+
   # system.memory.linux.* metrics
   - id: metric.system.memory.linux.available
     type: metric
@@ -538,11 +560,64 @@ groups:
     stability: development
     brief: "An estimate of how much memory is available for starting new applications, without causing swapping."
     note: |
-      This is an alternative to `system.memory.usage` metric with `state=free`.
+      This is equivalent to the `system.memory.usage` metric with `state=available`.
       Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
       This is supposed to be more accurate than just "free" memory.
-      For reference, see the calculations [here](https://superuser.com/a/980821).
+      For reference, see the calculations [here](https://superuser.com/a/980821?link-check=no&last-validated=2026-11-04).
       See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.free
+    type: metric
+    metric_name: system.memory.linux.free
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Physical memory left completely unused by the system, excluding memory used by buffers and the page cache."
+    note: |
+      Equivalent of `free` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `MemFree` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+      This value does not reflect the memory available for starting new applications, see `system.memory.linux.available` instead.
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.buffers
+    type: metric
+    metric_name: system.memory.linux.buffers
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory used by kernel buffers."
+    note: |
+      Equivalent of `buffers` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `Buffers` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.cached
+    type: metric
+    metric_name: system.memory.linux.cached
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory used by the page cache."
+    note: |
+      Corresponds to `Cached` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html).
+      Note that the `cache` column of the [`free` command](https://man7.org/linux/man-pages/man1/free.1.html)
+      also includes reclaimable slab memory (`SReclaimable`), which is reported by `system.memory.linux.slab.usage`.
     instrument: updowncounter
     unit: "By"
     attributes: []
@@ -675,5 +750,103 @@ groups:
     unit: "By"
     attributes:
       - ref: system.memory.linux.slab.state
+    entity_associations:
+      - host
+  - id: metric.system.cpu.linux.pressure.some_time
+    type: metric
+    metric_name: system.cpu.linux.pressure.some_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which at least some runnable tasks were delayed due to a lack of CPU."
+    note: |
+      Read from the `total` field of the `some` line in `/proc/pressure/cpu`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+
+      The kernel also reports a `full` line for CPU, but it is undefined at the system level and always zero, so no `full` metric is defined for CPU.
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
+  - id: metric.system.io.linux.pressure.some_time
+    type: metric
+    metric_name: system.io.linux.pressure.some_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which at least some non-idle tasks were stalled waiting for IO."
+    note: |
+      Read from the `total` field of the `some` line in `/proc/pressure/io`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
+  - id: metric.system.io.linux.pressure.full_time
+    type: metric
+    metric_name: system.io.linux.pressure.full_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which all non-idle tasks were stalled simultaneously waiting for IO."
+    note: |
+      Read from the `total` field of the `full` line in `/proc/pressure/io`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+
+      The `full` time is a subset of the time reported by `system.io.linux.pressure.some_time`.
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
+  - id: metric.system.irq.linux.pressure.full_time
+    type: metric
+    metric_name: system.irq.linux.pressure.full_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which all non-idle tasks were stalled due to IRQ or softirq handling."
+    note: |
+      Read from the `total` field of the `full` line in `/proc/pressure/irq`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+
+      IRQ pressure only reports a `full` line. `/proc/pressure/irq` is only available on kernels built with `CONFIG_IRQ_TIME_ACCOUNTING` (Linux 6.1 or later).
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
+  - id: metric.system.memory.linux.pressure.some_time
+    type: metric
+    metric_name: system.memory.linux.pressure.some_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which at least some non-idle tasks were stalled due to a lack of memory."
+    note: |
+      Read from the `total` field of the `some` line in `/proc/pressure/memory`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+    instrument: counter
+    unit: "s"
+    entity_associations:
+      - host
+  - id: metric.system.memory.linux.pressure.full_time
+    type: metric
+    metric_name: system.memory.linux.pressure.full_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total time in which all non-idle tasks were stalled simultaneously due to a lack of memory."
+    note: |
+      Read from the `total` field of the `full` line in `/proc/pressure/memory`, which is reported in microseconds and SHOULD be converted to seconds.
+      See Linux [Pressure Stall Information (PSI)](https://docs.kernel.org/accounting/psi.html) for details.
+
+      The `full` time is a subset of the time reported by `system.memory.linux.pressure.some_time`.
+    instrument: counter
+    unit: "s"
     entity_associations:
       - host

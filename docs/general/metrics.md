@@ -13,6 +13,7 @@ aliases: [metrics-general]
   - [Units](#units)
   - [Instrument units](#instrument-units)
   - [Instrument types](#instrument-types)
+  - [Duration histogram bucket boundaries](#duration-histogram-bucket-boundaries)
   - [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
 <!-- END doctoc -->
@@ -36,8 +37,8 @@ The following semantic conventions surrounding metrics are defined:
   * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
 * [OTel SDK Telemetry](/docs/otel/sdk-metrics.md): Metrics emitted by the OpenTelemetry SDK components.
 
-Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/resource/sdk.md) with
+Apart from semantic conventions for metrics, [traces](trace.md), and [events](events.md), OpenTelemetry also
+defines the concept of overarching [Resources](https://opentelemetry.io/docs/specs/otel/resource/sdk/) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General guidelines
@@ -88,7 +89,7 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://opentelemetry.io/docs/specs/otel/compatibility/prometheus_and_openmetrics/).
 
 ### Instrument units
 
@@ -125,6 +126,33 @@ like `Asynchronous Counter` or `Asynchronous UpDownCounter`.
 Whether implementations choose the synchronous type or the asynchronous equivalent is considered to be an
 implementation detail. Both choices are compliant with this specification.
 
+### Duration histogram bucket boundaries
+
+**Status**: [Development][DocumentStatus]
+
+For new duration histograms, recommended
+[`ExplicitBucketBoundaries` advisory parameters](https://opentelemetry.io/docs/specs/otel/metrics/api/#instrument-advisory-parameters)
+SHOULD use a decimal-friendly approximation of an exponential progression.
+Use `1, 2.5, 5` subdivisions across powers of ten up to 10 seconds, then
+`1, 2, 5` subdivisions for minutes and hours. Include `0.5` at each unit
+transition. For example, in seconds:
+
+```text
+[
+  0.001, 0.0025, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5,
+  1, 2.5, 5, 10, 30, 60, 120, 300, 600, 1800, 3600, 7200
+]
+```
+
+Each step is a factor of 2, 2.5, or 3, giving approximately exponential spacing.
+Choose a range that covers the durations users need to distinguish.
+More boundaries improve resolution but increase resource costs for each
+attribute combination.
+
+Metric-specific recommendations MAY use different boundaries to meet resolution,
+threshold, or compatibility needs. Comparable client and server durations
+SHOULD use consistent boundaries unless their expected distributions differ.
+
 ### Consistent UpDownCounter timeseries
 
 **Status**: [Development][DocumentStatus]
@@ -136,4 +164,4 @@ For example, if you are tracking `active_requests` with an `UpDownCounter`, and 
 request starts and decrementing it each time a request ends, then any attributes which are not yet available when
 incrementing the counter at request start should not be used when decrementing the counter at request end.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

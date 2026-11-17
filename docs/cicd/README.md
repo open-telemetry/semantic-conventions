@@ -14,4 +14,4 @@ Semantic conventions for CI/CD are defined for the following signals:
 * [CI/CD Metrics](cicd-metrics.md): Semantic Conventions for CI/CD *metrics*.
 * [CI/CD Logs](cicd-logs.md): Semantic Conventions for CI/CD *logs*.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

@@ -31,6 +31,7 @@ where `<domain>` is one of the following:
 
 - `code`
 - `db`
+- `faas`
 - `gen_ai`
 - `http`
 - `k8s`
@@ -115,5 +116,5 @@ When an instrumentation supports both declarative configuration and the
 `OTEL_SEMCONV_STABILITY_OPT_IN` environment variable,
 the declarative configuration MUST take precedence.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
 [SemConvStability]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability

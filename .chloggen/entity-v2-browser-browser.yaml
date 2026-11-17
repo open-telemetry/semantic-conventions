@@ -1,0 +1,4 @@
+change_type: breaking
+component: browser
+note: Remove the `browser` entity. The `browser.*` resource attributes remain defined in the registry.
+issues: [4172]

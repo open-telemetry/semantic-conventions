@@ -29,4 +29,4 @@ Semantic conventions for Exceptions are defined for the following signals:
 * [Exceptions on spans](exceptions-spans.md): Semantic Conventions for Exceptions recorded on *spans* (deprecated).
 * [Exceptions in logs](exceptions-logs.md): Semantic Conventions for Exceptions recorded in *logs*.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
