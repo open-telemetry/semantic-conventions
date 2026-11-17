@@ -392,10 +392,10 @@ Search existing issues and pull requests first, then open a change proposal
 issue. Include examples of the current and proposed telemetry.
 
 Check the area's status and owners in [Semantic Convention Areas](/AREAS.md).
-A pull request needs a linked issue that has passed
-[pull request triage](/issue-management.md#pull-request-triage), unless it falls
-under one of the [exceptions](/issue-management.md#exceptions): pull requests
-from SIG members, automated pull requests, and trivial changes.
+A pull request needs a linked issue with the `triage:accepted:ready` or
+`triage:accepted:ready-with-sig` [label](/issue-management.md#triageaccepted),
+unless it falls under one of the [exceptions](/issue-management.md#exceptions):
+pull requests from SIG members, automated pull requests, and trivial changes.
 
 If triage asks for more information, add it to the issue. If the issue is
 rejected, address the reason in the issue rather than opening a pull request.
