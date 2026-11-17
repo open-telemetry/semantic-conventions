@@ -1296,6 +1296,8 @@ operations, `error.type` MUST NOT be set. For unsuccessful export operations, `e
 If the exporter retries failed export attempts, exactly one observation MUST be recorded per export operation,
 covering the wall-clock duration from the start of the first attempt through the conclusion of the final attempt (including any backoff between attempts).
 `error.type` reflects the cause of the final attempt.
+When an HTTP response status code is received or a gRPC status code is available (for either a successful or failed export call),
+`http.response.status_code` or `rpc.status_code` applies for HTTP and gRPC exporters respectively.
 
 **Attributes:**
 

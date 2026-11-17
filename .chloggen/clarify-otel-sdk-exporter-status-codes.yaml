@@ -1,0 +1,6 @@
+change_type: enhancement
+component: otel
+note: >
+  Clarify `http.response.status_code` and `rpc.status_code` applicability on `otel.sdk.exporter.operation.duration`.
+issues: [3954]
+subtext:
