@@ -1,0 +1,6 @@
+change_type: enhancement
+component: otel
+note: >
+  Clarify pull-based metric reader collection duration recording on `otel.sdk.metric_reader.collection.duration` and avoid double-recording.
+issues: [3954]
+subtext:
