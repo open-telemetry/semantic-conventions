@@ -47,6 +47,7 @@ Currently, the following namespaces exist:
 | Deployment | | |
 | | [deployment](deployment.md#deployment) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Faas | | |
+| | [faas](faas.md#faas) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [faas.instance](faas.md#faas-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
 | GCP | | |
 | | [gcp.apphub.application](gcp.md#gcp-apphub-application) | ![Development](https://img.shields.io/badge/-development-blue) |
