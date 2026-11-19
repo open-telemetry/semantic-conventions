@@ -45,7 +45,6 @@ body:
         - area:db
         - area:deployment
         - area:destination
-        - area:device
         - area:disk
         - area:dns
         - area:dotnet

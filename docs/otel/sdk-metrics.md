@@ -1194,6 +1194,8 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 **[1]:** For successful collections, `error.type` MUST NOT be set. For failed collections, `error.type` SHOULD contain the failure cause.
 It can happen that metrics collection is successful for some MetricProducers, while others fail. In that case `error.type` SHOULD be set to any of the failure causes.
+Pull-based metric readers SHOULD record this metric during collection.
+When a metric reader delegates collection to a wrapped `MetricReader`, implementations SHOULD NOT record this metric twice for the same collection.
 
 **Attributes:**
 
