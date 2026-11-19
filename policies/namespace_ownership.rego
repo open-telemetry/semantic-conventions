@@ -18,6 +18,7 @@ owned_namespaces := {
     "a2a": "https://github.com/open-telemetry/semantic-conventions-genai",
     "zos": "https://github.com/open-telemetry/semantic-conventions-mainframe",
     "enduser": "https://github.com/open-telemetry/semantic-conventions-client-side",
+    "device": "https://github.com/open-telemetry/semantic-conventions-client-side",
 }
 
 # attributes

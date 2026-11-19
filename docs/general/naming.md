@@ -243,6 +243,7 @@ definitions are kept here to point users to the new owner.
 | `a2a.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
 | `zos.*` | [OpenTelemetry Mainframe semantic conventions](https://github.com/open-telemetry/semantic-conventions-mainframe) |
 | `enduser.*` | [OpenTelemetry Client-Side semantic conventions](https://github.com/open-telemetry/semantic-conventions-client-side) |
+| `device.*` | [OpenTelemetry Client-Side semantic conventions](https://github.com/open-telemetry/semantic-conventions-client-side) |
 
 This rule is enforced for this repository by the `namespace_ownership` policy
 in [`policies/`](../../policies/README.md).
