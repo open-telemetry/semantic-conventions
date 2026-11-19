@@ -17,7 +17,7 @@
 - Merging the prepare-release PR into `main` triggers the
   [create release draft workflow](.github/workflows/create-release.yml).
   It takes the version from the `otelbot/prepare-release-v{version}` branch and builds from the merge commit.
-  It generates the resolved schema and attaches `resolved.yaml` and `manifest.yaml` to a draft release.
+  It generates the resolved schema and attaches `registry-dev.yaml` and `manifest-dev.yaml` to a draft release.
   - For manual runs, provide the release version and full commit SHA of the merged release PR.
 - After the workflow succeeds, edit the draft in [releases](https://github.com/open-telemetry/semantic-conventions/releases):
   - Copy changelog to the release notes
@@ -30,11 +30,11 @@ eventually results in new version of schema files being published:
 
 - `schemas/{version}` at `https://opentelemetry.io/schemas/{version}`
 - `schemas/semconv-dev/{version}-dev` (development publication manifest) at
-  `https://opentelemetry.io/schemas/semconv-dev/{version}-dev`. It points to `resolved.yaml` in the GitHub release.
+  `https://opentelemetry.io/schemas/semconv-dev/{version}-dev`. It points to `registry-dev.yaml` in the GitHub release.
 
 ## After the release
 
 - Publishing a release triggers the [post-release workflow](https://github.com/open-telemetry/semantic-conventions/actions/workflows/post-release.yml),
   which opens a pull request against main bumping the development `schema_url` in
-  `model/manifest.yaml` to the `semconv-unreleased/{major}.{minor+1}.0-unreleased` version.
+  `model/manifest.yaml` to the `semconv-dev/{major}.{minor+1}.0-unreleased` version.
   Review and merge that pull request.

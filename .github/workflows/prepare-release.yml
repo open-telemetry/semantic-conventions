@@ -47,10 +47,10 @@ jobs:
         run: |
           version=${INPUTS_VERSION}
           make generate-publication-schema-dev VERSION="$version" \
-            RESOLVED_REGISTRY_URI="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/download/v${version}/resolved.yaml"
+            RESOLVED_REGISTRY_URI="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/download/v${version}/registry-dev.yaml"
           # Served by opentelemetry.io at https://opentelemetry.io/schemas/semconv-dev/{version}-dev
           mkdir -p schemas/semconv-dev
-          cp "internal/tools/bin/publication-schema-dev/${version}-dev/manifest.yaml" "schemas/semconv-dev/${version}-dev"
+          cp "internal/tools/bin/publication-schema-dev/${version}-dev/manifest-dev.yaml" "schemas/semconv-dev/${version}-dev"
           git add "schemas/semconv-dev/${version}-dev"
 
       - name: Update change log
