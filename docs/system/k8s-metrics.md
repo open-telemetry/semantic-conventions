@@ -898,7 +898,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.volume.available` | UpDownCounter | `By` | Pod volume storage space available. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.volume.available` | UpDownCounter | `By` | Pod volume storage space available. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** This metric is derived from the
 [VolumeStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
@@ -909,11 +909,11 @@ Kubelet's stats API.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
-| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
-| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
-| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
-| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
@@ -934,12 +934,12 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -949,11 +949,11 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -970,7 +970,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.volume.capacity` | UpDownCounter | `By` | Pod volume total capacity. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.volume.capacity` | UpDownCounter | `By` | Pod volume total capacity. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** This metric is derived from the
 [VolumeStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
@@ -981,11 +981,11 @@ Kubelet's stats API.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
-| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
-| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
-| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
-| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
@@ -1006,12 +1006,12 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -1021,11 +1021,11 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1042,7 +1042,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.volume.usage` | UpDownCounter | `By` | Pod volume usage. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.volume.usage` | UpDownCounter | `By` | Pod volume usage. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** This may not equal capacity - available.
 
@@ -1055,11 +1055,11 @@ Kubelet's stats API.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
-| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
-| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
-| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
-| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
@@ -1080,12 +1080,12 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -1095,11 +1095,11 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1116,7 +1116,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.volume.inode.count` | UpDownCounter | `{inode}` | The total inodes in the filesystem of the Pod's volume. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.volume.inode.count` | UpDownCounter | `{inode}` | The total inodes in the filesystem of the Pod's volume. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** This metric is derived from the
 [VolumeStats.Inodes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
@@ -1127,11 +1127,11 @@ Kubelet's stats API.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
-| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
-| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
-| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
-| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
@@ -1152,12 +1152,12 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -1167,11 +1167,11 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1188,7 +1188,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.volume.inode.used` | UpDownCounter | `{inode}` | The inodes used by the filesystem of the Pod's volume. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.volume.inode.used` | UpDownCounter | `{inode}` | The inodes used by the filesystem of the Pod's volume. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** This metric is derived from the
 [VolumeStats.InodesUsed](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
@@ -1201,11 +1201,11 @@ This may not be equal to `inodes - free` because filesystem may share inodes wit
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
-| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
-| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
-| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
-| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
@@ -1226,12 +1226,12 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -1241,11 +1241,11 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1262,7 +1262,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.volume.inode.free` | UpDownCounter | `{inode}` | The free inodes in the filesystem of the Pod's volume. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.volume.inode.free` | UpDownCounter | `{inode}` | The free inodes in the filesystem of the Pod's volume. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** This metric is derived from the
 [VolumeStats.InodesFree](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#VolumeStats) field
@@ -1273,11 +1273,11 @@ Kubelet's stats API.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
-| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
-| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
-| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
-| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| [`k8s.pod.volume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the K8s Pod volume. | `volume0` |
+| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| [`k8s.pod.volume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the K8s Pod volume. [2] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
+| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the PersistentVolume. | `pv-data-01` |
+| [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [3] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
 
 **[1] `k8s.persistentvolumeclaim.name`:** If the volume is backed by a PersistentVolumeClaim.
 
@@ -1298,12 +1298,12 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -1313,11 +1313,11 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

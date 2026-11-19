@@ -545,7 +545,7 @@ groups:
   - id: metric.k8s.pod.volume.available
     type: metric
     metric_name: k8s.pod.volume.available
-    stability: development
+    stability: release_candidate
     annotations:
       code_generation:
         metric_value_type: int
@@ -574,7 +574,7 @@ groups:
   - id: metric.k8s.pod.volume.capacity
     type: metric
     metric_name: k8s.pod.volume.capacity
-    stability: development
+    stability: release_candidate
     brief: "Pod volume total capacity."
     instrument: updowncounter
     annotations:
@@ -603,7 +603,7 @@ groups:
   - id: metric.k8s.pod.volume.usage
     type: metric
     metric_name: k8s.pod.volume.usage
-    stability: development
+    stability: release_candidate
     brief: "Pod volume usage."
     instrument: updowncounter
     annotations:
@@ -634,7 +634,7 @@ groups:
   - id: metric.k8s.pod.volume.inode.count
     type: metric
     metric_name: k8s.pod.volume.inode.count
-    stability: development
+    stability: release_candidate
     brief: "The total inodes in the filesystem of the Pod's volume."
     instrument: updowncounter
     annotations:
@@ -663,7 +663,7 @@ groups:
   - id: metric.k8s.pod.volume.inode.used
     type: metric
     metric_name: k8s.pod.volume.inode.used
-    stability: development
+    stability: release_candidate
     brief: "The inodes used by the filesystem of the Pod's volume."
     instrument: updowncounter
     annotations:
@@ -694,7 +694,7 @@ groups:
   - id: metric.k8s.pod.volume.inode.free
     type: metric
     metric_name: k8s.pod.volume.inode.free
-    stability: development
+    stability: release_candidate
     brief: "The free inodes in the filesystem of the Pod's volume."
     instrument: updowncounter
     annotations:
