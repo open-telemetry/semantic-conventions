@@ -46,6 +46,9 @@ groups:
         requirement_level: opt_in
       - ref: url.scheme
       - ref: network.peer.address
+        note: >
+          If an HTTP client operation involved multiple network calls (for example redirects or retries),
+          the address of the last contacted peer SHOULD be used.
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
