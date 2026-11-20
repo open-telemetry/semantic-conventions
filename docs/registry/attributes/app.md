@@ -5,7 +5,7 @@
 
 ## Application Attributes (Moved)
 
-Describes attributes related to client-side applications (e.g. web apps or mobile apps).
+Application attributes have moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
 
 **Attributes:**
 
