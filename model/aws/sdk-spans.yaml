@@ -1,5 +1,5 @@
 groups:
-  - id: span.aws.client
+  - id: span.aws.client.call
     type: span
     stability: development
     span_kind: client

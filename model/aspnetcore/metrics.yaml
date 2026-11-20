@@ -329,7 +329,7 @@ groups:
     metric_name: aspnetcore.identity.user.create.duration
     annotations:
       code_generation:
-        metric_value_type: int
+        metric_value_type: double
     stability: development
     brief: The duration of user creation operations.
     instrument: histogram
@@ -356,7 +356,7 @@ groups:
     metric_name: aspnetcore.identity.user.update.duration
     annotations:
       code_generation:
-        metric_value_type: int
+        metric_value_type: double
     stability: development
     brief: The duration of user update operations.
     instrument: histogram
@@ -385,7 +385,7 @@ groups:
     metric_name: aspnetcore.identity.user.delete.duration
     annotations:
       code_generation:
-        metric_value_type: int
+        metric_value_type: double
     stability: development
     brief: The duration of user deletion operations.
     instrument: histogram
@@ -485,7 +485,7 @@ groups:
     metric_name: aspnetcore.identity.sign_in.authenticate.duration
     annotations:
       code_generation:
-        metric_value_type: int
+        metric_value_type: double
     stability: development
     brief: The duration of authenticate attempts. The authenticate metrics is recorded by sign in methods such as PasswordSignInAsync and TwoFactorSignInAsync.
     instrument: histogram
@@ -496,7 +496,7 @@ groups:
     attributes:
       - ref: aspnetcore.authentication.scheme
         requirement_level: required
-      - ref: aspnetcore.sign_in.is_persistent
+      - ref: aspnetcore.authentication.is_persistent
         requirement_level:
           conditionally_required: if no exception was thrown.
       - ref: aspnetcore.identity.sign_in.type
@@ -597,7 +597,7 @@ groups:
     attributes:
       - ref: aspnetcore.authentication.scheme
         requirement_level: required
-      - ref: aspnetcore.sign_in.is_persistent
+      - ref: aspnetcore.authentication.is_persistent
         requirement_level:
           conditionally_required: if no exception was thrown.
       - ref: error.type

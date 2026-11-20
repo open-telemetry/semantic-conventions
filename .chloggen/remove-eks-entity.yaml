@@ -1,0 +1,4 @@
+change_type: breaking
+component: aws
+note: Remove the `aws.eks` entity. Use the `k8s.cluster` entity for EKS clusters; `aws.eks.cluster.arn` remains available as an attribute.
+issues: [4284]

@@ -77,7 +77,7 @@ Examples:
 **[3] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
 the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
-and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
+and the QUERY method defined in [RFC10008](https://www.rfc-editor.org/rfc/rfc10008.html).
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
@@ -185,7 +185,7 @@ support custom route formatting. Instrumentations SHOULD document the format and
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `QUERY` | QUERY method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ## Deprecated HTTP Attributes

@@ -24,18 +24,15 @@ Only checks that are **not** available upstream are kept here:
 
 ## Exceptions
 
-Per-signal exceptions to the shared checks are declared in the model via
-`annotations.<package>.policy_exceptions`, where the exception key is the
-finding ID with the package prefix dropped. For example:
+Per-signal exceptions are declared as finding filters in
+[`.weaver.toml`](../.weaver.toml) rather than as model annotations, so they
+don't end up in the resolved schema. For example:
 
-```yaml
-annotations:
-  naming_conventions:
-    policy_exceptions:
-      - metric_namespace_collision
-  stability:
-    policy_exceptions:
-      - metric_lower_stability_attribute
+```toml
+[[policy.finding_filters]]
+exclude = ["naming_convention_metric_namespace_collision"]
+signal_type = "metric"
+signal_names = ["hw.temperature"]
 ```
 
 ## Tests

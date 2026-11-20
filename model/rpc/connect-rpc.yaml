@@ -6,15 +6,15 @@ attribute_groups:
     visibility: internal
     attributes:
       - ref: rpc.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: 'MUST be set to `connectrpc`.'
         examples: ['connectrpc']
 
 span_refinements:
-  - id: span.rpc.connect_rpc.call.client
-    ref: rpc.call.client
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
+  - id: connectrpc.client.call
+    ref: rpc.client.call
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
@@ -119,11 +119,8 @@ span_refinements:
         requirement_level:
           conditionally_required: if available.
 
-  - id: span.rpc.connect_rpc.call.server
-    ref: rpc.call.server
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
+  - id: connectrpc.server.call
+    ref: rpc.server.call
     stability: development
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |

@@ -1,8 +1,8 @@
 groups:
   - id: attributes.metrics.db.client.connection.pool
     type: attribute_group
-    brief: "Database client connection pool metric attributes."
-    extends: attributes.db.client.connection
+    brief: Detailed client connection
+    extends: db.client.connection
     attributes:
       - ref: db.system.name
         requirement_level:
@@ -28,7 +28,6 @@ groups:
     extends: attributes.db.client.with_query_and_collection
     attributes:
       - ref: db.system.name
-        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required
       - ref: db.stored_procedure.name
         requirement_level:
@@ -45,11 +44,9 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If and only if `network.peer.address` is set.
-      - ref: db.namespace
+      - ref: db.collection.name
         requirement_level:
-          conditionally_required: If available.
-      - ref: db.query.text
-        requirement_level: opt_in
+          conditionally_required: If readily available and if a database call is performed on a single collection.
 
   - id: metric.db.client.connection.count
     type: metric
@@ -174,8 +171,10 @@ groups:
     stability: development
     extends: attributes.db.client.with_query_and_collection
     attributes:
+      - ref: db.collection.name
+        requirement_level:
+          conditionally_required: If readily available and if a database call is performed on a single collection.
       - ref: db.system.name
-        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
@@ -189,8 +188,5 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If and only if `network.peer.address` is set.
-      - ref: db.namespace
-        requirement_level:
-          conditionally_required: If available.
       - ref: db.query.text
         requirement_level: opt_in

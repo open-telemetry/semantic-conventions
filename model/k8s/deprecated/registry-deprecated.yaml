@@ -12,3 +12,68 @@ groups:
         deprecated:
           reason: renamed
           renamed_to: k8s.pod.label
+      - id: k8s.hpa.scaletargetref.kind
+        type: string
+        examples: ["Deployment", "StatefulSet"]
+        brief: "Deprecated, use `k8s.hpa.scale_target_ref.kind` instead."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.hpa.scale_target_ref.kind
+      - id: k8s.hpa.scaletargetref.name
+        type: string
+        examples: ["my-deployment", "my-statefulset"]
+        brief: "Deprecated, use `k8s.hpa.scale_target_ref.name` instead."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.hpa.scale_target_ref.name
+      - id: k8s.hpa.scaletargetref.api_version
+        type: string
+        examples: ["apps/v1", "autoscaling/v2"]
+        brief: "Deprecated, use `k8s.hpa.scale_target_ref.api_version` instead."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.hpa.scale_target_ref.api_version
+      - id: k8s.volume.name
+        type: string
+        examples: [ 'volume0' ]
+        brief: "Deprecated, use `k8s.pod.volume.name` instead."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.pod.volume.name
+      - id: k8s.volume.type
+        brief: "Deprecated, use `k8s.pod.volume.type` instead."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.pod.volume.type
+        examples: [ "emptyDir", "persistentVolumeClaim" ]
+        type:
+          members:
+            - id: persistent_volume_claim
+              value: 'persistentVolumeClaim'
+              brief: "A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
+              stability: development
+            - id: config_map
+              value: 'configMap'
+              brief: "A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
+              stability: development
+            - id: downward_api
+              value: 'downwardAPI'
+              brief: "A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
+              stability: development
+            - id: empty_dir
+              value: 'emptyDir'
+              brief: "An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
+              stability: development
+            - id: secret
+              value: 'secret'
+              brief: "A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
+              stability: development
+            - id: local
+              value: 'local'
+              brief: "A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              stability: development

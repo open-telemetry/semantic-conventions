@@ -142,6 +142,65 @@ groups:
         type: string
         brief: Local address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
+      - id: network.local.prefix
+        stability: development
+        type: string
+        brief: "The IP prefix associated with the local IP address, in CIDR notation."
+        note: |
+          > [!WARNING]
+          >
+          > This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+          > or `/128` IPv6 prefix preserves the complete endpoint IP address.
+          > Using CIDR notation does not guarantee that the data is anonymous.
+
+          The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+          [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+          [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+          IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+          prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+          representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+          followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+          the address MUST be set to zero. The value MUST NOT contain a domain name,
+          UNIX domain socket name, or IPv6 zone identifier.
+
+          Instrumentation or Collector receivers that populate this attribute MUST
+          convert native representations, such as an address and subnet mask or an
+          address and prefix length, to equivalent CIDR notation before emitting it.
+
+          This attribute MAY be set whether or not `network.local.address` is set. If
+          `network.local.address` is also set to an IP address, it MUST use the same IP version
+          and be contained in this prefix.
+        examples: ['192.0.2.0/24', '2001:db8::/32']
+      - id: network.local.mac.address
+        stability: development
+        type: string
+        brief: 'Local Media Access Control (MAC) address of the network connection.'
+        note: |
+          MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+          as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+
+          > [!WARNING]
+          >
+          > This attribute may contain sensitive (PII) information.
+        examples: ['00-00-5E-00-53-23']
+      - id: network.local.as.number
+        stability: development
+        type: int
+        brief: "The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the local IP address."
+        note: >
+          This attribute SHOULD only be set when the local address is an IP address and
+          the ASN is available from routing, enrichment, or lookup data. The value SHOULD
+          be represented as an integer without the `AS` prefix.
+        examples: [64496, 15169]
+      - id: network.local.as.organization
+        stability: development
+        type: string
+        brief: "The name of the organization associated with the autonomous system of the local IP address."
+        note: >
+          This attribute SHOULD only be set when `network.local.as.number` is set and the
+          organization name is available. The value SHOULD be the organization name as
+          provided by the lookup or enrichment source, not the AS name or short code.
+        examples: ["Example Networks Inc.", "Google LLC"]
       - id: network.local.port
         stability: stable
         type: int
@@ -152,6 +211,65 @@ groups:
         type: string
         brief: Peer address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
+      - id: network.peer.prefix
+        stability: development
+        type: string
+        brief: "The IP prefix associated with the peer IP address, in CIDR notation."
+        note: |
+          > [!WARNING]
+          >
+          > This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+          > or `/128` IPv6 prefix preserves the complete endpoint IP address.
+          > Using CIDR notation does not guarantee that the data is anonymous.
+
+          The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+          [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+          [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+          IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+          prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+          representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+          followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+          the address MUST be set to zero. The value MUST NOT contain a domain name,
+          UNIX domain socket name, or IPv6 zone identifier.
+
+          Instrumentation or Collector receivers that populate this attribute MUST
+          convert native representations, such as an address and subnet mask or an
+          address and prefix length, to equivalent CIDR notation before emitting it.
+
+          This attribute MAY be set whether or not `network.peer.address` is set. If
+          `network.peer.address` is also set to an IP address, it MUST use the same IP version
+          and be contained in this prefix.
+        examples: ['192.0.2.0/24', '2001:db8::/32']
+      - id: network.peer.mac.address
+        stability: development
+        type: string
+        brief: 'Peer Media Access Control (MAC) address of the network connection.'
+        note: |
+          MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+          as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+
+          > [!WARNING]
+          >
+          > This attribute may contain sensitive (PII) information.
+        examples: ['00-00-5E-00-53-23']
+      - id: network.peer.as.number
+        stability: development
+        type: int
+        brief: "The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address."
+        note: >
+          This attribute SHOULD only be set when the peer address is an IP address and
+          the ASN is available from routing, enrichment, or lookup data. The value SHOULD
+          be represented as an integer without the `AS` prefix.
+        examples: [64496, 15169]
+      - id: network.peer.as.organization
+        stability: development
+        type: string
+        brief: "The name of the organization associated with the autonomous system of the peer IP address."
+        note: >
+          This attribute SHOULD only be set when `network.peer.as.number` is set and the
+          organization name is available. The value SHOULD be the organization name as
+          provided by the lookup or enrichment source, not the AS name or short code.
+        examples: ["Example Networks Inc.", "Google LLC"]
       - id: network.peer.port
         stability: stable
         type: int
@@ -245,38 +363,38 @@ groups:
           members:
             - id: closed
               value: 'closed'
-              stability: development
+              stability: release_candidate
             - id: close_wait
               value: 'close_wait'
-              stability: development
+              stability: release_candidate
             - id: closing
               value: 'closing'
-              stability: development
+              stability: release_candidate
             - id: established
               value: 'established'
-              stability: development
+              stability: release_candidate
             - id: fin_wait_1
               value: 'fin_wait_1'
-              stability: development
+              stability: release_candidate
             - id: fin_wait_2
               value: 'fin_wait_2'
-              stability: development
+              stability: release_candidate
             - id: last_ack
               value: 'last_ack'
-              stability: development
+              stability: release_candidate
             - id: listen
               value: 'listen'
-              stability: development
+              stability: release_candidate
             - id: syn_received
               value: 'syn_received'
-              stability: development
+              stability: release_candidate
             - id: syn_sent
               value: 'syn_sent'
-              stability: development
+              stability: release_candidate
             - id: time_wait
               value: 'time_wait'
-              stability: development
-        stability: development
+              stability: release_candidate
+        stability: release_candidate
         brief: "The state of network connection"
         note: "Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)"
         examples: [ "close_wait" ]

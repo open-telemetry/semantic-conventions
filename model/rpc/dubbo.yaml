@@ -6,6 +6,9 @@ attribute_groups:
     visibility: internal
     attributes:
       - ref: rpc.system.name
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `dubbo`."
         examples: ["dubbo"]
 
@@ -213,11 +216,8 @@ attribute_groups:
           - Dubbo2: None (the protocol does not support response trailers).
 
 span_refinements:
-  - id: span.rpc.dubbo.call.client
-    ref: rpc.call.client
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
+  - id: dubbo.client.call
+    ref: rpc.client.call
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
@@ -233,11 +233,8 @@ span_refinements:
       - ref_group: rpc.dubbo.attributes.span
       - unref: rpc.response.header
 
-  - id: span.rpc.dubbo.call.server
-    ref: rpc.call.server
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
+  - id: dubbo.server.call
+    ref: rpc.server.call
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.

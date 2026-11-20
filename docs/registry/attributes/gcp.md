@@ -8,6 +8,7 @@
 - [GCP Client Attributes](#gcp-client-attributes)
 - [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
+- [GCP Pub/Sub Attributes](#gcp-pubsub-attributes)
 
 ## GCP - AppHub Attributes
 
@@ -196,3 +197,16 @@ This document defines attributes for Google Compute Engine (GCE).
 | <a id="gcp-gce-instance-group-manager-zone" href="#gcp-gce-instance-group-manager-zone">`gcp.gce.instance_group_manager.zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The zone of a **zonal** Instance Group Manager (e.g., `us-central1-a`). Set this **only** when the IGM is zonal. | `us-central1-a`; `europe-west1-b` |
 
 **[6] `gcp.gce.instance.labels.<key>`:** For example, a GCE instance label `team` with value `observability` SHOULD be recorded as the `gcp.gce.instance.labels.team` attribute with value `"observability"`. The `<key>` MUST be the exact GCE instance label key.
+
+## GCP Pub/Sub Attributes
+
+This group describes attributes specific to GCP Pub/Sub.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="gcp-pubsub-message-ack-deadline" href="#gcp-pubsub-message-ack-deadline">`gcp.pubsub.message.ack_deadline`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` |
+| <a id="gcp-pubsub-message-ack-id" href="#gcp-pubsub-message-ack-id">`gcp.pubsub.message.ack_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ack ID for a given message. | `ack_id` |
+| <a id="gcp-pubsub-message-delivery-attempt" href="#gcp-pubsub-message-delivery-attempt">`gcp.pubsub.message.delivery_attempt`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The delivery attempt for a given message. | `2` |
+| <a id="gcp-pubsub-message-ordering-key" href="#gcp-pubsub-message-ordering-key">`gcp.pubsub.message.ordering_key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` |

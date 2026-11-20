@@ -6,6 +6,10 @@ linkTitle: Events
 
 **Status**: [Development][DocumentStatus]
 
+> [!NOTE]
+> These mobile event conventions have moved to the
+> [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+
 This document defines semantic conventions for instrumentations that emit
 events on mobile platforms. All mobile events MUST use a namespace of
 `device` in the EventName LogRecord property.
@@ -29,7 +33,7 @@ application lifecycle.
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
 
 The event name MUST be `device.app.lifecycle`.
 

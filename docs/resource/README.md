@@ -176,7 +176,6 @@ Attributes defining a computing instance (e.g. host):
 Attributes defining a running environment (e.g. Operating System, Cloud, Data Center, Deployment Service):
 
 - [Operating System](./os.md)
-- [Device](./device.md)
 - [Cloud](./cloud.md)
 - [CI/CD](./cicd.md)
 - Deployment:

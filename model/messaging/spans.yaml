@@ -8,7 +8,7 @@ attribute_groups:
         examples: ["amqp:decode-error", "KAFKA_STORAGE_ERROR", "channel-error"]
         requirement_level:
           conditionally_required: If and only if the messaging operation has failed.
-      - ref: messaging.system
+      - ref: messaging.system.name
         requirement_level: required
       - ref: messaging.operation.name
         requirement_level: required
@@ -81,7 +81,7 @@ attribute_groups:
         requirement_level: opt_in
 
 spans:
-  - type: messaging.create.producer
+  - type: messaging.producer.create
     kind: producer
     requirement_level: recommended
     stability: development
@@ -93,18 +93,21 @@ spans:
     note: |
       "Create" spans always refer to a single message and are used to provide a unique
       creation context for messages in batch sending scenarios. A "Create" span is only
-      used together with a client "Send" span (`messaging.send.client`) that links to it;
+      used together with a client "Send" span (`messaging.client.send`) that links to it;
       when the "Send" span itself serves as the creation context, use the producer "Send"
-      span (`messaging.send.producer`) instead and omit the "Create" span. See
+      span (`messaging.producer.send`) instead and omit the "Create" span. See
       [Producer spans](/docs/messaging/messaging-spans.md#producer-spans) for details.
     attributes:
       - ref_group: messaging.attributes.common
-      - ref: messaging.system
+      - ref: messaging.system.name
         sampling_relevant: true
       - ref: messaging.operation.name
         sampling_relevant: true
         examples: ['create']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `create`.
         examples: ['create']
@@ -122,7 +125,7 @@ spans:
         sampling_relevant: true
       - ref_group: messaging.attributes.message_size
 
-  - type: messaging.send.producer
+  - type: messaging.producer.send
     kind: producer
     requirement_level: recommended
     stability: development
@@ -140,12 +143,15 @@ spans:
     attributes:
       - ref_group: messaging.attributes.common
       - ref_group: messaging.attributes.network
-      - ref: messaging.system
+      - ref: messaging.system.name
         sampling_relevant: true
       - ref: messaging.operation.name
         sampling_relevant: true
         examples: ['send', 'publish']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `send`.
         examples: ['send']
@@ -165,7 +171,7 @@ spans:
       - ref_group: messaging.attributes.message_size
       - ref: messaging.client.id
 
-  - type: messaging.send.client
+  - type: messaging.client.send
     kind: client
     requirement_level: recommended
     stability: development
@@ -184,12 +190,15 @@ spans:
     attributes:
       - ref_group: messaging.attributes.common
       - ref_group: messaging.attributes.network
-      - ref: messaging.system
+      - ref: messaging.system.name
         sampling_relevant: true
       - ref: messaging.operation.name
         sampling_relevant: true
         examples: ['send', 'publish']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `send`.
         examples: ['send']
@@ -209,7 +218,7 @@ spans:
       - ref_group: messaging.attributes.message_size
       - ref: messaging.client.id
 
-  - type: messaging.receive.client
+  - type: messaging.client.receive
     kind: client
     requirement_level: recommended
     stability: development
@@ -225,12 +234,15 @@ spans:
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
-      - ref: messaging.system
+      - ref: messaging.system.name
         sampling_relevant: true
       - ref: messaging.operation.name
         sampling_relevant: true
         examples: ['receive', 'poll']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `receive`.
         examples: ['receive']
@@ -247,7 +259,7 @@ spans:
         sampling_relevant: true
 
 
-  - type: messaging.process.consumer
+  - type: messaging.consumer.process
     kind: consumer
     requirement_level: recommended
     stability: development
@@ -266,12 +278,15 @@ spans:
       [Message creation context as parent of "Process" span](/docs/messaging/messaging-spans.md#message-creation-context-as-parent-of-process-span).
     attributes:
       - ref_group: messaging.attributes.consumer
-      - ref: messaging.system
+      - ref: messaging.system.name
         sampling_relevant: true
       - ref: messaging.operation.name
         sampling_relevant: true
         examples: ['process', 'consume']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `process`.
         examples: ['process']
@@ -289,7 +304,7 @@ spans:
       - ref: server.port
         sampling_relevant: true
 
-  - type: messaging.settle.client
+  - type: messaging.client.settle
     kind: client
     requirement_level: recommended
     stability: development
@@ -304,12 +319,15 @@ spans:
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
-      - ref: messaging.system
+      - ref: messaging.system.name
         sampling_relevant: true
       - ref: messaging.operation.name
         sampling_relevant: true
         examples: ['ack', 'nack', 'settle']
       - ref: messaging.operation.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         sampling_relevant: true
         note: SHOULD be set to `settle`.
         examples: ['settle']

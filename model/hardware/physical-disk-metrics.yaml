@@ -66,6 +66,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.physical_disk
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `physical_disk`."
         examples: ["physical_disk"]
   - id: metric.hw.physical_disk.status
@@ -73,6 +76,9 @@ metric_refinements:
     attributes:
       - ref_group: metric_attributes.hw.physical_disk
       - ref: hw.type
+        annotations:
+          markdown:
+            omit_enum_table: true
         note: "MUST be set to `physical_disk`."
         examples: ["physical_disk"]
       - ref: hw.state

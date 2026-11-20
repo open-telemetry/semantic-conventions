@@ -48,7 +48,7 @@ groups:
         examples: [ "user", "system" ]
       - id: cpu.logical_number
         type: int
-        stability: development
+        stability: release_candidate
         brief: >
           The identifier of a logical execution target (CPU) as seen by the
           operating system, in the range [0..n-1].
