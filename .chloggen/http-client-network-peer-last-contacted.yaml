@@ -1,5 +1,4 @@
 change_type: enhancement
 component: http
 note: Clarify that `network.peer.address` on HTTP client spans SHOULD describe the last contacted peer when the span covers multiple network calls.
-# TODO: replace with the PR number once the PR is opened (no dedicated tracking issue exists).
-issues: []
+issues: [4357]
