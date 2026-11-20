@@ -8,7 +8,7 @@ groups:
       dependency_resolution:
         exclude: true
     type: attribute_group
-    display_name: Application Attributes
+    display_name: Application Attributes (Moved)
     brief: >
       Describes attributes related to client-side applications (e.g. web apps or mobile apps).
     stability: development

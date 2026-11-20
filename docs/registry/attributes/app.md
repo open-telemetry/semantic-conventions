@@ -3,7 +3,7 @@
 
 # App
 
-## Application Attributes
+## Application Attributes (Moved)
 
 Describes attributes related to client-side applications (e.g. web apps or mobile apps).
 
