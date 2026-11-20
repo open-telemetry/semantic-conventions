@@ -280,7 +280,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[9] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
-**[10] `network.peer.address`:** If an HTTP client operation involved multiple network calls (for example redirects or retries), the address of the last contacted peer SHOULD be used.
+**[10] `network.peer.address`:** If an HTTP client span covers multiple network calls, for example redirects or retries, the address of the last contacted peer SHOULD be used.
 
 **[11] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
