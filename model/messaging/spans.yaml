@@ -42,18 +42,14 @@ attribute_groups:
       - ref: messaging.client.id
 
   # Network attributes for spans that directly contact the broker over the network
-  # ("Send", "Receive", "Settle" client spans): the broker itself (`server.*`) plus
-  # the specific intermediary node the operation went to (`network.peer.*`).
+  # ("Send", "Receive", "Settle" client spans): the configured messaging service
+  # (`server.*`) plus the specific intermediary node contacted (`network.peer.*`).
   # "Create" and "Process" spans do not reference this group: `network.peer.*` does
-  # not apply to them, so they declare `server.address`/`server.port` on their own
-  # (the client library knows the broker address there too).
+  # not apply to them, so they reference `messaging.attributes.server` separately.
   - id: messaging.attributes.network
     visibility: internal
     attributes:
-      - ref: server.address
-        note: >
-          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
-      - ref: server.port
+      - ref_group: messaging.attributes.server
       - ref: network.peer.address
         brief: Peer address of the messaging intermediary node where the operation was performed.
         note: >
@@ -117,10 +113,9 @@ spans:
         sampling_relevant: true
       - ref: messaging.destination.partition.id
         sampling_relevant: true
+      - ref_group: messaging.attributes.server
       - ref: server.address
         sampling_relevant: true
-        note: >
-          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
       - ref: server.port
         sampling_relevant: true
       - ref_group: messaging.attributes.message_size
@@ -297,10 +292,9 @@ spans:
         sampling_relevant: true
       - ref: messaging.destination.partition.id
         sampling_relevant: true
+      - ref_group: messaging.attributes.server
       - ref: server.address
         sampling_relevant: true
-        note: >
-          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
       - ref: server.port
         sampling_relevant: true
 
