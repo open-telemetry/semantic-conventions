@@ -295,18 +295,19 @@ there is known instrumentation or pipeline support for offloading specific attri
 
 #### Pluralization
 
-Metric namespaces SHOULD NOT be pluralized.
-
 Pluralization applies only to the last segment of a metric name. Everything before
 it is the namespace and SHOULD NOT be pluralized. For example, in
 `system.disk.operations`, `system.disk` is the namespace and `operations` is
 pluralized.
 
-The last segment SHOULD NOT be pluralized, unless the value represents discrete
-instances of a [countable quantity](https://wikipedia.org/wiki/Count_noun).
-This is generally the case when the unit is an annotation like `{fault}` or
+The last segment SHOULD only be pluralized when the value represents discrete
+instances of a [countable quantity](https://wikipedia.org/wiki/Count_noun),
+which generally means the unit is an annotation like `{fault}` or
 `{operation}`. UpDownCounters are an exception, see
 [Do not pluralize UpDownCounter names](#do-not-pluralize-updowncounter-names).
+
+The same rule applies to the last segment of an attribute name that represents
+a measurement. The UpDownCounter exception does not apply to attributes.
 
 Examples:
 
@@ -317,7 +318,7 @@ Examples:
 
 #### Prefer pluralization for Counters
 
-Counters of countable quantities SHOULD be pluralized, for example
+Counters of countable quantities SHOULD prefer pluralization, for example
 `system.disk.operations` instead of `system.disk.operation.count`. They MAY use
 `.count` or another suffix when it reads more clearly.
 
