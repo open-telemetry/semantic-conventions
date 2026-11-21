@@ -25,8 +25,7 @@ groups:
           the RabbitMQ client API.
         note: >
           RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name)
-          from the first node in the cluster. Operators can override it with
-          `rabbitmqctl set_cluster_name`.
+          from the first node in the cluster.
         examples: ['my-rabbitmq-cluster']
       - id: rabbitmq.vhost.name
         type: string
