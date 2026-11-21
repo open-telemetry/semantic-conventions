@@ -56,6 +56,45 @@ groups:
               stability: development
         brief: "Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)"
         stability: development
+      - id: otel.span.name
+        type: string
+        brief: "The name of the span a measurement was derived from."
+        note: |
+          The value MUST be the span name as reported by the instrumentation, unchanged.
+
+          Span names are not guaranteed to be low cardinality. Instrumentations that don't
+          follow span naming conventions can produce span names that contain identifiers,
+          for example `GET /orders/8812`.
+        examples: ["GET /orders/{id}", "SELECT orders", "process orders-queue"]
+        stability: development
+      - id: otel.span.kind
+        type:
+          members:
+            - id: server
+              value: SERVER
+              brief: 'The span describes the server side of a synchronous remote call'
+              stability: development
+            - id: client
+              value: CLIENT
+              brief: 'The span describes the client side of a synchronous remote call'
+              stability: development
+            - id: producer
+              value: PRODUCER
+              brief: 'The span describes the initiator of an asynchronous request'
+              stability: development
+            - id: consumer
+              value: CONSUMER
+              brief: 'The span describes a child of an asynchronous PRODUCER request'
+              stability: development
+            - id: internal
+              value: INTERNAL
+              brief: 'The span describes an internal operation within an application'
+              stability: development
+        brief: "The [SpanKind](https://opentelemetry.io/docs/specs/otel/trace/api/#spankind) of the span a measurement was derived from."
+        note: |
+          Values are the SpanKind names defined by the Trace API, not the OTLP protobuf enum names
+          (for example `SERVER`, not `SPAN_KIND_SERVER`).
+        stability: development
   - id: registry.otel.scope
     type: attribute_group
     display_name: OTel Scope Attributes

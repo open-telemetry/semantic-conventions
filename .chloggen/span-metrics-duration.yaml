@@ -1,0 +1,12 @@
+change_type: new_component
+
+component: otel
+
+note: Add `otel.span.duration` metric and `otel.span.name`, `otel.span.kind` attributes for span-derived metrics.
+
+issues: [4240]
+
+subtext: |
+  Defines a single duration histogram that span-metrics generators (SDK span processors,
+  Collector connectors, eBPF agents, backends) record once per ended span. Throughput and
+  error rate are derived from the histogram count and `error.type`.

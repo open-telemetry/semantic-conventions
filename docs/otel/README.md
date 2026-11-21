@@ -12,4 +12,9 @@ Semantic conventions are defined for the following signals:
 
 * [Metrics](sdk-metrics.md)
 
+It also defines semantic conventions for metrics that OpenTelemetry components
+derive from spans:
+
+* [Span-derived metrics](span-metrics.md)
+
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
