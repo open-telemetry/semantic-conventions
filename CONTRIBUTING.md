@@ -51,6 +51,9 @@ Agreement](https://identity.linuxfoundation.org/projects/cncf).
 
 ## How to contribute
 
+For a workflow from issue triage through implementation and review, see
+[Modifying conventions](docs/how-to-write-conventions/README.md#modifying-conventions).
+
 When contributing to semantic conventions, it's important to understand a few
 key, but non-obvious, aspects:
 
