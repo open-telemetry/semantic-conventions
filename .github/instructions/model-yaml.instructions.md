@@ -7,9 +7,9 @@ applyTo: "model/**/*.yaml"
 These files are the source of truth for all attributes, metrics, spans, events,
 and entities. CI (`make check-policies`, schema validation, and other checks)
 already enforces name formatting, namespace/constant collisions, backward
-compatibility, signal vs. referenced attribute stability, `brief` presence,
-metric brief formatting, and entity associations; don't comment on those.
-Review design and semantic quality using the guidance below.
+compatibility, stability ordering, `brief` presence, metric brief formatting, and
+entity associations; don't comment on those. Review design and semantic quality
+using the guidance below.
 
 Flag violations with a short rationale and a doc link. Name the concrete existing
 attribute, signal, or doc section you are comparing against instead of asking a
@@ -200,8 +200,7 @@ Follow [resources and entities](/docs/how-to-write-conventions/resource-and-enti
 See [`deprecated` syntax](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md#semantic-convention)
 and [code structure](/CONTRIBUTING.md#code-structure).
 
-- Flag stability changes that the PR title and changelog do not mention. Enum
-  members must not be more stable than their attribute.
+- Flag stability changes that the PR title and changelog do not mention.
 - Put `deprecated` on the registry definition (not only on a ref). Place
   deprecated attributes and signals (not individual enum members) where the
   area already keeps its deprecations, or under
