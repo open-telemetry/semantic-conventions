@@ -357,6 +357,35 @@ check-dead-yaml:
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/find-dead-yaml.sh $(PWD)/internal/tools/bin/signal-groups.txt $(PWD)/docs
 
+# Builds the development registry release assets (all stability levels):
+#   manifest-dev.yaml  publication manifest, served at the schema URL
+#   registry-dev.yaml  resolved registry that the manifest points to
+# The -dev suffix leaves room for stable assets in the same GitHub release.
+# Weaver always writes manifest.yaml and resolved.yaml, so they are renamed.
+DEV_PUBLICATION_SCHEMA_OUTPUT ?= $(TOOLS_DIR)/bin/publication-schema-dev/$(VERSION)-dev
+.PHONY: generate-publication-schema-dev
+generate-publication-schema-dev:
+	$(if $(strip $(RESOLVED_REGISTRY_URI)),,$(error Set RESOLVED_REGISTRY_URI to the future registry-dev.yaml release asset URL))
+	@echo '$(VERSION)' | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$$' || \
+		{ echo 'Set VERSION to the release version, e.g. make generate-publication-schema-dev VERSION=1.45.0'; exit 1; }
+	rm -rf "$(DEV_PUBLICATION_SCHEMA_OUTPUT)"
+	mkdir -p "$(DEV_PUBLICATION_SCHEMA_OUTPUT)/weaver"
+	sed 's|^schema_url:.*$$|schema_url: https://opentelemetry.io/schemas/semconv-dev/$(VERSION)-dev|' \
+		model/manifest.yaml > "$(DEV_PUBLICATION_SCHEMA_OUTPUT)/source-manifest.yaml"
+	$(DOCKER_RUN) --rm \
+		$(DOCKER_USER_IS_HOST_USER_ARG) \
+		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+		--mount 'type=bind,source=$(abspath $(DEV_PUBLICATION_SCHEMA_OUTPUT))/source-manifest.yaml,target=/home/weaver/source/manifest.yaml,readonly' \
+		--mount 'type=bind,source=$(abspath $(DEV_PUBLICATION_SCHEMA_OUTPUT))/weaver,target=/home/weaver/target' \
+		$(WEAVER_CONTAINER) registry package \
+		--v2 \
+		--registry=/home/weaver/source \
+		--resolved-registry-uri='$(RESOLVED_REGISTRY_URI)' \
+		--output=/home/weaver/target
+	mv "$(DEV_PUBLICATION_SCHEMA_OUTPUT)/weaver/manifest.yaml" "$(DEV_PUBLICATION_SCHEMA_OUTPUT)/manifest-dev.yaml"
+	mv "$(DEV_PUBLICATION_SCHEMA_OUTPUT)/weaver/resolved.yaml" "$(DEV_PUBLICATION_SCHEMA_OUTPUT)/registry-dev.yaml"
+	rm -rf "$(DEV_PUBLICATION_SCHEMA_OUTPUT)/weaver"
+
 NEXT_SEMCONV_VERSION ?= next
 .PHONY: generate-schema-next
 generate-schema-next:
@@ -378,7 +407,7 @@ generate-schema-next:
 		# --param next_version=$(NEXT_SEMCONV_VERSION)
 	$(TOOLS_DIR)/scripts/generate-schema-next.sh $(NEXT_SEMCONV_VERSION) $(LATEST_RELEASED_SEMCONV_VERSION) $(TOOLS_DIR)/bin/schema-diff.yaml
 	@tmp_file=$$(mktemp); \
-	$(SED) 's|^schema_url: https://opentelemetry.io/schemas/.*$$|schema_url: https://opentelemetry.io/schemas/$(NEXT_SEMCONV_VERSION)|' model/manifest.yaml > "$$tmp_file" && \
+	$(SED) 's|^schema_url: https://opentelemetry.io/schemas/.*$$|schema_url: https://opentelemetry.io/schemas/semconv-dev/$(NEXT_SEMCONV_VERSION)-dev|' model/manifest.yaml > "$$tmp_file" && \
 	mv "$$tmp_file" model/manifest.yaml || { \
 		rm -f "$$tmp_file"; \
 		echo "Failed to update schema_url in model/manifest.yaml"; \

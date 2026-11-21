@@ -1,0 +1,4 @@
+change_type: enhancement
+component: schemas
+note: Publish the development v2 publication manifest and resolved registry as `manifest-dev.yaml` and `registry-dev.yaml` release assets.
+issues: [4221]
