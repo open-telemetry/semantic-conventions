@@ -20,7 +20,7 @@ FaaS attributes
 | <a id="faas-document-name" href="#faas-document-name">`faas.document.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` |
 | <a id="faas-document-operation" href="#faas-document-operation">`faas.document.operation`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` [(see more)](#faas-document-operation-values) |
 | <a id="faas-document-time" href="#faas-document-time">`faas.document.time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
-| <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [1] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
+| <a id="faas-instance-id" href="#faas-instance-id">`faas.instance.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [1] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
 | <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 | <a id="faas-invocation-start-time" href="#faas-invocation-start-time">`faas.invocation.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 | <a id="faas-invoked-name" href="#faas-invoked-name">`faas.invoked_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the invoked function. [2] | `my-function` |
@@ -31,7 +31,7 @@ FaaS attributes
 | <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` [(see more)](#faas-trigger-values) |
 | <a id="faas-version" href="#faas-version">`faas.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The immutable version of the function being executed. [7] | `26`; `pinkfroid-00002` |
 
-**[1] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
+**[1] `faas.instance.id`:** - **AWS Lambda:** Use the (full) log stream name.
 
 **[2] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
@@ -116,5 +116,8 @@ Deprecated FaaS attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
+| <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.instance.id`. | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [8] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
 | <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.invocation.id`. | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 | <a id="faas-time" href="#faas-time">`faas.time`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.invocation.start_time`. | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
+
+**[8] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
