@@ -142,6 +142,27 @@ groups:
         type: string
         brief: Local address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
+      - id: network.local.hostname
+        stability: development
+        type: string
+        brief: The hostname associated with the local endpoint of the network connection.
+        note: |
+          The value MAY be a fully qualified domain name or a short hostname, as described in
+          [RFC 9499](https://www.rfc-editor.org/rfc/rfc9499.html#section-2).
+          It MAY be obtained from reverse DNS, configuration, or other endpoint metadata.
+          Populating this attribute does not require an additional DNS lookup.
+
+          This attribute MAY be set whether or not `network.local.address` is set. When
+          `network.local.address` is set, both attributes MUST describe the same local endpoint.
+          This attribute MUST NOT replace `network.local.address` or describe a different
+          endpoint behind an intermediary. If the hostname is unknown, this attribute MUST NOT be set.
+
+          A hostname does not, by itself, authenticate the endpoint.
+
+          > [!WARNING]
+          >
+          > This attribute may contain sensitive (PII) information.
+        examples: ['host.example.com', 'host']
       - id: network.local.prefix
         stability: development
         type: string
@@ -211,6 +232,27 @@ groups:
         type: string
         brief: Peer address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
+      - id: network.peer.hostname
+        stability: development
+        type: string
+        brief: The hostname associated with the peer endpoint of the network connection.
+        note: |
+          The value MAY be a fully qualified domain name or a short hostname, as described in
+          [RFC 9499](https://www.rfc-editor.org/rfc/rfc9499.html#section-2).
+          It MAY be obtained from reverse DNS, configuration, or other endpoint metadata.
+          Populating this attribute does not require an additional DNS lookup.
+
+          This attribute MAY be set whether or not `network.peer.address` is set. When
+          `network.peer.address` is set, both attributes MUST describe the same peer endpoint.
+          This attribute MUST NOT replace `network.peer.address` or describe a different
+          endpoint behind an intermediary. If the hostname is unknown, this attribute MUST NOT be set.
+
+          A hostname does not, by itself, authenticate the endpoint.
+
+          > [!WARNING]
+          >
+          > This attribute may contain sensitive (PII) information.
+        examples: ['peer.example.com', 'peer']
       - id: network.peer.prefix
         stability: development
         type: string
