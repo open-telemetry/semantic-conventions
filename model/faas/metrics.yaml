@@ -10,7 +10,7 @@ groups:
     instrument: histogram
     unit: "s"
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
 
   - id: metric.faas.init_duration
     type: metric
@@ -23,7 +23,7 @@ groups:
     instrument: histogram
     unit: "s"
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
 
   - id: metric.faas.coldstarts
     type: metric
@@ -36,7 +36,7 @@ groups:
     instrument: counter
     unit: "{coldstart}"
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
 
   - id: metric.faas.errors
     type: metric
@@ -49,7 +49,7 @@ groups:
     instrument: counter
     unit: "{error}"
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
 
   - id: metric.faas.invocations
     type: metric
@@ -62,7 +62,7 @@ groups:
     instrument: counter
     unit: "{invocation}"
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
 
   - id: metric.faas.timeouts
     type: metric
@@ -75,7 +75,7 @@ groups:
     instrument: counter
     unit: "{timeout}"
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
 
   - id: metric.faas.mem_usage
     type: metric
@@ -88,7 +88,7 @@ groups:
     instrument: histogram
     unit: "By"
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
 
   - id: metric.faas.cpu_usage
     type: metric
@@ -101,7 +101,7 @@ groups:
     instrument: histogram
     unit: "s"
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
 
   - id: metric.faas.net_io
     type: metric
@@ -114,4 +114,4 @@ groups:
     instrument: histogram
     unit: "By"
     attributes:
-      - ref: faas.trigger
+      - ref: faas.invocation.initiator
