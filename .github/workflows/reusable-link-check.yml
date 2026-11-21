@@ -12,32 +12,75 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 0 # needed for merge-base below
+          fetch-depth: 0
           persist-credentials: false
 
-      - name: Link check - local links only (all files)
+      - name: Install Markdown parser
+        if: github.event_name == 'pull_request'
+        run: python -m pip install --disable-pip-version-check markdown-it-py==3.0.0
+
+      - name: Get changed files
+        if: github.event_name == 'pull_request'
+        id: changed-files
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          merge_base=$(git merge-base "origin/${GITHUB_BASE_REF}" "$PR_HEAD_SHA")
+
+          # Keep deleted and renamed paths for incoming-link detection.
+          # --no-renames reports a rename as a deletion and an addition.
+          git diff --name-only --no-renames -z \
+            "$merge_base...$PR_HEAD_SHA" > "$RUNNER_TEMP/changed-files.bin"
+
+          # Only Markdown files under docs/ are incoming-link targets.
+          grep -z -E '^docs/.*\.md$' "$RUNNER_TEMP/changed-files.bin" \
+            > "$RUNNER_TEMP/incoming-targets.bin" || true
+
+          # Deleted files cannot be passed to Lychee.
+          # Keep only existing files with supported extensions.
+          mapfile -d '' -t modified_files < <(
+            git diff --name-only --no-renames -z --diff-filter=ACMR \
+              "$merge_base...$PR_HEAD_SHA" \
+              | grep -z -E '\.(md|mkd|mdx|mdown|mdwn|mkdn|mkdown|markdown|html|htm|txt)$' || true
+          )
+
+          if [ "${#modified_files[@]}" -gt 0 ]; then
+            printf 'files=%s\n' "${modified_files[*]}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Find incoming links
+        if: github.event_name == 'pull_request'
+        id: incoming-links
+        run: |
+          python .github/scripts/find-incoming-links.py \
+            --targets-file "$RUNNER_TEMP/incoming-targets.bin" \
+            > "$RUNNER_TEMP/incoming-files.txt"
+
+          if [ -s "$RUNNER_TEMP/incoming-files.txt" ]; then
+            echo "Found documents with incoming links:"
+            cat "$RUNNER_TEMP/incoming-files.txt"
+          else
+            echo "No incoming links found."
+          fi
+
+      - name: Link check - local links only (incoming files)
         if: github.event_name == 'pull_request'
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: make markdown-link-check-local-only
-
-      - name: Get modified files
-        if: github.event_name == 'pull_request'
-        id: modified-files
         run: |
-          merge_base=$(git merge-base origin/${GITHUB_BASE_REF} HEAD)
-          # Using lychee's default extension filter here to match when it runs against all files
-          # --diff-filter=d excludes deleted files
-          modified_files=$(git diff --name-only --diff-filter=d $merge_base...${{ github.event.pull_request.head.sha }} \
-                            | grep -E '\.(md|mkd|mdx|mdown|mdwn|mkdn|mkdown|markdown|html|htm|txt)$' \
-                            | tr '\n' ' ' || true)
-          echo "files=$modified_files" >> $GITHUB_OUTPUT
+          mapfile -t incoming_files < "$RUNNER_TEMP/incoming-files.txt"
+
+          if [ "${#incoming_files[@]}" -gt 0 ]; then
+            make markdown-link-check-local-only FILES="${incoming_files[*]}"
+          else
+            echo "No incoming documents to check."
+          fi
 
       - name: Link check - all links (modified files only)
-        if: github.event_name == 'pull_request' && steps.modified-files.outputs.files != ''
+        if: github.event_name == 'pull_request' && steps.changed-files.outputs.files != ''
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          STEPS_MODIFIED_FILES_OUTPUTS_FILES: ${{ steps.modified-files.outputs.files }}
+          STEPS_MODIFIED_FILES_OUTPUTS_FILES: ${{ steps.changed-files.outputs.files }}
         run: make markdown-link-check FILES="${STEPS_MODIFIED_FILES_OUTPUTS_FILES}"
 
       - name: Link check - all links (all files)
