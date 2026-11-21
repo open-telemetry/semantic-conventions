@@ -5,7 +5,7 @@
 
 ## Browser Document
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
 
 **type:** `browser.document`
 
@@ -15,4 +15,4 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`browser.document.url.full`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Absolute URL of the current browser document according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986). | `https://www.example.com/search?q=OpenTelemetry#SemConv` |
+| Identity | [`browser.document.url.full`](/docs/registry/attributes/browser.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). | `Recommended` | string | Absolute URL of the current browser document according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986). | `https://www.example.com/search?q=OpenTelemetry#SemConv` |

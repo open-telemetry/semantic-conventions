@@ -6,6 +6,10 @@ linkTitle: Browser
 
 **Status**: [Development][DocumentStatus]
 
+> [!NOTE]
+> These browser conventions have moved to the
+> [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+
 This document defines semantic conventions for Browser.
 
 Semantic conventions are defined for the following signals:
