@@ -1,0 +1,7 @@
+change_type: deprecation
+component: app, session
+note: Deprecate the app and session conventions in core in favor of the client-side registry.
+issues: [4306]
+subtext: |
+  The definitions remain available in core but are excluded from dependency resolution.
+  Use the active definitions in https://github.com/open-telemetry/semantic-conventions-client-side.

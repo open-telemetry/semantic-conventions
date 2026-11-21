@@ -1,5 +1,12 @@
 groups:
   - id: event.app.crash
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     stability: development
     type: event
     name: app.crash
@@ -46,6 +53,13 @@ groups:
       - ref: session.id
         requirement_level: recommended
   - id: event.app.screen.click
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     stability: development
     type: event
     name: app.screen.click
@@ -70,6 +84,13 @@ groups:
       - ref: app.screen.name
         requirement_level: opt_in
   - id: event.app.widget.click
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     stability: development
     type: event
     name: app.widget.click
@@ -92,6 +113,13 @@ groups:
       - ref: app.screen.name
         requirement_level: opt_in
   - id: event.app.jank
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     stability: development
     type: event
     name: app.jank
