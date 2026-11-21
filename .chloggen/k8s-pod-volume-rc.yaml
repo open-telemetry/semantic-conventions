@@ -1,0 +1,12 @@
+change_type: enhancement
+component: k8s
+note: Promote the `k8s.pod.volume.*` metrics and their attributes to release candidate.
+issues: [4356]
+subtext: |
+  The following metrics are promoted:
+  `k8s.pod.volume.available`, `k8s.pod.volume.capacity`, `k8s.pod.volume.usage`,
+  `k8s.pod.volume.inode.count`, `k8s.pod.volume.inode.used`, `k8s.pod.volume.inode.free`.
+
+  The following attributes are promoted:
+  `k8s.pod.volume.name`, `k8s.pod.volume.type`, `k8s.persistentvolumeclaim.name`,
+  `k8s.persistentvolume.name`, `k8s.persistentvolume.type`.
