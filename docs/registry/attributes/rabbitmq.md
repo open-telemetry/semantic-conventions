@@ -11,5 +11,11 @@ This group describes attributes specific to RabbitMQ.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
+| <a id="rabbitmq-cluster-name" href="#rabbitmq-cluster-name">`rabbitmq.cluster.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The RabbitMQ cluster name, obtained from the broker metadata exposed through the RabbitMQ client API. [1] | `my-rabbitmq-cluster` |
 | <a id="rabbitmq-destination-routing-key" href="#rabbitmq-destination-routing-key">`rabbitmq.destination.routing_key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | RabbitMQ message routing key. | `myKey` |
 | <a id="rabbitmq-message-delivery-tag" href="#rabbitmq-message-delivery-tag">`rabbitmq.message.delivery_tag`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | RabbitMQ message delivery tag | `123` |
+| <a id="rabbitmq-vhost-name" href="#rabbitmq-vhost-name">`rabbitmq.vhost.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the RabbitMQ virtual host that the messaging operation is scoped to. [2] | `/`; `my-vhost` |
+
+**[1] `rabbitmq.cluster.name`:** RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name) from the first node in the cluster. Operators can override it with `rabbitmqctl set_cluster_name`.
+
+**[2] `rabbitmq.vhost.name`:** RabbitMQ [virtual hosts](https://www.rabbitmq.com/docs/vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
