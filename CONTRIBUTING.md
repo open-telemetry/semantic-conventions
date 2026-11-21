@@ -320,7 +320,8 @@ During the release process, all `./.chloggen/*.yaml` files are transcribed into
    sentence naming the affected attributes or signals, when applicable.
 3. The value for the `component` field MUST match a folder name in the
    [model](https://github.com/open-telemetry/semantic-conventions/tree/main/model) directory
-   (e.g. `browser`, `http`)
+   (e.g. `browser`, `http`). Docs-only or cross-cutting changes may use `docs`,
+   `general`, or `all`.
 4. Run `make chlog-validate` to ensure the new file is valid
 5. Commit and push the file
 
@@ -332,8 +333,8 @@ Alternately, copy `./.chloggen/TEMPLATE.yaml`, or just create your file from scr
   such as renaming an attribute, metric, or enum member, changing its type or
   meaning, changing a metric's instrument or unit, or changing a requirement
   level so that data is no longer emitted by default. This applies to unstable
-  conventions as well.
-- `deprecation`: deprecating existing conventions.
+  conventions as well, and to renames that keep the old name as deprecated.
+- `deprecation`: deprecating existing conventions without a replacement.
 - `new_component`: conventions for a new area (a new folder under `model/`).
 - `enhancement`: new attributes, signals, or enum members in an existing area,
   and other backward-compatible improvements.

@@ -370,27 +370,7 @@ Define which additional properties this span needs to be useful:
 
 #### Defining metrics
 
-Follow the [metrics general guidelines](/docs/general/metrics.md) and
-[metric naming](/docs/general/naming.md#metrics).
-
-- Check whether an existing metric already records the same measurement and can
-  be split by an attribute (such as an operation name, a state, or `error.type`)
-  before defining a new one.
-- Choose the instrument based on how values change and aggregate: use a
-  `Counter` for monotonically increasing totals, an `UpDownCounter` for additive
-  values that can also decrease (for example, usage, limits, or the number of
-  items in a state), a gauge only for values that are not additive, and a
-  histogram for distributions such as operation durations.
-  See [status metrics](status-metrics.md) for an example.
-- Aggregations over all attributes of a metric should be meaningful. For
-  `Counter` and `UpDownCounter` metrics, attribute values should partition the
-  total; don't report a total series alongside series for its subsets.
-- Define precisely what the metric measures: for durations, when the measurement
-  starts and ends; for counts, which event increments the value and how failures,
-  cancellations, and retries are treated.
-- Reference only low-cardinality attributes, unless they are `opt_in`.
-- Follow [instrument units](/docs/general/metrics.md#instrument-units) and
-  [duration histogram bucket boundaries](/docs/general/metrics.md#duration-histogram-bucket-boundaries).
+TBD
 
 #### Defining entities
 

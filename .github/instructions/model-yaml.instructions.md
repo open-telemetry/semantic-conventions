@@ -7,9 +7,9 @@ applyTo: "model/**/*.yaml"
 These files are the source of truth for all attributes, metrics, spans, events,
 and entities. CI (`make check-policies`, schema validation, and other checks)
 already enforces name formatting, namespace/constant collisions, backward
-compatibility, stability ordering, `brief` presence, metric brief formatting, and
-entity associations; don't comment on those. Review design and semantic quality
-using the guidance below.
+compatibility, signal vs. referenced attribute stability, `brief` presence,
+metric brief formatting, and entity associations; don't comment on those.
+Review design and semantic quality using the guidance below.
 
 Flag violations with a short rationale and a doc link. Name the concrete existing
 attribute, signal, or doc section you are comparing against instead of asking a
@@ -197,14 +197,15 @@ Follow [resources and entities](/docs/how-to-write-conventions/resource-and-enti
 
 ## Stability and deprecation
 
-See [deprecation](/CONTRIBUTING.md#3-check-new-convention) and
-[code structure](/CONTRIBUTING.md#code-structure).
+See [`deprecated` syntax](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md#semantic-convention)
+and [code structure](/CONTRIBUTING.md#code-structure).
 
 - Flag stability changes that the PR title and changelog do not mention. Enum
   members must not be more stable than their attribute.
-- Put `deprecated` on the registry definition (not only on a ref) and place
-  deprecated attributes and signals (not individual enum members) under
-  `model/{root-namespace}/deprecated/`.
+- Put `deprecated` on the registry definition (not only on a ref). Place
+  deprecated attributes and signals (not individual enum members) where the
+  area already keeps its deprecations, or under
+  `model/{root-namespace}/deprecated/` if it has none.
 - Deprecation text (`deprecated.note`, or the brief in older definitions) must
   agree with `deprecated`: with `renamed_to`, name the replacement and never say
   there is no replacement. Don't otherwise rewrite the brief, note, enum member

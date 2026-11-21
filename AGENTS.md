@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Guidance for AI coding and review agents working in this repository.
+Guidance for AI agents working in this repository.
 
 ## Repository layout
 
