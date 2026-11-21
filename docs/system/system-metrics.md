@@ -293,7 +293,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
+| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
 
 ---
 
@@ -350,7 +350,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
+| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
 
 ---
 

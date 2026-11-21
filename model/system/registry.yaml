@@ -64,7 +64,7 @@ groups:
               deprecated:
                 reason: uncategorized
                 note: "Removed, report memory usage with the `used` and `available` states instead, or the Linux-specific `system.memory.linux.cached` metric."
-        stability: development
+        stability: release_candidate
         brief: "The memory state"
         examples: ["used", "available"]
       - id: system.memory.linux.slab.state
