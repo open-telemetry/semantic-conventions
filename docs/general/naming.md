@@ -18,6 +18,7 @@ aliases: [attribute-naming]
 - [Recommendations for application developers](#recommendations-for-application-developers)
 - [Attributes](#attributes)
   - [otel.\* namespace](#otel-namespace)
+  - [Namespaces owned by other registries](#namespaces-owned-by-other-registries)
   - [Attribute name pluralization guidelines](#attribute-name-pluralization-guidelines)
   - [Signal-specific attributes](#signal-specific-attributes)
   - [Attributes referencing external content](#attributes-referencing-external-content)
@@ -226,6 +227,26 @@ and protocols.
 
 Any additions to the `otel.*` namespace MUST be approved as part of
 OpenTelemetry specification.
+
+### Namespaces owned by other registries
+
+The following namespaces are owned by another semantic conventions registry.
+New attributes, metrics, events, spans, and entities in these namespaces MUST
+be defined in the owning registry, not in this repository. Existing deprecated
+definitions are kept here to point users to the new owner.
+
+| Namespace | Owning registry |
+| --- | --- |
+| `gen_ai.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
+| `mcp.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
+| `openai.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
+| `a2a.*` | [OpenTelemetry GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) |
+| `zos.*` | [OpenTelemetry Mainframe semantic conventions](https://github.com/open-telemetry/semantic-conventions-mainframe) |
+| `enduser.*` | [OpenTelemetry Client-Side semantic conventions](https://github.com/open-telemetry/semantic-conventions-client-side) |
+| `device.*` | [OpenTelemetry Client-Side semantic conventions](https://github.com/open-telemetry/semantic-conventions-client-side) |
+
+This rule is enforced for this repository by the `namespace_ownership` policy
+in [`policies/`](../../policies/README.md).
 
 ### Attribute name pluralization guidelines
 

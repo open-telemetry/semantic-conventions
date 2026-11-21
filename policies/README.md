@@ -21,6 +21,11 @@ Only checks that are **not** available upstream are kept here:
   registry rule.
 - `reference_attributes.rego` - requires attributes ending with `_ref` to have type `string` and to have a counterpart attribute without `_ref`.
 - `unbounded_attributes.rego` - requires attributes marked with `unbounded_size: true` to never have requirement level `required`.
+- `namespace_ownership.rego` - rejects non-deprecated attributes and signals in
+  namespaces owned by another registry (see
+  [Namespaces owned by other registries](../docs/general/naming.md#namespaces-owned-by-other-registries)).
+  This check is specific to the core registry and must not be moved to
+  weaver-packages.
 
 ## Exceptions
 
