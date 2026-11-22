@@ -203,8 +203,8 @@ Instrumentation SHOULD set `server.address` to the messaging server address spec
 It SHOULD NOT derive the value from the server selected for an operation. The value SHOULD remain unchanged
 when the client discovers or selects different messaging servers.
 
-When the client connects through an intermediary, `server.address` SHOULD identify the configured messaging server
-address behind the intermediary, if available.
+When the client connects through a proxy, `server.address` SHOULD identify the configured messaging server
+address behind the proxy, if available.
 
 Instrumentation SHOULD omit `server.address` if it cannot determine a safe, stable value from the client
 configuration.
