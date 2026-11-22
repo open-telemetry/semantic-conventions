@@ -21,21 +21,23 @@ Only checks that are **not** available upstream are kept here:
   registry rule.
 - `reference_attributes.rego` - requires attributes ending with `_ref` to have type `string` and to have a counterpart attribute without `_ref`.
 - `unbounded_attributes.rego` - requires attributes marked with `unbounded_size: true` to never have requirement level `required`.
+- `namespace_ownership.rego` - rejects non-deprecated attributes and signals in
+  namespaces owned by another registry (see
+  [Namespaces owned by other registries](../docs/general/naming.md#namespaces-owned-by-other-registries)).
+  This check is specific to the core registry and must not be moved to
+  weaver-packages.
 
 ## Exceptions
 
-Per-signal exceptions to the shared checks are declared in the model via
-`annotations.<package>.policy_exceptions`, where the exception key is the
-finding ID with the package prefix dropped. For example:
+Per-signal exceptions are declared as finding filters in
+[`.weaver.toml`](../.weaver.toml) rather than as model annotations, so they
+don't end up in the resolved schema. For example:
 
-```yaml
-annotations:
-  naming_conventions:
-    policy_exceptions:
-      - metric_namespace_collision
-  stability:
-    policy_exceptions:
-      - metric_lower_stability_attribute
+```toml
+[[policy.finding_filters]]
+exclude = ["naming_convention_metric_namespace_collision"]
+signal_type = "metric"
+signal_names = ["hw.temperature"]
 ```
 
 ## Tests

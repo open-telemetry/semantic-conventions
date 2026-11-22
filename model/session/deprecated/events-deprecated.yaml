@@ -2,6 +2,13 @@
 file_format: definition/2
 events:
   - name: session.start
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     stability: development
     brief: >
       Indicates that a new session has been started, optionally linking to the prior session.
@@ -28,6 +35,13 @@ events:
         brief: The previous `session.id` for this user.
 
   - name: session.end
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     stability: development
     brief: >
       Indicates that a session has ended.

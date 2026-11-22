@@ -26,7 +26,6 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
-        - area:app
         - area:artifact
         - area:aspnetcore
         - area:aws
@@ -45,7 +44,6 @@ body:
         - area:db
         - area:deployment
         - area:destination
-        - area:device
         - area:disk
         - area:dns
         - area:dotnet
@@ -90,7 +88,6 @@ body:
         - area:security-rule
         - area:server
         - area:service
-        - area:session
         - area:signalr
         - area:source
         - area:system

@@ -11,10 +11,10 @@ Describes device attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="device-id" href="#device-id">`device.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier representing the device [1] | `123456789012345`; `01:23:45:67:89:AB` |
-| <a id="device-manufacturer" href="#device-manufacturer">`device.manufacturer`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the device manufacturer [2] | `Apple`; `Samsung` |
-| <a id="device-model-identifier" href="#device-model-identifier">`device.model.identifier`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The model identifier for the device [3] | `iPhone3,4`; `SM-G920F` |
-| <a id="device-model-name" href="#device-model-name">`device.model.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The marketing name for the device model [4] | `iPhone 6s Plus`; `Samsung Galaxy S6` |
+| <a id="device-id" href="#device-id">`device.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). | string | A unique identifier representing the device [1] | `123456789012345`; `01:23:45:67:89:AB` |
+| <a id="device-manufacturer" href="#device-manufacturer">`device.manufacturer`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). | string | The name of the device manufacturer [2] | `Apple`; `Samsung` |
+| <a id="device-model-identifier" href="#device-model-identifier">`device.model.identifier`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). | string | The model identifier for the device [3] | `iPhone3,4`; `SM-G920F` |
+| <a id="device-model-name" href="#device-model-name">`device.model.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). | string | The marketing name for the device model [4] | `iPhone 6s Plus`; `Samsung Galaxy S6` |
 
 **[1] `device.id`:** Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
 However, it might be resettable by the user for all apps on a device.

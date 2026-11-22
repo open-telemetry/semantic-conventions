@@ -1,0 +1,12 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Clarify that for the SDK Simple and Batching Span Processors, non-sampled spans (such as
+  `RECORD_ONLY` spans) are not counted by `otel.sdk.processor.span.processed`, either during
+  normal operation or after shutdown.
+
+issues: [4314]
+
+subtext:

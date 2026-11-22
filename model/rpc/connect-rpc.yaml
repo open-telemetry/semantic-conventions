@@ -15,9 +15,6 @@ attribute_groups:
 span_refinements:
   - id: connectrpc.client.call
     ref: rpc.client.call
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
@@ -124,9 +121,6 @@ span_refinements:
 
   - id: connectrpc.server.call
     ref: rpc.server.call
-    annotations:
-      compatibility:
-        policy_exceptions: [span_missing]
     stability: development
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |

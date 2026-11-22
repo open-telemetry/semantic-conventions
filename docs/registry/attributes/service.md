@@ -14,7 +14,7 @@ A service instance.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="service-criticality" href="#service-criticality">`service.criticality`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The operational criticality of the service. [1] | `critical`; `high`; `medium`; `low` [(see more)](#service-criticality-values) |
+| <a id="service-criticality" href="#service-criticality">`service.criticality`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The operational criticality of the service. [1] | `critical`; `high`; `medium`; `low` [(see more)](#service-criticality-values) |
 | <a id="service-instance-cost-center-id" href="#service-instance-cost-center-id">`service.instance.cost_center.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifier of the cost center associated with the service instance. [2] | `94002`; `111111111111`; `cc-eng-402`; `acc-83921` |
 | <a id="service-instance-cost-center-name" href="#service-instance-cost-center-name">`service.instance.cost_center.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the cost center associated with the service instance. [3] | `engineering-platform`; `marketing-campaigns`; `research-and-development` |
 | <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The string ID of the service instance. [4] | `627cc493-f310-47de-96bd-71410b7dec09` |
@@ -68,10 +68,10 @@ The process executable name is the name of the process executable, the same valu
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `critical` | Service is business-critical; downtime directly impacts revenue, user experience, or core functionality. [7] | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) |
-| `high` | Service is important but has degradation tolerance or fallback mechanisms. [8] | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) |
-| `low` | Service is non-essential to core operations; used for background tasks or internal tools. [9] | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) |
-| `medium` | Service provides supplementary functionality; degradation has limited user impact. [10] | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) |
+| `critical` | Service is business-critical; downtime directly impacts revenue, user experience, or core functionality. [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `high` | Service is important but has degradation tolerance or fallback mechanisms. [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `low` | Service is non-essential to core operations; used for background tasks or internal tools. [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `medium` | Service provides supplementary functionality; degradation has limited user impact. [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[7]:** Examples include payment processing, authentication, and primary user-facing APIs.
 

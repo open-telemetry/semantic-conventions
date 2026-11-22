@@ -9,5 +9,5 @@
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="session-id" href="#session-id">`session.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique ID to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` |
-| <a id="session-previous-id" href="#session-previous-id">`session.previous_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` |
+| <a id="session-id" href="#session-id">`session.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). | string | A unique ID to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` |
+| <a id="session-previous-id" href="#session-previous-id">`session.previous_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side). | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` |

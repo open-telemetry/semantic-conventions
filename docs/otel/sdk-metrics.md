@@ -276,6 +276,8 @@ This metric is [recommended][MetricRecommended].
 SDK Batching Span Processors MUST use `queue_full` as the value of `error.type` for spans dropped due to a full queue.
 If a processor reports a span dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
 Whether and when a processor drops such spans is governed by the SDK specification, not by this metric.
+For the SDK Simple and Batching Span Processors, non-sampled spans (i.e. spans without the `Sampled` flag set,
+such as `RECORD_ONLY` spans) MUST NOT be counted by this metric, either during normal operation or after shutdown.
 For the SDK Simple and Batching Span Processors, a span MUST be counted as successfully processed at the point the processor
 invokes the export operation. For batching processors, all spans in the batch passed to the exporter are counted at that point;
 spans accepted into the processor's queue but not yet passed to the exporter have not been processed.
@@ -648,9 +650,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK log processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
-**[1]:** Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+**[1]:** Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
 
 **Attributes:**
 
@@ -1192,6 +1194,8 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 **[1]:** For successful collections, `error.type` MUST NOT be set. For failed collections, `error.type` SHOULD contain the failure cause.
 It can happen that metrics collection is successful for some MetricProducers, while others fail. In that case `error.type` SHOULD be set to any of the failure causes.
+Pull-based metric readers SHOULD record this metric during collection.
+When a metric reader delegates collection to a wrapped `MetricReader`, implementations SHOULD NOT record this metric twice for the same collection.
 
 **Attributes:**
 
