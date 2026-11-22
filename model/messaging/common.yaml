@@ -6,6 +6,12 @@ attribute_groups:
     attributes:
       - ref: server.address
         brief: The messaging server address specified in the client configuration.
+        examples:
+          - "example.com"
+          - "10.1.2.80"
+          - "/tmp/my.sock"
+          - "kafka-a.example.com:9092,kafka-b.example.com:9092"
+          - "zookeeper://registry.example.com:2181/messaging"
         note: |
           Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
           It SHOULD NOT derive the value from the server selected for an operation.
