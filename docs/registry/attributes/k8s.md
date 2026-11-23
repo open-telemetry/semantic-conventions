@@ -602,7 +602,9 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 | `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ephemeral` | An [ephemeral](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `projected` | A [projected](https://kubernetes.io/docs/concepts/storage/projected-volumes/) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---

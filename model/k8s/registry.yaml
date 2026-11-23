@@ -611,6 +611,14 @@ groups:
               value: 'secret'
               brief: "A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
               stability: development
+            - id: ephemeral
+              value: 'ephemeral'
+              brief: "An [ephemeral](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/) volume"
+              stability: development
+            - id: projected
+              value: 'projected'
+              brief: "A [projected](https://kubernetes.io/docs/concepts/storage/projected-volumes/) volume"
+              stability: development
             - id: local
               value: 'local'
               brief: "A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume"
