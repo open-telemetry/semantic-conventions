@@ -19,6 +19,8 @@ owned_namespaces := {
     "zos": "https://github.com/open-telemetry/semantic-conventions-mainframe",
     "enduser": "https://github.com/open-telemetry/semantic-conventions-client-side",
     "device": "https://github.com/open-telemetry/semantic-conventions-client-side",
+    "app": "https://github.com/open-telemetry/semantic-conventions-client-side",
+    "session": "https://github.com/open-telemetry/semantic-conventions-client-side",
 }
 
 # attributes
