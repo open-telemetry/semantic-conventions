@@ -79,7 +79,7 @@ metrics:
           non-error discards or for a total combining error drops and non-error discards.
         examples: ['crc', 'frame_too_long']
 
-  - name: network.queue.size
+  - name: network.interface.queue.size
     stability: development
     requirement_level: opt_in
     brief: The current number of packets queued on a network interface.
