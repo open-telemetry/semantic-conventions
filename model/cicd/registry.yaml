@@ -295,7 +295,7 @@ groups:
         stability: development
         brief: >
           The start time of the span that a CI/CD span lifecycle event reports on,
-          in nanoseconds since the Unix epoch.
+          in nanoseconds since the UNIX epoch.
         note: >
           This attribute is only meant for CI/CD span lifecycle events, not for spans.
         examples: [1763000000000000000]

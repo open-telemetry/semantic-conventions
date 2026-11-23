@@ -3,6 +3,9 @@
 
 # CI/CD
 
+- [CI/CD Pipeline Attributes](#cicd-pipeline-attributes)
+- [CI/CD Span Lifecycle Attributes](#cicd-span-lifecycle-attributes)
+
 ## CI/CD Pipeline Attributes
 
 This group describes attributes specific to pipelines within a Continuous Integration and Continuous Deployment (CI/CD) system. A [pipeline](https://wikipedia.org/wiki/Pipeline_(computing)) in this case is a series of steps that are performed in order to deliver a new version of software. This aligns with the [Britannica](https://www.britannica.com/dictionary/pipeline) definition of a pipeline where a **pipeline** is the system for developing and producing something. In the context of CI/CD, a pipeline produces or delivers software.
@@ -109,3 +112,24 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | `offline` | The worker is not available to the CI/CD system (disconnected / down). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[2]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.
+
+## CI/CD Span Lifecycle Attributes
+
+This group describes the span that a CI/CD span lifecycle event reports on. These attributes are only meant for CI/CD span lifecycle events, not for spans.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="cicd-span-name" href="#cicd-span-name">`cicd.span.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the span that a CI/CD span lifecycle event reports on. [3] | `RUN Build and Test` |
+| <a id="cicd-span-parent-id" href="#cicd-span-parent-id">`cicd.span.parent.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. [4] | `b7ad6b7169203331` |
+| <a id="cicd-span-start-time" href="#cicd-span-start-time">`cicd.span.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The start time of the span that a CI/CD span lifecycle event reports on, in nanoseconds since the UNIX epoch. [5] | `1763000000000000000` |
+| <a id="cicd-span-trace-state" href="#cicd-span-trace-state">`cicd.span.trace_state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. [6] | `ot=th:8` |
+
+**[3] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+
+**[4] `cicd.span.parent.id`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+
+**[5] `cicd.span.start_time`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+
+**[6] `cicd.span.trace_state`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
