@@ -390,7 +390,9 @@ When not to define metrics:
 
 - If the value can be derived from another metric. For example, the number of
   requests can be derived from the count of a `*.duration` histogram, so a separate
-  request counter is not necessary.
+  request counter is not necessary. A derived metric can still be defined as a
+  convenience, but it should be `opt-in`, like `system.cpu.utilization`, which is
+  derived from `system.cpu.time`.
 - If the metric is only meaningful with high-cardinality attributes, such as
   a user, request, or object identifier. Consider spans or events instead.
 - If there is an existing metric that measures a very similar thing. Reuse it,
@@ -407,12 +409,16 @@ See also the [general metrics guidelines](/docs/general/metrics.md).
 ##### What does this metric measure
 
 - Describe when and how the value is recorded. For example, state when the duration
-  measurement starts and ends, or whether the value is reported by the instrumented
-  system or computed by the instrumentation.
+  measurement starts and ends, which event increments a counter, how failed or
+  cancelled operations are counted, or whether the value is reported by the
+  instrumented system or computed by the instrumentation.
 - If the metric accompanies a span, measure the same operation the span represents,
   so that span and metric data can be correlated.
 - If the metric represents a client call, specify whether it captures the logical call
   or individual attempts.
+- Define separate metrics for distinct operations or measurements, the same way
+  you'd define separate spans. Don't combine operations with different sets of
+  attributes, or different kinds of measurements, into one metric.
 
 ##### Instrument
 
@@ -461,6 +467,12 @@ single metric under that metric's namespace, see
 Each attribute can multiply the number of timeseries a metric produces by up to the
 number of distinct values it can take. Only include attributes that are useful for grouping
 or filtering in aggregate.
+A query that doesn't filter or group by any attribute should still return meaningful
+data. For example, a token usage histogram with an input/output attribute, or a
+metric whose attribute separates usage from limit, should be split into separate
+metrics. Attribute values should partition the total: don't report a total series
+alongside series for its subsets (for example, `state=all` next to `state=used` and
+`state=free`), or summing across the attribute double-counts.
 See the [general metrics guidelines](/docs/general/metrics.md#general-guidelines).
 
 - Attributes should have low cardinality. Record high-cardinality identifiers and
