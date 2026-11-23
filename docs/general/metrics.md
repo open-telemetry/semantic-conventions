@@ -133,14 +133,20 @@ implementation detail. Both choices are compliant with this specification.
 For new duration histograms, recommended
 [`ExplicitBucketBoundaries` advisory parameters](https://opentelemetry.io/docs/specs/otel/metrics/api/#instrument-advisory-parameters)
 SHOULD use a decimal-friendly approximation of an exponential progression.
-Use `1, 2.5, 5` subdivisions across powers of ten up to 10 seconds, then
-`1, 2, 5` subdivisions for minutes and hours. Include `0.5` at each unit
-transition. For example, in seconds:
+Use the following progression:
+
+- Seconds: use `1, 2.5, 5` subdivisions across powers of ten up to 10 seconds.
+- Minutes: use 0.5, 1, 2, 5, 10, and 30 minutes.
+- Hours: use 1, 2, and 6 hours.
+- Days: use half a day and one day.
+
+For example, in seconds:
 
 ```text
 [
   0.001, 0.0025, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5,
-  1, 2.5, 5, 10, 30, 60, 120, 300, 600, 1800, 3600, 7200
+  1, 2.5, 5, 10, 30, 60, 120, 300, 600, 1800, 3600, 7200,
+  21600, 43200, 86400
 ]
 ```
 
