@@ -359,7 +359,11 @@ groups:
               value: 'unknown_protocol'
               brief: The received packet was discarded because the protocol was unknown or unsupported.
               stability: development
-        examples: ['discarded', 'error', 'unknown_protocol']
+            - id: unknown
+              value: 'unknown'
+              brief: The source does not identify the reason for the drop.
+              stability: development
+        examples: ['discarded', 'error', 'unknown_protocol', 'unknown']
       - id: network.type
         stability: stable
         type:

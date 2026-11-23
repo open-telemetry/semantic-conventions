@@ -30,12 +30,18 @@ metrics:
   - name: network.packets
     stability: development
     requirement_level: recommended
-    brief: The number of packets transferred by a network interface.
-    note: >
-      On receive, count packets delivered to the next layer. On transmit, count packets sent
-      by the interface. Do not use transmission-request counters that include unsent packets.
-      For each interface and direction, report either the total or a complete, non-overlapping
-      breakdown by packet type, not both.
+    brief: The number of packets transferred or dropped by a network interface.
+    note: |
+      A transferred packet is one delivered to the next layer on receive or sent by the
+      interface on transmit. A dropped packet does not complete that transfer because it was
+      discarded or encountered an error. Count each packet once for a given interface and
+      direction. Do not map a source counter that mixes both outcomes directly to this metric.
+      For example, a transmission-request counter can include unsent packets. Do not use a count
+      of error events unless it counts each dropped packet once.
+
+      For transferred packets and dropped packets separately, report either a total or a
+      complete, non-overlapping breakdown. Do not report a total alongside a breakdown
+      that it includes.
     instrument: counter
     unit: '{packet}'
     annotations:
@@ -49,34 +55,19 @@ metrics:
         note: >
           Classify the packet at the observed interface layer, not at an inner encapsulated
           layer. Omit this attribute when reporting the total across all packet types.
-
-  - name: network.packet.dropped
-    stability: development
-    requirement_level: recommended
-    brief: The number of packets dropped by a network interface.
-    note: >
-      Count packets that the interface does not transmit or deliver to the next layer because
-      they were discarded or encountered an error. Do not substitute a count of error events
-      unless it counts each affected packet once. For each interface and direction, report
-      either a total or a complete, non-overlapping breakdown by drop reason and error type,
-      not both. Do not add a reason-specific counter to a total that already includes it.
-    instrument: counter
-    unit: '{packet}'
-    annotations:
-      code_generation:
-        metric_value_type: int
-    attributes:
-      - ref_group: metric_attributes.network.interface.io
       - ref: network.packet.drop.reason
         requirement_level:
-          conditionally_required: When reporting a breakdown by drop reason.
-        note: Use `unknown_protocol` only for receive-side drops.
+          conditionally_required: When counting dropped packets.
+        note: >
+          MUST be omitted for transferred packets. Use `unknown` when the source identifies
+          dropped packets but does not report a reason or provides only a total across reasons.
+          Use `unknown_protocol` only for receive-side drops.
       - ref: error.type
         requirement_level:
           conditionally_required: When a drop in the `error` category has a known error type.
         note: >
-          Use a low-cardinality error type for a detected error. Do not set this attribute for
-          non-error discards or for a total combining error drops and non-error discards.
+          Use a low-cardinality type for a detected error. MUST NOT be set for transferred
+          packets, non-error discards, or a total combining error drops and non-error discards.
         examples: ['crc', 'frame_too_long']
 
   - name: network.interface.queue.size
