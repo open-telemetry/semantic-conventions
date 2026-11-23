@@ -257,3 +257,45 @@ groups:
             "scheduler",
             "agent",
           ]
+  - id: registry.cicd.span
+    type: attribute_group
+    display_name: CI/CD Span Lifecycle Attributes
+    brief: >
+      This group describes the span that a CI/CD span lifecycle event reports on.
+      These attributes are only meant for CI/CD span lifecycle events, not for spans.
+    attributes:
+      - id: cicd.span.name
+        type: string
+        stability: development
+        brief: >
+          The name of the span that a CI/CD span lifecycle event reports on.
+        note: >
+          This attribute is only meant for CI/CD span lifecycle events, not for spans.
+        examples: ["RUN Build and Test"]
+      - id: cicd.span.parent.id
+        type: string
+        stability: development
+        brief: >
+          The span ID of the parent of the span that a CI/CD span lifecycle event
+          reports on, as 16 lowercase hex characters.
+        note: >
+          This attribute is only meant for CI/CD span lifecycle events, not for spans.
+        examples: ["b7ad6b7169203331"]
+      - id: cicd.span.trace_state
+        type: string
+        stability: development
+        brief: >
+          The W3C `tracestate` of the span that a CI/CD span lifecycle event
+          reports on, in header format.
+        note: >
+          This attribute is only meant for CI/CD span lifecycle events, not for spans.
+        examples: ["ot=th:8"]
+      - id: cicd.span.start_time
+        type: int
+        stability: development
+        brief: >
+          The start time of the span that a CI/CD span lifecycle event reports on,
+          in nanoseconds since the Unix epoch.
+        note: >
+          This attribute is only meant for CI/CD span lifecycle events, not for spans.
+        examples: [1763000000000000000]
