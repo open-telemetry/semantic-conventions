@@ -23,7 +23,7 @@
 | Description | [`network.interface.mtu`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The maximum transmission unit (MTU) of the network interface, in bytes. [6] | `1500`; `9000` |
 
 **[1] `network.interface.name`:** Use the name assigned by the device, as it appears in its interface commands.
-A device may use a port number as its interface name. In IF-MIB, this is `ifName`.
+A device may use a port number as its interface name.
 
 The name identifies the interface within the discovery scope of the owning host or
 device and, when applicable, its interface namespace. Only report this entity when
@@ -31,16 +31,16 @@ the name is non-empty and unique within that scope. Include enough resource cont
 to distinguish that scope from others. Do not correlate interfaces across different
 scopes by name alone. Renaming the interface changes the entity identity.
 
-**[2] `network.interface.index`:** Represent the positive numeric index as a decimal string. In IF-MIB, `ifIndex` is unique within the managed system and remains constant for the interface until at least the next reinitialization of the network management system.
+**[2] `network.interface.index`:** Represent the positive numeric index as a decimal string. The index is scoped to the system or interface namespace that assigned it and may be reassigned after reinitialization.
 
-**[3] `network.interface.type`:** Use the case-sensitive symbolic name from the [IANAifType-MIB](https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib). When collecting a numeric IF-MIB `ifType`, map it to the corresponding symbolic name. For example, report `ethernetCsmacd` for `6`.
+**[3] `network.interface.type`:** Use the case-sensitive symbolic name from the [IANAifType-MIB](https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib). Use the symbolic name rather than the numeric code.
 
-**[4] `network.interface.alias`:** In IF-MIB, `ifAlias` is a persistent label, such as a circuit identifier.
+**[4] `network.interface.alias`:**
 
 > [!WARNING]
 >
 > This attribute may contain sensitive information because it is user-defined.
 
-**[5] `network.interface.description`:** When available, the description should include the manufacturer, product name, and hardware or software version. In IF-MIB, this is `ifDescr`.
+**[5] `network.interface.description`:** When available, the description should include the manufacturer, product name, and hardware or software version.
 
-**[6] `network.interface.mtu`:** This is the maximum packet size the interface can send or receive. For an interface that transmits network datagrams, it is the maximum size of a network datagram that can be sent on the interface. In IF-MIB, this is `ifMtu`.
+**[6] `network.interface.mtu`:** This is the maximum packet size the interface can send or receive. For an interface that transmits network datagrams, it is the maximum size of a network datagram that can be sent on the interface.

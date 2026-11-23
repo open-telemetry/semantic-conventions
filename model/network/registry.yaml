@@ -358,8 +358,6 @@ groups:
         stability: development
         brief: The user-assigned alias for the network interface.
         note: |
-          In IF-MIB, `ifAlias` is a persistent label, such as a circuit identifier.
-
           > [!WARNING]
           >
           > This attribute may contain sensitive information because it is user-defined.
@@ -370,16 +368,16 @@ groups:
         brief: A description of the network interface reported by the device.
         note: >
           When available, the description should include the manufacturer, product name,
-          and hardware or software version. In IF-MIB, this is `ifDescr`.
+          and hardware or software version.
         examples: ['Nortel Ethernet Routing Switch 2550T Module - Port 3']
       - id: network.interface.index
         type: string
         stability: development
         brief: The device-assigned index of the network interface.
         note: >
-          Represent the positive numeric index as a decimal string. In IF-MIB, `ifIndex`
-          is unique within the managed system and remains constant for the interface until
-          at least the next reinitialization of the network management system.
+          Represent the positive numeric index as a decimal string. The index is scoped to
+          the system or interface namespace that assigned it and may be reassigned after
+          reinitialization.
         examples: ['1', '2147483647']
       - id: network.interface.mtu
         type: int
@@ -388,7 +386,7 @@ groups:
         note: >
           This is the maximum packet size the interface can send or receive. For an interface
           that transmits network datagrams, it is the maximum size of a network datagram
-          that can be sent on the interface. In IF-MIB, this is `ifMtu`.
+          that can be sent on the interface.
         examples: [1500, 9000]
       - id: network.interface.name
         type: string
@@ -402,8 +400,7 @@ groups:
         note: >
           Use the case-sensitive symbolic name from the
           [IANAifType-MIB](https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib).
-          When collecting a numeric IF-MIB `ifType`, map it to the corresponding symbolic name.
-          For example, report `ethernetCsmacd` for `6`.
+          Use the symbolic name rather than the numeric code.
         examples: ['ethernetCsmacd', 'softwareLoopback', 'ieee80211']
       - id: network.connection.state
         type:

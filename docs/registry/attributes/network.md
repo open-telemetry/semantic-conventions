@@ -47,19 +47,19 @@ These attributes may be used for any network related operation.
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
-**[2] `network.interface.alias`:** In IF-MIB, `ifAlias` is a persistent label, such as a circuit identifier.
+**[2] `network.interface.alias`:**
 
 > [!WARNING]
 >
 > This attribute may contain sensitive information because it is user-defined.
 
-**[3] `network.interface.description`:** When available, the description should include the manufacturer, product name, and hardware or software version. In IF-MIB, this is `ifDescr`.
+**[3] `network.interface.description`:** When available, the description should include the manufacturer, product name, and hardware or software version.
 
-**[4] `network.interface.index`:** Represent the positive numeric index as a decimal string. In IF-MIB, `ifIndex` is unique within the managed system and remains constant for the interface until at least the next reinitialization of the network management system.
+**[4] `network.interface.index`:** Represent the positive numeric index as a decimal string. The index is scoped to the system or interface namespace that assigned it and may be reassigned after reinitialization.
 
-**[5] `network.interface.mtu`:** This is the maximum packet size the interface can send or receive. For an interface that transmits network datagrams, it is the maximum size of a network datagram that can be sent on the interface. In IF-MIB, this is `ifMtu`.
+**[5] `network.interface.mtu`:** This is the maximum packet size the interface can send or receive. For an interface that transmits network datagrams, it is the maximum size of a network datagram that can be sent on the interface.
 
-**[6] `network.interface.type`:** Use the case-sensitive symbolic name from the [IANAifType-MIB](https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib). When collecting a numeric IF-MIB `ifType`, map it to the corresponding symbolic name. For example, report `ethernetCsmacd` for `6`.
+**[6] `network.interface.type`:** Use the case-sensitive symbolic name from the [IANAifType-MIB](https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib). Use the symbolic name rather than the numeric code.
 
 **[7] `network.local.as.number`:** This attribute SHOULD only be set when the local address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
 
