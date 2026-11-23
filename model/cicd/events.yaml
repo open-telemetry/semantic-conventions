@@ -23,7 +23,9 @@ events:
       The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
       span's. Its timestamp MUST be the span's start time.
 
-      The event SHOULD only be emitted for sampled spans.
+      The event SHOULD only be emitted for sampled spans. Instrumentations
+      SHOULD set the severity to INFO (severity number 9) when recording this
+      event.
 
       Besides the attributes listed below, the event MAY carry the span's other
       attributes, with unchanged keys and values.
@@ -48,12 +50,17 @@ events:
       The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
       span's. Its timestamp is the time the event was emitted.
 
-      The event SHOULD only be emitted for sampled spans.
+      The event SHOULD only be emitted for sampled spans. Instrumentations
+      SHOULD set the severity to INFO (severity number 9) when recording this
+      event.
 
       The event carries only what changed since the previous lifecycle event for
       the same span, including span attributes not listed below. A heartbeat
       carries no attributes. A missing attribute means unchanged or unknown,
       never removed.
+
+      `cicd.pipeline.run.state` is not a span attribute: it reports the live
+      state of the pipeline run, and consumers don't add it to the rebuilt span.
 
       The pipeline run's identity comes from the Resource (the `cicd.pipeline`
       and `cicd.pipeline.run` entities), as it does for the span.
@@ -77,7 +84,9 @@ events:
       The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
       span's. Its timestamp MUST be the span's end time.
 
-      The event SHOULD only be emitted for sampled spans.
+      The event SHOULD only be emitted for sampled spans. Instrumentations
+      SHOULD set the severity to INFO (severity number 9) when recording this
+      event.
 
       The event MUST carry all of the span's attributes, with unchanged keys and
       values, and a consumer MUST be able to build the span from this event
@@ -100,7 +109,8 @@ events:
         requirement_level:
           conditionally_required: if the pipeline result is `failure` or `error`
       - ref: cicd.pipeline.action.name
-        requirement_level: opt_in
+        requirement_level:
+          conditionally_required: If set on the span.
       - ref: otel.status_code
         requirement_level:
           conditionally_required: If the span status is not `UNSET`.
@@ -117,7 +127,9 @@ events:
       The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
       span's. Its timestamp MUST be the span's start time.
 
-      The event SHOULD only be emitted for sampled spans.
+      The event SHOULD only be emitted for sampled spans. Instrumentations
+      SHOULD set the severity to INFO (severity number 9) when recording this
+      event.
 
       Besides the attributes listed below, the event MAY carry the span's other
       attributes, with unchanged keys and values.
@@ -143,7 +155,9 @@ events:
       The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
       span's. Its timestamp is the time the event was emitted.
 
-      The event SHOULD only be emitted for sampled spans.
+      The event SHOULD only be emitted for sampled spans. Instrumentations
+      SHOULD set the severity to INFO (severity number 9) when recording this
+      event.
 
       The event carries only what changed since the previous lifecycle event for
       the same span, including span attributes not listed below. A heartbeat
@@ -167,7 +181,9 @@ events:
       The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
       span's. Its timestamp MUST be the span's end time.
 
-      The event SHOULD only be emitted for sampled spans.
+      The event SHOULD only be emitted for sampled spans. Instrumentations
+      SHOULD set the severity to INFO (severity number 9) when recording this
+      event.
 
       The event MUST carry all of the span's attributes, with unchanged keys and
       values, and a consumer MUST be able to build the span from this event

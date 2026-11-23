@@ -57,8 +57,9 @@ The lifecycle events supplement the span, they don't replace it:
 
 A producer that doesn't hold the SDK span, for example a CI/CD controller that
 restarted while a pipeline run was running, emits the `progress` and `ended`
-events itself, using the trace ID, span ID and trace flags it stored for the
-span. Such a producer MUST provide a complete `ended` event.
+events itself. To do that, it stores the span context (trace ID, span ID, trace
+flags and TraceState) and the span's name, parent span ID and start time when the
+span starts. Such a producer MUST provide a complete `ended` event.
 
 The span type and the span kind are given by the event name: `SERVER` for
 pipeline runs and `INTERNAL` for pipeline task runs. The pipeline run's identity
@@ -77,15 +78,31 @@ t9  cicd.server.pipeline.run.ended     trace=T span=S cicd.span.name="RUN build"
                                        otel.status_code=ERROR
 ```
 
-A consumer that received all events builds a span from `t0` to `t9` with the
-attributes of the `ended` event, plus `cicd.pipeline.run.state=executing` from
-the `progress` event at `t2`. A consumer that received only the `ended` event
-builds the same span without `cicd.pipeline.run.state`.
+A consumer that received all events can show the pipeline run as executing from
+`t2` on, and builds a span from `t0` to `t9` with the attributes of the `ended`
+event. A consumer that received only the `ended` event builds the same span.
 
 ## Merge rules
 
 A consumer builds a span by merging all lifecycle events that share a trace ID
-and span ID.
+and span ID. The span's fields are carried as follows:
+
+| Span field | Carried by | `started` | `progress` | `ended` |
+| --- | --- | --- | --- | --- |
+| Trace ID, span ID, trace flags | the event's trace context | required | required | required |
+| Span type and kind | the event name | yes | yes | yes |
+| Name | `cicd.span.name` | required | if changed | required |
+| Parent span ID | `cicd.span.parent.id` | if the span has a parent | - | if the span has a parent |
+| TraceState | `cicd.span.trace_state` | if not empty | - | if not empty |
+| Start time | the event timestamp (`started`), `cicd.span.start_time` (`ended`) | required | - | required |
+| End time | the event timestamp | - | - | required |
+| Status | `otel.status_code`, `otel.status_description` | - | - | if set |
+| Span attributes | the other event attributes, with unchanged keys and values | some | the changed ones | all |
+
+The `cicd.span.*`, `otel.status_code` and `otel.status_description` attributes
+set the span fields above; they are not added as span attributes. Neither is
+`cicd.pipeline.run.state`: it reports the live state of a pipeline run on
+`progress` events, and it isn't added to the rebuilt span.
 
 1. **Fixed fields** are set when the span starts and can't change: trace ID,
    span ID, parent span ID (`cicd.span.parent.id`), span kind and span type
@@ -121,8 +138,11 @@ when the process ending the span is not the one that started it.
 Because the span is still exported as usual, a deployment that also rebuilds
 spans from the lifecycle events gets each of these spans twice. Deployments that
 rebuild spans from the lifecycle events SHOULD drop the normally exported span of
-the same span type. The trace SDK specification has no built-in span filter, so
-this is a configuration choice, for example:
+the same span type. Only drop spans for which lifecycle events are emitted, for
+example by selecting the instrumentation scope of the instrumentation that emits
+them, so that spans from other instrumentation aren't lost. The trace SDK
+specification has no built-in span filter, so this is a configuration choice, for
+example:
 
 - a custom `SpanProcessor` in the SDK that doesn't forward `OnEnd` to the
   exporting span processor for these spans;
@@ -150,7 +170,9 @@ Reports that a CI/CD pipeline run span has started.
 The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
 span's. Its timestamp MUST be the span's start time.
 
-The event SHOULD only be emitted for sampled spans.
+The event SHOULD only be emitted for sampled spans. Instrumentations
+SHOULD set the severity to INFO (severity number 9) when recording this
+event.
 
 Besides the attributes listed below, the event MAY carry the span's other
 attributes, with unchanged keys and values.
@@ -208,12 +230,17 @@ Reports that a CI/CD pipeline run span is still running, and what changed since 
 The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
 span's. Its timestamp is the time the event was emitted.
 
-The event SHOULD only be emitted for sampled spans.
+The event SHOULD only be emitted for sampled spans. Instrumentations
+SHOULD set the severity to INFO (severity number 9) when recording this
+event.
 
 The event carries only what changed since the previous lifecycle event for
 the same span, including span attributes not listed below. A heartbeat
 carries no attributes. A missing attribute means unchanged or unknown,
 never removed.
+
+`cicd.pipeline.run.state` is not a span attribute: it reports the live
+state of the pipeline run, and consumers don't add it to the rebuilt span.
 
 The pipeline run's identity comes from the Resource (the `cicd.pipeline`
 and `cicd.pipeline.run` entities), as it does for the span.
@@ -266,7 +293,9 @@ Reports that a CI/CD pipeline run span has ended, and carries the complete span.
 The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
 span's. Its timestamp MUST be the span's end time.
 
-The event SHOULD only be emitted for sampled spans.
+The event SHOULD only be emitted for sampled spans. Instrumentations
+SHOULD set the severity to INFO (severity number 9) when recording this
+event.
 
 The event MUST carry all of the span's attributes, with unchanged keys and
 values, and a consumer MUST be able to build the span from this event
@@ -287,12 +316,12 @@ consumers combine the lifecycle events of a span.
 | [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skip` [(see more)](#cicd-pipeline-result-values) |
 | [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the span that a CI/CD span lifecycle event reports on. [1] | `RUN Build and Test` |
 | [`cicd.span.start_time`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The start time of the span that a CI/CD span lifecycle event reports on, in nanoseconds since the UNIX epoch. [2] | `1763000000000000000` |
+| [`cicd.pipeline.action.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If set on the span. | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` [(see more)](#cicd-pipeline-action-name-values) |
 | [`cicd.span.parent.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the span has a parent. | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. [3] | `b7ad6b7169203331` |
 | [`cicd.span.trace_state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the span's TraceState is not empty. | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. [4] | `ot=th:8` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the pipeline result is `failure` or `error` | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`otel.status_code`](/docs/registry/attributes/otel.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the span status is not `UNSET`. | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK`; `ERROR` [(see more)](#otel-status-code-values) |
 | [`otel.status_description`](/docs/registry/attributes/otel.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [6] | string | Description of the Status if it has a value, otherwise not set. | `resource not found` |
-| [`cicd.pipeline.action.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` [(see more)](#cicd-pipeline-action-name-values) |
 
 **[1] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
 
@@ -390,7 +419,9 @@ Reports that a CI/CD pipeline task run span has started.
 The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
 span's. Its timestamp MUST be the span's start time.
 
-The event SHOULD only be emitted for sampled spans.
+The event SHOULD only be emitted for sampled spans. Instrumentations
+SHOULD set the severity to INFO (severity number 9) when recording this
+event.
 
 Besides the attributes listed below, the event MAY carry the span's other
 attributes, with unchanged keys and values.
@@ -437,7 +468,9 @@ Reports that a CI/CD pipeline task run span is still running, and what changed s
 The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
 span's. Its timestamp is the time the event was emitted.
 
-The event SHOULD only be emitted for sampled spans.
+The event SHOULD only be emitted for sampled spans. Instrumentations
+SHOULD set the severity to INFO (severity number 9) when recording this
+event.
 
 The event carries only what changed since the previous lifecycle event for
 the same span, including span attributes not listed below. A heartbeat
@@ -477,7 +510,9 @@ Reports that a CI/CD pipeline task run span has ended, and carries the complete 
 The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
 span's. Its timestamp MUST be the span's end time.
 
-The event SHOULD only be emitted for sampled spans.
+The event SHOULD only be emitted for sampled spans. Instrumentations
+SHOULD set the severity to INFO (severity number 9) when recording this
+event.
 
 The event MUST carry all of the span's attributes, with unchanged keys and
 values, and a consumer MUST be able to build the span from this event
