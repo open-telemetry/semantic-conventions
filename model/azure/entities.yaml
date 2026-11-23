@@ -4,7 +4,7 @@ groups:
     stability: development
     name: azure.app_service.instance
     brief: >
-      A compute instance of an Azure App Service, which runs a service plan containing one or more apps.
+      A compute instance in an Azure App Service plan, hosting one or more of the plan's apps.
     attributes:
       - ref: azure.app_service.instance.name
         role: identifying
