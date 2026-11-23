@@ -417,8 +417,9 @@ See also the [general metrics guidelines](/docs/general/metrics.md).
 - If the metric represents a client call, specify whether it captures the logical call
   or individual attempts.
 - Define separate metrics for distinct operations or measurements, the same way
-  you'd define separate spans. Don't combine operations with different sets of
-  attributes, or different kinds of measurements, into one metric.
+  you'd define separate spans. Don't combine operations that aren't meaningful to
+  aggregate together, or different kinds of measurements, into one metric.
+  Attributes that apply only to some operations can be conditionally required.
 
 ##### Instrument
 
