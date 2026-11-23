@@ -8,6 +8,10 @@ linkTitle: Network
 
 This document defines semantic conventions for network communication.
 
+## Network interfaces
+
+- [Network interface entity and attributes](interface.md)
+
 ## Guidance
 
 - [Choosing network address and port attributes](choosing-network-attributes.md): how to pick among
