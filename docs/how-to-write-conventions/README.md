@@ -396,15 +396,13 @@ When not to define metrics:
 - If there is an existing metric that measures a very similar thing. Reuse it,
   possibly with additional attributes.
 
-A metric definition should describe [what it measures](#what-does-this-metric-measure),
-the [instrument](#instrument) and [unit](#unit), its [name](#metric-name),
-the list of applicable [attributes](#metric-attributes), and its
-[requirement level](/docs/general/signal-requirement-level.md).
-Metrics that are expensive to collect, may pose a security or privacy risk,
-or are not essential for most applications should be `opt-in`.
+A metric definition covers [what it measures](#what-does-this-metric-measure), the
+[instrument](#instrument), [unit](#unit), [name](#metric-name),
+[attributes](#metric-attributes), and
+[requirement level](/docs/general/signal-requirement-level.md). Make metrics that are
+expensive, sensitive, or not essential for most applications `opt-in`.
 
-See the [Metrics semantic conventions](/docs/general/metrics.md) general guidelines
-for additional details.
+See also the [general metrics guidelines](/docs/general/metrics.md).
 
 ##### What does this metric measure
 
@@ -423,8 +421,8 @@ Pick the instrument based on how the value behaves and how it will be aggregated
 - **Histogram** - for distributions of individual measurements, such as operation
   durations or payload sizes. Consider recommending
   [`ExplicitBucketBoundaries`](https://opentelemetry.io/docs/specs/otel/metrics/api/#instrument-advisory-parameters)
-  suitable for the expected value range (see [HTTP metrics](/docs/http/http-metrics.md)
-  for an example).
+  suitable for the expected value range, see
+  [Duration histogram bucket boundaries](/docs/general/metrics.md#duration-histogram-bucket-boundaries).
 - **Counter** - for monotonically increasing values, such as the number of bytes
   sent or the total CPU time.
 - **UpDownCounter** - for additive values that can increase and decrease, such as the
@@ -432,6 +430,8 @@ Pick the instrument based on how the value behaves and how it will be aggregated
   where summing values across instances is meaningful.
 - **Gauge** - for non-additive values sampled at a point in time, such as a temperature
   or a utilization ratio, where summing values across instances is not meaningful.
+  Prefer UpDownCounter whenever the value is additive, see
+  [Asynchronous Gauge](https://opentelemetry.io/docs/specs/otel/metrics/api/#asynchronous-gauge).
 
 To represent which state from a closed set something is in, follow the
 [status metrics](status-metrics.md) pattern.
@@ -450,12 +450,10 @@ Follow the [naming guidelines](/docs/general/naming.md), in particular the
 [metric naming rules](/docs/general/naming.md#metrics) and the
 [well-known instrument names](/docs/general/naming.md#instrument-naming).
 
-Name the metric under the namespace of the domain it describes, which is usually
-the namespace of its domain-specific attributes. For example, the
-`http.server.request.duration` metric uses the `http.*` namespace, like
-`http.request.method`, even though it also uses general-purpose attributes such as
-`server.port` and `error.type`. Attributes that only apply to a single metric should
-be placed under that metric's namespace, see
+Name the metric after the domain it describes, usually the namespace of its
+domain-specific attributes. For example, `http.server.request.duration` uses `http.*`
+even though it also has `server.port` and `error.type`. Put attributes that apply to a
+single metric under that metric's namespace, see
 [signal-specific attributes](/docs/general/naming.md#signal-specific-attributes).
 
 ##### Metric attributes
@@ -465,38 +463,26 @@ number of distinct values it can take. Only include attributes that are useful f
 or filtering in aggregate.
 See the [general metrics guidelines](/docs/general/metrics.md#general-guidelines).
 
-- Attributes on a metric should have low cardinality.
-- Reuse existing attributes from the [registry](/docs/registry/attributes/README.md)
-  with the same name and value semantics used on spans and other signals.
-- Don't use high-cardinality entity identifiers or attributes with unbounded values,
-  such as user, session or request IDs, full URLs, raw paths, or free-form messages.
-  Capture those on spans or events instead.
-- Specify a [requirement level](/docs/general/attribute-requirement-level.md) for
-  each attribute. Attributes that may have high cardinality, including values an
-  attacker can control (for example, values derived from request headers),
-  [can only be `opt-in`](/docs/general/attribute-requirement-level.md#requirement-levels).
-  Attributes that are expensive to obtain or may contain sensitive information
-  should also be `opt-in`. Explain the risk in the attribute's `note`, as [HTTP metrics](/docs/http/http-metrics.md)
-  do for `server.address`.
+- Attributes should have low cardinality. Record high-cardinality identifiers and
+  unbounded values, such as user, session or request IDs, full URLs, raw paths, or
+  free-form messages, on spans or events instead.
+- Reuse [registry](/docs/registry/attributes/README.md) attributes with the same
+  meaning they have on spans and other signals.
+- Specify a [requirement level](/docs/general/attribute-requirement-level.md) for each
+  attribute. Attributes that may have high cardinality, including attacker-controlled
+  values such as request headers, [must be `opt-in`](/docs/general/attribute-requirement-level.md#requirement-levels).
+  Expensive or sensitive attributes should be `opt-in` too. Explain the risk in the
+  attribute's `note`, as [HTTP metrics](/docs/http/http-metrics.md) do for `server.address`.
 - For metrics that describe operations that can fail, follow
   [Recording errors on metrics](/docs/general/recording-errors.md#recording-errors-on-metrics).
 
 Relation to span attributes:
 
-When a metric and a span describe the same operation, prefer the metric's
-attributes to be a subset of the span's attributes. This keeps the dimensions
-used to describe the operation consistent across signals and allows telemetry
-consumers to use the metric's attribute key-value pairs when searching for
-spans that represent the same operation.
-
-This does not mean that every span attribute should also be a metric attribute.
-Span-only attributes are appropriate when they are too high-cardinality,
-expensive to collect, sensitive, or otherwise unsuitable as metric dimensions.
-
-If a proposed metric attribute also describes the operation itself, consider
-whether it should be available on the corresponding span as well. Exceptions
-are possible when the signals have different observability needs, but those
-differences should be intentional rather than accidental.
+When a metric and a span describe the same operation, metric attributes should be a
+subset of span attributes, so users can find spans matching a metric's dimensions.
+Not every span attribute belongs on the metric: leave out ones that are
+high-cardinality, expensive, or sensitive. If a metric attribute describes the
+operation, add it to the span too, unless there's a deliberate reason not to.
 
 #### Defining entities
 
