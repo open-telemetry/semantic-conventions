@@ -24,7 +24,7 @@ regardless of how the attributes are collected.
 | Description | [`network.interface.index`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device-assigned index of the network interface. [2] | `1`; `2147483647` |
 | Description | [`network.interface.type`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The IANA interface type of the network interface. [3] | `ethernetCsmacd`; `softwareLoopback`; `ieee80211` |
 | Description | [`network.interface.alias`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The user-assigned alias for the network interface. [4] | `WAN to HQ` |
-| Description | [`network.interface.description`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A description of the network interface reported by the device. [5] | `Nortel Ethernet Routing Switch 2550T Module - Port 3` |
+| Description | [`network.interface.description`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A system-generated description of the network interface. [5] | `Nortel Ethernet Routing Switch 2550T Module - Port 3` |
 | Description | [`network.interface.mtu`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The maximum transmission unit (MTU) of the network interface, in bytes. [6] | `1500`; `9000` |
 
 **[1] `network.interface.name`:** Use the name assigned by the device, as it appears in its interface commands.
@@ -46,7 +46,7 @@ scopes by name alone. Renaming the interface changes the entity identity.
 >
 > This attribute may contain sensitive information because it is user-defined.
 
-**[5] `network.interface.description`:** When available, the description should include the manufacturer, product name, and hardware or software version.
+**[5] `network.interface.description`:** This can include the manufacturer, product name, and hardware or software version. Use `network.interface.alias` for operator-assigned text, even if the source labels it as a description.
 
 **[6] `network.interface.mtu`:** This is the maximum packet size the interface can send or receive. For an interface that transmits network datagrams, it is the maximum size of a network datagram that can be sent on the interface.
 <!-- prettier-ignore-end -->

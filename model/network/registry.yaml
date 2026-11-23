@@ -365,10 +365,11 @@ groups:
       - id: network.interface.description
         type: string
         stability: development
-        brief: A description of the network interface reported by the device.
+        brief: A system-generated description of the network interface.
         note: >
-          When available, the description should include the manufacturer, product name,
-          and hardware or software version.
+          This can include the manufacturer, product name, and hardware or software version.
+          Use `network.interface.alias` for operator-assigned text, even if the source labels
+          it as a description.
         examples: ['Nortel Ethernet Routing Switch 2550T Module - Port 3']
       - id: network.interface.index
         type: string

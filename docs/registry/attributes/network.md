@@ -22,7 +22,7 @@ These attributes may be used for any network related operation.
 | <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection. | `LTE` [(see more)](#network-connection-subtype-values) |
 | <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The internet connection type. | `wifi` [(see more)](#network-connection-type-values) |
 | <a id="network-interface-alias" href="#network-interface-alias">`network.interface.alias`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The user-assigned alias for the network interface. [2] | `WAN to HQ` |
-| <a id="network-interface-description" href="#network-interface-description">`network.interface.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A description of the network interface reported by the device. [3] | `Nortel Ethernet Routing Switch 2550T Module - Port 3` |
+| <a id="network-interface-description" href="#network-interface-description">`network.interface.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A system-generated description of the network interface. [3] | `Nortel Ethernet Routing Switch 2550T Module - Port 3` |
 | <a id="network-interface-index" href="#network-interface-index">`network.interface.index`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The device-assigned index of the network interface. [4] | `1`; `2147483647` |
 | <a id="network-interface-mtu" href="#network-interface-mtu">`network.interface.mtu`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The maximum transmission unit (MTU) of the network interface, in bytes. [5] | `1500`; `9000` |
 | <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The network interface name. | `lo`; `eth0` |
@@ -53,7 +53,7 @@ These attributes may be used for any network related operation.
 >
 > This attribute may contain sensitive information because it is user-defined.
 
-**[3] `network.interface.description`:** When available, the description should include the manufacturer, product name, and hardware or software version.
+**[3] `network.interface.description`:** This can include the manufacturer, product name, and hardware or software version. Use `network.interface.alias` for operator-assigned text, even if the source labels it as a description.
 
 **[4] `network.interface.index`:** Represent the positive numeric index as a decimal string. The index is scoped to the system or interface namespace that assigned it and may be reassigned after reinitialization.
 
