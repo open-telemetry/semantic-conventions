@@ -33,7 +33,7 @@ groups:
                 a fallback to those older formulas may be used.
             - id: available
               value: 'available'
-              stability: development
+              stability: release_candidate
               brief: >
                 An estimate of how much memory is available for starting new applications,
                 without causing swapping.

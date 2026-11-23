@@ -1,4 +1,4 @@
 change_type: bug_fix
 component: system
-note: "Promote `system.memory.state` attribute to release candidate, matching its `used` member promoted in #4055."
+note: "Promote `system.memory.state` attribute and its `available` member to release candidate, matching its `used` member promoted in #4055."
 issues: [1804]
