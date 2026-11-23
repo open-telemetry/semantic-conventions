@@ -174,8 +174,7 @@ and [metrics general guidelines](/docs/general/metrics.md).
 Follow [events](/docs/general/events.md).
 
 - Events are for named point-in-time occurrences; flag events for operations with
-  duration (use a span) or whole-operation properties (use span attributes). Flag
-  events whose attributes record start/end times or durations of an operation.
+  duration (use a span) or whole-operation properties (use span attributes).
 - `name` must uniquely identify the event and MUST NOT contain dynamic values.
 - Don't define severity text, `body` (beyond a display message), or
   `ObservedTimestamp`.
