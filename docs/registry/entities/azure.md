@@ -24,5 +24,5 @@ names. Azure sets this in `COMPUTERNAME` on Windows plans and dedicated Linux pl
 in `WEBSITE_POD_NAME` on Flex and Linux Consumption. Apps on the same plan that run on
 the same instance report the same value.
 
-This is reported in the `Instance` dimension of
-[Azure Monitor metrics](https://learn.microsoft.com/azure/app-service/monitor-app-service-reference#metric-dimensions).
+When App Service platform metrics are available, this value is reported in their
+[`Instance` dimension](https://learn.microsoft.com/azure/app-service/monitor-app-service-reference#metric-dimensions).
