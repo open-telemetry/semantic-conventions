@@ -44,6 +44,8 @@ The `{action}` SHOULD be the [`cicd.pipeline.action.name`](/docs/registry/attrib
 
 The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md#cicd-pipeline-name).
 
+This span may run for a long time. Instrumentation MAY emit the [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for it, in addition to the span.
+
 **Span kind** SHOULD be `SERVER`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
@@ -123,6 +125,8 @@ it's RECOMMENDED to:
 **Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 This span describes task execution in a pipeline run.
+
+This span may run for a long time. Instrumentation MAY emit the [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for it, in addition to the span.
 
 **Span kind** SHOULD be `INTERNAL`.
 
