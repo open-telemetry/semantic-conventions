@@ -14,4 +14,8 @@ This document defines semantic conventions for network communication.
   the shared address and port families (`client.*` / `server.*`, `source.*` / `destination.*`,
   `network.local.*` / `network.peer.*`).
 
+## Metrics
+
+- [Network interface metrics](interface-metrics.md)
+
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

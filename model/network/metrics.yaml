@@ -1,0 +1,96 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
+  - id: metric_attributes.network.interface.io
+    visibility: internal
+    attributes:
+      - ref: network.interface.name
+        requirement_level: required
+      - ref: network.io.direction
+        requirement_level: required
+        examples: ['receive', 'transmit']
+        annotations:
+          markdown:
+            omit_enum_table: true
+
+metrics:
+  - name: network.io
+    stability: development
+    requirement_level: recommended
+    brief: The number of bytes received and transmitted by a network interface.
+    note: Count bytes at the observed interface layer, including framing bytes where applicable.
+    instrument: counter
+    unit: 'By'
+    annotations:
+      code_generation:
+        metric_value_type: int
+    attributes:
+      - ref_group: metric_attributes.network.interface.io
+
+  - name: network.packets
+    stability: development
+    requirement_level: recommended
+    brief: The number of packets transferred by a network interface.
+    note: >
+      On receive, count packets delivered to the next layer. On transmit, count packets sent
+      by the interface. Do not use transmission-request counters that include unsent packets.
+      For each interface and direction, report either the total or a complete, non-overlapping
+      breakdown by packet type, not both.
+    instrument: counter
+    unit: '{packet}'
+    annotations:
+      code_generation:
+        metric_value_type: int
+    attributes:
+      - ref_group: metric_attributes.network.interface.io
+      - ref: network.packet.type
+        requirement_level:
+          conditionally_required: When reporting a breakdown by packet type.
+        note: >
+          Classify the packet at the observed interface layer, not at an inner encapsulated
+          layer. Omit this attribute when reporting the total across all packet types.
+
+  - name: network.packet.dropped
+    stability: development
+    requirement_level: recommended
+    brief: The number of packets dropped by a network interface.
+    note: >
+      Count packets that the interface does not transmit or deliver to the next layer because
+      they were discarded or encountered an error. Do not substitute a count of error events
+      unless it counts each affected packet once. For each interface and direction, report
+      either a total or a complete, non-overlapping breakdown by drop reason and error type,
+      not both. Do not add a reason-specific counter to a total that already includes it.
+    instrument: counter
+    unit: '{packet}'
+    annotations:
+      code_generation:
+        metric_value_type: int
+    attributes:
+      - ref_group: metric_attributes.network.interface.io
+      - ref: network.packet.drop.reason
+        requirement_level:
+          conditionally_required: When reporting a breakdown by drop reason.
+        note: Use `unknown_protocol` only for receive-side drops.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: When a drop in the `error` category has a known error type.
+        note: >
+          Use a low-cardinality error type for a detected error. Do not set this attribute for
+          non-error discards or for a total combining error drops and non-error discards.
+        examples: ['crc', 'frame_too_long']
+
+  - name: network.queue.size
+    stability: development
+    requirement_level: opt_in
+    brief: The current number of packets queued on a network interface.
+    note: >
+      Report the current occupancy, not the cumulative number of packets queued. When polling
+      occupancy, use an Asynchronous UpDownCounter. If the source does not expose occupancy,
+      omit the measurement instead of reporting zero.
+    instrument: updowncounter
+    unit: '{packet}'
+    annotations:
+      code_generation:
+        metric_value_type: int
+    attributes:
+      - ref_group: metric_attributes.network.interface.io
