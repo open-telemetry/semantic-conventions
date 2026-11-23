@@ -324,9 +324,9 @@ groups:
           a port number is ambiguous without knowing the transport. For example
           different processes could be listening on TCP port 12345 and UDP port 12345.
         examples: ['tcp', 'udp']
-      - id: network.packet.type
+      - id: network.packet.addressing
         stability: development
-        brief: The addressing category of the network packet.
+        brief: The destination addressing category of the packet at the observed interface layer.
         type:
           members:
             - id: unicast

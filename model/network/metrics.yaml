@@ -49,12 +49,12 @@ metrics:
         metric_value_type: int
     attributes:
       - ref_group: metric_attributes.network.interface.io
-      - ref: network.packet.type
+      - ref: network.packet.addressing
         requirement_level:
-          conditionally_required: When reporting a breakdown by packet type.
+          conditionally_required: When reporting a breakdown by destination addressing category.
         note: >
           Classify the packet at the observed interface layer, not at an inner encapsulated
-          layer. Omit this attribute when reporting the total across all packet types.
+          layer. Omit this attribute when reporting the total across all addressing categories.
       - ref: network.packet.drop.reason
         requirement_level:
           conditionally_required: When counting dropped packets.

@@ -72,16 +72,30 @@ that it includes.
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The network interface name. | `lo`; `eth0` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `receive`; `transmit` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Describes a class of error the operation ended with. [2] | `crc`; `frame_too_long` |
-| [`network.packet.drop.reason`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When counting dropped packets. | string | The reason a network packet was dropped. [3] | `discarded`; `error`; `unknown_protocol`; `unknown` [(see more)](#network-packet-drop-reason-values) |
-| [`network.packet.type`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When reporting a breakdown by packet type. | string | The addressing category of the network packet. [4] | `unicast`; `multicast`; `broadcast` [(see more)](#network-packet-type-values) |
+| [`network.packet.addressing`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The destination addressing category of the packet at the observed interface layer. [4] | `unicast`; `multicast`; `broadcast` [(see more)](#network-packet-addressing-values) |
+| [`network.packet.drop.reason`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When counting dropped packets. | string | The reason a network packet was dropped. [5] | `discarded`; `error`; `unknown_protocol`; `unknown` [(see more)](#network-packet-drop-reason-values) |
 
 **[1] `error.type`:** When a drop in the `error` category has a known error type.
 
 **[2] `error.type`:** Use a low-cardinality type for a detected error. MUST NOT be set for transferred packets, non-error discards, or a total combining error drops and non-error discards.
 
-**[3] `network.packet.drop.reason`:** MUST be omitted for transferred packets. Use `unknown` when the source identifies dropped packets but does not report a reason or provides only a total across reasons. Use `unknown_protocol` only for receive-side drops.
+**[3] `network.packet.addressing`:** When reporting a breakdown by destination addressing category.
 
-**[4] `network.packet.type`:** Classify the packet at the observed interface layer, not at an inner encapsulated layer. Omit this attribute when reporting the total across all packet types.
+**[4] `network.packet.addressing`:** Classify the packet at the observed interface layer, not at an inner encapsulated layer. Omit this attribute when reporting the total across all addressing categories.
+
+**[5] `network.packet.drop.reason`:** MUST be omitted for transferred packets. Use `unknown` when the source identifies dropped packets but does not report a reason or provides only a total across reasons. Use `unknown_protocol` only for receive-side drops.
+
+---
+
+<a id="network-packet-addressing-values"></a>
+
+`network.packet.addressing` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `broadcast` | The packet is addressed to a broadcast address. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `multicast` | The packet is addressed to a multicast group, not a broadcast address. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unicast` | The packet is addressed to a single destination. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -95,18 +109,6 @@ that it includes.
 | `error` | A detected error prevented the packet from being transmitted or delivered to the next layer. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | The source does not identify the reason for the drop. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown_protocol` | The received packet was discarded because the protocol was unknown or unsupported. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-<a id="network-packet-type-values"></a>
-
-`network.packet.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `broadcast` | The packet is addressed to a broadcast address. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `multicast` | The packet is addressed to a multicast group, not a broadcast address. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unicast` | The packet is addressed to a single destination. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
