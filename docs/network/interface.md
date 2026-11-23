@@ -20,35 +20,39 @@ regardless of how the attributes are collected.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The network interface name. [1] | `eth0`; `ge-0/0/8.0`; `GigabitEthernet1/0/7` |
-| Description | [`network.interface.index`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device-assigned index of the network interface. [2] | `1`; `2147483647` |
-| Description | [`network.interface.type`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The IANA interface type of the network interface. [3] | `ethernetCsmacd`; `softwareLoopback`; `ieee80211` |
-| Description | [`network.interface.alias`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The user-assigned alias for the network interface. [4] | `WAN to HQ` |
-| Description | [`network.interface.description`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A system-generated description of the network interface. [5] | `Nortel Ethernet Routing Switch 2550T Module - Port 3` |
-| Description | [`network.interface.mtu`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The maximum transmission unit (MTU) of the network interface, in bytes. [6] | `1500`; `9000` |
+| Identity | [`network.interface.id`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A persistent identifier for the network interface. [1] | `interface-7c329a3e`; `interface-8e17c064` |
+| Description | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The network interface name. [2] | `eth0`; `ge-0/0/8.0`; `GigabitEthernet1/0/7` |
+| Description | [`network.interface.index`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device-assigned index of the network interface. [3] | `1`; `2147483647` |
+| Description | [`network.interface.type`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The IANA interface type of the network interface. [4] | `ethernetCsmacd`; `softwareLoopback`; `ieee80211` |
+| Description | [`network.interface.alias`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The user-assigned alias for the network interface. [5] | `WAN to HQ` |
+| Description | [`network.interface.description`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A system-generated description of the network interface. [6] | `Nortel Ethernet Routing Switch 2550T Module - Port 3` |
+| Description | [`network.interface.mtu`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The maximum transmission unit (MTU) of the network interface, in bytes. [7] | `1500`; `9000` |
 
-**[1] `network.interface.name`:** Use the name assigned by the device, as it appears in its interface commands.
-A device may use a port number as its interface name.
+**[1] `network.interface.id`:** Use a non-empty ID from a source that independent observers can access, such as
+a shared inventory. The ID MUST distinguish interfaces across devices and interface
+namespaces wherever their telemetry is combined. Independent observers of the same
+interface MUST use the same ID. The ID MUST remain unchanged for the lifetime of
+the interface, including when it is renamed. A local name or index alone is not
+sufficient.
 
-The name identifies the interface within the discovery scope of the owning host or
-device and, when applicable, its interface namespace. Only report this entity when
-the name is non-empty and unique within that scope. Include enough resource context
-to distinguish that scope from others. Do not correlate interfaces across different
-scopes by name alone. Renaming the interface changes the entity identity.
+An observer that cannot reliably obtain this ID MUST NOT report the
+`network.interface` entity.
 
-**[2] `network.interface.index`:** Represent the positive numeric index as a decimal string. The index is scoped to the system or interface namespace that assigned it and may be reassigned after reinitialization.
+**[2] `network.interface.name`:** Use the name assigned by the device, as it appears in its interface commands. A device may use a port number as its interface name. This value can change without changing the entity identity.
 
-**[3] `network.interface.type`:** Use the case-sensitive symbolic name from the [IANAifType-MIB](https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib). Use the symbolic name rather than the numeric code.
+**[3] `network.interface.index`:** Represent the positive numeric index as a decimal string. The index is scoped to the system or interface namespace that assigned it and may be reassigned after reinitialization.
 
-**[4] `network.interface.alias`:**
+**[4] `network.interface.type`:** Use the case-sensitive symbolic name from the [IANAifType-MIB](https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib). Use the symbolic name rather than the numeric code.
+
+**[5] `network.interface.alias`:**
 
 > [!WARNING]
 >
 > This attribute may contain sensitive information because it is user-defined.
 
-**[5] `network.interface.description`:** This can include the manufacturer, product name, and hardware or software version. Use `network.interface.alias` for operator-assigned text, even if the source labels it as a description.
+**[6] `network.interface.description`:** This can include the manufacturer, product name, and hardware or software version. Use `network.interface.alias` for operator-assigned text, even if the source labels it as a description.
 
-**[6] `network.interface.mtu`:** This is the maximum packet size the interface can send or receive. For an interface that transmits network datagrams, it is the maximum size of a network datagram that can be sent on the interface.
+**[7] `network.interface.mtu`:** This is the maximum packet size the interface can send or receive. For an interface that transmits network datagrams, it is the maximum size of a network datagram that can be sent on the interface.
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->

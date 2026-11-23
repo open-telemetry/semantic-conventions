@@ -23,27 +23,28 @@ These attributes may be used for any network related operation.
 | <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The internet connection type. | `wifi` [(see more)](#network-connection-type-values) |
 | <a id="network-interface-alias" href="#network-interface-alias">`network.interface.alias`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The user-assigned alias for the network interface. [2] | `WAN to HQ` |
 | <a id="network-interface-description" href="#network-interface-description">`network.interface.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A system-generated description of the network interface. [3] | `Nortel Ethernet Routing Switch 2550T Module - Port 3` |
-| <a id="network-interface-index" href="#network-interface-index">`network.interface.index`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The device-assigned index of the network interface. [4] | `1`; `2147483647` |
-| <a id="network-interface-mtu" href="#network-interface-mtu">`network.interface.mtu`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The maximum transmission unit (MTU) of the network interface, in bytes. [5] | `1500`; `9000` |
+| <a id="network-interface-id" href="#network-interface-id">`network.interface.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A persistent identifier for the network interface. [4] | `interface-7c329a3e`; `interface-8e17c064` |
+| <a id="network-interface-index" href="#network-interface-index">`network.interface.index`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The device-assigned index of the network interface. [5] | `1`; `2147483647` |
+| <a id="network-interface-mtu" href="#network-interface-mtu">`network.interface.mtu`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The maximum transmission unit (MTU) of the network interface, in bytes. [6] | `1500`; `9000` |
 | <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The network interface name. | `lo`; `eth0` |
-| <a id="network-interface-type" href="#network-interface-type">`network.interface.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IANA interface type of the network interface. [6] | `ethernetCsmacd`; `softwareLoopback`; `ieee80211` |
+| <a id="network-interface-type" href="#network-interface-type">`network.interface.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IANA interface type of the network interface. [7] | `ethernetCsmacd`; `softwareLoopback`; `ieee80211` |
 | <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [(see more)](#network-io-direction-values) |
 | <a id="network-local-address" href="#network-local-address">`network.local.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Local address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
-| <a id="network-local-as-number" href="#network-local-as-number">`network.local.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the local IP address. [7] | `64496`; `15169` |
-| <a id="network-local-as-organization" href="#network-local-as-organization">`network.local.as.organization`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the local IP address. [8] | `Example Networks Inc.`; `Google LLC` |
-| <a id="network-local-mac-address" href="#network-local-mac-address">`network.local.mac.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Local Media Access Control (MAC) address of the network connection. [9] | `00-00-5E-00-53-23` |
+| <a id="network-local-as-number" href="#network-local-as-number">`network.local.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the local IP address. [8] | `64496`; `15169` |
+| <a id="network-local-as-organization" href="#network-local-as-organization">`network.local.as.organization`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the local IP address. [9] | `Example Networks Inc.`; `Google LLC` |
+| <a id="network-local-mac-address" href="#network-local-mac-address">`network.local.mac.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Local Media Access Control (MAC) address of the network connection. [10] | `00-00-5E-00-53-23` |
 | <a id="network-local-port" href="#network-local-port">`network.local.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Local port number of the network connection. | `65123` |
-| <a id="network-local-prefix" href="#network-local-prefix">`network.local.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the local IP address, in CIDR notation. [10] | `192.0.2.0/24`; `2001:db8::/32` |
+| <a id="network-local-prefix" href="#network-local-prefix">`network.local.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the local IP address, in CIDR notation. [11] | `192.0.2.0/24`; `2001:db8::/32` |
 | <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
-| <a id="network-peer-as-number" href="#network-peer-as-number">`network.peer.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address. [11] | `64496`; `15169` |
-| <a id="network-peer-as-organization" href="#network-peer-as-organization">`network.peer.as.organization`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the peer IP address. [12] | `Example Networks Inc.`; `Google LLC` |
-| <a id="network-peer-mac-address" href="#network-peer-mac-address">`network.peer.mac.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Peer Media Access Control (MAC) address of the network connection. [13] | `00-00-5E-00-53-23` |
+| <a id="network-peer-as-number" href="#network-peer-as-number">`network.peer.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address. [12] | `64496`; `15169` |
+| <a id="network-peer-as-organization" href="#network-peer-as-organization">`network.peer.as.organization`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the peer IP address. [13] | `Example Networks Inc.`; `Google LLC` |
+| <a id="network-peer-mac-address" href="#network-peer-mac-address">`network.peer.mac.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Peer Media Access Control (MAC) address of the network connection. [14] | `00-00-5E-00-53-23` |
 | <a id="network-peer-port" href="#network-peer-port">`network.peer.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Peer port number of the network connection. | `65123` |
-| <a id="network-peer-prefix" href="#network-peer-prefix">`network.peer.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the peer IP address, in CIDR notation. [14] | `192.0.2.0/24`; `2001:db8::/32` |
-| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [15] | `amqp`; `http`; `mqtt` |
-| <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [16] | `1.1`; `2` |
-| <a id="network-transport" href="#network-transport">`network.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [17] | `tcp`; `udp` [(see more)](#network-transport-values) |
-| <a id="network-type" href="#network-type">`network.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [18] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
+| <a id="network-peer-prefix" href="#network-peer-prefix">`network.peer.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the peer IP address, in CIDR notation. [15] | `192.0.2.0/24`; `2001:db8::/32` |
+| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [16] | `amqp`; `http`; `mqtt` |
+| <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [17] | `1.1`; `2` |
+| <a id="network-transport" href="#network-transport">`network.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [18] | `tcp`; `udp` [(see more)](#network-transport-values) |
+| <a id="network-type" href="#network-type">`network.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [19] | `ipv4`; `ipv6` [(see more)](#network-type-values) |
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
@@ -55,24 +56,34 @@ These attributes may be used for any network related operation.
 
 **[3] `network.interface.description`:** This can include the manufacturer, product name, and hardware or software version. Use `network.interface.alias` for operator-assigned text, even if the source labels it as a description.
 
-**[4] `network.interface.index`:** Represent the positive numeric index as a decimal string. The index is scoped to the system or interface namespace that assigned it and may be reassigned after reinitialization.
+**[4] `network.interface.id`:** Use a non-empty ID from a source that independent observers can access, such as
+a shared inventory. The ID MUST distinguish interfaces across devices and interface
+namespaces wherever their telemetry is combined. Independent observers of the same
+interface MUST use the same ID. The ID MUST remain unchanged for the lifetime of
+the interface, including when it is renamed. A local name or index alone is not
+sufficient.
 
-**[5] `network.interface.mtu`:** This is the maximum packet size the interface can send or receive. For an interface that transmits network datagrams, it is the maximum size of a network datagram that can be sent on the interface.
+An observer that cannot reliably obtain this ID MUST NOT report the
+`network.interface` entity.
 
-**[6] `network.interface.type`:** Use the case-sensitive symbolic name from the [IANAifType-MIB](https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib). Use the symbolic name rather than the numeric code.
+**[5] `network.interface.index`:** Represent the positive numeric index as a decimal string. The index is scoped to the system or interface namespace that assigned it and may be reassigned after reinitialization.
 
-**[7] `network.local.as.number`:** This attribute SHOULD only be set when the local address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+**[6] `network.interface.mtu`:** This is the maximum packet size the interface can send or receive. For an interface that transmits network datagrams, it is the maximum size of a network datagram that can be sent on the interface.
 
-**[8] `network.local.as.organization`:** This attribute SHOULD only be set when `network.local.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+**[7] `network.interface.type`:** Use the case-sensitive symbolic name from the [IANAifType-MIB](https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib). Use the symbolic name rather than the numeric code.
 
-**[9] `network.local.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[8] `network.local.as.number`:** This attribute SHOULD only be set when the local address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+
+**[9] `network.local.as.organization`:** This attribute SHOULD only be set when `network.local.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+
+**[10] `network.local.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
 >
 > This attribute may contain sensitive (PII) information.
 
-**[10] `network.local.prefix`:**
+**[11] `network.local.prefix`:**
 
 > [!WARNING]
 >
@@ -98,18 +109,18 @@ This attribute MAY be set whether or not `network.local.address` is set. If
 `network.local.address` is also set to an IP address, it MUST use the same IP version
 and be contained in this prefix.
 
-**[11] `network.peer.as.number`:** This attribute SHOULD only be set when the peer address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+**[12] `network.peer.as.number`:** This attribute SHOULD only be set when the peer address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
 
-**[12] `network.peer.as.organization`:** This attribute SHOULD only be set when `network.peer.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+**[13] `network.peer.as.organization`:** This attribute SHOULD only be set when `network.peer.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
 
-**[13] `network.peer.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+**[14] `network.peer.mac.address`:** MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
 as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
 > [!WARNING]
 >
 > This attribute may contain sensitive (PII) information.
 
-**[14] `network.peer.prefix`:**
+**[15] `network.peer.prefix`:**
 
 > [!WARNING]
 >
@@ -135,17 +146,17 @@ This attribute MAY be set whether or not `network.peer.address` is set. If
 `network.peer.address` is also set to an IP address, it MUST use the same IP version
 and be contained in this prefix.
 
-**[15] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
+**[16] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[16] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[17] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[17] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[18] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[18] `network.type`:** The value SHOULD be normalized to lowercase.
+**[19] `network.type`:** The value SHOULD be normalized to lowercase.
 
 ---
 
@@ -291,10 +302,10 @@ These attributes may be used for any network related operation.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `inproc` | In-process communication. [19] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inproc` | In-process communication. [20] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | Something else (non IP-based). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pipe` | Named or anonymous pipe. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[19]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
+**[20]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
