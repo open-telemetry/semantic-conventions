@@ -1,5 +1,14 @@
 # Releasing
 
+## Schema URL convention
+
+`schema_url` in `model/manifest.yaml` points to the v2 development publication manifest:
+
+- on `main`: `https://opentelemetry.io/schemas/semconv-dev/{next_version}-unreleased`
+- in a release commit: `https://opentelemetry.io/schemas/semconv-dev/{version}-dev`
+
+The v1 schema `schemas/{version}` is still published alongside it.
+
 ## Preparing a new release
 
 - Close the [release milestone](https://github.com/open-telemetry/semantic-conventions/milestones)
@@ -19,6 +28,7 @@
   It takes the version from the `otelbot/prepare-release-v{version}` branch and builds from the merge commit.
   It generates the resolved schema and attaches `registry-dev.yaml` and `manifest-dev.yaml` to a draft release.
   - For manual runs, provide the release version and full commit SHA of the merged release PR.
+  - Patch releases from release branches don't trigger the workflow (it only runs for PRs merged to `main`); run it manually.
 - After the workflow succeeds, edit the draft in [releases](https://github.com/open-telemetry/semantic-conventions/releases):
   - Copy changelog to the release notes
     - Keep only the bottom sections under "New Contributors" from the generated release notes

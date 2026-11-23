@@ -42,6 +42,11 @@ jobs:
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          if ! grep -qx "schema_url: https://opentelemetry.io/schemas/semconv-dev/${version}-dev" model/manifest.yaml; then
+            echo "main no longer has the $version schema_url, skipping bump"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           next_version="$major.$((minor + 1)).0-unreleased"
           echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
 
