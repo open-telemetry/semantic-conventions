@@ -5,4 +5,3 @@ issues: [4334]
 subtext: |
   Only the last segment of a name can be pluralized, the rest is the namespace.
   Counters MAY use `.count` or another suffix when it reads more clearly. UpDownCounters use `.count` or another suffix instead of plural names.
-  The same rule applies to attribute names that represent measurements.

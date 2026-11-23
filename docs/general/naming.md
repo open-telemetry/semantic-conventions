@@ -306,9 +306,6 @@ which generally means the unit is an annotation like `{fault}` or
 `{operation}`. UpDownCounters are an exception, see
 [Do not pluralize UpDownCounter names](#do-not-pluralize-updowncounter-names).
 
-The same rule applies to the last segment of an attribute name that represents
-a measurement. The UpDownCounter exception does not apply to attributes.
-
 Examples:
 
 - `system.filesystem.utilization`, `http.server.request.duration`, and `system.cpu.time`
