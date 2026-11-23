@@ -24,7 +24,7 @@ the content is correct for this PR.
   renamed, or a stability level match the model.
 - `note` is one short, specific sentence that names the affected attributes or
   signals in backticks, when applicable; rationale belongs in the PR description.
-- The entry covers every user-visible change in the PR listed in
+- The PR's changelog entries, together, cover every user-visible change listed in
   [when to add a changelog entry](/CONTRIBUTING.md#when-to-add-a-changelog-entry),
   such as requirement level changes, new or removed enum members, and changes to
   normative text.

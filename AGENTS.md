@@ -9,7 +9,7 @@ Guidance for AI agents working in this repository.
 - `docs/` — Markdown documentation. Tables between `<!-- semconv ... -->` and
   `<!-- endsemconv -->` are generated from `model/`; `docs/registry/` is fully
   generated. Don't edit generated content by hand.
-- `.chloggen/` — changelog entries, one YAML file per user-facing change.
+- `.chloggen/` — changelog entries for user-facing changes.
 - `policies/` — local weaver policies; most checks come from
   [opentelemetry-weaver-packages](https://github.com/open-telemetry/opentelemetry-weaver-packages).
 
