@@ -376,7 +376,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.cpu.limit.utilization` | Gauge | `1` | The ratio of Pod CPU usage to its current CPU limit. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.cpu.limit.utilization` | Gauge | `1` | The ratio of Pod CPU usage to its current CPU limit. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** The current CPU limit reflects the actual resources applied at the Pod level, as reported by
 [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
@@ -447,7 +447,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.cpu.request.utilization` | Gauge | `1` | The ratio of Pod CPU usage to its current CPU request. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.cpu.request.utilization` | Gauge | `1` | The ratio of Pod CPU usage to its current CPU request. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** The current CPU request reflects the request applied at the Pod level, as reported by
 [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
@@ -648,7 +648,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.memory.limit.utilization` | Gauge | `1` | The ratio of Pod memory working set to its current memory limit. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.memory.limit.utilization` | Gauge | `1` | The ratio of Pod memory working set to its current memory limit. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** The numerator is the Pod memory working set, as reported by `k8s.pod.memory.working_set`. The current memory limit
 reflects the actual resources applied at the Pod level, as reported by
@@ -671,7 +671,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.memory.request.utilization` | Gauge | `1` | The ratio of Pod memory working set to its current memory request. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
+| `k8s.pod.memory.request.utilization` | Gauge | `1` | The ratio of Pod memory working set to its current memory request. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 **[1]:** The numerator is the Pod memory working set, as reported by `k8s.pod.memory.working_set`. The current memory request
 reflects the request applied at the Pod level, as reported by
@@ -2769,7 +2769,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.cpu.limit.utilization` | Gauge | `1` | The ratio of container CPU usage to its current CPU limit. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
+| `k8s.container.cpu.limit.utilization` | Gauge | `1` | The ratio of container CPU usage to its current CPU limit. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
 **[1]:** The current CPU limit reflects the actual resources applied to the container, as reported by
 [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
@@ -2837,7 +2837,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.cpu.request.utilization` | Gauge | `1` | The ratio of container CPU usage to its current CPU request. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
+| `k8s.container.cpu.request.utilization` | Gauge | `1` | The ratio of container CPU usage to its current CPU request. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
 **[1]:** The current CPU request reflects the request applied to the running container, as reported by
 [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
@@ -2906,7 +2906,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.memory.limit.utilization` | Gauge | `1` | The ratio of container memory working set to its current memory limit. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
+| `k8s.container.memory.limit.utilization` | Gauge | `1` | The ratio of container memory working set to its current memory limit. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
 **[1]:** The numerator is the container memory working set, as reported by `container.memory.working_set`. The current memory limit
 reflects the actual resources applied to the container, as reported by
@@ -2975,7 +2975,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.memory.request.utilization` | Gauge | `1` | The ratio of container memory working set to its current memory request. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
+| `k8s.container.memory.request.utilization` | Gauge | `1` | The ratio of container memory working set to its current memory request. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
 **[1]:** The numerator is the container memory working set, as reported by `container.memory.working_set`. The current memory request
 reflects the request applied to the running container, as reported by
