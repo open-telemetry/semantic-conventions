@@ -69,7 +69,7 @@ Describes System Memory attributes
 | --- | --- | --- | --- | --- |
 | <a id="system-memory-linux-hugepages-state" href="#system-memory-linux-hugepages-state">`system.memory.linux.hugepages.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The Linux HugePages memory state | `free`; `used` [(see more)](#system-memory-linux-hugepages-state-values) |
 | <a id="system-memory-linux-slab-state" href="#system-memory-linux-slab-state">`system.memory.linux.slab.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` [(see more)](#system-memory-linux-slab-state-values) |
-| <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
+| <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
 
 ---
 
@@ -101,7 +101,7 @@ Describes System Memory attributes
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `used` | Actual used virtual memory in bytes. [2] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemAvailable" from /proc/meminfo.

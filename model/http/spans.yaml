@@ -16,6 +16,7 @@ groups:
       2. If for some reason it is not possible to emit a span for each send attempt (because e.g. the instrumented library does not expose hooks that would allow this),
          instrumentations MAY create an HTTP span for the top-most operation of the HTTP client.
          In this case, the `url.full` MUST be the absolute URL that was originally requested, before any HTTP-redirects that may happen when executing the request.
+         If the client follows redirects and records `network.peer.address`, the value SHOULD be the address of the last contacted network peer.
 
       **Span name:** refer to the [Span Name](/docs/http/http-spans.md#name) section.
 
@@ -46,6 +47,9 @@ groups:
         requirement_level: opt_in
       - ref: url.scheme
       - ref: network.peer.address
+        note: >
+          If an HTTP client span covers multiple network calls, for example redirects or retries,
+          the address of the last contacted peer SHOULD be used.
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.

@@ -293,7 +293,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
+| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
 
 ---
 
@@ -303,7 +303,7 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `used` | Actual used virtual memory in bytes. [2] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemAvailable" from /proc/meminfo.
@@ -350,7 +350,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
+| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The memory state | `used`; `available` [(see more)](#system-memory-state-values) |
 
 ---
 
@@ -360,7 +360,7 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `used` | Actual used virtual memory in bytes. [2] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemAvailable" from /proc/meminfo.

@@ -1,0 +1,4 @@
+change_type: enhancement
+component: http
+note: Clarify that `network.peer.address` on HTTP client spans SHOULD describe the last contacted peer when the span covers multiple network calls.
+issues: [4357]
