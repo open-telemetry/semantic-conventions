@@ -452,7 +452,7 @@ The changes in their metrics are the following:
 ### K8s Pod Volume metrics
 
 The K8s Pod volume metrics implemented by the Collector and specifically the
-[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.119.0/receiver/k8sclusterreceiver/documentation.md)
+[kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.165.1/receiver/kubeletstatsreceiver/documentation.md)
 receiver were introduced as semantic conventions in
 [#2319](https://github.com/open-telemetry/semantic-conventions/pull/2319).
 
@@ -462,16 +462,47 @@ The changes in these metrics are the following:
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
 | ---------------------------------------------------------------------------------- | --- |
-| `k8s.volume.available` | `k8s.pod.volume.available` |
-| `k8s.volume.capacity` | `k8s.pod.volume.capacity` |
-| `k8s.volume.inodes` | `k8s.pod.volume.inode.count` |
-| `k8s.volume.inodes.free` | `k8s.pod.volume.inode.free` |
-| `k8s.volume.inodes.used` | `k8s.pod.volume.inode.used` |
+| `k8s.volume.available` gauge | `k8s.pod.volume.available` updowncounter |
+| `k8s.volume.capacity` gauge | `k8s.pod.volume.capacity` updowncounter |
+| `k8s.pod.volume.usage` updowncounter | `k8s.pod.volume.usage` updowncounter |
+| `k8s.volume.inodes` gauge (unit `1`) | `k8s.pod.volume.inode.count` updowncounter (unit `{inode}`) |
+| `k8s.volume.inodes.free` gauge (unit `1`) | `k8s.pod.volume.inode.free` updowncounter (unit `{inode}`) |
+| `k8s.volume.inodes.used` gauge (unit `1`) | `k8s.pod.volume.inode.used` updowncounter (unit `{inode}`) |
 
 <!-- prettier-ignore-end -->
 
-The `k8s.volume.name` and `k8s.volume.type` attributes were renamed to
-`k8s.pod.volume.name` and `k8s.pod.volume.type` respectively.
+The Collector records the volume attributes as resource attributes, so each
+volume is reported as a separate resource. In the semantic conventions, the
+metrics are associated with the `k8s.pod` entity and the volume attributes are
+recorded as metric attributes. The changes in these attributes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
+| ---------------------------------------------------------------------------------- | --- |
+| `k8s.volume.name` (resource attribute) | `k8s.pod.volume.name` (metric attribute) |
+| `k8s.volume.type` (resource attribute) | `k8s.pod.volume.type` (metric attribute) |
+| `k8s.persistentvolumeclaim.name` (resource attribute) | `k8s.persistentvolumeclaim.name` (metric attribute) |
+
+<!-- prettier-ignore-end -->
+
+For volumes backed by a PersistentVolumeClaim, when the receiver has Kubernetes
+API access (`k8s_api_config`), the Collector replaces the value of
+`k8s.volume.type` with the source of the bound PersistentVolume if that source
+is `local`, `awsElasticBlockStore`, `gcePersistentDisk` or `glusterfs`. For
+other sources, such as `csi`, the value stays `persistentVolumeClaim`.
+`k8s.pod.volume.type` always records the volume source declared in the Pod spec,
+which is `persistentVolumeClaim` for these volumes. The source of the
+PersistentVolume is recorded in the opt-in `k8s.persistentvolume.type` attribute
+instead. The `local` value of `k8s.pod.volume.type` is deprecated for this reason.
+
+The Collector only records `k8s.volume.type` and `k8s.persistentvolumeclaim.name`
+when `k8s.volume.type` is listed in the receiver's `extra_metadata_labels`
+setting. The semantic conventions make `k8s.pod.volume.type` recommended and
+`k8s.persistentvolumeclaim.name` conditionally required.
+
+The opt-in `k8s.persistentvolume.name` attribute is new and has no Collector
+equivalent.
 
 ### K8s Pod CPU metrics
 
