@@ -16,6 +16,6 @@ This group describes attributes specific to RabbitMQ.
 | <a id="rabbitmq-message-delivery-tag" href="#rabbitmq-message-delivery-tag">`rabbitmq.message.delivery_tag`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | RabbitMQ message delivery tag | `123` |
 | <a id="rabbitmq-vhost-name" href="#rabbitmq-vhost-name">`rabbitmq.vhost.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the RabbitMQ virtual host that the messaging operation is scoped to. [2] | `/`; `my-vhost` |
 
-**[1] `rabbitmq.cluster.name`:** RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name) from the first node in the cluster. Operators can override it with `rabbitmqctl set_cluster_name`.
+**[1] `rabbitmq.cluster.name`:** RabbitMQ derives the default [cluster name](https://www.rabbitmq.com/docs/configure#cluster-name) from the first node in the cluster.
 
 **[2] `rabbitmq.vhost.name`:** RabbitMQ [virtual hosts](https://www.rabbitmq.com/docs/vhosts) provide logical grouping and separation of resources (exchanges, queues, bindings) within a single broker or cluster.
