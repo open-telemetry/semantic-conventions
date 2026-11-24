@@ -361,13 +361,20 @@ The changes in their metrics are the following:
 
 **Note:** For CPU and memory limit and request, SemConv splits each into `desired` (from spec) and `current` (from container status) to support [K8s container resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
 
-**Note:** The Collector's [kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kubeletstatsreceiver/documentation.md)
-receiver computes the container memory utilization ratios from memory usage, which includes reclaimable page
+**Note:** The old container utilization metrics come from the Collector's
+[kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kubeletstatsreceiver/documentation.md)
+receiver. The old memory utilization metrics are computed from memory usage, which includes reclaimable page
 cache and can make a container appear close to its limit when it is not under memory pressure (see
 [opentelemetry-collector-contrib#40444](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/40444)).
-SemConv instead uses the container memory working set (`container.memory.working_set`) as the numerator. On Linux,
+The new metrics use the container memory working set (`container.memory.working_set`) as the numerator. On Linux,
 the working set excludes `inactive_file` from memory usage, and the kubelet uses the working set when ranking Pods for
 eviction under memory pressure (see `k8s.pod.memory.working_set`).
+
+**Note:** The old container CPU and memory utilization metrics are computed against the container
+limits/requests defined in the Pod spec. The new metrics use the current container limit/request, as reported by
+[ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
+The two can differ while or after a container's resources are
+[resized in place](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
 
 ### K8s ResourceQuota metrics
 
@@ -493,13 +500,17 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-end -->
 
-**Note:** The Collector computes these ratios against the sum of the Pod's container limits/requests and
-does not emit the metric if any container is missing one. SemConv instead defines the denominator as the
-Pod level value, as reported by
-[PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+**Note:** The old metrics are computed against the sum of the Pod's container limits/requests and are
+not emitted if any container is missing one. The new metrics use the Pod level value, as reported by
+[PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core),
+and are emitted whenever PodStatus reports one. This means the new metrics can appear for Pods that had no
+old metric. For example, when only some of a Pod's containers set a CPU limit and no Pod level limit is set,
+PodStatus reports the sum of the limits that are set (see
+[kubernetes/kubernetes#144377](https://github.com/kubernetes/kubernetes/issues/144377)), and
+`k8s.pod.cpu.limit.utilization` can be above 1.0.
 
 **Note:** SemConv additionally defines `k8s.pod.cpu.limit.desired`, `k8s.pod.cpu.limit.current`,
-`k8s.pod.cpu.request.desired` and `k8s.pod.cpu.request.current`, which have no Collector equivalent today.
+`k8s.pod.cpu.request.desired` and `k8s.pod.cpu.request.current`, which have no equivalent in the old Collector metrics.
 As for containers, limit and request are split into `desired` (from `spec.resources`) and `current` (from
 `status.resources`) to support
 [Pod level resources](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/)
@@ -524,16 +535,21 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-end -->
 
-**Note:** The Collector computes these ratios from the Pod's memory usage against the sum of the Pod's
-container limits/requests, and does not emit the metric if any container is missing one. SemConv instead
-uses the Pod memory working set (`k8s.pod.memory.working_set`) as the numerator, since the working set excludes
+**Note:** The old metrics are computed from the Pod's memory usage against the sum of the Pod's
+container limits/requests, and are not emitted if any container is missing one. The new metrics use the Pod
+memory working set (`k8s.pod.memory.working_set`) as the numerator, since the working set excludes
 `inactive_file` from memory usage and is used by the kubelet when ranking Pods for eviction under memory pressure (see
-[opentelemetry-collector-contrib#40444](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/40444)),
-and defines the denominator as the Pod level value, as reported by
-[PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core).
+[opentelemetry-collector-contrib#40444](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/40444)).
+The new metrics use the Pod level value as the denominator, as reported by
+[PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core),
+and are emitted whenever PodStatus reports one. This means the new metrics can appear for Pods that had no
+old metric. For example, when only some of a Pod's containers set a memory limit and no Pod level limit is set,
+PodStatus reports the sum of the limits that are set (see
+[kubernetes/kubernetes#144377](https://github.com/kubernetes/kubernetes/issues/144377)), and
+`k8s.pod.memory.limit.utilization` can be above 1.0.
 
 **Note:** SemConv additionally defines `k8s.pod.memory.limit.desired`, `k8s.pod.memory.limit.current`,
-`k8s.pod.memory.request.desired` and `k8s.pod.memory.request.current`, which have no Collector equivalent today.
+`k8s.pod.memory.request.desired` and `k8s.pod.memory.request.current`, which have no equivalent in the old Collector metrics.
 As for containers, limit and request are split into `desired` (from `spec.resources`) and `current` (from
 `status.resources`) to support
 [Pod level resources](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/)
