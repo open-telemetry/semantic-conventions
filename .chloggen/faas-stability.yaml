@@ -20,5 +20,5 @@ issues: [4268]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  faas.name & faas.version has been bumped to beta due to being longstanding attributes & existing usage.
-  faas.instance.id, faas.invocation.id & faas.invocation.cold_start has been bumped to alpha due to being rename of longstanding attributes.
+  faas.name & faas.version have been bumped to beta due to being longstanding attributes & existing usage.
+  faas.instance.id, faas.invocation.id & faas.invocation.cold_start have been bumped to alpha due to being renames of longstanding attributes.
