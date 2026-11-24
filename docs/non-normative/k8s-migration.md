@@ -504,10 +504,7 @@ The changes in their metrics are the following:
 not emitted if any container is missing one. The new metrics use the Pod level value, as reported by
 [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core),
 and are emitted whenever PodStatus reports one. This means the new metrics can appear for Pods that had no
-old metric. For example, when only some of a Pod's containers set a CPU limit and no Pod level limit is set,
-PodStatus reports the sum of the limits that are set (see
-[kubernetes/kubernetes#144377](https://github.com/kubernetes/kubernetes/issues/144377)), and
-`k8s.pod.cpu.limit.utilization` can be above 1.0.
+old metric.
 
 **Note:** SemConv additionally defines `k8s.pod.cpu.limit.desired`, `k8s.pod.cpu.limit.current`,
 `k8s.pod.cpu.request.desired` and `k8s.pod.cpu.request.current`, which have no equivalent in the old Collector metrics.
@@ -543,10 +540,7 @@ memory working set (`k8s.pod.memory.working_set`) as the numerator, since the wo
 The new metrics use the Pod level value as the denominator, as reported by
 [PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podstatus-v1-core),
 and are emitted whenever PodStatus reports one. This means the new metrics can appear for Pods that had no
-old metric. For example, when only some of a Pod's containers set a memory limit and no Pod level limit is set,
-PodStatus reports the sum of the limits that are set (see
-[kubernetes/kubernetes#144377](https://github.com/kubernetes/kubernetes/issues/144377)), and
-`k8s.pod.memory.limit.utilization` can be above 1.0.
+old metric.
 
 **Note:** SemConv additionally defines `k8s.pod.memory.limit.desired`, `k8s.pod.memory.limit.current`,
 `k8s.pod.memory.request.desired` and `k8s.pod.memory.request.current`, which have no equivalent in the old Collector metrics.
