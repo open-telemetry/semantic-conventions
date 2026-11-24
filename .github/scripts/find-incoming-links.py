@@ -12,6 +12,18 @@ from urllib.parse import unquote, urlsplit
 from markdown_it import MarkdownIt
 
 
+MARKDOWN_EXTENSIONS = {
+    ".md",
+    ".mkd",
+    ".mdx",
+    ".mdown",
+    ".mdwn",
+    ".mkdn",
+    ".mkdown",
+    ".markdown",
+}
+
+
 class HTMLLinkParser(HTMLParser):
     """Extract link destinations from HTML elements."""
 
@@ -35,9 +47,9 @@ def normalize_path(path):
 
 def resolve_destination(destination, source_file, repo_root):
     """Resolve an internal link to a repository-relative path."""
-    destination = unquote(destination.strip())
+    destination = destination.strip()
 
-    if not destination or destination.startswith("#"):
+    if not destination:
         return None
 
     parsed = urlsplit(destination)
@@ -46,7 +58,7 @@ def resolve_destination(destination, source_file, repo_root):
     if parsed.scheme or parsed.netloc:
         return None
 
-    path = parsed.path
+    path = unquote(parsed.path)
 
     if not path:
         return None
@@ -218,7 +230,7 @@ def main():
         relative_source = Path(os.fsdecode(raw_path))
 
         # Only scan Markdown files.
-        if relative_source.suffix.lower() != ".md":
+        if relative_source.suffix.lower() not in MARKDOWN_EXTENSIONS:
             continue
 
         # Respect the optional search directory.
@@ -244,7 +256,7 @@ def main():
                 "Warning: cannot read {}: {}".format(source_file, error),
                 file=sys.stderr,
             )
-            continue
+            return 1
 
         for destination in extract_destinations(content, markdown):
             resolved = resolve_destination(
