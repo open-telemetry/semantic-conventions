@@ -32,9 +32,9 @@ jobs:
           git diff --name-only --no-renames -z \
             "$merge_base...$PR_HEAD_SHA" > "$RUNNER_TEMP/changed-files.bin"
 
-          # Only Markdown files under docs/ are incoming-link targets.
-          grep -z -E '^docs/.*\.md$' "$RUNNER_TEMP/changed-files.bin" \
-            > "$RUNNER_TEMP/incoming-targets.bin" || true
+          # All changed paths are incoming-link targets.
+          cp "$RUNNER_TEMP/changed-files.bin" \
+            "$RUNNER_TEMP/incoming-targets.bin"
 
           # Deleted files cannot be passed to Lychee.
           # Keep only existing files with supported extensions.
@@ -45,8 +45,17 @@ jobs:
           )
 
           if [ "${#modified_files[@]}" -gt 0 ]; then
-            printf 'files=%s\n' "${modified_files[*]}" >> "$GITHUB_OUTPUT"
+            printf '%s\0' "${modified_files[@]}" \
+              > "$RUNNER_TEMP/modified-files.bin"
+
+            printf 'has_files=true\n' >> "$GITHUB_OUTPUT"
+          else
+            printf 'has_files=false\n' >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Normalized link check
+        if: github.event_name == 'pull_request'
+        run: make normalized-link-check
 
       - name: Find incoming links
         if: github.event_name == 'pull_request'
@@ -77,11 +86,13 @@ jobs:
           fi
 
       - name: Link check - all links (modified files only)
-        if: github.event_name == 'pull_request' && steps.changed-files.outputs.files != ''
+        if: github.event_name == 'pull_request' && steps.changed-files.outputs.has_files == 'true'
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          STEPS_MODIFIED_FILES_OUTPUTS_FILES: ${{ steps.changed-files.outputs.files }}
-        run: make markdown-link-check FILES="${STEPS_MODIFIED_FILES_OUTPUTS_FILES}"
+        run: |
+          mapfile -d '' -t modified_files < "$RUNNER_TEMP/modified-files.bin"
+
+          make markdown-link-check FILES="${modified_files[*]}"
 
       - name: Link check - all links (all files)
         if: github.event_name != 'pull_request'

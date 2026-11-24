@@ -2,6 +2,8 @@
 #!/usr/bin/env python3
 
 import argparse
+import os
+import subprocess
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
@@ -95,7 +97,7 @@ def extract_destinations(content, markdown):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Find Markdown files linking to changed documentation."
+        description="Find Markdown files linking to changed files."
     )
 
     parser.add_argument(
@@ -119,7 +121,7 @@ def main():
 
     parser.add_argument(
         "--search-dir",
-        default="docs",
+        default=".",
         help="Directory containing Markdown files to scan.",
     )
 
@@ -128,6 +130,7 @@ def main():
     repo_root = Path(args.root).resolve()
     search_dir = (repo_root / args.search_dir).resolve()
 
+    # Read changed file paths.
     if args.targets_file:
         try:
             target_data = Path(args.targets_file).read_bytes()
@@ -146,6 +149,7 @@ def main():
     else:
         target_values = args.targets
 
+    # Normalize changed paths relative to the repository root.
     targets = set()
 
     for target in target_values:
@@ -163,6 +167,7 @@ def main():
     if not targets:
         return 0
 
+    # Validate the search directory.
     if not search_dir.is_dir():
         print(
             "Search directory does not exist: {}".format(search_dir),
@@ -170,10 +175,68 @@ def main():
         )
         return 1
 
+    try:
+        relative_search_dir = search_dir.relative_to(repo_root)
+    except ValueError:
+        print(
+            "Search directory is outside repository: {}".format(search_dir),
+            file=sys.stderr,
+        )
+        return 1
+
+    # Obtain tracked and untracked files from Git.
+    # Ignored files and directories are excluded.
+    try:
+        result = subprocess.run(
+            [
+                "git",
+                "ls-files",
+                "-z",
+                "--cached",
+                "--others",
+                "--exclude-standard",
+            ],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+        )
+    except (OSError, subprocess.CalledProcessError) as error:
+        print(
+            "Cannot list repository files with Git: {}".format(error),
+            file=sys.stderr,
+        )
+        return 1
+
     markdown = MarkdownIt("commonmark", {"html": True})
     incoming_files = set()
 
-    for source_file in search_dir.rglob("*.md"):
+    # Git uses NUL separators to handle paths containing spaces safely.
+    for raw_path in result.stdout.split(b"\0"):
+        if not raw_path:
+            continue
+
+        relative_source = Path(os.fsdecode(raw_path))
+
+        # Only scan Markdown files.
+        if relative_source.suffix.lower() != ".md":
+            continue
+
+        # Respect the optional search directory.
+        try:
+            relative_source.relative_to(relative_search_dir)
+        except ValueError:
+            continue
+
+        source_file = repo_root / relative_source
+
+        # Ignore files that no longer exist in the working tree.
+        if not source_file.is_file():
+            continue
+
+        # Do not scan Git metadata.
+        if ".git" in relative_source.parts:
+            continue
+
         try:
             content = source_file.read_text(encoding="utf-8")
         except (OSError, UnicodeError) as error:
@@ -191,11 +254,10 @@ def main():
             )
 
             if resolved in targets:
-                incoming_files.add(
-                    source_file.relative_to(repo_root).as_posix()
-                )
+                incoming_files.add(relative_source.as_posix())
                 break
 
+    # Print files containing incoming links.
     for file_path in sorted(incoming_files):
         print(file_path)
 
