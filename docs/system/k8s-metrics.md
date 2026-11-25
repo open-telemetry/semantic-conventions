@@ -952,6 +952,7 @@ When another volume source is used, the exact field name as reported by the Kube
 | `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/reference/storage/volume-types/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
@@ -1024,6 +1025,7 @@ When another volume source is used, the exact field name as reported by the Kube
 | `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/reference/storage/volume-types/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
@@ -1098,6 +1100,7 @@ When another volume source is used, the exact field name as reported by the Kube
 | `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/reference/storage/volume-types/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
@@ -1170,6 +1173,7 @@ When another volume source is used, the exact field name as reported by the Kube
 | `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/reference/storage/volume-types/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
@@ -1244,6 +1248,7 @@ When another volume source is used, the exact field name as reported by the Kube
 | `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/reference/storage/volume-types/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
@@ -1316,6 +1321,7 @@ When another volume source is used, the exact field name as reported by the Kube
 | `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/reference/storage/volume-types/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 

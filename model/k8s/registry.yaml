@@ -607,6 +607,10 @@ groups:
               value: 'emptyDir'
               brief: "An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
               stability: release_candidate
+            - id: host_path
+              value: 'hostPath'
+              brief: "A [hostPath](https://kubernetes.io/docs/reference/storage/volume-types/#hostpath) volume"
+              stability: release_candidate
             - id: secret
               value: 'secret'
               brief: "A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
