@@ -130,6 +130,6 @@ This group describes the span that a CI/CD span lifecycle event reports on. Thes
 
 **[4] `cicd.span.parent.id`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
 
-**[5] `cicd.span.start_time`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+**[5] `cicd.span.start_time`:** This attribute is only meant for CI/CD span lifecycle events, not for spans. It carries the span's [`StartTimestamp`](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp), so it uses the same representation, nanoseconds since the UNIX epoch, instead of an ISO 8601 string.
 
 **[6] `cicd.span.trace_state`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.

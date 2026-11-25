@@ -325,7 +325,7 @@ consumers combine the lifecycle events of a span.
 
 **[1] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
 
-**[2] `cicd.span.start_time`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+**[2] `cicd.span.start_time`:** This attribute is only meant for CI/CD span lifecycle events, not for spans. It carries the span's [`StartTimestamp`](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp), so it uses the same representation, nanoseconds since the UNIX epoch, instead of an ISO 8601 string.
 
 **[3] `cicd.span.parent.id`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
 
@@ -543,7 +543,7 @@ consumers combine the lifecycle events of a span.
 
 **[2] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
 
-**[3] `cicd.span.start_time`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+**[3] `cicd.span.start_time`:** This attribute is only meant for CI/CD span lifecycle events, not for spans. It carries the span's [`StartTimestamp`](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp), so it uses the same representation, nanoseconds since the UNIX epoch, instead of an ISO 8601 string.
 
 **[4] `cicd.span.parent.id`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
 

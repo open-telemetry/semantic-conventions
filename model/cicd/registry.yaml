@@ -298,4 +298,8 @@ groups:
           in nanoseconds since the UNIX epoch.
         note: >
           This attribute is only meant for CI/CD span lifecycle events, not for spans.
+          It carries the span's
+          [`StartTimestamp`](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp),
+          so it uses the same representation, nanoseconds since the UNIX epoch,
+          instead of an ISO 8601 string.
         examples: [1763000000000000000]
