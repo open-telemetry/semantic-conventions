@@ -15,10 +15,6 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Install Markdown parser
-        if: github.event_name == 'pull_request'
-        run: python -m pip install --disable-pip-version-check markdown-it-py==3.0.0
-
       - name: Get changed files
         if: github.event_name == 'pull_request'
         id: changed-files
@@ -26,15 +22,6 @@ jobs:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           merge_base=$(git merge-base "origin/${GITHUB_BASE_REF}" "$PR_HEAD_SHA")
-
-          # Keep deleted and renamed paths for incoming-link detection.
-          # --no-renames reports a rename as a deletion and an addition.
-          git diff --name-only --no-renames -z \
-            "$merge_base...$PR_HEAD_SHA" > "$RUNNER_TEMP/changed-files.bin"
-
-          # All changed paths are incoming-link targets.
-          cp "$RUNNER_TEMP/changed-files.bin" \
-            "$RUNNER_TEMP/incoming-targets.bin"
 
           # Deleted files cannot be passed to Lychee.
           # Keep only existing files with supported extensions.
@@ -57,42 +44,25 @@ jobs:
         if: github.event_name == 'pull_request'
         run: make normalized-link-check
 
-      - name: Find incoming links
+      - name: Link check - local links only (all files)
         if: github.event_name == 'pull_request'
-        id: incoming-links
-        run: |
-          python .github/scripts/find-incoming-links.py \
-            --targets-file "$RUNNER_TEMP/incoming-targets.bin" \
-            > "$RUNNER_TEMP/incoming-files.txt"
-
-          if [ -s "$RUNNER_TEMP/incoming-files.txt" ]; then
-            echo "Found documents with incoming links:"
-            cat "$RUNNER_TEMP/incoming-files.txt"
-          else
-            echo "No incoming links found."
-          fi
-
-      - name: Link check - local links only (incoming files)
-        if: github.event_name == 'pull_request'
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          mapfile -t incoming_files < "$RUNNER_TEMP/incoming-files.txt"
-
-          if [ "${#incoming_files[@]}" -gt 0 ]; then
-            make markdown-link-check-local-only FILES="${incoming_files[*]}"
-          else
-            echo "No incoming documents to check."
-          fi
+        run: make markdown-link-check-local-only
 
       - name: Link check - all links (modified files only)
         if: github.event_name == 'pull_request' && steps.changed-files.outputs.has_files == 'true'
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          MODIFIED_FILES: ${{ runner.temp }}/modified-files.bin
         run: |
-          mapfile -d '' -t modified_files < "$RUNNER_TEMP/modified-files.bin"
+          # Check general links in modified files.
+          bash .github/scripts/link-check.sh \
+            --config .github/scripts/lychee-config.toml \
+            --files-from "$MODIFIED_FILES"
 
-          make markdown-link-check FILES="${modified_files[*]}"
+          # Check specification links in modified files.
+          bash .github/scripts/link-check.sh \
+            --config .github/scripts/lychee-spec-links-config.toml \
+            --files-from "$MODIFIED_FILES"
 
       - name: Link check - all links (all files)
         if: github.event_name != 'pull_request'
