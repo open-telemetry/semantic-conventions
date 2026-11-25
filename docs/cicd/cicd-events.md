@@ -99,7 +99,7 @@ and span ID. The span's fields are carried as follows:
 | Start time | the event timestamp (`started`), `cicd.span.start_time` (`ended`) | required | - | required |
 | End time | the event timestamp | - | - | required |
 | Status | `otel.status_code`, `otel.status_description` | - | - | if set |
-| Span attributes | the other event attributes, with unchanged keys and values | some | the changed ones | all |
+| Span attributes | the other event attributes, with unchanged keys and values | some | the changed ones | all it knows |
 
 The `cicd.span.*`, `otel.status_code` and `otel.status_description` attributes
 set the span fields above; they are not added as span attributes. Neither is
@@ -114,9 +114,10 @@ set the span fields above; they are not added as span attributes. Neither is
 2. **Changeable fields** are the span name (`cicd.span.name`) and the span
    attributes. They are merged per key: the value from the event with the later
    timestamp wins. A `progress` event's timestamp SHOULD be later than that of
-   the previous lifecycle event for the same span. If events with the same
-   timestamp carry different values for a key, a consumer MAY use either value
-   until `ended` arrives.
+   the previous lifecycle event for the same span. If two events with the same
+   timestamp disagree on a key, a consumer MAY use either value, but receiving
+   an event again doesn't change its choice (rule 5). `ended` settles every key
+   it carries (rule 4).
 3. **Nothing is removed.** A key missing from an event means "unchanged or
    unknown", never "removed".
 4. **`ended` is final.** Its values win over those of any earlier event,
