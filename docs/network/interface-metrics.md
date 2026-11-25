@@ -79,22 +79,20 @@ that it includes.
 | --- | --- | --- | --- | --- | --- |
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The network interface name. | `lo`; `eth0` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `receive`; `transmit` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Describes a class of error the operation ended with. [2] | `crc`; `frame_too_long` |
-| [`network.packet.addressing`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The destination addressing category of the packet at the observed interface layer. [4] | `unicast`; `multicast`; `broadcast` [(see more)](#network-packet-addressing-values) |
-| [`network.packet.drop.reason`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When counting dropped packets. | string | The reason a network packet was dropped. [5] | `discarded`; `error`; `unknown_protocol`; `unknown` [(see more)](#network-packet-drop-reason-values) |
-| [`host.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Unique host ID, determined by the first matching source in the priority order. [6] | `fdbf79e8af94cb7f9e8df36789187052` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` When `network.packet.drop.reason` is `error`. | string | Describes a class of error the operation ended with. [1] | `crc`; `frame_too_long` |
+| [`network.packet.addressing`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The destination addressing category of the packet at the observed interface layer. [3] | `unicast`; `multicast`; `broadcast` [(see more)](#network-packet-addressing-values) |
+| [`network.packet.drop.reason`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When counting dropped packets. | string | The reason a network packet was dropped. [4] | `discarded`; `error`; `unknown_protocol`; `unknown` [(see more)](#network-packet-drop-reason-values) |
+| [`host.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Unique host ID, determined by the first matching source in the priority order. [5] | `fdbf79e8af94cb7f9e8df36789187052` |
 
-**[1] `error.type`:** When a drop in the `error` category has a known error type.
+**[1] `error.type`:** Use a low-cardinality error type when known. Use `_OTHER` when the specific error type is unknown. MUST NOT be set when `network.packet.drop.reason` is unset or has a value other than `error`.
 
-**[2] `error.type`:** Use a low-cardinality type for a detected error. MUST NOT be set for transferred packets, non-error discards, or a total combining error drops and non-error discards.
+**[2] `network.packet.addressing`:** When reporting a breakdown by destination addressing category.
 
-**[3] `network.packet.addressing`:** When reporting a breakdown by destination addressing category.
+**[3] `network.packet.addressing`:** Classify the packet at the observed interface layer, not at an inner encapsulated layer. Omit this attribute when reporting the total across all addressing categories.
 
-**[4] `network.packet.addressing`:** Classify the packet at the observed interface layer, not at an inner encapsulated layer. Omit this attribute when reporting the total across all addressing categories.
+**[4] `network.packet.drop.reason`:** MUST be omitted for transferred packets. Use `unknown` when the source identifies dropped packets but does not report a reason or provides only a total across reasons. Use `unknown_protocol` only for receive-side drops.
 
-**[5] `network.packet.drop.reason`:** MUST be omitted for transferred packets. Use `unknown` when the source identifies dropped packets but does not report a reason or provides only a total across reasons. Use `unknown_protocol` only for receive-side drops.
-
-**[6] `host.id`:** Identifies the monitored device, not the collector. Use this data point attribute only when the monitored device's ID cannot be reported on the resource. Omit this attribute if the monitored device's ID is unavailable.
+**[5] `host.id`:** Identifies the monitored device, not the collector. Use this data point attribute only when the monitored device's ID cannot be reported on the resource. Omit this attribute if the monitored device's ID is unavailable.
 
 ---
 

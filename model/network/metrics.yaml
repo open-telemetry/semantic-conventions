@@ -74,10 +74,11 @@ metrics:
           Use `unknown_protocol` only for receive-side drops.
       - ref: error.type
         requirement_level:
-          conditionally_required: When a drop in the `error` category has a known error type.
+          conditionally_required: When `network.packet.drop.reason` is `error`.
         note: >
-          Use a low-cardinality type for a detected error. MUST NOT be set for transferred
-          packets, non-error discards, or a total combining error drops and non-error discards.
+          Use a low-cardinality error type when known. Use `_OTHER` when the specific error type
+          is unknown. MUST NOT be set when `network.packet.drop.reason` is unset or has a value
+          other than `error`.
         examples: ['crc', 'frame_too_long']
 
   - name: network.interface.queue.size
