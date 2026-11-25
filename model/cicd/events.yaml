@@ -79,7 +79,8 @@ events:
     stability: development
     requirement_level: opt_in
     brief: >
-      Reports that a CI/CD pipeline run span has ended, and carries the complete span.
+      Reports that a CI/CD pipeline run span has ended, and carries its final
+      name, attributes and status.
     note: |
       The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
       span's. Its timestamp MUST be the span's end time.
@@ -88,11 +89,12 @@ events:
       SHOULD set the severity to INFO (severity number 9) when recording this
       event.
 
-      The event MUST carry all of the span's attributes, with unchanged keys and
-      values, and a consumer MUST be able to build the span from this event
-      alone. A producer that doesn't hold the SDK span (for example, a CI/CD
-      controller that restarted while the pipeline run was running) MUST still
-      provide a complete event.
+      The event MUST carry every span attribute that the producer knows, with
+      unchanged keys and values, so that a consumer can build the span from
+      this event alone. A producer that doesn't hold the SDK span (for example,
+      a CI/CD controller that restarted while the pipeline run was running) may
+      not know attributes that were set before it took over. Consumers keep
+      those from earlier lifecycle events of the same span.
 
       The pipeline run's identity comes from the Resource (the `cicd.pipeline`
       and `cicd.pipeline.run` entities), as it does for the span.
@@ -175,8 +177,8 @@ events:
     stability: development
     requirement_level: opt_in
     brief: >
-      Reports that a CI/CD pipeline task run span has ended, and carries the
-      complete span.
+      Reports that a CI/CD pipeline task run span has ended, and carries its
+      final name, attributes and status.
     note: |
       The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
       span's. Its timestamp MUST be the span's end time.
@@ -185,11 +187,12 @@ events:
       SHOULD set the severity to INFO (severity number 9) when recording this
       event.
 
-      The event MUST carry all of the span's attributes, with unchanged keys and
-      values, and a consumer MUST be able to build the span from this event
-      alone. A producer that doesn't hold the SDK span (for example, a CI/CD
-      controller that restarted while the task run was running) MUST still
-      provide a complete event.
+      The event MUST carry every span attribute that the producer knows, with
+      unchanged keys and values, so that a consumer can build the span from
+      this event alone. A producer that doesn't hold the SDK span (for example,
+      a CI/CD controller that restarted while the task run was running) may
+      not know attributes that were set before it took over. Consumers keep
+      those from earlier lifecycle events of the same span.
 
       See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
       consumers combine the lifecycle events of a span.

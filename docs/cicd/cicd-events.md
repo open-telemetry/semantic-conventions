@@ -43,8 +43,8 @@ Instrumentation MAY emit the following lifecycle events for them:
 - `progress` is emitted while the span runs, periodically (a heartbeat) and/or
   when the span changes. It carries only what changed since the previous
   lifecycle event for the same span.
-- `ended` is emitted when the span ends. It carries the complete span, so that a
-  consumer can build the span from it alone.
+- `ended` is emitted when the span ends. It carries the span's final name,
+  attributes and status, so that a consumer can build the span from it alone.
 
 The lifecycle events supplement the span, they don't replace it:
 
@@ -59,7 +59,9 @@ A producer that doesn't hold the SDK span, for example a CI/CD controller that
 restarted while a pipeline run was running, emits the `progress` and `ended`
 events itself. To do that, it stores the span context (trace ID, span ID, trace
 flags and TraceState) and the span's name, parent span ID and start time when the
-span starts. Such a producer MUST provide a complete `ended` event.
+span starts. Such a producer MUST still emit `ended`, with every span attribute
+it knows. Attributes that only the previous producer knew are kept from earlier
+events, see [merge rules](#merge-rules).
 
 The span type and the span kind are given by the event name: `SERVER` for
 pipeline runs and `INTERNAL` for pipeline task runs. The pipeline run's identity
@@ -288,7 +290,7 @@ consumers combine the lifecycle events of a span.
 
 The event name MUST be `cicd.server.pipeline.run.ended`.
 
-Reports that a CI/CD pipeline run span has ended, and carries the complete span.
+Reports that a CI/CD pipeline run span has ended, and carries its final name, attributes and status.
 
 The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
 span's. Its timestamp MUST be the span's end time.
@@ -297,11 +299,12 @@ The event SHOULD only be emitted for sampled spans. Instrumentations
 SHOULD set the severity to INFO (severity number 9) when recording this
 event.
 
-The event MUST carry all of the span's attributes, with unchanged keys and
-values, and a consumer MUST be able to build the span from this event
-alone. A producer that doesn't hold the SDK span (for example, a CI/CD
-controller that restarted while the pipeline run was running) MUST still
-provide a complete event.
+The event MUST carry every span attribute that the producer knows, with
+unchanged keys and values, so that a consumer can build the span from
+this event alone. A producer that doesn't hold the SDK span (for example,
+a CI/CD controller that restarted while the pipeline run was running) may
+not know attributes that were set before it took over. Consumers keep
+those from earlier lifecycle events of the same span.
 
 The pipeline run's identity comes from the Resource (the `cicd.pipeline`
 and `cicd.pipeline.run` entities), as it does for the span.
@@ -505,7 +508,7 @@ consumers combine the lifecycle events of a span.
 
 The event name MUST be `cicd.pipeline.task.ended`.
 
-Reports that a CI/CD pipeline task run span has ended, and carries the complete span.
+Reports that a CI/CD pipeline task run span has ended, and carries its final name, attributes and status.
 
 The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
 span's. Its timestamp MUST be the span's end time.
@@ -514,11 +517,12 @@ The event SHOULD only be emitted for sampled spans. Instrumentations
 SHOULD set the severity to INFO (severity number 9) when recording this
 event.
 
-The event MUST carry all of the span's attributes, with unchanged keys and
-values, and a consumer MUST be able to build the span from this event
-alone. A producer that doesn't hold the SDK span (for example, a CI/CD
-controller that restarted while the task run was running) MUST still
-provide a complete event.
+The event MUST carry every span attribute that the producer knows, with
+unchanged keys and values, so that a consumer can build the span from
+this event alone. A producer that doesn't hold the SDK span (for example,
+a CI/CD controller that restarted while the task run was running) may
+not know attributes that were set before it took over. Consumers keep
+those from earlier lifecycle events of the same span.
 
 See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
 consumers combine the lifecycle events of a span.
