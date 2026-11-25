@@ -48,7 +48,9 @@ events:
       since the previous lifecycle event for the same span.
     note: |
       The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
-      span's. Its timestamp is the time the event was emitted.
+      span's. Its timestamp is the time the event was emitted. It SHOULD be
+      later than the timestamp of the previous lifecycle event for the same
+      span.
 
       The event SHOULD only be emitted for sampled spans. Instrumentations
       SHOULD set the severity to INFO (severity number 9) when recording this
@@ -155,7 +157,9 @@ events:
       changed since the previous lifecycle event for the same span.
     note: |
       The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
-      span's. Its timestamp is the time the event was emitted.
+      span's. Its timestamp is the time the event was emitted. It SHOULD be
+      later than the timestamp of the previous lifecycle event for the same
+      span.
 
       The event SHOULD only be emitted for sampled spans. Instrumentations
       SHOULD set the severity to INFO (severity number 9) when recording this

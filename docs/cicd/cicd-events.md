@@ -113,7 +113,10 @@ set the span fields above; they are not added as span attributes. Neither is
    the same value.
 2. **Changeable fields** are the span name (`cicd.span.name`) and the span
    attributes. They are merged per key: the value from the event with the later
-   timestamp wins.
+   timestamp wins. A `progress` event's timestamp SHOULD be later than that of
+   the previous lifecycle event for the same span. If events with the same
+   timestamp carry different values for a key, a consumer MAY use either value
+   until `ended` arrives.
 3. **Nothing is removed.** A key missing from an event means "unchanged or
    unknown", never "removed".
 4. **`ended` is final.** Its values win over those of any earlier event,
@@ -230,7 +233,9 @@ The event name MUST be `cicd.server.pipeline.run.progress`.
 Reports that a CI/CD pipeline run span is still running, and what changed since the previous lifecycle event for the same span.
 
 The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
-span's. Its timestamp is the time the event was emitted.
+span's. Its timestamp is the time the event was emitted. It SHOULD be
+later than the timestamp of the previous lifecycle event for the same
+span.
 
 The event SHOULD only be emitted for sampled spans. Instrumentations
 SHOULD set the severity to INFO (severity number 9) when recording this
@@ -469,7 +474,9 @@ The event name MUST be `cicd.pipeline.task.progress`.
 Reports that a CI/CD pipeline task run span is still running, and what changed since the previous lifecycle event for the same span.
 
 The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
-span's. Its timestamp is the time the event was emitted.
+span's. Its timestamp is the time the event was emitted. It SHOULD be
+later than the timestamp of the previous lifecycle event for the same
+span.
 
 The event SHOULD only be emitted for sampled spans. Instrumentations
 SHOULD set the severity to INFO (severity number 9) when recording this
