@@ -109,6 +109,10 @@ set the span fields above; they are not added as span attributes. Neither is
 `cicd.pipeline.run.state`: it reports the live state of a pipeline run on
 `progress` events, and it isn't added to the rebuilt span.
 
+No lifecycle event carries the span's events, links, `IsParentRemote` or dropped
+attribute, event and link counts, so a span rebuilt from the lifecycle events
+doesn't have them.
+
 1. **Fixed fields** are set when the span starts and can't change: trace ID,
    span ID, parent span ID (`cicd.span.parent.id`), span kind and span type
    (given by the event name), start time and TraceState
@@ -152,7 +156,8 @@ when the process ending the span is not the one that started it.
 Because the span is still exported as usual, a deployment that also rebuilds
 spans from the lifecycle events gets each of these spans twice. Deployments that
 rebuild spans from the lifecycle events SHOULD drop the normally exported span of
-the same span type. Only drop spans for which lifecycle events are emitted, for
+the same span type, unless they need the span fields that no lifecycle event
+carries (see [merge rules](#merge-rules)). Only drop spans for which lifecycle events are emitted, for
 example by selecting the instrumentation scope of the instrumentation that emits
 them, so that spans from other instrumentation aren't lost. The trace SDK
 specification has no built-in span filter, so this is a configuration choice, for
@@ -641,7 +646,8 @@ These lifecycle events are a prototype for the
 [span lifecycle events](https://github.com/open-telemetry/semantic-conventions/issues/2133)
 discussion. Still open:
 
-- How links are carried.
+- How span events, links and `IsParentRemote` are carried, and whether the
+  event's instrumentation scope is the span's.
 - Which Resource a rebuilt span gets when `ended` comes from a different process
   than `started`, for example after a restart.
 - How long a consumer waits for `ended` before it treats a span as abandoned, how
