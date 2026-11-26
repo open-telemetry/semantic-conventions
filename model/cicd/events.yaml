@@ -88,8 +88,10 @@ events:
       span's. Its timestamp MUST be the span's end time.
 
       The event SHOULD only be emitted for sampled spans. Instrumentations
-      SHOULD set the severity to INFO (severity number 9) when recording this
-      event.
+      SHOULD set the severity to ERROR (severity number 17) if the span's
+      status code is `Error` (see
+      [Recording errors](/docs/general/recording-errors.md)), and to INFO
+      (severity number 9) otherwise.
 
       The event MUST carry every span attribute that the producer knows, with
       unchanged keys and values, so that a consumer can build the span from
@@ -188,8 +190,10 @@ events:
       span's. Its timestamp MUST be the span's end time.
 
       The event SHOULD only be emitted for sampled spans. Instrumentations
-      SHOULD set the severity to INFO (severity number 9) when recording this
-      event.
+      SHOULD set the severity to ERROR (severity number 17) if the span's
+      status code is `Error` (see
+      [Recording errors](/docs/general/recording-errors.md)), and to INFO
+      (severity number 9) otherwise.
 
       The event MUST carry every span attribute that the producer knows, with
       unchanged keys and values, so that a consumer can build the span from
