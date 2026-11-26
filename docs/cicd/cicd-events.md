@@ -40,7 +40,8 @@ lifecycle events for them:
 | `cicd.pipeline.task` | `cicd.pipeline.task.started` | `cicd.pipeline.task.progress` | `cicd.pipeline.task.ended` |
 
 - `started` is emitted when the span starts. It carries the span's name, parent,
-  TraceState and the span attributes known at that time.
+  TraceState and the attributes its definition lists, and MAY carry the span's
+  other attributes.
 - `progress` is emitted while the span runs, periodically (a heartbeat) and/or
   when the span changes. It SHOULD carry only what changed since the previous
   lifecycle event for the same span, and MAY repeat unchanged values.
