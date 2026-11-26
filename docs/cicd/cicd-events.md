@@ -64,8 +64,8 @@ flags and TraceState), the span's name, parent span ID and start time, and the
 attributes that `ended` requires, when the span starts. It stores the start time
 with the same precision as the `started` timestamp, so that
 `cicd.span.start_time` on `ended` matches it. It only sets `cicd.span.parent.id`
-on `ended` to the parent span ID from `started`, and leaves it out if it doesn't
-know it; consumers then keep the parent from `started` (rule 3).
+on `ended` to the parent span ID from `started`, and leaves it out if it didn't
+store it; consumers then keep the parent from `started` (rule 3).
 
 Once `started` was emitted for a span, its lifecycle events MUST end with
 `ended`, also when another producer took over. `ended` carries every span
@@ -104,7 +104,7 @@ and span ID. The span's fields are carried as follows:
 | Trace ID, span ID, trace flags | the event's trace context | required | required | required |
 | Span type and kind | the event name (the kind comes from the span definition) | yes | yes | yes |
 | Name | `cicd.span.name` | required | if changed | required |
-| Parent span ID | `cicd.span.parent.id` | if the span has a parent | - | if the span has a parent |
+| Parent span ID | `cicd.span.parent.id` | if the span has a parent | - | if the span has a parent and the producer knows it |
 | TraceState | `cicd.span.trace_state` | if not empty | - | if not empty |
 | Start time | the event timestamp (`started`), `cicd.span.start_time` (`ended`) | required | - | required |
 | End time | the event timestamp | - | - | required |
@@ -145,9 +145,10 @@ doesn't have them.
 A consumer MAY wait for a grace period after `ended` arrives before it emits
 the span, so that events delayed in transit, for example by an export retry,
 are still merged. Events that arrive after the span was emitted are dropped. If
-the span was emitted after `ended`, they can only lose attributes that `ended`
-didn't carry (rule 4); if it was emitted as abandoned, a late `ended` is lost
-too.
+the span was emitted after `ended`, they can only lose attributes, or the parent
+span ID, that `ended` didn't carry (rule 4); if the consumer stopped waiting for
+`ended` and emitted the span without it (see [Open questions](#open-questions)),
+a late `ended` is lost too.
 
 | `ended` compared to earlier events | Result |
 | --- | --- |
@@ -157,7 +158,8 @@ too.
 | carries a different fixed field | the value from `ended` is used, and the consumer SHOULD report the inconsistency |
 
 Building a span from `ended` alone and building it from all events give the same
-span, except for attributes that only earlier events carried. That only happens
+span, except for attributes and the parent span ID that only earlier events
+carried. That only happens
 when the process ending the span is not the one that started it.
 
 ## Export and duplicates
