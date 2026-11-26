@@ -72,8 +72,9 @@ Once `started` was emitted for a span, its lifecycle events MUST end with
 attribute that its producer knows; attributes that only the previous producer
 knew are kept from earlier events, see [merge rules](#merge-rules).
 
-The span type and the span kind are given by the event name: `SERVER` for
-pipeline runs and `INTERNAL` for pipeline task runs. The pipeline run's identity
+The span type is given by the event name, and the span kind is the one its span
+definition specifies: `SERVER` for pipeline runs and `INTERNAL` for pipeline
+task runs. The pipeline run's identity
 (`cicd.pipeline.name`, `cicd.pipeline.run.id`) comes from the Resource, through
 the `cicd.pipeline` and `cicd.pipeline.run` entities, as it does for the span.
 
@@ -101,7 +102,7 @@ and span ID. The span's fields are carried as follows:
 | Span field | Carried by | `started` | `progress` | `ended` |
 | --- | --- | --- | --- | --- |
 | Trace ID, span ID, trace flags | the event's trace context | required | required | required |
-| Span type and kind | the event name | yes | yes | yes |
+| Span type and kind | the event name (the kind comes from the span definition) | yes | yes | yes |
 | Name | `cicd.span.name` | required | if changed | required |
 | Parent span ID | `cicd.span.parent.id` | if the span has a parent | - | if the span has a parent |
 | TraceState | `cicd.span.trace_state` | if not empty | - | if not empty |
@@ -120,8 +121,9 @@ attribute, event and link counts, so a span rebuilt from the lifecycle events
 doesn't have them.
 
 1. **Fixed fields** are set when the span starts and can't change: trace ID,
-   span ID, trace flags, parent span ID (`cicd.span.parent.id`), span kind and
-   span type (given by the event name), start time and TraceState
+   span ID, trace flags, parent span ID (`cicd.span.parent.id`), span type
+   (given by the event name), span kind (from the span definition), start time
+   and TraceState
    (`cicd.span.trace_state`). Every event that carries one of them MUST carry
    the same value. If they differ anyway, the consumer merges them like
    changeable fields (rule 2) and SHOULD report the inconsistency.
