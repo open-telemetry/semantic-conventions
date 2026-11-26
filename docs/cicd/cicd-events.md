@@ -31,7 +31,8 @@ CI/CD controller restarted.
 ## Overview
 
 The [pipeline run and pipeline task run spans](cicd-spans.md) may run for a long time.
-Instrumentation MAY emit the following lifecycle events for them:
+Instrumentation MAY offer an option, off by default, to emit the following
+lifecycle events for them:
 
 | Span type | Started | Progress | Ended |
 | --- | --- | --- | --- |
