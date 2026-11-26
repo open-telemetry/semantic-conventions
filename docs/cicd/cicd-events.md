@@ -59,9 +59,12 @@ A producer that doesn't hold the SDK span, for example a CI/CD controller that
 restarted while a pipeline run was running, emits the `progress` and `ended`
 events itself. To do that, it stores the span context (trace ID, span ID, trace
 flags and TraceState), the span's name, parent span ID and start time, and the
-attributes that `ended` requires, when the span starts. Such a producer MUST
-still emit `ended`, with every span attribute it knows. Attributes that only the previous producer knew are kept from earlier
-events, see [merge rules](#merge-rules).
+attributes that `ended` requires, when the span starts.
+
+Once `started` was emitted for a span, its lifecycle events MUST end with
+`ended`, also when another producer took over. `ended` carries every span
+attribute that its producer knows; attributes that only the previous producer
+knew are kept from earlier events, see [merge rules](#merge-rules).
 
 The span type and the span kind are given by the event name: `SERVER` for
 pipeline runs and `INTERNAL` for pipeline task runs. The pipeline run's identity
