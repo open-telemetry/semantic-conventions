@@ -1,19 +1,46 @@
-groups:
-  - id: attributes.messaging.common.minimal
-    type: attribute_group
-    brief: "Common cross-signal messaging attributes."
-    stability: development
+file_format: definition/2
+
+attribute_groups:
+  - id: messaging.attributes.server
+    visibility: internal
     attributes:
+      - ref: server.address
+        brief: The messaging server address specified in the client configuration.
+        examples:
+          - "example.com"
+          - "10.1.2.80"
+          - "/tmp/my.sock"
+          - "kafka-a.example.com:9092,kafka-b.example.com:9092"
+          - "zookeeper://registry.example.com:2181/messaging"
+        note: |
+          Instrumentation SHOULD set `server.address` to the messaging server address specified in the client configuration.
+          It SHOULD NOT derive the value from the server selected for an operation.
+
+          > [!WARNING]
+          >
+          > `server.address` MUST NOT contain credentials or other sensitive information.
+
+          See [Messaging server address](/docs/messaging/messaging-spans.md#messaging-server-address) for guidance and
+          examples.
+      - ref: server.port
+        note: |
+          `server.port` SHOULD reflect the messaging server port specified in the client configuration.
+          It SHOULD NOT be derived from the server selected for an operation.
+
+          When `server.address` represents a service-discovery target, multiple endpoints, or a UNIX
+          domain socket, `server.port` SHOULD NOT be set.
+
+  - id: attributes.messaging.common.minimal
+    visibility: internal
+    attributes:
+      - ref_group: messaging.attributes.server
       # TODO: Not adding `messaging.system.name` to the minimal because of https://github.com/open-telemetry/weaver/issues/479
       - ref: error.type
         examples: ["amqp:decode-error", "KAFKA_STORAGE_ERROR", "channel-error"]
         requirement_level:
           conditionally_required: If and only if the messaging operation has failed.
       - ref: server.address
-        note: >
-          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
         requirement_level:
           conditionally_required: If available.
-      - ref: server.port
       - ref: messaging.operation.name
         requirement_level: required
