@@ -89,10 +89,12 @@ events:
       span's. Its timestamp MUST be the span's end time.
 
       The event SHOULD only be emitted for sampled spans. Instrumentations
-      SHOULD set the severity to ERROR (severity number 17) if the span's
-      status code is `Error` (see
-      [Recording errors](/docs/general/recording-errors.md)), and to INFO
-      (severity number 9) otherwise.
+      SHOULD set the severity to ERROR (severity number 17) if
+      `otel.status_code` is `ERROR`, and to INFO (severity number 9)
+      otherwise, following the
+      [event severity guidance](/docs/general/events.md#severity).
+      [Recording errors](/docs/general/recording-errors.md) defines when the
+      span status is `Error`.
 
       The event MUST carry every span attribute that the producer knows, with
       unchanged keys and values, so that a consumer can build the span from
@@ -196,10 +198,12 @@ events:
       span's. Its timestamp MUST be the span's end time.
 
       The event SHOULD only be emitted for sampled spans. Instrumentations
-      SHOULD set the severity to ERROR (severity number 17) if the span's
-      status code is `Error` (see
-      [Recording errors](/docs/general/recording-errors.md)), and to INFO
-      (severity number 9) otherwise.
+      SHOULD set the severity to ERROR (severity number 17) if
+      `otel.status_code` is `ERROR`, and to INFO (severity number 9)
+      otherwise, following the
+      [event severity guidance](/docs/general/events.md#severity).
+      [Recording errors](/docs/general/recording-errors.md) defines when the
+      span status is `Error`.
 
       The event MUST carry every span attribute that the producer knows, with
       unchanged keys and values, so that a consumer can build the span from

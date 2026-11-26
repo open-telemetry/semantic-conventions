@@ -327,10 +327,12 @@ The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
 span's. Its timestamp MUST be the span's end time.
 
 The event SHOULD only be emitted for sampled spans. Instrumentations
-SHOULD set the severity to ERROR (severity number 17) if the span's
-status code is `Error` (see
-[Recording errors](/docs/general/recording-errors.md)), and to INFO
-(severity number 9) otherwise.
+SHOULD set the severity to ERROR (severity number 17) if
+`otel.status_code` is `ERROR`, and to INFO (severity number 9)
+otherwise, following the
+[event severity guidance](/docs/general/events.md#severity).
+[Recording errors](/docs/general/recording-errors.md) defines when the
+span status is `Error`.
 
 The event MUST carry every span attribute that the producer knows, with
 unchanged keys and values, so that a consumer can build the span from
@@ -558,10 +560,12 @@ The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
 span's. Its timestamp MUST be the span's end time.
 
 The event SHOULD only be emitted for sampled spans. Instrumentations
-SHOULD set the severity to ERROR (severity number 17) if the span's
-status code is `Error` (see
-[Recording errors](/docs/general/recording-errors.md)), and to INFO
-(severity number 9) otherwise.
+SHOULD set the severity to ERROR (severity number 17) if
+`otel.status_code` is `ERROR`, and to INFO (severity number 9)
+otherwise, following the
+[event severity guidance](/docs/general/events.md#severity).
+[Recording errors](/docs/general/recording-errors.md) defines when the
+span status is `Error`.
 
 The event MUST carry every span attribute that the producer knows, with
 unchanged keys and values, so that a consumer can build the span from
@@ -682,6 +686,8 @@ discussion. Still open:
 - Rule 2 compares timestamps from different processes after a takeover, but
   [timestamps from different processes don't establish an order](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp).
   Whether lifecycle events need a sequence number.
+- Which `cicd.pipeline.result` and `cicd.pipeline.task.run.result` values set
+  the span status to `Error`: the CI/CD span definitions don't say yet.
 - Whether `ended` remains needed.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
