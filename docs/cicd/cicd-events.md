@@ -61,7 +61,8 @@ A producer that doesn't hold the SDK span, for example a CI/CD controller that
 restarted while a pipeline run was running, emits the `progress` and `ended`
 events itself. To do that, it stores the span context (trace ID, span ID, trace
 flags and TraceState), the span's name, parent span ID and start time, and the
-attributes that `ended` requires, when the span starts. It stores the start time
+attributes that `ended` requires, when the span starts, and keeps the name and
+these attributes up to date while the span runs. It stores the start time
 with the same precision as the `started` timestamp, so that
 `cicd.span.start_time` on `ended` matches it. It only sets `cicd.span.parent.id`
 on `ended` to the parent span ID from `started`, and leaves it out if it didn't
