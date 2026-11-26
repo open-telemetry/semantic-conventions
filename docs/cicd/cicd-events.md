@@ -173,6 +173,10 @@ example:
 - the [Collector `filter` processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/filterprocessor),
   dropping these spans from the trace pipeline.
 
+To rebuild a span, a consumer needs all of its lifecycle events. Deployments that
+run several consumer instances route all events of a span to the same instance,
+for example by load-balancing on the span ID.
+
 Deployments that don't rebuild spans keep the exported span, and can use the
 lifecycle events as the live status of running pipeline runs and task runs.
 
@@ -675,6 +679,9 @@ discussion. Still open:
 - What a consumer does with a pipeline run span that was re-created after a
   restart: its earlier pipeline task run spans keep the original run span as
   their parent.
+- Rule 2 compares timestamps from different processes after a takeover, but
+  [timestamps from different processes don't establish an order](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp).
+  Whether lifecycle events need a sequence number.
 - Whether `ended` remains needed.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
