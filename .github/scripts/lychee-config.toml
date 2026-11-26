@@ -15,6 +15,7 @@ remap = [
 
 exclude = [
   "^https://www.foo.bar",
+  "^https://opentelemetry\\.io/docs/specs/otel/",
   # excluding links to pull requests and issues is done for performance
   "^https://github.com/open-telemetry/semantic-conventions/(pull|issues)/\\d+$",
   "^https://github.com/open-telemetry/opentelemetry-specification/(pull|issues)/\\d+$",
