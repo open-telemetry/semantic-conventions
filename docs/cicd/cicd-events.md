@@ -41,8 +41,8 @@ Instrumentation MAY emit the following lifecycle events for them:
 - `started` is emitted when the span starts. It carries the span's name, parent,
   TraceState and the span attributes known at that time.
 - `progress` is emitted while the span runs, periodically (a heartbeat) and/or
-  when the span changes. It carries only what changed since the previous
-  lifecycle event for the same span.
+  when the span changes. It SHOULD carry only what changed since the previous
+  lifecycle event for the same span, and MAY repeat unchanged values.
 - `ended` is emitted when the span ends. It carries the span's final name,
   attributes and status, so that a consumer can build the span from it alone.
 
@@ -245,10 +245,11 @@ The event SHOULD only be emitted for sampled spans. Instrumentations
 SHOULD set the severity to INFO (severity number 9) when recording this
 event.
 
-The event carries only what changed since the previous lifecycle event for
-the same span, including span attributes not listed below. A heartbeat
-carries no attributes. A missing attribute means unchanged or unknown,
-never removed.
+The event SHOULD carry only what changed since the previous lifecycle
+event for the same span, including span attributes not listed below, and
+MAY repeat unchanged values, for example after the producer restarted. A
+heartbeat carries no attributes. A missing attribute means unchanged or
+unknown, never removed.
 
 `cicd.pipeline.run.state` is not a span attribute: it reports the live
 state of the pipeline run, and consumers don't add it to the rebuilt span.
@@ -489,10 +490,11 @@ The event SHOULD only be emitted for sampled spans. Instrumentations
 SHOULD set the severity to INFO (severity number 9) when recording this
 event.
 
-The event carries only what changed since the previous lifecycle event for
-the same span, including span attributes not listed below. A heartbeat
-carries no attributes. A missing attribute means unchanged or unknown,
-never removed.
+The event SHOULD carry only what changed since the previous lifecycle
+event for the same span, including span attributes not listed below, and
+MAY repeat unchanged values, for example after the producer restarted. A
+heartbeat carries no attributes. A missing attribute means unchanged or
+unknown, never removed.
 
 See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
 consumers combine the lifecycle events of a span.
