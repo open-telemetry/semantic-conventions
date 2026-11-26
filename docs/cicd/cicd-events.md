@@ -59,7 +59,9 @@ A producer that doesn't hold the SDK span, for example a CI/CD controller that
 restarted while a pipeline run was running, emits the `progress` and `ended`
 events itself. To do that, it stores the span context (trace ID, span ID, trace
 flags and TraceState), the span's name, parent span ID and start time, and the
-attributes that `ended` requires, when the span starts.
+attributes that `ended` requires, when the span starts. It stores the start time
+with the same precision as the `started` timestamp, so that
+`cicd.span.start_time` on `ended` matches it.
 
 Once `started` was emitted for a span, its lifecycle events MUST end with
 `ended`, also when another producer took over. `ended` carries every span
@@ -114,10 +116,11 @@ attribute, event and link counts, so a span rebuilt from the lifecycle events
 doesn't have them.
 
 1. **Fixed fields** are set when the span starts and can't change: trace ID,
-   span ID, parent span ID (`cicd.span.parent.id`), span kind and span type
-   (given by the event name), start time and TraceState
+   span ID, trace flags, parent span ID (`cicd.span.parent.id`), span kind and
+   span type (given by the event name), start time and TraceState
    (`cicd.span.trace_state`). Every event that carries one of them MUST carry
-   the same value.
+   the same value. If they differ anyway, the consumer merges them like
+   changeable fields (rule 2) and SHOULD report the inconsistency.
 2. **Changeable fields** are the span name (`cicd.span.name`) and the span
    attributes. They are merged per key: the value from the event with the later
    timestamp wins. A `progress` event's timestamp SHOULD be later than that of
