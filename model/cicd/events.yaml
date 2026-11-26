@@ -96,9 +96,10 @@ events:
       The event MUST carry every span attribute that the producer knows, with
       unchanged keys and values, so that a consumer can build the span from
       this event alone. A producer that doesn't hold the SDK span (for example,
-      a CI/CD controller that restarted while the pipeline run was running) may
-      not know attributes that were set before it took over. Consumers keep
-      those from earlier lifecycle events of the same span.
+      a CI/CD controller that restarted while the pipeline run was running) MUST
+      still provide the attributes required below, and may not know the span's
+      other attributes that were set before it took over. Consumers keep those
+      from earlier lifecycle events of the same span.
 
       The pipeline run's identity comes from the Resource (the `cicd.pipeline`
       and `cicd.pipeline.run` entities), as it does for the span.
@@ -198,9 +199,10 @@ events:
       The event MUST carry every span attribute that the producer knows, with
       unchanged keys and values, so that a consumer can build the span from
       this event alone. A producer that doesn't hold the SDK span (for example,
-      a CI/CD controller that restarted while the task run was running) may
-      not know attributes that were set before it took over. Consumers keep
-      those from earlier lifecycle events of the same span.
+      a CI/CD controller that restarted while the task run was running) MUST
+      still provide the attributes required below, and may not know the span's
+      other attributes that were set before it took over. Consumers keep those
+      from earlier lifecycle events of the same span.
 
       See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
       consumers combine the lifecycle events of a span.

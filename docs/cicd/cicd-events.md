@@ -58,9 +58,9 @@ The lifecycle events supplement the span, they don't replace it:
 A producer that doesn't hold the SDK span, for example a CI/CD controller that
 restarted while a pipeline run was running, emits the `progress` and `ended`
 events itself. To do that, it stores the span context (trace ID, span ID, trace
-flags and TraceState) and the span's name, parent span ID and start time when the
-span starts. Such a producer MUST still emit `ended`, with every span attribute
-it knows. Attributes that only the previous producer knew are kept from earlier
+flags and TraceState), the span's name, parent span ID and start time, and the
+attributes that `ended` requires, when the span starts. Such a producer MUST
+still emit `ended`, with every span attribute it knows. Attributes that only the previous producer knew are kept from earlier
 events, see [merge rules](#merge-rules).
 
 The span type and the span kind are given by the event name: `SERVER` for
@@ -310,9 +310,10 @@ status code is `Error` (see
 The event MUST carry every span attribute that the producer knows, with
 unchanged keys and values, so that a consumer can build the span from
 this event alone. A producer that doesn't hold the SDK span (for example,
-a CI/CD controller that restarted while the pipeline run was running) may
-not know attributes that were set before it took over. Consumers keep
-those from earlier lifecycle events of the same span.
+a CI/CD controller that restarted while the pipeline run was running) MUST
+still provide the attributes required below, and may not know the span's
+other attributes that were set before it took over. Consumers keep those
+from earlier lifecycle events of the same span.
 
 The pipeline run's identity comes from the Resource (the `cicd.pipeline`
 and `cicd.pipeline.run` entities), as it does for the span.
@@ -532,9 +533,10 @@ status code is `Error` (see
 The event MUST carry every span attribute that the producer knows, with
 unchanged keys and values, so that a consumer can build the span from
 this event alone. A producer that doesn't hold the SDK span (for example,
-a CI/CD controller that restarted while the task run was running) may
-not know attributes that were set before it took over. Consumers keep
-those from earlier lifecycle events of the same span.
+a CI/CD controller that restarted while the task run was running) MUST
+still provide the attributes required below, and may not know the span's
+other attributes that were set before it took over. Consumers keep those
+from earlier lifecycle events of the same span.
 
 See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
 consumers combine the lifecycle events of a span.
