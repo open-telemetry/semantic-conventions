@@ -8,7 +8,7 @@ attribute_groups:
         requirement_level: required
       - ref: cicd.span.parent.id
         requirement_level:
-          conditionally_required: If the span has a parent.
+          conditionally_required: If the span has a parent and the producer knows the parent span ID the span started with.
       - ref: cicd.span.trace_state
         requirement_level:
           conditionally_required: If the span's TraceState is not empty.
@@ -100,7 +100,10 @@ events:
       a CI/CD controller that restarted while the pipeline run was running) MUST
       still provide the attributes required below, and may not know the span's
       other attributes that were set before it took over. Consumers keep those
-      from earlier lifecycle events of the same span.
+      from earlier lifecycle events of the same span. Such a producer MUST NOT
+      set `cicd.span.parent.id` to any other value than the parent span ID the
+      span started with, for example when the parent span was re-created after
+      the restart.
 
       The pipeline run's identity comes from the Resource (the `cicd.pipeline`
       and `cicd.pipeline.run` entities), as it does for the span.
@@ -204,7 +207,10 @@ events:
       a CI/CD controller that restarted while the task run was running) MUST
       still provide the attributes required below, and may not know the span's
       other attributes that were set before it took over. Consumers keep those
-      from earlier lifecycle events of the same span.
+      from earlier lifecycle events of the same span. Such a producer MUST NOT
+      set `cicd.span.parent.id` to any other value than the parent span ID the
+      span started with, for example when the parent span was re-created after
+      the restart.
 
       See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
       consumers combine the lifecycle events of a span.
