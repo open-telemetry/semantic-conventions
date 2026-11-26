@@ -30,6 +30,10 @@ span_refinements:
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
+      - ref: rabbitmq.cluster.name
+        requirement_level: recommended
+      - ref: rabbitmq.vhost.name
+        requirement_level: recommended
       - ref_group: messaging.rabbitmq.attributes.destination
       - ref: messaging.message.conversation_id
         brief: &rabbitmq_conversation_id_brief >
@@ -62,6 +66,10 @@ span_refinements:
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
+      - ref: rabbitmq.cluster.name
+        requirement_level: recommended
+      - ref: rabbitmq.vhost.name
+        requirement_level: recommended
       - ref_group: messaging.rabbitmq.attributes.destination
       - ref: rabbitmq.message.delivery_tag
         requirement_level:
@@ -97,6 +105,10 @@ span_refinements:
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
+      - ref: rabbitmq.cluster.name
+        requirement_level: recommended
+      - ref: rabbitmq.vhost.name
+        requirement_level: recommended
       - ref_group: messaging.rabbitmq.attributes.destination
       - ref: rabbitmq.message.delivery_tag
         requirement_level:
@@ -121,6 +133,10 @@ span_refinements:
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
+      - ref: rabbitmq.cluster.name
+        requirement_level: recommended
+      - ref: rabbitmq.vhost.name
+        requirement_level: recommended
       - ref: rabbitmq.message.delivery_tag
         requirement_level:
           conditionally_required: When available.
