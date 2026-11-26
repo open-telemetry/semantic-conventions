@@ -84,7 +84,7 @@ t2  cicd.server.pipeline.run.progress  trace=T span=S cicd.pipeline.run.state=ex
     ... the controller restarts ...
 t9  cicd.server.pipeline.run.ended     trace=T span=S cicd.span.name="RUN build" cicd.span.parent.id=P
                                        cicd.span.start_time=t0 cicd.pipeline.result=timeout
-                                       otel.status_code=ERROR
+                                       otel.status_code=ERROR error.type=timeout
 ```
 
 A consumer that received all events can show the pipeline run as executing from
