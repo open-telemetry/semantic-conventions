@@ -210,7 +210,7 @@ attributes, with unchanged keys and values.
 The pipeline run's identity comes from the Resource (the `cicd.pipeline`
 and `cicd.pipeline.run` entities), as it does for the span.
 
-See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
 
 **Attributes:**
@@ -280,7 +280,7 @@ state of the pipeline run, and consumers don't add it to the rebuilt span.
 The pipeline run's identity comes from the Resource (the `cicd.pipeline`
 and `cicd.pipeline.run` entities), as it does for the span.
 
-See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
 
 **Attributes:**
@@ -350,7 +350,7 @@ the restart.
 The pipeline run's identity comes from the Resource (the `cicd.pipeline`
 and `cicd.pipeline.run` entities), as it does for the span.
 
-See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
 
 **Attributes:**
@@ -472,7 +472,7 @@ event.
 Besides the attributes listed below, the event MAY carry the span's other
 attributes, with unchanged keys and values.
 
-See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
 
 **Attributes:**
@@ -528,7 +528,7 @@ MAY repeat unchanged values, for example after the producer restarted. A
 heartbeat carries no attributes. A missing attribute means unchanged or
 unknown, never removed.
 
-See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
 
 **Attributes:**
@@ -580,7 +580,7 @@ set `cicd.span.parent.id` to any other value than the parent span ID the
 span started with, for example when the parent span was re-created after
 the restart.
 
-See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
 
 **Attributes:**

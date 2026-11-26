@@ -33,7 +33,7 @@ events:
       The pipeline run's identity comes from the Resource (the `cicd.pipeline`
       and `cicd.pipeline.run` entities), as it does for the span.
 
-      See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
       consumers combine the lifecycle events of a span.
     attributes:
       - ref_group: cicd.span.lifecycle
@@ -68,7 +68,7 @@ events:
       The pipeline run's identity comes from the Resource (the `cicd.pipeline`
       and `cicd.pipeline.run` entities), as it does for the span.
 
-      See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
       consumers combine the lifecycle events of a span.
     attributes:
       - ref: cicd.span.name
@@ -110,7 +110,7 @@ events:
       The pipeline run's identity comes from the Resource (the `cicd.pipeline`
       and `cicd.pipeline.run` entities), as it does for the span.
 
-      See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
       consumers combine the lifecycle events of a span.
     attributes:
       - ref_group: cicd.span.lifecycle
@@ -147,7 +147,7 @@ events:
       Besides the attributes listed below, the event MAY carry the span's other
       attributes, with unchanged keys and values.
 
-      See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
       consumers combine the lifecycle events of a span.
     attributes:
       - ref_group: cicd.span.lifecycle
@@ -180,7 +180,7 @@ events:
       heartbeat carries no attributes. A missing attribute means unchanged or
       unknown, never removed.
 
-      See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
       consumers combine the lifecycle events of a span.
     attributes:
       - ref: cicd.span.name
@@ -216,7 +216,7 @@ events:
       span started with, for example when the parent span was re-created after
       the restart.
 
-      See [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for how
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
       consumers combine the lifecycle events of a span.
     attributes:
       - ref_group: cicd.span.lifecycle
