@@ -129,7 +129,12 @@ set the span fields above; they are not added as span attributes. Neither is
 5. **Merging is idempotent.** Receiving the same event twice, for example after
    an export retry, doesn't change the result.
 
-Events that arrive after the consumer has emitted the span are dropped.
+A consumer MAY wait for a grace period after `ended` arrives before it emits
+the span, so that events delayed in transit, for example by an export retry,
+are still merged. Events that arrive after the span was emitted are dropped. If
+the span was emitted after `ended`, they can only lose attributes that `ended`
+didn't carry (rule 4); if it was emitted as abandoned, a late `ended` is lost
+too.
 
 | `ended` compared to earlier events | Result |
 | --- | --- |
@@ -639,8 +644,9 @@ discussion. Still open:
 - How links are carried.
 - Which Resource a rebuilt span gets when `ended` comes from a different process
   than `started`, for example after a restart.
-- How long a consumer waits for `ended` before it treats a span as abandoned, and
-  whether `started` should announce the heartbeat interval.
+- How long a consumer waits for `ended` before it treats a span as abandoned, how
+  long the grace period after `ended` is, and whether `started` should announce
+  the heartbeat interval.
 - Whether `ended` remains needed.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
