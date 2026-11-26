@@ -8,36 +8,13 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$SCRIPT_DIR/../.."
 DEPENDENCIES_DOCKERFILE="$ROOT_DIR/dependencies.Dockerfile"
 
-# Default configuration
+# Parse command line arguments
 LOCAL_LINKS_ONLY=false
 CONFIG_FILE=".github/scripts/lychee-config.toml"
-FILES_FROM=""
-TARGETS=()
-ESCAPED_TARGET=""
+TARGET=""
 
-escape_lychee_glob() {
-    local input="$1"
-    local output=""
-    local character
-    local index
-
-    for ((index = 0; index < ${#input}; index++)); do
-        character="${input:index:1}"
-        case "$character" in
-            '[') output+='[[]' ;;
-            ']') output+='[]]' ;;
-            '*') output+='[*]' ;;
-            '?') output+='[?]' ;;
-            *) output+="$character" ;;
-        esac
-    done
-
-    ESCAPED_TARGET="$output"
-}
-
-# Parse command-line arguments
 while [[ $# -gt 0 ]]; do
-    case "$1" in
+    case $1 in
         --local-links-only)
             LOCAL_LINKS_ONLY=true
             shift
@@ -47,106 +24,47 @@ while [[ $# -gt 0 ]]; do
                 echo "Missing value for --config" >&2
                 exit 1
             fi
-            CONFIG_FILE="$2"
+            CONFIG_FILE=$2
             shift 2
-            ;;
-        --files-from)
-            if [[ $# -lt 2 ]]; then
-                echo "Missing value for --files-from" >&2
-                exit 1
-            fi
-            if [[ -n "$FILES_FROM" ]]; then
-                echo "Only one --files-from option is allowed" >&2
-                exit 1
-            fi
-            FILES_FROM="$2"
-            shift 2
-            ;;
-        --)
-            shift
-            TARGETS+=("$@")
-            break
             ;;
         *)
-            TARGETS+=("$1")
+            # Treat any other arguments as file paths
+            TARGET="$TARGET $1"
             shift
             ;;
     esac
 done
 
-# Read NUL-delimited file paths when provided
-if [[ -n "$FILES_FROM" ]]; then
-    if [[ ! -f "$FILES_FROM" ]]; then
-        echo "File list not found: $FILES_FROM" >&2
-        exit 1
-    fi
+# Extract lychee version from dependencies.dockerfile
+LYCHEE_VERSION=$(grep "FROM lycheeverse/lychee:" "$DEPENDENCIES_DOCKERFILE" | sed 's/.*FROM lycheeverse\/lychee:\([^ ]*\).*/\1/')
 
-    if [[ ${#TARGETS[@]} -gt 0 ]]; then
-        echo "Do not combine --files-from with positional file paths" >&2
-        exit 1
-    fi
-
-    while IFS= read -r -d '' target; do
-        escape_lychee_glob "$target"
-        TARGETS+=("$ESCAPED_TARGET")
-    done < "$FILES_FROM"
-
-    if [[ ${#TARGETS[@]} -eq 0 ]]; then
-        echo "The file list is empty" >&2
-        exit 1
-    fi
+if [[ -z "$TARGET" ]]; then
+    TARGET="."
 fi
 
-# Default to the entire repository when no targets are provided
-if [[ ${#TARGETS[@]} -eq 0 ]]; then
-    TARGETS=(".")
+# Build the lychee command with optional GitHub token
+CMD="lycheeverse/lychee:$LYCHEE_VERSION --verbose --hidden --root-dir /data"
+
+# Add GitHub token if available
+if [[ -n "$GITHUB_TOKEN" ]]; then
+    CMD="$CMD --github-token $GITHUB_TOKEN"
 fi
 
-# Extract Lychee version from dependencies.Dockerfile
-LYCHEE_VERSION=$(
-    grep "FROM lycheeverse/lychee:" "$DEPENDENCIES_DOCKERFILE" |
-        sed 's/.*FROM lycheeverse\/lychee:\([^ ]*\).*/\1/'
-)
-
-if [[ -z "$LYCHEE_VERSION" ]]; then
-    echo "Could not determine Lychee version" >&2
-    exit 1
-fi
-
-# Build Docker arguments without concatenating untrusted values
-DOCKER_ARGS=(
-    run
-    --rm
-    --init
-    -v "$ROOT_DIR:/data"
-    -w /data
-)
-
-if [[ -t 0 && -t 1 ]]; then
-    DOCKER_ARGS+=(-it)
-fi
-
-LYCHEE_ARGS=(
-    --verbose
-    --root-dir /data
-)
-
-# Add GitHub token when available
-if [[ -n "${GITHUB_TOKEN:-}" ]]; then
-    LYCHEE_ARGS+=(--github-token "$GITHUB_TOKEN")
-fi
-
-# Configure local-only or regular link checking
 if [[ "$LOCAL_LINKS_ONLY" == "true" ]]; then
-    LYCHEE_ARGS+=(--hidden --scheme file --include-fragments)
+    CMD="$CMD --scheme file --include-fragments"
 else
-    LYCHEE_ARGS+=(--config "$CONFIG_FILE")
+    CMD="$CMD --config $CONFIG_FILE"
 fi
 
-# Preserve individual file arguments, including spaces and special characters
-LYCHEE_ARGS+=(-- "${TARGETS[@]}")
+CMD="$CMD $TARGET"
 
-# Run Lychee
-exec docker "${DOCKER_ARGS[@]}" \
-    "lycheeverse/lychee:$LYCHEE_VERSION" \
-    "${LYCHEE_ARGS[@]}"
+# Determine if we should allocate a TTY
+DOCKER_FLAGS="--rm --init"
+if [[ -t 0 ]]; then
+    DOCKER_FLAGS="$DOCKER_FLAGS -it"
+else
+    DOCKER_FLAGS="$DOCKER_FLAGS -i"
+fi
+
+# Run lychee with proper signal handling
+exec docker run $DOCKER_FLAGS -v "$ROOT_DIR":/data -w /data $CMD

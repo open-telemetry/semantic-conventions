@@ -12,57 +12,33 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # needed for merge-base below
           persist-credentials: false
-
-      - name: Get changed files
-        if: github.event_name == 'pull_request'
-        id: changed-files
-        env:
-          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: |
-          merge_base=$(git merge-base "origin/${GITHUB_BASE_REF}" "$PR_HEAD_SHA")
-
-          # Deleted files cannot be passed to Lychee.
-          # Keep only existing files with supported extensions.
-          mapfile -d '' -t modified_files < <(
-            git diff --name-only --no-renames -z --diff-filter=ACMR \
-              "$merge_base...$PR_HEAD_SHA" \
-              | grep -z -E '\.(md|mkd|mdx|mdown|mdwn|mkdn|mkdown|markdown|html|htm|txt)$' || true
-          )
-
-          if [ "${#modified_files[@]}" -gt 0 ]; then
-            printf '%s\0' "${modified_files[@]}" \
-              > "$RUNNER_TEMP/modified-files.bin"
-
-            printf 'has_files=true\n' >> "$GITHUB_OUTPUT"
-          else
-            printf 'has_files=false\n' >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Normalized link check
-        if: github.event_name == 'pull_request'
-        run: make normalized-link-check
 
       - name: Link check - local links only (all files)
         if: github.event_name == 'pull_request'
-        run: make markdown-link-check-local-only
-
-      - name: Link check - all links (modified files only)
-        if: github.event_name == 'pull_request' && steps.changed-files.outputs.has_files == 'true'
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          MODIFIED_FILES: ${{ runner.temp }}/modified-files.bin
-        run: |
-          # Check general links in modified files.
-          bash .github/scripts/link-check.sh \
-            --config .github/scripts/lychee-config.toml \
-            --files-from "$MODIFIED_FILES"
+        run: make markdown-link-check-local-only
 
-          # Check specification links in modified files.
-          bash .github/scripts/link-check.sh \
-            --config .github/scripts/lychee-spec-links-config.toml \
-            --files-from "$MODIFIED_FILES"
+      - name: Get modified files
+        if: github.event_name == 'pull_request'
+        id: modified-files
+        run: |
+          merge_base=$(git merge-base origin/${GITHUB_BASE_REF} HEAD)
+          # Using lychee's default extension filter here to match when it runs against all files
+          # --diff-filter=d excludes deleted files
+          modified_files=$(git diff --name-only --diff-filter=d $merge_base...${{ github.event.pull_request.head.sha }} \
+                            | grep -E '\.(md|mkd|mdx|mdown|mdwn|mkdn|mkdown|markdown|html|htm|txt)$' \
+                            | tr '\n' ' ' || true)
+          echo "files=$modified_files" >> $GITHUB_OUTPUT
+
+      - name: Link check - all links (modified files only)
+        if: github.event_name == 'pull_request' && steps.modified-files.outputs.files != ''
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          STEPS_MODIFIED_FILES_OUTPUTS_FILES: ${{ steps.modified-files.outputs.files }}
+        run: make markdown-link-check FILES="${STEPS_MODIFIED_FILES_OUTPUTS_FILES}"
 
       - name: Link check - all links (all files)
         if: github.event_name != 'pull_request'
