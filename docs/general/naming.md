@@ -25,8 +25,8 @@ aliases: [attribute-naming]
 - [Metrics](#metrics)
   - [Naming rules for counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
+    - [Prefer pluralization for Counters](#prefer-pluralization-for-counters)
     - [Do not pluralize UpDownCounter names](#do-not-pluralize-updowncounter-names)
-    - [Prefer pluralization to `.count` for Counters](#prefer-pluralization-to-count-for-counters)
     - [Do not use `total`](#do-not-use-total)
   - [Instrument naming](#instrument-naming)
   - [Client and server metrics](#client-and-server-metrics)
@@ -318,41 +318,35 @@ there is known instrumentation or pipeline support for offloading specific attri
 
 #### Pluralization
 
-Metric namespaces SHOULD NOT be pluralized.
+Pluralization applies only to the last segment of a metric name. Everything before
+it is the namespace and SHOULD NOT be pluralized. For example, in
+`system.disk.operations`, `system.disk` is the namespace and `operations` is
+pluralized.
 
-Metric names SHOULD NOT be pluralized, unless the value being recorded
-represents discrete instances of a
-[countable quantity](https://wikipedia.org/wiki/Count_noun).
-Generally, the name SHOULD be pluralized only if the unit of the metric in
-question is a non-unit (like `{fault}` or `{operation}`).
+The last segment SHOULD only be pluralized when the value represents discrete
+instances of a [countable quantity](https://wikipedia.org/wiki/Count_noun),
+which generally means the unit is an annotation like `{fault}` or
+`{operation}`. UpDownCounters are an exception, see
+[Do not pluralize UpDownCounter names](#do-not-pluralize-updowncounter-names).
 
 Examples:
 
 - `system.filesystem.utilization`, `http.server.request.duration`, and `system.cpu.time`
-  should not be pluralized, even if many data points are recorded.
+  are not counts and stay singular, even if many data points are recorded.
 - `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
-  should be pluralized, even if only a single data point is recorded.
+  are pluralized, even if only a single data point is recorded.
+
+#### Prefer pluralization for Counters
+
+Counters of countable quantities SHOULD prefer pluralization, for example
+`system.disk.operations` instead of `system.disk.operation.count`. They MAY use
+`.count` or another suffix when it reads more clearly.
 
 #### Do not pluralize UpDownCounter names
 
-UpDownCounter names SHOULD NOT be pluralized.
-
-For example if we have a namespace `system.process` which contains all metrics related
-to the processes then to represent the count of the processes we can have a metric named
-`system.process.count` instead of `system.processes`. Similarly, `cicd.pipeline.run.active` is preferred
-over the `cicd.pipeline.active_runs`.
-
-#### Prefer pluralization to `.count` for Counters
-
-Counter names SHOULD prefer [pluralization](#pluralization) to a `.count` suffix.
-For example, `system.disk.operations` is preferred over
-`system.disk.operation.count` for a Counter of disk operations. Authors MAY still
-use `.count` when it reads more clearly for the quantity being counted.
-
-This preference does not apply to UpDownCounters, which SHOULD NOT be
-pluralized (see [Do not pluralize UpDownCounter names](#do-not-pluralize-updowncounter-names)).
-For example, `system.process.count` represents the number of processes that
-currently exist, which can increase or decrease.
+UpDownCounter names SHOULD NOT be pluralized. Use `.count` or another suffix
+instead, for example `system.process.count` instead of `system.processes`, or
+`cicd.pipeline.run.active` instead of `cicd.pipeline.active_runs`.
 
 #### Do not use `total`
 
