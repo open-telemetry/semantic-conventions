@@ -39,6 +39,9 @@ lifecycle events for them:
 | `cicd.server.pipeline.run` | `cicd.server.pipeline.run.started` | `cicd.server.pipeline.run.progress` | `cicd.server.pipeline.run.ended` |
 | `cicd.pipeline.task` | `cicd.pipeline.task.started` | `cicd.pipeline.task.progress` | `cicd.pipeline.task.ended` |
 
+The option turns on all three lifecycle events of a span type together, so that
+the lifecycle events of a span always end with `ended`.
+
 - `started` is emitted when the span starts. It carries the span's name, parent,
   TraceState and the attributes its definition lists, and MAY carry the span's
   other attributes.
