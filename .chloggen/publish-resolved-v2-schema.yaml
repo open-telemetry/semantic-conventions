@@ -1,0 +1,6 @@
+change_type: enhancement
+component: schemas
+note: |
+  Publish the development v2 publication manifest and resolved registry as `manifest-dev.yaml` and `registry-dev.yaml` release assets.
+  `model/manifest.yaml` `schema_url` now points to the v2 manifest (`https://opentelemetry.io/schemas/semconv-dev/{version}`); v1 `schemas/{version}` is still published.
+issues: [4221]
