@@ -258,7 +258,7 @@ areas:
     notes: "SIG is driven by members of the .NET runtime team. Contributions are welcomed but must be aligned with the .NET runtime features/roadmap"
 
   - name: "Semantic Conventions: RPC"
-    project: "https://github.com/open-telemetry/community/blob/main/projects/rpc-semconv.md"
+    project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/rpc-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/161"
     owner:
       - name: "semconv-rpc-approvers"
@@ -267,8 +267,7 @@ areas:
       - area:rpc
       - area:jsonrpc
     status:
-      - accepting_contributions
-      - active
+      - inactive
 
   - name: "Semantic Conventions: Service and Deployment"
     owner:
