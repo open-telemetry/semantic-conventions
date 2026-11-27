@@ -1,0 +1,4 @@
+change_type: enhancement
+component: rocketmq
+note: "Add `lite` and `priority` as well-known values for `rocketmq.message.type`."
+issues: [4361]

@@ -69,6 +69,14 @@ groups:
               value: 'transaction'
               brief: 'Transaction message'
               stability: development
+            - id: lite
+              value: 'lite'
+              brief: 'Message sent to a LiteTopic'
+              stability: development
+            - id: priority
+              value: 'priority'
+              brief: 'Message that supports priority-based delivery'
+              stability: development
         stability: development
         brief: >
           Type of message.

@@ -41,5 +41,7 @@ This group describes attributes specific to RocketMQ.
 | --- | --- | --- |
 | `delay` | Delay message | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fifo` | FIFO message | ![Development](https://img.shields.io/badge/-development-blue) |
+| `lite` | Message sent to a LiteTopic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `normal` | Normal message | ![Development](https://img.shields.io/badge/-development-blue) |
+| `priority` | Message that supports priority-based delivery | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transaction` | Transaction message | ![Development](https://img.shields.io/badge/-development-blue) |
