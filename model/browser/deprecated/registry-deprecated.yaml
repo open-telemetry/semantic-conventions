@@ -1,11 +1,25 @@
 groups:
   - id: registry.browser
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: attribute_group
     display_name: Browser Attributes
     brief: >
       The web browser attributes
     attributes:
       - id: browser.brands
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string[]
         stability: development
         brief: 'Array of brand name and version separated by a space'
@@ -16,6 +30,13 @@ groups:
         examples:
           - [ ' Not A;Brand 99', 'Chromium 99', 'Chrome 99' ]
       - id: browser.platform
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: 'The platform on which the browser is running'
@@ -34,6 +55,13 @@ groups:
           should capture the exact value that the user agent provides.
         examples: ['Windows', 'macOS', 'Android']
       - id: browser.mobile
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: boolean
         stability: development
         brief: 'A boolean that is true if the browser is running on a mobile device'
@@ -43,12 +71,26 @@ groups:
           (`navigator.userAgentData.mobile`). If unavailable, this attribute
           SHOULD be left unset.
       - id: browser.document.url.full
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: >
           Absolute URL of the current browser document according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986).
         examples: ["https://www.example.com/search?q=OpenTelemetry#SemConv"]
       - id: browser.language
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: 'Preferred language of the user using the browser'
@@ -57,6 +99,13 @@ groups:
           `navigator.language`.
         examples: ["en", "en-US", "fr", "fr-FR"]
       - id: browser.web_vital.name
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type:
           members:
             - id: cls
@@ -90,21 +139,49 @@ groups:
         brief: Name of the web vital.
         examples: ["cls"]
       - id: browser.web_vital.value
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: double
         stability: development
         brief: Value of the web vital.
         examples: [1.0]
       - id: browser.web_vital.delta
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: double
         stability: development
         brief: The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes).
         examples: [0.2]
       - id: browser.web_vital.id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: A unique ID representing this particular metric instance.
         examples: ["v3-1677874579383-6381583661209"]
       - id: browser.web_vital.rating
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type:
           members:
             - id: good
@@ -125,6 +202,13 @@ groups:
           and "poor" thresholds defined for the metric.
         examples: ["good"]
       - id: browser.web_vital.navigation_type
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type:
           members:
             - id: navigate
