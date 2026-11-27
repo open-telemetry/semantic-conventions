@@ -353,11 +353,71 @@ groups:
           The direction of traffic from the perspective of the observing host's physical or virtual network interface.
           It should not be used to represent the logical direction of a stateful connection or network flow.
         examples: ["transmit"]
+      - id: network.interface.alias
+        type: string
+        stability: development
+        brief: The user-assigned alias for the network interface.
+        note: |
+          > [!WARNING]
+          >
+          > This attribute may contain sensitive information because it is user-defined.
+        examples: ['WAN to HQ']
+      - id: network.interface.description
+        type: string
+        stability: development
+        brief: A system-generated description of the network interface.
+        note: >
+          This can include the manufacturer, product name, and hardware or software version.
+          Use `network.interface.alias` for operator-assigned text, even if the source labels
+          it as a description.
+        examples: ['Nortel Ethernet Routing Switch 2550T Module - Port 3']
+      - id: network.interface.id
+        type: string
+        stability: development
+        brief: A persistent identifier for the network interface.
+        note: |
+          Use a non-empty ID from a source that independent observers can access, such as
+          a shared inventory. The ID MUST distinguish interfaces across devices and interface
+          namespaces wherever their telemetry is combined. Independent observers of the same
+          interface MUST use the same ID. The ID MUST remain unchanged for the lifetime of
+          the interface, including when it is renamed. A local name or index alone is not
+          sufficient.
+
+          An observer that cannot reliably obtain this ID MUST NOT report the
+          `network.interface` entity.
+        examples: ['interface-7c329a3e', 'interface-8e17c064']
+      - id: network.interface.index
+        type: string
+        stability: development
+        brief: The device-assigned index of the network interface.
+        note: >
+          Represent the positive numeric index as a decimal string. The index is scoped to
+          the system or interface namespace that assigned it and may be reassigned after
+          reinitialization.
+        examples: ['1', '2147483647']
+      - id: network.interface.mtu
+        type: int
+        stability: development
+        brief: The maximum transmission unit (MTU) of the network interface, in bytes.
+        note: >
+          This is the maximum packet size the interface can send or receive. For an interface
+          that transmits network datagrams, it is the maximum size of a network datagram
+          that can be sent on the interface.
+        examples: [1500, 9000]
       - id: network.interface.name
         type: string
         brief: 'The network interface name.'
         examples: [ 'lo', 'eth0' ]
         stability: release_candidate
+      - id: network.interface.type
+        type: string
+        stability: development
+        brief: The IANA interface type of the network interface.
+        note: >
+          Use the case-sensitive symbolic name from the
+          [IANAifType-MIB](https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib).
+          Use the symbolic name rather than the numeric code.
+        examples: ['ethernetCsmacd', 'softwareLoopback', 'ieee80211']
       - id: network.connection.state
         type:
           members:

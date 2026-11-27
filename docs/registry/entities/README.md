@@ -79,6 +79,8 @@ Currently, the following namespaces exist:
 | | [k8s.resourcequota](k8s.md#k8s-resourcequota) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.service](k8s.md#k8s-service) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.statefulset](k8s.md#k8s-statefulset) | ![Development](https://img.shields.io/badge/-development-blue) |
+| Network | | |
+| | [network.interface](network.md#network-interface) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Openshift | | |
 | | [openshift.clusterquota](openshift.md#openshift-clusterquota) | ![Development](https://img.shields.io/badge/-development-blue) |
 | OS | | |

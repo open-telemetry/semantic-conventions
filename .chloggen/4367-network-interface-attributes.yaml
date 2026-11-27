@@ -1,0 +1,4 @@
+change_type: enhancement
+component: network
+note: Define the `network.interface` entity and common network interface attributes.
+issues: [4367]

@@ -1,0 +1,33 @@
+groups:
+  - id: entity.network.interface
+    type: entity
+    name: network.interface
+    stability: development
+    brief: A physical or virtual network interface on a host or network device.
+    attributes:
+      - ref: network.interface.id
+        role: identifying
+        requirement_level: required
+      - ref: network.interface.name
+        role: descriptive
+        requirement_level: required
+        note: >
+          Use the name assigned by the device, as it appears in its interface commands.
+          A device may use a port number as its interface name.
+          This value can change without changing the entity identity.
+        examples: ['eth0', 'ge-0/0/8.0', 'GigabitEthernet1/0/7']
+      - ref: network.interface.index
+        role: descriptive
+        requirement_level: recommended
+      - ref: network.interface.description
+        role: descriptive
+        requirement_level: opt_in
+      - ref: network.interface.alias
+        role: descriptive
+        requirement_level: opt_in
+      - ref: network.interface.type
+        role: descriptive
+        requirement_level: recommended
+      - ref: network.interface.mtu
+        role: descriptive
+        requirement_level: opt_in
