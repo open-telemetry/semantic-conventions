@@ -36,6 +36,26 @@ groups:
             "semantic-conventions",
             "my-cool-repo",
           ]
+      - id: vcs.repository.subdirectory.path
+        type: string
+        stability: development
+        brief: >
+          The path of a directory within the repository, relative to the
+          repository root.
+        note: |
+          It is intended for repositories that contain multiple services,
+          packages or components (for example, a monorepo), where
+          `vcs.repository.url.full` alone only locates the top level of the
+          repository. The path SHOULD use forward slashes (`/`) as separators
+          and SHOULD NOT start or end with a separator.
+
+          Combined with `vcs.repository.url.full` and `vcs.ref.head.revision`,
+          it allows a backend to locate the directory at a specific revision.
+        examples:
+          [
+            "packages/sdk-trace",
+            "services/checkout",
+          ]
       - id: vcs.ref.base.name
         type: string
         stability: release_candidate

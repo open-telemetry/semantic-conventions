@@ -1,0 +1,6 @@
+change_type: enhancement
+component: vcs
+note: >
+  Add the `vcs.repository.subdirectory` entity and the `vcs.repository.subdirectory.path` attribute to describe the
+  directory of a service, package or component within a repository (for example, in a monorepo).
+issues: [4216]
