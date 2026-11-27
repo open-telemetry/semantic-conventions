@@ -6,7 +6,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The time the system has been running."
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
@@ -23,7 +23,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Reports the number of actual physical processor cores on the hardware."
     note: "Calculated by multiplying the number of sockets by the number of cores per socket"
     instrument: updowncounter
@@ -38,7 +38,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking."
     note: "Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core"
     instrument: updowncounter
@@ -53,7 +53,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "Seconds each logical CPU spent on each mode."
     instrument: counter
     unit: "s"
@@ -71,7 +71,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time."
     instrument: gauge
     unit: "1"
@@ -89,7 +89,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Operating frequency of the logical CPU in Hertz."
     instrument: gauge
     unit: "Hz"
@@ -105,7 +105,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Reports memory by state."
     note: |
       The sum of the `used` and `available` state values SHOULD be equal to `system.memory.limit`.
@@ -122,7 +122,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Total virtual memory available in the system."
     instrument: updowncounter
     unit: "By"
@@ -136,7 +136,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: Fraction of memory bytes by state.
     note: |
       The sum of the `used` and `available` state values SHOULD be equal to 1.
@@ -154,7 +154,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "UNIX swap or windows pagefile usage."
     instrument: updowncounter
     unit: "By"
@@ -172,7 +172,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: Swap (UNIX) or pagefile (windows) utilization.
     instrument: gauge
     unit: "1"
@@ -190,7 +190,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: The number of page faults.
     instrument: counter
     unit: "{fault}"
@@ -202,7 +202,7 @@ groups:
   - id: metric.system.paging.operations
     type: metric
     metric_name: system.paging.operations
-    stability: development
+    stability: release_candidate
     annotations:
       code_generation:
         metric_value_type: int
@@ -222,7 +222,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: Disk bytes transferred.
     instrument: counter
     unit: "By"
@@ -238,7 +238,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: Disk operations count.
     instrument: counter
     unit: "{operation}"
@@ -254,7 +254,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "Time disk spent activated."
     instrument: counter
     unit: "s"
@@ -276,7 +276,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "Sum of the time each operation took to complete."
     instrument: counter
     unit: "s"
@@ -297,7 +297,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: The number of disk reads/writes merged into single physical disk access operations.
     instrument: counter
     unit: "{operation}"
@@ -329,7 +329,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Reports a filesystem's space usage across different states."
     note: |
       The sum of all `system.filesystem.usage` values over the different `system.filesystem.state` attributes
@@ -353,7 +353,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: Fraction of filesystem bytes used.
     instrument: gauge
     unit: "1"
@@ -415,7 +415,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Count of packets that are dropped or discarded even though there was no error."
     instrument: counter
     unit: "{packet}"
@@ -437,7 +437,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: The number of packets transferred.
     instrument: counter
     unit: "{packet}"
@@ -453,7 +453,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Count of network errors detected."
     instrument: counter
     unit: "{error}"
@@ -475,7 +475,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: The number of bytes transmitted and received.
     instrument: counter
     unit: "By"
@@ -491,7 +491,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: The number of connections.
     instrument: updowncounter
     unit: "{connection}"
@@ -509,7 +509,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Total number of processes in each state."
     instrument: updowncounter
     unit: "{process}"
@@ -524,7 +524,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Total number of processes created over uptime of the host."
     instrument: counter
     unit: "{process}"
@@ -557,7 +557,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "An estimate of how much memory is available for starting new applications, without causing swapping."
     note: |
       This is equivalent to the `system.memory.usage` metric with `state=available`.
@@ -630,7 +630,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Shared memory used (mostly by tmpfs)."
     note: |
       Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
@@ -646,7 +646,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Total number of hugepages available."
     instrument: updowncounter
     unit: "{page}"
@@ -660,7 +660,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "System hugepage size in bytes."
     instrument: updowncounter
     unit: "By"
@@ -674,7 +674,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Number of reserved hugepages."
     note: |
       Hugepages for which a commitment to allocate has been made, but no allocation has yet been made.
@@ -692,7 +692,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Number of surplus hugepages."
     note: |
       Overcommitted hugepages beyond the persistent pool.
@@ -710,7 +710,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Number of hugepages in use by state."
     instrument: updowncounter
     unit: "{page}"
@@ -725,7 +725,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "Percentage of hugepages in use by state."
     instrument: gauge
     unit: "1"

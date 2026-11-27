@@ -105,7 +105,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.uptime` | Gauge | `s` | The time the system has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.uptime` | Gauge | `s` | The time the system has been running. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
 The actual accuracy would depend on the instrumentation and operating system.
@@ -129,7 +129,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Calculated by multiplying the number of sockets by the number of cores per socket
 
@@ -148,7 +148,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core
 
@@ -167,7 +167,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.time` | Counter | `s` | Seconds each logical CPU spent on each mode. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.cpu.time` | Counter | `s` | Seconds each logical CPU spent on each mode. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -211,7 +211,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.frequency` | Gauge | `Hz` | Operating frequency of the logical CPU in Hertz. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.cpu.frequency` | Gauge | `Hz` | Operating frequency of the logical CPU in Hertz. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -236,7 +236,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.utilization` | Gauge | `1` | For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.cpu.utilization` | Gauge | `1` | For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -285,7 +285,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.usage` | UpDownCounter | `By` | Reports memory by state. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.usage` | UpDownCounter | `By` | Reports memory by state. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** The sum of the `used` and `available` state values SHOULD be equal to `system.memory.limit`.
 
@@ -325,7 +325,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.limit` | UpDownCounter | `By` | Total virtual memory available in the system. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.limit` | UpDownCounter | `By` | Total virtual memory available in the system. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -342,7 +342,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.utilization` | Gauge | `1` | Fraction of memory bytes by state. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.utilization` | Gauge | `1` | Fraction of memory bytes by state. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** The sum of the `used` and `available` state values SHOULD be equal to 1.
 
@@ -386,7 +386,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.usage` | UpDownCounter | `By` | UNIX swap or windows pagefile usage. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.paging.usage` | UpDownCounter | `By` | UNIX swap or windows pagefile usage. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -421,7 +421,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.utilization` | Gauge | `1` | Swap (UNIX) or pagefile (windows) utilization. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.paging.utilization` | Gauge | `1` | Swap (UNIX) or pagefile (windows) utilization. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -456,7 +456,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.faults` | Counter | `{fault}` | The number of page faults. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.paging.faults` | Counter | `{fault}` | The number of page faults. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -490,7 +490,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.operations` | Counter | `{operation}` | The number of paging operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.paging.operations` | Counter | `{operation}` | The number of paging operations. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -540,7 +540,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.io` | Counter | `By` | Disk bytes transferred. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.disk.io` | Counter | `By` | Disk bytes transferred. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -575,7 +575,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.operations` | Counter | `{operation}` | Disk operations count. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.disk.operations` | Counter | `{operation}` | Disk operations count. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -610,7 +610,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.io_time` | Counter | `s` | Time disk spent activated. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.disk.io_time` | Counter | `s` | Time disk spent activated. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
 
@@ -640,7 +640,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.operation_time` | Counter | `s` | Sum of the time each operation took to complete. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.disk.operation_time` | Counter | `s` | Sum of the time each operation took to complete. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
 
@@ -680,7 +680,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.merged` | Counter | `{operation}` | The number of disk reads/writes merged into single physical disk access operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.disk.merged` | Counter | `{operation}` | The number of disk reads/writes merged into single physical disk access operations. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -742,7 +742,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.filesystem.usage` | UpDownCounter | `By` | Reports a filesystem's space usage across different states. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.filesystem.usage` | UpDownCounter | `By` | Reports a filesystem's space usage across different states. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** The sum of all `system.filesystem.usage` values over the different `system.filesystem.state` attributes
 SHOULD equal the total storage capacity of the filesystem, that is `system.filesystem.limit`.
@@ -799,7 +799,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.filesystem.utilization` | Gauge | `1` | Fraction of filesystem bytes used. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.filesystem.utilization` | Gauge | `1` | Fraction of filesystem bytes used. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -933,7 +933,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.packet.dropped` | Counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.network.packet.dropped` | Counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Measured as:
 
@@ -974,7 +974,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.packet.count` | Counter | `{packet}` | The number of packets transferred. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.network.packet.count` | Counter | `{packet}` | The number of packets transferred. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -1009,7 +1009,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.errors` | Counter | `{error}` | Count of network errors detected. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.network.errors` | Counter | `{error}` | Count of network errors detected. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Measured as:
 
@@ -1050,7 +1050,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.io` | Counter | `By` | The number of bytes transmitted and received. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.network.io` | Counter | `By` | The number of bytes transmitted and received. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -1085,7 +1085,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.connection.count` | UpDownCounter | `{connection}` | The number of connections. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.network.connection.count` | UpDownCounter | `{connection}` | The number of connections. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -1157,7 +1157,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.process.count` | UpDownCounter | `{process}` | Total number of processes in each state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.process.count` | UpDownCounter | `{process}` | Total number of processes in each state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -1193,7 +1193,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.process.created` | Counter | `{process}` | Total number of processes created over uptime of the host. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.process.created` | Counter | `{process}` | Total number of processes created over uptime of the host. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1262,7 +1262,7 @@ an `{os}` prefix to split this metric across OSes.
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.linux.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** This is equivalent to the `system.memory.usage` metric with `state=available`.
 Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
@@ -1346,7 +1346,7 @@ This value does not reflect the memory available for starting new applications, 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.limit` | UpDownCounter | `{page}` | Total number of hugepages available. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.linux.hugepages.limit` | UpDownCounter | `{page}` | Total number of hugepages available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1361,7 +1361,7 @@ This value does not reflect the memory available for starting new applications, 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.page_size` | UpDownCounter | `By` | System hugepage size in bytes. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.linux.hugepages.page_size` | UpDownCounter | `By` | System hugepage size in bytes. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1376,7 +1376,7 @@ This value does not reflect the memory available for starting new applications, 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.reserved` | UpDownCounter | `{page}` | Number of reserved hugepages. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.linux.hugepages.reserved` | UpDownCounter | `{page}` | Number of reserved hugepages. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Hugepages for which a commitment to allocate has been made, but no allocation has yet been made.
 This is reported as a separate metric rather than a `usage` state because reserved pages are already counted in `free` pages.
@@ -1395,7 +1395,7 @@ They represent a subset of free pages that cannot be used for non-reserved alloc
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.surplus` | UpDownCounter | `{page}` | Number of surplus hugepages. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.linux.hugepages.surplus` | UpDownCounter | `{page}` | Number of surplus hugepages. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Overcommitted hugepages beyond the persistent pool.
 This is reported as a separate metric rather than a `usage` state because surplus pages can be in either `used` or `free` state.
@@ -1414,7 +1414,7 @@ Including them in `usage` would break the convention that `usage` states sum to 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.usage` | UpDownCounter | `{page}` | Number of hugepages in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.linux.hugepages.usage` | UpDownCounter | `{page}` | Number of hugepages in use by state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -1446,7 +1446,7 @@ Including them in `usage` would break the convention that `usage` states sum to 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.utilization` | Gauge | `1` | Percentage of hugepages in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.linux.hugepages.utilization` | Gauge | `1` | Percentage of hugepages in use by state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -1480,7 +1480,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.shared` | UpDownCounter | `By` | Shared memory used (mostly by tmpfs). [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.linux.shared` | UpDownCounter | `By` | Shared memory used (mostly by tmpfs). [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
 `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
