@@ -40,6 +40,7 @@ groups:
     brief: "The number of spans in the queue of a given instance of an SDK span processor."
     note: |
       Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+      Implementations SHOULD use an asynchronous `UpDownCounter` so the current queue size is observed at collection time regardless of `MeterProvider` configuration timing.
     instrument: updowncounter
     unit: "{span}"
     attributes:
@@ -56,6 +57,7 @@ groups:
     brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold."
     note: |
       Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+      Implementations SHOULD use an asynchronous `UpDownCounter` so the capacity is observed at every collection regardless of `MeterProvider` configuration timing.
     instrument: updowncounter
     unit: "{span}"
     attributes:
@@ -175,6 +177,7 @@ groups:
     brief: "The number of log records in the queue of a given instance of an SDK log processor."
     note: |
       Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+      Implementations SHOULD use an asynchronous `UpDownCounter` so the current queue size is observed at collection time regardless of `MeterProvider` configuration timing.
     instrument: updowncounter
     unit: "{log_record}"
     attributes:
@@ -191,6 +194,7 @@ groups:
     brief: "The maximum number of log records the queue of a given instance of an SDK log processor can hold."
     note: |
       Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+      Implementations SHOULD use an asynchronous `UpDownCounter` so the capacity is observed at every collection regardless of `MeterProvider` configuration timing.
     instrument: updowncounter
     unit: "{log_record}"
     attributes:
