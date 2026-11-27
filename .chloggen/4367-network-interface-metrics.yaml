@@ -1,0 +1,4 @@
+change_type: enhancement
+component: network
+note: Define common network interface metrics for bytes, packets, drops, and queue occupancy.
+issues: [4367]

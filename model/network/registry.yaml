@@ -324,6 +324,46 @@ groups:
           a port number is ambiguous without knowing the transport. For example
           different processes could be listening on TCP port 12345 and UDP port 12345.
         examples: ['tcp', 'udp']
+      - id: network.packet.addressing
+        stability: development
+        brief: The destination addressing category of the packet at the observed interface layer.
+        type:
+          members:
+            - id: unicast
+              value: 'unicast'
+              brief: The packet is addressed to a single destination.
+              stability: development
+            - id: multicast
+              value: 'multicast'
+              brief: The packet is addressed to a multicast group, not a broadcast address.
+              stability: development
+            - id: broadcast
+              value: 'broadcast'
+              brief: The packet is addressed to a broadcast address.
+              stability: development
+        examples: ['unicast', 'multicast', 'broadcast']
+      - id: network.packet.drop.reason
+        stability: development
+        brief: The reason a network packet was dropped.
+        type:
+          members:
+            - id: discarded
+              value: 'discarded'
+              brief: The packet was deliberately discarded for a reason other than a packet error or an unsupported protocol.
+              stability: development
+            - id: error
+              value: 'error'
+              brief: A detected error prevented the packet from being transmitted or delivered to the next layer.
+              stability: development
+            - id: unknown_protocol
+              value: 'unknown_protocol'
+              brief: The received packet was discarded because the protocol was unknown or unsupported.
+              stability: development
+            - id: unknown
+              value: 'unknown'
+              brief: The source does not identify the reason for the drop.
+              stability: development
+        examples: ['discarded', 'error', 'unknown_protocol', 'unknown']
       - id: network.type
         stability: stable
         type:

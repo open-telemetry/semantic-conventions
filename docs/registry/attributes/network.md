@@ -29,6 +29,8 @@ These attributes may be used for any network related operation.
 | <a id="network-local-mac-address" href="#network-local-mac-address">`network.local.mac.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Local Media Access Control (MAC) address of the network connection. [4] | `00-00-5E-00-53-23` |
 | <a id="network-local-port" href="#network-local-port">`network.local.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Local port number of the network connection. | `65123` |
 | <a id="network-local-prefix" href="#network-local-prefix">`network.local.prefix`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP prefix associated with the local IP address, in CIDR notation. [5] | `192.0.2.0/24`; `2001:db8::/32` |
+| <a id="network-packet-addressing" href="#network-packet-addressing">`network.packet.addressing`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The destination addressing category of the packet at the observed interface layer. | `unicast`; `multicast`; `broadcast` [(see more)](#network-packet-addressing-values) |
+| <a id="network-packet-drop-reason" href="#network-packet-drop-reason">`network.packet.drop.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason a network packet was dropped. | `discarded`; `error`; `unknown_protocol`; `unknown` [(see more)](#network-packet-drop-reason-values) |
 | <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | <a id="network-peer-as-number" href="#network-peer-as-number">`network.peer.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address. [6] | `64496`; `15169` |
 | <a id="network-peer-as-organization" href="#network-peer-as-organization">`network.peer.as.organization`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the autonomous system of the peer IP address. [7] | `Example Networks Inc.`; `Google LLC` |
@@ -202,6 +204,31 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | --- | --- | --- |
 | `receive` | receive | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `transmit` | transmit | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+
+---
+
+<a id="network-packet-addressing-values"></a>
+
+`network.packet.addressing` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `broadcast` | The packet is addressed to a broadcast address. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `multicast` | The packet is addressed to a multicast group, not a broadcast address. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unicast` | The packet is addressed to a single destination. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+<a id="network-packet-drop-reason-values"></a>
+
+`network.packet.drop.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `discarded` | The packet was deliberately discarded for a reason other than a packet error or an unsupported protocol. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `error` | A detected error prevented the packet from being transmitted or delivered to the next layer. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | The source does not identify the reason for the drop. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown_protocol` | The received packet was discarded because the protocol was unknown or unsupported. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
