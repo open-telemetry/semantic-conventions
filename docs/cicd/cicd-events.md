@@ -213,10 +213,11 @@ SHOULD set the severity to INFO (severity number 9) when recording this
 event.
 
 Besides the attributes listed below, the event MAY carry the span's other
-attributes, with unchanged keys and values.
+attributes, with the same keys and values as on the span.
 
 The pipeline run's identity comes from the Resource (the `cicd.pipeline`
-and `cicd.pipeline.run` entities), as it does for the span.
+and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+for the span.
 
 See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
@@ -272,9 +273,10 @@ span's. Its timestamp is the time the event was emitted. It SHOULD be
 later than the timestamp of the previous lifecycle event for the same
 span.
 
-The event SHOULD only be emitted for sampled spans. Instrumentations
-SHOULD set the severity to INFO (severity number 9) when recording this
-event.
+It is emitted while the span runs: periodically as a heartbeat, when the
+span changes, or both. The event SHOULD only be emitted for sampled
+spans. Instrumentations SHOULD set the severity to INFO (severity number
+9) when recording this event.
 
 The event SHOULD carry only what changed since the previous lifecycle
 event for the same span, including span attributes not listed below, and
@@ -286,7 +288,8 @@ unknown, never removed.
 state of the pipeline run, and consumers don't add it to the rebuilt span.
 
 The pipeline run's identity comes from the Resource (the `cicd.pipeline`
-and `cicd.pipeline.run` entities), as it does for the span.
+and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+for the span.
 
 See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
@@ -345,18 +348,20 @@ otherwise, following the
 span status is `Error`.
 
 The event MUST carry every span attribute that the producer knows, with
-unchanged keys and values, so that a consumer can build the span from
-this event alone. A producer that doesn't hold the SDK span (for example,
+the same keys and values as on the span, so that a consumer can build the
+span from this event alone, except for what only earlier events carried
+after a takeover (see the merge rules). A producer that doesn't hold the SDK span (for example,
 a CI/CD controller that restarted while the pipeline run was running) MUST
-still provide the attributes required below, and may not know the span's
+still provide the attributes required below, and might not know the span's
 other attributes that were set before it took over. Consumers keep those
-from earlier lifecycle events of the same span. Such a producer MUST NOT
-set `cicd.span.parent.id` to any other value than the parent span ID the
-span started with, for example when the parent span was re-created after
-the restart.
+from earlier lifecycle events of the same span. Even if the parent span
+was re-created after the restart, such a producer MUST NOT set
+`cicd.span.parent.id` to any other value than the parent span ID the span
+started with.
 
 The pipeline run's identity comes from the Resource (the `cicd.pipeline`
-and `cicd.pipeline.run` entities), as it does for the span.
+and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+for the span.
 
 See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
@@ -478,7 +483,11 @@ SHOULD set the severity to INFO (severity number 9) when recording this
 event.
 
 Besides the attributes listed below, the event MAY carry the span's other
-attributes, with unchanged keys and values.
+attributes, with the same keys and values as on the span.
+
+The pipeline run's identity comes from the Resource (the `cicd.pipeline`
+and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+for the span. The task run's identity comes from the attributes below.
 
 See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
@@ -526,15 +535,21 @@ span's. Its timestamp is the time the event was emitted. It SHOULD be
 later than the timestamp of the previous lifecycle event for the same
 span.
 
-The event SHOULD only be emitted for sampled spans. Instrumentations
-SHOULD set the severity to INFO (severity number 9) when recording this
-event.
+It is emitted while the span runs: periodically as a heartbeat, when the
+span changes, or both. The event SHOULD only be emitted for sampled
+spans. Instrumentations SHOULD set the severity to INFO (severity number
+9) when recording this event.
 
 The event SHOULD carry only what changed since the previous lifecycle
 event for the same span, including span attributes not listed below, and
 MAY repeat unchanged values, for example after the producer restarted. A
 heartbeat carries no attributes. A missing attribute means unchanged or
 unknown, never removed.
+
+The pipeline run's identity comes from the Resource (the `cicd.pipeline`
+and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+for the span. The task run's identity comes from the task attributes on
+`started` and `ended`.
 
 See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
@@ -578,15 +593,20 @@ otherwise, following the
 span status is `Error`.
 
 The event MUST carry every span attribute that the producer knows, with
-unchanged keys and values, so that a consumer can build the span from
-this event alone. A producer that doesn't hold the SDK span (for example,
+the same keys and values as on the span, so that a consumer can build the
+span from this event alone, except for what only earlier events carried
+after a takeover (see the merge rules). A producer that doesn't hold the SDK span (for example,
 a CI/CD controller that restarted while the task run was running) MUST
-still provide the attributes required below, and may not know the span's
+still provide the attributes required below, and might not know the span's
 other attributes that were set before it took over. Consumers keep those
-from earlier lifecycle events of the same span. Such a producer MUST NOT
-set `cicd.span.parent.id` to any other value than the parent span ID the
-span started with, for example when the parent span was re-created after
-the restart.
+from earlier lifecycle events of the same span. Even if the parent span
+was re-created after the restart, such a producer MUST NOT set
+`cicd.span.parent.id` to any other value than the parent span ID the span
+started with.
+
+The pipeline run's identity comes from the Resource (the `cicd.pipeline`
+and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+for the span. The task run's identity comes from the attributes below.
 
 See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
 consumers combine the lifecycle events of a span.
