@@ -136,7 +136,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The ratio of Pod CPU usage to its current CPU limit."
     entity_associations:
       - k8s.pod
@@ -192,7 +192,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The ratio of Pod CPU usage to its current CPU request."
     entity_associations:
       - k8s.pod
@@ -373,7 +373,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The ratio of Pod memory working set to its current memory limit."
     entity_associations:
       - k8s.pod
@@ -391,7 +391,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The ratio of Pod memory working set to its current memory request."
     entity_associations:
       - k8s.pod
@@ -1738,7 +1738,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The ratio of container CPU usage to its current CPU limit."
     entity_associations:
       - k8s.container
@@ -1791,7 +1791,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The ratio of container CPU usage to its current CPU request."
     entity_associations:
       - k8s.container
@@ -1845,7 +1845,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The ratio of container memory working set to its current memory limit."
     entity_associations:
       - k8s.container
@@ -1899,7 +1899,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The ratio of container memory working set to its current memory request."
     entity_associations:
       - k8s.container
