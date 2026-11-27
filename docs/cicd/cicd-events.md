@@ -198,9 +198,9 @@ The table shows what rules 1 to 4 mean for an `ended` event:
 
 A consumer MAY wait for a grace period after `ended` arrives before it emits
 the span, so that events delayed in transit, for example by an export retry,
-are still merged. Events that arrive after the span was emitted are dropped, so
-they can only lose attributes, or the parent span ID, that `ended` didn't carry
-(rule 4).
+are still merged. Events that arrive after the span was emitted are dropped. If
+the span was emitted after `ended`, they can only lose attributes, or the parent
+span ID, that `ended` didn't carry (rule 4).
 
 If `ended` doesn't arrive, for example because the producer stopped and no
 takeover followed, a consumer can stop waiting and emit the span without it, as
@@ -735,9 +735,10 @@ discussion. Still open:
   event's instrumentation scope is the span's.
 - Which Resource a rebuilt span gets when `ended` comes from a different process
   than `started`, for example after a restart.
-- How long a consumer waits for `ended` before it treats a span as abandoned, how
-  long the grace period after `ended` is, and whether `started` should announce
-  the heartbeat interval.
+- How long a consumer waits for `ended` before it treats a span as abandoned,
+  and which end time and status an abandoned span gets.
+- How long the grace period after `ended` is, and whether `started` should
+  announce the heartbeat interval.
 - What a consumer does with a pipeline run span that was re-created after a
   restart: its earlier pipeline task run spans keep the original run span as
   their parent.
