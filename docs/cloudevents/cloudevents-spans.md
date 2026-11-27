@@ -33,13 +33,18 @@ document.
 
 ## Conventions
 
-CloudEvent-specific instrumentations SHOULD follow the span structure described in
-the [Semantic Conventions for Messaging Spans](../messaging/messaging-spans.md).
+CloudEvent-specific instrumentations SHOULD:
 
-If CloudEvents are instrumented independently of the above conventions,
-instrumentations can rely on the
-[CloudEvents Distributed Tracing Extension](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/extensions/distributed-tracing.md)
-as means to propagate the trace context.
+- instrument the transport protocol when the transport protocol (i.e `http`, `rabbitmq`)
+is not already instrumented, following
+the [Semantic Conventions for Messaging Spans](../messaging/messaging-spans.md) or
+[Semantic Conventions for HTTP Spans](../http/http-spans.md).
+- extend/enrich the transport span by
+  - adding the attributes listed below directly to the span when all events in the payload share the same event field value
+  - adding links to the producer/client span with the link containing the attributes which were not added via previous item/step (does not apply to send/create spans)
+
+The [CloudEvents Distributed Tracing Extension](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/extensions/distributed-tracing.md)
+defines a transport agnostic manner to propagate the trace context.
 
 ## Span attributes
 
