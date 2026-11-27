@@ -226,18 +226,12 @@ consumers combine the lifecycle events of a span.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the span that a CI/CD span lifecycle event reports on. [1] | `RUN Build and Test` |
-| [`cicd.span.parent.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. [3] | `b7ad6b7169203331` |
-| [`cicd.span.trace_state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the span's TraceState is not empty. | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. [4] | `ot=th:8` |
+| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the span that a CI/CD span lifecycle event reports on. | `RUN Build and Test`; `Go Build` |
+| [`cicd.span.parent.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. | `b7ad6b7169203331` |
+| [`cicd.span.trace_state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the span's TraceState is not empty. | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. | `ot=th:8` |
 | [`cicd.pipeline.action.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` [(see more)](#cicd-pipeline-action-name-values) |
 
-**[1] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
-
-**[2] `cicd.span.parent.id`:** If the span has a parent and the producer knows the parent span ID the span started with.
-
-**[3] `cicd.span.parent.id`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
-
-**[4] `cicd.span.trace_state`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+**[1] `cicd.span.parent.id`:** If the span has a parent and the producer knows the parent span ID the span started with.
 
 ---
 
@@ -299,13 +293,11 @@ consumers combine the lifecycle events of a span.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` [(see more)](#cicd-pipeline-run-state-values) |
-| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The name of the span that a CI/CD span lifecycle event reports on. [3] | `RUN Build and Test` |
+| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The name of the span that a CI/CD span lifecycle event reports on. | `RUN Build and Test`; `Go Build` |
 
 **[1] `cicd.pipeline.run.state`:** If the pipeline run state changed since the previous lifecycle event for the same span.
 
 **[2] `cicd.span.name`:** If the span name changed since the previous lifecycle event for the same span.
-
-**[3] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
 
 ---
 
@@ -371,26 +363,20 @@ consumers combine the lifecycle events of a span.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skip` [(see more)](#cicd-pipeline-result-values) |
-| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the span that a CI/CD span lifecycle event reports on. [1] | `RUN Build and Test` |
-| [`cicd.span.start_time`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The start time of the span that a CI/CD span lifecycle event reports on, in nanoseconds since the UNIX epoch. [2] | `1763000000000000000` |
+| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the span that a CI/CD span lifecycle event reports on. | `RUN Build and Test`; `Go Build` |
+| [`cicd.span.start_time`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The start time of the span that a CI/CD span lifecycle event reports on, in nanoseconds since the UNIX epoch. [1] | `1763000000000000000` |
 | [`cicd.pipeline.action.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If set on the span. | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` [(see more)](#cicd-pipeline-action-name-values) |
-| [`cicd.span.parent.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. [4] | `b7ad6b7169203331` |
-| [`cicd.span.trace_state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the span's TraceState is not empty. | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. [5] | `ot=th:8` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the pipeline result is `failure` or `error` | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`cicd.span.parent.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. | `b7ad6b7169203331` |
+| [`cicd.span.trace_state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the span's TraceState is not empty. | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. | `ot=th:8` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the pipeline result is `failure` or `error` | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`otel.status_code`](/docs/registry/attributes/otel.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the span status is not `UNSET`. | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK`; `ERROR` [(see more)](#otel-status-code-values) |
-| [`otel.status_description`](/docs/registry/attributes/otel.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [7] | string | Description of the Status if it has a value, otherwise not set. | `resource not found` |
+| [`otel.status_description`](/docs/registry/attributes/otel.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | Description of the Status if it has a value, otherwise not set. | `resource not found` |
 
-**[1] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+**[1] `cicd.span.start_time`:** It carries the span's [`StartTimestamp`](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp), so it uses the same representation, nanoseconds since the UNIX epoch, instead of an ISO 8601 string.
 
-**[2] `cicd.span.start_time`:** This attribute is only meant for CI/CD span lifecycle events, not for spans. It carries the span's [`StartTimestamp`](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp), so it uses the same representation, nanoseconds since the UNIX epoch, instead of an ISO 8601 string.
+**[2] `cicd.span.parent.id`:** If the span has a parent and the producer knows the parent span ID the span started with.
 
-**[3] `cicd.span.parent.id`:** If the span has a parent and the producer knows the parent span ID the span started with.
-
-**[4] `cicd.span.parent.id`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
-
-**[5] `cicd.span.trace_state`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
-
-**[6] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[3] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -416,7 +402,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[7] `otel.status_description`:** If the span status code is `ERROR` and the status has a description.
+**[4] `otel.status_description`:** If the span status code is `ERROR` and the status has a description.
 
 ---
 
@@ -499,19 +485,13 @@ consumers combine the lifecycle events of a span.
 | [`cicd.pipeline.task.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures. | `Run GoLang Linter`; `Go Build`; `go-test`; `deploy_binary` |
 | [`cicd.pipeline.task.run.id`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The unique identifier of a task run within a pipeline. [1] | `12097` |
 | [`cicd.pipeline.task.run.url.full`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` |
-| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the span that a CI/CD span lifecycle event reports on. [2] | `RUN Build and Test` |
-| [`cicd.span.parent.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. [4] | `b7ad6b7169203331` |
-| [`cicd.span.trace_state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the span's TraceState is not empty. | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. [5] | `ot=th:8` |
+| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the span that a CI/CD span lifecycle event reports on. | `RUN Build and Test`; `Go Build` |
+| [`cicd.span.parent.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. | `b7ad6b7169203331` |
+| [`cicd.span.trace_state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the span's TraceState is not empty. | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. | `ot=th:8` |
 
 **[1] `cicd.pipeline.task.run.id`:** For a given pipeline run and task, the `cicd.pipeline.task.run.id` MUST be unique within that run. For the same task across different runs of the same pipeline, the `cicd.pipeline.task.run.id` MAY remain the same, enabling correlation of `cicd.pipeline.task.run.result` values across multiple pipeline runs.
 
-**[2] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
-
-**[3] `cicd.span.parent.id`:** If the span has a parent and the producer knows the parent span ID the span started with.
-
-**[4] `cicd.span.parent.id`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
-
-**[5] `cicd.span.trace_state`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+**[2] `cicd.span.parent.id`:** If the span has a parent and the producer knows the parent span ID the span started with.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -558,11 +538,9 @@ consumers combine the lifecycle events of a span.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the span that a CI/CD span lifecycle event reports on. [2] | `RUN Build and Test` |
+| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the span that a CI/CD span lifecycle event reports on. | `RUN Build and Test`; `Go Build` |
 
 **[1] `cicd.span.name`:** If the span name changed since the previous lifecycle event for the same span.
-
-**[2] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -619,27 +597,21 @@ consumers combine the lifecycle events of a span.
 | [`cicd.pipeline.task.run.id`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The unique identifier of a task run within a pipeline. [1] | `12097` |
 | [`cicd.pipeline.task.run.result`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The result of a task run. | `success`; `failure`; `timeout`; `skip` [(see more)](#cicd-pipeline-task-run-result-values) |
 | [`cicd.pipeline.task.run.url.full`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` |
-| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the span that a CI/CD span lifecycle event reports on. [2] | `RUN Build and Test` |
-| [`cicd.span.start_time`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The start time of the span that a CI/CD span lifecycle event reports on, in nanoseconds since the UNIX epoch. [3] | `1763000000000000000` |
-| [`cicd.span.parent.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. [5] | `b7ad6b7169203331` |
-| [`cicd.span.trace_state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the span's TraceState is not empty. | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. [6] | `ot=th:8` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the task result is `failure` or `error` | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`cicd.span.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the span that a CI/CD span lifecycle event reports on. | `RUN Build and Test`; `Go Build` |
+| [`cicd.span.start_time`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The start time of the span that a CI/CD span lifecycle event reports on, in nanoseconds since the UNIX epoch. [2] | `1763000000000000000` |
+| [`cicd.span.parent.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. | `b7ad6b7169203331` |
+| [`cicd.span.trace_state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the span's TraceState is not empty. | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. | `ot=th:8` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the task result is `failure` or `error` | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`otel.status_code`](/docs/registry/attributes/otel.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the span status is not `UNSET`. | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK`; `ERROR` [(see more)](#otel-status-code-values) |
-| [`otel.status_description`](/docs/registry/attributes/otel.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [8] | string | Description of the Status if it has a value, otherwise not set. | `resource not found` |
+| [`otel.status_description`](/docs/registry/attributes/otel.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | string | Description of the Status if it has a value, otherwise not set. | `resource not found` |
 
 **[1] `cicd.pipeline.task.run.id`:** For a given pipeline run and task, the `cicd.pipeline.task.run.id` MUST be unique within that run. For the same task across different runs of the same pipeline, the `cicd.pipeline.task.run.id` MAY remain the same, enabling correlation of `cicd.pipeline.task.run.result` values across multiple pipeline runs.
 
-**[2] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+**[2] `cicd.span.start_time`:** It carries the span's [`StartTimestamp`](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp), so it uses the same representation, nanoseconds since the UNIX epoch, instead of an ISO 8601 string.
 
-**[3] `cicd.span.start_time`:** This attribute is only meant for CI/CD span lifecycle events, not for spans. It carries the span's [`StartTimestamp`](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp), so it uses the same representation, nanoseconds since the UNIX epoch, instead of an ISO 8601 string.
+**[3] `cicd.span.parent.id`:** If the span has a parent and the producer knows the parent span ID the span started with.
 
-**[4] `cicd.span.parent.id`:** If the span has a parent and the producer knows the parent span ID the span started with.
-
-**[5] `cicd.span.parent.id`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
-
-**[6] `cicd.span.trace_state`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
-
-**[7] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[4] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -665,7 +637,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[8] `otel.status_description`:** If the span status code is `ERROR` and the status has a description.
+**[5] `otel.status_description`:** If the span status code is `ERROR` and the status has a description.
 
 ---
 

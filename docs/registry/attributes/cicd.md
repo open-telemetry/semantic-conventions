@@ -121,15 +121,9 @@ This group describes the span that a CI/CD span lifecycle event reports on. Thes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="cicd-span-name" href="#cicd-span-name">`cicd.span.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the span that a CI/CD span lifecycle event reports on. [3] | `RUN Build and Test` |
-| <a id="cicd-span-parent-id" href="#cicd-span-parent-id">`cicd.span.parent.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. [4] | `b7ad6b7169203331` |
-| <a id="cicd-span-start-time" href="#cicd-span-start-time">`cicd.span.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The start time of the span that a CI/CD span lifecycle event reports on, in nanoseconds since the UNIX epoch. [5] | `1763000000000000000` |
-| <a id="cicd-span-trace-state" href="#cicd-span-trace-state">`cicd.span.trace_state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. [6] | `ot=th:8` |
+| <a id="cicd-span-name" href="#cicd-span-name">`cicd.span.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the span that a CI/CD span lifecycle event reports on. | `RUN Build and Test`; `Go Build` |
+| <a id="cicd-span-parent-id" href="#cicd-span-parent-id">`cicd.span.parent.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The span ID of the parent of the span that a CI/CD span lifecycle event reports on, as 16 lowercase hex characters. | `b7ad6b7169203331` |
+| <a id="cicd-span-start-time" href="#cicd-span-start-time">`cicd.span.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The start time of the span that a CI/CD span lifecycle event reports on, in nanoseconds since the UNIX epoch. [3] | `1763000000000000000` |
+| <a id="cicd-span-trace-state" href="#cicd-span-trace-state">`cicd.span.trace_state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The W3C `tracestate` of the span that a CI/CD span lifecycle event reports on, in header format. | `ot=th:8` |
 
-**[3] `cicd.span.name`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
-
-**[4] `cicd.span.parent.id`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
-
-**[5] `cicd.span.start_time`:** This attribute is only meant for CI/CD span lifecycle events, not for spans. It carries the span's [`StartTimestamp`](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp), so it uses the same representation, nanoseconds since the UNIX epoch, instead of an ISO 8601 string.
-
-**[6] `cicd.span.trace_state`:** This attribute is only meant for CI/CD span lifecycle events, not for spans.
+**[3] `cicd.span.start_time`:** It carries the span's [`StartTimestamp`](https://opentelemetry.io/docs/specs/otel/trace/data-model/#field-starttimestamp), so it uses the same representation, nanoseconds since the UNIX epoch, instead of an ISO 8601 string.
