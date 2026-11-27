@@ -364,7 +364,9 @@ Define which additional properties this span needs to be useful:
     Only absolutely essential (and always available) attributes can be `required`.
     Attributes that may include sensitive information, are expensive to obtain,
     or are verbose, should be `opt-in`.
-  - Update the brief and note to tailor the attribute definition to that operation.
+  - Update the brief and note to tailor the attribute definition to that operation
+    when its meaning or usage differs from the registry definition. Don't repeat
+    the registry `brief`, `note`, or `examples` unchanged.
 
 #### Defining metrics
 
