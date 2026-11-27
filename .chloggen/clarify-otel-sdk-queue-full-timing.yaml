@@ -1,0 +1,6 @@
+change_type: enhancement
+component: otel
+note: >
+  Require `queue_full` drops on `otel.sdk.processor.{span,log}.processed` to be recorded synchronously when the drop occurs.
+issues: [3954]
+subtext:
