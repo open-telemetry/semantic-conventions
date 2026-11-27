@@ -24,6 +24,7 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
     - [Defining metrics](#defining-metrics)
     - [Defining entities](#defining-entities)
     - [Defining events](#defining-events)
+- [Modifying conventions](#modifying-conventions)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
   - [Migration plan](#migration-plan)
 
@@ -378,17 +379,30 @@ Follow the [Entity Modeling Guide](resource-and-entities.md).
 
 Follow the [Semantic conventions for events](/docs/general/events.md).
 
+## Modifying conventions
+
+Check the proposed change against the [stability guarantees][stability].
+Reuse existing attributes when their meaning matches, and
+[prototype](#prototyping) non-trivial changes in the relevant instrumentations.
+
+If a change requires users to migrate, include a [migration plan](#migration-plan).
+See [Discuss the change](/CONTRIBUTING.md#discuss-the-change) for the issue and
+pull request workflow. [Check new convention](/CONTRIBUTING.md#3-check-new-convention)
+explains how to use the `deprecated` field and run `make check-policies`.
+
 ## Stabilizing existing conventions
 
 - All conventions MUST be defined in YAML before they can be declared stable
 - Conventions that are not used by instrumentations MUST NOT be declared stable
 
-TODO:
-
-- migration plan
-
 ### Migration plan
 
-TODO
+When changing a convention that instrumentations or consumers already use,
+explain how they can move to the new convention. Name each deprecated
+definition and its replacement and show what changes in the emitted telemetry.
+Describe the migration in the issue and in the
+[changelog entry](/CONTRIBUTING.md#5-changelog) so users can find it when the
+change is released.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
+[stability]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability

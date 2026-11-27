@@ -16,6 +16,7 @@ requirements and recommendations.
   - [Which semantic conventions belong in this repository](#which-semantic-conventions-belong-in-this-repository)
   - [Suggesting conventions for a new area](#suggesting-conventions-for-a-new-area)
   - [Prerequisites](#prerequisites)
+  - [Discuss the change](#discuss-the-change)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
   - [2. Update the Markdown files](#2-update-the-markdown-files)
@@ -147,6 +148,20 @@ environment configured:
 - Lastly, ensure you have either [Docker](https://www.docker.com) or [Podman](https://podman.io) installed and
   configured in such a way that the Makefile can execute the `docker` command.
 
+### Discuss the change
+
+For changes to an existing convention, search existing issues and pull requests
+first, then open a [change proposal](https://github.com/open-telemetry/semantic-conventions/issues/new?template=change_proposal.yaml).
+Include examples of the current and proposed telemetry. Check the area's status
+and owners in [Semantic Convention Areas](AREAS.md).
+
+Before opening a pull request, check that the linked issue has the
+`triage:accepted:ready` or `triage:accepted:ready-with-sig`
+[label](issue-management.md#triageaccepted),
+unless the pull request qualifies for an [exception](issue-management.md#exceptions).
+If triage asks for more information or rejects the proposal, address the feedback
+in the issue before opening a pull request.
+
 ### 1. Modify the YAML model
 
 Refer to the
@@ -243,8 +258,10 @@ For title and heading capitalization, follow the
 Semantic conventions are validated for name formatting and backward compatibility with last released versions.
 Check out [policy checks](./policies/README.md) for details.
 
-Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
-It applies to stable and unstable conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
+When phasing out attributes, metrics, or enum members, keep their definitions
+in the YAML model and mark them with the `deprecated` field. This applies to
+stable and unstable conventions and prevents breaking changes in libraries
+generated from the model.
 
 You can run backward compatibility check (along with other policies) in all YAML files with the following command:
 
@@ -316,6 +333,14 @@ During the release process, all `./.chloggen/*.yaml` files are transcribed into
 Alternately, copy `./.chloggen/TEMPLATE.yaml`, or just create your file from scratch.
 
 ### 5. Getting your PR merged
+
+Link the issue and any applicable prototype or instrumentation in the pull
+request template. Answer review questions with use cases or prototype results.
+If you revise the model during review, regenerate the Markdown and rerun
+`make check` before requesting another review.
+
+If the pull request is closed, check the closing comment or label for the reason
+and follow up in the issue before opening a new pull request.
 
 A PR (pull request) is considered to be **ready to merge** when:
 
