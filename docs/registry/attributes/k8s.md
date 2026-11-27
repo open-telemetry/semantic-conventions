@@ -60,14 +60,14 @@ Kubernetes resource attributes.
 | <a id="k8s-node-uid" href="#k8s-node-uid">`k8s.node.uid`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` |
 | <a id="k8s-persistentvolume-annotation" href="#k8s-persistentvolume-annotation">`k8s.persistentvolume.annotation.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The annotation placed on the PersistentVolume, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [24] | `kubernetes.io/aws-ebs`; `` |
 | <a id="k8s-persistentvolume-label" href="#k8s-persistentvolume-label">`k8s.persistentvolume.label.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The label placed on the PersistentVolume, the `<key>` being the label name, the value being the label value, even if the value is empty. [25] | `ssd`; `` |
-| <a id="k8s-persistentvolume-name" href="#k8s-persistentvolume-name">`k8s.persistentvolume.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the PersistentVolume. | `pv-data-01` |
+| <a id="k8s-persistentvolume-name" href="#k8s-persistentvolume-name">`k8s.persistentvolume.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the PersistentVolume. | `pv-data-01` |
 | <a id="k8s-persistentvolume-reclaim-policy" href="#k8s-persistentvolume-reclaim-policy">`k8s.persistentvolume.reclaim_policy`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reclaim policy of the PersistentVolume. [26] | `Delete`; `Retain`; `Recycle` [(see more)](#k8s-persistentvolume-reclaim-policy-values) |
 | <a id="k8s-persistentvolume-status-phase" href="#k8s-persistentvolume-status-phase">`k8s.persistentvolume.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase of the PersistentVolume. [27] | `Pending`; `Available`; `Bound`; `Released`; `Failed` [(see more)](#k8s-persistentvolume-status-phase-values) |
-| <a id="k8s-persistentvolume-type" href="#k8s-persistentvolume-type">`k8s.persistentvolume.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type (volume source) of the PersistentVolume. [28] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| <a id="k8s-persistentvolume-type" href="#k8s-persistentvolume-type">`k8s.persistentvolume.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type (volume source) of the PersistentVolume. [28] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
 | <a id="k8s-persistentvolume-uid" href="#k8s-persistentvolume-uid">`k8s.persistentvolume.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the PersistentVolume. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-persistentvolumeclaim-annotation" href="#k8s-persistentvolumeclaim-annotation">`k8s.persistentvolumeclaim.annotation.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The annotation placed on the PersistentVolumeClaim, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [29] | `kubernetes.io/aws-ebs`; `` |
 | <a id="k8s-persistentvolumeclaim-label" href="#k8s-persistentvolumeclaim-label">`k8s.persistentvolumeclaim.label.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The label placed on the PersistentVolumeClaim, the `<key>` being the label name, the value being the label value, even if the value is empty. [30] | `my-app`; `` |
-| <a id="k8s-persistentvolumeclaim-name" href="#k8s-persistentvolumeclaim-name">`k8s.persistentvolumeclaim.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| <a id="k8s-persistentvolumeclaim-name" href="#k8s-persistentvolumeclaim-name">`k8s.persistentvolumeclaim.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
 | <a id="k8s-persistentvolumeclaim-status-phase" href="#k8s-persistentvolumeclaim-status-phase">`k8s.persistentvolumeclaim.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase of the PersistentVolumeClaim. [31] | `Pending`; `Bound`; `Lost` [(see more)](#k8s-persistentvolumeclaim-status-phase-values) |
 | <a id="k8s-persistentvolumeclaim-uid" href="#k8s-persistentvolumeclaim-uid">`k8s.persistentvolumeclaim.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the PersistentVolumeClaim. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-pod-annotation" href="#k8s-pod-annotation">`k8s.pod.annotation.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [32] | `true`; `x64`; `` |
@@ -79,8 +79,8 @@ Kubernetes resource attributes.
 | <a id="k8s-pod-status-phase" href="#k8s-pod-status-phase">`k8s.pod.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Pending`; `Running` [(see more)](#k8s-pod-status-phase-values) |
 | <a id="k8s-pod-status-reason" href="#k8s-pod-status-reason">`k8s.pod.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Evicted`; `NodeAffinity` [(see more)](#k8s-pod-status-reason-values) |
 | <a id="k8s-pod-uid" href="#k8s-pod-uid">`k8s.pod.uid`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| <a id="k8s-pod-volume-name" href="#k8s-pod-volume-name">`k8s.pod.volume.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the K8s Pod volume. | `volume0` |
-| <a id="k8s-pod-volume-type" href="#k8s-pod-volume-type">`k8s.pod.volume.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the K8s Pod volume. [37] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
+| <a id="k8s-pod-volume-name" href="#k8s-pod-volume-name">`k8s.pod.volume.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the K8s Pod volume. | `volume0` |
+| <a id="k8s-pod-volume-type" href="#k8s-pod-volume-type">`k8s.pod.volume.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the K8s Pod volume. [37] | `emptyDir`; `persistentVolumeClaim` [(see more)](#k8s-pod-volume-type-values) |
 | <a id="k8s-replicaset-annotation" href="#k8s-replicaset-annotation">`k8s.replicaset.annotation.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [38] | `0`; `` |
 | <a id="k8s-replicaset-label" href="#k8s-replicaset-label">`k8s.replicaset.label.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [39] | `guestbook`; `` |
 | <a id="k8s-replicaset-name" href="#k8s-replicaset-name">`k8s.replicaset.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the ReplicaSet. | `opentelemetry` |
@@ -544,12 +544,12 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -599,11 +599,12 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/reference/storage/volume-types/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 

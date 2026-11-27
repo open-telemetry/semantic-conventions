@@ -317,12 +317,12 @@ conflict.
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.persistentvolume.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The UID of the PersistentVolume. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the PersistentVolume. | `pv-data-01` |
+| Description | [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of the PersistentVolume. | `pv-data-01` |
 | Description | [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 | Description | [`k8s.persistentvolume.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the PersistentVolume, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [19] | `kubernetes.io/aws-ebs`; `` |
 | Description | [`k8s.persistentvolume.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the PersistentVolume, the `<key>` being the label name, the value being the label value, even if the value is empty. [20] | `ssd`; `` |
 | Description | [`k8s.persistentvolume.reclaim_policy`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The reclaim policy of the PersistentVolume. [21] | `Delete`; `Retain`; `Recycle` [(see more)](#k8s-persistentvolume-reclaim-policy-values) |
-| Description | [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [22] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
+| Description | [`k8s.persistentvolume.type`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The type (volume source) of the PersistentVolume. [22] | `csi`; `local` [(see more)](#k8s-persistentvolume-type-values) |
 
 **[19] `k8s.persistentvolume.annotation.<key>`:** Examples:
 
@@ -367,12 +367,12 @@ When another volume source is used, the exact field name as reported by the Kube
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `csi` | A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `fc` | A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `hostPath` | A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `iscsi` | An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `nfs` | An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ## K8s Persistentvolumeclaim
 
@@ -387,7 +387,7 @@ When another volume source is used, the exact field name as reported by the Kube
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.persistentvolumeclaim.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The UID of the PersistentVolumeClaim. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| Description | [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
 | Description | [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 | Description | [`k8s.persistentvolumeclaim.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the PersistentVolumeClaim, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [23] | `kubernetes.io/aws-ebs`; `` |
 | Description | [`k8s.persistentvolumeclaim.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the PersistentVolumeClaim, the `<key>` being the label name, the value being the label value, even if the value is empty. [24] | `my-app`; `` |

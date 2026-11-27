@@ -577,12 +577,12 @@ groups:
         examples: [ '4', '' ]
       - id: k8s.pod.volume.name
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
           The name of the K8s Pod volume.
         examples: [ 'volume0' ]
       - id: k8s.pod.volume.type
-        stability: development
+        stability: release_candidate
         brief: >
           The type of the K8s Pod volume.
         note: |
@@ -594,23 +594,27 @@ groups:
             - id: persistent_volume_claim
               value: 'persistentVolumeClaim'
               brief: "A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
-              stability: development
+              stability: release_candidate
             - id: config_map
               value: 'configMap'
               brief: "A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
-              stability: development
+              stability: release_candidate
             - id: downward_api
               value: 'downwardAPI'
               brief: "A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
-              stability: development
+              stability: release_candidate
             - id: empty_dir
               value: 'emptyDir'
               brief: "An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
-              stability: development
+              stability: release_candidate
+            - id: host_path
+              value: 'hostPath'
+              brief: "A [hostPath](https://kubernetes.io/docs/reference/storage/volume-types/#hostpath) volume"
+              stability: release_candidate
             - id: secret
               value: 'secret'
               brief: "A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
-              stability: development
+              stability: release_candidate
             - id: local
               value: 'local'
               brief: "A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume"
@@ -1036,7 +1040,7 @@ groups:
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.persistentvolume.name
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
           The name of the PersistentVolume.
         examples: ['pv-data-01']
@@ -1089,7 +1093,7 @@ groups:
               brief: 'The volume will be retained when released from its claim.'
               stability: development
       - id: k8s.persistentvolume.type
-        stability: development
+        stability: release_candidate
         brief: >
           The type (volume source) of the PersistentVolume.
         note: |
@@ -1104,27 +1108,27 @@ groups:
             - id: csi
               value: 'csi'
               brief: "A [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) volume"
-              stability: development
+              stability: release_candidate
             - id: local
               value: 'local'
               brief: "A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume"
-              stability: development
+              stability: release_candidate
             - id: host_path
               value: 'hostPath'
               brief: "A [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume"
-              stability: development
+              stability: release_candidate
             - id: nfs
               value: 'nfs'
               brief: "An [nfs](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) volume"
-              stability: development
+              stability: release_candidate
             - id: iscsi
               value: 'iscsi'
               brief: "An [iscsi](https://kubernetes.io/docs/concepts/storage/volumes/#iscsi) volume"
-              stability: development
+              stability: release_candidate
             - id: fc
               value: 'fc'
               brief: "A [fibre channel](https://kubernetes.io/docs/concepts/storage/volumes/#fc) volume"
-              stability: development
+              stability: release_candidate
       - id: k8s.persistentvolume.status.phase
         stability: development
         brief: >
@@ -1165,7 +1169,7 @@ groups:
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.persistentvolumeclaim.name
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
           The name of the PersistentVolumeClaim.
         examples: ['pvc-data-01']
