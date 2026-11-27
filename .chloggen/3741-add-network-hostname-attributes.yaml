@@ -1,0 +1,6 @@
+change_type: enhancement
+component: network
+note: >-
+  Add `network.local.hostname` and `network.peer.hostname` attributes for hostnames
+  associated with local and peer network endpoints, including reverse DNS results.
+issues: [3741]
