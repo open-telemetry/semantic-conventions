@@ -1,0 +1,36 @@
+groups:
+  - id: metric.otel.span.duration
+    type: metric
+    metric_name: otel.span.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Duration of ended spans, derived from span start and end timestamps."
+    note: |
+      A span-metrics generator records exactly one measurement per ended span it observes.
+      The measured value is the span end timestamp minus the span start timestamp, in seconds.
+      If the end timestamp is earlier than the start timestamp, the generator MUST record `0`.
+
+      Throughput and error rate are derived from this histogram: the histogram count gives the
+      number of spans, and the count of measurements with `error.type` gives the number of failed
+      operations.
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: otel.span.kind
+        requirement_level: required
+      - ref: otel.status_code
+        requirement_level:
+          conditionally_required: if the span status is not `UNSET`.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the operation described by the span ended with an error.
+        note: |
+          When the span has an `error.type` attribute, the generator MUST use its value.
+          When the span status is `ERROR` and the span has no `error.type` attribute,
+          the generator SHOULD set `error.type` to `_OTHER`.
+          `error.type` MUST NOT be set when the operation succeeded.
+        examples: ["timeout", "java.net.UnknownHostException", "500", "_OTHER"]
+      - ref: otel.span.name
+        requirement_level: opt_in
