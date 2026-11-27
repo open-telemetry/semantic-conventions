@@ -102,7 +102,9 @@ events:
       The event MUST carry every span attribute that the producer knows, with
       the same keys and values as on the span, so that a consumer can build the
       span from this event alone, except for what only earlier events carried
-      after a takeover (see the merge rules). A producer that doesn't hold the SDK span (for example,
+      after a takeover (see
+      [What a rebuilt span lacks](/docs/cicd/cicd-events.md#what-a-rebuilt-span-lacks)).
+      A producer that doesn't hold the SDK span (for example,
       a CI/CD controller that restarted while the pipeline run was running) MUST
       still provide the attributes required below, and might not know the span's
       other attributes that were set before it took over. Consumers keep those
@@ -223,7 +225,9 @@ events:
       The event MUST carry every span attribute that the producer knows, with
       the same keys and values as on the span, so that a consumer can build the
       span from this event alone, except for what only earlier events carried
-      after a takeover (see the merge rules). A producer that doesn't hold the SDK span (for example,
+      after a takeover (see
+      [What a rebuilt span lacks](/docs/cicd/cicd-events.md#what-a-rebuilt-span-lacks)).
+      A producer that doesn't hold the SDK span (for example,
       a CI/CD controller that restarted while the task run was running) MUST
       still provide the attributes required below, and might not know the span's
       other attributes that were set before it took over. Consumers keep those

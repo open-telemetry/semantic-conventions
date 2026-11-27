@@ -214,8 +214,8 @@ attribute, event and link counts, so a span rebuilt from the lifecycle events
 doesn't have them.
 
 Building a span from `ended` alone gives the same span as merging all of its
-events, except after a takeover: attributes and the parent span ID that only
-earlier events carried are then missing from `ended`.
+events, with one exception: after a takeover, `ended` can lack attributes and
+the parent span ID that only earlier events carried.
 
 ### Export and duplicates
 
@@ -234,9 +234,10 @@ span filter, so this is a configuration choice, for example:
 - the [Collector `filter` processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/filterprocessor),
   dropping these spans from the trace pipeline.
 
-To rebuild a span, a consumer needs all of its lifecycle events. Deployments that
-run several consumer instances route all events of a span to the same instance,
-for example by load-balancing on the trace ID or the span ID.
+To rebuild a span with everything its earlier events carried, a consumer needs
+all of its lifecycle events. Deployments that run several consumer instances
+route all events of a span to the same instance, for example by load-balancing
+on the trace ID or the span ID.
 
 Deployments that don't rebuild spans keep the exported span, and can use the
 lifecycle events as the live status of running pipeline runs and task runs.
@@ -393,7 +394,9 @@ span status is `Error`.
 The event MUST carry every span attribute that the producer knows, with
 the same keys and values as on the span, so that a consumer can build the
 span from this event alone, except for what only earlier events carried
-after a takeover (see the merge rules). A producer that doesn't hold the SDK span (for example,
+after a takeover (see
+[What a rebuilt span lacks](/docs/cicd/cicd-events.md#what-a-rebuilt-span-lacks)).
+A producer that doesn't hold the SDK span (for example,
 a CI/CD controller that restarted while the pipeline run was running) MUST
 still provide the attributes required below, and might not know the span's
 other attributes that were set before it took over. Consumers keep those
@@ -624,7 +627,9 @@ span status is `Error`.
 The event MUST carry every span attribute that the producer knows, with
 the same keys and values as on the span, so that a consumer can build the
 span from this event alone, except for what only earlier events carried
-after a takeover (see the merge rules). A producer that doesn't hold the SDK span (for example,
+after a takeover (see
+[What a rebuilt span lacks](/docs/cicd/cicd-events.md#what-a-rebuilt-span-lacks)).
+A producer that doesn't hold the SDK span (for example,
 a CI/CD controller that restarted while the task run was running) MUST
 still provide the attributes required below, and might not know the span's
 other attributes that were set before it took over. Consumers keep those
