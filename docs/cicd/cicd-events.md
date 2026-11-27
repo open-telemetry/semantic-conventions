@@ -6,10 +6,21 @@ linkTitle: Events
 
 **Status**: [Development][DocumentStatus]
 
-This document defines lifecycle events for CI/CD spans that may run for a long time.
-They make these spans visible while they run, and let consumers rebuild a span
-that the process which started it can no longer end, for example after the
-CI/CD controller restarted.
+A span is exported only when it ends, by the process that started it. Until then
+a pipeline run that takes hours is invisible, and if that process restarts, the
+span is lost. The lifecycle events in this document report such spans while they
+run, and let a consumer rebuild them.
+
+The **producer** is the instrumentation that emits the lifecycle events, for
+example in a CI/CD controller. A **consumer**, for example a Collector component
+or a backend, uses them in one of two ways: to show the live status of running
+pipeline runs and task runs, or to rebuild the spans from the events. A
+**takeover** happens when a process that didn't start a span, for example a
+restarted CI/CD controller, emits the span's remaining lifecycle events.
+
+These events are a prototype for
+[span lifecycle events](https://github.com/open-telemetry/semantic-conventions/issues/2133);
+see [Open questions](#open-questions).
 
 <!-- START doctoc -->
 
@@ -38,19 +49,27 @@ The [pipeline run and pipeline task run spans](cicd-spans.md) may run for a long
 Instrumentation MAY offer an option, off by default, to emit the following
 lifecycle events for them:
 
-| Span type | Started | Progress | Ended |
+| Span | Started | Progress | Ended |
 | --- | --- | --- | --- |
-| `cicd.server.pipeline.run` | `cicd.server.pipeline.run.started` | `cicd.server.pipeline.run.progress` | `cicd.server.pipeline.run.ended` |
-| `cicd.pipeline.task` | `cicd.pipeline.task.started` | `cicd.pipeline.task.progress` | `cicd.pipeline.task.ended` |
+| Pipeline run (`cicd.server.pipeline.run`) | `cicd.server.pipeline.run.started` | `cicd.server.pipeline.run.progress` | `cicd.server.pipeline.run.ended` |
+| Pipeline task run (`cicd.pipeline.task`) | `cicd.pipeline.task.started` | `cicd.pipeline.task.progress` | `cicd.pipeline.task.ended` |
 
 - `started` is emitted when the span starts. It carries the span's name, parent,
-  TraceState and the attributes its definition lists, and MAY carry the span's
-  other attributes.
+  TraceState and the attributes the event's definition lists, and MAY carry the
+  span's other attributes.
 - `progress` is emitted while the span runs, periodically (a heartbeat) and/or
   when the span changes. It SHOULD carry only what changed since the previous
-  lifecycle event for the same span, and MAY repeat unchanged values.
+  lifecycle event for the same span, and MAY repeat unchanged values, for
+  example after a takeover.
 - `ended` is emitted when the span ends. It carries the span's final name,
-  attributes and status, so that a consumer can build the span from it alone.
+  status and the attributes its producer knows, so that a consumer can build the
+  span from it alone, within the limits described in
+  [What a rebuilt span lacks](#what-a-rebuilt-span-lacks).
+
+The events are [log records with an event name](/docs/general/events.md). A log
+record carries only the trace ID, span ID and trace flags of a span, so the
+other span fields travel as attributes: `cicd.span.name`, `cicd.span.parent.id`,
+`cicd.span.trace_state` and `cicd.span.start_time`.
 
 Example: a pipeline run where the controller restarts while the run is executing.
 
@@ -64,14 +83,22 @@ t9  cicd.server.pipeline.run.ended     trace=T span=S cicd.span.name="RUN build"
                                        otel.status_code=ERROR error.type=timeout
 ```
 
+The example assumes that the instrumentation sets the span status to `Error` for
+a timeout; which results do is an open question.
+
 A consumer that received all events can show the pipeline run as executing from
 `t2` on, and builds a span from `t0` to `t9` with the attributes of the `ended`
-event. A consumer that received only the `ended` event builds the same span.
+event. A consumer that received only the `ended` event builds the same span,
+because here `ended` carries everything the earlier events said about the span.
+
+Use the events in one of two ways. For live status, keep the normally exported
+span and show the lifecycle events next to it. To rebuild spans, drop the
+exported span (see [Export and duplicates](#export-and-duplicates)) and accept
+[what a rebuilt span lacks](#what-a-rebuilt-span-lacks).
 
 ## Emitting the events
 
-The option turns on all three lifecycle events of a span type together, so that
-the lifecycle events of a span always end with `ended`.
+The option MUST enable all three lifecycle events of a span type together.
 
 The lifecycle events supplement the span, they don't replace it:
 
@@ -81,47 +108,56 @@ The lifecycle events supplement the span, they don't replace it:
   (TraceId, SpanId and TraceFlags).
 - The lifecycle events SHOULD only be emitted for sampled spans, so that the
   events and the span are sampled consistently.
+- A `progress` event's timestamp SHOULD be later than that of the previous
+  lifecycle event for the same span.
 
 The span type is given by the event name, and the span kind is the one its span
 definition specifies: `SERVER` for pipeline runs and `INTERNAL` for pipeline
-task runs. The pipeline run's identity
-(`cicd.pipeline.name`, `cicd.pipeline.run.id`) comes from the Resource, through
-the `cicd.pipeline` and `cicd.pipeline.run` entities, as it does for the span.
+task runs. The pipeline run's identity (`cicd.pipeline.name`,
+`cicd.pipeline.run.id`) comes from the Resource, through the `cicd.pipeline` and
+`cicd.pipeline.run` [entities](/docs/resource/cicd.md), as it does for the span.
 
-A producer that doesn't hold the SDK span, for example a CI/CD controller that
-restarted while a pipeline run was running, emits the `progress` and `ended`
-events itself. To do that, it stores the span context (trace ID, span ID, trace
-flags and TraceState), the span's name, parent span ID and start time, and the
-attributes that `ended` requires, when the span starts, and keeps the name and
-these attributes up to date while the span runs. It stores the start time
-with the same precision as the `started` timestamp, so that
-`cicd.span.start_time` on `ended` matches it. It only sets `cicd.span.parent.id`
-on `ended` to the parent span ID from `started`, and leaves it out if it didn't
-store it; consumers then keep the parent from `started` (rule 3).
+A CI/CD controller can restart while a pipeline run is running. So that it can
+take over the span's lifecycle events, the producer saves the following when the
+span starts, in storage that survives a restart, and keeps it up to date while
+the span runs: the span context (trace ID, span ID, trace flags and
+TraceState), the span's name, parent span ID and start time, and the attributes
+that `ended` requires. It stores the start time with the same precision as the
+`started` timestamp, so that `cicd.span.start_time` on `ended` matches it. After
+a restart, the new process reads this back and emits `progress` and `ended`
+itself.
 
-Once `started` was emitted for a span, its lifecycle events MUST end with
-`ended`, also when another producer took over. `ended` carries every span
-attribute that its producer knows; attributes that only the previous producer
-knew are kept from earlier events, see [merge rules](#merge-rules).
+After a takeover, the producer sets `cicd.span.parent.id` on `ended` only to the
+parent span ID that the span started with, and leaves it out if it didn't store
+it. Consumers then keep the parent from `started`, because a missing key never
+removes a value (see [Merge rules](#merge-rules)).
+
+Once a producer emitted `started` for a span, the producer that ends the span
+MUST emit `ended`, also after a takeover. `ended` carries every span attribute
+that its producer knows; attributes that only the previous producer knew are
+kept from earlier events.
 
 ## Rebuilding spans
 
 ### Merge rules
 
 A consumer builds a span by merging all lifecycle events that share a trace ID
-and span ID. The span's fields are carried as follows:
+and span ID. The span's fields are carried as follows. "Required" means the
+event MUST carry the field, "if …" that it carries it when the condition holds,
+"always" that the event itself gives it, and "-" that the event doesn't carry
+it.
 
 | Span field | Carried by | `started` | `progress` | `ended` |
 | --- | --- | --- | --- | --- |
 | Trace ID, span ID, trace flags | the event's trace context | required | required | required |
-| Span type and kind | the event name (the kind comes from the span definition) | yes | yes | yes |
+| Span type and kind | the event name (the kind comes from the span definition) | always | always | always |
 | Name | `cicd.span.name` | required | if changed | required |
 | Parent span ID | `cicd.span.parent.id` | if the span has a parent | - | if the span has a parent and the producer knows it |
 | TraceState | `cicd.span.trace_state` | if not empty | - | if not empty |
 | Start time | the event timestamp (`started`), `cicd.span.start_time` (`ended`) | required | - | required |
 | End time | the event timestamp | - | - | required |
 | Status | `otel.status_code`, `otel.status_description` | - | - | if set |
-| Span attributes | the other event attributes, with unchanged keys and values | some | the changed ones | all it knows |
+| Span attributes | the other event attributes, with the same keys and values as on the span | some | the changed ones | all it knows |
 
 The `cicd.span.*`, `otel.status_code` and `otel.status_description` attributes
 set the span fields above; they are not added as span attributes. Neither is
@@ -131,17 +167,16 @@ set the span fields above; they are not added as span attributes. Neither is
 1. **Fixed fields** are set when the span starts and can't change: trace ID,
    span ID, trace flags, parent span ID (`cicd.span.parent.id`), span type
    (given by the event name), span kind (from the span definition), start time
-   and TraceState
-   (`cicd.span.trace_state`). Every event that carries one of them MUST carry
-   the same value. If they differ anyway, the consumer merges them like
-   changeable fields (rule 2) and SHOULD report the inconsistency.
+   and TraceState (`cicd.span.trace_state`). Every event that carries one of
+   them MUST carry the same value. If any of them except the trace ID and span
+   ID, which identify the span, differ anyway, the consumer merges them like
+   changeable fields (rule 2) and SHOULD report the inconsistency, for example
+   in its own logs.
 2. **Changeable fields** are the span name (`cicd.span.name`) and the span
    attributes. They are merged per key: the value from the event with the later
-   timestamp wins. A `progress` event's timestamp SHOULD be later than that of
-   the previous lifecycle event for the same span. If two events with the same
-   timestamp disagree on a key, a consumer MAY use either value, but receiving
-   an event again doesn't change its choice (rule 5). `ended` settles every key
-   it carries (rule 4).
+   timestamp wins. If two events with the same timestamp disagree on a key, a
+   consumer MAY use either value, but receiving an event again doesn't change
+   its choice (rule 5). `ended` settles every key it carries (rule 4).
 3. **Nothing is removed.** A key missing from an event means "unchanged or
    unknown", never "removed".
 4. **`ended` is final.** Its values win over those of any earlier event,
@@ -149,6 +184,8 @@ set the span fields above; they are not added as span attributes. Neither is
    time come only from `ended`.
 5. **Merging is idempotent.** Receiving the same event twice, for example after
    an export retry, doesn't change the result.
+
+The table shows what rules 1 to 4 mean for an `ended` event:
 
 | `ended` compared to earlier events | Result |
 | --- | --- |
@@ -161,11 +198,14 @@ set the span fields above; they are not added as span attributes. Neither is
 
 A consumer MAY wait for a grace period after `ended` arrives before it emits
 the span, so that events delayed in transit, for example by an export retry,
-are still merged. Events that arrive after the span was emitted are dropped. If
-the span was emitted after `ended`, they can only lose attributes, or the parent
-span ID, that `ended` didn't carry (rule 4); if the consumer stopped waiting for
-`ended` and emitted the span without it (see [Open questions](#open-questions)),
-a late `ended` is lost too.
+are still merged. Events that arrive after the span was emitted are dropped, so
+they can only lose attributes, or the parent span ID, that `ended` didn't carry
+(rule 4).
+
+If `ended` doesn't arrive, for example because the producer stopped and no
+takeover followed, a consumer can stop waiting and emit the span without it, as
+an abandoned span. A late `ended` is then lost too. How long to wait, and how
+an abandoned span ends, are [open questions](#open-questions).
 
 ### What a rebuilt span lacks
 
@@ -173,10 +213,9 @@ No lifecycle event carries the span's events, links, `IsParentRemote` or dropped
 attribute, event and link counts, so a span rebuilt from the lifecycle events
 doesn't have them.
 
-Building a span from `ended` alone and building it from all events give the same
-span, except for attributes and the parent span ID that only earlier events
-carried. That only happens
-when the process ending the span is not the one that started it.
+Building a span from `ended` alone gives the same span as merging all of its
+events, except after a takeover: attributes and the parent span ID that only
+earlier events carried are then missing from `ended`.
 
 ### Export and duplicates
 
@@ -184,11 +223,11 @@ Because the span is still exported as usual, a deployment that also rebuilds
 spans from the lifecycle events gets each of these spans twice. Deployments that
 rebuild spans from the lifecycle events SHOULD drop the normally exported span of
 the same span type, unless they need the span fields that no lifecycle event
-carries (see [merge rules](#merge-rules)). Only drop spans for which lifecycle events are emitted, for
-example by selecting the instrumentation scope of the instrumentation that emits
-them, so that spans from other instrumentation aren't lost. The trace SDK
-specification has no built-in span filter, so this is a configuration choice, for
-example:
+carries (see [What a rebuilt span lacks](#what-a-rebuilt-span-lacks)). Only drop
+spans for which lifecycle events are emitted, for example by selecting the
+instrumentation scope of the instrumentation that emits them, so that spans from
+other instrumentation aren't lost. The trace SDK specification has no built-in
+span filter, so this is a configuration choice, for example:
 
 - a custom `SpanProcessor` in the SDK that doesn't forward `OnEnd` to the
   exporting span processor for these spans;
@@ -197,7 +236,7 @@ example:
 
 To rebuild a span, a consumer needs all of its lifecycle events. Deployments that
 run several consumer instances route all events of a span to the same instance,
-for example by load-balancing on the span ID.
+for example by load-balancing on the trace ID or the span ID.
 
 Deployments that don't rebuild spans keep the exported span, and can use the
 lifecycle events as the live status of running pipeline runs and task runs.
@@ -702,6 +741,6 @@ discussion. Still open:
   Whether lifecycle events need a sequence number.
 - Which `cicd.pipeline.result` and `cicd.pipeline.task.run.result` values set
   the span status to `Error`: the CI/CD span definitions don't say yet.
-- Whether `ended` remains needed.
+- Whether `ended` is still needed when the span itself is also exported.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
