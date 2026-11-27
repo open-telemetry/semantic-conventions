@@ -1,0 +1,265 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.28.0/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
+  - id: cicd.span.lifecycle
+    visibility: internal
+    attributes:
+      - ref: cicd.span.name
+        requirement_level: required
+      - ref: cicd.span.parent.id
+        requirement_level:
+          conditionally_required: If the span has a parent and the producer knows the parent span ID the span started with.
+      - ref: cicd.span.trace_state
+        requirement_level:
+          conditionally_required: If the span's TraceState is not empty.
+
+events:
+  - name: cicd.server.pipeline.run.started
+    stability: development
+    requirement_level: opt_in
+    brief: >
+      Reports that a CI/CD pipeline run span has started.
+    note: |
+      The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
+      span's. Its timestamp MUST be the span's start time.
+
+      The event SHOULD only be emitted for sampled spans. Instrumentations
+      SHOULD set the severity to INFO (severity number 9) when recording this
+      event.
+
+      Besides the attributes listed below, the event MAY carry the span's other
+      attributes, with the same keys and values as on the span.
+
+      The pipeline run's identity comes from the Resource (the `cicd.pipeline`
+      and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+      for the span.
+
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
+      consumers combine the lifecycle events of a span.
+    attributes:
+      - ref_group: cicd.span.lifecycle
+      - ref: cicd.pipeline.action.name
+        requirement_level: opt_in
+
+  - name: cicd.server.pipeline.run.progress
+    stability: development
+    requirement_level: opt_in
+    brief: >
+      Reports that a CI/CD pipeline run span is still running, and what changed
+      since the previous lifecycle event for the same span.
+    note: |
+      The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
+      span's. Its timestamp is the time the event was emitted. It SHOULD be
+      later than the timestamp of the previous lifecycle event for the same
+      span.
+
+      It is emitted while the span runs: periodically as a heartbeat, when the
+      span changes, or both. The event SHOULD only be emitted for sampled
+      spans. Instrumentations SHOULD set the severity to INFO (severity number
+      9) when recording this event.
+
+      The event SHOULD carry only what changed since the previous lifecycle
+      event for the same span, including span attributes not listed below, and
+      MAY repeat unchanged values, for example after the producer restarted. A
+      heartbeat carries no attributes. A missing attribute means unchanged or
+      unknown, never removed.
+
+      `cicd.pipeline.run.state` is not a span attribute: it reports the live
+      state of the pipeline run, and consumers don't add it to the rebuilt span.
+
+      The pipeline run's identity comes from the Resource (the `cicd.pipeline`
+      and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+      for the span.
+
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
+      consumers combine the lifecycle events of a span.
+    attributes:
+      - ref: cicd.span.name
+        requirement_level:
+          conditionally_required: If the span name changed since the previous lifecycle event for the same span.
+      - ref: cicd.pipeline.run.state
+        requirement_level:
+          conditionally_required: If the pipeline run state changed since the previous lifecycle event for the same span.
+
+  - name: cicd.server.pipeline.run.ended
+    stability: development
+    requirement_level: opt_in
+    brief: >
+      Reports that a CI/CD pipeline run span has ended, and carries its final
+      name, attributes and status.
+    note: |
+      The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
+      span's. Its timestamp MUST be the span's end time.
+
+      The event SHOULD only be emitted for sampled spans. Instrumentations
+      SHOULD set the severity to ERROR (severity number 17) if
+      `otel.status_code` is `ERROR`, and to INFO (severity number 9)
+      otherwise, following the
+      [event severity guidance](/docs/general/events.md#severity).
+      [Recording errors](/docs/general/recording-errors.md) defines when the
+      span status is `Error`.
+
+      The event MUST carry every span attribute that the producer knows, with
+      the same keys and values as on the span, so that a consumer can build the
+      span from this event alone, except for what only earlier events carried
+      after a takeover (see
+      [What a rebuilt span lacks](/docs/cicd/cicd-events.md#what-a-rebuilt-span-lacks)).
+      A producer that doesn't hold the SDK span (for example,
+      a CI/CD controller that restarted while the pipeline run was running) MUST
+      still provide the attributes required below, and might not know the span's
+      other attributes that were set before it took over. Consumers keep those
+      from earlier lifecycle events of the same span. Even if the parent span
+      was re-created after the restart, such a producer MUST NOT set
+      `cicd.span.parent.id` to any other value than the parent span ID the span
+      started with.
+
+      The pipeline run's identity comes from the Resource (the `cicd.pipeline`
+      and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+      for the span.
+
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
+      consumers combine the lifecycle events of a span.
+    attributes:
+      - ref_group: cicd.span.lifecycle
+      - ref: cicd.span.start_time
+        requirement_level: required
+      - ref: cicd.pipeline.result
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the pipeline result is `failure` or `error`
+      - ref: cicd.pipeline.action.name
+        requirement_level:
+          conditionally_required: If set on the span.
+      - ref: otel.status_code
+        requirement_level:
+          conditionally_required: If the span status is not `UNSET`.
+      - ref: otel.status_description
+        requirement_level:
+          conditionally_required: If the span status code is `ERROR` and the status has a description.
+
+  - name: cicd.pipeline.task.started
+    stability: development
+    requirement_level: opt_in
+    brief: >
+      Reports that a CI/CD pipeline task run span has started.
+    note: |
+      The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
+      span's. Its timestamp MUST be the span's start time.
+
+      The event SHOULD only be emitted for sampled spans. Instrumentations
+      SHOULD set the severity to INFO (severity number 9) when recording this
+      event.
+
+      Besides the attributes listed below, the event MAY carry the span's other
+      attributes, with the same keys and values as on the span.
+
+      The pipeline run's identity comes from the Resource (the `cicd.pipeline`
+      and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+      for the span. The task run's identity comes from the attributes below.
+
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
+      consumers combine the lifecycle events of a span.
+    attributes:
+      - ref_group: cicd.span.lifecycle
+      - ref: cicd.pipeline.task.name
+        requirement_level: required
+      - ref: cicd.pipeline.task.run.id
+        requirement_level: required
+      - ref: cicd.pipeline.task.run.url.full
+        requirement_level: required
+
+  - name: cicd.pipeline.task.progress
+    stability: development
+    requirement_level: opt_in
+    brief: >
+      Reports that a CI/CD pipeline task run span is still running, and what
+      changed since the previous lifecycle event for the same span.
+    note: |
+      The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
+      span's. Its timestamp is the time the event was emitted. It SHOULD be
+      later than the timestamp of the previous lifecycle event for the same
+      span.
+
+      It is emitted while the span runs: periodically as a heartbeat, when the
+      span changes, or both. The event SHOULD only be emitted for sampled
+      spans. Instrumentations SHOULD set the severity to INFO (severity number
+      9) when recording this event.
+
+      The event SHOULD carry only what changed since the previous lifecycle
+      event for the same span, including span attributes not listed below, and
+      MAY repeat unchanged values, for example after the producer restarted. A
+      heartbeat carries no attributes. A missing attribute means unchanged or
+      unknown, never removed.
+
+      The pipeline run's identity comes from the Resource (the `cicd.pipeline`
+      and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+      for the span. The task run's identity comes from the task attributes on
+      `started` and `ended`.
+
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
+      consumers combine the lifecycle events of a span.
+    attributes:
+      - ref: cicd.span.name
+        requirement_level:
+          conditionally_required: If the span name changed since the previous lifecycle event for the same span.
+
+  - name: cicd.pipeline.task.ended
+    stability: development
+    requirement_level: opt_in
+    brief: >
+      Reports that a CI/CD pipeline task run span has ended, and carries its
+      final name, attributes and status.
+    note: |
+      The event's trace context (TraceId, SpanId and TraceFlags) MUST be the
+      span's. Its timestamp MUST be the span's end time.
+
+      The event SHOULD only be emitted for sampled spans. Instrumentations
+      SHOULD set the severity to ERROR (severity number 17) if
+      `otel.status_code` is `ERROR`, and to INFO (severity number 9)
+      otherwise, following the
+      [event severity guidance](/docs/general/events.md#severity).
+      [Recording errors](/docs/general/recording-errors.md) defines when the
+      span status is `Error`.
+
+      The event MUST carry every span attribute that the producer knows, with
+      the same keys and values as on the span, so that a consumer can build the
+      span from this event alone, except for what only earlier events carried
+      after a takeover (see
+      [What a rebuilt span lacks](/docs/cicd/cicd-events.md#what-a-rebuilt-span-lacks)).
+      A producer that doesn't hold the SDK span (for example,
+      a CI/CD controller that restarted while the task run was running) MUST
+      still provide the attributes required below, and might not know the span's
+      other attributes that were set before it took over. Consumers keep those
+      from earlier lifecycle events of the same span. Even if the parent span
+      was re-created after the restart, such a producer MUST NOT set
+      `cicd.span.parent.id` to any other value than the parent span ID the span
+      started with.
+
+      The pipeline run's identity comes from the Resource (the `cicd.pipeline`
+      and `cicd.pipeline.run` [entities](/docs/resource/cicd.md)), as it does
+      for the span. The task run's identity comes from the attributes below.
+
+      See the [merge rules](/docs/cicd/cicd-events.md#merge-rules) for how
+      consumers combine the lifecycle events of a span.
+    attributes:
+      - ref_group: cicd.span.lifecycle
+      - ref: cicd.span.start_time
+        requirement_level: required
+      - ref: cicd.pipeline.task.name
+        requirement_level: required
+      - ref: cicd.pipeline.task.run.id
+        requirement_level: required
+      - ref: cicd.pipeline.task.run.url.full
+        requirement_level: required
+      - ref: cicd.pipeline.task.run.result
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the task result is `failure` or `error`
+      - ref: otel.status_code
+        requirement_level:
+          conditionally_required: If the span status is not `UNSET`.
+      - ref: otel.status_description
+        requirement_level:
+          conditionally_required: If the span status code is `ERROR` and the status has a description.

@@ -13,5 +13,6 @@ Semantic conventions for CI/CD are defined for the following signals:
 * [CI/CD Spans](cicd-spans.md): Semantic Conventions for CI/CD *spans*.
 * [CI/CD Metrics](cicd-metrics.md): Semantic Conventions for CI/CD *metrics*.
 * [CI/CD Logs](cicd-logs.md): Semantic Conventions for CI/CD *logs*.
+* [CI/CD Events](cicd-events.md): Semantic Conventions for CI/CD span lifecycle *events*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

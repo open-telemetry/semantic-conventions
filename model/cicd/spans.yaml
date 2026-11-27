@@ -14,7 +14,13 @@ groups:
       The `{action}` SHOULD be the [`cicd.pipeline.action.name`](/docs/registry/attributes/cicd.md#cicd-pipeline-action-name).
 
       The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md#cicd-pipeline-name).
+
+      This span may run for a long time. Instrumentation MAY offer an option, off by default, to emit the [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for it, in addition to the span.
+      The option MUST enable all three lifecycle events of the span together.
     stability: release_candidate
+    annotations:
+      duration:
+        long_running: true
     attributes:
       - ref: cicd.pipeline.result
         requirement_level: required
@@ -27,7 +33,13 @@ groups:
     type: span
     span_kind: internal
     brief: This span describes task execution in a pipeline run.
+    note: |
+      This span may run for a long time. Instrumentation MAY offer an option, off by default, to emit the [CI/CD span lifecycle events](/docs/cicd/cicd-events.md) for it, in addition to the span.
+      The option MUST enable all three lifecycle events of the span together.
     stability: release_candidate
+    annotations:
+      duration:
+        long_running: true
     attributes:
       - ref: cicd.pipeline.task.name
         requirement_level: required
