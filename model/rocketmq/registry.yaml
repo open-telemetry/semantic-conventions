@@ -69,6 +69,14 @@ groups:
               value: 'transaction'
               brief: 'Transaction message'
               stability: development
+            - id: lite
+              value: 'lite'
+              brief: 'Message of RocketMQ''s `LITE` type, addressed to a LiteTopic.'
+              stability: development
+            - id: priority
+              value: 'priority'
+              brief: 'Message of RocketMQ''s `PRIORITY` type.'
+              stability: development
         stability: development
         brief: >
           Type of message.
