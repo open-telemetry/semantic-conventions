@@ -71,11 +71,11 @@ groups:
               stability: development
             - id: lite
               value: 'lite'
-              brief: 'Message sent to a LiteTopic'
+              brief: 'Message of RocketMQ''s `LITE` type, addressed to a LiteTopic.'
               stability: development
             - id: priority
               value: 'priority'
-              brief: 'Message that supports priority-based delivery'
+              brief: 'Message of RocketMQ''s `PRIORITY` type.'
               stability: development
         stability: development
         brief: >
